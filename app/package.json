@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "identicon.js": "^2.3.3",
+    "jquery": "^3.6.0",
+    "moralis": "^0.0.178"
+  }
+}
