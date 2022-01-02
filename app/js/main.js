@@ -266,7 +266,7 @@ function generate_$post(post) {
         .css("order", -post['timestamp']);
     let $post_meta = generate_$post_meta(post['author'], post['timestamp']);
     $post.append($post_meta);
-    $post.append($div_with_class("message").text(post['message']))
+    $post.append($div_with_class("message").text(post['message'].substr(0, 280)))
     return $post;
 }
 
