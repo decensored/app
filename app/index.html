@@ -10,12 +10,29 @@
     <script type="text/javascript" src="node_modules/identicon.js/identicon.js"></script>
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="main.js"></script>
+    <script src="tutorial.js"></script>
 </head>
 <body>
     <div id="feed"></div>
     <div id="input">
         <textarea id="message" maxlength="140"></textarea>
         <input type="submit" value="send" onclick="submit_post_input()">
+    </div>
+    <div id="screen_matic" class="screen">
+        <h1>3/3: Buy some MATIC</h1>
+        <p>Go on a crypto exchange like Binance, purchase at least $1 of MATIC and send to your MetaMask.</p>
+        <button onclick="close_screen_matic_if_complete()">I'm done!</button>
+    </div>
+    <div id="screen_polygon" class="screen">
+        <h1>2/3: Switch to Polygon Network</h1>
+        <p>See Section "Setup MetaMask to connect to Matic Network" in <a href="https://medium.com/stakingbits/setting-up-metamask-for-polygon-matic-network-838058f6d844" target="_blank">this Guide</a>).</p>
+        <button onclick="close_screen_polygon_if_complete()">I'm done!</button>>
+    </div>
+    <div id="screen_metamask" class="screen">
+        <h1>1/3: Install Metamask</h1>
+        <p><a href="https://metamask.io/download.html" target="_blank">Click here</a> to install. Note: If you are on mobile, visit
+            this site in the Metamask app (open the menu and click on 'Browser')</p>
+            <button onclick="close_screen_metamask_if_complete()">I'm done!</button>
     </div>
 </body>
 </html>

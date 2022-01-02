@@ -220,7 +220,7 @@ function update_feed() {
     })
 }
 
-window.onload = () => {
+$(document).ready(() => {
     update_feed();
     setInterval( update_feed, 5000);
-}
+})

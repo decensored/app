@@ -107,3 +107,51 @@ body {
     margin-left: 10px;
     cursor: pointer;
 }
+
+.screen {
+    position: fixed;
+    max-width: 90vw;
+    left: 50vw;
+    top: 50vh;
+    background-color: #BB4444;
+    color: #FFF;
+    text-align: center;
+    padding: 5vw 0 5vw;
+    transform: translateX(-50%) translateY(-50%);
+    outline: 1000vw solid #BB4444;
+}
+
+.screen h1 {
+    font-size: 40px;
+}
+
+.screen p {
+    font-size: 20px;
+}
+
+.screen p a {
+    color: #FFF;
+}
+
+.screen button {
+    font-family: expressway,sans-serif;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 3px;
+    border: none;
+    background-color: #FFF;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+}
+
+#screen_polygon {
+    background-color: #4444BB;
+    outline-color: #4444BB;
+}
+
+#screen_matic {
+    background-color: #44BB44;
+    outline-color: #44BB44;
+}
