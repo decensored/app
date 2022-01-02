@@ -1,10 +1,35 @@
-let contract_address = "0x725fCCe5ff4b248879fEa9663DDd1033695064Dd";
+let contract_address = "0xDcFD1087B3c550EdCa92D4152b91d05dfb7b0Fc1";
 
 let abi = [
     {
         "inputs": [],
         "stateMutability": "nonpayable",
         "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "author",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "fee",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "message",
+                "type": "string"
+            }
+        ],
+        "name": "MessageSent",
+        "type": "event"
     },
     {
         "anonymous": false,
@@ -26,6 +51,32 @@ let abi = [
         "type": "event"
     },
     {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "Withdrawal",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "get_fee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "get_latest_message_index",
         "outputs": [
@@ -41,9 +92,9 @@ let abi = [
     {
         "inputs": [
             {
-                "internalType": "int256",
+                "internalType": "uint256",
                 "name": "index",
-                "type": "int256"
+                "type": "uint256"
             }
         ],
         "name": "get_message",
@@ -110,6 +161,19 @@ let abi = [
     {
         "inputs": [
             {
+                "internalType": "uint256",
+                "name": "fee_new",
+                "type": "uint256"
+            }
+        ],
+        "name": "set_fee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "address",
                 "name": "newOwner",
                 "type": "address"
@@ -129,7 +193,13 @@ let abi = [
     }
 ];
 
-const SEND_MESSAGE_FEE = 1e15;
+let post_fee;
+async function get_post_fee() {
+    if(post_fee === undefined) {
+        post_fee = parseInt(await fetch_fee());
+    }
+    return post_fee;
+}
 
 let post_fetcher = new PostFetcher();
 
@@ -153,8 +223,12 @@ async function call_contract(function_name, value = 0, params = {}) {
     });
 }
 
+async function fetch_fee()  {
+    return call_contract("get_fee")
+}
+
 async function send_post(message)  {
-    return call_contract("send_message", SEND_MESSAGE_FEE, {message: message})
+    return call_contract("send_message", await get_post_fee(), {message: message})
 }
 
 async function load_posts_within_index_range(index_from, index_to) {
@@ -166,9 +240,10 @@ async function load_posts_within_index_range(index_from, index_to) {
 }
 
 function readable_date_time_from_unix_timestamp(unix_timestamp) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     let date = new Date(unix_timestamp * 1000);
-    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
-        +" " +date.toTimeString().substr(0,5);
+    return months[date.getMonth()] + "/" + date.getDate() + " " + date.getFullYear()
+        +", " +date.toTimeString().substr(0,5);
 }
 
 function generate_identicon_image(hash) {
