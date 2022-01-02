@@ -26,34 +26,37 @@ async function get_address() {
     }
 }
 
-function close_screen_metamask_if_complete() {
+function close_screen_metamask_if_complete(do_alert = false) {
     if(is_metamask_installed()) {
         $('#screen_metamask').css('display', 'none');
-    } else {
+    } else if(do_alert) {
         alert("It doesn't look like you have Metamask installed yet.");
     }
 }
 
-async function close_screen_polygon_if_complete() {
+async function close_screen_polygon_if_complete(do_alert = false) {
     let network = await get_network();
     if(network === 137) {
         $('#screen_polygon').css('display', 'none');
-    } else {
+    } else if(do_alert) {
         alert("It doesn't look like you are on the polygon network yet.");
     }
 }
 
-async function close_screen_matic_if_complete() {
+async function close_screen_matic_if_complete(do_alert = false) {
     let balance = await get_balance(await get_address());
     if(balance > 0) {
         $('#screen_matic').css('display', 'none');
-    } else {
-        alert("It doesn't look like Lukas sent you any Matic yet.");
+    } else if(do_alert) {
+        alert("It doesn't look like you have any Matic yet.");
     }
+}
+async function load_tutorial() {
+    close_screen_metamask_if_complete();
+    await Promise.all([close_screen_polygon_if_complete(), close_screen_matic_if_complete()]);
+    $('body').css("opacity", "1");
 }
 
 $(document).ready(() => {
-    close_screen_metamask_if_complete();
-    close_screen_polygon_if_complete();
-    close_screen_matic_if_complete();
+    load_tutorial();
 });
