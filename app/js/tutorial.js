@@ -18,9 +18,10 @@ async function get_network() {
 
 async function get_address() {
     let address = window.ethereum.selectedAddress;
-    if(address !== undefined) {
+    if(address !== undefined && address !== null) {
         return address;
     } else {
+        await init_web3();
         return web3.eth.getAccounts().then(accounts => accounts[0]);
     }
 }
