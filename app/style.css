@@ -155,5 +155,18 @@ body {
 
 #screen_matic {
     background-color: #44BB44;
-    outline-color: #44BB44;
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    max-width: 100vw;
+    width: 100vw;
+    transform: none;
+    padding: 20px;
+}
+
+#screen_matic h1 {
+    font-size: 26px;
 }

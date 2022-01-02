@@ -56,6 +56,7 @@ async function close_screen_matic_if_complete(do_alert = false) {
     }
 }
 async function load_tutorial() {
+    close_screen_metamask_if_complete();
     if(close_screen_metamask_if_complete()) {
         if(await close_screen_polygon_if_complete()) {
             await close_screen_matic_if_complete()
