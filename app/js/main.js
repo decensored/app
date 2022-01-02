@@ -130,7 +130,8 @@ let abi = [
 ];
 
 const SEND_MESSAGE_FEE = 1e15;
-let latest_fetched_post_index = -1;
+
+let post_fetcher = new PostFetcher();
 
 async function init_web3() {
     if(!window.web3_initialized) {
@@ -156,19 +157,9 @@ async function send_post(message)  {
     return call_contract("send_message", SEND_MESSAGE_FEE, {message: message})
 }
 
-async function get_latest_post_index()  {
-    return call_contract("get_latest_message_index").then(latest_message_index_string => {
-        return parseInt(latest_message_index_string)
-    });
-}
-
-async function get_post(index)  {
-    return call_contract("get_message", 0, {index: index});
-}
-
 async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
-        get_post(i).then(post => {
+        post_fetcher.get_post(i).then(post => {
             append_post_to_feed(post);
         });
     }
@@ -185,18 +176,27 @@ function generate_identicon_image(hash) {
     return $("<img/>").attr("src", "data:image/png;base64," + data);
 }
 
-function append_post_to_feed(post) {
-    let readable_date_time = readable_date_time_from_unix_timestamp(post['timestamp']);
-    let $identicon = generate_identicon_image(post['author']);
+function generate_$post_meta(author, timestamp) {
+    let readable_date_time = readable_date_time_from_unix_timestamp(timestamp);
+    let $identicon = generate_identicon_image(author);
 
+    return $div_with_class("meta")
+        .append($identicon.addClass("identicon"))
+        .append($div_with_class("author").text(author))
+        .append($div_with_class("time").text(readable_date_time));
+}
+
+function generate_$post(post) {
     let $post = $div_with_class("post")
         .css("order", -post['timestamp']);
+    let $post_meta = generate_$post_meta(post['author'], post['timestamp']);
+    $post.append($post_meta);
     $post.append($div_with_class("message").text(post['message']))
-    $post.append($div_with_class("meta")
-        .append($identicon.addClass("identicon"))
-        .append($div_with_class("author").text(post['author']))
-        .append($div_with_class("time").text(readable_date_time))
-    );
+    return $post;
+}
+
+function append_post_to_feed(post) {
+    let $post = generate_$post(post);
     $('#feed').prepend($post);
 }
 
@@ -212,10 +212,10 @@ function submit_post_input() {
 }
 
 function update_feed() {
-    get_latest_post_index().then(latest_post_index => {
-        if (latest_post_index > latest_fetched_post_index) {
-            load_posts_within_index_range(latest_fetched_post_index + 1, latest_post_index);
-            latest_fetched_post_index = latest_post_index;
+    post_fetcher.get_index_of_latest_post().then(latest_post_index => {
+        let index_of_latest_post_fetched = post_fetcher.get_index_of_last_post_fetched();
+        if (latest_post_index > index_of_latest_post_fetched) {
+            load_posts_within_index_range(index_of_latest_post_fetched + 1, latest_post_index);
         }
     })
 }
