@@ -296,6 +296,8 @@ function update_feed() {
 }
 
 $(document).ready(() => {
-    update_feed();
-    setInterval( update_feed, 5000);
+    if(is_metamask_installed()) {
+        update_feed();
+        setInterval( update_feed, 5000);
+    }
 })

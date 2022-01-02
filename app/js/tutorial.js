@@ -29,18 +29,22 @@ async function get_address() {
 function close_screen_metamask_if_complete(do_alert = false) {
     if(is_metamask_installed()) {
         $('#screen_metamask').css('display', 'none');
+        return true;
     } else if(do_alert) {
         alert("It doesn't look like you have Metamask installed yet.");
     }
+    return false;
 }
 
 async function close_screen_polygon_if_complete(do_alert = false) {
     let network = await get_network();
     if(network === 137) {
         $('#screen_polygon').css('display', 'none');
+        return true;
     } else if(do_alert) {
         alert("It doesn't look like you are on the polygon network yet.");
     }
+    return false;
 }
 
 async function close_screen_matic_if_complete(do_alert = false) {
@@ -52,8 +56,11 @@ async function close_screen_matic_if_complete(do_alert = false) {
     }
 }
 async function load_tutorial() {
-    close_screen_metamask_if_complete();
-    await Promise.all([close_screen_polygon_if_complete(), close_screen_matic_if_complete()]);
+    if(close_screen_metamask_if_complete()) {
+        if(await close_screen_polygon_if_complete()) {
+            await close_screen_matic_if_complete()
+        }
+    }
     $('body').css("opacity", "1");
 }
 
