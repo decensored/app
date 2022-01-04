@@ -69,6 +69,30 @@ body {
     text-align: right;
 }
 
+.post .meta .options {
+    width: 40px;
+    position: absolute;
+    left: -48px;
+    bottom: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.post .meta .options .mint {
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px;
+    background-image: url("images/icons/nft.svg");
+    opacity: 0.2;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.post .meta .options .mint:hover {
+    opacity: 1;
+}
+
 #input {
     background-color: #FFF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -148,12 +172,12 @@ body {
     margin: 10px;
 }
 
-#screen_polygon {
+#screen_network {
     background-color: #4444BB;
     outline-color: #4444BB;
 }
 
-#screen_matic {
+#screen_tokens {
     background-color: #44BB44;
     outline: none;
     position: fixed;
@@ -167,6 +191,22 @@ body {
     padding: 20px;
 }
 
-#screen_matic h1 {
+#screen_tokens h1 {
     font-size: 26px;
+}
+
+#dialog_auction {
+    display: none;
+}
+
+.dialog {
+    width: 500px;
+    height: 300px;
+    background-color: #FFF;
+    border-radius: 10px;
+    outline: solid 1000vw rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translateX(-50%) translateY(-50%);
 }

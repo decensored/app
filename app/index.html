@@ -20,16 +20,19 @@
         <textarea id="message" maxlength="280"></textarea>
         <input type="submit" value="send" onclick="submit_post_input()">
     </div>
-    <div id="screen_matic" class="screen">
-        <h1>Buy MATIC to post</h1>
-        <p>To create posts you need just a few cents of MATIC to cover transaction costs. Send them to your MetaMask. You can ask me
-        on Discord (microhash#4229) to swap some MIOTA for MATIC</p>
-        <button onclick="close_screen_matic_if_complete(true)">I'm done!</button>
+    <div id="dialog_auction" class="dialog">
+
     </div>
-    <div id="screen_polygon" class="screen">
-        <h1>Switch to Polygon Network</h1>
-        <p>See Section "Setup MetaMask to connect to Matic Network" in <a href="https://medium.com/stakingbits/setting-up-metamask-for-polygon-matic-network-838058f6d844" target="_blank">this Guide</a>).</p>
-        <button onclick="close_screen_polygon_if_complete(true)">I'm done!</button>>
+    <div id="screen_tokens" class="screen">
+        <h1>Buy ONE to post</h1>
+        <p>To create posts you need just a few cents of ONE to cover transaction costs. Send them to your MetaMask. You can ask me
+        on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
+        <button onclick="close_screen_tokens_if_complete(true)">I'm done!</button>
+    </div>
+    <div id="screen_network" class="screen">
+        <h1>Switch to Harmony Network</h1>
+        <p>See Section "Setup MetaMask to connect to Harmony Network" in <a href="https://docs.harmony.one/home/network/wallets/browser-extensions-wallets/metamask-wallet" target="_blank">this Guide</a>).</p>
+        <button onclick="close_screen_network_if_complete(true)">I'm done!</button>>
     </div>
     <div id="screen_metamask" class="screen">
         <h1>Install Metamask</h1>

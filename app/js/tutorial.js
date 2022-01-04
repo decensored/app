@@ -36,21 +36,21 @@ function close_screen_metamask_if_complete(do_alert = false) {
     return false;
 }
 
-async function close_screen_polygon_if_complete(do_alert = false) {
+async function close_screen_network_if_complete(do_alert = false) {
     let network = await get_network();
-    if(network === 137) {
-        $('#screen_polygon').css('display', 'none');
+    if(network === 1666600000) {
+        $('#screen_network').css('display', 'none');
         return true;
     } else if(do_alert) {
-        alert("It doesn't look like you are on the polygon network yet.");
+        alert("It doesn't look like you are on the Harmony network yet.");
     }
     return false;
 }
 
-async function close_screen_matic_if_complete(do_alert = false) {
+async function close_screen_tokens_if_complete(do_alert = false) {
     let balance = await get_balance(await get_address());
     if(balance > 0) {
-        $('#screen_matic').css('display', 'none');
+        $('#screen_tokens').css('display', 'none');
     } else if(do_alert) {
         alert("It doesn't look like you have any Matic yet.");
     }
@@ -58,8 +58,8 @@ async function close_screen_matic_if_complete(do_alert = false) {
 async function load_tutorial() {
     close_screen_metamask_if_complete();
     if(close_screen_metamask_if_complete()) {
-        if(await close_screen_polygon_if_complete()) {
-            await close_screen_matic_if_complete()
+        if(await close_screen_network_if_complete()) {
+            await close_screen_tokens_if_complete()
         }
     }
     $('body').css("opacity", "1");

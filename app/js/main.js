@@ -1,5 +1,6 @@
-let contract_address = "0xDcFD1087B3c550EdCa92D4152b91d05dfb7b0Fc1";
-
+let contract_address = "0x9c352094c7A78AE1351C0C99FfB9D856d56cE08E";
+// 0xF79F25fCbb3600f3641b73f3cbd9eaE3c0C8B4c0
+// 0x6513d7fbf502B20c60a22973320956B771961aA1
 let abi = [
     {
         "inputs": [],
@@ -258,7 +259,12 @@ function generate_$post_meta(author, timestamp) {
     return $div_with_class("meta")
         .append($identicon.addClass("identicon"))
         .append($div_with_class("author").text(author))
-        .append($div_with_class("time").text(readable_date_time));
+        .append($div_with_class("time").text(readable_date_time))
+        .append($div_with_class("options").append(
+            $div_with_class("mint").on("click", () => {
+                $('#dialog_auction').css("display", "block")
+            })
+        ));
 }
 
 function generate_$post(post) {
