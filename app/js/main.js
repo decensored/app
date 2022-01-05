@@ -29,9 +29,9 @@ function generate_$post_meta(author_username, timestamp) {
         .append($div_with_class("author").text(author_username))
         .append($div_with_class("time").text(readable_date_time))
         .append($div_with_class("options").append(
-            $div_with_class("mint").on("click", () => {
+           /* $div_with_class("mint").on("click", () => {
                 $('#dialog_auction').css("display", "block")
-            })
+            })*/
         ));
 }
 
