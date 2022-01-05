@@ -64,7 +64,3 @@ async function load_tutorial() {
     }
     $('body').css("opacity", "1");
 }
-
-$(document).ready(() => {
-    load_tutorial();
-});

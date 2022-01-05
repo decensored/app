@@ -29,27 +29,13 @@
     <div id="dialog_auction" class="dialog">
 
     </div>
-    <div id="screen_sign_up" class="screen">
-        <h1>Sign-up</h1>
-        <input type="text" placeholder="username" id="username">
-        <button onclick="contract_accounts.sign_up($('#username').val())">Sign up!</button>
-    </div>
-    <div id="screen_tokens" class="screen">
-        <h1>Buy ONE to post</h1>
-        <p>To create posts you need just a few cents of ONE to cover transaction costs. Send them to your MetaMask. You can ask me
-            on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
-        <button onclick="close_screen_tokens_if_complete(true)">I'm done!</button>
-    </div>
-    <div id="screen_network" class="screen">
-        <h1>Switch to Harmony Network</h1>
-        <p>See Section "Setup MetaMask to connect to Harmony Network" in <a href="https://docs.harmony.one/home/network/wallets/browser-extensions-wallets/metamask-wallet" target="_blank">this Guide</a>).</p>
-        <button onclick="close_screen_network_if_complete(true)">I'm done!</button>>
-    </div>
-    <div id="screen_metamask" class="screen">
-        <h1>Install Metamask</h1>
-        <p><a href="https://metamask.io/download.html" target="_blank">Click here</a> to install. Note: If you are on mobile, visit
-            this site in the Metamask app (open the menu and click on 'Browser')</p>
-        <button onclick="close_screen_metamask_if_complete(true)">I'm done!</button>
-    </div>
+
+    <div id="tutorial"></div>
+    <script>$('#tutorial').load("./templates/tutorial.html")</script>
+    <script>
+        $(document).ready(() => {
+            load_tutorial();
+        });
+    </script>
 </body>
 </html>
