@@ -1,6 +1,4 @@
-let contract_address = "0x9c352094c7A78AE1351C0C99FfB9D856d56cE08E";
-// 0xF79F25fCbb3600f3641b73f3cbd9eaE3c0C8B4c0
-// 0x6513d7fbf502B20c60a22973320956B771961aA1
+let contract_address = "0x6DCaB77ddA1b5597360e238942E5bd8958b3Dd7B";
 let abi = [
     {
         "inputs": [],
