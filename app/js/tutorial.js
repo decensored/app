@@ -38,28 +38,36 @@ function close_screen_metamask_if_complete(do_alert = false) {
 
 async function close_screen_network_if_complete(do_alert = false) {
     let network = await get_network();
-    if(network === 1666600000) {
+    if(network === 1075) {//1666600000) {
         $('#screen_network').css('display', 'none');
         return true;
     } else if(do_alert) {
-        alert("It doesn't look like you are on the Harmony network yet.");
+        alert("It doesn't look like you are on the right network yet.");
     }
     return false;
 }
 
 async function close_screen_tokens_if_complete(do_alert = false) {
     let balance = await get_balance(await get_address());
-    if(balance > 0) {
+    if(balance >= 0) {
         $('#screen_tokens').css('display', 'none');
     } else if(do_alert) {
-        alert("It doesn't look like you have any Matic yet.");
+        alert("It doesn't look like you have any tokens yet.");
     }
 }
+
+async function close_screen_signup_if_complete() {
+    if(await is_signed_up()) {
+        $('#screen_sign_up').css("display", "none");
+    }
+}
+
 async function load_tutorial() {
     close_screen_metamask_if_complete();
     if(close_screen_metamask_if_complete()) {
         if(await close_screen_network_if_complete()) {
-            await close_screen_tokens_if_complete()
+            //await close_screen_tokens_if_complete()
+            close_screen_signup_if_complete();
         }
     }
     $('body').css("opacity", "1");

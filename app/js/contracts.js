@@ -55,8 +55,8 @@ class ContractPosts {
     }
 }
 
-let contract_accounts = new ContractAccounts("0x7601a4D116e564DBABe22F3749955A9167b9bd5e");
-let contract_posts = new ContractPosts("0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3");
+let contract_accounts = new ContractAccounts("0xF31A5F5e81F3Cd1c5e775815831f618DA43aedc0" /*"0x7601a4D116e564DBABe22F3749955A9167b9bd5e"*/);
+let contract_posts = new ContractPosts("0x9c352094c7A78AE1351C0C99FfB9D856d56cE08E" /*"0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3"*/);
 
 
 async function init_web3() {

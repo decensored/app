@@ -4,15 +4,16 @@
     <input type="text" placeholder="username" id="username">
     <button onclick="contract_accounts.sign_up($('#username').val())">Sign up!</button>
 </div>
+<!--
 <div id="screen_tokens" class="screen">
     <h1>Buy ONE to post</h1>
     <p>To create posts you need just a few cents of ONE to cover transaction costs. Send them to your MetaMask. You can ask me
         on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
     <button onclick="close_screen_tokens_if_complete(true)">I'm done!</button>
-</div>
+</div>-->
 <div id="screen_network" class="screen">
-    <h1>Switch to Harmony Network</h1>
-    <p>See Section "Setup MetaMask to connect to Harmony Network" in <a href="https://docs.harmony.one/home/network/wallets/browser-extensions-wallets/metamask-wallet" target="_blank">this Guide</a>).</p>
+    <h1>Switch to IOTA EVM</h1>
+    <p>In MetaMask, add a new Network:<br/>Network Name: IOTA EVM<br/>New RPC URL: https://evm.wasp.sc.iota-defi.com<br/>Chain ID: 1075</p>
     <button onclick="close_screen_network_if_complete(true)">I'm done!</button>>
 </div>
 <div id="screen_metamask" class="screen">
