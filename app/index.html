@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <title>decensored</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, viewport-fit=cover">
-    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/tutorial.css">
+
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="node_modules/moralis/dist/moralis.js"></script>
     <script type="text/javascript" src="node_modules/identicon.js/pnglib.js"></script>
     <script type="text/javascript" src="node_modules/identicon.js/identicon.js"></script>
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="js/contract_abis.js"></script>
+    <script src="js/contracts.js"></script>
     <script src="js/post_fetcher.js"></script>
     <script src="js/main.js"></script>
     <script src="js/tutorial.js"></script>
@@ -23,10 +29,15 @@
     <div id="dialog_auction" class="dialog">
 
     </div>
+    <div id="screen_sign_up" class="screen">
+        <h1>Sign-up</h1>
+        <input type="text" placeholder="username" id="username">
+        <button onclick="contract_accounts.sign_up($('#username').val())">Sign up!</button>
+    </div>
     <div id="screen_tokens" class="screen">
         <h1>Buy ONE to post</h1>
         <p>To create posts you need just a few cents of ONE to cover transaction costs. Send them to your MetaMask. You can ask me
-        on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
+            on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
         <button onclick="close_screen_tokens_if_complete(true)">I'm done!</button>
     </div>
     <div id="screen_network" class="screen">
@@ -38,7 +49,7 @@
         <h1>Install Metamask</h1>
         <p><a href="https://metamask.io/download.html" target="_blank">Click here</a> to install. Note: If you are on mobile, visit
             this site in the Metamask app (open the menu and click on 'Browser')</p>
-            <button onclick="close_screen_metamask_if_complete(true)">I'm done!</button>
+        <button onclick="close_screen_metamask_if_complete(true)">I'm done!</button>
     </div>
 </body>
 </html>

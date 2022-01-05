@@ -3,14 +3,12 @@ class PostFetcher {
     index_of_last_post_fetched = -1;
 
     async get_index_of_latest_post()  {
-        return call_contract("get_latest_message_index").then(latest_message_index_string => {
-            return parseInt(latest_message_index_string)
-        });
+        return contract_posts.get_index_of_latest_post();
     }
 
     async get_post(index)  {
         this.index_of_last_post_fetched = index;
-        return call_contract("get_message", 0, {index: index});
+        return contract_posts.get_post(index)
     }
 
     get_index_of_last_post_fetched() {
