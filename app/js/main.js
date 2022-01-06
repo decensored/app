@@ -96,8 +96,10 @@ $(document).ready(async () => {
             contract_accounts.id_by_address(address).then(id => {
                 contract_accounts.username_by_id(id).then(username => {
 
-                    if(username === get_profile_username()) {
-
+                    let profile_username = get_profile_username();
+                    if(profile_username && username !== profile_username) {
+                        $('#input').css("display", "none");
+                        $('#feed').prepend($("<div></div>").addClass("profile_title").text(profile_username));
                     }
 
                     $('#profile').attr('href', "?u="+username);

@@ -22,6 +22,14 @@ body {
     position: relative;
 }
 
+.profile_title {
+    font-size: 40px;
+    text-align: center;
+    margin: 50px 0;
+    font-weight: bold;
+    order: -9999999999999999;
+}
+
 #input textarea,
 .post {
     width: 300px;
