@@ -67,7 +67,10 @@
 }
 
 #screen_sign_up {
-    background-color: #44BB44;
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #screen_tokens h1 {

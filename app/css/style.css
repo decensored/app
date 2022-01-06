@@ -19,6 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     border-collapse: collapse;
+    position: relative;
 }
 
 #input textarea,

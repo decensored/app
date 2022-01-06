@@ -70,5 +70,6 @@ async function load_tutorial() {
             close_screen_signup_if_complete();
         }
     }
+    $('#feed').append($('#screen_sign_up'))
     $('body').css("opacity", "1");
 }
