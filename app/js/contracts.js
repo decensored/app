@@ -27,6 +27,10 @@ class ContractAccounts {
         return call_contract(this, "id_by_address", 0, {'': address})
     }
 
+    id_by_username(username) {
+        return call_contract(this, "id_by_username", 0, {'': username})
+    }
+
     username_by_id(id) {
         return call_contract(this, "username_by_id", 0, {'': id})
     }
@@ -53,10 +57,18 @@ class ContractPosts {
     get_post(index)  {
         return call_contract(this, "get_post", 0, {index: index});
     }
+
+    get_nth_post_index_by_author(author, n)  {
+        return call_contract(this, "get_nth_post_index_by_author", 0, {author: author, n: n});
+    }
+
+    get_amount_of_posts_by_author(author) {
+        return call_contract(this, "get_amount_of_posts_by_author", 0, {author: author});
+    }
 }
 
-let contract_accounts = new ContractAccounts("0xF31A5F5e81F3Cd1c5e775815831f618DA43aedc0" /*"0x7601a4D116e564DBABe22F3749955A9167b9bd5e"*/);
-let contract_posts = new ContractPosts("0x9c352094c7A78AE1351C0C99FfB9D856d56cE08E" /*"0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3"*/);
+let contract_accounts = new ContractAccounts("0x2112744464cf0938777f3D9D161442A63aCe915C" /*"0x7601a4D116e564DBABe22F3749955A9167b9bd5e"*/);
+let contract_posts = new ContractPosts("0xd68E91FaafBC240daC4d1dEA58971BD476C7c4A0" /*"0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3"*/);
 
 
 async function init_web3() {

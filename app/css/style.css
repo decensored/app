@@ -53,6 +53,8 @@ body {
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top;
+    text-decoration: none;
+    color: #000;
 }
 
 .post .meta .identicon {

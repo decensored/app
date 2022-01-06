@@ -270,8 +270,14 @@ const CONTRACT_POSTS_ABI = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "get_fee",
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "author",
+                "type": "uint256"
+            }
+        ],
+        "name": "get_amount_of_posts_by_author",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -290,6 +296,30 @@ const CONTRACT_POSTS_ABI = [
                 "internalType": "int256",
                 "name": "",
                 "type": "int256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "author",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "n",
+                "type": "uint256"
+            }
+        ],
+        "name": "get_nth_post_index_by_author",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -358,21 +388,32 @@ const CONTRACT_POSTS_ABI = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "fee_new",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
                 "type": "uint256"
             }
         ],
-        "name": "set_fee",
+        "name": "posts_by_author",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "renounceOwnership",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -399,13 +440,6 @@ const CONTRACT_POSTS_ABI = [
             }
         ],
         "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "withdraw",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

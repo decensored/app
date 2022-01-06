@@ -1,4 +1,21 @@
-let post_fetcher = new PostFetcher();
+let post_fetcher;
+
+async function set_post_fetcher() {
+
+    const profile_username = get_profile_username();
+    if(profile_username) {
+        let profile_userid = await contract_accounts.id_by_username(profile_username);
+        post_fetcher = new PostFetcherProfile(profile_userid);
+    } else {
+        post_fetcher = new PostFetcher();
+    }
+}
+
+function get_profile_username() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get('u');
+}
 
 async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
@@ -26,7 +43,7 @@ function generate_$post_meta(author_username, timestamp) {
 
     return $div_with_class("meta")
        // .append($identicon.addClass("identicon"))
-        .append($div_with_class("author").text(author_username))
+        .append($('<a></a>').attr("href","?u="+author_username).addClass("author").text(author_username))
         .append($div_with_class("time").text(readable_date_time))
         .append($div_with_class("options").append(
            /* $div_with_class("mint").on("click", () => {
@@ -69,9 +86,23 @@ function update_feed() {
     })
 }
 
-$(document).ready(() => {
+$(document).ready(async () => {
     if(is_metamask_installed()) {
+        await set_post_fetcher();
         update_feed();
         setInterval( update_feed, 5000);
+
+        get_address().then(address => {
+            contract_accounts.id_by_address(address).then(id => {
+                contract_accounts.username_by_id(id).then(username => {
+
+                    if(username === get_profile_username()) {
+
+                    }
+
+                    $('#profile').attr('href', "?u="+username);
+                });
+            });
+        });
     }
 })
