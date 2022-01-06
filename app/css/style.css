@@ -47,7 +47,6 @@ body {
     color: rgba(0, 0, 0, 0.7);
     line-height: 1.3em;
     height: 115px;
-    word-break: break-all;
     overflow: hidden;
     overflow-wrap: break-word;
 }
