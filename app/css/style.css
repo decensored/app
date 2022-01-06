@@ -138,6 +138,41 @@ body {
     bottom: 0;
 }
 
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    padding: 10px;
+    background-color: #FFF;
+    text-align: center;
+}
+
+nav .nav_item {
+    height: 60px;
+    background-size: 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 30%;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.15s opacity;
+}
+
+nav .nav_item:hover {
+    opacity: 1;
+}
+
+nav #all {
+    background-image: url("../images/icons/people.svg");
+}
+
+nav #profile {
+    background-image: url("../images/icons/person.svg");
+}
+
 #dialog_auction {
     display: none;
 }
