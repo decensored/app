@@ -105,8 +105,8 @@ let contract_posts = new ContractPosts(CONFIG.contract_posts_address);
 
 async function get_username() {
     return get_address().then(address => {
-        contract_accounts.id_by_address(address).then(id => {
-            contract_accounts.username_by_id(id)
+        return contract_accounts.id_by_address(address).then(id => {
+            return contract_accounts.username_by_id(id)
         })
     });
 }
