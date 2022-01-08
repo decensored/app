@@ -33,7 +33,6 @@ body {
 #input textarea,
 .post {
     width: 300px;
-    height: 150px;
     padding: 15px;
     position: relative;
     background-color: #FFF;
@@ -46,8 +45,7 @@ body {
     font-size: 16px;
     color: rgba(0, 0, 0, 0.7);
     line-height: 1.3em;
-    height: 115px;
-    overflow: hidden;
+    min-height: 115px;
     overflow-wrap: break-word;
 }
 
@@ -128,6 +126,7 @@ body {
     color: rgba(0, 0, 0, 0.7);
     line-height: 1.3em;
     margin: 0;
+    height: 150px;
 }
 
 #input textarea:focus {
