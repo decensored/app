@@ -65,22 +65,8 @@ class ContractPosts {
     get_amount_of_posts_by_author(author) {
         return call_contract(this, "get_amount_of_posts_by_author", 0, {author: author});
     }
-}
 
-let contract_accounts = new ContractAccounts("0x2112744464cf0938777f3D9D161442A63aCe915C" /*"0x7601a4D116e564DBABe22F3749955A9167b9bd5e"*/);
-let contract_posts = new ContractPosts("0xd68E91FaafBC240daC4d1dEA58971BD476C7c4A0" /*"0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3"*/);
-
-
-async function init_web3() {
-    if(!window.web3_initialized) {
-        window.web3 = await Moralis.enableWeb3();
-        window.web3_initialized = true;
+    get_accounts_address() {
+        return call_contract(this, "accounts", 0, {});
     }
-}
-
-async function is_signed_up() {
-    let address = await get_address();
-    return contract_accounts.id_by_address(address).then(
-        id => { return parseInt(id) > 0 }
-    );
 }

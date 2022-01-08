@@ -86,8 +86,28 @@ function update_feed() {
     })
 }
 
+async function init_web3() {
+    if(!window.web3_initialized) {
+        window.web3 = await Moralis.enableWeb3();
+        window.web3_initialized = true;
+    }
+}
+
+async function is_signed_up() {
+    let address = await get_address();
+    return contract_accounts.id_by_address(address).then(
+        id => { return parseInt(id) > 0 }
+    );
+}
+
+let contract_accounts;
+let contract_posts = new ContractPosts(CONFIG.contract_posts_address);
+
 $(document).ready(async () => {
     if(is_metamask_installed()) {
+
+        contract_accounts = new ContractAccounts(await contract_posts.get_accounts_address());
+
         await set_post_fetcher();
         update_feed();
         setInterval( update_feed, 5000);
