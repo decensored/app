@@ -58,6 +58,11 @@ async function close_screen_tokens_if_complete(do_alert = false) {
 
 async function close_screen_signup_if_complete() {
     if(await is_signed_up()) {
-        $('#screen_sign_up').css("display", "none");
+        $('#screen_sign_up').addClass("hidden");
+    } else {
+        setTimeout(function() {
+            $('#screen_sign_up').fadeIn();
+        }, 500);
+        $('#nav').css("display", "none");
     }
 }

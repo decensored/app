@@ -1,0 +1,53 @@
+
+<div id="screen_sign_up" class="hidden fixed left-0 top-0 right-0 bg-purple-900">
+    <div class="container mx-auto px-3 py-12 max-w-md">
+        <a href="#"><img src="images/logotype_invert.svg"/></a>
+        <h1 class="text-white text-center text-2xl mb-5">Sign-up</h1>
+        <div class="flex gap-3">
+            <input class="form-input p-3 rounded grow" type="text" placeholder="Choose YOUsername" id="username">
+            <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="contract_accounts.sign_up($('#username').val())">Go</button>
+        </div>
+    </div>
+</div>
+<!--
+<div id="screen_tokens" class="screen">
+    <h1>Buy ONE to post</h1>
+    <p>To create posts you need just a few cents of ONE to cover transaction costs. Send them to your MetaMask. You can ask me
+        on Discord (microhash#4229) to swap some MIOTA for ONE.</p>
+    <button onclick="close_screen_tokens_if_complete(true)">I'm done!</button>
+</div>-->
+<div id="screen_network" class="absolute left-0 top-0 right-0 bottom-0 bg-purple-900 pointer-events-auto flex align-center text-white text-center">
+    <div class="flex flex-col justify-center container mx-auto px-3 py-12 max-w-md">
+        <img src="images/logotype_invert.svg"/>
+        <p class="text-xl font-bold">Decentralised Web3 Social Media.</p>
+        <p class="text-lg mb-5 font-light">Powered by IOTA. Owned by You.</p>
+        <hr />
+        <p class="text-2xl mt-5 mb-5 font-bold">Switch to IOTA EVM</p>
+        <p class="mb-5">
+            In MetaMask, add a new Network:<br/>
+            Network Name: IOTA EVM<br/>
+            New RPC URL: https://we.addiota.com<br/>
+            Chain ID: 1075
+        </p>
+        <div>
+            <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded mx-auto" onclick="close_screen_network_if_complete(true)">I'm done!</button>
+        </div>
+    </div>
+</div>
+<div id="screen_metamask" class="absolute left-0 top-0 right-0 bottom-0 bg-purple-900 pointer-events-auto flex align-center text-white text-center">
+    <div class="flex flex-col justify-center container mx-auto px-3 py-12 max-w-md">
+        <img src="images/logotype_invert.svg"/>
+        <p class="text-xl font-bold">Decentralised Web3 Social Media.</p>
+        <p class="text-lg mb-5 font-light">Powered by IOTA. Owned by You.</p>
+        <p class="mt-5 mb-5">
+            <a href="#"><img class="mx-auto w-40" src="images/metamask.svg"/></a>
+            <a href="https://metamask.io/download.html" target="_blank" class="underline">Click here</a> to install MetaMask.
+        </p>
+        <p class="mb-5">
+            Note: If you are on mobile, visit this site in the Metamask app (open the menu and click on 'Browser').
+        </p>
+        <div>
+            <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded mx-auto" onclick="close_screen_metamask_if_complete(true)">I'm done!</button>
+        </div>
+    </div>
+</div>

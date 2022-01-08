@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>decensored</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, viewport-fit=cover">
-    <link rel="icon" href="images/logo.png" sizes="any" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
+    <script type="text/javascript" src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/@tailwindcss/forms/dist/forms.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" type="text/css" href="./css/tutorial.css">
+
+    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="node_modules/moralis/dist/moralis.js"></script>
@@ -20,24 +30,42 @@
     <script src="js/contracts.js"></script>
     <script src="js/post_fetcher.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/tutorial.js"></script>
+    <script src="js/overlay.js"></script>
 </head>
-<body>
-    <div id="feed">
-        <div id="input">
-            <textarea id="message" maxlength="280" placeholder="Your story starts here..."></textarea>
-            <input type="submit" value="send" onclick="submit_post_input()">
+<body class="bg-slate-50 font-sans">
+    <div id="feed" class="pb-28 h-screen w-full">
+        <div class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5">
+            <div id="input" class="container mx-auto max-w-md bg-white rounded shadow-sm divide-y divide-solid">
+                <div class="p-5">
+                    <textarea class="form-input rounded w-full border-none focus:shadow-sm h-32 resize-none" id="message" maxlength="280" placeholder="Your story starts here..."></textarea>
+                </div>
+                <div class="p-5 pl-2 flex justify-between">
+                    <div>
+                        <img class="mx-auto w-40" src="images/logotype.svg"/>
+                    </div>
+                    <div>
+                        <input class="bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" type="submit" value="spread it" onclick="submit_post_input()">
+                    </div>
+                </div>
+            </div>
+            <div id="posts" class="flex flex-col gap-y-5 mb-28"></div>
         </div>
     </div>
 
-    <nav>
-        <a id="all" class="nav_item" href="?"></a>
-        <a id="profile" class="nav_item" href="?‚"></a>
+    <nav id="nav" class="fixed left-0 right-0 bottom-0 bg-white shadow-2xl">
+        <div class="container mx-auto py-10 max-w-md flex gap-y-5">
+            <a id="all" href="?" class="grow flex items-center justify-center text-purple-700 hover:text-purple-800">
+                <i class="fas fa-users text-3xl"></i>
+            </a>
+            <a id="profile" href="?‚" class="grow flex items-center justify-center text-purple-700 hover:text-purple-800">
+                <i class="fas fa-user text-3xl"></i>
+            </a>
+        </div>
     </nav>
 
     <div id="dialog_auction" class="dialog">
     </div>
 
-    <div id="tutorial"></div>
+    <div id="overlay" class="fixed left-0 top-0 right-0 bottom-0 pointer-events-none"></div>
 </body>
 </html>
