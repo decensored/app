@@ -61,15 +61,3 @@ async function close_screen_signup_if_complete() {
         $('#screen_sign_up').css("display", "none");
     }
 }
-
-async function load_tutorial() {
-    close_screen_metamask_if_complete();
-    if(close_screen_metamask_if_complete()) {
-        if(await close_screen_network_if_complete()) {
-            //await close_screen_tokens_if_complete()
-            close_screen_signup_if_complete();
-        }
-    }
-    $('#feed').append($('#screen_sign_up'))
-    $('body').css("opacity", "1");
-}

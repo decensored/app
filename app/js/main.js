@@ -103,19 +103,26 @@ async function is_signed_up() {
 let contract_accounts;
 let contract_posts = new ContractPosts(CONFIG.contract_posts_address);
 
+async function get_username() {
+    return get_address().then(address => {
+        contract_accounts.id_by_address(address).then(id => {
+            contract_accounts.username_by_id(id)
+        })
+    });
+}
+
 $(document).ready(async () => {
-    if(is_metamask_installed()) {
+    $('#tutorial').load("./templates/tutorial.html", async () => {
+        if(close_screen_metamask_if_complete()) {
+            if(await close_screen_network_if_complete()) {
 
-        contract_accounts = new ContractAccounts(await contract_posts.get_accounts_address());
+                contract_accounts = new ContractAccounts(await contract_posts.get_accounts_address());
 
-        await set_post_fetcher();
-        update_feed();
-        setInterval( update_feed, 5000);
+                await set_post_fetcher();
+                update_feed();
+                setInterval( update_feed, 5000);
 
-        get_address().then(address => {
-            contract_accounts.id_by_address(address).then(id => {
-                contract_accounts.username_by_id(id).then(username => {
-
+                get_username().then(username => {
                     let profile_username = get_profile_username();
                     if(profile_username && username !== profile_username) {
                         $('#input').css("display", "none");
@@ -124,7 +131,12 @@ $(document).ready(async () => {
 
                     $('#profile').attr('href', "?u="+username);
                 });
-            });
-        });
-    }
+
+                close_screen_signup_if_complete();
+            }
+        }
+
+        $('#feed').append($('#screen_sign_up'))
+        $('body').css("opacity", "1");
+    });
 })
