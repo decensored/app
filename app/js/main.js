@@ -126,7 +126,7 @@ $(document).ready(async () => {
                     let profile_username = get_profile_username();
                     if(profile_username && username !== profile_username) {
                         $('#input').css("display", "none");
-                        $('#feed').prepend($("<div></div>").addClass("profile_title").text(profile_username));
+                        $('#feed > .container').prepend($("<div class='text-center text-xl font-bold mb-5'></div>").addClass("profile_title").text(profile_username));
                     }
 
                     $('#profile').attr('href', "?u="+username);
