@@ -5,6 +5,18 @@
 body {
     opacity: 0;
     transition: 0.3s opacity;
+    background-color: #f6f9fa;
+    background-image: url(../images/background.svg);
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+html .bg-decensored {
+    background-color: #3833a4;
+}
+
+html .text-decensored {
+    color: #3833a4;
 }
 
 .focus\:shadow-sm:focus {
