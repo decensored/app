@@ -66,3 +66,41 @@ async function close_screen_signup_if_complete() {
         $('#nav').css("display", "none");
     }
 }
+
+function scroll_to_top() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+}
+
+$(document).ready(function() {
+    autosize($('#message'));
+    // $('#message').keyup(function(e) {
+    //     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+    //         $(this).height($(this).height()+1);
+    //     };
+    // });
+
+    isScrolled()
+    $(window).scroll(function(){
+        isScrolled()
+    });
+});
+
+function isScrolled() {
+    if ($(window).scrollTop() > 0){
+        $('#submit').addClass('hidden');
+        $('#to-top').removeClass('hidden');
+    } else if ($(window).scrollTop() < 500){
+        $('#submit').removeClass('hidden');
+        $('#to-top').addClass('hidden');
+    }
+}
+
+function countChar(val) {
+    var len = val.value.length;
+    if (len >= 281) {
+        val.value = val.value.substring(0, 280);
+    } else {
+        $('#message-count').text(280 - len + ' of 280');
+    }
+};

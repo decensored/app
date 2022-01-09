@@ -17,8 +17,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
-    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
-
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="node_modules/moralis/dist/moralis.js"></script>
     <script type="text/javascript" src="node_modules/identicon.js/pnglib.js"></script>
@@ -30,28 +28,31 @@
     <script src="js/contracts.js"></script>
     <script src="js/post_fetcher.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/overlay.js"></script>
+    <script src="js/helper.js"></script>
+
+    <script src="js/autosize.min.js"></script>
 </head>
 <body class="font-sans">
-    <div id="feed" class="pb-28 h-screen w-full">
+    <div id="feed" class="pb-28">
         <div class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5">
-            <div id="input" class="container mx-auto max-w-md bg-white rounded shadow-sm divide-y divide-solid">
-                <div class="p-5">
-                    <textarea class="form-input rounded w-full border-none focus:shadow-sm h-32 resize-none" id="message" maxlength="280" placeholder="Your story starts here..."></textarea>
+            <div id="input" class="container mx-auto max-w-md bg-white rounded shadow-sm divide-y divide-solid sticky -top-32">
+                <div class="p-5 relative">
+                    <textarea class="form-input rounded w-full border-none focus:shadow-sm h-20 resize-none" id="message" maxlength="280" placeholder="Your story starts here..." onkeyup="countChar(this)"></textarea>
+                    <div id="message-count" class="absolute right-5 bottom-5 py-1 px-2 text-xs text-gray-400 rounded-full bg-white empty:hidden font-mono leading-none"></div>
                 </div>
                 <div class="p-5 pl-2 flex justify-between">
                     <div>
                         <img class="mx-auto w-40" src="images/logotype.svg"/>
                     </div>
                     <div>
-                        <input class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" type="submit" value="spread it" onclick="submit_post_input()">
+                        <button id="submit" class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" onclick="submit_post_input()">Spread it</button>
+                        <button id="to-top" class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" onclick="scroll_to_top()">Back to top</button>
                     </div>
                 </div>
             </div>
             <div id="posts" class="flex flex-col gap-y-5 mb-28"></div>
         </div>
     </div>
-
     <nav id="nav" class="fixed left-0 right-0 bottom-0 bg-white shadow-2xl">
         <div class="container mx-auto py-6 max-w-md flex gap-y-5">
             <a id="all" href="?" class="grow flex flex-col items-center justify-center text-decensored hover:text-purple-800">
@@ -64,10 +65,7 @@
             </a>
         </div>
     </nav>
-
-    <div id="dialog_auction" class="dialog">
-    </div>
-
+    <div id="dialog_auction" class="dialog"></div>
     <div id="overlay" class="fixed left-0 top-0 right-0 bottom-0 pointer-events-none"></div>
 </body>
 </html>
