@@ -1,8 +1,14 @@
 
 $(document).ready(async () => {
+    $("#init-header").load("templates/header.html", function() {
+        $("#header").unwrap();
+    });
     $("#init-feed").load("templates/feed.html", function() {
         $("#feed").unwrap();
-        autosize($('#message'));
+        var message = $("#message");
+        message.css("display","none");
+        autosize(message);
+        message.css("display","block");
     });
     $("#init-bottombar").load("templates/bottombar.html", function() {
         $("#bottombar").unwrap();
