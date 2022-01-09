@@ -80,9 +80,9 @@ $(document).ready(function() {
     //     };
     // });
 
-    isScrolled()
+    isScrolled();
     $(window).scroll(function(){
-        isScrolled()
+        isScrolled();
     });
 });
 

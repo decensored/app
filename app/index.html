@@ -12,10 +12,13 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Tailwind -->
     <script type="text/javascript" src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/@tailwindcss/forms/dist/forms.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://unpkg.com/@tailwindcss/forms/dist/forms.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="node_modules/moralis/dist/moralis.js"></script>
@@ -29,16 +32,16 @@
     <script src="js/post_fetcher.js"></script>
     <script src="js/main.js"></script>
     <script src="js/helper.js"></script>
-
     <script src="js/autosize.min.js"></script>
+    <!-- <script src="js/darkmode.js"></script> -->
 </head>
-<body class="font-sans">
+<body class="font-sans bg-slate-50 dark:bg-black text-gray-900 dark:text-gray-500">
     <div id="feed" class="pb-28">
         <div class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5">
-            <div id="input" class="container mx-auto max-w-md bg-white rounded shadow-sm divide-y divide-solid sticky -top-32">
+            <div id="input" class="container mx-auto max-w-md bg-white dark:bg-gray-900 rounded shadow-sm divide-y divide-solid divide-white dark:divide-gray-800 sticky -top-32">
                 <div class="p-5 relative">
-                    <textarea class="form-input rounded w-full border-none focus:shadow-sm h-20 resize-none" id="message" maxlength="280" placeholder="Your story starts here..." onkeyup="countChar(this)"></textarea>
-                    <div id="message-count" class="absolute right-5 bottom-5 py-1 px-2 text-xs text-gray-400 rounded-full bg-white empty:hidden font-mono leading-none"></div>
+                    <textarea class="form-input bg-transparent rounded w-full border-none focus:shadow-sm h-20 resize-none" id="message" maxlength="280" placeholder="Your story starts here..." onkeyup="countChar(this)"></textarea>
+                    <div id="message-count" class="absolute right-5 bottom-5 py-1 px-2 text-xs text-gray-400 rounded-full bg-white dark:bg-black empty:hidden font-mono leading-none"></div>
                 </div>
                 <div class="p-5 pl-2 flex justify-between">
                     <div>
@@ -53,7 +56,7 @@
             <div id="posts" class="flex flex-col gap-y-5 mb-28"></div>
         </div>
     </div>
-    <nav id="nav" class="fixed left-0 right-0 bottom-0 bg-white shadow-2xl">
+    <nav id="nav" class="fixed left-0 right-0 bottom-0 bg-white dark:bg-black shadow-2xl">
         <div class="container mx-auto py-6 max-w-md flex gap-y-5">
             <a id="all" href="?" class="grow flex flex-col items-center justify-center text-decensored hover:text-purple-800">
                 <i class="fa fa-comments text-3xl"></i>
@@ -67,5 +70,14 @@
     </nav>
     <div id="dialog_auction" class="dialog"></div>
     <div id="overlay" class="fixed left-0 top-0 right-0 bottom-0 pointer-events-none"></div>
+
+    <!-- Dark mode switcher -->
+    <!-- <div class="fixed top-2 right-2">
+        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+    </div> -->
+    <!-- Dark mode switcher end -->
 </body>
 </html>

@@ -42,8 +42,8 @@ function generate_$post_meta(author_username, timestamp) {
 
     return $div_with_class("meta flex justify-between")
        // .append($identicon.addClass("identicon"))
-        .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold").text(author_username))
-        .append($div_with_class("time text-gray-500 text-sm").text(readable_date_time))
+        .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold text-gray-900 dark:text-gray-300").text(author_username))
+        .append($div_with_class("time text-sm").text(readable_date_time))
         // .append($div_with_class("options").append(
         //    /* $div_with_class("mint").on("click", () => {
         //         $('#dialog_auction').css("display", "block")
@@ -52,7 +52,7 @@ function generate_$post_meta(author_username, timestamp) {
 }
 
 async function generate_$post(post) {
-    let $post = $div_with_class("post bg-white p-5 rounded shadow-sm")
+    let $post = $div_with_class("post bg-white dark:bg-gray-900 p-5 rounded shadow-sm")
         .css("order", -post['timestamp']);
     let author_username = await contract_accounts.username_by_id(post['author'])
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);

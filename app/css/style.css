@@ -5,8 +5,8 @@
 body {
     opacity: 0;
     transition: 0.3s opacity;
-    background-color: #f6f9fa;
-    background-image: url(../images/background.svg);
+    /* background-color: #f6f9fa; */
+    background-image: url(../images/background_light.svg);
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -14,6 +14,17 @@ body {
 html .bg-decensored {
     background-color: #3833a4;
 }
+
+@media (prefers-color-scheme: dark) {
+    /* html .bg-decensored {
+        background-color: #1E1C51;
+    } */
+
+    body {
+        background-image: url(../images/background_dark.svg);
+    }
+}
+
 
 html .text-decensored {
     color: #3833a4;
