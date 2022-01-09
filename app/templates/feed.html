@@ -1,0 +1,20 @@
+<div id="feed">
+    <div class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28">
+        <div id="input" class="container mx-auto max-w-md bg-white dark:bg-gray-900 rounded shadow-sm divide-y divide-solid divide-gray-200 dark:divide-gray-800 sticky -top-32">
+            <div class="p-5 relative">
+                <textarea class="form-input bg-transparent rounded w-full border-none focus:shadow-sm h-20 resize-none" id="message" maxlength="280" placeholder="Your story starts here..." onkeyup="countChar(this)"></textarea>
+                <div id="message-count" class="absolute right-5 bottom-5 py-1 px-2 text-xs text-gray-400 rounded-full bg-white dark:bg-black empty:hidden font-mono leading-none"></div>
+            </div>
+            <div class="p-5 pl-2 flex justify-between">
+                <div>
+                    <img class="mx-auto w-40" src="images/logo/logotype.svg"/>
+                </div>
+                <div>
+                    <button id="submit" class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" onclick="submit_post_input()">Spread it</button>
+                    <button id="to-top" class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer hidden" onclick="scroll_to_top()">Back to top</button>
+                </div>
+            </div>
+        </div>
+        <div id="posts" class="flex flex-col gap-y-5 mb-28"></div>
+    </div>
+</div>

@@ -73,13 +73,6 @@ function scroll_to_top() {
 }
 
 $(document).ready(function() {
-    autosize($('#message'));
-    // $('#message').keyup(function(e) {
-    //     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-    //         $(this).height($(this).height()+1);
-    //     };
-    // });
-
     isScrolled();
     $(window).scroll(function(){
         isScrolled();

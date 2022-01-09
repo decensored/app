@@ -1,12 +1,10 @@
 {
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@tailwindcss/forms": "^0.4.0",
+    "autosize": "^5.0.1",
     "identicon.js": "^2.3.3",
     "jquery": "^3.6.0",
     "moralis": "^0.0.178"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.12"
   }
 }

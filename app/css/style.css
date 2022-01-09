@@ -6,7 +6,7 @@ body {
     opacity: 0;
     transition: 0.3s opacity;
     /* background-color: #f6f9fa; */
-    background-image: url(../images/background_light.svg);
+    background-image: url(../images/background/light.svg);
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -21,7 +21,7 @@ html .bg-decensored {
     } */
 
     body {
-        background-image: url(../images/background_dark.svg);
+        background-image: url(../images/background/dark.svg);
     }
 }
 
