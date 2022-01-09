@@ -57,7 +57,7 @@ async function generate_$post(post) {
     let author_username = await contract_accounts.username_by_id(post['author'])
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);
     $post.append($post_meta);
-    $post.append($div_with_class("message break-words").text(post['message'].substr(0, 280)))
+    $post.append($div_with_class("message break-words mt-2").text(post['message'].substr(0, 280)))
     return $post;
 }
 
