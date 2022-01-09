@@ -58,6 +58,42 @@ async function close_screen_tokens_if_complete(do_alert = false) {
 
 async function close_screen_signup_if_complete() {
     if(await is_signed_up()) {
-        $('#screen_sign_up').css("display", "none");
+        $('#screen_sign_up').addClass("hidden");
+    } else {
+        setTimeout(function() {
+            $('#screen_sign_up').fadeIn();
+        }, 500);
+        $('#nav').css("display", "none");
     }
 }
+
+function scroll_to_top() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+}
+
+$(document).ready(function() {
+    isScrolled();
+    $(window).scroll(function(){
+        isScrolled();
+    });
+});
+
+function isScrolled() {
+    if ($(window).scrollTop() > 0){
+        $('#submit').addClass('hidden');
+        $('#to-top').removeClass('hidden');
+    } else if ($(window).scrollTop() < 500){
+        $('#submit').removeClass('hidden');
+        $('#to-top').addClass('hidden');
+    }
+}
+
+function countChar(val) {
+    var len = val.value.length;
+    if (len >= 281) {
+        val.value = val.value.substring(0, 280);
+    } else {
+        $('#message-count').text(280 - len + ' of 280');
+    }
+};

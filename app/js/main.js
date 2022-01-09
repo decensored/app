@@ -1,7 +1,6 @@
 let post_fetcher;
 
 async function set_post_fetcher() {
-
     const profile_username = get_profile_username();
     if(profile_username) {
         let profile_userid = await contract_accounts.id_by_username(profile_username);
@@ -41,29 +40,29 @@ function generate_$post_meta(author_username, timestamp) {
     let readable_date_time = readable_date_time_from_unix_timestamp(timestamp);
    //let $identicon = generate_identicon_image(author_username);
 
-    return $div_with_class("meta")
+    return $div_with_class("meta flex justify-between")
        // .append($identicon.addClass("identicon"))
-        .append($('<a></a>').attr("href","?u="+author_username).addClass("author").text(author_username))
-        .append($div_with_class("time").text(readable_date_time))
-        .append($div_with_class("options").append(
-           /* $div_with_class("mint").on("click", () => {
-                $('#dialog_auction').css("display", "block")
-            })*/
-        ));
+        .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold text-gray-900 dark:text-gray-300").text(author_username))
+        .append($div_with_class("time text-sm").text(readable_date_time))
+        // .append($div_with_class("options").append(
+        //    /* $div_with_class("mint").on("click", () => {
+        //         $('#dialog').css("display", "block")
+        //     })*/
+        // ));
 }
 
 async function generate_$post(post) {
-    let $post = $div_with_class("post")
+    let $post = $div_with_class("post bg-white dark:bg-gray-900 p-5 rounded shadow-sm")
         .css("order", -post['timestamp']);
     let author_username = await contract_accounts.username_by_id(post['author'])
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);
     $post.append($post_meta);
-    $post.append($div_with_class("message").text(post['message'].substr(0, 280)))
+    $post.append($div_with_class("message break-words").text(post['message'].substr(0, 280)))
     return $post;
 }
 
 function append_post_to_feed(post) {
-    generate_$post(post).then($post => $('#feed').prepend($post));
+    generate_$post(post).then($post => $('#feed #posts').append($post));
 }
 
 function $div_with_class(class_name) {
@@ -110,33 +109,3 @@ async function get_username() {
         })
     });
 }
-
-$(document).ready(async () => {
-    $('#tutorial').load("./templates/tutorial.html", async () => {
-        if(close_screen_metamask_if_complete()) {
-            if(await close_screen_network_if_complete()) {
-
-                contract_accounts = new ContractAccounts(await contract_posts.get_accounts_address());
-
-                await set_post_fetcher();
-                update_feed();
-                setInterval( update_feed, 5000);
-
-                get_username().then(username => {
-                    let profile_username = get_profile_username();
-                    if(profile_username && username !== profile_username) {
-                        $('#input').css("display", "none");
-                        $('#feed').prepend($("<div></div>").addClass("profile_title").text(profile_username));
-                    }
-
-                    $('#profile').attr('href', "?u="+username);
-                });
-
-                close_screen_signup_if_complete();
-            }
-        }
-
-        $('#feed').append($('#screen_sign_up'))
-        $('body').css("opacity", "1");
-    });
-})

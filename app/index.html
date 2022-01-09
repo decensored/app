@@ -2,42 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>decensored</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, viewport-fit=cover">
-    <link rel="icon" href="images/logo.png" sizes="any" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" type="text/css" href="./css/tutorial.css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="./css/tailwind.css" rel="stylesheet" type="text/css">
+    <link href="node_modules/@tailwindcss/forms/dist/forms.min.css" rel="stylesheet" type="text/css">
+    <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="node_modules/moralis/dist/moralis.js"></script>
     <script type="text/javascript" src="node_modules/identicon.js/pnglib.js"></script>
     <script type="text/javascript" src="node_modules/identicon.js/identicon.js"></script>
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/autosize/dist/autosize.min.js"></script>
+    <script type="text/javascript" src="node_modules/cssuseragent/cssua.js"></script>
 
     <script src="./config.js"></script>
     <script src="js/contract_abis.js"></script>
     <script src="js/contracts.js"></script>
     <script src="js/post_fetcher.js"></script>
+    <script src="js/init.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/tutorial.js"></script>
+    <script src="js/helper.js"></script>
 </head>
-<body>
-    <div id="feed">
-        <div id="input">
-            <textarea id="message" maxlength="280" placeholder="Your story starts here..."></textarea>
-            <input type="submit" value="send" onclick="submit_post_input()">
-        </div>
-    </div>
-
-    <nav>
-        <a id="all" class="nav_item" href="?"></a>
-        <a id="profile" class="nav_item" href="?‚"></a>
-    </nav>
-
-    <div id="dialog_auction" class="dialog">
-    </div>
-
-    <div id="tutorial"></div>
+<body class="font-sans bg-slate-100 dark:bg-black text-gray-900 dark:text-gray-500">
+    <div id="init-header"></div>
+    <div id="init-feed"></div>
+    <div id="init-bottombar"></div>
+    <div id="init-overlay"></div>
+    <!-- <div id="init-dialog"></div> -->
 </body>
 </html>

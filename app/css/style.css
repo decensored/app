@@ -3,200 +3,39 @@
 }
 
 body {
-    margin: 0;
-    font-size: 0;
-    font-family: sans-serif;
     opacity: 0;
     transition: 0.3s opacity;
+    /* background-color: #f6f9fa; */
+    background-image: url(../images/background/light.svg);
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
-#feed {
-    background-color: #DCE;
-    padding: 10px 0 200px 0;
-    height: 100vh;
-    width: 100%;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    border-collapse: collapse;
-    position: relative;
+html .bg-decensored {
+    background-color: #3833a4;
 }
 
-.profile_title {
-    font-size: 40px;
-    text-align: center;
-    margin: 50px 0;
-    font-weight: bold;
-    order: -9999999999999999;
+@media (prefers-color-scheme: dark) {
+    /* html .bg-decensored {
+        background-color: #1E1C51;
+    } */
+
+    body {
+        background-image: url(../images/background/dark.svg);
+    }
 }
 
-#input textarea,
-.post {
-    width: 300px;
-    padding: 15px;
-    position: relative;
-    background-color: #FFF;
-    margin: 5px auto;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+@media (max-width: 768px) {
+    html:not([class*="ua-desktop"]) #screen_mobile {
+        display: flex !important;
+    }
 }
 
-.post .message {
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.7);
-    line-height: 1.3em;
-    min-height: 115px;
-    overflow-wrap: break-word;
+
+html .text-decensored {
+    color: #3833a4;
 }
 
-.post .meta .author:before {
-    content: "by ";
-}
-
-.post .meta .author {
-    font-size: 12px;
-    max-width: 135px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    vertical-align: top;
-    text-decoration: none;
-    color: #000;
-}
-
-.post .meta .identicon {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    left: -48px;
-    bottom: 0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.post .meta .time {
-    font-size: 12px;
-    display: inline-block;
-    vertical-align: top;
-    width: 135px;
-    text-align: right;
-}
-
-.post .meta .options {
-    width: 40px;
-    position: absolute;
-    left: -48px;
-    bottom: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.post .meta .options .mint {
-    margin: 5px;
-    width: 30px;
-    height: 30px;
-    background-size: 30px;
-    background-image: url("../images/icons/nft.svg");
-    opacity: 0.2;
-    cursor: pointer;
-    transition: opacity 0.15s;
-}
-
-.post .meta .options .mint:hover {
-    opacity: 1;
-}
-
-#input {
-    order: -9999999999999999;
-    position: relative;
-    display: inline-block;
-    width: 300px;
-    height: 150px;
-    margin: 30px auto;
-}
-
-#input textarea {
-    border: none;
-    resize: none;
-    font-family: sans-serif;
-    display: block;
-
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.7);
-    line-height: 1.3em;
-    margin: 0;
-    height: 150px;
-}
-
-#input textarea:focus {
-    outline: none;
-}
-
-#input input[type=submit] {
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    background-color: #DCE;
-    opacity: 0.7;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-
-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    padding: 10px;
-    background-color: #FFF;
-    text-align: center;
-}
-
-nav .nav_item {
-    height: 60px;
-    background-size: 60px;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: inline-block;
-    width: 30%;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: 0.15s opacity;
-}
-
-nav .nav_item:hover {
-    opacity: 1;
-}
-
-nav #all {
-    background-image: url("../images/icons/people.svg");
-}
-
-nav #profile {
-    background-image: url("../images/icons/person.svg");
-}
-
-#dialog_auction {
-    display: none;
-}
-
-.dialog {
-    width: 500px;
-    height: 300px;
-    background-color: #FFF;
-    border-radius: 10px;
-    outline: solid 1000vw rgba(0, 0, 0, 0.2);
-    position: fixed;
-    top: 50vh;
-    left: 50vw;
-    transform: translateX(-50%) translateY(-50%);
+.focus\:shadow-sm:focus {
+    box-shadow: none !important;
 }
