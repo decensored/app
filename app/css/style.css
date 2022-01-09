@@ -25,6 +25,12 @@ html .bg-decensored {
     }
 }
 
+@media (max-width: 768px) {
+    html:not([class*="ua-desktop"]) #screen_mobile {
+        display: flex !important;
+    }
+}
+
 
 html .text-decensored {
     color: #3833a4;
