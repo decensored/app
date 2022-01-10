@@ -26,10 +26,6 @@ html .bg-decensored-gradient {
     }
 }
 
-html:not(.ua-desktop) #screen_mobile {
-    display: flex !important;
-}
-
 html .text-decensored {
     color: #3833a4;
 }
