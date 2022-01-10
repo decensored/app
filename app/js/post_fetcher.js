@@ -3,12 +3,13 @@ class PostFetcher {
     index_of_last_post_fetched = -1;
 
     async get_index_of_latest_post()  {
-        return contract_posts.get_index_of_latest_post();
+        return contract_posts.methods.get_latest_message_index().call()
+            .then(lmi => { return parseInt(lmi)} );
     }
 
     async get_post(index)  {
         this.index_of_last_post_fetched = index;
-        return contract_posts.get_post(index)
+        return contract_posts.methods.get_post(index).call()
     }
 
     get_index_of_last_post_fetched() {
@@ -24,12 +25,12 @@ class PostFetcherProfile {
     }
 
     async get_index_of_latest_post()  {
-        return await contract_posts.get_amount_of_posts_by_author(this.author)-1
+        return parseInt(await contract_posts.methods.get_amount_of_posts_by_author(this.author).call())-1
     }
 
     async get_post(index)  {
         this.index_of_last_post_fetched = index;
-        let post_index = await contract_posts.get_nth_post_index_by_author(this.author, index)
+        let post_index = await contract_posts.methods.get_nth_post_index_by_author(this.author, index).call()
         return contract_posts.get_post(post_index);
     }
 

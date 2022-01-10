@@ -3,7 +3,7 @@ let post_fetcher;
 async function set_post_fetcher() {
     const profile_username = get_profile_username();
     if(profile_username) {
-        let profile_userid = await contract_accounts.id_by_username(profile_username);
+        let profile_userid = await contract_accounts.methods.id_by_username(profile_username).call();
         post_fetcher = new PostFetcherProfile(profile_userid);
     } else {
         post_fetcher = new PostFetcher();
@@ -54,7 +54,7 @@ function generate_$post_meta(author_username, timestamp) {
 async function generate_$post(post) {
     let $post = $div_with_class("post bg-white dark:bg-gray-900 p-5 rounded shadow-sm")
         .css("order", -post['timestamp']);
-    let author_username = await contract_accounts.username_by_id(post['author'])
+    let author_username = await contract_accounts.methods.username_by_id(post['author']).call();
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);
     $post.append($post_meta);
     $post.append($div_with_class("message break-words mt-2").text(post['message'].substr(0, 280)))
@@ -73,7 +73,7 @@ function submit_post_input() {
     let $message = $('#message');
     let message = $message.val();
     $message.val("");
-    return contract_posts.submit_post(message);
+    return execute_contract_function(web3, contract_posts.methods.submit_post(message));
 }
 
 function update_feed() {
@@ -86,26 +86,69 @@ function update_feed() {
 }
 
 async function init_web3() {
-    if(!window.web3_initialized) {
-        window.web3 = await Moralis.enableWeb3();
-        window.web3_initialized = true;
-    }
+    console.log("remove init_web3()")
 }
 
 async function is_signed_up() {
-    let address = await get_address();
-    return contract_accounts.id_by_address(address).then(
+    let address = get_address();
+    return contract_accounts.methods.id_by_address(address).call().then(
         id => { return parseInt(id) > 0 }
     );
 }
 
+async function execute_contract_function(web3, function_call) {
+    let privateKey = get_private_key();
+    const account_address = web3.eth.accounts.privateKeyToAccount(privateKey).address;
+    const options = {
+        to      : function_call._parent._address,
+        data    : function_call.encodeABI(),
+        gas     : await function_call.estimateGas({from: account_address}),
+        gasPrice: 0
+    };
+    const signed  = await web3.eth.accounts.signTransaction(options, privateKey);
+    return web3.eth.sendSignedTransaction(signed.rawTransaction);
+}
+
+async function test() {
+    let contract_accounts_address = await contract_posts.methods.accounts().call();
+    let contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
+    await execute_contract_function(web3, contract_accounts.methods.sign_up("micro2"))
+    await execute_contract_function(web3, contract_posts.methods.submit_post("This message is sent without metamask... Probably nothing (eyes emoji)"))
+}
+
+async function on_sign_up_button_pressed() {
+    let username = $('#username').val();
+    execute_contract_function(web3, contract_accounts.methods.sign_up(username))
+        .then(async _ => { await close_screen_signup_if_complete() })
+        .catch(error => { alert(error) })
+}
+
+function get_address() {
+    let private_key = get_private_key();
+    return web3.eth.accounts.privateKeyToAccount(private_key).address;
+}
+
+function get_private_key() {
+    return localStorage.getItem('account_private_key');
+}
+
+function create_new_private_key() {
+    let account = web3.eth.accounts.create();
+    localStorage.setItem('account_private_key', account['privateKey']);
+}
+
+const web3 = new Web3('https://we.addiota.com')
+
+if(!get_private_key()) {
+    create_new_private_key();
+}
+
+let contract_posts = new web3.eth.Contract(CONTRACT_POSTS_ABI, CONFIG.contract_posts_address);
 let contract_accounts;
-let contract_posts = new ContractPosts(CONFIG.contract_posts_address);
 
 async function get_username() {
-    return get_address().then(address => {
-        return contract_accounts.id_by_address(address).then(id => {
-            return contract_accounts.username_by_id(id)
-        })
-    });
+    let address = get_address();
+    return contract_accounts.methods.id_by_address(address).call().then(id => {
+        return contract_accounts.methods.username_by_id(id).call()
+    })
 }
