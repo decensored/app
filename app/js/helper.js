@@ -96,4 +96,16 @@ function countChar(val) {
     } else {
         $('#message-count').text(280 - len + ' of 280');
     }
-};
+}
+
+function ask_user_to_reset_metamask() {
+    const message = "Please reset your metamask!";
+    console.log(message)
+    alert(message)
+}
+
+function inform_user_that_smart_contracts_are_not_accessible() {
+    const message = "The smart contract instances cannot be found. This is not your fault. Check back in a few minutes. If nothing changes, please inform whoever is responsible for deploying the smart contracts.";
+    console.log(message)
+    alert(message)
+}

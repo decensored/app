@@ -1,4 +1,14 @@
 
+window.onerror = function myErrorHandler(error_message) {
+    if(error_message.includes("View call failed: runtime error: invalid ememory address or nil pointer dereference")) {
+        ask_user_to_reset_metamask();
+    } else if(error_message.includes("Response has no error or result for request")) {
+        inform_user_that_smart_contracts_are_not_accessible();
+    } else {
+        console.error(error_message);
+    }
+}
+
 $(document).ready(async () => {
     $("#init-header").load("templates/header.html", function() {
         $("#header").unwrap();
