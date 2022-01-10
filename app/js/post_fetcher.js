@@ -31,7 +31,7 @@ class PostFetcherProfile {
     async get_post(index)  {
         this.index_of_last_post_fetched = index;
         let post_index = await contract_posts.methods.get_nth_post_index_by_author(this.author, index).call()
-        return contract_posts.get_post(post_index);
+        return contract_posts.methods.get_post(post_index).call();
     }
 
     get_index_of_last_post_fetched() {
