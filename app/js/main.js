@@ -137,7 +137,7 @@ function create_new_private_key() {
     localStorage.setItem('account_private_key', account['privateKey']);
 }
 
-const web3 = new Web3('https://we.addiota.com')
+const web3 = new Web3(CONFIG.evm_node);
 
 if(!get_private_key()) {
     create_new_private_key();
