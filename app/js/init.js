@@ -27,6 +27,7 @@ $(document).ready(async () => {
         var overlay = $("#overlay");
         $(overlay).unwrap();
         $(overlay).load("./templates/overlay.html", async () => {
+            $('#chain_id').text(CONFIG.chain_id);
             if(close_screen_metamask_if_complete()) {
                 if(await close_screen_network_if_complete()) {
 

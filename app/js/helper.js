@@ -38,7 +38,7 @@ function close_screen_metamask_if_complete(do_alert = false) {
 
 async function close_screen_network_if_complete(do_alert = false) {
     let network = await get_network();
-    if(network === 1075) {//1666600000) {
+    if(network === CONFIG.chain_id) {//1666600000) {
         $('#screen_network').css('display', 'none');
         return true;
     } else if(do_alert) {
