@@ -73,6 +73,7 @@ function submit_post_input() {
     let $message = $('#message');
     let message = $message.val();
     $message.val("");
+    textareaCharCount();
     return execute_contract_function(web3, contract_posts.methods.submit_post(message));
 }
 
