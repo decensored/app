@@ -149,6 +149,7 @@ let contract_accounts;
 
 async function get_username() {
     let address = get_address();
+
     return contract_accounts.methods.id_by_address(address).call().then(id => {
         return contract_accounts.methods.username_by_id(id).call()
     })
