@@ -9,7 +9,7 @@ async function close_screen_signup_if_complete() {
     if(await is_signed_up()) {
         get_username().then(username => {
             message = $('#message');
-            placeholder = " your story starts here..."
+            placeholder = "your story starts here..."
             message.attr("placeholder", username + ", " + placeholder);
             $('#message').fadeTo( "fast" , 1);
         });
