@@ -1,12 +1,31 @@
 
 <div id="overlay" class="fixed left-0 top-0 right-0 bottom-0 pointer-events-none">
-    <div id="screen_sign_up" class="hidden fixed left-0 top-0 right-0 bg-decensored-gradient pointer-events-auto">
+    <div id="screen_sign_up" class="hidden fixed left-0 top-0 right-0 bg-decensored-900-gradient pointer-events-auto">
         <div class="container mx-auto px-3 pt-4 pb-8 max-w-md">
             <img src="images/logo/logotype_invert.svg"/>
             <h1 class="text-white text-center text-2xl mb-5">Sign-up</h1>
             <div class="flex gap-3">
                 <input class="form-input p-3 !rounded grow" type="text" placeholder="your username" id="username">
                 <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_sign_up_button_pressed()">Go</button>
+            </div>
+        </div>
+    </div>
+    <div id="settings_dialog" class="hidden flex justify-center items-start pt-5 sm:items-center sm:pt-0 fixed inset-0 bg-black bg-opacity-30 dark:bg-opacity-80 overflow-y-auto h-full w-full pointer-events-auto">
+        <div class="relative shadow-lg rounded bg-white dark:bg-gray-900 divide-y divide-solid divide-gray-200 dark:divide-gray-800 w-96 max-w-[90%]">
+            <div class="p-8">
+                <h3 class="text-lg leading-6 font-medium text-center mb-8">Settings</h3>
+                <div class="mt-2">
+                    <div class="text-xs text-gray-900 dark:text-gray-300 mb-2">Blacklist</div>
+                    <textarea class="form-input p-3 !rounded dark:bg-black border w-full h-28 focus:outline-none focus:ring-2 focus:ring-purple-700" placeholder="enter url" id="whitelist_url"></textarea>
+                </div>
+            </div>
+            <div class="flex gap-x-5 p-4">
+                <div class="grow">
+                    <button onclick="toggle_settings_dialog()" class="w-full bg-transparent text-gray-900 hover:text-purple-900 dark:text-gray-500 font-medium py-2 px-3 rounded cursor-pointer">Cancel</button>
+                </div>
+                <div class="grow">
+                    <button onclick="save_settings_dialog()" class="w-full bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer">Save</button>
+                </div>
             </div>
         </div>
     </div>

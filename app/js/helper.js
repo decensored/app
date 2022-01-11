@@ -61,3 +61,17 @@ function inform_user_that_smart_contracts_are_not_accessible() {
     console.log(message)
     alert(message)
 }
+
+function toggle_settings_dialog() {
+    dialog = $('#settings_dialog');
+
+    if(dialog.hasClass('hidden')) {
+        $('#settings_dialog').removeClass('hidden');
+    } else {
+        $('#settings_dialog').addClass('hidden');
+    }
+}
+
+function save_settings_dialog() {
+    toggle_settings_dialog()
+}
