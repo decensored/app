@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "tailwind": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify --watch"
+    "tailwind:build": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify",
+    "tailwind:watch": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
