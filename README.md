@@ -20,3 +20,12 @@ npm install
 ```
 
 After installation open `app/index.html` in your browser.
+
+## Development
+
+<a href='https://tailwindcss.com/docs/installation' target='_blank'>Tailwind</a> requirements:
+* To build your CSS you’ll need to ensure you are running Node.js 12.13.0 or higher.
+
+```
+npm run tailwind:watch
+```

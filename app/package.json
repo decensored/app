@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "tailwind:build": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify",
+    "tailwind:watch": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify --watch"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@tailwindcss/forms": "^0.4.0",
@@ -7,5 +11,10 @@
     "identicon.js": "^2.3.3",
     "jquery": "^3.6.0",
     "web3": "^1.6.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.13"
   }
 }
