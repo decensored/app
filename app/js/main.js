@@ -119,6 +119,7 @@ async function test() {
 
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
+    localStorage.setItem('u', username);
     execute_contract_function(web3, contract_accounts.methods.sign_up(username))
         .then(async _ => { await close_screen_signup_if_complete() })
         .catch(error => { alert(error) })

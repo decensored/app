@@ -7,6 +7,10 @@ async function get_balance(address) {
 
 async function close_screen_signup_if_complete() {
     if(await is_signed_up()) {
+        const username = localStorage.getItem('u');
+        if (username) {
+            $('#message').attr("placeholder", username + ", your story starts here...");
+        }
         $('#screen_sign_up').fadeOut();
     } else {
         setTimeout(function() {
