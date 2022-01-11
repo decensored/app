@@ -23,9 +23,9 @@ const CONTRACT_ACCOUNTS_ABI = [
         "inputs": [
             {
                 "indexed": true,
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "id",
-                "type": "uint256"
+                "type": "uint64"
             },
             {
                 "indexed": true,
@@ -70,9 +70,9 @@ const CONTRACT_ACCOUNTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "address_by_id",
@@ -97,9 +97,9 @@ const CONTRACT_ACCOUNTS_ABI = [
         "name": "id_by_address",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "stateMutability": "view",
@@ -116,9 +116,9 @@ const CONTRACT_ACCOUNTS_ABI = [
         "name": "id_by_username",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "stateMutability": "view",
@@ -180,9 +180,9 @@ const CONTRACT_ACCOUNTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "username_by_id",
@@ -223,15 +223,9 @@ const CONTRACT_POSTS_ABI = [
         "inputs": [
             {
                 "indexed": true,
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "author",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "fee",
-                "type": "uint256"
+                "type": "uint64"
             },
             {
                 "indexed": false,
@@ -248,9 +242,9 @@ const CONTRACT_POSTS_ABI = [
         "inputs": [
             {
                 "indexed": true,
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "amount",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "Withdrawal",
@@ -272,17 +266,17 @@ const CONTRACT_POSTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "author",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "get_amount_of_posts_by_author",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "stateMutability": "view",
@@ -304,22 +298,22 @@ const CONTRACT_POSTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "author",
-                "type": "uint256"
+                "type": "uint64"
             },
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "n",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "get_nth_post_index_by_author",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "stateMutability": "view",
@@ -328,9 +322,9 @@ const CONTRACT_POSTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "index",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "name": "get_post",
@@ -343,14 +337,14 @@ const CONTRACT_POSTS_ABI = [
                         "type": "string"
                     },
                     {
-                        "internalType": "uint256",
+                        "internalType": "uint64",
                         "name": "author",
-                        "type": "uint256"
+                        "type": "uint64"
                     },
                     {
-                        "internalType": "uint256",
+                        "internalType": "uint64",
                         "name": "timestamp",
-                        "type": "uint256"
+                        "type": "uint64"
                     }
                 ],
                 "internalType": "struct Post",
@@ -375,6 +369,25 @@ const CONTRACT_POSTS_ABI = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint64",
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "name": "mother_post_by_reply",
+        "outputs": [
+            {
+                "internalType": "uint64",
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "owner",
         "outputs": [
@@ -390,9 +403,9 @@ const CONTRACT_POSTS_ABI = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             },
             {
                 "internalType": "uint256",
@@ -403,9 +416,9 @@ const CONTRACT_POSTS_ABI = [
         "name": "posts_by_author",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint64",
                 "name": "",
-                "type": "uint256"
+                "type": "uint64"
             }
         ],
         "stateMutability": "view",
@@ -421,6 +434,48 @@ const CONTRACT_POSTS_ABI = [
     {
         "inputs": [
             {
+                "internalType": "uint64",
+                "name": "",
+                "type": "uint64"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "replies_by_post",
+        "outputs": [
+            {
+                "internalType": "uint64",
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint64",
+                "name": "mother_post",
+                "type": "uint64"
+            },
+            {
+                "internalType": "string",
+                "name": "message",
+                "type": "string"
+            }
+        ],
+        "name": "reply",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "string",
                 "name": "message",
                 "type": "string"
@@ -428,7 +483,7 @@ const CONTRACT_POSTS_ABI = [
         ],
         "name": "submit_post",
         "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
