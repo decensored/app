@@ -97,6 +97,11 @@ async function is_signed_up() {
     );
 }
 
+async function sign_out() {
+    localStorage.removeItem('account_private_key');
+    location.reload();
+}
+
 async function execute_contract_function(web3, function_call) {
     let privateKey = get_private_key();
     const account_address = web3.eth.accounts.privateKeyToAccount(privateKey).address;
@@ -123,6 +128,18 @@ async function on_sign_up_button_pressed() {
         .then(async _ => { await close_screen_signup_if_complete() })
         .catch(error => { alert(error) })
 }
+
+async function on_private_key_inserted() {
+    let privateKey = $('#privateKey').val();
+    localStorage.setItem('account_private_key', privateKey);
+    close_screen_signup_if_complete('loadCredentials');
+}
+
+async function copy_credentials_to_clipboard() {
+    const privateKey = localStorage.getItem('account_private_key');
+    navigator.clipboard.writeText(privateKey);
+}
+
 
 function get_address() {
     let private_key = get_private_key();

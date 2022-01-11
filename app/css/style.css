@@ -14,6 +14,10 @@ html .bg-decensored {
     background-color: #3833a4;
 }
 
+html .bg-decensored-secondary {
+    background-color: #E45B18;
+}
+
 html .bg-decensored-gradient {
     background-color: #3833a4;
     background: rgb(57,56,161);

@@ -2,9 +2,12 @@
     <div class="flex gap-y-5 p-4 justify-between items-center">
         <img class="h-10" src="images/logo/signet.svg"/>
         <div class="text-gray-400 text-sm pointer-events-auto">
-            <a href="https://github.com/mikrohash/decensored" target="_blank">github</a>
+            <a href="https://github.com/mikrohash/decensored" target="_blank"><i class="fab fa-github fa-lg"></i></a>
             <span class="mx-2">|</span>
-            <a href="https://t.co/Lmou3Qx5Ap" target="_blank">Discord</a>
+            <a href="https://t.co/Lmou3Qx5Ap" target="_blank"><i class="fab fa-discord fa-lg"></i></a>
+            <span class="mx-2 hideForLoggedOutUser">|</span>
+            <button class="bg-decensored hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer hideForLoggedOutUser" onclick="copy_credentials_to_clipboard()">Copy Credentials</button>
+            <button class="bg-decensored-secondary hover:bg-orange-800 text-white font-medium py-2 px-3 rounded cursor-pointer hideForLoggedOutUser" onclick="sign_out()"><i class="fas fa-sign-out-alt"></i></button>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@ async function get_balance(address) {
     });
 }
 
-async function close_screen_signup_if_complete() {
+async function close_screen_signup_if_complete(action) {
     if(await is_signed_up()) {
         get_username().then(username => {
             message = $('#message');
@@ -14,6 +14,9 @@ async function close_screen_signup_if_complete() {
             $('#message').fadeTo( "fast" , 1);
         });
         $('#screen_sign_up').fadeOut();
+        $('.hideForLoggedOutUser').show();
+    } else if (action == 'loadCredentials') {
+        $("#error").html("Error: couldnt find a user with these credentials!");
     } else {
         setTimeout(function() {
             $('#screen_sign_up').fadeIn();

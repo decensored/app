@@ -5,9 +5,14 @@
             <img src="images/logo/logotype_invert.svg"/>
             <h1 class="text-white text-center text-2xl mb-5">Sign-up</h1>
             <div class="flex gap-3">
-                <input class="form-input p-3 rounded grow" type="text" placeholder="your username" id="username">
+                <input class="form-input p-3 rounded grow" type="text" placeholder="Choose your username" id="username">
                 <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_sign_up_button_pressed()">Go</button>
             </div>
+            <div class="flex gap-3">
+                <input class="form-input p-3 rounded grow" type="text" placeholder="Paste in your key" id="privateKey">
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_private_key_inserted()">Go</button>
+            </div>
+            <span id="error" style="color: red"></span>
         </div>
     </div>
     <!--

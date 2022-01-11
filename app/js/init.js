@@ -21,6 +21,7 @@ $(document).ready(async () => {
     $("#init-overlay").load("./templates/overlay.html", async () => {
         $("#overlay").unwrap();
         $('#chain_id').text(CONFIG.chain_id);
+        $('.hideForLoggedOutUser').hide();
 
         let contract_accounts_address = await contract_posts.methods.accounts().call();
         contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
@@ -34,6 +35,7 @@ $(document).ready(async () => {
             if(profile_username && username !== profile_username) {
                 $('#input').css("display", "none");
                 $('#feed > .container').prepend($("<div class='text-center text-xl font-bold mb-5'></div>").addClass("profile_title").text(profile_username));
+                $('.hideForLoggedOutUser').show();
             }
 
             $('#profile').attr('href', "?u="+username);
