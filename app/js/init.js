@@ -18,33 +18,30 @@ $(document).ready(async () => {
     $("#init-bottombar").load("templates/bottombar.html", function() {
         $("#bottombar").unwrap();
     });
-    $("#init-overlay").load("templates/overlay.html", function() {
-        var overlay = $("#overlay");
-        $(overlay).unwrap();
-        $(overlay).load("./templates/overlay.html", async () => {
-            $('#chain_id').text(CONFIG.chain_id);
+    $("#init-overlay").load("./templates/overlay.html", async () => {
+        $("#overlay").unwrap();
+        $('#chain_id').text(CONFIG.chain_id);
 
-            let contract_accounts_address = await contract_posts.methods.accounts().call();
-            contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
+        let contract_accounts_address = await contract_posts.methods.accounts().call();
+        contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
 
-            await set_post_fetcher();
-            update_feed();
-            setInterval( update_feed, 5000);
+        await set_post_fetcher();
+        update_feed();
+        setInterval( update_feed, 5000);
 
-            get_username().then(username => {
-                let profile_username = get_profile_username();
-                if(profile_username && username !== profile_username) {
-                    $('#input').css("display", "none");
-                    $('#feed > .container').prepend($("<div class='text-center text-xl font-bold mb-5'></div>").addClass("profile_title").text(profile_username));
-                }
+        get_username().then(username => {
+            let profile_username = get_profile_username();
+            if(profile_username && username !== profile_username) {
+                $('#input').css("display", "none");
+                $('#feed > .container').prepend($("<div class='text-center text-xl font-bold mb-5'></div>").addClass("profile_title").text(profile_username));
+            }
 
-                $('#profile').attr('href', "?u="+username);
-            });
-
-            close_screen_signup_if_complete();
-
-            $('body').css("opacity", "1");
+            $('#profile').attr('href', "?u="+username);
         });
+
+        close_screen_signup_if_complete();
+
+        $('body').css("opacity", "1");
     });
     // $("#init-dialog").load("templates/dialog.html", function() {
     //     $("#dialog").unwrap();
