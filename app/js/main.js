@@ -18,6 +18,7 @@ async function set_post_fetcher() {
 async function load_whitelist(path_to_whitelist) {
     let file_contents = await fetch(path_to_whitelist);
     let text = await file_contents.text();
+    if(text === "") return [];
     return text.split(",");
 }
 
