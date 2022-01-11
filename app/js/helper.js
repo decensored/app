@@ -38,13 +38,10 @@ function isScrolled() {
     }
 }
 
-function countChar(val) {
-    var len = val.value.length;
-    if (len >= 281) {
-        val.value = val.value.substring(0, 280);
-    } else {
-        $('#message-count').text(280 - len + ' of 280');
-    }
+function textareaCharCount() {
+    value = $('#message').val();
+    length = value.length;
+    $('#message-count').text(280 - length + ' of 280');
 }
 
 function ask_user_to_reset_metamask() {
