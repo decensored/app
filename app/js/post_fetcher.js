@@ -40,9 +40,45 @@ class PostFetcherWhitelist {
                     } else {
                         let post_censored = [];
                         post_censored.author = post.author;
-                        post_censored.message = "[CENSORED]";
+                        post_censored.message = "[NOT WHITELISTED]";
                         post_censored.timestamp = post.timestamp;
                         return post_censored;
+                    }
+                })
+            });
+    }
+
+    get_index_of_last_post_fetched() {
+        return this.post_fetcher.get_index_of_last_post_fetched();
+    }
+}
+
+class PostFetcherBlacklist {
+
+    post_fetcher;
+    blacklist;
+
+    constructor(post_fetcher, blacklist) {
+        this.post_fetcher = post_fetcher;
+        this.blacklist = blacklist;
+    }
+
+    async get_index_of_latest_post()  {
+        return this.post_fetcher.get_index_of_latest_post();
+    }
+
+    async get_post(index)  {
+        return this.post_fetcher.get_post(index)
+            .then(post => { return contract_accounts.methods.username_by_id(post['author']).call()
+                .then(username => {
+                    if(this.blacklist.includes(username)) {
+                        let post_censored = [];
+                        post_censored.author = post.author;
+                        post_censored.message = "[BLACKLISTED]";
+                        post_censored.timestamp = post.timestamp;
+                        return post_censored;
+                    } else {
+                        return post;
                     }
                 })
             });

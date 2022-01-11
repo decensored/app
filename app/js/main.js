@@ -9,14 +9,20 @@ async function set_post_fetcher() {
         post_fetcher = new PostFetcher();
     }
 
-    let whitelist = await load_whitelist(CONFIG.whitelist);
+    let whitelist = await load_list_from_file(CONFIG.whitelist);
     if(whitelist.length > 0) {
         post_fetcher = new PostFetcherWhitelist(post_fetcher, whitelist)
+    } else {
+
+        let blacklist = await load_list_from_file(CONFIG.blacklist);
+        if(blacklist.length > 0) {
+            post_fetcher = new PostFetcherBlacklist(post_fetcher, blacklist)
+        }
     }
 }
 
-async function load_whitelist(path_to_whitelist) {
-    let file_contents = await fetch(path_to_whitelist);
+async function load_list_from_file(path_to_file) {
+    let file_contents = await fetch(path_to_file);
     let text = await file_contents.text();
     if(text === "") return [];
     return text.split(",");
