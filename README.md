@@ -17,6 +17,7 @@ To use the decensored dApp, you need:
 git clone https://github.com/mikrohash/decensored
 cd decensored/app
 npm install
+npm run tailwind
 ```
 
 After installation open `app/index.html` in your browser.
