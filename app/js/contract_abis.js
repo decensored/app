@@ -284,7 +284,7 @@ const CONTRACT_POSTS_ABI = [
     },
     {
         "inputs": [],
-        "name": "get_latest_message_index",
+        "name": "get_latest_post_index",
         "outputs": [
             {
                 "internalType": "int256",
