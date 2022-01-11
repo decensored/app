@@ -17,6 +17,42 @@ class PostFetcher {
     }
 }
 
+class PostFetcherWhitelist {
+
+    post_fetcher;
+    whitelist;
+
+    constructor(post_fetcher, whitelist) {
+        this.post_fetcher = post_fetcher;
+        this.whitelist = whitelist;
+    }
+
+    async get_index_of_latest_post()  {
+        return this.post_fetcher.get_index_of_latest_post();
+    }
+
+    async get_post(index)  {
+        return this.post_fetcher.get_post(index)
+            .then(post => { return contract_accounts.methods.address_by_id(post['author']).call()
+                .then(address => {
+                    if(this.whitelist.includes(address)) {
+                        return post;
+                    } else {
+                        let post_censored = [];
+                        post_censored.author = post.author;
+                        post_censored.message = "[CENSORED]";
+                        post_censored.timestamp = post.timestamp;
+                        return post_censored;
+                    }
+                })
+            });
+    }
+
+    get_index_of_last_post_fetched() {
+        return this.post_fetcher.get_index_of_last_post_fetched();
+    }
+}
+
 class PostFetcherProfile {
     index_of_last_post_fetched = -1;
 

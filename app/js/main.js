@@ -8,6 +8,17 @@ async function set_post_fetcher() {
     } else {
         post_fetcher = new PostFetcher();
     }
+
+    let whitelist = await load_whitelist(CONFIG.whitelist);
+    if(whitelist.length > 0) {
+        post_fetcher = new PostFetcherWhitelist(post_fetcher, whitelist)
+    }
+}
+
+async function load_whitelist(path_to_whitelist) {
+    let file_contents = await fetch(path_to_whitelist);
+    let text = await file_contents.text();
+    return text.split(",");
 }
 
 function get_profile_username() {
