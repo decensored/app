@@ -10,5 +10,8 @@
     "identicon.js": "^2.3.3",
     "jquery": "^3.6.0",
     "web3": "^1.6.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.13"
   }
 }
