@@ -7,10 +7,12 @@ async function get_balance(address) {
 
 async function close_screen_signup_if_complete() {
     if(await is_signed_up()) {
-        const username = localStorage.getItem('u');
-        if (username) {
-            $('#message').attr("placeholder", username + ", your story starts here...");
-        }
+        get_username().then(username => {
+            message = $('#message');
+            placeholder = " your story starts here..."
+            message.attr("placeholder", username + ", " + placeholder);
+            $('#message').fadeTo( "fast" , 1);
+        });
         $('#screen_sign_up').fadeOut();
     } else {
         setTimeout(function() {

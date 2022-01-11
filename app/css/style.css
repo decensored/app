@@ -33,3 +33,7 @@ html .text-decensored {
 .focus\:shadow-sm:focus {
     box-shadow: none !important;
 }
+
+#message {
+    opacity: 0;
+}

@@ -119,7 +119,6 @@ async function test() {
 
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
-    localStorage.setItem('u', username);
     execute_contract_function(web3, contract_accounts.methods.sign_up(username))
         .then(async _ => { await close_screen_signup_if_complete() })
         .catch(error => { alert(error) })
@@ -150,6 +149,7 @@ let contract_accounts;
 
 async function get_username() {
     let address = get_address();
+
     return contract_accounts.methods.id_by_address(address).call().then(id => {
         return contract_accounts.methods.username_by_id(id).call()
     })
