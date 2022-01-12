@@ -79,13 +79,17 @@ encrypt(alice, bob, secretMessage)
       .then((decrypted) => {
         console.log("decrypted by bob:", decrypted);
       })
-      .catch((e) => console.error("decrypt (bob) error:", e));
+      .catch((e) => {
+        console.error("bob can't decrypt alice' encrypted message");
+      });
 
     decrypt(encrypted, satoshi)
       .then((decrypted) => {
         console.log("decrypted by satoshi:", decrypted);
       })
-      .catch((e) => console.error("decrypt (satashi) error:", e));
+      .catch((e) => {
+        console.error("satoshi can't decrypt alice' encrypted message");
+      });
   })
   .catch((e) => console.error("encrypt error:", e));
 
