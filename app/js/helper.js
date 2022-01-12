@@ -68,7 +68,7 @@ function toggle_body_scrolling(state) {
     if(state === 'on') {
         body.addClass('overflow-hidden')
     } else if(state === 'off') {
-        body.addClass('overflow-auto')
+        body.removeClass('overflow-hidden')
     }
 }
 
@@ -89,5 +89,6 @@ function toggle_settings_dialog() {
 }
 
 function save_settings_dialog() {
+    toggle_body_scrolling('on')
     toggle_settings_dialog()
 }
