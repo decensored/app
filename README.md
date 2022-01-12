@@ -1,15 +1,14 @@
 # Decensored
 
+## Disclaimer
+
+This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with project!
+
 ## About
 
 Decensored is a decentralized social media protocol. It is currently
- a working proof-of-concept.
-
-## Requirements
-
-To use the decensored dApp, you need:
-* <a href='https://metamask.io/download' target='_blank'>Metamask</a>
-* Some <b>MATIC</b> tokens. You can buy it on many cryptocurrency exchanges like Binance. 0.5 MATIC will already buy you a few posts
+a working proof-of-concept.
+The Decensored smart contracts can be found at https://github.com/mikrohash/decensored-contracts
 
 ## Installation
 
@@ -24,8 +23,15 @@ After installation open `app/index.html` in your browser.
 ## Development
 
 <a href='https://tailwindcss.com/docs/installation' target='_blank'>Tailwind</a> requirements:
-* To build your CSS you’ll need to ensure you are running Node.js 12.13.0 or higher.
+
+- To build your CSS you’ll need to ensure you are running Node.js 12.13.0 or higher.
 
 ```
 npm run tailwind:watch
+```
+
+- To run the frontend locally on http://127.0.0.1:8080
+
+```
+npm start
 ```
