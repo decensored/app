@@ -77,10 +77,14 @@ function toggle_settings_dialog() {
 
     if(dialog.hasClass('hidden')) {
         toggle_body_scrolling('on')
-        $('#settings_dialog').removeClass('hidden');
+        dialog.removeClass('hidden')
+        dialog.animate({
+            opacity: 1
+        }, 'fast');
     } else {
         toggle_body_scrolling('off')
-        $('#settings_dialog').addClass('hidden');
+        dialog.css('opacity', '0')
+        dialog.addClass('hidden')
     }
 }
 
