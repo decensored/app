@@ -10,10 +10,6 @@ body {
     background-attachment: fixed;
 }
 
-html .bg-decensored {
-    background-color: #3833a4;
-}
-
 html .bg-decensored-gradient {
     background-color: #3833a4;
     background: rgb(57,56,161);
@@ -24,10 +20,6 @@ html .bg-decensored-gradient {
     body {
         background-image: url(../images/background/dark.svg);
     }
-}
-
-html .text-decensored {
-    color: #3833a4;
 }
 
 .focus\:shadow-sm:focus {

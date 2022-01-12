@@ -43,7 +43,4 @@ $(document).ready(async () => {
 
         $('body').css("opacity", "1");
     });
-    // $("#init-dialog").load("templates/dialog.html", function() {
-    //     $("#dialog").unwrap();
-    // });
 });
