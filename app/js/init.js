@@ -39,7 +39,7 @@ $(document).ready(async () => {
             $('#profile').attr('href', "?u="+username);
         });
 
-        close_screen_signup_if_complete();
+        show_or_hide_signup_screen();
 
         $('body').css("opacity", "1");
     });

@@ -91,7 +91,7 @@ function submit_post_input() {
     let $message = $('#message');
     let message = $message.val();
     $message.val("");
-    textareaCharCount();
+    set_post_input_char_count();
     return execute_contract_function(web3, contract_posts.methods.submit_post(message));
 }
 
@@ -138,7 +138,7 @@ async function test() {
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
     execute_contract_function(web3, contract_accounts.methods.sign_up(username))
-        .then(async _ => { await close_screen_signup_if_complete() })
+        .then(async _ => { await show_or_hide_signup_screen() })
         .catch(error => { alert(error) })
 }
 
