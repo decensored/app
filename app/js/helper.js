@@ -62,12 +62,24 @@ function inform_user_that_smart_contracts_are_not_accessible() {
     alert(message)
 }
 
+function toggle_body_scrolling(state) {
+    body = $('body')
+
+    if(state === 'on') {
+        body.addClass('overflow-hidden')
+    } else if(state === 'off') {
+        body.addClass('overflow-auto')
+    }
+}
+
 function toggle_settings_dialog() {
-    dialog = $('#settings_dialog');
+    dialog = $('#settings_dialog')
 
     if(dialog.hasClass('hidden')) {
+        toggle_body_scrolling('on')
         $('#settings_dialog').removeClass('hidden');
     } else {
+        toggle_body_scrolling('off')
         $('#settings_dialog').addClass('hidden');
     }
 }
