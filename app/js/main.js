@@ -1,6 +1,6 @@
 let post_fetcher;
 
-async function set_post_fetcher() {
+async function init_post_fetcher() {
     const profile_username = get_profile_username();
     if(profile_username) {
         let profile_userid = await contract_accounts.methods.id_by_username(profile_username).call();
