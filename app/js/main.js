@@ -172,3 +172,11 @@ async function get_username() {
         return contract_accounts.methods.username_by_id(id).call()
     })
 }
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('pwaworker.js').then(function(registration) {
+    registration.update();
+  }).catch(function(error) {
+    console.log('Registration failed with ' + error);
+  });
+};

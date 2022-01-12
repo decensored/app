@@ -1,0 +1,30 @@
+{
+    "background_color": "white",
+    "orientation": "portrait",
+    "description": "Decensoring Twitter",
+    "display": "standalone",
+    "theme_color": "#ffffff",
+    "icons": [
+                {
+                    "src": "images/logo/Logo_192x192.png",
+                    "sizes": "192x192",
+                    "purpose": "any maskable",
+                    "type": "image/png"
+                },
+                {
+
+                    "src": "images/logo/Logo_512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                },
+		{
+
+                    "src": "assets/images/logo/Logo_1024x1024.png",
+                    "sizes": "1024x1024",
+                    "type": "image/png"
+                }
+            ],
+    "name": "Decensored",
+    "short_name": "Decensored",
+    "start_url": "./index.html"
+}
