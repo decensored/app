@@ -61,6 +61,7 @@ function init_overlay() {
     $("#init-overlay").load("./templates/overlay.html", async () => {
         $("#overlay").unwrap();
         $('#chain_id').text(CONFIG.chain_id);
+        $('#recover').hide();
 
         await init_contract_accounts();
         await init_post_fetcher();

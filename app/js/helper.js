@@ -14,11 +14,13 @@ function show_sign_up_screen() {
 function hide_sign_up_screen() {
     init_input_placeholder();
     $('#screen_sign_up').fadeOut();
+
 }
 
 async function show_or_hide_signup_screen() {
     if(await is_signed_up()) {
         hide_sign_up_screen();
+        $("#privateKey").val(get_private_key());
     } else {
         show_sign_up_screen();
     }
@@ -70,4 +72,8 @@ function toggle_settings_dialog() {
 function save_settings_dialog() {
     set_body_scrolling(true)
     toggle_settings_dialog()
+}
+
+function toggle_sign_up() {
+    $('#recover, #signup').toggle(300);
 }
