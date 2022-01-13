@@ -58,24 +58,55 @@ function generate_$post_meta(author_username, timestamp) {
     let readable_date_time = readable_date_time_from_unix_timestamp(timestamp);
    //let $identicon = generate_identicon_image(author_username);
 
-    return $div_with_class("meta flex justify-between")
+    return $new_el_with_attr("div", "meta flex justify-between")
        // .append($identicon.addClass("identicon"))
         .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold text-gray-900 dark:text-gray-300").text(author_username))
-        .append($div_with_class("time text-sm").text(readable_date_time))
-        // .append($div_with_class("options").append(
-        //    /* $div_with_class("mint").on("click", () => {
+        .append($new_el_with_attr("div", "time text-sm").text(readable_date_time))
+        // .append($new_el_with_attr("div", "options").append(
+        //    /* $new_el_with_attr("div", "mint").on("click", () => {
         //         $('#dialog').css("display", "block")
         //     })*/
         // ));
 }
 
+function generate_post_interaction_icon(icon, title) {
+    let $post_interaction_icon = $new_el_with_attr("i", "fas cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300");
+    $post_interaction_icon.addClass(icon);
+    $post_interaction_icon.attr('title', title);
+
+    return $post_interaction_icon;
+}
+
+function generate_post_interactions() {
+    let $wrapper = $new_el_with_attr("div", "px-5 py-3 rounded-b flex justify-between");
+    let $left = $new_el_with_attr("div", "flex gap-x-3 items-center");
+    let $right = $new_el_with_attr("div", "flex gap-x-3 items-center");
+
+    let $block_user = generate_post_interaction_icon('fa-shield-alt', 'block user');
+    let $share_post = generate_post_interaction_icon('fa-share', 'share post');
+    let $comment = generate_post_interaction_icon('fa-comment', 'comment');
+
+    $left.append($block_user);
+    $right.append($share_post);
+    $right.append($comment);
+
+    $wrapper.append($left);
+    $wrapper.append($right);
+
+    return $wrapper
+}
+
 async function generate_$post(post) {
-    let $post = $div_with_class("post bg-white dark:bg-gray-900 p-5 rounded shadow-sm")
-        .css("order", -post['timestamp']);
+    let $post = $new_el_with_attr("div", "post bg-white dark:bg-gray-900 rounded divide-y divide-solid divide-gray-200 dark:divide-gray-800 shadow-sm").css("order", -post['timestamp']);
+
     let author_username = await contract_accounts.methods.username_by_id(post['author']).call();
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);
-    $post.append($post_meta);
-    $post.append($div_with_class("message break-words mt-2").text(post['message'].substr(0, 280)))
+    let $post_content = $new_el_with_attr("div", "rounded-t p-5");
+    $post_content.append($post_meta);
+    $post_content.append($new_el_with_attr("div", "message break-words mt-2").text(post['message'].substr(0, 280)));
+    $post.append($post_content);
+    $post.append(generate_post_interactions());
+
     return $post;
 }
 
@@ -83,8 +114,15 @@ function append_post_to_feed(post) {
     generate_$post(post).then($post => $('#feed #posts').append($post));
 }
 
-function $div_with_class(class_name) {
-    return $('<div></div>').addClass(class_name);
+function $new_el_with_attr(el, attr_class, attr_id) {
+    $newEl = $('<'+ el +'></'+ el +'>');
+    if (attr_class) {
+        $newEl.addClass(attr_class);
+    }
+    if (attr_id) {
+        $newEl.addId(attr_id);
+    }
+    return $newEl
 }
 
 function submit_post_input() {
