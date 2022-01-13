@@ -7,7 +7,7 @@ function init_input_placeholder() {
 }
 
 function show_sign_up_screen() {
-    setTimeout($('#screen_sign_up').fadeIn, 500);
+    $('#screen_sign_up').removeClass('hidden');
     $('#nav').css("display", "none");
 }
 
