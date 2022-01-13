@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "browserify": "browserify browserify/eth-crypto.js -o browserify/eth-crypto-browserfied.js",
     "server": "http-serve .",
     "start": "concurrently 'npm run tailwind:watch' 'npm run server'",
     "tailwind:build": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "browserify": "^17.0.0",
     "concurrently": "^7.0.0",
     "http-serve": "^1.0.1",
     "postcss": "^8.4.5",
