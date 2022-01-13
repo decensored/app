@@ -244,3 +244,32 @@ async function get_username() {
       return contract_accounts.methods.username_by_id(id).call();
     });
 }
+
+//
+const encryptForUsername = async (secretMessage, username, fromPrivateKey) => {
+  const publicKey = await contract_accounts.methods
+    .id_by_username(username)
+    .call();
+  return encryptForId(secretMessage, publicKey, fromPrivateKey);
+};
+
+const encryptForId = async (secretMessage, id, fromPrivateKey) => {
+  const publicKey = await contract_accounts.methods.address_by_id(id).call();
+  return encryptForPublicKey(secretMessage, publicKey, fromPrivateKey);
+};
+
+const encryptForPublicKey = async (
+  secretMessage,
+  toPublicKey,
+  fromPrivateKey
+) => {
+  fromPrivateKey = fromPrivateKey || get_private_key();
+  return `TODO: encrypt: ${secretMessage} ${toPublicKey} ${fromPrivateKey}`;
+};
+
+const decrypt = async (encryptedString) => {
+  const myPrivateKey = get_private_key();
+  return `TODO: decrypt: ${encryptedString} ${myPrivateKey}`;
+};
+
+//

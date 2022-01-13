@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "http-serve .",
+    "server": "http-serve .",
+    "start": "concurrently 'npm run tailwind:watch' 'npm run server'",
     "tailwind:build": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify",
     "tailwind:watch": "npx tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify --watch"
   },
@@ -9,12 +10,14 @@
     "@tailwindcss/forms": "^0.4.0",
     "autosize": "^5.0.1",
     "cssuseragent": "^2.1.31",
+    "eth-crypto": "^2.1.0",
     "identicon.js": "^2.3.3",
     "jquery": "^3.6.0",
     "web3": "^1.6.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "concurrently": "^7.0.0",
     "http-serve": "^1.0.1",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.13"
