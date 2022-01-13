@@ -3,21 +3,20 @@
 
 const EthCrypto = require("eth-crypto");
 
-const encrypt = async (from, to, secretMessage) => {
+const encrypt = async (fromPrivateKey, toPublicKey, secretMessage) => {
   /*
-First we create two identities, Alice and Bob. In our case Alice want to send the message My name is Satoshi Buterin to Bob.
-*/
+    First we create two identities, Alice and Bob. In our case Alice want to send the message My name is Satoshi Buterin to Bob.
+  */
 
   /*
-Encrypt and sign the message
-Before we send the message from Alice to Bob, we want to ensure that
-
-Only Bob can read the message
-Bob can be sure that the message really comes from Alice
-To do this, we first sign the message with alice's privateKey and then encrypt the message and the signature with bob's publicKey.
-*/
+    Encrypt and sign the message.
+    
+    Before we send the message from Alice to Bob, we want to ensure that Only Bob can read the message.
+    Bob can be sure that the message really comes from Alice.
+    To do this, we first sign the message with alice's privateKey and then encrypt the message and the signature with bob's publicKey.
+  */
   const signature = EthCrypto.sign(
-    alice.privateKey,
+    fromPrivateKey,
     EthCrypto.hash.keccak256(secretMessage)
   );
   const payload = {
@@ -25,7 +24,7 @@ To do this, we first sign the message with alice's privateKey and then encrypt t
     signature,
   };
   const encrypted = await EthCrypto.encryptWithPublicKey(
-    bob.publicKey, // by encryping with bobs publicKey, only bob can decrypt the payload with his privateKey
+    toPublicKey, // by encryping with 'to' publicKey, only 'to' can decrypt the payload with his privateKey
     JSON.stringify(payload) // we have to stringify the payload before we can encrypt it
   );
   // console.log(encrypted);
@@ -36,22 +35,18 @@ To do this, we first sign the message with alice's privateKey and then encrypt t
     mac: 'dd7b78c16e462c42876745c7...'
     } */
 
-  // we convert the object into a smaller string-representation
-  const encryptedString = EthCrypto.cipher.stringify(encrypted);
-  // > '812ee676cf06ba72316862fd3dabe7e403c7395bda62243b7b0eea5eb..'
-
-  return encryptedString; // now we send the encrypted string to bob over the internet.. *bieb, bieb, blob*};
+  return EthCrypto.cipher.stringify(encrypted); // we convert the object into a smaller string-representation
 };
 
 /*
     When bob receives the message, he starts with decrypting it with his privateKey and then verifies the signature.
 */
-const decrypt = async (encryptedString, recipient) => {
+const decrypt = async (encryptedString, recipientPrivateKey) => {
   // we parse the string into the object again
   const encryptedObject = EthCrypto.cipher.parse(encryptedString);
 
   const decrypted = await EthCrypto.decryptWithPrivateKey(
-    recipient.privateKey,
+    recipientPrivateKey,
     encryptedObject
   );
   const decryptedPayload = JSON.parse(decrypted);
@@ -69,28 +64,31 @@ const decrypt = async (encryptedString, recipient) => {
 const alice = EthCrypto.createIdentity();
 const bob = EthCrypto.createIdentity();
 const satoshi = EthCrypto.createIdentity();
+
 const secretMessage = "My name is Satoshi Buterin";
 
-encrypt(alice, bob, secretMessage)
+encrypt(alice.privateKey, bob.publicKey, secretMessage)
   .then((encrypted) => {
-    console.log("encrypted by alice for bob:", encrypted);
+    // console.log("Encrypted by Alice for Bob:", encrypted);
 
-    decrypt(encrypted, bob)
+    decrypt(encrypted, bob.privateKey)
       .then((decrypted) => {
-        console.log("decrypted by bob:", decrypted);
+        console.log("Decrypted by Bob:", decrypted);
       })
       .catch((e) => {
-        console.error("bob can't decrypt alice' encrypted message");
+        console.error("Bob can't decrypt Alice' encrypted message");
       });
 
-    decrypt(encrypted, satoshi)
+    decrypt(encrypted, satoshi.privateKey)
       .then((decrypted) => {
-        console.log("decrypted by satoshi:", decrypted);
+        console.log("Decrypted by Satoshi:", decrypted);
       })
       .catch((e) => {
-        console.error("satoshi can't decrypt alice' encrypted message");
+        console.error(
+          "It is correct that Satoshi can't decrypt Alice' encrypted message"
+        );
       });
   })
-  .catch((e) => console.error("encrypt error:", e));
+  .catch((e) => console.error("Encryption error:", e));
 
 //
