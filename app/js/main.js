@@ -180,6 +180,21 @@ async function on_sign_up_button_pressed() {
         .catch(error => { alert(error) })
 }
 
+async function on_sign_out_button_pressed() {
+    remove_private_key();
+    location.reload();
+}
+
+async function on_recover_account_button_pressed() {
+    const privateKey = $("#credentials").val();
+    set_private_key(privateKey);
+    location.reload();
+}
+
+async function on_copy_credentials_button_pressed() {
+    await navigator.clipboard.writeText(get_private_key());
+}
+
 function get_address() {
     let private_key = get_private_key();
     return web3.eth.accounts.privateKeyToAccount(private_key).address;
@@ -187,6 +202,14 @@ function get_address() {
 
 function get_private_key() {
     return localStorage.getItem('account_private_key');
+}
+
+function remove_private_key() {
+    return localStorage.removeItem('account_private_key');
+}
+
+function set_private_key(key) {
+    localStorage.setItem('account_private_key', key);
 }
 
 function create_new_private_key() {
