@@ -1,40 +1,41 @@
-async function get_balance(address) {
-    await init_web3();
-    return web3.eth.getBalance(address).then((balance_string) => {
-        return parseFloat(balance_string)*1e-18;
+function init_input_placeholder() {
+    get_username().then(username => {
+        let $message = $('#message');
+        $message.attr("placeholder", username + ", your story starts here...");
+        $message.fadeTo( "fast" , 1);
     });
 }
 
-async function close_screen_signup_if_complete() {
+function show_sign_up_screen() {
+    setTimeout($('#screen_sign_up').fadeIn, 500);
+    $('#nav').css("display", "none");
+}
+
+function hide_sign_up_screen() {
+    init_input_placeholder();
+    $('#screen_sign_up').fadeOut();
+}
+
+async function show_or_hide_signup_screen() {
     if(await is_signed_up()) {
-        get_username().then(username => {
-            message = $('#message');
-            placeholder = "your story starts here..."
-            message.attr("placeholder", username + ", " + placeholder);
-            $('#message').fadeTo( "fast" , 1);
-        });
-        $('#screen_sign_up').fadeOut();
+        hide_sign_up_screen();
     } else {
-        setTimeout(function() {
-            $('#screen_sign_up').fadeIn();
-        }, 500);
-        $('#nav').css("display", "none");
+        show_sign_up_screen();
     }
 }
 
 function scroll_to_top() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
 }
 
 $(document).ready(function() {
-    isScrolled();
+    update_view_according_to_scroll();
     $(window).scroll(function(){
-        isScrolled();
+        update_view_according_to_scroll();
     });
 });
 
-function isScrolled() {
+function update_view_according_to_scroll() {
     if ($(window).scrollTop() > 0){
         $('#submit').addClass('hidden');
         $('#to-top').removeClass('hidden');
@@ -44,51 +45,29 @@ function isScrolled() {
     }
 }
 
-function textareaCharCount() {
+function set_post_input_char_count() {
     value = $('#message').val();
     length = value.length;
     $('#message-count').text(280 - length + ' of 280');
 }
 
-function ask_user_to_reset_metamask() {
-    const message = "Please reset your metamask!";
-    console.log(message)
-    alert(message)
-}
-
-function inform_user_that_smart_contracts_are_not_accessible() {
-    const message = "The smart contract instances cannot be found. This is not your fault. Check back in a few minutes. If nothing changes, please inform whoever is responsible for deploying the smart contracts.";
-    console.log(message)
-    alert(message)
-}
-
-function toggle_body_scrolling(state) {
-    body = $('body')
-
-    if(state === 'on') {
-        body.addClass('overflow-hidden')
-    } else if(state === 'off') {
-        body.removeClass('overflow-hidden')
+function set_body_scrolling(enabled) {
+    if(enabled) {
+        $('body').addClass('overflow-hidden')
+    } else {
+        $('body').removeClass('overflow-hidden')
     }
 }
 
 function toggle_settings_dialog() {
-    dialog = $('#settings_dialog')
-
-    if(dialog.hasClass('hidden')) {
-        toggle_body_scrolling('on')
-        dialog.removeClass('hidden')
-        dialog.animate({
-            opacity: 1
-        }, 'fast');
-    } else {
-        toggle_body_scrolling('off')
-        dialog.css('opacity', '0')
-        dialog.addClass('hidden')
-    }
+    let $dialog = $('#settings_dialog')
+    let is_becoming_visible = $dialog.hasClass('hidden');
+    set_body_scrolling(is_becoming_visible)
+    $dialog.animate({ opacity: is_becoming_visible ? 1 : 0 }, 'fast');
+    $dialog.toggleClass("hidden");
 }
 
 function save_settings_dialog() {
-    toggle_body_scrolling('on')
+    set_body_scrolling(true)
     toggle_settings_dialog()
 }
