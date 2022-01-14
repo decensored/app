@@ -1,23 +1,23 @@
 
 <div id="overlay" class="fixed left-0 top-0 right-0 h-screen pointer-events-none">
     <div id="screen_sign_up" class="hidden fixed left-0 top-0 right-0 bg-decensored-gradient pointer-events-auto">
-        <div class="container mx-auto px-3 pt-4 pb-8 max-w-md">
+        <div class="container mx-auto px-3 py-4 max-w-md">
             <img src="images/logo/logotype_invert.svg"/>
             <h1 class="text-white text-center text-2xl mb-5">Sign-up</h1>
-            <div id="signup">
-                <div class="flex gap-3">
-                    <input class="form-input p-3 !rounded grow" type="text" placeholder="Choose your username" id="username">
+            <div id="signup_or_recover_form" class="min-h-[50px]">
+                <div id="signup_form" class="flex flex-wrap justify-center gap-3">
+                    <input class="form-input p-3 !rounded grow max-w-full" type="text" placeholder="Choose your username" id="username">
                     <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_sign_up_button_pressed()">Go</button>
                 </div>
-                <p class="switch text-center text-white underline underline-offset-8 decoration-white py-3" onclick="toggle_sign_up()">Recover your account</p>
+                <div id="recover_form" class="flex flex-wrap justify-center gap-3" style="display: none; opacity: 0">
+                    <input class="form-input p-3 !rounded grow max-w-full" type="text" placeholder="Paste in your key" id="credentials">
+                    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_recover_account_button_pressed()">Recover</button>
+                </div>
             </div>
-            <div id="recover">
-            <div class="flex gap-3">
-                <input class="form-input p-3 !rounded grow" type="text" placeholder="Paste in your key" id="credentials">
-                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded" onclick="on_recover_account_button_pressed()">Go</button>
-            </div>
-            <p class="switch text-center text-white underline underline-offset decoration-white-8 py-3" onclick="toggle_sign_up()">Sign up with username</p>
-            </div>
+            <p class="text-center text-white text-sm decoration-white-8 py-3 underline hover:no-underline cursor-pointer" onclick="signup_or_recover_toggle()">
+                <span id="recover_toggle" class="hidden">Sign-up with username</span>
+                <span id="signup_toggle">Recover your account</span>
+            </p>
         </div>
     </div>
     <div id="settings_dialog" class="hidden opacity-0 flex justify-center pt-5 items-start sm:items-center inset-0 bg-black bg-opacity-30 dark:bg-opacity-80 overflow-y-auto h-full w-full pointer-events-auto">
