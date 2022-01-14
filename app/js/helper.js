@@ -74,6 +74,24 @@ function save_settings_dialog() {
     toggle_settings_dialog()
 }
 
-function toggle_sign_up() {
-    $('#recover, #signup').toggle(300);
+function signup_or_recover_toggle() {
+    let $signup_form = $('#signup_form');
+    let $recover_form = $('#recover_form');
+    let $signup_toggle = $('#signup_toggle');
+    let $recover_toggle = $('#recover_toggle');
+
+    const fadeOut = { opacity: 0, transition: 'opacity 500ms' };
+    const fadeIn = { opacity: 1, transition: 'opacity 500ms' };
+
+    if($recover_form.css('display') === 'none') {
+        $signup_form.css(fadeOut).slideUp();
+        $recover_form.css(fadeIn).slideDown();
+        $signup_toggle.addClass('hidden');
+        $recover_toggle.removeClass('hidden');
+    } else {
+        $signup_form.css(fadeIn).slideDown();
+        $recover_form.css(fadeOut).slideUp();
+        $signup_toggle.removeClass('hidden');
+        $recover_toggle.addClass('hidden');
+    };
 }

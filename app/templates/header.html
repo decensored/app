@@ -1,12 +1,18 @@
-<div id="header" class="fixed left-0 top-0 right-0 pointer-events-none hidden md:block">
+<div id="header" class="fixed left-0 top-0 right-0 pointer-events-none">
     <div class="flex gap-y-5 p-4 justify-between items-center">
-        <img class="h-10" src="images/logo/signet.svg"/>
-        <div class="text-gray-400 text-sm pointer-events-auto">
-            <a href="https://github.com/mikrohash/decensored" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+        <img class="h-10" src="images/logo/signet.svg" />
+        <div class="text-gray-400 text-lg pointer-events-auto flex items-center">
+            <a href="https://github.com/mikrohash/decensored" target="_blank" title="github">
+                <i class="fab fa-github"></i>
+            </a>
             <span class="mx-2">|</span>
-            <a href="https://t.co/Lmou3Qx5Ap" target="_blank"><i class="fab fa-discord fa-lg"></i></a>
+            <a href="https://t.co/Lmou3Qx5Ap" target="_blank" title="discord">
+                <i class="fab fa-discord"></i>
+            </a>
             <span class="mx-2">|</span>
-            <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-3 rounded" onclick="on_sign_out_button_pressed()"><i class="fas fa-sign-out-alt"></i></button>
+            <button onclick="on_sign_out_button_pressed()" title="logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
         </div>
     </div>
 </div>
