@@ -61,7 +61,7 @@ function generate_$post_meta(author_username, timestamp) {
     return $new_el_with_attr("div", "meta flex justify-between")
        // .append($identicon.addClass("identicon"))
         .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold text-gray-900 dark:text-gray-300").text(author_username))
-        .append($new_el_with_attr("div", "time text-sm").text(readable_date_time))
+        .append($new_el_with_attr("div", "time text-sm text-right").text(readable_date_time))
         // .append($new_el_with_attr("div", "options").append(
         //    /* $new_el_with_attr("div", "mint").on("click", () => {
         //         $('#dialog').css("display", "block")
