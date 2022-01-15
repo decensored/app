@@ -142,10 +142,6 @@ function update_feed() {
     })
 }
 
-async function init_web3() {
-    console.log("remove init_web3()")
-}
-
 async function is_signed_up() {
     let address = get_address();
     return contract_accounts.methods.id_by_address(address).call().then(
@@ -188,19 +184,6 @@ async function on_sign_out_button_pressed() {
 function get_address() {
     let private_key = get_private_key();
     return web3.eth.accounts.privateKeyToAccount(private_key).address;
-}
-
-function get_config() {
-    let config = localStorage.getItem('config');
-    if(config) {
-        return JSON.parse(config);
-    } else {
-        return CONFIG;
-    }
-}
-
-function set_config(config) {
-    localStorage.setItem('config', JSON.stringify(config))
 }
 
 function get_private_key() {

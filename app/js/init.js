@@ -59,7 +59,6 @@ function update_feed_every_interval(interval_in_ms) {
 function init_overlay() {
     $("#inits").load("./templates/inits.html", async () => {
         $("#overlay").unwrap();
-        $('#settings_input').text(JSON.stringify(get_config(), null, 4));
         $('#recover').hide();
 
         await init_contract_accounts();
@@ -74,6 +73,7 @@ function init_overlay() {
 
 function init_plugins() {
     init_private_key_recovery();
+    init_settings();
 }
 
 $(document).ready(async () => {

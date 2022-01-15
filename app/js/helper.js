@@ -75,22 +75,6 @@ function set_body_scrolling(enabled) {
     }
 }
 
-function toggle_settings_dialog() {
-    let $dialog = $('#settings_dialog')
-    let is_becoming_visible = $dialog.hasClass('hidden');
-    set_body_scrolling(is_becoming_visible)
-    $dialog.animate({ opacity: is_becoming_visible ? 1 : 0 }, 'fast');
-    $dialog.toggleClass("hidden");
-}
-
-function save_settings_dialog() {
-    let config_string = $('#settings_input').val().replaceAll("\n", "");
-    let config = JSON.parse(config_string);
-    set_config(config);
-    set_body_scrolling(true)
-    toggle_settings_dialog()
-}
-
 function signup_or_recover_toggle() {
     let $signup_form = $('#signup_form');
     let $recover_form = $('#recover_form');
@@ -111,5 +95,26 @@ function signup_or_recover_toggle() {
         $recover_form.css(fadeOut).slideUp(duration);
         $signup_toggle.removeClass('hidden');
         $recover_toggle.addClass('hidden');
-    };
+    }
+}
+
+function append_element_with_html($element, path_html) {
+    $.get(path_html, function(data) {
+        $element.append(data);
+    });
+}
+
+function append_element_with_html_on_load(element_identifier, path_html) {
+    execute_once_element_exists(element_identifier, $el => (
+        append_element_with_html($el, path_html)
+    ))
+}
+
+function execute_once_element_exists(element_identifier, callback) {
+    let interval = setInterval(function(){
+        if($(element_identifier).length > 0){
+            clearInterval(interval);
+            callback($(element_identifier));
+        }
+    }, 20);
 }
