@@ -8,24 +8,6 @@ async function init_post_fetcher() {
     } else {
         post_fetcher = new PostFetcher();
     }
-
-    let whitelist = await load_list_from_file(get_config().whitelist);
-    if(whitelist.length > 0) {
-        post_fetcher = new PostFetcherWhitelist(post_fetcher, whitelist)
-    } else {
-
-        let blacklist = await load_list_from_file(get_config().blacklist);
-        if(blacklist.length > 0) {
-            post_fetcher = new PostFetcherBlacklist(post_fetcher, blacklist)
-        }
-    }
-}
-
-async function load_list_from_file(path_to_file) {
-    let file_contents = await fetch(path_to_file);
-    let text = await file_contents.text();
-    if(text === "") return [];
-    return text.split(",");
 }
 
 function get_profile_username() {
@@ -47,11 +29,6 @@ function readable_date_time_from_unix_timestamp(unix_timestamp) {
     let date = new Date(unix_timestamp * 1000);
     return months[date.getMonth()] + "/" + date.getDate() + " " + date.getFullYear()
         +", " +date.toTimeString().substr(0,5);
-}
-
-function generate_identicon_image(hash) {
-    let data = new Identicon(hash, { background: [255, 255, 255, 255], size: 40}).toString();
-    return $("<img/>").attr("src", "data:image/png;base64," + data);
 }
 
 function generate_$post_meta(author_username, timestamp) {
