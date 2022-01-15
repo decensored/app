@@ -1,32 +1,13 @@
 let post_fetcher;
 
-async function set_post_fetcher() {
-  const profile_username = get_profile_username();
-  if (profile_username) {
-    let profile_userid = await contract_accounts.methods
-      .id_by_username(profile_username)
-      .call();
-    post_fetcher = new PostFetcherProfile(profile_userid);
-  } else {
-    post_fetcher = new PostFetcher();
-  }
-
-  let whitelist = await load_list_from_file(CONFIG.whitelist);
-  if (whitelist.length > 0) {
-    post_fetcher = new PostFetcherWhitelist(post_fetcher, whitelist);
-  } else {
-    let blacklist = await load_list_from_file(CONFIG.blacklist);
-    if (blacklist.length > 0) {
-      post_fetcher = new PostFetcherBlacklist(post_fetcher, blacklist);
+async function init_post_fetcher() {
+    const profile_username = get_profile_username();
+    if(profile_username) {
+        let profile_userid = await contract_accounts.methods.id_by_username(profile_username).call();
+        post_fetcher = new PostFetcherProfile(profile_userid);
+    } else {
+        post_fetcher = new PostFetcher();
     }
-  }
-}
-
-async function load_list_from_file(path_to_file) {
-  let file_contents = await fetch(path_to_file, { cache: "no-store" });
-  let text = await file_contents.text();
-  if (text === "") return [];
-  return text.split(",");
 }
 
 function get_profile_username() {
@@ -70,70 +51,83 @@ function readable_date_time_from_unix_timestamp(unix_timestamp) {
   );
 }
 
-function generate_identicon_image(hash) {
-  let data = new Identicon(hash, {
-    background: [255, 255, 255, 255],
-    size: 40,
-  }).toString();
-  return $("<img/>").attr("src", "data:image/png;base64," + data);
-}
-
 function generate_$post_meta(author_username, timestamp) {
   let readable_date_time = readable_date_time_from_unix_timestamp(timestamp);
   //let $identicon = generate_identicon_image(author_username);
 
-  return (
-    $div_with_class("meta flex justify-between")
-      // .append($identicon.addClass("identicon"))
-      .append(
-        $("<a></a>")
-          .attr("href", "?u=" + author_username)
-          .addClass("author font-bold text-gray-900 dark:text-gray-300")
-          .text(author_username)
-      )
-      .append($div_with_class("time text-sm").text(readable_date_time))
-  );
-  // .append($div_with_class("options").append(
-  //    /* $div_with_class("mint").on("click", () => {
-  //         $('#dialog').css("display", "block")
-  //     })*/
-  // ));
+    return $new_el_with_attr("div", "meta flex justify-between")
+       // .append($identicon.addClass("identicon"))
+        .append($('<a></a>').attr("href","?u="+author_username).addClass("author font-bold text-gray-900 dark:text-gray-300").text(author_username))
+        .append($new_el_with_attr("div", "time text-sm text-right").text(readable_date_time))
+        // .append($new_el_with_attr("div", "options").append(
+        //    /* $new_el_with_attr("div", "mint").on("click", () => {
+        //         $('#dialog').css("display", "block")
+        //     })*/
+        // ));
+}
+
+function generate_post_interaction_icon(icon, title) {
+    let $post_interaction_icon = $new_el_with_attr("i", "fas cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300");
+    $post_interaction_icon.addClass(icon);
+    $post_interaction_icon.attr('title', title);
+
+    return $post_interaction_icon;
+}
+
+function generate_post_interactions() {
+    let $wrapper = $new_el_with_attr("div", "px-5 py-3 rounded-b flex justify-between");
+    let $left = $new_el_with_attr("div", "flex gap-x-3 items-center");
+    let $right = $new_el_with_attr("div", "flex gap-x-3 items-center");
+
+    let $block_user = generate_post_interaction_icon('fa-shield-alt', 'block user');
+    let $share_post = generate_post_interaction_icon('fa-share', 'share post');
+    let $comment = generate_post_interaction_icon('fa-comment', 'comment');
+
+    $left.append($block_user);
+    $right.append($share_post);
+    $right.append($comment);
+
+    $wrapper.append($left);
+    $wrapper.append($right);
+
+    return $wrapper
 }
 
 async function generate_$post(post) {
-  let $post = $div_with_class(
-    "post bg-white dark:bg-gray-900 p-5 rounded shadow-sm"
-  ).css("order", -post["timestamp"]);
-  let author_username = await contract_accounts.methods
-    .username_by_id(post["author"])
-    .call();
-  let $post_meta = generate_$post_meta(author_username, post["timestamp"]);
-  $post.append($post_meta);
-  $post.append(
-    $div_with_class("message break-words mt-2").text(
-      post["message"].substr(0, 280)
-    )
-  );
-  return $post;
+    let $post = $new_el_with_attr("div", "post bg-white dark:bg-gray-900 rounded divide-y divide-solid divide-gray-200 dark:divide-gray-800 shadow-sm").css("order", -post['timestamp']);
+
+    let author_username = await contract_accounts.methods.username_by_id(post['author']).call();
+    let $post_meta = generate_$post_meta(author_username, post['timestamp']);
+    let $post_content = $new_el_with_attr("div", "rounded-t p-5");
+    $post_content.append($post_meta);
+    $post_content.append($new_el_with_attr("div", "message break-words mt-2").text(post['message'].substr(0, 280)));
+    $post.append($post_content);
+    $post.append(generate_post_interactions());
+
+    return $post;
 }
 
 function append_post_to_feed(post) {
   generate_$post(post).then(($post) => $("#feed #posts").append($post));
 }
 
-function $div_with_class(class_name) {
-  return $("<div></div>").addClass(class_name);
+function $new_el_with_attr(el, attr_class, attr_id) {
+    $newEl = $('<'+ el +'></'+ el +'>');
+    if (attr_class) {
+        $newEl.addClass(attr_class);
+    }
+    if (attr_id) {
+        $newEl.addId(attr_id);
+    }
+    return $newEl
 }
 
 function submit_post_input() {
-  let $message = $("#message");
-  let message = $message.val();
-  $message.val("");
-  textareaCharCount();
-  return execute_contract_function(
-    web3,
-    contract_posts.methods.submit_post(message)
-  );
+    let $message = $('#message');
+    let message = $message.val();
+    $message.val("");
+    set_post_input_char_count();
+    return execute_contract_function(web3, contract_posts.methods.submit_post(message));
 }
 
 function update_feed() {
@@ -147,10 +141,6 @@ function update_feed() {
       );
     }
   });
-}
-
-async function init_web3() {
-  console.log("remove init_web3()");
 }
 
 async function is_signed_up() {
@@ -198,14 +188,15 @@ async function test() {
 }
 
 async function on_sign_up_button_pressed() {
-  let username = $("#username").val();
-  execute_contract_function(web3, contract_accounts.methods.sign_up(username))
-    .then(async (_) => {
-      await close_screen_signup_if_complete();
-    })
-    .catch((error) => {
-      alert(error);
-    });
+    let username = $('#username').val();
+    execute_contract_function(web3, contract_accounts.methods.sign_up(username))
+        .then(async _ => { await show_or_hide_signup_screen() })
+        .catch(error => { alert(error) })
+}
+
+async function on_sign_out_button_pressed() {
+    remove_private_key();
+    location.reload();
 }
 
 function get_address() {
@@ -217,33 +208,43 @@ function get_private_key() {
   return localStorage.getItem("account_private_key");
 }
 
+function remove_private_key() {
+    return localStorage.removeItem('account_private_key');
+}
+
+function set_private_key(key) {
+    localStorage.setItem('account_private_key', key);
+}
+
 function create_new_private_key() {
   let account = web3.eth.accounts.create();
   localStorage.setItem("account_private_key", account["privateKey"]);
 }
 
-const web3 = new Web3(CONFIG.evm_node);
+const web3 = new Web3(get_config().evm_node);
 
 if (!get_private_key()) {
   create_new_private_key();
 }
 
-let contract_posts = new web3.eth.Contract(
-  CONTRACT_POSTS_ABI,
-  CONFIG.contract_posts_address
-);
+let contract_posts = new web3.eth.Contract(CONTRACT_POSTS_ABI, get_config().contract_posts_address);
 let contract_accounts;
 
 async function get_username() {
   let address = get_address();
 
-  return contract_accounts.methods
-    .id_by_address(address)
-    .call()
-    .then((id) => {
-      return contract_accounts.methods.username_by_id(id).call();
-    });
+    return contract_accounts.methods.id_by_address(address).call().then(id => {
+        return contract_accounts.methods.username_by_id(id).call()
+    })
 }
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('pwaworker.js').then(function(registration) {
+    registration.update();
+  }).catch(function(error) {
+    console.log('Registration failed with ' + error);
+  });
+};
 
 /*
   during sign_up:

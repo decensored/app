@@ -1,0 +1,20 @@
+
+<div id="settings_dialog" class="hidden opacity-0 flex justify-center pt-5 items-start sm:items-center inset-0 bg-black bg-opacity-30 dark:bg-opacity-80 overflow-y-auto h-full w-full pointer-events-auto">
+    <div class="relative shadow-xl rounded bg-white dark:bg-gray-900 divide-y divide-solid divide-gray-200 dark:divide-gray-800 w-96 max-w-[90%]">
+        <div class="px-8 py-6" id="settings_dialog_inner">
+            <h3 class="text-lg leading-6 font-medium text-center mb-8">Settings</h3>
+            <div class="my-2">
+                <div class="text-xs text-gray-900 dark:text-gray-300 mb-2">Blacklist url</div>
+                <textarea class="form-input p-3 rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-28 focus:outline-none focus:ring-2 focus:ring-purple-700" id="settings_input"></textarea>
+            </div>
+        </div>
+        <div class="flex gap-x-5 p-4">
+            <div class="grow">
+                <button onclick="toggle_settings_dialog()" class="w-full bg-transparent text-gray-900 hover:text-purple-900 dark:text-gray-500 font-medium py-2 px-3 rounded cursor-pointer">Cancel</button>
+            </div>
+            <div class="grow">
+                <button onclick="save_settings_dialog()" class="w-full bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

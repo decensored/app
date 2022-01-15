@@ -17,21 +17,24 @@ git clone https://github.com/mikrohash/decensored
 cd decensored/app
 npm install
 ```
+- To run the frontend locally on http://127.0.0.1:8080
 
-After installation open `app/index.html` in your browser.
+```
+npm start
+```
 
 ## Development
 
 <a href='https://tailwindcss.com/docs/installation' target='_blank'>Tailwind</a> requirements:
 
-- To build your CSS you’ll need to ensure you are running Node.js 12.13.0 or higher.
+- To run the frontend locally on http://127.0.0.1:8080 and to rebuild the css on change. You’ll need to ensure you are running Node.js 12.13.0 or higher.
 
 ```
-npm run tailwind:watch
+npm run develop
 ```
 
-- To run the frontend locally on http://127.0.0.1:8080
+- To just build your CSS.
 
 ```
-npm start
+npm run tailwind:build
 ```

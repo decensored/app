@@ -1,40 +1,57 @@
-async function get_balance(address) {
-    await init_web3();
-    return web3.eth.getBalance(address).then((balance_string) => {
-        return parseFloat(balance_string)*1e-18;
+function toggle_header_logo(variant, time) {
+    const duration = time;
+
+    if(variant === 'signet') {
+        $('#logo #signet').animate({opacity: 1}, duration);
+        $('#logo #logotype').animate({opacity: 0}, duration);
+    } else if(variant === 'logotype') {
+        $('#logo #logotype').animate({opacity: 1}, duration);
+    }
+}
+
+function init_input_placeholder() {
+    get_username().then(username => {
+        let $message = $('#message');
+        $message.attr("placeholder", username + ", your story starts here...");
+        $message.fadeTo( "fast" , 1);
     });
 }
 
-async function close_screen_signup_if_complete() {
+function show_sign_up_screen() {
+    $('#screen_sign_up').detach().appendTo($('#header'));
+    $('#screen_sign_up').show();
+}
+
+function hide_sign_up_screen() {
+    toggle_header_logo('logotype', 0);
+    init_input_placeholder();
+    $('#screen_sign_up').slideUp();
+    $('#input').slideDown();
+    $('#logout-button').show();
+    $('#navbar').show();
+}
+
+async function show_or_hide_signup_screen() {
     if(await is_signed_up()) {
-        get_username().then(username => {
-            message = $('#message');
-            placeholder = "your story starts here..."
-            message.attr("placeholder", username + ", " + placeholder);
-            $('#message').fadeTo( "fast" , 1);
-        });
-        $('#screen_sign_up').fadeOut();
+        hide_sign_up_screen();
+        $("#privateKey").val(get_private_key());
     } else {
-        setTimeout(function() {
-            $('#screen_sign_up').fadeIn();
-        }, 500);
-        $('#nav').css("display", "none");
+        show_sign_up_screen();
     }
 }
 
 function scroll_to_top() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
 }
 
 $(document).ready(function() {
-    isScrolled();
+    update_view_according_to_scroll();
     $(window).scroll(function(){
-        isScrolled();
+        update_view_according_to_scroll();
     });
 });
 
-function isScrolled() {
+function update_view_according_to_scroll() {
     if ($(window).scrollTop() > 0){
         $('#submit').addClass('hidden');
         $('#to-top').removeClass('hidden');
@@ -44,51 +61,60 @@ function isScrolled() {
     }
 }
 
-function textareaCharCount() {
+function set_post_input_char_count() {
     value = $('#message').val();
     length = value.length;
     $('#message-count').text(280 - length + ' of 280');
 }
 
-function ask_user_to_reset_metamask() {
-    const message = "Please reset your metamask!";
-    console.log(message)
-    alert(message)
-}
-
-function inform_user_that_smart_contracts_are_not_accessible() {
-    const message = "The smart contract instances cannot be found. This is not your fault. Check back in a few minutes. If nothing changes, please inform whoever is responsible for deploying the smart contracts.";
-    console.log(message)
-    alert(message)
-}
-
-function toggle_body_scrolling(state) {
-    body = $('body')
-
-    if(state === 'on') {
-        body.addClass('overflow-hidden')
-    } else if(state === 'off') {
-        body.removeClass('overflow-hidden')
-    }
-}
-
-function toggle_settings_dialog() {
-    dialog = $('#settings_dialog')
-
-    if(dialog.hasClass('hidden')) {
-        toggle_body_scrolling('on')
-        dialog.removeClass('hidden')
-        dialog.animate({
-            opacity: 1
-        }, 'fast');
+function set_body_scrolling(enabled) {
+    if(enabled) {
+        $('body').addClass('overflow-hidden')
     } else {
-        toggle_body_scrolling('off')
-        dialog.css('opacity', '0')
-        dialog.addClass('hidden')
+        $('body').removeClass('overflow-hidden')
     }
 }
 
-function save_settings_dialog() {
-    toggle_body_scrolling('on')
-    toggle_settings_dialog()
+function signup_or_recover_toggle() {
+    let $signup_form = $('#signup_form');
+    let $recover_form = $('#recover_form');
+    let $signup_toggle = $('#signup_toggle');
+    let $recover_toggle = $('#recover_toggle');
+
+    const duration = '500';
+    const fadeOut = { opacity: 0, transition: 'opacity ' + duration + 'ms' };
+    const fadeIn = { opacity: 1, transition: 'opacity ' + duration + 'ms' };
+
+    if($recover_form.css('display') === 'none') {
+        $signup_form.css(fadeOut).slideUp(duration);
+        $recover_form.css(fadeIn).slideDown(duration);
+        $signup_toggle.addClass('hidden');
+        $recover_toggle.removeClass('hidden');
+    } else {
+        $signup_form.css(fadeIn).slideDown(duration);
+        $recover_form.css(fadeOut).slideUp(duration);
+        $signup_toggle.removeClass('hidden');
+        $recover_toggle.addClass('hidden');
+    }
+}
+
+function append_element_with_html($element, path_html) {
+    $.get(path_html, function(data) {
+        $element.append(data);
+    });
+}
+
+function append_element_with_html_on_load(element_identifier, path_html) {
+    execute_once_element_exists(element_identifier, $el => (
+        append_element_with_html($el, path_html)
+    ))
+}
+
+function execute_once_element_exists(element_identifier, callback) {
+    let interval = setInterval(function(){
+        if($(element_identifier).length > 0){
+            clearInterval(interval);
+            callback($(element_identifier));
+        }
+    }, 20);
 }
