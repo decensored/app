@@ -1,3 +1,14 @@
+function toggle_header_logo(variant, time) {
+    const duration = time;
+
+    if(variant === 'signet') {
+        $('#logo #signet').animate({opacity: 1}, duration);
+        $('#logo #logotype').animate({opacity: 0}, duration);
+    } else if(variant === 'logotype') {
+        $('#logo #logotype').animate({opacity: 1}, duration);
+    }
+}
+
 function init_input_placeholder() {
     get_username().then(username => {
         let $message = $('#message');
@@ -7,14 +18,17 @@ function init_input_placeholder() {
 }
 
 function show_sign_up_screen() {
-    $('#screen_sign_up').removeClass('hidden');
-    $('#nav').css("display", "none");
+    $('#screen_sign_up').detach().appendTo($('#header'));
+    $('#screen_sign_up').show();
 }
 
 function hide_sign_up_screen() {
+    toggle_header_logo('logotype', 0);
     init_input_placeholder();
-    $('#screen_sign_up').fadeOut();
-
+    $('#screen_sign_up').slideUp();
+    $('#input').slideDown();
+    $('#logout-button').show();
+    $('#navbar').show();
 }
 
 async function show_or_hide_signup_screen() {
