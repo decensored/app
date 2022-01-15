@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with project!
+This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with this project!
 
 ## About
 
