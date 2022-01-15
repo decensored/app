@@ -2,7 +2,6 @@ const CACHE_NAME = 'decensored';
 const urlsToCache = [
     "./index.html",
 	"./css/tailwind.css",
-	"./node_modules/@tailwindcss/forms/dist/forms.min.css",
 	"./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
 	"./node_modules/web3/dist/web3.min.js",
 	"./node_modules/identicon.js/pnglib.js",
