@@ -1,4 +1,3 @@
-
 window.onerror = function myErrorHandler(error_message) {
     alert("ERROR: " + error_message);
     console.error(error_message);
@@ -73,9 +72,14 @@ function init_overlay() {
     });
 }
 
+function init_plugins() {
+    init_private_key_recovery();
+}
+
 $(document).ready(async () => {
     init_header();
     init_feed();
     init_navbar();
     init_overlay();
+    init_plugins();
 });

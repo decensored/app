@@ -185,20 +185,6 @@ async function on_sign_out_button_pressed() {
     location.reload();
 }
 
-async function on_recover_account_button_pressed() {
-    const privateKey = $("#credentials").val();
-    set_private_key(privateKey);
-    location.reload();
-}
-
-async function on_copy_credentials_button_pressed() {
-    if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(get_private_key());
-    } else {
-        console.log('Copy to clipboard function requires a secure origin');
-    }
-}
-
 function get_address() {
     let private_key = get_private_key();
     return web3.eth.accounts.privateKeyToAccount(private_key).address;
