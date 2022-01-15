@@ -20,9 +20,9 @@ function init_feed() {
     });
 }
 
-function init_bottom_bar() {
-    $("#init-bottombar").load("templates/bottombar.html", function() {
-        $("#bottombar").unwrap();
+function init_navbar() {
+    $("#init-navbar").load("templates/navbar.html", function() {
+        $("#navbar").unwrap();
     });
 }
 
@@ -58,7 +58,7 @@ function update_feed_every_interval(interval_in_ms) {
 }
 
 function init_overlay() {
-    $("#init-overlay").load("./templates/overlay.html", async () => {
+    $("#inits").load("./templates/inits.html", async () => {
         $("#overlay").unwrap();
         $('#chain_id').text(CONFIG.chain_id);
         $('#recover').hide();
@@ -76,6 +76,6 @@ function init_overlay() {
 $(document).ready(async () => {
     init_header();
     init_feed();
-    init_bottom_bar();
+    init_navbar();
     init_overlay();
 });

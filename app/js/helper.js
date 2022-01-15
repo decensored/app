@@ -18,17 +18,17 @@ function init_input_placeholder() {
 }
 
 function show_sign_up_screen() {
-    toggle_header_logo('signet', 0)
     $('#screen_sign_up').detach().appendTo($('#header'));
     $('#screen_sign_up').show();
-    $('#nav').css("display", "none");
 }
 
 function hide_sign_up_screen() {
-    toggle_header_logo('logotype', 500)
+    toggle_header_logo('logotype', 0);
     init_input_placeholder();
     $('#screen_sign_up').slideUp();
     $('#input').slideDown();
+    $('#logout-button').show();
+    $('#navbar').show();
 }
 
 async function show_or_hide_signup_screen() {

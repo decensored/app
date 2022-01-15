@@ -2,8 +2,8 @@
     <div class="flex gap-y-5 p-4 justify-between items-center">
         <div id="logo">
             <a href="/" class="block h-10 flex gap-1">
-                <img id="signet" class="h-full" src="images/logo/signet.svg" style="opacity: 0" />
-                <img id="logotype" class="h-full hidden sm:block" src="images/logo/logotype_invert.svg" />
+                <img id="signet" class="h-full" src="images/logo/signet.svg" />
+                <img id="logotype" class="h-full hidden sm:block" src="images/logo/logotype_invert.svg" style="opacity: 0"/>
             </a>
         </div>
         <div class="text-white text-lg flex items-center">
@@ -14,8 +14,7 @@
             <a href="https://t.co/Lmou3Qx5Ap" target="_blank" title="discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <span class="mx-2">|</span>
-            <button onclick="on_sign_out_button_pressed()" title="logout">
+            <button id="logout-button" class="ml-6" onclick="on_sign_out_button_pressed()" title="logout" style="display: none;">
                 <i class="fas fa-sign-out-alt"></i>
             </button>
         </div>
