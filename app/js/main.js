@@ -192,7 +192,11 @@ async function on_recover_account_button_pressed() {
 }
 
 async function on_copy_credentials_button_pressed() {
-    await navigator.clipboard.writeText(get_private_key());
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(get_private_key());
+    } else {
+        console.log('Copy to clipboard function requires a secure origin');
+    }
 }
 
 function get_address() {
