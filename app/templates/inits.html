@@ -7,13 +7,13 @@
             <div id="signup_or_recover_form" class="mt-2 min-h-[42px]">
                 <div id="signup_form" class="flex gap-3">
                     <div class="grow shrink">
-                        <input class="form-input p-3 !rounded w-full" type="text" placeholder="Choose your username" id="username">
+                        <input class="form-input p-3 rounded w-full" type="text" placeholder="Choose your username" id="username">
                     </div>
                     <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold px-4 rounded whitespace-nowrap" onclick="on_sign_up_button_pressed()">Sign-up</button>
                 </div>
                 <div id="recover_form" class="flex gap-3" style="display: none; opacity: 0">
                     <div class="grow shrink">
-                        <input class="form-input p-3 !rounded w-full" type="text" placeholder="Paste in your key" id="credentials">
+                        <input class="form-input p-3 rounded w-full" type="text" placeholder="Paste in your key" id="credentials">
                     </div>
                     <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold px-4 rounded whitespace-nowrap" onclick="on_recover_account_button_pressed()">Recover</button>
                 </div>
@@ -30,12 +30,12 @@
                 <h3 class="text-lg leading-6 font-medium text-center mb-8">Settings</h3>
                 <div class="my-2">
                     <div class="text-xs text-gray-900 dark:text-gray-300 mb-2">Blacklist url</div>
-                    <textarea class="form-input p-3 !rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-28 focus:outline-none focus:ring-2 focus:ring-purple-700" id="blacklist_url"></textarea>
+                    <textarea class="form-input p-3 rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-28 focus:outline-none focus:ring-2 focus:ring-purple-700" id="blacklist_url"></textarea>
                 </div>
                 <div class="my-2">
                     <div class="text-xs text-gray-900 dark:text-gray-300 mb-2">Copy your private key to recover your account</div>
                     <div class="flex gap-3">
-                        <input class="form-input p-3 !rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-10 focus:outline-none focus:ring-2 focus:ring-purple-700" id="privateKey" value="" readonly />
+                        <input class="form-input p-3 rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-10 focus:outline-none focus:ring-2 focus:ring-purple-700" id="privateKey" value="" readonly />
                         <button class="border border-gray-300 dark:border-gray-500 hover:border-transparent hover:bg-purple-700 hover:text-white font-bold py-2 px-3 rounded" onclick="on_copy_credentials_button_pressed()"><i class="far fa-copy"></i></button>
                     </div>
                 </div>
