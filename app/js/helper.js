@@ -84,6 +84,9 @@ function toggle_settings_dialog() {
 }
 
 function save_settings_dialog() {
+    let config_string = $('#settings_input').val().replaceAll("\n", "");
+    let config = JSON.parse(config_string);
+    set_config(config);
     set_body_scrolling(true)
     toggle_settings_dialog()
 }

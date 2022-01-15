@@ -9,12 +9,12 @@ async function init_post_fetcher() {
         post_fetcher = new PostFetcher();
     }
 
-    let whitelist = await load_list_from_file(CONFIG.whitelist);
+    let whitelist = await load_list_from_file(get_config().whitelist);
     if(whitelist.length > 0) {
         post_fetcher = new PostFetcherWhitelist(post_fetcher, whitelist)
     } else {
 
-        let blacklist = await load_list_from_file(CONFIG.blacklist);
+        let blacklist = await load_list_from_file(get_config().blacklist);
         if(blacklist.length > 0) {
             post_fetcher = new PostFetcherBlacklist(post_fetcher, blacklist)
         }
@@ -190,6 +190,19 @@ function get_address() {
     return web3.eth.accounts.privateKeyToAccount(private_key).address;
 }
 
+function get_config() {
+    let config = localStorage.getItem('config');
+    if(config) {
+        return JSON.parse(config);
+    } else {
+        return CONFIG;
+    }
+}
+
+function set_config(config) {
+    localStorage.setItem('config', JSON.stringify(config))
+}
+
 function get_private_key() {
     return localStorage.getItem('account_private_key');
 }
@@ -207,13 +220,13 @@ function create_new_private_key() {
     localStorage.setItem('account_private_key', account['privateKey']);
 }
 
-const web3 = new Web3(CONFIG.evm_node);
+const web3 = new Web3(get_config().evm_node);
 
 if(!get_private_key()) {
     create_new_private_key();
 }
 
-let contract_posts = new web3.eth.Contract(CONTRACT_POSTS_ABI, CONFIG.contract_posts_address);
+let contract_posts = new web3.eth.Contract(CONTRACT_POSTS_ABI, get_config().contract_posts_address);
 let contract_accounts;
 
 async function get_username() {
