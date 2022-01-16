@@ -12,8 +12,18 @@ function init_header() {
     });
 }
 
+function init_navbar() {
+    $("#init-navbar").load("templates/navbar.html", function() {
+        $loaded = $("#navbar");
+        if($loaded.parent().attr('id') === 'init-navbar') {
+            $loaded.unwrap();
+        }
+        set_active_nav_item();
+    });
+}
+
 function init_feed() {
-    $("#init-feed").load("templates/feed.html", function() {
+    $("#init-feed").load("views/feed/feed.html", function() {
         $loaded = $("#feed");
         if($loaded.parent().attr('id') === 'init-feed') {
             $loaded.unwrap();
@@ -26,21 +36,11 @@ function init_feed() {
 }
 
 function init_spaces() {
-    $("#init-spaces").load("templates/spaces.html", function() {
+    $("#init-spaces").load("views/spaces/spaces.html", function() {
         $loaded = $("#spaces");
         if($loaded.parent().attr('id') === 'init-spaces') {
             $loaded.unwrap();
         }
-    });
-}
-
-function init_navbar() {
-    $("#init-navbar").load("templates/navbar.html", function() {
-        $loaded = $("#navbar");
-        if($loaded.parent().attr('id') === 'init-navbar') {
-            $loaded.unwrap();
-        }
-        set_active_nav_item();
     });
 }
 
