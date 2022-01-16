@@ -166,7 +166,7 @@ function init_page_content() {
 
 //
 let plugins = {
-  debug: true,
+  debug: false,
   registered: [],
   disabled: {},
 };
