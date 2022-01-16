@@ -180,6 +180,15 @@ function create_new_private_key() {
     localStorage.setItem('account_private_key', account['privateKey']);
 }
 
+function get_config() {
+    let config = localStorage.getItem('config');
+    if(config) {
+        return JSON.parse(config);
+    } else {
+        return CONFIG;
+    }
+}
+
 const web3 = new Web3(get_config().evm_node);
 
 if(!get_private_key()) {

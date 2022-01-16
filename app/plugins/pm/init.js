@@ -1,6 +1,7 @@
-// RegisterPlugin(init_pm)
+register_plugin({ name: 'pm', init: init_pm });
 
 function init_pm() {
+  // console.log("init_pm");
   append_element_with_html_on_load("#overlay", "./plugins/pm/pm.html");
 }
 
