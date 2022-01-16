@@ -103,13 +103,6 @@ function init_overlay() {
     });
 }
 
-function init_plugins() {
-    init_block_users();
-    init_private_key_recovery();
-    init_settings();
-    init_approve_account();
-}
-
 function get_url_param(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
