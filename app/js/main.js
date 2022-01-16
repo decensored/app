@@ -86,7 +86,6 @@ function generate_post_interactions(author, username) {
 
 async function generate_$post(post) {
     let $post = $new_el_with_attr("div", "post bg-white dark:bg-gray-900 rounded divide-y divide-solid divide-gray-200 dark:divide-gray-800 shadow-sm").css("order", -post['timestamp']);
-
     let author_username = await contract_accounts.methods.username_by_id(post['author']).call();
     let $post_meta = generate_$post_meta(author_username, post['timestamp']);
     let $post_content = $new_el_with_attr("div", "rounded-t p-5");

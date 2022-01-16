@@ -1,0 +1,22 @@
+<div id="approve_account_dialog" class="hidden opacity-0 flex justify-center pt-5 items-start sm:items-center inset-0 bg-black bg-opacity-30 dark:bg-opacity-80 overflow-y-auto h-full w-full pointer-events-auto">
+    <div class="relative shadow-xl rounded bg-white dark:bg-gray-900 divide-y divide-solid divide-gray-200 dark:divide-gray-800 w-96 max-w-[90%]">
+        <span class="absolute right-4 top-2 py-1 px-2 hover:text-purple-900 cursor-pointer" onclick="on_close_approval_dialog_clicked()"><i class="fas fa-times"></i></span>
+        <div class="px-8 py-6" id="approve_account_dialog_inner">
+            <h3 class="text-lg leading-6 font-medium text-center mb-5">⚠️ Approve Account</h3>
+            <p>To prevent spamming it is mandatory to manually approve your account! This will change as soon as the nodes are more stable.</p>
+            <div class="my-5">
+                <div class="flex gap-3">
+                    <input id="address" class="form-input p-3 rounded dark:bg-black border border-gray-300 dark:border-gray-500 w-full h-10 focus:outline-none focus:ring-2 focus:ring-purple-700" readonly />
+                    <button class="border border-gray-300 dark:border-gray-500 hover:border-transparent hover:bg-purple-700 hover:text-white font-bold py-2 px-3 rounded" onclick="on_copy_address_button_pressed()"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="text-xs text-gray-900 dark:text-gray-300 mb-2">
+                    <span>Copy your address and share with us</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button class="w-full bg-transparent text-gray-900 hover:text-purple-900 dark:text-gray-500 font-medium py-2 px-3 rounded cursor-pointer"><a href="https://discord.gg/bGfDcp43" target="_blank">Discord <i class="fab fa-discord fa-lg"></i></a></button>
+                <button class="w-full bg-transparent text-gray-900 hover:text-purple-900 dark:text-gray-500 font-medium py-2 px-3 rounded cursor-pointer"><a href="https://twitter.com/decensored_app" target="_blank">Twitter <i class="fab fa-twitter fa-lg"></i></a></button>
+            </div>
+        </div>
+    </div>
+</div>
