@@ -1,9 +1,8 @@
 const ENUM_PAGES = {
     FEED: 1,
-    SPACES_OWN: 2,
-    PROFILE: 3,
-    SPACES_ALL: 4,
-    SPACE: 5,
+    PROFILE: 2,
+    SPACES: 3,
+    SPACE: 4,
 }
 
 function get_page() {
@@ -11,11 +10,8 @@ function get_page() {
     let s = get_url_param("s");
     let u = get_url_param("u");
 
-    if(p === "spaces_own") {
-        return ENUM_PAGES.SPACES_OWN;
-    }
-    if(p === "spaces_all") {
-        return ENUM_PAGES.SPACES_ALL;
+    if(p === "spaces") {
+        return ENUM_PAGES.SPACES;
     }
     if(s) {
         return ENUM_PAGES.SPACE;
@@ -38,15 +34,7 @@ function set_active_nav_item() {
     let s = get_url_param("s");
     let u = get_url_param("u");
 
-    if(p === "spaces_own") {
-        active_nav_item('#navbar-item-spaces');
-        return;
-    }
-    if(p === "spaces_all") {
-        active_nav_item('#navbar-item-spaces');
-        return;
-    }
-    if(s) {
+    if(p === "spaces" || s) {
         active_nav_item('#navbar-item-spaces');
         return;
     }
@@ -65,18 +53,14 @@ function init_routing() {
         case ENUM_PAGES.FEED:
             init_feed();
             break;
-        case ENUM_PAGES.SPACES_OWN:
-            init_spaces();
+        case ENUM_PAGES.PROFILE:
+            init_feed();
             break;
-        case ENUM_PAGES.SPACES_ALL:
-            // TODO init spaces_all
+        case ENUM_PAGES.SPACES:
+            init_spaces();
             break;
         case ENUM_PAGES.SPACE:
             // TODO init space
-            break;
-        case ENUM_PAGES.PROFILE:
-            // TODO init profile
-            init_feed();
             break;
     }
 }
@@ -86,10 +70,10 @@ function set_route(view) {
 
     switch (view) {
         case 'feed':
-            window.location.href = '?';
+            window.location.href = '/';
             break;
         case 'spaces':
-            window.location.href = '?p=spaces_own';
+            window.location.href = '?p=spaces';
             break;
         case 'myposts':
             if(profile) {
