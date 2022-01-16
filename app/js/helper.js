@@ -45,16 +45,20 @@ function scroll_to_top() {
 }
 
 function update_view_according_to_scroll() {
-    elementOffset = $('#spread-bar').offset().top;
-    windowOffset = $(window).scrollTop();
-    scrollOffset = elementOffset - windowOffset;
+    $spread_bar = $('#spread-bar');
 
-    if (scrollOffset > 0){
-        $('#submit').removeClass('hidden');
-        $('#to-top').addClass('hidden');
-    } else {
-        $('#submit').addClass('hidden');
-        $('#to-top').removeClass('hidden');
+    if($spread_bar.length) {
+        elementOffset = $spread_bar.offset().top;
+        windowOffset = $(window).scrollTop();
+        scrollOffset = elementOffset - windowOffset;
+
+        if (scrollOffset > 0){
+            $('#submit').removeClass('hidden');
+            $('#to-top').addClass('hidden');
+        } else {
+            $('#submit').addClass('hidden');
+            $('#to-top').removeClass('hidden');
+        }
     }
 }
 
