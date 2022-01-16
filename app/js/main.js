@@ -19,6 +19,11 @@ function get_profile_username() {
 async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
         post_fetcher.get_post(i).then(post => {
+            post = {
+              author: post.author,
+              timestamp: post.timestamp,
+              message: call_plugins('display_transform', post.message)
+            }
             append_post_to_feed(post);
         });
     }

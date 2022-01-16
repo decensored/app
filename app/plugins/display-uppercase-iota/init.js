@@ -8,7 +8,9 @@ function displayUppercaseIOTA(message) {
     .replace("iota", "IOTA")
     .replace("Iota", "IOTA");
 
-  console.log("displayUppercaseIOTA", message, "->", transformedMessage);
+  // if (message != transformedMessage) {
+  //   console.log("displayUppercaseIOTA", message, "->", transformedMessage);
+  // }
 
   return transformedMessage;
 }

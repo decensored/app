@@ -8,7 +8,9 @@ function postLowercaseIOTA(message) {
     .replace("IOTA", "iota")
     .replace("Iota", "iota");
 
-  console.log("postLowercaseIOTA", message, "->", transformedMessage);
+  // if (message != transformedMessage) {
+  //   console.log("postLowercaseIOTA", message, "->", transformedMessage);
+  // }
 
   return transformedMessage;
 }
