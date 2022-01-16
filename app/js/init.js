@@ -23,7 +23,7 @@ function init_navbar() {
 }
 
 function init_feed() {
-    $("#init-feed").load("views/feed/feed.html", function() {
+    $("#init-feed").load("pages/feed/feed.html", function() {
         $loaded = $("#feed");
         if($loaded.parent().attr('id') === 'init-feed') {
             $loaded.unwrap();
@@ -36,7 +36,7 @@ function init_feed() {
 }
 
 function init_spaces() {
-    $("#init-spaces").load("views/spaces/spaces.html", function() {
+    $("#init-spaces").load("pages/spaces/spaces.html", function() {
         $loaded = $("#spaces");
         if($loaded.parent().attr('id') === 'init-spaces') {
             $loaded.unwrap();

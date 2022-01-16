@@ -4,7 +4,7 @@ module.exports = {
     "./loads/**/*.{html,js}",
     "./templates/*.{html,js}",
     "./plugins/**/*.{html,js}",
-    "./views/**/*.{html,js}",
+    "./pages/**/*.{html,js}",
     "./index.html"
   ],
   theme: {
