@@ -8,12 +8,15 @@ function init_settings() {
 function toggle_settings_dialog() {
     let $dialog = $('#settings_dialog')
     let is_becoming_visible = $dialog.hasClass('hidden');
+    if(is_becoming_visible) {
+        $("#blocked-user-tags").html('');
+        append_blocked_users_to_div();
+    } 
     set_body_scrolling(is_becoming_visible)
     $dialog.animate({ opacity: is_becoming_visible ? 1 : 0 }, 'fast');
     $dialog.toggleClass("hidden");
-    $("#blocked-user-tags").html('');
-    append_blocked_users_to_div();
 }
+
 
 function save_settings_dialog() {
     let config_string = $('#settings_input').val().replaceAll("\n", "");
