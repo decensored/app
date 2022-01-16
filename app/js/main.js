@@ -186,7 +186,6 @@ function set_private_key(key) {
 function create_new_private_key() {
     let account = web3.eth.accounts.create();
     localStorage.setItem('account_private_key', account['privateKey']);
-    localStorage.setItem('address', get_address());
 }
 
 const web3 = new Web3(get_config().evm_node);

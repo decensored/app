@@ -13,7 +13,7 @@ function init_approve_account() {
 }
 
 function toggle_account_approval_dialog() {
-    $("#address").val(localStorage.getItem('address'));
+    $("#address").val(get_address());
     let $dialog = $('#approve_account_dialog')
     let is_becoming_visible = $dialog.hasClass('hidden');
     set_body_scrolling(is_becoming_visible)
