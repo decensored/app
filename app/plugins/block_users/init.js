@@ -50,8 +50,8 @@ function add_user_to_blacklist(author, username) {
         blacklist = [{'id': author, 'name': username}];
         update_user_blacklist(blacklist)
     } else {
-        const userExistsAlready = is_user_in_blacklist(author);
-        if(!userExistsAlready) {
+        const post = is_user_in_blacklist({author, message: 'non-empty-string'});
+        if(post.message) {
             blacklist.push({'id': author, 'name': username});
             update_user_blacklist(blacklist)
         }
