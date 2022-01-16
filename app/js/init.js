@@ -74,6 +74,7 @@ function init_overlay() {
 function init_plugins() {
     init_private_key_recovery();
     init_settings();
+    init_pm();
 }
 
 $(document).ready(async () => {
