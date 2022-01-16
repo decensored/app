@@ -28,12 +28,12 @@ function hide_sign_up_screen() {
     $('#screen_sign_up').slideUp();
     $('#input').slideDown();
     $('#logout-button').show();
-    $('#navbar').show();
 }
 
 async function show_or_hide_signup_screen() {
     if(await is_signed_up()) {
         hide_sign_up_screen();
+        $('#myposts').show();
         $("#privateKey").val(get_private_key());
     } else {
         show_sign_up_screen();
@@ -44,20 +44,21 @@ function scroll_to_top() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
 }
 
-$(document).ready(function() {
-    update_view_according_to_scroll();
-    $(window).scroll(function(){
-        update_view_according_to_scroll();
-    });
-});
-
 function update_view_according_to_scroll() {
-    if ($(window).scrollTop() > 0){
-        $('#submit').addClass('hidden');
-        $('#to-top').removeClass('hidden');
-    } else if ($(window).scrollTop() < 500){
-        $('#submit').removeClass('hidden');
-        $('#to-top').addClass('hidden');
+    $spread_bar = $('#spread-bar');
+
+    if($spread_bar.length) {
+        elementOffset = $spread_bar.offset().top;
+        windowOffset = $(window).scrollTop();
+        scrollOffset = elementOffset - windowOffset;
+
+        if (scrollOffset > 0){
+            $('#submit').removeClass('hidden');
+            $('#to-top').addClass('hidden');
+        } else {
+            $('#submit').addClass('hidden');
+            $('#to-top').removeClass('hidden');
+        }
     }
 }
 

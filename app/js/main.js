@@ -19,12 +19,15 @@ function get_profile_username() {
 async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
         post_fetcher.get_post(i).then(post => {
-            post = {
-              author: post.author,
-              timestamp: post.timestamp,
-              message: call_plugins('display_transform', post.message)
+            const blockedByUser = is_user_in_blacklist(post['author']);
+            if(!blockedByUser) {
+                post = {
+                    author: post.author,
+                    timestamp: post.timestamp,
+                    message: call_plugins('display_transform', post.message)
+                }
+                append_post_to_feed(post);
             }
-            append_post_to_feed(post);
         });
     }
 }
@@ -51,20 +54,21 @@ function generate_$post_meta(author_username, timestamp) {
         // ));
 }
 
-function generate_post_interaction_icon(icon, title) {
+function generate_post_interaction_icon(icon, title, action) {
     let $post_interaction_icon = $new_el_with_attr("i", "fas cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300");
     $post_interaction_icon.addClass(icon);
     $post_interaction_icon.attr('title', title);
+    $post_interaction_icon.attr('onClick', action);
 
     return $post_interaction_icon;
 }
 
-function generate_post_interactions() {
+function generate_post_interactions(author, username) {
     let $wrapper = $new_el_with_attr("div", "px-5 py-3 rounded-b flex justify-between");
     let $left = $new_el_with_attr("div", "flex gap-x-3 items-center");
     let $right = $new_el_with_attr("div", "flex gap-x-3 items-center");
 
-    let $block_user = generate_post_interaction_icon('fa-shield-alt', 'block user');
+    let $block_user = generate_post_interaction_icon('fa-shield-alt', 'block user', `on_block_user_pressed('${author}', '${username}')`);
     let $share_post = generate_post_interaction_icon('fa-share', 'share post');
     let $comment = generate_post_interaction_icon('fa-comment', 'comment');
 
@@ -87,7 +91,7 @@ async function generate_$post(post) {
     $post_content.append($post_meta);
     $post_content.append($new_el_with_attr("div", "message break-words mt-2").text(post['message'].substr(0, 280)));
     $post.append($post_content);
-    $post.append(generate_post_interactions());
+    $post.append(generate_post_interactions(post['author'], author_username));
 
     return $post;
 }
@@ -112,7 +116,11 @@ function submit_post_input() {
     let message = call_plugins("post_transform", $message.val());
     $message.val("");
     set_post_input_char_count();
-    return execute_contract_function(web3, contract_posts.methods.submit_post(message));
+    if(message.length > 0) {
+        return execute_contract_function(web3, contract_posts.methods.submit_post(message));
+    } else {
+        alert("You cant send an empty message!");
+    }
 }
 
 function update_feed() {
@@ -160,6 +168,7 @@ async function on_sign_up_button_pressed() {
 
 async function on_sign_out_button_pressed() {
     remove_private_key();
+    remove_user_blacklist();
     location.reload();
 }
 
