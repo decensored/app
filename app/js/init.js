@@ -75,22 +75,41 @@ function init_overlay() {
   });
 }
 
-let plugins = []; // global. { name: "", init: (){} }
+//
+let plugins = {
+  debug: false,
+  registered: [],
+  disabled: {},
+};
 
 function register_plugin(plugin) {
-  plugins.push(plugin);
+  if (plugins.debug) console.log("register_plugin", plugin);
+  plugins.registered.push(plugin);
 }
 
-function init_plugins() {
-  for (const plugin of plugins) {
-    plugin.init();
+function disable_plugin(name, isDisabled = true) {
+  if (plugins.debug) console.log("disable_plugin", name, isDisabled);
+  plugins.disabled[name] = isDisabled;
+}
+
+function call_plugins(functionName, functionParam) {
+  if (plugins.debug) console.log("call_plugins", functionName, functionParam);
+
+  for (const plugin of plugins.registered) {
+    if (plugins.disabled[plugin.name] || !plugin[functionName]) continue;
+    if (plugins.debug)
+      console.log("call_plugins", plugin.name, functionName, functionParam);
+    functionParam = plugin[functionName](functionParam);
   }
+
+  return functionParam;
 }
 
+//
 $(document).ready(async () => {
   init_header();
   init_feed();
   init_navbar();
   init_overlay();
-  init_plugins();
+  call_plugins("init");
 });

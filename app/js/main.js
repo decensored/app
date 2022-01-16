@@ -104,7 +104,7 @@ function $new_el_with_attr(el, attr_class, attr_id) {
 
 function submit_post_input() {
     let $message = $('#message');
-    let message = $message.val();
+    let message = call_plugins("post_transform", $message.val());
     $message.val("");
     set_post_input_char_count();
     return execute_contract_function(web3, contract_posts.methods.submit_post(message));
