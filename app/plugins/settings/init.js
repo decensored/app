@@ -12,6 +12,8 @@ function toggle_settings_dialog() {
     set_body_scrolling(is_becoming_visible)
     $dialog.animate({ opacity: is_becoming_visible ? 1 : 0 }, 'fast');
     $dialog.toggleClass("hidden");
+    $("#blocked-user-tags").html('');
+    append_blocked_users_to_div();
 }
 
 function save_settings_dialog() {
