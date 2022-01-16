@@ -1,3 +1,5 @@
+register_plugin({ name: 'settings', init: init_settings });
+
 function init_settings() {
     append_element_with_html_on_load('#overlay', "./plugins/settings/settings.html");
     append_element_with_html_on_load('#header_nav_items', "./plugins/settings/nav-item.html");
@@ -27,6 +29,7 @@ function save_settings_dialog() {
     toggle_settings_dialog()
 }
 
+/*
 function get_config() {
     let config = localStorage.getItem('config');
     if(config) {
@@ -35,6 +38,7 @@ function get_config() {
         return CONFIG;
     }
 }
+*/
 
 function set_config(config) {
     localStorage.setItem('config', JSON.stringify(config))

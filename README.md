@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with project!
+This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with this project!
 
 ## About
 
@@ -17,6 +17,7 @@ git clone https://github.com/mikrohash/decensored
 cd decensored/app
 npm install
 ```
+
 - To run the frontend locally on http://127.0.0.1:8080
 
 ```

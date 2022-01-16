@@ -21,6 +21,11 @@ async function load_posts_within_index_range(index_from, index_to) {
         post_fetcher.get_post(i).then(post => {
             const blockedByUser = is_user_in_blacklist(post['author']);
             if(!blockedByUser) {
+                post = {
+                    author: post.author,
+                    timestamp: post.timestamp,
+                    message: call_plugins('display_transform', post.message)
+                }
                 append_post_to_feed(post);
             }
         });
@@ -108,7 +113,7 @@ function $new_el_with_attr(el, attr_class, attr_id) {
 
 function submit_post_input() {
     let $message = $('#message');
-    let message = $message.val();
+    let message = call_plugins("post_transform", $message.val());
     $message.val("");
     set_post_input_char_count();
     if(message.length > 0) {
@@ -187,6 +192,15 @@ function set_private_key(key) {
 function create_new_private_key() {
     let account = web3.eth.accounts.create();
     localStorage.setItem('account_private_key', account['privateKey']);
+}
+
+function get_config() {
+    let config = localStorage.getItem('config');
+    if(config) {
+        return JSON.parse(config);
+    } else {
+        return CONFIG;
+    }
 }
 
 const web3 = new Web3(get_config().evm_node);

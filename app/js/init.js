@@ -1,7 +1,7 @@
 window.onerror = function myErrorHandler(error_message) {
     alert("ERROR: " + error_message);
     console.error(error_message);
-}
+};
 
 function init_header() {
     $("#init-header").load("templates/header.html", function() {
@@ -44,11 +44,11 @@ function init_navbar() {
 }
 
 function show_profile_username(profile_username) {
-    let $profile_title = $("<div class='text-center text-xl font-bold mb-5'></div>")
-        .text(profile_username)
+  let $profile_title = $(
+    "<div class='text-center text-xl font-bold mb-5'></div>"
+  ).text(profile_username);
 
-    $('#feed > .container')
-        .prepend($profile_title);
+  $("#feed > .container").prepend($profile_title);
 }
 
 async function customize_site_to_username() {
@@ -64,13 +64,18 @@ async function customize_site_to_username() {
 }
 
 async function init_contract_accounts() {
-    let contract_accounts_address = await contract_posts.methods.accounts().call();
-    contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
+  let contract_accounts_address = await contract_posts.methods
+    .accounts()
+    .call();
+  contract_accounts = new web3.eth.Contract(
+    CONTRACT_ACCOUNTS_ABI,
+    contract_accounts_address
+  );
 }
 
 function update_feed_every_interval(interval_in_ms) {
-    update_feed();
-    setInterval( update_feed, interval_in_ms);
+  update_feed();
+  setInterval(update_feed, interval_in_ms);
 }
 
 function init_overlay() {
@@ -159,10 +164,41 @@ function init_page_content() {
     }
 }
 
+//
+let plugins = {
+  debug: true,
+  registered: [],
+  disabled: {},
+};
+
+function register_plugin(plugin) {
+  if (plugins.debug) console.log("register_plugin", plugin);
+  plugins.registered.push(plugin);
+}
+
+function disable_plugin(name, isDisabled = true) {
+  if (plugins.debug) console.log("disable_plugin", name, isDisabled);
+  plugins.disabled[name] = isDisabled;
+}
+
+function call_plugins(functionName, functionParam) {
+  if (plugins.debug) console.log("call_plugins", functionName, functionParam);
+
+  for (const plugin of plugins.registered) {
+    if (plugins.disabled[plugin.name] || !plugin[functionName]) continue;
+    if (plugins.debug)
+      console.log("call_plugins", plugin.name, functionName, functionParam);
+    functionParam = plugin[functionName](functionParam);
+  }
+
+  return functionParam;
+}
+
+//
 $(document).ready(async () => {
     init_header();
     init_page_content();
     init_navbar();
     init_overlay();
-    init_plugins();
+    call_plugins("init");
 });
