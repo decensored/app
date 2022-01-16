@@ -3,21 +3,21 @@ function init_block_users() {
 }
 
 function create_blocked_user_tag(user) {
-    console.log(user);
-    let div = $new_el_with_attr("div", "flex gap-x-1 items-center uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md");
-    div.attr("id", "blocked-user-#"+user.id);
+    let div = $new_el_with_attr("div", "flex gap-x-1 items-center uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md").attr("id", "blocked-user-"+user.id);
     let span = $new_el_with_attr("span", "flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none").text(user.name);
-    let xIcon = $new_el_with_attr("i", "fas fa-times text-xs opacity-50 hover:opacity-100 cursor-pointer pr-1");
-    xIcon.attr("onClick", 'remove_user_from_blacklist('+ user.id +');');  
+    let xIcon = $new_el_with_attr("i", "fas fa-times text-xs opacity-50 hover:opacity-100 cursor-pointer pr-1").attr("onClick", 'remove_user_from_blacklist('+ user.id +');'); ;    xIcon.attr("onClick", 'remove_user_from_blacklist('+ user.id +');');  
     return div.append(span).append(xIcon);
 }
 
 async function append_blocked_users_to_div() {
     const users = get_user_blacklist();
-    console.log("test");
-    users.forEach(user => {
-        $('#blocked-user-tags').append(create_blocked_user_tag(user));
-    });
+    if(users.length > 0) {
+        users.forEach(user => {
+            $('#blocked-user-tags').append(create_blocked_user_tag(user));
+        });
+    } else {
+        $('#blocked-user-tags').html('You have no blocked users in your list!');
+    }
 }
 
 function on_block_user_pressed(author, username) {
@@ -59,8 +59,10 @@ function remove_user_from_blacklist(author) {
     if(blacklist) {
         var newBlacklist = blacklist.filter(function(user) { return user.id != author }); 
         update_user_blacklist(newBlacklist);
-        console.log("#blocked-user-#"+author);
-        $("#blocked-user-#"+author).hide();
+        $("#blocked-user-"+author).hide();
+        if(newBlacklist.length == 0) {
+            $("#blocked-user-tags").html("You have no blocked users in your list!");
+        }
     } 
 }
 
