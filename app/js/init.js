@@ -5,13 +5,19 @@ window.onerror = function myErrorHandler(error_message) {
 
 function init_header() {
     $("#init-header").load("templates/header.html", function() {
-        $("#header").unwrap();
+        $loaded = $("#header");
+        if($loaded.parent().attr('id') === 'init-header') {
+            $loaded.unwrap();
+        }
     });
 }
 
 function init_feed() {
     $("#init-feed").load("templates/feed.html", function() {
-        $("#feed").unwrap();
+        $loaded = $("#feed");
+        if($loaded.parent().attr('id') === 'init-feed') {
+            $loaded.unwrap();
+        }
         let $message = $("#message");
         $message.css("display","none");
         autosize($message);
@@ -19,9 +25,21 @@ function init_feed() {
     });
 }
 
+function init_spaces() {
+    $("#init-spaces").load("templates/spaces.html", function() {
+        $loaded = $("#spaces");
+        if($loaded.parent().attr('id') === 'init-spaces') {
+            $loaded.unwrap();
+        }
+    });
+}
+
 function init_navbar() {
     $("#init-navbar").load("templates/navbar.html", function() {
-        $("#navbar").unwrap();
+        $loaded = $("#navbar");
+        if($loaded.parent().attr('id') === 'init-navbar') {
+            $loaded.unwrap();
+        }
     });
 }
 
@@ -34,7 +52,6 @@ function show_profile_username(profile_username) {
 }
 
 async function customize_site_to_username() {
-
     let username = await get_username();
     let profile_username = get_profile_username();
 
@@ -43,7 +60,7 @@ async function customize_site_to_username() {
         show_profile_username(profile_username);
     }
 
-    $('#profile').attr('href', "?u="+username);
+    $('#myposts').attr('href', "?u="+username);
 }
 
 async function init_contract_accounts() {
@@ -58,7 +75,11 @@ function update_feed_every_interval(interval_in_ms) {
 
 function init_overlay() {
     $("#inits").load("./templates/inits.html", async () => {
-        $("#overlay").unwrap();
+        $loaded = $("#overlay");
+        if($loaded.parent().attr('id') === 'inits') {
+            $loaded.unwrap();
+        }
+
         $('#recover').hide();
 
         await init_contract_accounts();
@@ -76,9 +97,64 @@ function init_plugins() {
     init_settings();
 }
 
+function get_url_param(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+const ENUM_PAGES = {
+    FEED: 1,
+    SPACES_OWN: 2,
+    PROFILE: 3,
+    SPACES_ALL: 4,
+    SPACE: 5,
+}
+
+function get_page() {
+    let p = get_url_param("p");
+    let s = get_url_param("s");
+    let u = get_url_param("u");
+
+    if(p === "spaces_own") {
+        return ENUM_PAGES.SPACES_OWN;
+    }
+    if(p === "spaces_all") {
+        return ENUM_PAGES.SPACES_ALL;
+    }
+    if(s) {
+        return ENUM_PAGES.SPACE;
+    }
+    if(u) {
+        return ENUM_PAGES.PROFILE;
+    }
+    return ENUM_PAGES.FEED;
+}
+
+function init_page_content() {
+    let page = get_page();
+    switch (page) {
+        case ENUM_PAGES.FEED:
+            init_feed();
+            break;
+        case ENUM_PAGES.SPACES_OWN:
+            init_spaces();
+            break;
+        case ENUM_PAGES.SPACES_ALL:
+            // TODO init spaces_all
+            break;
+        case ENUM_PAGES.SPACE:
+            // TODO init space
+            break;
+        case ENUM_PAGES.PROFILE:
+            // TODO init profile
+            init_feed();
+            break;
+    }
+}
+
 $(document).ready(async () => {
     init_header();
-    init_feed();
+    init_page_content();
     init_navbar();
     init_overlay();
     init_plugins();
