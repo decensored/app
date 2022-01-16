@@ -1,6 +1,6 @@
 function init_settings() {
     append_element_with_html_on_load('#overlay', "./plugins/settings/settings.html");
-    append_element_with_html_on_load('#navbar_inner', "./plugins/settings/nav-item.html");
+    append_element_with_html_on_load('#header_nav_items', "./plugins/settings/nav-item.html");
     execute_once_element_exists("#settings_input", $el => {
         $el.text(JSON.stringify(get_config(), null, 4));
     })
