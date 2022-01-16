@@ -88,6 +88,12 @@ function init_overlay() {
 
         await customize_site_to_username();
         await show_or_hide_signup_screen();
+
+        update_view_according_to_scroll();
+        $(window).scroll(function(){
+            update_view_according_to_scroll();
+        });
+
         $('body').css("opacity", "1");
     });
 }
