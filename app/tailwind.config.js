@@ -1,7 +1,7 @@
 module.exports = {
   content: [
     "./js/*.{html,js}",
-    "./plugins/**/*.{html,js}",
+    "./loads/**/*.{html,js}",
     "./templates/*.{html,js}",
     "./plugins/**/*.{html,js}",
     "./index.html"

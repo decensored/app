@@ -9,35 +9,11 @@ function toggle_header_logo(variant, time) {
     }
 }
 
-function init_input_placeholder() {
-    get_username().then(username => {
-        let $message = $('#message');
-        $message.attr("placeholder", username + ", your story starts here...");
-        $message.fadeTo( "fast" , 1);
-    });
-}
-
-function show_sign_up_screen() {
-    $('#screen_sign_up').detach().appendTo($('#header'));
-    $('#screen_sign_up').show();
-}
-
-function hide_sign_up_screen() {
-    toggle_header_logo('logotype', 0);
-    init_input_placeholder();
-    $('#screen_sign_up').slideUp();
-    $('#input').slideDown();
-    $('#logout-button').show();
-}
-
-async function show_or_hide_signup_screen() {
-    if(await is_signed_up()) {
-        hide_sign_up_screen();
-        $('#myposts').show();
-        $("#privateKey").val(get_private_key());
-    } else {
-        show_sign_up_screen();
-    }
+async function is_signed_up() {
+    let address = get_address();
+    return contract_accounts.methods.id_by_address(address).call().then(
+        id => { return parseInt(id) > 0 }
+    );
 }
 
 function scroll_to_top() {
@@ -76,27 +52,15 @@ function set_body_scrolling(enabled) {
     }
 }
 
-function signup_or_recover_toggle() {
-    let $signup_form = $('#signup_form');
-    let $recover_form = $('#recover_form');
-    let $signup_toggle = $('#signup_toggle');
-    let $recover_toggle = $('#recover_toggle');
-
-    const duration = '500';
-    const fadeOut = { opacity: 0, transition: 'opacity ' + duration + 'ms' };
-    const fadeIn = { opacity: 1, transition: 'opacity ' + duration + 'ms' };
-
-    if($recover_form.css('display') === 'none') {
-        $signup_form.css(fadeOut).slideUp(duration);
-        $recover_form.css(fadeIn).slideDown(duration);
-        $signup_toggle.addClass('hidden');
-        $recover_toggle.removeClass('hidden');
-    } else {
-        $signup_form.css(fadeIn).slideDown(duration);
-        $recover_form.css(fadeOut).slideUp(duration);
-        $signup_toggle.removeClass('hidden');
-        $recover_toggle.addClass('hidden');
+function $new_el_with_attr(el, attr_class, attr_id) {
+    $newEl = $('<'+ el +'></'+ el +'>');
+    if (attr_class) {
+        $newEl.attr('class', attr_class);
     }
+    if (attr_id) {
+        $newEl.attr('id', attr_id);
+    }
+    return $newEl
 }
 
 function append_element_with_html($element, path_html) {
@@ -118,4 +82,24 @@ function execute_once_element_exists(element_identifier, callback) {
             callback($(element_identifier));
         }
     }, 20);
+}
+
+function readable_date_time_from_unix_timestamp(unix_timestamp) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let date = new Date(unix_timestamp * 1000);
+    return months[date.getMonth()] + "/" + date.getDate() + " " + date.getFullYear()
+        +", " +date.toTimeString().substr(0,5);
+}
+
+async function get_username() {
+    let address = get_address();
+
+    return contract_accounts.methods.id_by_address(address).call().then(id => {
+        return contract_accounts.methods.username_by_id(id).call()
+    })
+}
+
+function get_url_param(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
 }
