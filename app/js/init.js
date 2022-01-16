@@ -99,6 +99,7 @@ function init_overlay() {
 }
 
 function init_plugins() {
+    init_block_users();
     init_private_key_recovery();
     init_settings();
 }
