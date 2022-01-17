@@ -13,7 +13,7 @@ function add_my_posts_navbar_icon() {
     $link.append($linkIcon);
     $linkTextWrapper.append($linkText);
     $link.append($linkTextWrapper);
-    $link.addClass('opacity-50 pointer-events-none');
+    $link.addClass('pointer-events-none');
 
     $('#navbar > .container').append($link);
 }
@@ -22,7 +22,7 @@ function activate_my_posts_navbar_icon(username) {
     let $link = $('#navbar-item-myposts');
     $link.attr('dataProfile', username);
 
-    $link.removeClass('opacity-50 pointer-events-none');
+    $link.removeClass('pointer-events-none');
     $link.click(function() {
         set_route_myposts();
     });
@@ -36,13 +36,12 @@ function add_username_to_textarea(username) {
 
 function customize_app_for_loggedin_user() {
     add_my_posts_navbar_icon();
+    set_private_key_to_input_value();
+    append_element_with_html_on_load('#header_nav_items', "./loads/settings_icon.html");
 
     get_username().then(username => {
         activate_my_posts_navbar_icon(username);
         add_username_to_textarea(username);
-
-        // TODO: update set_active_nav_item() to work as an observer
-        set_active_nav_item(get_active_page_url());
     });
 }
 
@@ -50,6 +49,10 @@ async function on_sign_out_button_pressed() {
     remove_private_key();
     remove_user_blacklist();
     location.reload();
+}
+
+function set_private_key_to_input_value() {
+    $("#privateKey").val(get_private_key());
 }
 
 function get_private_key() {

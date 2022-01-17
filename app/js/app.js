@@ -26,7 +26,6 @@ function init_navbar() {
         if($loaded.parent().attr('id') === 'init-navbar') {
             $loaded.unwrap();
         }
-        set_active_nav_item(get_active_page_url());
     });
 }
 
@@ -52,21 +51,30 @@ function init_spaces() {
     });
 }
 
+async function observe_login_status() {
+    if(await is_signed_up()) {
+        hide_sign_up_screen();
+        customize_app_for_loggedin_user();
+    } else {
+        show_sign_up_screen();
+    }
+}
+
 async function init_app() {
     $('#recover').hide();
 
     await init_contract_accounts();
     await init_post_fetcher();
     update_feed_every_interval(3000);
-
     await set_profile_title();
-    await show_or_hide_signup_screen();
+    await observe_login_status();
 
     update_view_according_to_scroll();
     $(window).scroll(function(){
         update_view_according_to_scroll();
     });
 
+    set_active_nav_item(get_active_page_url());
     $('body').css("opacity", "1");
 }
 
