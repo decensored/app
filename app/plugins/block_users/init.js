@@ -1,4 +1,8 @@
-plugins.register({ name: "block_users", init: init_block_users });
+plugins.register({ 
+    name: "block_users", 
+    init: init_block_users,
+    filter_post: is_user_in_blacklist
+});
 
 function init_block_users() {
     append_element_with_html_on_load( '#settings_dialog_inner', "./plugins/block_users/blocked_user_tags.html");
@@ -30,16 +34,15 @@ function get_user_blacklist() {
     return JSON.parse(localStorage.getItem('blacklist'));
 }
 
-function is_user_in_blacklist(author) {
+function is_user_in_blacklist(post) {
+    const { author } = post;
     const blacklist = get_user_blacklist();
-    if(blacklist) {
-        const check = blacklist.find(user => user.id === author);
-        if(check) {
-            return true;
-        } else {
-            return false;
-        }
+
+    if (blacklist && blacklist.find(user => user.id === author)) {
+        return { ...post, message: "" }; // delete message to indicate message has been filtered out
     }
+
+    return post;
 }
 
 function add_user_to_blacklist(author, username) {
@@ -48,8 +51,8 @@ function add_user_to_blacklist(author, username) {
         blacklist = [{'id': author, 'name': username}];
         update_user_blacklist(blacklist)
     } else {
-        const userExistsAlready = is_user_in_blacklist(author);
-        if(!userExistsAlready) {
+        const post = is_user_in_blacklist({author, message: 'non-empty-string'});
+        if(post.message) { // note: if it's deleted it was not already in the blacklist
             blacklist.push({'id': author, 'name': username});
             update_user_blacklist(blacklist)
         }
