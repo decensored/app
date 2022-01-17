@@ -16,13 +16,6 @@ async function execute_contract_function(web3, function_call) {
     return web3.eth.sendSignedTransaction(signed.rawTransaction);
 }
 
-async function test() {
-    let contract_accounts_address = await contract_posts.methods.accounts().call();
-    let contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
-    await execute_contract_function(web3, contract_accounts.methods.sign_up("micro2"))
-    await execute_contract_function(web3, contract_posts.methods.submit_post("This message is sent without metamask... Probably nothing (eyes emoji)"))
-}
-
 function get_address() {
     let private_key = get_private_key();
     return web3.eth.accounts.privateKeyToAccount(private_key).address;
