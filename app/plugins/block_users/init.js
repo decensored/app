@@ -57,13 +57,13 @@ function add_user_to_blacklist(author, username) {
 function remove_user_from_blacklist(author) {
     let blacklist = get_user_blacklist();
     if(blacklist) {
-        var newBlacklist = blacklist.filter(function(user) { return user.id != author }); 
+        var newBlacklist = blacklist.filter(function(user) { return user.id != author });
         update_user_blacklist(newBlacklist);
         $("#blocked-user-"+author).hide();
         if(newBlacklist.length == 0) {
             $("#blocked-user-tags").html("You have no blocked users in your list!");
         }
-    } 
+    }
 }
 
 function update_user_blacklist(blacklist) {
