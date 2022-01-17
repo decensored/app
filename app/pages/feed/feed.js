@@ -34,14 +34,6 @@ function update_feed() {
     })
 }
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('pwaworker.js').then(function(registration) {
-    registration.update();
-  }).catch(function(error) {
-    console.log('Registration failed with ' + error);
-  });
-};
-
 function update_feed_every_interval(interval_in_ms) {
     update_feed();
     setInterval( update_feed, interval_in_ms);

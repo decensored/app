@@ -3,6 +3,14 @@ window.onerror = function myErrorHandler(error_message) {
     console.error(error_message);
 }
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('pwaworker.js').then(function(registration) {
+      registration.update();
+    }).catch(function(error) {
+      console.log('Registration failed with ' + error);
+    });
+  };
+
 function init_header() {
     $("#init-header").load("templates/header.html", function() {
         $loaded = $("#header");
