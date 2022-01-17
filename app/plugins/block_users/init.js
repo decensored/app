@@ -13,7 +13,7 @@ function create_blocked_user_tag(user) {
 
 async function append_blocked_users_to_div() {
     const users = get_user_blacklist();
-    if(users.length > 0) {
+    if(users && users.length > 0) {
         users.forEach(user => {
             $('#blocked-user-tags').append(create_blocked_user_tag(user));
         });
