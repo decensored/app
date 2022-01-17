@@ -1,7 +1,9 @@
 const web3 = new Web3(get_config().evm_node);
 
 let contract_posts = new web3.eth.Contract(CONTRACT_POSTS_ABI, get_config().contract_posts_address);
+let contract_spaces;
 let contract_accounts;
+let contract_rate_control;
 
 async function execute_contract_function(web3, function_call) {
     let privateKey = get_private_key();
@@ -37,6 +39,10 @@ async function is_signed_up() {
 }
 
 async function init_contract_accounts() {
-    let contract_accounts_address = await contract_posts.methods.accounts().call();
+    let contract_spaces_address = await contract_posts.methods.spaces().call();
+    contract_spaces = new web3.eth.Contract(CONTRACT_SPACES_ABI, contract_spaces_address);
+    let contract_accounts_address = await contract_spaces.methods.accounts().call();
     contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
+    let contract_rate_control_address = await contract_accounts.methods.rate_control().call();
+    contract_rate_control = new web3.eth.Contract(CONTRACT_RATE_CONTROL_ABI, contract_rate_control_address);
 }
