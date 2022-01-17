@@ -34,7 +34,11 @@ function add_username_to_textarea(username) {
     $message.fadeTo( "fast" , 1);
 }
 
-function get_username_and_customize_app() {
+function customize_app_for_loggedin_user() {
+    add_my_posts_navbar_icon();
+    get_private_key_from_input();
+    append_element_with_html_on_load('#header_nav_items', "./loads/settings_icon.html");
+
     get_username().then(username => {
         activate_my_posts_navbar_icon(username);
         add_username_to_textarea(username);
