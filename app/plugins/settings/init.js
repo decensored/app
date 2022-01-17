@@ -10,10 +10,6 @@ function init_settings() {
     })
 }
 
-$(document).keyup(function(e) {
-    if (e.keyCode == 27) { toggle_settings_dialog() };   
-});
-
 function toggle_settings_dialog() {
     let $dialog = $('#settings_dialog')
     let is_becoming_visible = $dialog.hasClass('hidden');
@@ -25,20 +21,6 @@ function toggle_settings_dialog() {
     set_body_scrolling(is_becoming_visible)
     $dialog.animate({ opacity: is_becoming_visible ? 1 : 0 }, 'fast');
     $dialog.toggleClass("hidden");
-}
-
-function save_settings_dialog() {
-    //let config_string = $('#settings_input').val().replaceAll("\n", "");
-    let evm_node = $("#evm_node").val();
-    let chain_id = $("#chain_id").val()
-    if(evm_node && chain_id) {
-        let config = get_config();
-        config.evm_node = evm_node;
-        config.chain_id = chain_id;
-        set_config(config);
-        set_body_scrolling(true)
-        toggle_settings_dialog()
-    }
 }
 
 function toggle_account_settings() {
@@ -60,17 +42,18 @@ function toggle_node_settings() {
     $("#settings_node_button").removeClass('bg-gray-100').addClass('bg-gray-300');
 }
 
-function get_config() {
-    let config = localStorage.getItem('config');
-    if(config) {
-        return JSON.parse(config);
-    } else {
-        return CONFIG;
+function save_settings_dialog() {
+    //let config_string = $('#settings_input').val().replaceAll("\n", "");
+    let evm_node = $("#evm_node").val();
+    let chain_id = $("#chain_id").val()
+    if(evm_node && chain_id) {
+        let config = get_config();
+        config.evm_node = evm_node;
+        config.chain_id = chain_id;
+        set_config(config);
+        set_body_scrolling(true)
+        toggle_settings_dialog()
     }
-}
-
-function set_config(config) {
-    localStorage.setItem('config', JSON.stringify(config))
 }
 
 function get_node_url() {
