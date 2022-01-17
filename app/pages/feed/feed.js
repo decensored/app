@@ -13,13 +13,13 @@ async function init_post_fetcher() {
 async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
         post_fetcher.get_post(i).then(post => {
-            const blockedByUser = is_user_in_blacklist(post['author']);
-            if (blockedByUser) return;
+            post = plugins.call("filter_post", post)
+            if (!post.message) return; // entire message content deleted means don't show
 
             post = {
                 author: post.author,
                 timestamp: post.timestamp,
-                message: plugins.call('display_transform', post.message)
+                message: plugins.call("display_transform", post.message)
             }
             if (!post.message) return; // entire message content deleted means don't show
 
