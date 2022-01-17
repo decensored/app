@@ -88,3 +88,9 @@ function get_url_param(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
+
+function active_nav_item(item) {
+    $active_item = $(item);
+    $active_item.removeClass('text-decensored-900 dark:text-decensored-500');
+    $active_item.addClass('text-purple-800 dark:text-decensored-100 pointer-events-none');
+}
