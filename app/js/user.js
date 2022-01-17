@@ -4,8 +4,7 @@ function get_profile_username() {
     return urlParams.get('u');
 }
 
-function customize_app_for_loggedin_user() {
-    // add myposts navbar item
+function add_my_posts_navbar_icon() {
     let $link = $new_el_with_attr('a', 'grow flex flex-col items-center justify-center cursor-pointer text-decensored-900 hover:text-purple-800 dark:text-decensored-500 dark:hover:text-decensored-100', 'navbar-item-myposts');
     let $linkIcon = $new_el_with_attr('i', 'fa fa-user-astronaut text-3xl');
     let $linkTextWrapper = $new_el_with_attr('span', 'text-xs mt-2');
@@ -17,21 +16,30 @@ function customize_app_for_loggedin_user() {
     $link.addClass('opacity-50 pointer-events-none');
 
     $('#navbar > .container').append($link);
+}
+
+function activate_my_posts_navbar_icon(username) {
+    let $link = $('#navbar-item-myposts')
+    $link.attr('dataProfile', username);
+
+    $link.removeClass('opacity-50 pointer-events-none');
+    $link.click(function() {
+        set_route('myposts');
+    });
+}
+
+function add_username_to_textarea(username) {
+    let $message = $('#message');
+    $message.attr("placeholder", username + ", your story starts here...");
+    $message.fadeTo( "fast" , 1);
+}
+
+function customize_app_for_loggedin_user() {
+    add_my_posts_navbar_icon();
 
     get_username().then(username => {
-        // add link to myposts
-        $('#navbar-item-myposts').attr('dataProfile', username);
-        $link.attr('dataProfile', username);
-
-        $link.removeClass('opacity-50 pointer-events-none');
-        $link.click(function() {
-            set_route('myposts');
-        });
-
-        // init textarea placeholder
-        let $message = $('#message');
-        $message.attr("placeholder", username + ", your story starts here...");
-        $message.fadeTo( "fast" , 1);
+        activate_my_posts_navbar_icon(username);
+        add_username_to_textarea(username);
     });
 }
 
