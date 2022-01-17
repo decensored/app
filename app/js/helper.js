@@ -91,14 +91,6 @@ function readable_date_time_from_unix_timestamp(unix_timestamp) {
         +", " +date.toTimeString().substr(0,5);
 }
 
-async function get_username() {
-    let address = get_address();
-
-    return contract_accounts.methods.id_by_address(address).call().then(id => {
-        return contract_accounts.methods.username_by_id(id).call()
-    })
-}
-
 function get_url_param(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
