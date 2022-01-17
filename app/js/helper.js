@@ -9,13 +9,6 @@ function toggle_header_logo(variant, time) {
     }
 }
 
-async function is_signed_up() {
-    let address = get_address();
-    return contract_accounts.methods.id_by_address(address).call().then(
-        id => { return parseInt(id) > 0 }
-    );
-}
-
 function scroll_to_top() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
 }

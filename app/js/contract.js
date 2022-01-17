@@ -29,6 +29,13 @@ async function get_username() {
     })
 }
 
+async function is_signed_up() {
+    let address = get_address();
+    return contract_accounts.methods.id_by_address(address).call().then(
+        id => { return parseInt(id) > 0 }
+    );
+}
+
 async function init_contract_accounts() {
     let contract_accounts_address = await contract_posts.methods.accounts().call();
     contract_accounts = new web3.eth.Contract(CONTRACT_ACCOUNTS_ABI, contract_accounts_address);
