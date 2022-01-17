@@ -45,5 +45,5 @@ Plugins should register themselves and provide functions that will be called by 
 Supported functions and their intended no-operation are as follows: (see also: plugins/example/init.js)
 
 - init() { }
-- display_transform(message) { return message; }
-- post_transform(message) { return message; }
+- display_transform(message) { return message; } [return empty string to hide this post]
+- post_transform(message) { return message; }    [return empty string to cancel posting]
