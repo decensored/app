@@ -1,16 +1,12 @@
 <nav id="navbar" class="fixed flex gap-y-5 left-0 right-0 bottom-0 bg-white dark:bg-black shadow-2xl divide-y divide-solid divide-gray-200 dark:divide-gray-800">
     <div class="container mx-auto py-6 max-w-md flex gap-y-5">
-        <a id="feed" href="?" class="grow flex flex-col items-center justify-center cursor-pointer text-decensored-900 hover:text-purple-800 dark:dark:text-decensored-500 dark:hover:text-decensored-300">
+        <a id="navbar-item-feed" onclick="set_route_feed()" class="grow flex flex-col items-center justify-center cursor-pointer text-decensored-900 hover:text-purple-800 dark:text-decensored-500 dark:hover:text-decensored-100">
             <i class="fa fa-satellite-dish text-3xl"></i>
             <span class="text-xs mt-2">Feed</span>
         </a>
-        <a id="spaces" href="?p=spaces_own" class="grow flex flex-col items-center cursor-pointer justify-center text-decensored-900 hover:text-purple-800 dark:dark:text-decensored-500 dark:hover:text-decensored-300">
+        <a id="navbar-item-spaces" onclick="set_route_spaces()" class="grow flex flex-col items-center cursor-pointer justify-center text-decensored-900 hover:text-purple-800 dark:text-decensored-500 dark:hover:text-decensored-100">
             <i class="fa fa-satellite text-3xl"></i>
             <span class="text-xs mt-2">Spaces</span>
-        </a>
-        <a id="myposts" href="?‚" class="grow flex flex-col items-center justify-center cursor-pointer text-decensored-900 hover:text-purple-800 dark:dark:text-decensored-500 dark:hover:text-decensored-300" style="display: none;">
-            <i class="fa fa-user-astronaut text-3xl"></i>
-            <span class="text-xs mt-2">My posts</span>
         </a>
     </div>
 </nav>
