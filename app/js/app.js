@@ -26,7 +26,7 @@ function init_navbar() {
         if($loaded.parent().attr('id') === 'init-navbar') {
             $loaded.unwrap();
         }
-        set_active_nav_item();
+        set_active_nav_item(get_active_page_url());
     });
 }
 

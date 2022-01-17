@@ -19,12 +19,12 @@ function add_my_posts_navbar_icon() {
 }
 
 function activate_my_posts_navbar_icon(username) {
-    let $link = $('#navbar-item-myposts')
+    let $link = $('#navbar-item-myposts');
     $link.attr('dataProfile', username);
 
     $link.removeClass('opacity-50 pointer-events-none');
     $link.click(function() {
-        set_route('myposts');
+        set_route_myposts();
     });
 }
 
@@ -40,6 +40,9 @@ function customize_app_for_loggedin_user() {
     get_username().then(username => {
         activate_my_posts_navbar_icon(username);
         add_username_to_textarea(username);
+
+        // TODO: update set_active_nav_item() to work as an observer
+        set_active_nav_item(get_active_page_url());
     });
 }
 

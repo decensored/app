@@ -23,24 +23,6 @@ function get_page() {
     return ENUM_PAGES.FEED;
 }
 
-function set_active_nav_item() {
-    let p = get_url_param("p");
-    let s = get_url_param("s");
-    let u = get_url_param("u");
-
-    if(p === "spaces" || s) {
-        active_nav_item('#navbar-item-spaces');
-        return;
-    }
-    if(u) {
-        active_nav_item('#navbar-item-myposts');
-        return;
-    }
-
-    active_nav_item('#navbar-item-feed');
-    return;
-}
-
 function init_routing() {
     let page = get_page();
     switch (page) {
@@ -59,25 +41,35 @@ function init_routing() {
     }
 }
 
-function set_route(view) {
-    let profile = $('#navbar-item-' + view).attr("dataProfile");
+function get_active_page_url() {
+    let p = get_url_param("p");
+    let s = get_url_param("s");
+    let u = get_url_param("u");
 
-    switch (view) {
-        case 'feed':
-            window.location.href = '/';
-            break;
-        case 'spaces':
-            window.location.href = '?p=spaces';
-            break;
-        case 'myposts':
-            if(profile) {
-                window.location.href = '?u=' + profile;
-            } else {
-                window.location.href = '?';
-            }
-            break;
-        default:
-            window.location.href = '?';
-            break;
+    if(p === "spaces" || s) {
+        return 'spaces';
+    }
+    if(u) {
+        return 'myposts';
+    }
+
+    return 'feed';
+}
+
+function set_route_feed() {
+    window.location.href = '/';
+}
+
+function set_route_spaces() {
+    window.location.href = '?p=spaces';
+}
+
+function set_route_myposts() {
+    let profile = $('#navbar-item-myposts').attr("dataProfile");
+
+    if(profile) {
+        window.location.href = '?u=' + profile;
+    } else {
+        window.location.href = '?';
     }
 }
