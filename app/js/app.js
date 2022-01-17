@@ -51,6 +51,15 @@ function init_spaces() {
     });
 }
 
+async function observe_login_status() {
+    if(await is_signed_up()) {
+        hide_sign_up_screen();
+        customize_app_for_loggedin_user();
+    } else {
+        show_sign_up_screen();
+    }
+}
+
 async function init_app() {
     $('#recover').hide();
 
@@ -58,13 +67,7 @@ async function init_app() {
     await init_post_fetcher();
     update_feed_every_interval(3000);
     await set_profile_title();
-
-    if(await is_signed_up()) {
-        hide_sign_up_screen();
-        customize_app_for_loggedin_user();
-    } else {
-        show_sign_up_screen();
-    }
+    await observe_login_status();
 
     update_view_according_to_scroll();
     $(window).scroll(function(){

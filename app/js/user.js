@@ -36,7 +36,7 @@ function add_username_to_textarea(username) {
 
 function customize_app_for_loggedin_user() {
     add_my_posts_navbar_icon();
-    get_private_key_from_input();
+    set_private_key_to_input_value();
     append_element_with_html_on_load('#header_nav_items', "./loads/settings_icon.html");
 
     get_username().then(username => {
@@ -51,7 +51,7 @@ async function on_sign_out_button_pressed() {
     location.reload();
 }
 
-function get_private_key_from_input() {
+function set_private_key_to_input_value() {
     $("#privateKey").val(get_private_key());
 }
 

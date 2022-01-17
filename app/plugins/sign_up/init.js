@@ -3,7 +3,7 @@ plugins.register({ name: "sign_up" });
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
     execute_contract_function(web3, contract_accounts.methods.sign_up(username))
-        .then(async _ => { await show_or_hide_signup_screen() })
+        .then(async _ => { await observe_login_status() })
         .catch(error => { alert(error) })
 }
 
