@@ -36,9 +36,8 @@ function get_user_blacklist() {
 
 function is_user_in_blacklist(post) {
     const { author } = post;
-    const blacklist = get_user_blacklist();
-
-    if (blacklist && blacklist.find(user => user.id === author)) {
+    const blacklist = get_user_blacklist() || [];
+    if (blacklist.find(user => user.id === author)) {
         return { ...post, message: "" }; // delete message to indicate message has been filtered out
     }
 
@@ -46,17 +45,13 @@ function is_user_in_blacklist(post) {
 }
 
 function add_user_to_blacklist(author, username) {
-    let blacklist = get_user_blacklist();
-    if(!blacklist) {
-        blacklist = [{'id': author, 'name': username}];
-        update_user_blacklist(blacklist)
-    } else {
-        const post = is_user_in_blacklist({author, message: 'non-empty-string'});
-        if(post.message) { // note: if it's deleted it was not already in the blacklist
-            blacklist.push({'id': author, 'name': username});
-            update_user_blacklist(blacklist)
-        }
-     }
+    const blacklist = get_user_blacklist() || [];
+    if (blacklist.find(user => user.id === author)) {
+        return;
+    }
+
+    blacklist.push({'id': author, 'name': username});
+    update_user_blacklist(blacklist)
 }
 
 function remove_user_from_blacklist(author) {
