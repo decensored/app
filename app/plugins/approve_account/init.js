@@ -1,3 +1,5 @@
+plugins.register({ name: "approve_account", init: init_approve_account });
+
 function init_approve_account() {
     append_element_with_html_on_load('#overlay', "./plugins/approve_account/approve_dialog.html");
     let interval = setInterval(async function(){

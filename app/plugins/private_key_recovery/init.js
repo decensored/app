@@ -1,3 +1,5 @@
+plugins.register({ name: "private_key_recovery", init: init_private_key_recovery });
+
 function init_private_key_recovery() {
     append_element_with_html_on_load('#signup_or_recover_form', "./plugins/private_key_recovery/recover.html")
     append_element_with_html_on_load( '#settings_dialog_inner', "./plugins/private_key_recovery/copy.html");

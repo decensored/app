@@ -1,3 +1,5 @@
+plugins.register({ name: "block_users", init: init_block_users });
+
 function init_block_users() {
     append_element_with_html_on_load( '#settings_dialog_inner', "./plugins/block_users/blocked_user_tags.html");
 }

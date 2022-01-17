@@ -14,9 +14,16 @@ async function load_posts_within_index_range(index_from, index_to) {
     for(let i = index_from; i <= index_to; i++) {
         post_fetcher.get_post(i).then(post => {
             const blockedByUser = is_user_in_blacklist(post['author']);
-            if(!blockedByUser) {
-                append_post_to_feed(post);
+            if (blockedByUser) return;
+
+            post = {
+                author: post.author,
+                timestamp: post.timestamp,
+                message: plugins.call('display_transform', post.message)
             }
+            if (!post.message) return; // entire message content deleted means don't show
+
+            append_post_to_feed(post);
         });
     }
 }
