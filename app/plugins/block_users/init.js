@@ -1,7 +1,7 @@
 plugins.register({ name: "block_users", init: init_block_users });
 
 function init_block_users() {
-    append_element_with_html_on_load( '#settings_dialog_inner', "./plugins/block_users/blocked_user_tags.html");
+    append_element_with_html_on_load('#settings_account_blacklist', "./plugins/block_users/blocked_user_tags.html");
 }
 
 function create_blocked_user_tag(user) {
@@ -13,7 +13,7 @@ function create_blocked_user_tag(user) {
 
 async function append_blocked_users_to_div() {
     const users = get_user_blacklist();
-    if(users.length > 0) {
+    if(users && users.length > 0) {
         users.forEach(user => {
             $('#blocked-user-tags').append(create_blocked_user_tag(user));
         });
