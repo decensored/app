@@ -68,7 +68,7 @@ async function generate_$post(post) {
 
 function submit_post_input() {
     let $message = $('#message');
-    let message = $message.val();
+    let message = plugins.call("post_transform", $message.val());
     $message.val("");
     set_post_input_char_count();
     if(message.length > 0) {

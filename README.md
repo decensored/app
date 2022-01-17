@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with project!
+This is a proof of concept. Moderation is limited. Do not post offensive stuff or break the law! Developers are not resposible for whatever you do with this project!
 
 ## About
 
@@ -38,3 +38,12 @@ npm run develop
 ```
 npm run tailwind:build
 ```
+
+## Plugins
+
+Plugins should register themselves and provide functions that will be called by the Decensored core.
+Supported functions and their intended no-operation are as follows: (see also: plugins/example/init.js)
+
+- init() { }
+- display_transform(message) { return message; }
+- post_transform(message) { return message; }
