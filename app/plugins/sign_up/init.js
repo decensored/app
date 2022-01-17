@@ -43,24 +43,10 @@ function show_sign_up_screen() {
         $sign_up_form.detach().appendTo($('#header'));
         $sign_up_form.show();
     });
-
 }
 
 function hide_sign_up_screen() {
     toggle_header_logo('logotype', 0);
-    customize_app_for_loggedin_user();
-
     $('#screen_sign_up').slideUp();
     $('#input').slideDown();
-}
-
-async function show_or_hide_signup_screen() {
-    if(await is_signed_up()) {
-        hide_sign_up_screen();
-        $('#navbar-item-myposts').show();
-        $("#privateKey").val(get_private_key());
-        append_element_with_html_on_load('#header_nav_items', "./loads/settings_icon.html");
-    } else {
-        show_sign_up_screen();
-    }
 }
