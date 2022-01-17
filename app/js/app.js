@@ -52,6 +52,12 @@ function init_spaces() {
     });
 }
 
+function init_plugins() {
+    init_block_users();
+    init_private_key_recovery();
+    init_settings();
+}
+
 async function init_app() {
     $('#recover').hide();
 
@@ -74,9 +80,7 @@ $(document).ready(async () => {
     init_header();
     init_navbar();
 
-    init_block_users();
-    init_private_key_recovery();
-    init_settings();
+    init_plugins()
 
     init_routing();
     init_app();
