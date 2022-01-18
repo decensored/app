@@ -8,8 +8,10 @@ function init_private_key_recovery() {
 
 async function on_recover_account_button_pressed() {
     const privateKey = $("#credentials").val();
-    set_private_key(privateKey);
-    location.reload();
+    if (validate_input(privateKey, /[^A-Za-z0-9]/, 66, 66)) {
+        set_private_key(privateKey);
+        location.reload();
+    }
 }
 
 async function on_copy_credentials_button_pressed() {

@@ -107,3 +107,27 @@ function get_config() {
 function set_config(config) {
     localStorage.setItem('config', JSON.stringify(config))
 }
+
+function validate_input(value, pattern, minLength = 1, maxLength = 66) {
+    let charcount = value.length;
+    if (pattern.exec(value) || charcount < minLength || charcount > maxLength) {
+        var newLine = "\r\n";
+        var msg = "You have entered invalid data" + newLine;
+        if(pattern.exec(value)) {
+            msg += newLine;
+            msg += "Allowed characters are: " + pattern;
+        }
+        if(charcount < minLength) {
+            msg += newLine;
+            msg += "Min character count is: " + minLength;
+        }
+        if(charcount > maxLength) {
+            msg += newLine;
+            msg += "Max character count is: " + maxLength;
+        }
+        alert(msg);
+        return false
+    } else {
+        return true
+    }
+}

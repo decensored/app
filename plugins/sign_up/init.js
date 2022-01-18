@@ -2,9 +2,11 @@ plugins.register({ name: "sign_up" });
 
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
-    execute_contract_function(web3, contract_accounts.methods.sign_up(username))
-        .then(async _ => { await observe_login_status() })
-        .catch(error => { alert(error) })
+    if (validate_input(username, /[^A-Za-z0-9_]/, 5, 15)) {
+        execute_contract_function(web3, contract_accounts.methods.sign_up(username))
+            .then(async _ => { await observe_login_status() })
+            .catch(error => { alert(error) })
+    }
 }
 
 function signup_or_recover_toggle() {
