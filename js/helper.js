@@ -108,26 +108,53 @@ function set_config(config) {
     localStorage.setItem('config', JSON.stringify(config))
 }
 
-function validate_input(value, pattern, minLength = 1, maxLength = 66) {
-    let charcount = value.length;
-    if (pattern.exec(value) || charcount < minLength || charcount > maxLength) {
-        var newLine = "\r\n";
-        var msg = "You have entered invalid data" + newLine;
-        if(pattern.exec(value)) {
-            msg += newLine;
-            msg += "Allowed characters are: " + pattern;
-        }
-        if(charcount < minLength) {
-            msg += newLine;
-            msg += "Min character count is: " + minLength;
-        }
-        if(charcount > maxLength) {
-            msg += newLine;
-            msg += "Max character count is: " + maxLength;
-        }
-        alert(msg);
-        return false
-    } else {
-        return true
+function check_for_invalid_input(value, pattern, minLength, maxLength) {
+    let validation_result = {};
+    const charcount = value.length;
+
+    if (pattern.exec(value)) {
+        validation_result['pattern'] = pattern;
     }
+
+    if (charcount < minLength) {
+        validation_result['minLength'] = minLength;
+    }
+
+    if (charcount > maxLength) {
+        validation_result['maxLength'] = maxLength;
+    }
+
+    return new Promise(function(result) {
+        result(validation_result);
+    });
+}
+
+
+function invalid_input_message(pattern, minLength, maxLength) {
+    const allowed_characters = 'Allowed characters are: ';
+    const min_character_count = 'Min character count is: ';
+    const max_character_count = 'Max character count is: ';
+    const newLine = '\r\n';
+
+    let message = 'You have entered invalid data.';
+    message += newLine;
+    message += newLine;
+
+    if(pattern) {
+        message += allowed_characters + pattern + newLine;
+    }
+    if(minLength) {
+        message += min_character_count + minLength + newLine;
+    }
+    if(maxLength) {
+        message += max_character_count + maxLength + newLine;
+    }
+
+    return new Promise(function(msg) {
+        msg(message);
+    });
+}
+
+function user_alert(message) {
+    alert(message);
 }
