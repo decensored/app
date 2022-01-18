@@ -1,57 +1,57 @@
 const CONTRACT_RATE_CONTROL_ABI = [
     {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-    }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
-    "name": "OwnershipTransferred",
-    "type": "event"
-}, {
-    "inputs": [],
-    "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{"internalType": "address", "name": "_address", "type": "address"}],
-    "name": "is_below_rate_limit",
-    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{"internalType": "address", "name": "_address", "type": "address"}],
-    "name": "perform_action",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{"internalType": "address", "name": "_address", "type": "address"}, {
-        "internalType": "uint64",
-        "name": "actions_per_interval",
-        "type": "uint64"
-    }], "name": "set_rate_limit", "outputs": [], "stateMutability": "nonpayable", "type": "function"
-}, {
-    "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
-    "name": "transferOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}]
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+        }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    }, {
+        "inputs": [],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_address", "type": "address"}],
+        "name": "is_below_rate_limit",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_address", "type": "address"}],
+        "name": "perform_action",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_address", "type": "address"}, {
+            "internalType": "uint64",
+            "name": "actions_per_interval",
+            "type": "uint64"
+        }], "name": "set_rate_limit", "outputs": [], "stateMutability": "nonpayable", "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }]
 
 const CONTRACT_ACCOUNTS_ABI = [
     {
@@ -138,106 +138,114 @@ const CONTRACT_ACCOUNTS_ABI = [
 
 const CONTRACT_SPACES_ABI = [
     {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": true,
-            "internalType": "address",
-            "name": "previousOwner",
-            "type": "address"
-        }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
-        "name": "OwnershipTransferred",
-        "type": "event"
-    }, {
-        "inputs": [{"internalType": "uint64", "name": "a", "type": "uint64"}, {
-            "internalType": "uint64",
-            "name": "b",
-            "type": "uint64"
-        }],
-        "name": "_encode_two_uint64_as_uint128",
-        "outputs": [{"internalType": "uint128", "name": "", "type": "uint128"}],
-        "stateMutability": "pure",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "accounts",
-        "outputs": [{"internalType": "contract Accounts", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "string", "name": "name", "type": "string"}],
-        "name": "create",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "string", "name": "", "type": "string"}],
-        "name": "id_by_name",
-        "outputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "accounts_address", "type": "address"}],
-        "name": "initialize",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint64", "name": "space", "type": "uint64"}, {
-            "internalType": "uint64",
-            "name": "account",
-            "type": "uint64"
-        }],
-        "name": "is_member",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
-        "name": "name_by_id",
-        "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "owner",
-        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
-        "name": "owner_by_id",
-        "outputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "rate_control",
-        "outputs": [{"internalType": "contract RateControl", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint64", "name": "space", "type": "uint64"}, {
-            "internalType": "uint64",
-            "name": "account",
-            "type": "uint64"
-        }, {"internalType": "bool", "name": "membership_state", "type": "bool"}],
-        "name": "set_membership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }]
+    "anonymous": false,
+    "inputs": [{
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+    }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
+    "name": "OwnershipTransferred",
+    "type": "event"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "a", "type": "uint64"}, {
+        "internalType": "uint64",
+        "name": "b",
+        "type": "uint64"
+    }],
+    "name": "_encode_two_uint64_as_uint128",
+    "outputs": [{"internalType": "uint128", "name": "", "type": "uint128"}],
+    "stateMutability": "pure",
+    "type": "function"
+}, {
+    "inputs": [],
+    "name": "accounts",
+    "outputs": [{"internalType": "contract Accounts", "name": "", "type": "address"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "space", "type": "uint64"}, {
+        "internalType": "uint64",
+        "name": "account",
+        "type": "uint64"
+    }], "name": "add_account_to_blacklist", "outputs": [], "stateMutability": "nonpayable", "type": "function"
+}, {
+    "inputs": [{"internalType": "string", "name": "name", "type": "string"}],
+    "name": "create",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+}, {
+    "inputs": [],
+    "name": "get_latest_space_index",
+    "outputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "string", "name": "", "type": "string"}],
+    "name": "id_by_name",
+    "outputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "address", "name": "accounts_address", "type": "address"}],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "space", "type": "uint64"}, {
+        "internalType": "uint64",
+        "name": "account",
+        "type": "uint64"
+    }],
+    "name": "is_blacklisted",
+    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
+    "name": "name_by_id",
+    "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
+    "name": "owner_by_id",
+    "outputs": [{"internalType": "uint64", "name": "", "type": "uint64"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [],
+    "name": "rate_control",
+    "outputs": [{"internalType": "contract RateControl", "name": "", "type": "address"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "uint64", "name": "space", "type": "uint64"}, {
+        "internalType": "uint64",
+        "name": "account",
+        "type": "uint64"
+    }], "name": "remove_account_from_blacklist", "outputs": [], "stateMutability": "nonpayable", "type": "function"
+}, {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+}, {
+    "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+}];
 
 const CONTRACT_POSTS_ABI = [
     {
