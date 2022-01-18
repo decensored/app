@@ -8,8 +8,20 @@ function init_private_key_recovery() {
 
 async function on_recover_account_button_pressed() {
     const privateKey = $("#credentials").val();
-    set_private_key(privateKey);
-    location.reload();
+    check_for_invalid_input(privateKey, /[^A-Za-z0-9_]/, 66, 66).then(function(result) {
+        if($.isEmptyObject(result)) {
+            set_private_key(privateKey);
+            location.reload();
+        } else {
+            invalid_input_message(
+                result.pattern,
+                result.minLength,
+                result.maxLength
+            ).then(function(message) {
+                alert(message)
+            });
+        };
+    })
 }
 
 async function on_copy_credentials_button_pressed() {
