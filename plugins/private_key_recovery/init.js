@@ -8,7 +8,7 @@ function init_private_key_recovery() {
 
 async function on_recover_account_button_pressed() {
     const privateKey = $("#credentials").val();
-    check_for_invalid_input(privateKey, /[^A-Za-z0-9_]/, 66, 66).then(function(result) {
+    check_for_invalid_input(privateKey, /[^A-Za-z0-9]/, 66, 66).then(function(result) {
         if($.isEmptyObject(result)) {
             set_private_key(privateKey);
             location.reload();
