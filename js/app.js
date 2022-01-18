@@ -54,9 +54,11 @@ function init_spaces() {
 async function observe_login_status() {
     if(await is_signed_up()) {
         hide_sign_up_screen();
+        show_create_space_form();
         customize_app_for_loggedin_user();
     } else {
         show_sign_up_screen();
+        hide_create_space_form();
     }
 }
 
@@ -65,11 +67,15 @@ async function init_app() {
 
     await init_contract_accounts();
     await init_post_fetcher();
-    update_feed_every_interval(3000);
     await set_profile_title();
     await observe_login_status();
 
+    /* TODO: Place it where it belongs, right now it gets loaded even you are on the wrong page */
+    update_feed_every_interval(3000); 
+    load_all_spaces_to_view(); 
+
     update_view_according_to_scroll();
+    
     $(window).scroll(function(){
         update_view_according_to_scroll();
     });
@@ -79,11 +85,11 @@ async function init_app() {
 }
 
 $(document).ready(async () => {
+    init_routing();
     init_header();
     init_navbar();
 
     plugins.call("init")
 
-    init_routing();
     init_app();
 });
