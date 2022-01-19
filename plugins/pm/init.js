@@ -7,17 +7,18 @@ plugins.register({
 
   post_transform: async function (message) {
     const words = message.trim().split(' ')
-    if (words.length <= 2 || words[0] !== 'PM' || words[1][0] !== '@') return message;
+    if (words.length <= 2 || words[0] !== 'PM' || words[1][0] !== '@') return message; // normal non-PM message simply pass through
 
-    words.shift()
+    words.shift() // drop the word "PM"
     const toUsername = words.shift()
       .replace('@', '')
       .replace(',', '')
       .replace(':', '')
-      .replace('/', '')
+      .replace('/', '') // @username, => username
     
-    message = words.join(' ')
+    message = words.join(' ') // restore the actual message
 
+    // XXX hack for working around the issue of being able to sign up with different upper/lowercase combinations. Will be simplified soon.
     const toId = toUsername === 'ericvrp' ? 7 : await contract_accounts.methods.id_by_username(toUsername).call();
     if (toId === "0") {
       alert(`Unknown username: ${toUsername}`);
@@ -32,7 +33,7 @@ plugins.register({
     }
 
     const encryptedMessage = await pm.encrypt(message, toPublicKey);
-    console.log(`Send PM message "${encryptedMessage}" to ${toUsername} (${toId}) with publicKey ${toPublicKey}`);
+    console.log(`Encrypted private message "${encryptedMessage}" to ${toUsername} (${toId}) with publicKey ${toPublicKey}`);
     
     const decryptedMessage = pm.decrypt(encryptedMessage);
     console.log(`When I try to decrypt this myself I get: ${await pm.decrypt(encryptedMessage)}`)
