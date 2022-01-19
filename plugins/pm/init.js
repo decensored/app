@@ -5,19 +5,33 @@ plugins.register({
     append_element_with_html_on_load("body", "plugins/pm/pm.html");
   },
 
-  post_transform: function (message) {
+  post_transform: async function (message) {
     const words = message.trim().split(' ')
     if (words.length <= 2 || words[0] !== 'PM' || words[1][0] !== '@') return message;
 
     words.shift()
-    const to = words.shift()
+    const toUsername = words.shift()
       .replace('@', '')
       .replace(',', '')
       .replace(':', '')
       .replace('/', '')
     
     message = words.join(' ')
-    console.log(`Send PM message "${message}" to ${to}`)
+
+    const toId = await contract_accounts.methods.id_by_username(toUsername).call();
+    if (toId === "0") {
+      alert(`Unknown username: ${toUsername}`);
+      return ""; // don't post
+    }
+
+    const toPublicKey = await contract_accounts.methods.public_key_by_id(toId).call();
+    // console.log('toPublicKey', toPublicKey, toPublicKey.length, typeof toPublicKey);
+    if (!toPublicKey) {
+      alert(`User ${toUsername} has not enabled private messaging! (no public key set)`);
+      return ""; // don't post
+    }
+
+    console.log(`Send PM message "${message}" to ${toUsername} (${toId}) with publicKey ${toPublicKey}`);
     
     return ""; // don't post for now
   },
