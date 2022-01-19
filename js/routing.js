@@ -36,7 +36,7 @@ function init_routing() {
             init_spaces();
             break;
         case ENUM_PAGES.SPACE:
-            // TODO init space
+            init_space();
             break;
     }
 }
@@ -46,8 +46,11 @@ function get_active_page_url() {
     let s = get_url_param("s");
     let u = get_url_param("u");
 
-    if(p === "spaces" || s) {
+    if(p === "spaces") {
         return 'spaces';
+    }
+    if(s) {
+        return 'space';
     }
     if(u) {
         return 'myposts';

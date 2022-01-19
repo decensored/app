@@ -1,5 +1,6 @@
-<div id="feed">
-    <div class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28">
+<div id="space">
+    <div id="space_container" class="container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28">
+        <p id="space_name" class="text-3xl mb-1 text-gray-900 dark:text-gray-300"></p>
         <div id="input" class="container mx-auto max-w-md bg-white dark:bg-gray-900 rounded shadow-sm divide-y divide-solid divide-gray-200 dark:divide-gray-800 sticky -top-28" style="display: none">
             <div class="p-4 relative">
                 <textarea class="form-input bg-transparent rounded w-full border-none outline-none p-0 h-20 resize-none" id="message" maxlength="280" onkeyup="set_post_input_char_count()"></textarea>
@@ -10,12 +11,12 @@
                     <img class="mx-auto w-40" src="images/logo/logotype.svg"/>
                 </div>
                 <div>
-                    <button id="submit" class="bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer" onclick="submit_post_input(LOBBY)">Spread it</button>
+                    <button id="submit_space_post" class="bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer">Spread it</button>
                     <button id="to-top" class="bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer hidden" onclick="scroll_to_top()">Back to top</button>
                 </div>
             </div>
         </div>
-        <!--<button id="update_feed" class="bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer outline-dashed" onclick="update_feed(LOBBY)">Update Feed</button>-->
+        <!--<button id="update_space" class="bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer outline-dashed" onclick="update_feed(LOBBY)">Update Feed</button>-->
         <div id="posts" class="flex flex-col gap-y-5 mb-28"></div>
     </div>
 </div>

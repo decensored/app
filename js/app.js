@@ -3,6 +3,7 @@ window.onerror = function myErrorHandler(error_message) {
     console.error(error_message);
 }
 
+/*
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('pwaworker.js').then(function(registration) {
       registration.update();
@@ -10,7 +11,10 @@ if ('serviceWorker' in navigator) {
       console.log('Registration failed with ' + error);
     });
 };
+*/
 
+
+// GENERAL
 function init_header() {
     $("#init-header").load("templates/header.html", function() {
         $loaded = $("#header");
@@ -29,45 +33,66 @@ function init_navbar() {
     });
 }
 
-function init_feed() {
-    $("#init-feed").load("pages/feed/feed.html", function() {
-        $loaded = $("#feed");
-        if($loaded.parent().attr('id') === 'init-feed') {
-            $loaded.unwrap();
-        }
-        let $message = $("#message");
-        $message.css("display","none");
-        autosize($message);
-        $message.css("display","block");
-    });
+// PAGES
+async function init_feed() {
+    await init_contract_accounts().then(() => {
+        $("#app").load("pages/feed/feed.html", function() {
+            $loaded = $("#feed");
+            if($loaded.parent().attr('id') === 'init-feed') {
+                $loaded.unwrap();
+            }
+            let $message = $("#message");
+            $message.css("display","none");
+            autosize($message);
+            $message.css("display","block");
+            load_data_for_feed();
+        });
+    })
 }
 
-function init_spaces() {
-    $("#init-spaces").load("pages/spaces/spaces.html", function() {
-        $loaded = $("#spaces");
-        if($loaded.parent().attr('id') === 'init-spaces') {
-            $loaded.unwrap();
-        }
-    });
+async function init_spaces() {
+    await init_contract_accounts().then(() => {
+        $("#app").load("pages/spaces/overview.html", function() {
+            $loaded = $("#spaces");
+            if($loaded.parent().attr('id') === 'init-spaces') {
+                $loaded.unwrap();
+            }
+        });
+        load_data_for_spaces(); 
+    })
 }
 
-async function observe_login_status() {
-    if(await is_signed_up()) {
-        hide_sign_up_screen();
-        customize_app_for_loggedin_user();
-    } else {
-        show_sign_up_screen();
-    }
+async function init_space() {
+    await init_contract_accounts().then(() => {
+        $("#app").load("pages/spaces/single.html", function() {
+            $loaded = $("#space");
+            if($loaded.parent().attr('id') === 'init-space') {
+                $loaded.unwrap();
+            }
+        });
+        load_data_for_space(); 
+    })
+}
+
+async function init_profile() {
+    await init_contract_accounts().then(() => {
+        $("#app").load("pages/spaces/single.html", function() {
+            $loaded = $("#space");
+            if($loaded.parent().attr('id') === 'init-space') {
+                $loaded.unwrap();
+            }
+        });
+        load_data_for_space(); 
+    })
 }
 
 async function init_app() {
-    $('#recover').hide();
-
     await init_contract_accounts();
     await init_post_fetcher();
-    update_feed_every_interval(3000);
     await set_profile_title();
     await observe_login_status();
+
+    //update_feed_every_interval(3000, 4); 
 
     update_view_according_to_scroll();
     $(window).scroll(function(){
@@ -79,11 +104,9 @@ async function init_app() {
 }
 
 $(document).ready(async () => {
+    init_app();
+    init_routing();
     init_header();
     init_navbar();
-
     plugins.call("init")
-
-    init_routing();
-    init_app();
 });
