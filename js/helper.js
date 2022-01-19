@@ -9,6 +9,17 @@ function toggle_header_logo(variant, time) {
     }
 }
 
+async function observe_login_status() {
+    if(await is_signed_up()) {
+        hide_sign_up_screen();
+        show_create_space_form();
+        customize_app_for_loggedin_user();
+    } else {
+        show_sign_up_screen();
+        hide_create_space_form();
+    }
+}
+
 function scroll_to_top() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
 }

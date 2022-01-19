@@ -73,7 +73,9 @@ function submit_post_input(space) {
     $message.val("");
     set_post_input_char_count();
     if(message.length > 0) {
-        return execute_contract_function(web3, contract_posts.methods.submit_post(space, message));
+        return execute_contract_function(web3, contract_posts.methods.submit_post(space, message)).then(() => {
+            update_feed(space);
+        });
     } else {
         alert("You cant send an empty message!");
     }

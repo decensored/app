@@ -6,6 +6,12 @@ function set_space_membership(space_id, user_id, membership) {
     return execute_contract_function(web3, contract_spaces.methods.set_membership(space_id, user_id, membership));
 }
 
+async function get_space_id(space_name) {
+    const space_id = await contract_spaces.methods.id_by_name(space_name).call();
+    const space = get_space(space_id);
+    return space;
+}
+
 async function get_space(space_id) {
 
     let promise_name = contract_spaces.methods.name_by_id(space_id).call();
