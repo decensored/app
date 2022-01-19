@@ -82,7 +82,7 @@ $(document).ready(async () => {
     init_header();
     init_navbar();
 
-    plugins.call("init")
+    await plugins.call("init")
 
     init_routing();
     init_app();

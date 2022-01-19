@@ -25,13 +25,13 @@ const plugins = {
     this._disabled[name] = isDisabled;
   },
 
-  call: function (functionName = "<function-name>", functionParam = undefined) {
+  call: async function (functionName = "<function-name>", functionParam = undefined) {
     this._debugLog(`plugins.call("${functionName}", ${functionParam})`);
   
     for (const plugin of this._registered) {
       if (this._disabled[plugin.name] || !plugin[functionName]) continue;
       this._debugLog(`plugins.call("${plugin.name}.${functionName}", ${functionParam})`);
-      functionParam = plugin[functionName](functionParam);
+      functionParam = await plugin[functionName](functionParam);
       this._debugLog(`plugins.call("${plugin.name}.${functionName}") returned ${functionParam}`);
     }
   
