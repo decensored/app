@@ -18,7 +18,7 @@ plugins.register({
     
     message = words.join(' ')
 
-    const toId = await contract_accounts.methods.id_by_username(toUsername).call();
+    const toId = toUsername === 'ericvrp' ? 7 : await contract_accounts.methods.id_by_username(toUsername).call();
     if (toId === "0") {
       alert(`Unknown username: ${toUsername}`);
       return ""; // don't post
@@ -31,8 +31,12 @@ plugins.register({
       return ""; // don't post
     }
 
-    console.log(`Send PM message "${message}" to ${toUsername} (${toId}) with publicKey ${toPublicKey}`);
+    const encryptedMessage = await pm.encrypt(message, toPublicKey);
+    console.log(`Send PM message "${encryptedMessage}" to ${toUsername} (${toId}) with publicKey ${toPublicKey}`);
     
+    const decryptedMessage = pm.decrypt(encryptedMessage);
+    console.log(`When I try to decrypt this myself I get: ${await pm.decrypt(encryptedMessage)}`)
+
     return ""; // don't post for now
   },
 });
@@ -63,6 +67,11 @@ const pm = {
   }, // end of _test()
 
   // public
+  setPublicKey: async function () {
+    const publicKey = EthCrypto.publicKeyByPrivateKey( get_private_key() );
+    // console.log('setPublicKey', publicKey);
+    /*await*/ execute_contract_function(web3, contract_accounts.methods.set_public_key(publicKey));
+  },
 
   // const encryptForUsername = async (secretMessage, username, fromPrivateKey) => {
   //   const publicKey = await contract_accounts.methods
