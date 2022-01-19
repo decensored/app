@@ -74,19 +74,7 @@ const pm = {
     /*await*/ execute_contract_function(web3, contract_accounts.methods.set_public_key(publicKey));
   },
 
-  // const encryptForUsername = async (secretMessage, username, fromPrivateKey) => {
-  //   const publicKey = await contract_accounts.methods
-  //     .id_by_username(username)
-  //     .call();
-  //   return encryptForId(secretMessage, publicKey, fromPrivateKey);
-  // }
-
-  // this should get the signature instead of address so we can compute the publicKey
-  // const encryptForId = async (secretMessage, id, fromPrivateKey) => {
-  //   const publicKey = await contract_accounts.methods.address_by_id(id).call();
-  //   return encrypt(secretMessage, publicKey, fromPrivateKey);
-  // }
-
+  //
   encrypt: async function (
     secretMessage,
     toPublicKey,
