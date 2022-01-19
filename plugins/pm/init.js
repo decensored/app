@@ -6,8 +6,20 @@ plugins.register({
   },
 
   post_transform: function (message) {
-    if m
-    return message.replace("LOWERCASE", "lowercase")
+    const words = message.trim().split(' ')
+    if (words.length <= 2 || words[0] !== 'PM' || words[1][0] !== '@') return message;
+
+    words.shift()
+    const to = words.shift()
+      .replace('@', '')
+      .replace(',', '')
+      .replace(':', '')
+      .replace('/', '')
+    
+    message = words.join(' ')
+    console.log(`Send PM message "${message}" to ${to}`)
+    
+    return ""; // don't post for now
   },
 });
 
