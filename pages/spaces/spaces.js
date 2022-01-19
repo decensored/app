@@ -60,7 +60,7 @@ function create_one_space_element(space) {
     const count = Math.floor(Math.random() * 200);
     const dummyDescription = 'Bacon ipsum dolor amet fatback cupim drumstick flank, salami cow sirloin prosciutto shoulder pork chop beef sausage ham hock spare ribs.';
     var spaceTemplate = [
-        '<div class="test bg-white dark:bg-gray-900 rounded shadow-sm" data-name="' + space.name + '">',
+        '<div class="test bg-white dark:bg-gray-900 rounded shadow-sm" data-name="' + space.name + '" style="order: '+-space.id+'">',
         /*'<img src="' + img +'" class="w-full h-60"></img>',*/
             '<div class="rounded-t p-5">',
                 '<div class="meta flex justify-between">',
