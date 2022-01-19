@@ -3,7 +3,7 @@ class PostFetcher {
     index_of_last_post_fetched = -1;
 
     async get_index_of_latest_post()  {
-        return contract_posts.methods.get_latest_post_index().call()
+        return contract_posts.methods.get_amount_of_posts().call()
             .then(lmi => { return parseInt(lmi)} );
     }
 
