@@ -107,3 +107,54 @@ function get_config() {
 function set_config(config) {
     localStorage.setItem('config', JSON.stringify(config))
 }
+
+function check_for_invalid_input(value, pattern, minLength, maxLength) {
+    let validation_result = {};
+    const charcount = value.length;
+
+    if (pattern.exec(value)) {
+        validation_result['pattern'] = pattern;
+    }
+
+    if (charcount < minLength) {
+        validation_result['minLength'] = minLength;
+    }
+
+    if (charcount > maxLength) {
+        validation_result['maxLength'] = maxLength;
+    }
+
+    return new Promise(function(result) {
+        result(validation_result);
+    });
+}
+
+
+function invalid_input_message(pattern, minLength, maxLength) {
+    const allowed_characters = 'Allowed characters are: ';
+    const min_character_count = 'Min character count is: ';
+    const max_character_count = 'Max character count is: ';
+    const newLine = '\r\n';
+
+    let message = 'You have entered invalid data.';
+    message += newLine;
+    message += newLine;
+
+    if(pattern) {
+        message += allowed_characters + pattern + newLine;
+    }
+    if(minLength) {
+        message += min_character_count + minLength + newLine;
+    }
+    if(maxLength) {
+        message += max_character_count + maxLength + newLine;
+    }
+
+    return new Promise(function(msg) {
+        msg(message);
+    });
+}
+
+function user_alert(message) {
+    alert(message);
+}

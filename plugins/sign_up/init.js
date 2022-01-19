@@ -2,10 +2,24 @@ plugins.register({ name: "sign_up" });
 
 async function on_sign_up_button_pressed() {
     let username = $('#username').val();
-    execute_contract_function(web3, contract_accounts.methods.sign_up(username))
-        .then(async _ => { await observe_login_status() })
-        .catch(error => { alert(error) })
+
+    check_for_invalid_input(username, /[^A-Za-z0-9_]/, 5, 15).then(function(result) {
+        if($.isEmptyObject(result)) {
+            execute_contract_function(web3, contract_accounts.methods.sign_up(username))
+            .then(async _ => { await observe_login_status() })
+            .catch(error => { alert(error) })
+        } else {
+            invalid_input_message(
+                result.pattern,
+                result.minLength,
+                result.maxLength
+            ).then(function(message) {
+                alert(message)
+            });
+        };
+    })
 }
+
 
 function signup_or_recover_toggle() {
     let $signup_form = $('#signup_form');
