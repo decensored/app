@@ -45,6 +45,7 @@ function is_user_in_blacklist(post) {
 }
 
 function add_user_to_blacklist(author, username) {
+    $("body").find(`[data-author='${author}']`).fadeOut(600);
     const blacklist = get_user_blacklist() || [];
     if (blacklist.find(user => user.id === author)) {
         return;
@@ -55,6 +56,7 @@ function add_user_to_blacklist(author, username) {
 }
 
 function remove_user_from_blacklist(author) {
+    $("body").find(`[data-author='${author}']`).fadeIn(600);
     let blacklist = get_user_blacklist();
     if(blacklist) {
         var newBlacklist = blacklist.filter(function(user) { return user.id != author });
