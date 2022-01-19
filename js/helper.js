@@ -15,8 +15,9 @@ function scroll_to_top() {
 
 function update_view_according_to_scroll() {
     $spread_bar = $('#spread-bar');
+    $input = $('#input');
 
-    if($spread_bar.length) {
+    if($spread_bar.length && $input.is(":visible")) {
         elementOffset = $spread_bar.offset().top;
         windowOffset = $(window).scrollTop();
         scrollOffset = elementOffset - windowOffset;
