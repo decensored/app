@@ -19,18 +19,20 @@ export default function Header(props: { isSignedUp: boolean; }) {
     <div id="header" className="bg-decensored-gradient w-full">
         <div className="flex gap-y-5 p-4 justify-between items-center">
             <div id="logo">
-                <a href="/" className="block h-10 flex gap-1">
-                    <Image
-                        src={signet}
-                        alt="Signet"
-                        className="h-full"
-                    />
-                    <Image  
-                        src={logo}
-                        alt="Logo"
-                        className="h-full hidden sm:block opacity-0"
-                    />
-                </a>
+                <Link href="/">
+                    <a className="block h-10 flex gap-1">
+                        <Image
+                            src={signet}
+                            alt="Signet"
+                            className="h-full"
+                        />
+                        <Image  
+                            src={logo}
+                            alt="Logo"
+                            className="h-full hidden sm:block opacity-0"
+                        />
+                    </a>
+                </Link>
             </div>
             <div id="header_nav_items" className="text-white text-lg flex items-center">
                 <Link href="https://github.com/mikrohash/decensored">
