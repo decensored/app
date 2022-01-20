@@ -1,6 +1,7 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import HelloWorld from 'components/HelloWorld'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import HelloWorld from 'components/HelloWorld';
+import DisplayCounter from 'components/DisplayCounter';
 
 const Home: NextPage = () => {
   return (
@@ -29,9 +30,10 @@ const Home: NextPage = () => {
 
       <main>
         <HelloWorld />
+        <DisplayCounter />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
