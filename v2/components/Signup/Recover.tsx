@@ -5,7 +5,7 @@ const Recover = (props: {
   type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
 }) => {
-  const { /*isSignedUp,*/ setSignUpState } = useStore((state) => ({
+  const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
     // isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))

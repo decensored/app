@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import '@fortawesome/fontawesome-svg-core/styles.css' // without it fontawesome doesnt work
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Helmet>

@@ -6,19 +6,17 @@ import Feed from '../components/Feed/Feed'
 import Bottombar from '../components/Bottombar'
 
 const Home: NextPage = () => {
-  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
+  const { isSignedUp /* , setSignUpState */ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     // setSignUpState: state.setSignUpState,
   }))
 
   return (
-    <>
-      <main>
-        <Header isSignedUp={isSignedUp} />
-        <Feed isSignedUp={isSignedUp} />
-        <Bottombar isSignedUp={isSignedUp} />
-      </main>
-    </>
+    <main>
+      <Header isSignedUp={isSignedUp} />
+      <Feed isSignedUp={isSignedUp} />
+      <Bottombar isSignedUp={isSignedUp} />
+    </main>
   )
 }
 

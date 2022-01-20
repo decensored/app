@@ -6,19 +6,17 @@ import Bottombar from '../../components/Bottombar'
 import SpaceHeader from '../../components/Spaces/SpaceHeader'
 
 const Spaces: NextPage = () => {
-  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
+  const { isSignedUp /* , setSignUpState */ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     // setSignUpState: state.setSignUpState,
   }))
 
   return (
-    <>
-      <main>
-        <Header isSignedUp={isSignedUp} />
-        <SpaceHeader />
-        <Bottombar isSignedUp={isSignedUp} />
-      </main>
-    </>
+    <main>
+      <Header isSignedUp={isSignedUp} />
+      <SpaceHeader />
+      <Bottombar isSignedUp={isSignedUp} />
+    </main>
   )
 }
 

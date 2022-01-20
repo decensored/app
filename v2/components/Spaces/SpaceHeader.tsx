@@ -3,7 +3,7 @@ import useStore from '../../lib/store.js'
 import SpaceItem from './SpaceItem'
 
 const SpaceHeader = () => {
-  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
+  const { isSignedUp /* , setSignUpState */ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     // setSignUpState: state.setSignUpState,
   }))

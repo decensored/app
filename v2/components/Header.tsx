@@ -10,8 +10,8 @@ import logo from '../public/logo/logotype_invert.svg'
 import useStore from '../lib/store.js'
 
 const Header = (props: { isSignedUp: boolean }) => {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
+  const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
+    // isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))
 
