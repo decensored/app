@@ -12,19 +12,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="./images/favicon/apple-touch-icon.png"
+          href="/favicon/apple-touch-icon.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="./images/favicon/favicon-32x32.png"
+          href="/favicon/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="./images/favicon/favicon-16x16.png"
+          href="/favicon/favicon-16x16.png"
         />
         <body className="font-sans bg-slate-100 dark:bg-black text-gray-900 dark:text-gray-500" />
       </Helmet>
