@@ -1,3 +1,4 @@
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -8,7 +9,7 @@ import signet from '../public/logo/signet.svg'
 import logo from '../public/logo/logotype_invert.svg'
 import useStore from '../lib/store.js'
 
-export default function Header(props: { isSignedUp: boolean }) {
+const Header = (props: { isSignedUp: boolean }) => {
   const { isSignedUp, setSignUpState } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
@@ -69,3 +70,5 @@ export default function Header(props: { isSignedUp: boolean }) {
     </div>
   )
 }
+
+export default Header

@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import '@fortawesome/fontawesome-svg-core/styles.css' // without it fontawesome doesnt work
 import '../styles/globals.css'

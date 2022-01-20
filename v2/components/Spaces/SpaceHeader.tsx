@@ -1,10 +1,11 @@
+import React from 'react'
 import useStore from '../../lib/store.js'
 import SpaceItem from './SpaceItem'
 
-export default function SpaceHeader() {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
+const SpaceHeader = () => {
+  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
-    setSignUpState: state.setSignUpState,
+    // setSignUpState: state.setSignUpState,
   }))
 
   return (
@@ -37,3 +38,5 @@ export default function SpaceHeader() {
     </div>
   )
 }
+
+export default SpaceHeader

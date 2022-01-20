@@ -1,4 +1,6 @@
-export default function SettingsModal() {
+import React from 'react'
+
+const SettingsModal = () => {
   /*
         TODO: add Logic for showing / hiding it
     */
@@ -51,3 +53,5 @@ export default function SettingsModal() {
     </div>
   )
 }
+
+export default SettingsModal

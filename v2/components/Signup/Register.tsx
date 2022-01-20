@@ -5,8 +5,8 @@ const Register = (props: {
   type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
 }) => {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
+  const { /*isSignedUp,*/ setSignUpState } = useStore((state) => ({
+    // isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))
 

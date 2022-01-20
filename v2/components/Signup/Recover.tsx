@@ -1,11 +1,12 @@
+import React from 'react'
 import useStore from '../../lib/store.js'
 
-export default function Recover(props: {
+const Recover = (props: {
   type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
-}) {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
+}) => {
+  const { /*isSignedUp,*/ setSignUpState } = useStore((state) => ({
+    // isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))
 
@@ -32,3 +33,5 @@ export default function Recover(props: {
     </div>
   )
 }
+
+export default Recover

@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import {
   faSatellite,
@@ -6,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Bottombar(props: { isSignedUp: boolean }) {
+const Bottombar = (props: { isSignedUp: boolean }) => {
   return (
     <nav className='fixed flex gap-y-5 left-0 right-0 bottom-0 bg-white dark:bg-black shadow-2xl divide-y divide-solid divide-gray-200 dark:divide-gray-800'>
       <div className='container mx-auto py-6 max-w-md flex gap-y-5'>
@@ -34,3 +35,5 @@ export default function Bottombar(props: { isSignedUp: boolean }) {
     </nav>
   )
 }
+
+export default Bottombar

@@ -1,7 +1,8 @@
+import React from 'react'
 import Image from 'next/image'
 import logo from '../../public/logo/logotype.svg'
 
-export default function Form() {
+const Form = () => {
   return (
     <div
       id='input'
@@ -39,3 +40,5 @@ export default function Form() {
     </div>
   )
 }
+
+export default Form

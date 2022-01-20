@@ -1,3 +1,4 @@
+import React from 'react'
 import Form from './Form'
 import FeedItem from './FeedItem'
 
