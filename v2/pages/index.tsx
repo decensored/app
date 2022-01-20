@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import useStore from '../lib/store';
-import Head from 'next/head'
+import { Helmet } from 'react-helmet';
 import Header from '../components/Header'
 import Feed from '../components/Feed/Feed'
 import Bottombar from '../components/Bottombar'
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Decensored</title>
         <meta name="description" content="Decensored" />
         <link
@@ -35,7 +35,8 @@ const Home: NextPage = () => {
           sizes="16x16"
           href="../images/favicon/favicon-16x16.png"
         />
-      </Head>
+        <body className="font-sans bg-slate-100 dark:bg-black text-gray-900 dark:text-gray-500" />
+      </Helmet>
 
       <main>
         <Header isSignedUp={isSignedUp} />
