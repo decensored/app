@@ -1,8 +1,9 @@
+import React from 'react'
 import Link from 'next/link'
 import { faSatellite, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function SpaceItem() {
+const SpaceItem = () => {
   return (
     <div className='post bg-white dark:bg-gray-900 rounded shadow-sm'>
       <div className='rounded-t p-5'>
@@ -36,3 +37,5 @@ export default function SpaceItem() {
     </div>
   )
 }
+
+export default SpaceItem

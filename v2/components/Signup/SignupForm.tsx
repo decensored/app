@@ -4,7 +4,7 @@ import Register from './Register'
 import Recover from './Recover'
 import logo from '../../public/logo/logotype_invert.svg'
 
-export default function SignupForm(props: { type: string }) {
+const SignupForm = (props: { type: string }) => {
   const [type, setType] = React.useState(props.type)
 
   function toggleForm() {
@@ -34,3 +34,5 @@ export default function SignupForm(props: { type: string }) {
     </div>
   )
 }
+
+export default SignupForm

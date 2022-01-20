@@ -1,9 +1,10 @@
+import React from 'react'
 import useStore from '../../lib/store.js'
 
-export default function Register(props: {
+const Register = (props: {
   type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
-}) {
+}) => {
   const { isSignedUp, setSignUpState } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
@@ -33,3 +34,5 @@ export default function Register(props: {
     </section>
   )
 }
+
+export default Register
