@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import useStore from '../lib/store';
-import Head from 'next/head';
 import Header from '../components/Header';
 import Feed from '../components/Feed/Feed';
 import Bottombar from '../components/Bottombar';
