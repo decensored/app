@@ -1,9 +1,18 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import HelloWorld from 'components/HelloWorld';
-import DisplayCounter from 'components/DisplayCounter';
+import type { NextPage } from 'next'
+import React from 'react'
+import useStore from '../lib/store';
+import Head from 'next/head'
+import Header from '../components/Header'
+import Feed from '../components/Feed/Feed'
+import Bottombar from '../components/Bottombar'
 
 const Home: NextPage = () => {
+
+  const { isSignedUp, setSignUpState } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
+    setSignUpState: state.setSignUpState,
+  }));
+
   return (
     <>
       <Head>
@@ -29,8 +38,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <HelloWorld />
-        <DisplayCounter />
+        <Header isSignedUp={isSignedUp} />
+          <Feed isSignedUp={isSignedUp}/>
+        <Bottombar isSignedUp={isSignedUp}/>
       </main>
     </>
   );

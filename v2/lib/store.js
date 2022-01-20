@@ -1,8 +1,8 @@
 import create from 'zustand'
 
 const useStore = create((set) => ({
-  count: 0,
-  inc: () => set((state) => ({ count: state.count + 1 })),
+  isSignedUp: false,
+  setSignUpState: () => set((state) => ({ isSignedUp: state.isSignedUp ? false : true })),
 }))
 
 export default useStore
