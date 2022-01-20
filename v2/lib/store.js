@@ -1,9 +1,8 @@
-import create from 'zustand';
+import create from 'zustand'
 
 const useStore = create((set) => ({
   isSignedUp: false,
-  setSignUpState: () =>
-    set((state) => ({ isSignedUp: state.isSignedUp ? false : true })),
-}));
+  setSignUpState: () => set((state) => ({ isSignedUp: !!state.isSignedUp })),
+}))
 
-export default useStore;
+export default useStore

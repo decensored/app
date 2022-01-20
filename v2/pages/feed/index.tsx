@@ -1,14 +1,14 @@
-import type { NextPage } from 'next';
-import useStore from '../../lib/store';
-import React from 'react';
-import Header from '../../components/Header';
-import Bottombar from '../../components/Bottombar';
+import type { NextPage } from 'next'
+import React from 'react'
+import useStore from '../../lib/store.js'
+import Header from '../../components/Header'
+import Bottombar from '../../components/Bottombar'
 
 const Feed: NextPage = () => {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
+  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
-    setSignUpState: state.setSignUpState,
-  }));
+    // setSignUpState: state.setSignUpState,
+  }))
 
   return (
     <>
@@ -18,7 +18,7 @@ const Feed: NextPage = () => {
         <Bottombar isSignedUp={isSignedUp} />
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Feed;
+export default Feed

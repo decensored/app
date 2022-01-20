@@ -1,18 +1,18 @@
-import type { NextPage } from 'next';
-import useStore from '../../lib/store';
-import { useRouter } from 'next/router';
-import React from 'react';
-import Header from '../../components/Header';
-import Bottombar from '../../components/Bottombar';
+import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import React from 'react'
+import useStore from '../../lib/store.js'
+import Header from '../../components/Header'
+import Bottombar from '../../components/Bottombar'
 
 const User: NextPage = () => {
-  const router = useRouter();
-  const { username } = router.query;
+  const router = useRouter()
+  const { username } = router.query
 
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
+  const { isSignedUp /*, setSignUpState*/ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
-    setSignUpState: state.setSignUpState,
-  }));
+    // setSignUpState: state.setSignUpState,
+  }))
 
   return (
     <>
@@ -22,7 +22,7 @@ const User: NextPage = () => {
         <Bottombar isSignedUp={isSignedUp} />
       </main>
     </>
-  );
-};
+  )
+}
 
-export default User;
+export default User
