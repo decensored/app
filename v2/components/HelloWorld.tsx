@@ -1,6 +1,6 @@
 const HelloWorld = () => {
   return (
-    <h1 className="text-3xl font-bold underline">Hello Decensored world!</h1>
+    <h1 className="text-3xl font-bold underline">Hello Decensored World!</h1>
   )
 }
 
