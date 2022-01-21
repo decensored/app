@@ -36,7 +36,14 @@ const Recover: FunctionComponent<RecoverProps> = ({
         className='text-center text-white text-sm decoration-white-8 
       py-3 underline hover:no-underline cursor-pointer'
       >
-        <span onClick={handleClick}>Sign up with account</span>
+        {/* <span
+          onClick={handleClick}
+          // onKeyDown={handleClick}
+          role='link'
+          tabIndex={0}
+        >
+          Sign up with account
+        </span> */}
       </p>
     </div>
   )

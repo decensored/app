@@ -38,7 +38,14 @@ const Register: FunctionComponent<RegisterProps> = ({
         className='text-center text-white text-sm decoration-white-8 
       py-3 underline hover:no-underline cursor-pointer'
       >
-        <span onClick={handleClick}>Recover your account</span>
+        {/* <span
+          onClick={handleClick}
+          // onKeyDown={handleClick}
+          role='link'
+          tabIndex={0}
+        >
+          Recover your account
+        </span> */}
       </p>
     </section>
   )
