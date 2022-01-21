@@ -11,10 +11,15 @@ interface RegisterProps {
 const Register: FunctionComponent<RegisterProps> = ({
   /* type, */ handleClick,
 }) => {
-  const { isSignedUp, toggleIsSignedUp } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
-    toggleIsSignedUp: state.toggleIsSignedUp,
-  }))
+  const { isSignedUp, toggleIsSignedUp, userName, setUserName } = useStore(
+    (state) => ({
+      isSignedUp: state.isSignedUp,
+      toggleIsSignedUp: state.toggleIsSignedUp,
+
+      userName: state.userName,
+      setUserName: state.setUserName,
+    })
+  )
 
   const toggleIsSignedUpWithToast = (): void => {
     toggleIsSignedUp()
@@ -34,6 +39,8 @@ const Register: FunctionComponent<RegisterProps> = ({
             type='text'
             placeholder='Choose your username'
             id='username'
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <button
