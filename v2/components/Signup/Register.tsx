@@ -11,10 +11,10 @@ interface RegisterProps {
 const Register: FunctionComponent<RegisterProps> = ({
   /* type, */ handleClick,
 }) => {
-  const { isSignedUp, toggleIsSignedUp, userName, setUserName, contract } =
+  const { isSignedUp, setIsSignedUp, userName, setUserName, contract } =
     useStore((state) => ({
       isSignedUp: state.isSignedUp,
-      toggleIsSignedUp: state.toggleIsSignedUp,
+      setIsSignedUp: state.setIsSignedUp,
 
       userName: state.userName,
       setUserName: state.setUserName,
@@ -23,8 +23,8 @@ const Register: FunctionComponent<RegisterProps> = ({
     }))
   // console.log('contract', contract)
 
-  const toggleIsSignedUpWithToast = (): void => {
-    toggleIsSignedUp()
+  const setIsSignedUpWithToast = (): void => {
+    setIsSignedUp(true)
 
     // https://fkhadra.github.io/react-toastify/introduction/
     toast(isSignedUp ? 'Signing out...' : 'Signing in...')
@@ -44,7 +44,8 @@ const Register: FunctionComponent<RegisterProps> = ({
               const { value } = e.target
               setUserName(value)
 
-              const id = await contract.accounts.methods
+              // const c = contract as any
+              const id = await (contract as any).accounts.methods
                 .id_by_username(value)
                 .call() // TODO: error handling
               if (id !== '0') {
@@ -55,7 +56,7 @@ const Register: FunctionComponent<RegisterProps> = ({
         </div>
         <button
           type='button'
-          onClick={toggleIsSignedUpWithToast}
+          onClick={setIsSignedUpWithToast}
           className='bg-purple-500 hover:bg-purple-700 text-white
           font-bold px-4 rounded whitespace-nowrap'
         >

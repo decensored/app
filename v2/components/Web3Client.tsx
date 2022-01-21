@@ -87,28 +87,28 @@ const Web3Client: FunctionComponent = () => {
 
 // this code need to be modified for v2...
 
-export const executeContractFunction = async (
-  // web3: any,
-  privateKey: string,
-  functionCall: any
-): Promise<any> => {
-  const accountAddress =
-    web3.eth.accounts.privateKeyToAccount(privateKey).address
+// export const executeContractFunction = async (
+//   // web3: any,
+//   privateKey: string,
+//   functionCall: any
+// ): Promise<any> => {
+//   const accountAddress =
+//     web3.eth.accounts.privateKeyToAccount(privateKey).address
 
-  // https://eslint.org/docs/rules/no-underscore-dangle
-  /* eslint no-underscore-dangle:["error",{"allow":["_parent","_address"]}] */
-  const options = {
-    to: functionCall._parent._address,
-    data: functionCall.encodeABI(),
-    gas: await functionCall.estimateGas({ from: accountAddress }),
-    gasPrice: 0,
-  }
-  const signed = await web3.eth.accounts.signTransaction(options, privateKey)
-  return web3.eth.sendSignedTransaction(signed.rawTransaction)
-}
+//   // https://eslint.org/docs/rules/no-underscore-dangle
+//   /* eslint no-underscore-dangle:["error",{"allow":["_parent","_address"]}] */
+//   const options = {
+//     to: functionCall._parent._address,
+//     data: functionCall.encodeABI(),
+//     gas: await functionCall.estimateGas({ from: accountAddress }),
+//     gasPrice: 0,
+//   }
+//   const signed = await web3.eth.accounts.signTransaction(options, privateKey)
+//   return web3.eth.sendSignedTransaction(signed.rawTransaction)
+// }
 
-export const getAddress = async (privateKey: any): Promise<any> =>
-  web3.eth.accounts.privateKeyToAccount(privateKey).address
+// export const getAddress = async (privateKey: any): Promise<any> =>
+//   web3.eth.accounts.privateKeyToAccount(privateKey).address
 
 // async function get_username() {
 //   let address = get_address()

@@ -8,30 +8,31 @@ const useStore = create(
       // non-persistent state
       //
       isSignedUp: false,
-      toggleIsSignedUp: () => set({ isSignedUp: !get().isSignedUp }),
+      setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
       // smart contracts
-      contract: {}, // { accounts: any, posts: any, spaces: any },
-      setContract: (contract) => set({ contract }),
+      // https://github.com/ChainSafe/web3.js/issues/4265#issuecomment-924554759
+      contract: {}, // { accounts, posts, spaces },
+      setContract: (contract: any) => set({ contract }),
 
       //
       // persistent state by the partialize function below
       //
       userName: '',
-      setUserName: (userName) => set({ userName }),
+      setUserName: (userName: string) => set({ userName }),
 
       privateKey: '',
-      setPrivateKey: (privateKey) => set({ privateKey }),
+      setPrivateKey: (privateKey: string) => set({ privateKey }),
 
       // EVM node config
       evmNode: 'https://we.addiota.com',
-      setEVMnode: (evmNode) => set({ evmNode }),
+      setEVMnode: (evmNode: string) => set({ evmNode }),
 
       chainId: 1075,
-      setChainId: (chainId) => set({ chainId }),
+      setChainId: (chainId: number) => set({ chainId }),
 
       contractPostsAddress: '0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3',
-      setContractPostsAddress: (contractPostsAddress) =>
+      setContractPostsAddress: (contractPostsAddress: string) =>
         set({ contractPostsAddress }),
     }),
     {

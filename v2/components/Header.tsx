@@ -8,13 +8,13 @@ import SignupForm from './Signup/SignupForm'
 import useStore from '../lib/store'
 
 const Header: FunctionComponent = () => {
-  const { isSignedUp, toggleIsSignedUp } = useStore((state) => ({
+  const { isSignedUp, setIsSignedUp } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
-    toggleIsSignedUp: state.toggleIsSignedUp,
+    setIsSignedUp: state.setIsSignedUp,
   }))
 
-  const toggleIsSignedUpWithToast = (): void => {
-    toggleIsSignedUp()
+  const setIsSignedUpWithToast = (): void => {
+    setIsSignedUp(false)
 
     // https://fkhadra.github.io/react-toastify/introduction/
     toast.warning(isSignedUp ? 'Signing out...' : 'Signing in...', {})
@@ -81,7 +81,7 @@ const Header: FunctionComponent = () => {
                 </a>
               </Link>
               <FontAwesomeIcon
-                onClick={toggleIsSignedUpWithToast}
+                onClick={setIsSignedUpWithToast}
                 icon={faSignOutAlt}
                 className='cursor-pointer ml-5'
               />
