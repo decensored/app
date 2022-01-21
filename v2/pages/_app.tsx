@@ -5,11 +5,7 @@ import { toast, ToastContainer } from 'react-toastify'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.scss'
-import { inBrowser } from '../lib/where.js'
-
-if (inBrowser) {
-  // console.log('TODO: web3 init')
-}
+import Web3Client from '../components/Web3Client'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -54,6 +50,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       newestOnTop
       position={toast.POSITION.TOP_CENTER}
     />
+    <Web3Client />
   </>
 )
 
