@@ -7,8 +7,11 @@ const SpaceItem: FunctionComponent = () => (
   <div className='post bg-white dark:bg-gray-900 rounded shadow-sm'>
     <div className='rounded-t p-5'>
       <div className='meta flex justify-between'>
-        <Link href='/space/SpaceName'>
-          <a className='space font-bold text-gray-900 dark:text-gray-300'>
+        <Link href='/space/SpaceName' passHref>
+          <a
+            href='dummy-href'
+            className='space font-bold text-gray-900 dark:text-gray-300'
+          >
             <FontAwesomeIcon icon={faSatellite} className='mr-2' /> IOTA
           </a>
         </Link>

@@ -18,16 +18,21 @@ const Recover = (props: {
             className='form-input p-3 rounded w-full'
             type='text'
             placeholder='Paste in your key'
-          ></input>
+          />
         </div>
         <button
+          type='button'
           onClick={setSignUpState}
-          className='bg-purple-500 hover:bg-purple-700 text-white font-bold px-4 rounded whitespace-nowrap'
+          className='bg-purple-500 hover:bg-purple-700 text-white 
+          font-bold px-4 rounded whitespace-nowrap'
         >
           Recover
         </button>
       </div>
-      <p className='text-center text-white text-sm decoration-white-8 py-3 underline hover:no-underline cursor-pointer'>
+      <p
+        className='text-center text-white text-sm decoration-white-8 
+      py-3 underline hover:no-underline cursor-pointer'
+      >
         <span onClick={props.handleClick}>Sign up with account</span>
       </p>
     </div>

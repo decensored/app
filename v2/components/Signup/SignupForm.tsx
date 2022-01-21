@@ -5,13 +5,13 @@ import Recover from './Recover'
 import logo from '../../public/logo/logotype_invert.svg'
 
 const SignupForm = (props: { type: string }) => {
-  const [type, setType] = React.useState(props.type)
+  const [theType, setTheType] = React.useState(props.type)
 
-  function toggleForm() {
-    if (type === 'recover') {
-      setType('signup')
+  const toggleForm = (): void => {
+    if (theType === 'recover') {
+      setTheType('signup')
     } else {
-      setType('recover')
+      setTheType('recover')
     }
   }
 
@@ -23,11 +23,11 @@ const SignupForm = (props: { type: string }) => {
       >
         <Image src={logo} alt='Signet' className='h-full' />
         <div className='mt-2 min-h-[42px]'>
-          {type === 'signup' && (
-            <Register type={type} handleClick={toggleForm} />
+          {theType === 'signup' && (
+            <Register type={theType} handleClick={toggleForm} />
           )}
-          {type === 'recover' && (
-            <Recover type={type} handleClick={toggleForm} />
+          {theType === 'recover' && (
+            <Recover type={theType} handleClick={toggleForm} />
           )}
         </div>
       </div>

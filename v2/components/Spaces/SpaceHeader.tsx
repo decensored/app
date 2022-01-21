@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import useStore from '../../lib/store.js'
 import SpaceItem from './SpaceItem'
 
-const SpaceHeader = () => {
+const SpaceHeader: FunctionComponent = () => {
   const { isSignedUp /* , setSignUpState */ } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     // setSignUpState: state.setSignUpState,
@@ -10,7 +10,10 @@ const SpaceHeader = () => {
 
   return (
     <div id='spaces'>
-      <div className='container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28'>
+      <div
+        className='container mx-auto py-10 px-3
+      max-w-mdflex flex-col gap-y-5 mb-28'
+      >
         {isSignedUp && (
           <div
             id='create-space'
@@ -22,7 +25,11 @@ const SpaceHeader = () => {
                   Start a new space
                 </p>
                 <p className='text-md mb-4'>Build your own network</p>
-                <button className='bg-decensored-900 hover:bg-purple-800 text-white font-medium py-2 px-3 rounded cursor-pointer'>
+                <button
+                  type='button'
+                  className='bg-decensored-900 hover:bg-purple-800 text-white
+                font-medium py-2 px-3 rounded cursor-pointer'
+                >
                   Create space
                 </button>
               </div>

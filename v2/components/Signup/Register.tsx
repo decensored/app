@@ -19,16 +19,21 @@ const Register = (props: {
             type='text'
             placeholder='Choose your username'
             id='username'
-          ></input>
+          />
         </div>
         <button
+          type='button'
           onClick={setSignUpState}
-          className='bg-purple-500 hover:bg-purple-700 text-white font-bold px-4 rounded whitespace-nowrap'
+          className='bg-purple-500 hover:bg-purple-700 text-white 
+          font-bold px-4 rounded whitespace-nowrap'
         >
           Sign-up
         </button>
       </div>
-      <p className='text-center text-white text-sm decoration-white-8 py-3 underline hover:no-underline cursor-pointer'>
+      <p
+        className='text-center text-white text-sm decoration-white-8 
+      py-3 underline hover:no-underline cursor-pointer'
+      >
         <span onClick={props.handleClick}>Recover your account</span>
       </p>
     </section>
