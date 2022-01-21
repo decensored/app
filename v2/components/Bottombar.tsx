@@ -11,6 +11,13 @@ interface BottombarProps {
   isSignedUp: boolean
 }
 
+const navBarClasses = {
+  position: 'fixed left-0 right-0 bottom-0',
+  flexbox: 'flex gap-y-5',
+  style: 'bg-white shadow-2xl divide-y divide-solid divide-gray-200',
+  darkStyle: 'dark:bg-black dark:divide-gray-800',
+}
+
 const navItemClasses = {
   flexbox: 'flex grow flex-col items-center justify-center',
   text: 'cursor-pointer text-3xl',
@@ -20,9 +27,12 @@ const navItemClasses = {
 
 const Bottombar: FunctionComponent<BottombarProps> = ({ isSignedUp }) => (
   <nav
-    className='fixed flex gap-y-5 left-0 right-0 bottom-0 bg-white
-    dark:bg-black shadow-2xl divide-y divide-solid divide-gray-200
-    dark:divide-gray-800'
+    className={`
+      ${navBarClasses.position}
+      ${navBarClasses.flexbox}
+      ${navBarClasses.style}
+      ${navBarClasses.darkStyle}
+  `}
   >
     <div className='container mx-auto py-6 max-w-md flex gap-y-5'>
       <Link href='/' passHref>
