@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import React, { FunctionComponent } from 'react'
 import { Helmet } from 'react-helmet'
+import { ToastContainer } from 'react-toastify'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.scss'
@@ -42,6 +43,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       />
     </Helmet>
     <Component {...pageProps} />
+    <ToastContainer />
   </>
 )
 

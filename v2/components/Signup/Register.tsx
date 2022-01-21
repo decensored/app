@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import useStore from '../../lib/store.js'
 
 interface RegisterProps {
@@ -9,10 +11,19 @@ interface RegisterProps {
 const Register: FunctionComponent<RegisterProps> = ({
   /* type, */ handleClick,
 }) => {
-  const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
-    // isSignedUp: state.isSignedUp,
+  const { isSignedUp, setSignUpState } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))
+
+  const setSignUpStateWithToast = () => {
+    setSignUpState()
+
+    // https://fkhadra.github.io/react-toastify/introduction/
+    toast(isSignedUp ? 'Signing out...' : 'Signing in...', {
+      autoClose: 2000,
+    })
+  }
 
   return (
     <section>
@@ -27,7 +38,7 @@ const Register: FunctionComponent<RegisterProps> = ({
         </div>
         <button
           type='button'
-          onClick={setSignUpState}
+          onClick={setSignUpStateWithToast}
           className='bg-purple-500 hover:bg-purple-700 text-white
           font-bold px-4 rounded whitespace-nowrap'
         >
