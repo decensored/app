@@ -18,7 +18,7 @@ const navBarClasses = {
   darkStyle: 'dark:bg-black dark:divide-gray-800',
 }
 
-const navItemClasses = {
+const navBarItemClasses = {
   flexbox: 'flex grow flex-col items-center justify-center',
   text: 'cursor-pointer text-3xl',
   textColor: 'text-decensored-900 hover:text-purple-800',
@@ -38,10 +38,10 @@ const Bottombar: FunctionComponent<BottombarProps> = ({ isSignedUp }) => (
       <Link href='/' passHref>
         <span
           className={`
-            ${navItemClasses.flexbox}
-            ${navItemClasses.text}
-            ${navItemClasses.textColor}
-            ${navItemClasses.darkTextColor}
+            ${navBarItemClasses.flexbox}
+            ${navBarItemClasses.text}
+            ${navBarItemClasses.textColor}
+            ${navBarItemClasses.darkTextColor}
         `}
         >
           <FontAwesomeIcon icon={faSatelliteDish} />
@@ -51,10 +51,10 @@ const Bottombar: FunctionComponent<BottombarProps> = ({ isSignedUp }) => (
       <Link href='/spaces' passHref>
         <span
           className={`
-            ${navItemClasses.flexbox}
-            ${navItemClasses.text}
-            ${navItemClasses.textColor}
-            ${navItemClasses.darkTextColor}
+            ${navBarItemClasses.flexbox}
+            ${navBarItemClasses.text}
+            ${navBarItemClasses.textColor}
+            ${navBarItemClasses.darkTextColor}
         `}
         >
           <FontAwesomeIcon icon={faSatellite} />
@@ -65,10 +65,10 @@ const Bottombar: FunctionComponent<BottombarProps> = ({ isSignedUp }) => (
         <Link href='/user/MrSupertramp' passHref>
           <span
             className={`
-            ${navItemClasses.flexbox}
-            ${navItemClasses.text}
-            ${navItemClasses.textColor}
-            ${navItemClasses.darkTextColor}
+            ${navBarItemClasses.flexbox}
+            ${navBarItemClasses.text}
+            ${navBarItemClasses.textColor}
+            ${navBarItemClasses.darkTextColor}
         `}
           >
             <FontAwesomeIcon icon={faUserAstronaut} />
