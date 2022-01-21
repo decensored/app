@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { FunctionComponent } from 'react'
-import Image from 'next/image'
 import Register from './Register'
 import Recover from './Recover'
 

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
