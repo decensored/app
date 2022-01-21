@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import Form from './Form'
 import FeedItem from './FeedItem'
-import useStore from '../../lib/store.js'
+import useStore from '../../lib/store'
 
 const Feed: FunctionComponent = () => {
   const isSignedUp = useStore((state) => state.isSignedUp)

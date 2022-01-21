@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect } from 'react'
 import Web3 from 'web3'
 import { toast } from 'react-toastify'
-import useStore from '../lib/store.js'
-import { inBrowser } from '../lib/where.js'
+import useStore from '../lib/store'
+import { inBrowser } from '../lib/where'
 
 import {
   CONTRACT_ACCOUNTS_ABI,
@@ -10,21 +10,17 @@ import {
   CONTRACT_SPACES_ABI,
 } from '../lib/contract_abis.js'
 
-// TODO: move these to store.js
-let web3: any
-let contractPosts: any
-let contractSpaces: any
-let contractAccounts: any
+let web3: any // TODO: move to store.ts
 
-export const getContractAccounts = (): any => contractAccounts
-
-//
 const Web3Client: FunctionComponent = () => {
-  const { evmNode, chainId, contractPostsAddress } = useStore((state) => ({
-    evmNode: state.evmNode,
-    chainId: state.chainId,
-    contractPostsAddress: state.contractPostsAddress,
-  }))
+  const { evmNode, chainId, contractPostsAddress, setContract } = useStore(
+    (state) => ({
+      evmNode: state.evmNode,
+      chainId: state.chainId,
+      contractPostsAddress: state.contractPostsAddress,
+      setContract: state.setContract,
+    })
+  )
 
   useEffect(() => {
     if (!inBrowser) return
@@ -34,6 +30,7 @@ const Web3Client: FunctionComponent = () => {
     web3 = new Web3(evmNode)
     // console.log('Web3Client.web3', web3)
 
+    let contractPosts: any
     try {
       contractPosts = new web3.eth.Contract(
         CONTRACT_POSTS_ABI,
@@ -50,7 +47,7 @@ const Web3Client: FunctionComponent = () => {
       .spaces()
       .call()
       .then((contractSpacesAddress: any) => {
-        contractSpaces = new web3.eth.Contract(
+        const contractSpaces = new web3.eth.Contract(
           CONTRACT_SPACES_ABI,
           contractSpacesAddress
         )
@@ -60,11 +57,17 @@ const Web3Client: FunctionComponent = () => {
           .accounts()
           .call()
           .then((contractAccountsAddress: any) => {
-            contractAccounts = new web3.eth.Contract(
+            const contractAccounts = new web3.eth.Contract(
               CONTRACT_ACCOUNTS_ABI,
               contractAccountsAddress
             )
             // console.log('Web3Client.contractAccounts', contractAccounts)
+
+            setContract({
+              accounts: contractAccounts,
+              posts: contractPosts,
+              spaces: contractSpaces,
+            })
           })
           .catch((e: any) => {
             toast.error(`Accounts contract error: ${e.message}`, {

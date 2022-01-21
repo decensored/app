@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import useStore from '../../lib/store.js'
+import useStore from '../../lib/store'
 
 interface RecoverProps {
   // type: string

@@ -4,13 +4,19 @@ import { persist } from 'zustand/middleware'
 const useStore = create(
   persist(
     (set, get) => ({
+      //
       // non-persistent state
-
+      //
       isSignedUp: false,
       toggleIsSignedUp: () => set({ isSignedUp: !get().isSignedUp }),
 
-      // persistent state by the partialize function below
+      // smart contracts
+      contract: {}, // { accounts: any, posts: any, spaces: any },
+      setContract: (contract) => set({ contract }),
 
+      //
+      // persistent state by the partialize function below
+      //
       userName: '',
       setUserName: (userName) => set({ userName }),
 
