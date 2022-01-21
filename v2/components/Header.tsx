@@ -17,9 +17,7 @@ const Header: FunctionComponent = () => {
     toggleIsSignedUp()
 
     // https://fkhadra.github.io/react-toastify/introduction/
-    toast(isSignedUp ? 'Signing out...' : 'Signing in...', {
-      autoClose: 2000,
-    })
+    toast.warning(isSignedUp ? 'Signing out...' : 'Signing in...', {})
   }
 
   return (

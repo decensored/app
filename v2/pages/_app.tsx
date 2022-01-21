@@ -1,10 +1,15 @@
 import type { AppProps } from 'next/app'
 import React, { FunctionComponent } from 'react'
 import { Helmet } from 'react-helmet'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.scss'
+import { inBrowser } from '../lib/where.js'
+
+if (inBrowser) {
+  // console.log('TODO: web3 init')
+}
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -43,7 +48,12 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       />
     </Helmet>
     <Component {...pageProps} />
-    <ToastContainer />
+    <ToastContainer
+      autoClose={2000}
+      pauseOnHover={false}
+      newestOnTop
+      position={toast.POSITION.TOP_CENTER}
+    />
   </>
 )
 
