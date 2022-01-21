@@ -16,7 +16,7 @@ const Register: FunctionComponent<RegisterProps> = ({
     setSignUpState: state.setSignUpState,
   }))
 
-  const setSignUpStateWithToast: void = () => {
+  const setSignUpStateWithToast = (): void => {
     setSignUpState()
 
     // https://fkhadra.github.io/react-toastify/introduction/
