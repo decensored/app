@@ -12,7 +12,7 @@ const SpaceHeader: FunctionComponent = () => {
     <div id='spaces'>
       <div
         className='container mx-auto py-10 px-3
-      max-w-mdflex flex-col gap-y-5 mb-28'
+      max-w-md flex flex-col gap-y-5 mb-28'
       >
         {isSignedUp && (
           <div

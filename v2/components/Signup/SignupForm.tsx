@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import Register from './Register'
 import Recover from './Recover'
-import logo from '../../public/logo/logotype_invert.svg'
 
 interface SignupFormProps {
   type: string
@@ -20,13 +20,19 @@ const SignupForm: FunctionComponent<SignupFormProps> = ({ type }) => {
   }
 
   return (
-    <div id='screen_sign_up'>
+    <div id='screen_sign_up' className='w-full mt-5 mb-10'>
       <div
         id='screen_signup_inner'
-        className='container mx-auto px-3 pb-4 max-w-md'
+        className='container mx-auto px-3 max-w-md'
       >
-        <Image src={logo} alt='Signet' className='h-full' />
-        <div className='mt-2 min-h-[42px]'>
+        <div className='flex justify-center mb-6'>
+          <img
+            src='/logo/logotype_invert.svg'
+            alt='Decensored Logo'
+            className='max-h-[42px] max-w-[90%]'
+          />
+        </div>
+        <div className='min-h-[42px]'>
           {theType === 'signup' && (
             <Register /* type={theType} */ handleClick={toggleForm} />
           )}

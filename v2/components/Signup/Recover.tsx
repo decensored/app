@@ -26,25 +26,25 @@ const Recover: FunctionComponent<RecoverProps> = ({
         <button
           type='button'
           onClick={setSignUpState}
-          className='bg-purple-500 hover:bg-purple-700 text-white 
+          className='bg-purple-500 hover:bg-purple-700 text-white
           font-bold px-4 rounded whitespace-nowrap'
         >
           Recover
         </button>
       </div>
-      <p
-        className='text-center text-white text-sm decoration-white-8 
+      {/* <p
+        className='text-center text-white text-sm decoration-white-8
       py-3 underline hover:no-underline cursor-pointer'
       >
-        {/* <span
+        <span
           onClick={handleClick}
           // onKeyDown={handleClick}
           role='link'
           tabIndex={0}
         >
           Sign up with account
-        </span> */}
-      </p>
+        </span>
+      </p> */}
     </div>
   )
 }

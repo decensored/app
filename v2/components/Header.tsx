@@ -1,12 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { FunctionComponent } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SignupForm from './Signup/SignupForm'
-import signet from '../public/logo/signet.svg'
-import logo from '../public/logo/logotype_invert.svg'
 import useStore from '../lib/store.js'
 
 interface HeaderProps {
@@ -20,18 +18,25 @@ const Header: FunctionComponent<HeaderProps> = ({ isSignedUp }) => {
   }))
 
   return (
-    <div id='header' className='bg-decensored-gradient w-full'>
-      <div className='flex gap-y-5 p-4 justify-between items-center'>
+    <div
+      id='header'
+      className='bg-decensored-gradient w-full flex flex-col items-start'
+    >
+      <div className='flex w-full gap-y-5 p-4 justify-between items-center'>
         <div id='logo'>
           <Link href='/' passHref>
-            <a href='dummy-href' className='block h-10 flex gap-1'>
-              <Image src={signet} alt='Signet' className='h-full' />
-              <Image
-                src={logo}
-                alt='Logo'
-                className='h-full hidden sm:block opacity-0'
+            <div className='block flex gap-2 items-center'>
+              <img
+                alt='Decensored Logo'
+                src='/logo/signet.svg'
+                className='h-[30px] -mt-1'
               />
-            </a>
+              <img
+                alt='Decensored Logo'
+                src='/logo/logotype_invert.svg'
+                className='h-[20px] hidden sm:block'
+              />
+            </div>
           </Link>
         </div>
         <div
