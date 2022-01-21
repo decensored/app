@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import Register from './Register'
 import Recover from './Recover'
 import logo from '../../public/logo/logotype_invert.svg'
 
-const SignupForm = (props: { type: string }) => {
-  const [theType, setTheType] = React.useState(props.type)
+interface SignupFormProps {
+  type: string
+}
+
+const SignupForm: FunctionComponent<SignupFormProps> = ({ type }) => {
+  const [theType, setTheType] = React.useState(type)
 
   const toggleForm = (): void => {
     if (theType === 'recover') {
@@ -24,10 +28,10 @@ const SignupForm = (props: { type: string }) => {
         <Image src={logo} alt='Signet' className='h-full' />
         <div className='mt-2 min-h-[42px]'>
           {theType === 'signup' && (
-            <Register type={theType} handleClick={toggleForm} />
+            <Register /* type={theType} */ handleClick={toggleForm} />
           )}
           {theType === 'recover' && (
-            <Recover type={theType} handleClick={toggleForm} />
+            <Recover /* type={theType} */ handleClick={toggleForm} />
           )}
         </div>
       </div>

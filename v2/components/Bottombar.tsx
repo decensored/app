@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import {
   faSatellite,
@@ -7,7 +7,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Bottombar = (props: { isSignedUp: boolean }) => (
+interface BottombarProps {
+  isSignedUp: boolean
+}
+
+const Bottombar: FunctionComponent<BottombarProps> = ({ isSignedUp }) => (
   <nav
     className='fixed flex gap-y-5 left-0 right-0 bottom-0 bg-white 
     dark:bg-black shadow-2xl divide-y divide-solid divide-gray-200 
@@ -36,7 +40,7 @@ const Bottombar = (props: { isSignedUp: boolean }) => (
           <span className='text-xs mt-2'>Spaces</span>
         </a>
       </Link>
-      {props.isSignedUp && (
+      {isSignedUp && (
         <Link href='/user/MrSupertramp' passHref>
           <a
             href='dummy-href'

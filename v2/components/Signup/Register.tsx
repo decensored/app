@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import useStore from '../../lib/store.js'
 
-const Register = (props: {
-  type: string
+interface RegisterProps {
+  // type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
+}
+
+const Register: FunctionComponent<RegisterProps> = ({
+  /* type, */ handleClick,
 }) => {
   const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
     // isSignedUp: state.isSignedUp,
@@ -34,7 +38,7 @@ const Register = (props: {
         className='text-center text-white text-sm decoration-white-8 
       py-3 underline hover:no-underline cursor-pointer'
       >
-        <span onClick={props.handleClick}>Recover your account</span>
+        <span onClick={handleClick}>Recover your account</span>
       </p>
     </section>
   )

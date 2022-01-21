@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app'
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { Helmet } from 'react-helmet'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.css'
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
+const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
     <Helmet>
       <title>Decensored</title>

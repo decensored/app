@@ -8,15 +8,16 @@ This is a proof of concept. Moderation is limited. Do not post offensive stuff o
 
 Decensored is a decentralized social media protocol. It is currently
 a working proof-of-concept.
-The Decensored smart contracts can be found at https://github.com/mikrohash/decensored-contracts
+The Decensored smart contracts can be found at https://github.com/decensored/contracts
 
 ## Installation
 
 ```
-git clone https://github.com/mikrohash/decensored
+git clone https://github.com/decensored/app
 cd decensored/app
 npm install
 ```
+
 - To run the frontend locally on http://127.0.0.1:8080
 
 ```

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import useStore from '../../lib/store.js'
 
-const Recover = (props: {
-  type: string
+interface RecoverProps {
+  // type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
+}
+const Recover: FunctionComponent<RecoverProps> = ({
+  /* type, */ handleClick,
 }) => {
   const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
     // isSignedUp: state.isSignedUp,
@@ -33,7 +36,7 @@ const Recover = (props: {
         className='text-center text-white text-sm decoration-white-8 
       py-3 underline hover:no-underline cursor-pointer'
       >
-        <span onClick={props.handleClick}>Sign up with account</span>
+        <span onClick={handleClick}>Sign up with account</span>
       </p>
     </div>
   )
