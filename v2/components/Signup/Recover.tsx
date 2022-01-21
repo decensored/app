@@ -8,9 +8,9 @@ interface RecoverProps {
 const Recover: FunctionComponent<RecoverProps> = ({
   /* type, */ handleClick,
 }) => {
-  const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
+  const { /* isSignedUp, */ toggleIsSignedUp } = useStore((state) => ({
     // isSignedUp: state.isSignedUp,
-    setSignUpState: state.setSignUpState,
+    toggleIsSignedUp: state.toggleIsSignedUp,
   }))
 
   return (
@@ -25,7 +25,7 @@ const Recover: FunctionComponent<RecoverProps> = ({
         </div>
         <button
           type='button'
-          onClick={setSignUpState}
+          onClick={toggleIsSignedUp}
           className='bg-purple-500 hover:bg-purple-700 text-white
           font-bold px-4 rounded whitespace-nowrap'
         >

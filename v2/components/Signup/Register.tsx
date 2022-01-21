@@ -11,13 +11,13 @@ interface RegisterProps {
 const Register: FunctionComponent<RegisterProps> = ({
   /* type, */ handleClick,
 }) => {
-  const { isSignedUp, setSignUpState } = useStore((state) => ({
+  const { isSignedUp, toggleIsSignedUp } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
-    setSignUpState: state.setSignUpState,
+    toggleIsSignedUp: state.toggleIsSignedUp,
   }))
 
-  const setSignUpStateWithToast = (): void => {
-    setSignUpState()
+  const toggleIsSignedUpWithToast = (): void => {
+    toggleIsSignedUp()
 
     // https://fkhadra.github.io/react-toastify/introduction/
     toast(isSignedUp ? 'Signing out...' : 'Signing in...', {
@@ -38,7 +38,7 @@ const Register: FunctionComponent<RegisterProps> = ({
         </div>
         <button
           type='button'
-          onClick={setSignUpStateWithToast}
+          onClick={toggleIsSignedUpWithToast}
           className='bg-purple-500 hover:bg-purple-700 text-white
           font-bold px-4 rounded whitespace-nowrap'
         >
