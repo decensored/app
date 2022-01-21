@@ -3,10 +3,7 @@ import useStore from '../../lib/store.js'
 import SpaceItem from './SpaceItem'
 
 const SpaceHeader: FunctionComponent = () => {
-  const { isSignedUp /* , setSignUpState */ } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
-    // setSignUpState: state.setSignUpState,
-  }))
+  const isSignedUp = useStore((state) => state.isSignedUp)
 
   return (
     <div id='spaces'>

@@ -1,20 +1,26 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SignupForm from './Signup/SignupForm'
 import useStore from '../lib/store.js'
 
-interface HeaderProps {
-  isSignedUp: boolean
-}
-
-const Header: FunctionComponent<HeaderProps> = ({ isSignedUp }) => {
-  const { /* isSignedUp, */ setSignUpState } = useStore((state) => ({
-    // isSignedUp: state.isSignedUp,
+const Header: FunctionComponent = () => {
+  const { isSignedUp, setSignUpState } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
     setSignUpState: state.setSignUpState,
   }))
+
+  const setSignUpStateWithToast = (): void => {
+    setSignUpState()
+
+    // https://fkhadra.github.io/react-toastify/introduction/
+    toast(isSignedUp ? 'Signing out...' : 'Signing in...', {
+      autoClose: 2000,
+    })
+  }
 
   return (
     <div
@@ -77,7 +83,7 @@ const Header: FunctionComponent<HeaderProps> = ({ isSignedUp }) => {
                 </a>
               </Link>
               <FontAwesomeIcon
-                onClick={setSignUpState}
+                onClick={setSignUpStateWithToast}
                 icon={faSignOutAlt}
                 className='cursor-pointer ml-5'
               />
