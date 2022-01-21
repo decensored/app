@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from '../../lib/store.js'
+import { getContractAccounts } from '../Web3Client' // TODO: get this from store.js
 
 interface RegisterProps {
   // type: string
@@ -25,9 +26,7 @@ const Register: FunctionComponent<RegisterProps> = ({
     toggleIsSignedUp()
 
     // https://fkhadra.github.io/react-toastify/introduction/
-    toast(isSignedUp ? 'Signing out...' : 'Signing in...', {
-      autoClose: 2000,
-    })
+    toast(isSignedUp ? 'Signing out...' : 'Signing in...')
   }
 
   return (
@@ -40,7 +39,17 @@ const Register: FunctionComponent<RegisterProps> = ({
             placeholder='Choose your username'
             id='username'
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={async (e) => {
+              const { value } = e.target
+              setUserName(value)
+
+              const id = await getContractAccounts()
+                .methods.id_by_username(value)
+                .call() // TODO: error handling
+              if (id !== '0') {
+                toast(`user ${value} has id ${id}`)
+              }
+            }}
           />
         </div>
         <button
