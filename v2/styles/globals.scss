@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  opacity: 1;
-  transition: 0.3s opacity;
+  // opacity: 1;
+  //transition: 0.3s opacity;
   background-image: url('../public/background/light.svg');
   background-repeat: repeat;
   background-attachment: fixed;
@@ -33,10 +33,10 @@ html .bg-decensored-gradient {
   box-shadow: none !important;
 }
 
-.opacity-0 {
-  opacity: 0;
-}
+// .opacity-0 {
+//   opacity: 0;
+// }
 
-#message {
-  opacity: 0;
-}
+// #message {
+//   opacity: 0;
+// }

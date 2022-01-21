@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { Helmet } from 'react-helmet'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -28,7 +28,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
         href='/favicon/favicon-16x16.png'
       />
       <body
-        className='font-sans bg-slate-100 dark:bg-black 
+        className='font-sans bg-slate-100 dark:bg-black
         text-gray-900 dark:text-gray-500'
       />
     </Helmet>
