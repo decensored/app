@@ -57,14 +57,26 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
             ${classNamesLib.dialogInnerDark}
           `}
         >
-          <div className={classNamesLib.dialogHeader}>
-            <Dialog.Title>Node Settings</Dialog.Title>
+          <div
+            className={`
+              ${classNamesLib.dialogHeader}
+              ${classNamesLib.dialogHeaderDark}
+            `}
+          >
+            Node Settings
           </div>
           <div className={classNamesLib.dialogBody}>
             <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
               <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
                 <div className='col-span-2'>
-                  <span className={classNamesLib.dialogLabel}>EVM-Node</span>
+                  <span
+                    className={`
+                      ${classNamesLib.dialogLabel}
+                      ${classNamesLib.dialogLabelDark}
+                    `}
+                  >
+                    EVM-Node
+                  </span>
                   <input
                     className={`
                         ${classNamesLib.input}
@@ -79,7 +91,14 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                   )}
                 </div>
                 <div className=''>
-                  <span className={classNamesLib.dialogLabel}>Chain-ID</span>
+                  <span
+                    className={`
+                      ${classNamesLib.dialogLabel}
+                      ${classNamesLib.dialogLabelDark}
+                    `}
+                  >
+                    Chain-ID
+                  </span>
                   <input
                     className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
                     type='text'
@@ -91,7 +110,12 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                   )}
                 </div>
                 <div className='col-span-3'>
-                  <span className={classNamesLib.dialogLabel}>
+                  <span
+                    className={`
+                      ${classNamesLib.dialogLabel}
+                      ${classNamesLib.dialogLabelDark}
+                    `}
+                  >
                     Contract Address
                   </span>
                   <input

@@ -12,7 +12,9 @@ export const classNamesLib = {
   dialogInner: 'relative bg-white max-w-sm mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-gray-900 dark:divide-gray-800',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
+  dialogHeaderDark: 'dark:text-gray-300',
   dialogLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
+  dialogLabelDark: 'dark:text-gray-300',
   dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
 
