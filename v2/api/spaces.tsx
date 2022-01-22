@@ -68,7 +68,7 @@ export const getAllSpaces = async (contract: any) => {
     whatever: number
     img: string
   }[] = []
-  for (let i = index; i > 1; i--) {
+  for (let i = index; i > 0; i--) {
     let space = await getSpaceById(contract, i)
     spaces.push(space)
   }
