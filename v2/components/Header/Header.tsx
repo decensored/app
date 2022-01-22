@@ -49,44 +49,38 @@ const Header: FunctionComponent = () => {
           id='header_nav_items'
           className='text-white text-lg flex items-center'
         >
-          {!isSignedUp && (
-            <>
-              <Link href='https://github.com/decensored/app' passHref>
-                <a
-                  href='dummy-href'
-                  target='_blank'
-                  title='github'
-                  rel='noreferrer'
-                >
-                  <FontAwesomeIcon icon={faGithub} />
-                </a>
-              </Link>
-              <span className='mx-2'>|</span>
-              <Link href='https://t.co/Lmou3Qx5Ap' passHref>
-                <a
-                  href='dummy-href'
-                  target='_blank'
-                  title='discord'
-                  rel='noreferrer'
-                >
-                  <FontAwesomeIcon icon={faDiscord} />
-                </a>
-              </Link>
-            </>
-          )}
+          <Link href='https://github.com/decensored/app' passHref>
+            <a
+              href='dummy-href'
+              target='_blank'
+              title='github'
+              rel='noreferrer'
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+          </Link>
+          <span className='mx-2'>|</span>
+          <Link href='https://t.co/Lmou3Qx5Ap' passHref>
+            <a
+              href='dummy-href'
+              target='_blank'
+              title='discord'
+              rel='noreferrer'
+            >
+              <FontAwesomeIcon icon={faDiscord} />
+            </a>
+          </Link>
+          <FontAwesomeIcon
+            icon={faCog}
+            onClick={() => isOpenSettingsDialog(true)}
+            className='cursor-pointer ml-5'
+          />
           {isSignedUp && (
-            <>
-              <FontAwesomeIcon
-                icon={faCog}
-                onClick={() => isOpenSettingsDialog(true)}
-                className='cursor-pointer ml-5'
-              />
-              <FontAwesomeIcon
-                onClick={setIsSignedUpWithToast}
-                icon={faSignOutAlt}
-                className='cursor-pointer ml-5'
-              />
-            </>
+            <FontAwesomeIcon
+              onClick={setIsSignedUpWithToast}
+              icon={faSignOutAlt}
+              className='cursor-pointer ml-5'
+            />
           )}
         </div>
       </div>
