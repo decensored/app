@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
-import Header from '../../components/Header'
-import Bottombar from '../../components/Bottombar'
+import Header from '../../components/Header/Header'
+import Bottombar from '../../components/Navigations/Bottom'
 
 const Space: NextPage = () => {
   const router = useRouter()

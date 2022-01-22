@@ -4,8 +4,8 @@ import { toast } from 'react-toastify'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SignupForm from './Signup/SignupForm'
-import useStore from '../lib/store'
+import SignupForm from '../Signup/SignupForm'
+import useStore from '../../lib/store'
 
 const Header: FunctionComponent = () => {
   const { isSignedUp, setIsSignedUp } = useStore((state) => ({

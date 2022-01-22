@@ -6,7 +6,7 @@ import {
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import useStore from '../lib/store'
+import useStore from '../../lib/store'
 
 const navBarClasses = {
   position: 'fixed left-0 right-0 bottom-0',

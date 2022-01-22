@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 import Feed from '../components/Feed/Feed'
-import Bottombar from '../components/Bottombar'
+import Bottombar from '../components/Navigations/Bottom'
 
 const Home: NextPage = () => (
   <main>
