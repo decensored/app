@@ -34,6 +34,7 @@
     "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "@next/next/no-img-element": "off",
+    "@typescript-eslint/no-explicit-any": ["off"],
     "import/extensions": [
       "error",
       "ignorePackages",
