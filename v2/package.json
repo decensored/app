@@ -7,7 +7,8 @@
     "start": "next start",
     "lint": "next lint",
     "precommit": "lint",
-    "validate": "precommit"
+    "validate": "precommit",
+    "prepare": "cd .. && husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
