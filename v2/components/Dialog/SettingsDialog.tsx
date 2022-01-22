@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Dialog } from '@headlessui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import useStore from 'lib/store'
-import { classNamesLib } from '../ClassNames/classNamesLib'
+import { classNamesLib } from '../ClassNames/ClassNames'
 
 interface RegisterProps {
   isOpen: boolean

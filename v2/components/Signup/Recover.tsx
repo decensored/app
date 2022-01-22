@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from '../../lib/store'
-import { classNamesLib } from '../ClassNames/classNamesLib'
+import { classNamesLib } from '../ClassNames/ClassNames'
 
 interface RecoverProps {
   // type: string

@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Header from '../../components/Header/Header'
-import Bottombar from '../../components/Navigations/Bottom'
+import Bottombar from '../../components/BottomNavigation/BottomNavigation'
 
 const User: NextPage = () => {
   const router = useRouter()

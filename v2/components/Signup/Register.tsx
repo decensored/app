@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from '../../lib/store'
-import { classNamesLib } from '../ClassNames/classNamesLib'
+import { classNamesLib } from '../ClassNames/ClassNames'
 
 interface RegisterProps {
   // type: string

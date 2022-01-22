@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { classNamesLib } from '../ClassNames/classNamesLib'
+import { classNamesLib } from '../ClassNames/ClassNames'
 
 /*
   TODO: add Logic for showing / hiding it
