@@ -35,7 +35,11 @@ const Bottombar: FunctionComponent = () => {
           <span
             className={`
               ${classNamesLib.navigationBottomItem}
-              ${classNamesLib.navigationBottomItemDark}
+              ${
+                tabIndex === 0
+                  ? classNamesLib.navigationBottomItemColorActive
+                  : classNamesLib.navigationBottomItemColor
+              }
             `}
           >
             <FontAwesomeIcon icon={faSatelliteDish} />
@@ -43,7 +47,11 @@ const Bottombar: FunctionComponent = () => {
               Feed
               {tabIndex === 0 && (
                 <motion.span
-                  className={classNamesLib.navigationBottomActiveTab}
+                  className={`
+                    ${classNamesLib.navigationBottomMotionSpan}
+                    ${classNamesLib.navigationBottomMotionSpanColor}
+                    ${classNamesLib.navigationBottomMotionSpanColorDark}
+                  `}
                   layoutId='activeTab'
                 />
               )}
@@ -54,7 +62,11 @@ const Bottombar: FunctionComponent = () => {
           <span
             className={`
               ${classNamesLib.navigationBottomItem}
-              ${classNamesLib.navigationBottomItemDark}
+              ${
+                tabIndex === 1
+                  ? classNamesLib.navigationBottomItemColorActive
+                  : classNamesLib.navigationBottomItemColor
+              }
             `}
           >
             <FontAwesomeIcon icon={faSatellite} />
@@ -62,7 +74,11 @@ const Bottombar: FunctionComponent = () => {
               Spaces
               {tabIndex === 1 && (
                 <motion.span
-                  className={classNamesLib.navigationBottomActiveTab}
+                  className={`
+                    ${classNamesLib.navigationBottomMotionSpan}
+                    ${classNamesLib.navigationBottomMotionSpanColor}
+                    ${classNamesLib.navigationBottomMotionSpanColorDark}
+                  `}
                   layoutId='activeTab'
                 />
               )}
@@ -74,7 +90,11 @@ const Bottombar: FunctionComponent = () => {
             <span
               className={`
                 ${classNamesLib.navigationBottomItem}
-                ${classNamesLib.navigationBottomItemDark}
+                ${
+                  tabIndex === 2
+                    ? classNamesLib.navigationBottomItemColorActive
+                    : classNamesLib.navigationBottomItemColor
+                }
               `}
             >
               <FontAwesomeIcon icon={faUserAstronaut} />
@@ -82,7 +102,11 @@ const Bottombar: FunctionComponent = () => {
                 My Posts
                 {tabIndex === 2 && (
                   <motion.span
-                    className={classNamesLib.navigationBottomActiveTab}
+                    className={`
+                      ${classNamesLib.navigationBottomMotionSpan}
+                      ${classNamesLib.navigationBottomMotionSpanColor}
+                      ${classNamesLib.navigationBottomMotionSpanColorDark}
+                    `}
                     layoutId='activeTab'
                   />
                 )}

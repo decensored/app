@@ -26,10 +26,11 @@ export const classNamesLib = {
     'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
   navigationBottomWrapperDark: 'dark:bg-black dark:divide-gray-800',
   navigationBottomInner: 'container mx-auto py-6 max-w-md flex gap-y-5',
-  navigationBottomItem:
-    'flex grow flex-col items-center justify-center cursor-pointer text-3xl text-decensored-900 hover:text-purple-800',
-  navigationBottomItemDark:
-    'dark:text-decensored-500 dark:hover:text-decensored-100',
-  navigationBottomItemText: 'text-xs mt-2',
-  navigationBottomActiveTab: 'underline',
+  navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-3xl',
+  navigationBottomItemColor: 'text-decensored-900 hover:text-purple-800 dark:text-decensored-500 dark:hover:text-decensored-100',
+  navigationBottomItemColorActive: 'text-purple-800 dark:text-decensored-100',
+  navigationBottomItemText: 'relative text-xs mt-2 flex flex-col',
+  navigationBottomMotionSpan: 'h-[1px] absolute -left-1 -right-1 -bottom-2',
+  navigationBottomMotionSpanColor: 'bg-purple-800',
+  navigationBottomMotionSpanColorDark: 'dark:bg-decensored-100',
 }
