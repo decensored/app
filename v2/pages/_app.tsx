@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet'
 import { toast, ToastContainer } from 'react-toastify'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import '../styles/globals.scss'
-import { classNamesLib } from '../components/ClassNames/ClassNames'
-import Web3Client from '../components/Web3Client'
+import 'styles/globals.scss'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
+import Web3Client from 'components/Web3Client'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>

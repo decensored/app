@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import useStore from '../../lib/store'
-import { classNamesLib } from '../ClassNames/ClassNames'
+import useStore from 'lib/store'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 interface RegisterProps {
   // type: string

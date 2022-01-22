@@ -4,8 +4,8 @@ import { toast } from 'react-toastify'
 import { createPopper } from '@popperjs/core'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { classNamesLib } from '../ClassNames/ClassNames'
-import useStore from '../../lib/store'
+import useStore from 'lib/store'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const UserPopover: FunctionComponent = () => {
   const [popoverShow, setPopoverShow] = React.useState(false)

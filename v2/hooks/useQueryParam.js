@@ -1,42 +1,42 @@
 // https://brettfisher.dev/easiest-way-to-use-query-param/
 
-import { useState } from 'react';
-import { inBrowser } from '../lib/where';
+import { useState } from 'react'
+import { inBrowser } from 'lib/where'
 
 const getQuery = () => {
   if (inBrowser) {
-    return new URLSearchParams(window.location.search);
+    return new URLSearchParams(window.location.search)
   }
-  return new URLSearchParams();
-};
+  return new URLSearchParams()
+}
 
 const getQueryStringVal = (key) => {
-  return getQuery().get(key);
-};
+  return getQuery().get(key)
+}
 
 const useQueryParam = (key, defaultVal) => {
-  const [query, setQuery] = useState(getQueryStringVal(key) || defaultVal);
+  const [query, setQuery] = useState(getQueryStringVal(key) || defaultVal)
 
   const updateUrl = (newVal) => {
-    setQuery(newVal);
+    setQuery(newVal)
 
-    const query = getQuery();
+    const query = getQuery()
 
     if (newVal.trim() !== '') {
-      query.set(key, newVal);
+      query.set(key, newVal)
     } else {
-      query.delete(key);
+      query.delete(key)
     }
 
     // This check is necessary if using the hook with Gatsby
     if (inBrowser) {
-      const { protocol, pathname, host } = window.location;
-      const newUrl = `${protocol}//${host}${pathname}?${query.toString()}`;
-      window.history.pushState({}, '', newUrl);
+      const { protocol, pathname, host } = window.location
+      const newUrl = `${protocol}//${host}${pathname}?${query.toString()}`
+      window.history.pushState({}, '', newUrl)
     }
-  };
+  }
 
-  return [query, updateUrl];
-};
+  return [query, updateUrl]
+}
 
-export default useQueryParam;
+export default useQueryParam

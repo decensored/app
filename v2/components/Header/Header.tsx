@@ -6,9 +6,9 @@ import useStore from 'lib/store'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faCog /* , faSignOutAlt */ } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SignupForm from '../Signup/SignupForm'
-import SettingsDialog from '../Dialog/SettingsDialog'
-import UserPopover from './UserPopover'
+import SignupForm from 'components/Signup/SignupForm'
+import SettingsDialog from 'components/Dialog/SettingsDialog'
+import UserPopover from 'components/Header/UserPopover'
 
 const Header: FunctionComponent = () => {
   const [settingsModalOpen, isOpenSettingsDialog] = React.useState(false)

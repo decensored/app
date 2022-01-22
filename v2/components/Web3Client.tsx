@@ -2,14 +2,14 @@ import { FunctionComponent, useEffect } from 'react'
 import Web3 from 'web3'
 import { toast } from 'react-toastify'
 import shallow from 'zustand/shallow'
-import useStore from '../lib/store'
-import { inBrowser } from '../lib/where'
+import useStore from 'lib/store'
+import { inBrowser } from 'lib/where'
 
 import {
   CONTRACT_ACCOUNTS_ABI,
   CONTRACT_POSTS_ABI,
   CONTRACT_SPACES_ABI,
-} from '../lib/contract_abis.js'
+} from 'lib/contract_abis.js'
 
 let web3: any // TODO: move to store.ts
 

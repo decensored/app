@@ -8,8 +8,8 @@ import {
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import useStore from '../../lib/store'
-import { classNamesLib } from '../ClassNames/ClassNames'
+import useStore from 'lib/store'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Bottombar: FunctionComponent = () => {
   const router = useRouter()

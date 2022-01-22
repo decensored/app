@@ -5,7 +5,7 @@
 body {
   // opacity: 1;
   //transition: 0.3s opacity;
-  background-image: url('../public/background/light.svg');
+  background-image: url('/background/light.svg');
   background-repeat: repeat;
   background-attachment: fixed;
   --tw-bg-opacity: 1;
@@ -25,7 +25,7 @@ html .bg-decensored-gradient {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-image: url('../public/background/dark.svg');
+    background-image: url('/background/dark.svg');
   }
 }
 
