@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from '../../lib/store'
+import { classNamesLib } from '../ClassNames/Lib'
 
 interface RegisterProps {
   // type: string
@@ -35,7 +36,7 @@ const Register: FunctionComponent<RegisterProps> = ({
       <div className='flex gap-3'>
         <div className='grow shrink'>
           <input
-            className='form-input p-3 rounded w-full'
+            className={classNamesLib.input}
             type='text'
             placeholder='Choose your username'
             id='username'
@@ -57,8 +58,10 @@ const Register: FunctionComponent<RegisterProps> = ({
         <button
           type='button'
           onClick={setIsSignedUpWithToast}
-          className='bg-purple-500 hover:bg-purple-700 text-white
-          font-bold px-4 rounded whitespace-nowrap'
+          className={`
+            ${classNamesLib.button}
+            ${classNamesLib.buttonDecensored}
+          `}
         >
           Sign-up
         </button>
