@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { Dialog } from '@headlessui/react'
-import { useForm } from 'react-hook-form'
-import useStore from '../../lib/store'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import useStore from 'lib/store'
 
 interface RegisterProps {
   isOpen: boolean
@@ -29,12 +29,17 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   }))
 
   // HANDLE FORM SUBMIT
+  type FormValues = {
+    evmNode: string
+    chainId: number
+    contractAddress: string
+  }
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
-  const onSubmit = (data: any) => {
+  } = useForm<FormValues>()
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     setEVMnode(data.evmNode)
     setChainId(data.chainId)
     setContractPostsAddress(data.contractAddress)
