@@ -39,7 +39,7 @@ const Bottombar: FunctionComponent = () => {
             `}
           >
             <FontAwesomeIcon icon={faSatelliteDish} />
-            <motion.span className={classNamesLib.navigationBottomItemText}>
+            <span className={classNamesLib.navigationBottomItemText}>
               Feed
               {tabIndex === 0 && (
                 <motion.span
@@ -47,7 +47,7 @@ const Bottombar: FunctionComponent = () => {
                   layoutId='activeTab'
                 />
               )}
-            </motion.span>
+            </span>
           </span>
         </Link>
         <Link href='/spaces' passHref>
@@ -58,7 +58,7 @@ const Bottombar: FunctionComponent = () => {
             `}
           >
             <FontAwesomeIcon icon={faSatellite} />
-            <motion.span className={classNamesLib.navigationBottomItemText}>
+            <span className={classNamesLib.navigationBottomItemText}>
               Spaces
               {tabIndex === 1 && (
                 <motion.span
@@ -66,7 +66,7 @@ const Bottombar: FunctionComponent = () => {
                   layoutId='activeTab'
                 />
               )}
-            </motion.span>
+            </span>
           </span>
         </Link>
         {isSignedUp && (
@@ -78,7 +78,7 @@ const Bottombar: FunctionComponent = () => {
               `}
             >
               <FontAwesomeIcon icon={faUserAstronaut} />
-              <motion.span className={classNamesLib.navigationBottomItemText}>
+              <span className={classNamesLib.navigationBottomItemText}>
                 My Posts
                 {tabIndex === 2 && (
                   <motion.span
@@ -86,7 +86,7 @@ const Bottombar: FunctionComponent = () => {
                     layoutId='activeTab'
                   />
                 )}
-              </motion.span>
+              </span>
             </span>
           </Link>
         )}
