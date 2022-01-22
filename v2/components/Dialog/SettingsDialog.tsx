@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { Dialog } from '@headlessui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { classNamesLib } from '../ClassNames/Lib'
 import useStore from 'lib/store'
+import { classNamesLib } from '../ClassNames/Lib'
 
 interface RegisterProps {
   isOpen: boolean
@@ -68,7 +68,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
             >
               <div className='flex flex-wrap -mx-3 mb-6 sm:mb-4'>
                 <div className='w-4/6 px-3 mb-6 md:mb-0'>
-                  <span className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>
+                  <span className={classNamesLib.dialogLabel}>
                     EVM-Node
                   </span>
                   <input
@@ -102,7 +102,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
               </div>
               <div className='flex flex-wrap -mx-3 mb-6 sm:mb-4'>
                 <div className='w-full px-3'>
-                  <span className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>
+                  <span className={classNamesLib.dialogLabel}>
                     Contract Address
                   </span>
                   <input

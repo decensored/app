@@ -27,7 +27,8 @@ const Web3Client: FunctionComponent = () => {
 
     // console.log('Web3Client.config', evmNode, chainId, contractPostsAddress)
 
-    setContract({}) // make sure we only can access the contracts when all is well
+    // make sure we only can access the contracts when all is well
+    setContract({})
 
     try {
       web3 = new Web3(evmNode)
@@ -91,7 +92,7 @@ const Web3Client: FunctionComponent = () => {
           autoClose: 5000,
         })
       })
-  }, [evmNode, chainId, contractPostsAddress])
+  }, [evmNode, chainId, contractPostsAddress, setContract])
 
   return null
 }
@@ -107,7 +108,6 @@ const Web3Client: FunctionComponent = () => {
 //     web3.eth.accounts.privateKeyToAccount(privateKey).address
 
 //   // https://eslint.org/docs/rules/no-underscore-dangle
-//   /* eslint no-underscore-dangle:["error",{"allow":["_parent","_address"]}] */
 //   const options = {
 //     to: functionCall._parent._address,
 //     data: functionCall.encodeABI(),

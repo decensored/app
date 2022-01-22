@@ -6,9 +6,7 @@ interface RecoverProps {
   // type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
 }
-const Recover: FunctionComponent<RecoverProps> = ({
-  /* type, */ handleClick,
-}) => {
+const Recover: FunctionComponent<RecoverProps> = () => {
   const { /* isSignedUp, */ setIsSignedUp } = useStore((state) => ({
     // isSignedUp: state.isSignedUp,
     setIsSignedUp: state.setIsSignedUp,

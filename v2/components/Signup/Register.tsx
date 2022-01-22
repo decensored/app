@@ -9,9 +9,7 @@ interface RegisterProps {
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
 }
 
-const Register: FunctionComponent<RegisterProps> = ({
-  /* type, */ handleClick,
-}) => {
+const Register: FunctionComponent<RegisterProps> = () => {
   const { isSignedUp, setIsSignedUp, userName, setUserName, contract } =
     useStore((state) => ({
       isSignedUp: state.isSignedUp,
