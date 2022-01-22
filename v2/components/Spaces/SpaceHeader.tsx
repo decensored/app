@@ -1,9 +1,43 @@
 import React, { FunctionComponent } from 'react'
-import useStore from '../../lib/store'
-import SpaceItem from './SpaceItem'
+import useStore from 'lib/store'
+import SpaceItem from 'components/Spaces/SpaceItem'
+import { getAllSpaces } from 'api/spaces'
 
 const SpaceHeader: FunctionComponent = () => {
-  const isSignedUp = useStore((state) => state.isSignedUp)
+  const { isSignedUp, contract } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
+    contract: state.contract,
+  }))
+
+  // GET DATA FROM AND SET STATE
+  const [spaces, setSpaces] = React.useState<
+    {
+      id: number
+      name: string
+      owner: number
+      followers: number
+      posts: number
+      whatever: number
+      img: string
+    }[]
+  >()
+
+  React.useEffect(() => {
+    const doGetSpaces = async (): Promise<void> => {
+      try {
+        const result = await getAllSpaces(contract)
+        setSpaces(result)
+      } catch (error) {
+        // throw new Error(`Error ${error}`)
+      }
+    }
+    doGetSpaces()
+  }, [contract])
+
+  if (!spaces) {
+    return null
+  }
+  const createSpaceItems = spaces.map((space) => <SpaceItem {...space} />)
 
   return (
     <div id='spaces'>
@@ -33,11 +67,7 @@ const SpaceHeader: FunctionComponent = () => {
             </div>
           </div>
         )}
-        <div className='flex flex-col gap-y-5 mb-28'>
-          <SpaceItem />
-          <SpaceItem />
-          <SpaceItem />
-        </div>
+        <div className='flex flex-col gap-y-5 mb-28'>{createSpaceItems}</div>
       </div>
     </div>
   )
