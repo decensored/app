@@ -37,7 +37,9 @@ const SpaceHeader: FunctionComponent = () => {
   if (!spaces) {
     return null
   }
-  const createSpaceItems = spaces.map((space) => <SpaceItem {...space} />)
+  const createSpaceItems = spaces.map((space) => (
+    <SpaceItem key={space.id} {...space} />
+  ))
 
   return (
     <div id='spaces'>
