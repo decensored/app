@@ -51,13 +51,18 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
     <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
       <div className={classNamesLib.dialogWrapper}>
         <Dialog.Overlay className={classNamesLib.dialogOverlay} />
-        <div className={classNamesLib.dialogInner}>
+        <div
+          className={`
+            ${classNamesLib.dialogInner}
+            ${classNamesLib.dialogInnerDark}
+          `}
+        >
           <div className={classNamesLib.dialogHeader}>
             <Dialog.Title>Node Settings</Dialog.Title>
           </div>
           <div className={classNamesLib.dialogBody}>
             <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
-              <div className='grid grid-cols-3 gap-4'>
+              <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
                 <div className='col-span-2'>
                   <span className={classNamesLib.dialogLabel}>EVM-Node</span>
                   <input

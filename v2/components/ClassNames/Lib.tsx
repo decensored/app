@@ -9,9 +9,17 @@ export const classNamesLib = {
 
   dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
-  dialogInner: 'relative w-3/4 bg-white max-w-sm mx-auto shadow-xl rounded bg-white dark:bg-gray-900 divide-y divide-solid divide-gray-200 dark:divide-gray-800',
+  dialogInner: 'relative bg-white max-w-sm mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
+  dialogInnerDark: 'dark:bg-gray-900 dark:divide-gray-800',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
-  dialogBody: 'px-8 py-4',
+  dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
+
+  navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
+  navigationBottomWrapperDark: 'dark:bg-black dark:divide-gray-800',
+  navigationBottomInner: 'container mx-auto py-6 max-w-md flex gap-y-5',
+  navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-3xl text-decensored-900 hover:text-purple-800',
+  navigationBottomItemDark: 'dark:text-decensored-500 dark:hover:text-decensored-100',
+  navigationBottomItemText: 'text-xs mt-2'
 }
