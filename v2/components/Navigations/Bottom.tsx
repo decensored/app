@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import {
   faSatellite,
   faSatelliteDish,
@@ -10,6 +12,15 @@ import useStore from '../../lib/store'
 import { classNamesLib } from '../ClassNames/classNamesLib'
 
 const Bottombar: FunctionComponent = () => {
+  const router = useRouter()
+  const { pathname } = router
+
+  let tabIndex = -1
+  if (pathname === '/') tabIndex = 0
+  else if (pathname.startsWith('/space')) tabIndex = 1
+  else if (pathname.startsWith('/user/')) tabIndex = 2
+  // console.log(pathname, tabIndex)
+
   const isSignedUp = useStore((state) => state.isSignedUp)
 
   return (
@@ -28,7 +39,15 @@ const Bottombar: FunctionComponent = () => {
             `}
           >
             <FontAwesomeIcon icon={faSatelliteDish} />
-            <span className={classNamesLib.navigationBottomItemText}>Feed</span>
+            <motion.span className={classNamesLib.navigationBottomItemText}>
+              Feed
+              {tabIndex === 0 && (
+                <motion.span
+                  className={classNamesLib.navigationBottomActiveTab}
+                  layoutId='activeTab'
+                />
+              )}
+            </motion.span>
           </span>
         </Link>
         <Link href='/spaces' passHref>
@@ -39,9 +58,15 @@ const Bottombar: FunctionComponent = () => {
             `}
           >
             <FontAwesomeIcon icon={faSatellite} />
-            <span className={classNamesLib.navigationBottomItemText}>
+            <motion.span className={classNamesLib.navigationBottomItemText}>
               Spaces
-            </span>
+              {tabIndex === 1 && (
+                <motion.span
+                  className={classNamesLib.navigationBottomActiveTab}
+                  layoutId='activeTab'
+                />
+              )}
+            </motion.span>
           </span>
         </Link>
         {isSignedUp && (
@@ -53,9 +78,15 @@ const Bottombar: FunctionComponent = () => {
               `}
             >
               <FontAwesomeIcon icon={faUserAstronaut} />
-              <span className={classNamesLib.navigationBottomItemText}>
+              <motion.span className={classNamesLib.navigationBottomItemText}>
                 My Posts
-              </span>
+                {tabIndex === 2 && (
+                  <motion.span
+                    className={classNamesLib.navigationBottomActiveTab}
+                    layoutId='activeTab'
+                  />
+                )}
+              </motion.span>
             </span>
           </Link>
         )}
