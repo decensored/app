@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify'
 // without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/globals.scss'
+import { classNamesLib } from '../components/ClassNames/ClassNames'
 import Web3Client from '../components/Web3Client'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
@@ -38,10 +39,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       />
       <meta name='msapplication-TileColor' content='#da532c' />
       <meta name='theme-color' content='#ffffff' />
-      <body
-        className='font-sans bg-slate-100 dark:bg-black
-        text-gray-900 dark:text-gray-500'
-      />
+      <body className={classNamesLib.body} />
     </Helmet>
     <Component {...pageProps} />
     <ToastContainer

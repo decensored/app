@@ -7,6 +7,7 @@ import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SignupForm from '../Signup/SignupForm'
 import SettingsDialog from '../Dialog/SettingsDialog'
+import UserPopover from './UserPopover'
 
 const Header: FunctionComponent = () => {
   const [settingsModalOpen, isOpenSettingsDialog] = React.useState(false)
@@ -75,6 +76,7 @@ const Header: FunctionComponent = () => {
             onClick={() => isOpenSettingsDialog(true)}
             className='cursor-pointer ml-5'
           />
+          <UserPopover />
           {isSignedUp && (
             <FontAwesomeIcon
               onClick={setIsSignedUpWithToast}
