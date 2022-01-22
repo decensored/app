@@ -78,6 +78,7 @@ const Web3Client: FunctionComponent = () => {
               posts: contractPosts,
               spaces: contractSpaces,
             })
+            toast('All systems are Go for launch!')
           })
           .catch((e: any) => {
             toast.error(`Accounts contract error: ${e.message}`, {
