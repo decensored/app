@@ -1,14 +1,17 @@
 import React, { FunctionComponent } from 'react'
+import { createPopper } from '@popperjs/core'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { createPopper } from '@popperjs/core'
 import { classNamesLib } from '../ClassNames/ClassNames'
 
 const UserPopover: FunctionComponent = () => {
   const [popoverShow, setPopoverShow] = React.useState(false)
-  const btnRef = React.createRef()
-  const popoverRef = React.createRef()
+  const btnRef: React.RefObject<HTMLButtonElement> = React.createRef()
+  const popoverRef: React.RefObject<HTMLDivElement> = React.createRef()
+
   const openPopover = (): void => {
+    if (!btnRef.current || !popoverRef.current) return // let the typechecker know it will not be null
+
     createPopper(btnRef.current, popoverRef.current, {
       placement: 'bottom-end',
       modifiers: [
@@ -22,9 +25,11 @@ const UserPopover: FunctionComponent = () => {
     })
     setPopoverShow(true)
   }
+
   const closePopover = (): void => {
     setPopoverShow(false)
   }
+
   return (
     <>
       <button
