@@ -18,7 +18,7 @@ const Space: NextPage = () => {
   // GET DATA FOR SPACE
   const [space, setSpace] = React.useState<{
     id: number
-    name?: string
+    name: string
     owner: number
     followers: number
     posts: number
@@ -29,7 +29,7 @@ const Space: NextPage = () => {
   React.useEffect(() => {
     const doGetSpace = async (): Promise<void> => {
       try {
-        const result = await getSpaceByName(contract, name)
+        const result = await getSpaceByName(contract, name as string)
         setSpace(result)
       } catch (error) {
         //  console.error(error)
