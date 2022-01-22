@@ -27,10 +27,10 @@ const SignupForm: FunctionComponent<SignupFormProps> = ({ type }) => {
           <img
             src='/logo/logotype_invert.svg'
             alt='Decensored Logo'
-            className='max-h-[42px] max-w-[90%]'
+            className='max-h-[40px] max-w-[90%]'
           />
         </div>
-        <div className='min-h-[42px]'>
+        <div className='min-h-[40px]'>
           {theType === 'signup' && (
             <Register /* type={theType} */ handleClick={toggleForm} />
           )}

@@ -50,27 +50,16 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   return (
     <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
       <div className={classNamesLib.dialogWrapper}>
-        <Dialog.Overlay className='fixed inset-0 bg-black opacity-30' />
+        <Dialog.Overlay className={classNamesLib.dialogOverlay} />
         <div className={classNamesLib.dialogInner}>
-          <Dialog.Title
-            className={`
-              ${classNamesLib.dialogHeader}
-              p-4
-            `}
-          >
-            Node Settings
-          </Dialog.Title>
-          <div className='p-8'>
-            <form
-              id='settingsForm'
-              className='w-full max-w-lg'
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className='flex flex-wrap -mx-3 mb-6 sm:mb-4'>
-                <div className='w-4/6 px-3 mb-6 md:mb-0'>
-                  <span className={classNamesLib.dialogLabel}>
-                    EVM-Node
-                  </span>
+          <div className={classNamesLib.dialogHeader}>
+            <Dialog.Title>Node Settings</Dialog.Title>
+          </div>
+          <div className={classNamesLib.dialogBody}>
+            <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
+              <div className='grid grid-cols-3 gap-4'>
+                <div className='col-span-2'>
+                  <span className={classNamesLib.dialogLabel}>EVM-Node</span>
                   <input
                     className={`
                         ${classNamesLib.input}
@@ -84,13 +73,10 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                     <span className='text-red-500 text-sm'>Required Field</span>
                   )}
                 </div>
-                <div className='w-2/6 px-3'>
-                  <span>Chain-ID</span>
+                <div className=''>
+                  <span className={classNamesLib.dialogLabel}>Chain-ID</span>
                   <input
-                    className={`
-                        ${classNamesLib.input}
-                        ${classNamesLib.inputDark}
-                      `}
+                    className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
                     type='text'
                     defaultValue={chainId}
                     {...register('chainId', { required: true })}
@@ -99,17 +85,12 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                     <span className='text-red-500 text-sm'>Required Field</span>
                   )}
                 </div>
-              </div>
-              <div className='flex flex-wrap -mx-3 mb-6 sm:mb-4'>
-                <div className='w-full px-3'>
+                <div className='col-span-3'>
                   <span className={classNamesLib.dialogLabel}>
                     Contract Address
                   </span>
                   <input
-                    className={`
-                        ${classNamesLib.input}
-                        ${classNamesLib.inputDark}
-                      `}
+                    className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
                     type='text'
                     defaultValue={contractAddress}
                     {...register('contractAddress', { required: true })}
@@ -121,35 +102,21 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
               </div>
             </form>
           </div>
-          <div className='flex justify-between p-4'>
-            <div className='flex-1'>
-              <button
-                type='button'
-                className={`
-                ${classNamesLib.button}
-                ${classNamesLib.buttonTransparent}
-                h-[48px]
-                w-full
-                `}
-                onClick={() => setIsOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
-            <div className='flex-1'>
-              <button
-                type='submit'
-                form='settingsForm'
-                className={`
-                  ${classNamesLib.button}
-                  ${classNamesLib.buttonDecensored}
-                  h-[48px]
-                  w-full
-                `}
-              >
-                Confirm
-              </button>
-            </div>
+          <div className={classNamesLib.dialogFooter}>
+            <button
+              type='button'
+              className={`${classNamesLib.button} ${classNamesLib.buttonTransparent} basis-full`}
+              onClick={() => setIsOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              type='submit'
+              form='settingsForm'
+              className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            >
+              Confirm
+            </button>
           </div>
         </div>
       </div>
