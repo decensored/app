@@ -27,8 +27,17 @@ const Web3Client: FunctionComponent = () => {
 
     // console.log('Web3Client.config', evmNode, chainId, contractPostsAddress)
 
-    web3 = new Web3(evmNode)
-    // console.log('Web3Client.web3', web3)
+    setContract({}) // make sure we only can access the contracts when all is well
+
+    try {
+      web3 = new Web3(evmNode)
+      // console.log('Web3Client.web3', web3)
+    } catch (e: any) {
+      toast.error(`Web3 error: ${e.message}`, {
+        autoClose: 5000,
+      })
+      return
+    }
 
     let contractPosts: any
     try {
@@ -43,6 +52,7 @@ const Web3Client: FunctionComponent = () => {
       })
       return
     }
+
     contractPosts.methods
       .spaces()
       .call()
