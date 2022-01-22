@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect } from 'react'
 import Web3 from 'web3'
 import { toast } from 'react-toastify'
+import shallow from 'zustand/shallow'
 import useStore from '../lib/store'
 import { inBrowser } from '../lib/where'
 
@@ -13,19 +14,15 @@ import {
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const { evmNode, chainId, contractPostsAddress, setContract } = useStore(
-    (state) => ({
-      evmNode: state.evmNode,
-      chainId: state.chainId,
-      contractPostsAddress: state.contractPostsAddress,
-      setContract: state.setContract,
-    })
+  const [evmNode, contractPostsAddress, setContract] = useStore(
+    (state) => [state.evmNode, state.contractPostsAddress, state.setContract],
+    shallow
   )
 
   useEffect(() => {
     if (!inBrowser) return
 
-    // console.log('Web3Client.config', evmNode, chainId, contractPostsAddress)
+    // console.log('Web3Client.config', evmNode, contractPostsAddress)
 
     // make sure we only can access the contracts when all is well
     setContract({})
@@ -92,7 +89,7 @@ const Web3Client: FunctionComponent = () => {
           autoClose: 5000,
         })
       })
-  }, [evmNode, chainId, contractPostsAddress, setContract])
+  }, [evmNode, contractPostsAddress, setContract])
 
   return null
 }
