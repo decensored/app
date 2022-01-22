@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { Dialog } from '@headlessui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import useStore from 'lib/store'
+import useStore from '../../lib/store'
 import { classNamesLib } from '../ClassNames/ClassNames'
 
 interface RegisterProps {
@@ -16,15 +16,15 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   const {
     evmNode,
     setEVMnode,
-    chainId,
-    setChainId,
+    // chainId,
+    // setChainId,
     contractAddress,
     setContractPostsAddress,
   } = useStore((state) => ({
     evmNode: state.evmNode,
     setEVMnode: state.setEVMnode,
-    chainId: state.chainId,
-    setChainId: state.setChainId,
+    // chainId: state.chainId,
+    // setChainId: state.setChainId,
     contractAddress: state.contractPostsAddress,
     setContractPostsAddress: state.setContractPostsAddress,
   }))
@@ -32,7 +32,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   // HANDLE FORM SUBMIT
   type FormValues = {
     evmNode: string
-    chainId: number
+    // chainId: number
     contractAddress: string
   }
   const {
@@ -42,7 +42,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setEVMnode(data.evmNode)
-    setChainId(data.chainId)
+    // setChainId(data.chainId)
     setContractPostsAddress(data.contractAddress)
     setIsOpen(false)
   }
@@ -68,7 +68,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
           <div className={classNamesLib.dialogBody}>
             <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
               <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-                <div className='col-span-2'>
+                <div className='col-span-3'>
                   <span
                     className={`
                       ${classNamesLib.dialogLabel}
@@ -90,7 +90,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                     <span className='text-red-500 text-sm'>Required Field</span>
                   )}
                 </div>
-                <div className=''>
+                {/* <div className=''>
                   <span
                     className={`
                       ${classNamesLib.dialogLabel}
@@ -108,7 +108,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                   {errors.chainId && (
                     <span className='text-red-500 text-sm'>Required Field</span>
                   )}
-                </div>
+                </div> */}
                 <div className='col-span-3'>
                   <span
                     className={`

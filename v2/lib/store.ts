@@ -25,11 +25,12 @@ const useStore = create(
       setPrivateKey: (privateKey: string) => set({ privateKey }),
 
       // EVM node config
+
       evmNode: 'https://we.addiota.com',
       setEVMnode: (evmNode: string) => set({ evmNode }),
 
-      chainId: 1075,
-      setChainId: (chainId: number) => set({ chainId }),
+      // chainId: 1075,
+      // setChainId: (chainId: number) => set({ chainId }),
 
       contractPostsAddress: '0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3',
       setContractPostsAddress: (contractPostsAddress: string) =>
@@ -42,7 +43,7 @@ const useStore = create(
         userName: state.userName,
         privateKey: state.privateKey,
         evmNode: state.evmNode,
-        chainId: state.chainId,
+        // chainId: state.chainId,
         contractPostsAddress: state.contractPostsAddress,
       }),
     }
