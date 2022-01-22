@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from '../../lib/store'
-import { classNamesLib } from '../ClassNames/Lib'
+import { classNamesLib } from '../ClassNames/classNamesLib'
 
 const Bottombar: FunctionComponent = () => {
   const isSignedUp = useStore((state) => state.isSignedUp)
