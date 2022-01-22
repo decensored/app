@@ -134,7 +134,12 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
           <div className={classNamesLib.dialogFooter}>
             <button
               type='button'
-              className={`${classNamesLib.button} ${classNamesLib.buttonTransparent} basis-full`}
+              className={`
+                ${classNamesLib.button}
+                ${classNamesLib.buttonTransparent}
+                ${classNamesLib.buttonTransparentDark}
+                basis-full
+              `}
               onClick={() => setIsOpen(false)}
             >
               Cancel
