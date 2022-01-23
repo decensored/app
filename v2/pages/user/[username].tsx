@@ -9,11 +9,11 @@ const User: NextPage = () => {
   const { username } = router.query
 
   return (
-    <main>
+    <>
       <Header />
       <h1>User {username} </h1>
       <Bottombar />
-    </main>
+    </>
   )
 }
 

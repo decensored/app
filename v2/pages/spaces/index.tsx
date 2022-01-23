@@ -5,11 +5,11 @@ import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 
 const Spaces: NextPage = () => (
-  <main>
+  <>
     <Header />
     <SpaceHeader />
     <Bottombar />
-  </main>
+  </>
 )
 
 export default Spaces

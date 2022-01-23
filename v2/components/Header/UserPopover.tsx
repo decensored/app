@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
 import { createPopper } from '@popperjs/core'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -51,40 +51,44 @@ const UserPopover: FunctionComponent = () => {
         type='button'
         onClick={popoverShow ? closePopover : openPopover}
         ref={btnRef}
-        className='cursor-pointer ml-5'
+        className='cursor-pointer ml-5 text-white text-lg'
       >
         <FontAwesomeIcon icon={faUser} />
       </button>
       <div
-        className={`${classNamesLib.popoverWrapper} ${
-          popoverShow ? '' : 'hidden '
-        }`}
+        className={`
+          ${classNamesLib.popoverWrapper}
+          ${classNamesLib.popoverWrapperDark}
+          ${popoverShow ? '' : 'hidden'}`}
         ref={popoverRef}
       >
         <div className={`${classNamesLib.popoverHeader}`}>
           <div className={`${classNamesLib.popoverHeaderLabel}`}>
-            Logged in as
+            <span>Logged in as</span>
           </div>
           <div className={`${classNamesLib.popoverHeaderName}`}>{userName}</div>
         </div>
         <div className={`${classNamesLib.popoverBody}`}>
           <button
             type='button'
-            className={`${classNamesLib.popoverBodyButton}`}
+            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
           >
-            Profile
+            <FontAwesomeIcon icon={faUser} />
+            <span>Profile</span>
           </button>
-          <button
+          {/* <button
             type='button'
-            className={`${classNamesLib.popoverBodyButton}`}
+            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
           >
-            Settings
-          </button>
+            <FontAwesomeIcon icon={faUser} />
+            <span>Settings</span>
+          </button> */}
           <button
             onClick={setIsSignedUpWithToast}
             type='button'
-            className={`${classNamesLib.popoverBodyButton}`}
+            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
           >
+            <FontAwesomeIcon icon={faSignOutAlt} />
             Logout
           </button>
         </div>

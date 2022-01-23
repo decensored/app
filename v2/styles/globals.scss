@@ -29,8 +29,13 @@ html .bg-decensored-gradient {
   }
 }
 
-.focus\:shadow-sm:focus {
-  box-shadow: none !important;
+// .focus\:shadow-sm:focus {
+//   box-shadow: none !important;
+// }
+
+#headlessui-portal-root {
+  position: relative;
+  z-index: 1000;
 }
 
 // .opacity-0 {

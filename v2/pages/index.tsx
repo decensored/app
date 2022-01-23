@@ -5,11 +5,11 @@ import Feed from '../components/Feed/Feed'
 import Bottombar from '../components/BottomNavigation/BottomNavigation'
 
 const Home: NextPage = () => (
-  <main>
+  <>
     <Header />
     <Feed />
     <Bottombar />
-  </main>
+  </>
 )
 
 export default Home

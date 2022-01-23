@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SignupForm from 'components/Signup/SignupForm'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import UserPopover from 'components/Header/UserPopover'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Header: FunctionComponent = () => {
   const [settingsModalOpen, isOpenSettingsDialog] = React.useState(false)
@@ -22,13 +23,13 @@ const Header: FunctionComponent = () => {
   // }
 
   return (
-    <div className='bg-decensored-gradient w-full flex flex-col items-start'>
+    <div className={classNamesLib.headerWrapper}>
       <SettingsDialog
         isOpen={settingsModalOpen}
         setIsOpen={isOpenSettingsDialog}
       />
 
-      <div className='flex w-full gap-y-5 p-4 justify-between items-center'>
+      <div className={classNamesLib.headerInner}>
         <div id='logo'>
           <Link href='/' passHref>
             <div className='flex gap-2 items-center'>
@@ -48,7 +49,7 @@ const Header: FunctionComponent = () => {
 
         <div
           id='header_nav_items'
-          className='text-white text-lg flex items-center'
+          className='flex items-center'
         >
           <Link href='https://github.com/decensored/app' passHref>
             <a
@@ -56,12 +57,13 @@ const Header: FunctionComponent = () => {
               target='_blank'
               title='github'
               rel='noreferrer'
+              className='text-white text-lg'
             >
               <FontAwesomeIcon icon={faGithub} />
             </a>
           </Link>
 
-          <span className='mx-2'>|</span>
+          <span className='mx-2 text-white'>|</span>
 
           <Link href='https://t.co/Lmou3Qx5Ap' passHref>
             <a
@@ -69,6 +71,7 @@ const Header: FunctionComponent = () => {
               target='_blank'
               title='discord'
               rel='noreferrer'
+              className='text-white text-lg'
             >
               <FontAwesomeIcon icon={faDiscord} />
             </a>
@@ -77,7 +80,7 @@ const Header: FunctionComponent = () => {
           <FontAwesomeIcon
             icon={faCog}
             onClick={() => isOpenSettingsDialog(true)}
-            className='cursor-pointer ml-5'
+            className='text-white text-lg cursor-pointer ml-5'
           />
 
           {isSignedUp && (

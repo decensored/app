@@ -43,7 +43,7 @@ const Space: NextPage = () => {
   }
 
   return (
-    <main>
+    <>
       <Header />
       {isSignedUp && (
         <div className='bg-decensored-gradient w-full flex flex-col h-40 items-center pt-3 top-0 sticky'>
@@ -78,7 +78,7 @@ const Space: NextPage = () => {
         </div>
       )}
       <div
-        className='container mx-auto py-10 px-3 
+        className='container mx-auto py-10 px-3
       max-w-md flex flex-col gap-y-5 mb-28'
       >
         <div id='posts' className='flex flex-col gap-y-5 mb-28'>
@@ -91,7 +91,7 @@ const Space: NextPage = () => {
         </div>
       </div>
       <Bottombar />
-    </main>
+    </>
   )
 }
 

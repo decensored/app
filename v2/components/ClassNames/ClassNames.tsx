@@ -2,6 +2,9 @@
 export const classNamesLib = {
   body: 'font-sans bg-slate-100 dark:bg-black text-gray-900 dark:text-gray-500',
 
+  headerWrapper: 'bg-decensored-gradient w-full flex flex-col items-start z-10 relative',
+  headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
+
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 focus:ring-2 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-black dark:border-gray-500',
 
@@ -21,12 +24,14 @@ export const classNamesLib = {
   dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
 
-  popoverWrapper: 'rounded bg-white w-60 divide-y divide-solid divide-gray-200 text-gray-900 dark:text-gray-500 z-index-10 shadow-xl',
+  popoverWrapper: 'rounded bg-white w-60 divide-y divide-solid divide-gray-200 shadow-xl',
+  popoverWrapperDark: 'dark:bg-gray-900 dark:divide-gray-800',
   popoverHeader: 'px-4 py-3',
   popoverHeaderLabel: 'text-xs',
-  popoverHeaderName: 'text-lg',
-  popoverBody: 'p-4 flex flex-col gap-y-2',
-  popoverBodyButton: 'rounded bg-gray-100 hover:bg-gray-500 text-left px-3 py-1 text-gray-900 hover:text-white',
+  popoverHeaderName: 'text-lg dark:text-gray-300',
+  popoverBody: 'p-2 flex flex-col gap-y-1',
+  popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-decensored-900 hover:bg-decensored-100',
+  popoverBodyButtonDark: 'dark:text-gray-500 dark:hover:text-white dark:hover:bg-decensored-900',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
   navigationBottomWrapperDark: 'dark:bg-black dark:divide-gray-800',
