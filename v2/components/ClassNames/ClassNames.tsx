@@ -27,7 +27,7 @@ export const classNamesLib = {
   dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
 
-  popoverWrapper: 'rounded bg-white w-60 divide-y divide-solid divide-gray-200 shadow-xl',
+  popoverWrapper: 'rounded bg-white w-52 divide-y divide-solid divide-gray-200 shadow-xl',
   popoverWrapperDark: 'dark:bg-gray-900 dark:divide-gray-800',
   popoverHeader: 'px-4 py-3',
   popoverHeaderLabel: 'text-xs',
