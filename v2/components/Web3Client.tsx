@@ -14,8 +14,13 @@ import {
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const [evmNode, contractPostsAddress, setContract] = useStore(
-    (state) => [state.evmNode, state.contractPostsAddress, state.setContract],
+  const [evmNode, contractPostsAddress, setContract, setNodeStatus] = useStore(
+    (state) => [
+      state.evmNode,
+      state.contractPostsAddress,
+      state.setContract,
+      state.setNodeStatus,
+    ],
     shallow
   )
 
@@ -76,20 +81,23 @@ const Web3Client: FunctionComponent = () => {
               posts: contractPosts,
               spaces: contractSpaces,
             })
+            setNodeStatus(true)
             toast('All systems are Go for launch!')
           })
           .catch((e: any) => {
+            setNodeStatus(false)
             toast.error(`Accounts contract error: ${e.message}`, {
               autoClose: 5000,
             })
           })
       })
       .catch((e: any) => {
+        setNodeStatus(false)
         toast.error(`Spaces contract error\n${e.message}`, {
           autoClose: 5000,
         })
       })
-  }, [evmNode, contractPostsAddress, setContract])
+  }, [evmNode, contractPostsAddress, setContract, setNodeStatus])
 
   return null
 }
