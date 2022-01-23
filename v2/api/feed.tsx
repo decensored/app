@@ -5,6 +5,15 @@ const log = (msg: string): void => {
   console.log('api/feed:', msg) // or outcomment
 }
 
+export const createPost = async (
+  contract: any,
+  spaceId: number,
+  message: string
+): Promise<PostType[]> => {
+  log(`createPostForSpace ${spaceId}`)
+  return await contract.posts.methods.submit_post(spaceId, message).call()
+}
+
 export const getPostById = async (
   contract: any,
   postId: number
@@ -32,13 +41,24 @@ export const getLatestSpacePostIndex = async (
 ): Promise<number> => {
   log(`getLatestSpacePostIndex ${spaceId}`)
 
-  // XXX spaceId not actually used here, why is that?
-
   const index = await contract.posts.methods
     .get_amount_of_posts()
     .call()
     .then(parseInt)
   return index
+}
+
+export const getAllPosts = async (contract: any): Promise<PostType[]> => {
+  log(`getAllPostsForFeed`)
+
+  const index = await getLatestSpacePostIndex(contract, 0)
+
+  const posts: PostType[] = []
+  for (let i = index; i > 1; i--) {
+    let post = await getPostById(contract, i)
+    posts.push(post)
+  }
+  return posts
 }
 
 export const getAllPostsForSpace = async (

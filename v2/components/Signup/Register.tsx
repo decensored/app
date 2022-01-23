@@ -1,82 +1,76 @@
 import React, { FunctionComponent } from 'react'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { signUpUser } from 'api/user'
 
 interface RegisterProps {
-  // type: string
   handleClick: React.MouseEventHandler<HTMLSpanElement> | undefined
 }
 
 const Register: FunctionComponent<RegisterProps> = () => {
-  const { isSignedUp, setIsSignedUp, userName, setUserName, contract } =
-    useStore((state) => ({
+  const { setIsSignedUp, userName, setUserName, contract } = useStore(
+    (state) => ({
       isSignedUp: state.isSignedUp,
       setIsSignedUp: state.setIsSignedUp,
-
       userName: state.userName,
       setUserName: state.setUserName,
-
       contract: state.contract,
-    }))
-  // console.log('contract', contract)
+    })
+  )
 
-  const setIsSignedUpWithToast = (): void => {
-    setIsSignedUp(true)
-
-    // https://fkhadra.github.io/react-toastify/introduction/
-    toast(isSignedUp ? 'Signing out...' : 'Signing in...')
+  // HANDLE FORM SUBMIT
+  type FormValues = {
+    username: string
+  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>()
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    signUpUser(contract, data.username).then(() => {
+      setIsSignedUp(true)
+      setUserName(data.username)
+    })
   }
 
   return (
     <section>
-      <div className='flex gap-3'>
-        <div className='grow shrink'>
-          <input
-            className={classNamesLib.input}
-            type='text'
-            placeholder='Choose your username'
-            id='username'
-            value={userName}
-            onChange={async (e) => {
-              const { value } = e.target
-              setUserName(value)
-
-              // const c = contract as any
-              const id = await (contract as any).accounts.methods
-                .id_by_username(value)
-                .call() // TODO: error handling
-              if (id !== '0') {
-                toast(`user ${value} has id ${id}`)
-              }
-            }}
-          />
-        </div>
-        <button
-          type='button'
-          onClick={setIsSignedUpWithToast}
-          className={`
+      <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex gap-3'>
+          <div className='grow shrink'>
+            <input
+              className={classNamesLib.input}
+              type='text'
+              placeholder='Choose your username'
+              defaultValue={userName}
+              {...register('username', {
+                required: true,
+                pattern: /^[A-Za-z]+$/i,
+                min: 4,
+                max: 16,
+              })}
+            />
+            {errors.username && (
+              <span className='text-red-500 text-sm'>
+                min:4 max:16 only:AZaz
+              </span>
+            )}
+          </div>
+          <button
+            type='submit'
+            form='registerForm'
+            className={`
             ${classNamesLib.button}
             ${classNamesLib.buttonDecensoredHeader}
           `}
-        >
-          Sign-up
-        </button>
-      </div>
-      {/* <p
-        className='text-center text-white text-sm decoration-white-8
-      py-3 underline hover:no-underline cursor-pointer'
-      >
-        <span
-          onClick={handleClick}
-          // onKeyDown={handleClick}
-          role='link'
-          tabIndex={0}
-        >
-          Recover your account
-        </span>
-      </p> */}
+          >
+            Sign-up
+          </button>
+        </div>
+      </form>
     </section>
   )
 }

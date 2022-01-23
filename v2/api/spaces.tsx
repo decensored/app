@@ -22,21 +22,17 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   return result
 }
 
+export const getSpaceNameById = async (contract: any, spaceId: number) => {
+  return await contract.spaces.methods.name_by_id(spaceId).call()
+}
+
 export const getSpaceByName = async (contract: any, name: string) => {
   log(`getSpaceByName ${name}`)
 
   let space_id = await contract.spaces.methods.id_by_name(name).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
-  var result: {
-    id: number
-    name: string
-    owner: number
-    followers: number
-    posts: number
-    whatever: number
-    img: string
-  } = {
+  var result: SpaceType = {
     id: space_id,
     name: name,
     owner: owner,
@@ -49,7 +45,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
-  // log('getLatestSpaceIndex (deprecated)')
+  log('getLatestSpaceIndex (deprecated)')
 
   let index = await contract.spaces.methods
     .get_latest_space_index()

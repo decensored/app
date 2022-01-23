@@ -8,13 +8,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
-interface RegisterProps {
+interface FeedItemProps {
   username: string
   message: string
   timestamp: string
 }
 
-const FeedItem: FunctionComponent<RegisterProps> = ({
+const FeedItem: FunctionComponent<FeedItemProps> = ({
   username,
   message,
   timestamp,
