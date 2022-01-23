@@ -24,83 +24,29 @@ const Bottombar: FunctionComponent = () => {
   const isSignedUp = useStore((state) => state.isSignedUp)
 
   return (
-    <nav
+    <div
       className={`
         ${classNamesLib.navigationBottomWrapper}
         ${classNamesLib.navigationBottomWrapperDark}
       `}
     >
-      <div className={classNamesLib.navigationBottomInner}>
-        <Link href='/' passHref>
-          <span
-            className={`
-              ${classNamesLib.navigationBottomItem}
-              ${
-                tabIndex === 0
-                  ? classNamesLib.navigationBottomItemColorActive
-                  : classNamesLib.navigationBottomItemColor
-              }
-            `}
-          >
-            <FontAwesomeIcon icon={faSatelliteDish} />
-            <span className={classNamesLib.navigationBottomItemText}>
-              <span className='hidden sm:inline'>Feed</span>
-              {tabIndex === 0 && (
-                <motion.span
-                  className={`
-                    ${classNamesLib.navigationBottomMotionSpan}
-                    ${classNamesLib.navigationBottomMotionSpanColor}
-                    ${classNamesLib.navigationBottomMotionSpanColorDark}
-                  `}
-                  layoutId='activeTab'
-                />
-              )}
-            </span>
-          </span>
-        </Link>
-        <Link href='/spaces' passHref>
-          <span
-            className={`
-              ${classNamesLib.navigationBottomItem}
-              ${
-                tabIndex === 1
-                  ? classNamesLib.navigationBottomItemColorActive
-                  : classNamesLib.navigationBottomItemColor
-              }
-            `}
-          >
-            <FontAwesomeIcon icon={faSatellite} />
-            <span className={classNamesLib.navigationBottomItemText}>
-              <span className='hidden sm:inline'>Spaces</span>
-              {tabIndex === 1 && (
-                <motion.span
-                  className={`
-                    ${classNamesLib.navigationBottomMotionSpan}
-                    ${classNamesLib.navigationBottomMotionSpanColor}
-                    ${classNamesLib.navigationBottomMotionSpanColorDark}
-                  `}
-                  layoutId='activeTab'
-                />
-              )}
-            </span>
-          </span>
-        </Link>
-        {isSignedUp && (
-          <Link href='/user/MrSupertramp' passHref>
+      <div className={classNamesLib.container}>
+        <div className={classNamesLib.navigationBottomInner}>
+          <Link href='/' passHref>
             <span
               className={`
                 ${classNamesLib.navigationBottomItem}
                 ${
-                  tabIndex === 2
+                  tabIndex === 0
                     ? classNamesLib.navigationBottomItemColorActive
                     : classNamesLib.navigationBottomItemColor
                 }
               `}
             >
-              <FontAwesomeIcon icon={faUserAstronaut} />
+              <FontAwesomeIcon icon={faSatelliteDish} />
               <span className={classNamesLib.navigationBottomItemText}>
-                <span className='hidden sm:inline'>My Posts</span>
-                {tabIndex === 2 && (
+                <span className='hidden sm:inline'>Feed</span>
+                {tabIndex === 0 && (
                   <motion.span
                     className={`
                       ${classNamesLib.navigationBottomMotionSpan}
@@ -113,9 +59,65 @@ const Bottombar: FunctionComponent = () => {
               </span>
             </span>
           </Link>
-        )}
+          <Link href='/spaces' passHref>
+            <span
+              className={`
+                ${classNamesLib.navigationBottomItem}
+                ${
+                  tabIndex === 1
+                    ? classNamesLib.navigationBottomItemColorActive
+                    : classNamesLib.navigationBottomItemColor
+                }
+              `}
+            >
+              <FontAwesomeIcon icon={faSatellite} />
+              <span className={classNamesLib.navigationBottomItemText}>
+                <span className='hidden sm:inline'>Spaces</span>
+                {tabIndex === 1 && (
+                  <motion.span
+                    className={`
+                      ${classNamesLib.navigationBottomMotionSpan}
+                      ${classNamesLib.navigationBottomMotionSpanColor}
+                      ${classNamesLib.navigationBottomMotionSpanColorDark}
+                    `}
+                    layoutId='activeTab'
+                  />
+                )}
+              </span>
+            </span>
+          </Link>
+          {isSignedUp && (
+            <Link href='/user/MrSupertramp' passHref>
+              <span
+                className={`
+                  ${classNamesLib.navigationBottomItem}
+                  ${
+                    tabIndex === 2
+                      ? classNamesLib.navigationBottomItemColorActive
+                      : classNamesLib.navigationBottomItemColor
+                  }
+                `}
+              >
+                <FontAwesomeIcon icon={faUserAstronaut} />
+                <span className={classNamesLib.navigationBottomItemText}>
+                  <span className='hidden sm:inline'>My Posts</span>
+                  {tabIndex === 2 && (
+                    <motion.span
+                      className={`
+                        ${classNamesLib.navigationBottomMotionSpan}
+                        ${classNamesLib.navigationBottomMotionSpanColor}
+                        ${classNamesLib.navigationBottomMotionSpanColorDark}
+                      `}
+                      layoutId='activeTab'
+                    />
+                  )}
+                </span>
+              </span>
+            </Link>
+          )}
+        </div>
       </div>
-    </nav>
+    </div>
   )
 }
 

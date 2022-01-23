@@ -43,14 +43,10 @@ const SpaceHeader: FunctionComponent = () => {
   ))
 
   return (
-    <div id='spaces'>
-      <div
-        className='container mx-auto py-10 px-3
-      max-w-md flex flex-col gap-y-5 mb-28'
-      >
+    <div className={classNamesLib.container}>
+      <div className={classNamesLib.feedWrapper}>
         {isSignedUp && (
           <div
-            id='create-space'
             className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
           >
             <div className='p-5'>
@@ -70,7 +66,7 @@ const SpaceHeader: FunctionComponent = () => {
             </div>
           </div>
         )}
-        <div className='flex flex-col gap-y-5 mb-28'>{createSpaceItems}</div>
+        <div className={classNamesLib.feedPostsWrapper}>{createSpaceItems}</div>
       </div>
     </div>
   )
