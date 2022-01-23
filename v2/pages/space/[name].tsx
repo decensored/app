@@ -6,6 +6,7 @@ import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getSpaceByName } from 'api/spaces'
+import { getAllPostsForSpace } from 'api/feed'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -26,20 +27,35 @@ const Space: NextPage = () => {
     img: string
   }>()
 
+  const [spacePosts, setSpacePosts] = React.useState<
+    {
+      id: number
+      username: string
+      message: string
+      author: number
+      timestamp: string
+      space: number
+      mother_post: number
+    }[]
+  >()
+
   React.useEffect(() => {
-    const doGetSpace = async (): Promise<void> => {
-      try {
-        const result = await getSpaceByName(contract, name as string)
-        setSpace(result)
-      } catch (error) {
-        //  console.error(error)
-      }
-    }
-    doGetSpace()
+    getSpaceByName(contract, name as string).then(async (result) => {
+      setSpace(result)
+      const posts = await getAllPostsForSpace(contract, result.id)
+      setSpacePosts(posts)
+    })
   }, [contract, name])
 
-  if (!space) {
+  // CHECK IF DATA IS PRESENT AND CREATE FEEDITEMS
+  if (!space || !spacePosts) {
     return null
+  }
+  let showFeedItems
+  if (spacePosts.length > 0) {
+    showFeedItems = spacePosts.map((post) => (
+      <FeedItem key={post.id} {...post} />
+    ))
   }
 
   return (
@@ -77,17 +93,9 @@ const Space: NextPage = () => {
           </div>
         </div>
       )}
-      <div
-        className='container mx-auto py-10 px-3
-      max-w-md flex flex-col gap-y-5 mb-28'
-      >
+      <div className='container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28'>
         <div id='posts' className='flex flex-col gap-y-5 mb-28'>
-          <FeedItem />
-          <FeedItem />
-          <FeedItem />
-          <FeedItem />
-          <FeedItem />
-          <FeedItem />
+          {showFeedItems}
         </div>
       </div>
       <Bottombar />

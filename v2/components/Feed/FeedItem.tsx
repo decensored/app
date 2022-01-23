@@ -8,8 +8,20 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
-const FeedItem: FunctionComponent = () => (
-  <div className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}>
+interface RegisterProps {
+  username: string
+  message: string
+  timestamp: string
+}
+
+const FeedItem: FunctionComponent<RegisterProps> = ({
+  username,
+  message,
+  timestamp,
+}) => (
+  <div
+    className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+  >
     <div className={classNamesLib.feedItemInnerTop}>
       <div className={classNamesLib.feedItemMetaWrapper}>
         <Link href='/user/NameOfUser' passHref>
@@ -17,12 +29,12 @@ const FeedItem: FunctionComponent = () => (
             href='dummy-href'
             className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
           >
-            Username
+            {username}
           </a>
         </Link>
-        <div className='text-sm text-right'>23 min</div>
+        <div className='text-sm text-right'>{timestamp}</div>
       </div>
-      <div className='break-words mt-2'>This is a super cool text.</div>
+      <div className='break-words mt-2'>{message}</div>
     </div>
     <div className={classNamesLib.feedItemInnerBottom}>
       <div className='flex gap-x-3 items-center'>
