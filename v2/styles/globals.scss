@@ -33,6 +33,10 @@ html .bg-decensored-gradient {
 //   box-shadow: none !important;
 // }
 
+html .Toastify__toast-container--bottom-center {
+  bottom: 120px;
+}
+
 #headlessui-portal-root {
   position: relative;
   z-index: 1000;

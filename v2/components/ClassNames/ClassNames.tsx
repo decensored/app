@@ -2,7 +2,7 @@
 export const classNamesLib = {
   body: 'font-sans bg-slate-100 dark:bg-black text-gray-900 dark:text-gray-500',
 
-  headerWrapper: 'bg-decensored-gradient w-full flex flex-col items-start z-10 relative',
+  headerWrapper: 'sticky top-0 left-0 right-0 bg-decensored-gradient w-full flex flex-col items-start z-10',
   headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
 
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 focus:ring-2 focus:ring-purple-700 h-[40px]',
@@ -16,7 +16,7 @@ export const classNamesLib = {
 
   dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
-  dialogInner: 'relative bg-white max-w-sm mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
+  dialogInner: 'relative bg-white w-full max-w-sm mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-gray-900 dark:divide-gray-800',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',

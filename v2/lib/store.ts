@@ -42,7 +42,13 @@ const useStore = create(
       // Dialogs
 
       isOpenSettingsDialog: false,
-      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) => set({isOpenSettingsDialog})
+      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) => set({isOpenSettingsDialog}),
+
+      isOpenSignupDialog: false,
+      setIsOpenSignupDialog: (isOpenSignupDialog: boolean) => set({isOpenSignupDialog}),
+
+      isOpenRecoverDialog: false,
+      setIsOpenRecoverDialog: (isOpenRecoverDialog: boolean) => set({isOpenRecoverDialog})
     }),
     {
       name: 'decensored',

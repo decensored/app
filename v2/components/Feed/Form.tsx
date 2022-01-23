@@ -19,7 +19,7 @@ const Form: FunctionComponent = () => {
       id='input'
       className='container mx-auto max-w-md bg-white dark:bg-gray-900 rounded
       shadow-sm divide-y divide-solid divide-gray-200
-      dark:divide-gray-800 sticky -top-28'
+      dark:divide-gray-800'
     >
       <div className='p-4 relative'>
         <textarea

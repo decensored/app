@@ -3,15 +3,17 @@ import Link from 'next/link'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 // import { toast } from 'react-toastify'
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SignupForm from 'components/Signup/SignupForm'
-import SettingsDialog from 'components/Dialog/SettingsDialog'
+import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import UserPopover from 'components/Header/UserPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Header: FunctionComponent = () => {
-  const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
+  const [setIsOpenSettingsDialog, nodeActive] = useStore(
+    (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
+    shallow
+  )
 
   // const setIsSignedUpWithToast = (): void => {
   //   setIsSignedUp(false)
@@ -21,7 +23,20 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      <SettingsDialog />
+      {!nodeActive && (
+        <button
+          type='button'
+          onClick={() => {
+            setIsOpenSettingsDialog(true)
+          }}
+          className='absolute right-5 -bottom-5 translate-y-full'
+        >
+          <FontAwesomeIcon
+            icon={faExclamationTriangle}
+            className='animate-pulse text-red-500'
+          />
+        </button>
+      )}
 
       <div className={classNamesLib.headerInner}>
         <div id='logo'>
@@ -40,7 +55,6 @@ const Header: FunctionComponent = () => {
             </div>
           </Link>
         </div>
-
         <div id='header_nav_items' className='flex items-center'>
           <Link href='https://github.com/decensored/app' passHref>
             <a
@@ -53,9 +67,7 @@ const Header: FunctionComponent = () => {
               <FontAwesomeIcon icon={faGithub} />
             </a>
           </Link>
-
           <span className='mx-2 text-white'>|</span>
-
           <Link href='https://t.co/Lmou3Qx5Ap' passHref>
             <a
               href='dummy-href'
@@ -68,17 +80,9 @@ const Header: FunctionComponent = () => {
             </a>
           </Link>
 
-          {/*           <FontAwesomeIcon
-            icon={faCog}
-            onClick={() => setIsOpenSettingsDialog(true)}
-            className='text-white text-lg cursor-pointer ml-5'
-          /> */}
-
           <UserPopover />
         </div>
       </div>
-
-      {!isSignedUp && <SignupForm type='signup' />}
     </div>
   )
 }

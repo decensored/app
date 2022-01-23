@@ -28,6 +28,21 @@ const UserPopover: FunctionComponent = () => {
     ],
     shallow
   )
+
+  const [setIsOpenSignupDialog] = useStore(
+    (state) => [
+      state.setIsOpenSignupDialog,
+    ],
+    shallow
+  )
+
+  const [setIsOpenRecoverDialog] = useStore(
+    (state) => [
+      state.setIsOpenRecoverDialog,
+    ],
+    shallow
+  )
+
   const [userName, setIsSignedUp] = useStore(
     (state) => [state.userName, state.setIsSignedUp],
     shallow
@@ -110,7 +125,7 @@ const UserPopover: FunctionComponent = () => {
                 {!nodeActive && (
                   <FontAwesomeIcon
                     icon={faExclamationTriangle}
-                    className='fixed right-4 animate-pulse text-yellow-500'
+                    className='fixed right-4 animate-pulse text-red-500'
                   />
                 )}
               </button>
@@ -130,6 +145,10 @@ const UserPopover: FunctionComponent = () => {
             <div className={`${classNamesLib.popoverBody}`}>
               <button
                 type='button'
+                onClick={() => {
+                  setIsOpenSignupDialog(true)
+                  closePopover()
+                }}
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
                 <FontAwesomeIcon icon={faPlus} />
@@ -139,6 +158,10 @@ const UserPopover: FunctionComponent = () => {
             <div className={`${classNamesLib.popoverBody}`}>
               <button
                 type='button'
+                onClick={() => {
+                  setIsOpenRecoverDialog(true)
+                  closePopover()
+                }}
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
                 <FontAwesomeIcon icon={faRedoAlt} />
@@ -159,7 +182,7 @@ const UserPopover: FunctionComponent = () => {
                 {!nodeActive && (
                   <FontAwesomeIcon
                     icon={faExclamationTriangle}
-                    className='fixed right-4 animate-pulse text-yellow-500'
+                    className='fixed right-4 animate-pulse text-red-500'
                   />
                 )}
               </button>

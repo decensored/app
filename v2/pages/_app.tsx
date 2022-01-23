@@ -7,6 +7,10 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'styles/globals.scss'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Web3Client from 'components/Web3Client'
+import SettingsDialog from 'components/Dialog/SettingsDialog'
+import SignupDialog from 'components/Dialog/SignupDialog'
+import RecoverDialog from 'components/Dialog/RecoverDialog'
+
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -41,13 +45,20 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       <meta name='theme-color' content='#ffffff' />
       <body className={classNamesLib.body} />
     </Helmet>
+
     <Component {...pageProps} />
+
+    <SettingsDialog />
+    <SignupDialog />
+    <RecoverDialog />
+
     <ToastContainer
       autoClose={2000}
       pauseOnHover={false}
       newestOnTop
-      position={toast.POSITION.TOP_CENTER}
+      position={toast.POSITION.BOTTOM_CENTER}
     />
+
     <Web3Client />
   </>
 )
