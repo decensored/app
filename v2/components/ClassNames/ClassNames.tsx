@@ -40,7 +40,7 @@ export const classNamesLib = {
   navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-3xl',
   navigationBottomItemColor: 'text-decensored-900 hover:text-purple-800 dark:text-decensored-500 dark:hover:text-decensored-100',
   navigationBottomItemColorActive: 'text-purple-800 dark:text-decensored-100',
-  navigationBottomItemText: 'relative text-xs mt-2 flex flex-col',
+  navigationBottomItemText: 'relative text-xs mt-2 flex flex-col min-w-[30px]',
   navigationBottomMotionSpan: 'h-[1px] absolute -left-1 -right-1 -bottom-2',
   navigationBottomMotionSpanColor: 'bg-purple-800',
   navigationBottomMotionSpanColorDark: 'dark:bg-decensored-100',

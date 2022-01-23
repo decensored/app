@@ -44,7 +44,7 @@ const Bottombar: FunctionComponent = () => {
           >
             <FontAwesomeIcon icon={faSatelliteDish} />
             <span className={classNamesLib.navigationBottomItemText}>
-              Feed
+              <span className='hidden sm:inline'>Feed</span>
               {tabIndex === 0 && (
                 <motion.span
                   className={`
@@ -71,7 +71,7 @@ const Bottombar: FunctionComponent = () => {
           >
             <FontAwesomeIcon icon={faSatellite} />
             <span className={classNamesLib.navigationBottomItemText}>
-              Spaces
+              <span className='hidden sm:inline'>Spaces</span>
               {tabIndex === 1 && (
                 <motion.span
                   className={`
@@ -99,7 +99,7 @@ const Bottombar: FunctionComponent = () => {
             >
               <FontAwesomeIcon icon={faUserAstronaut} />
               <span className={classNamesLib.navigationBottomItemText}>
-                My Posts
+                <span className='hidden sm:inline'>My Posts</span>
                 {tabIndex === 2 && (
                   <motion.span
                     className={`
