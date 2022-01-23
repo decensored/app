@@ -4,7 +4,6 @@ import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 // import { toast } from 'react-toastify'
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faCog /* , faSignOutAlt */ } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SignupForm from 'components/Signup/SignupForm'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
@@ -12,7 +11,6 @@ import UserPopover from 'components/Header/UserPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Header: FunctionComponent = () => {
-  const [settingsModalOpen, isOpenSettingsDialog] = React.useState(false)
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
   // const setIsSignedUpWithToast = (): void => {
@@ -23,10 +21,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      <SettingsDialog
-        isOpen={settingsModalOpen}
-        setIsOpen={isOpenSettingsDialog}
-      />
+      <SettingsDialog />
 
       <div className={classNamesLib.headerInner}>
         <div id='logo'>
@@ -46,10 +41,7 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
 
-        <div
-          id='header_nav_items'
-          className='flex items-center'
-        >
+        <div id='header_nav_items' className='flex items-center'>
           <Link href='https://github.com/decensored/app' passHref>
             <a
               href='dummy-href'
@@ -76,11 +68,11 @@ const Header: FunctionComponent = () => {
             </a>
           </Link>
 
-          <FontAwesomeIcon
+          {/*           <FontAwesomeIcon
             icon={faCog}
-            onClick={() => isOpenSettingsDialog(true)}
+            onClick={() => setIsOpenSettingsDialog(true)}
             className='text-white text-lg cursor-pointer ml-5'
-          />
+          /> */}
 
           <UserPopover />
         </div>

@@ -4,35 +4,28 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
-interface RegisterProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean | ((prevVar: boolean) => boolean)) => void
-}
-
-const SettingsDialog: FunctionComponent<RegisterProps> = ({
-  isOpen,
-  setIsOpen,
-}) => {
+const SettingsDialog: FunctionComponent = () => {
   const {
+    nodeActive,
     evmNode,
     setEVMnode,
-    // chainId,
-    // setChainId,
     contractAddress,
     setContractPostsAddress,
+    isOpenSettingsDialog,
+    setIsOpenSettingsDialog,
   } = useStore((state) => ({
+    nodeActive: state.nodeActive,
     evmNode: state.evmNode,
     setEVMnode: state.setEVMnode,
-    // chainId: state.chainId,
-    // setChainId: state.setChainId,
     contractAddress: state.contractPostsAddress,
     setContractPostsAddress: state.setContractPostsAddress,
+    isOpenSettingsDialog: state.isOpenSettingsDialog,
+    setIsOpenSettingsDialog: state.setIsOpenSettingsDialog,
   }))
 
   // HANDLE FORM SUBMIT
   type FormValues = {
     evmNode: string
-    // chainId: number
     contractAddress: string
   }
   const {
@@ -42,13 +35,15 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setEVMnode(data.evmNode)
-    // setChainId(data.chainId)
     setContractPostsAddress(data.contractAddress)
-    setIsOpen(false)
+    setIsOpenSettingsDialog(false)
   }
 
   return (
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+    <Dialog
+      open={isOpenSettingsDialog}
+      onClose={() => setIsOpenSettingsDialog(false)}
+    >
       <div className={classNamesLib.dialogWrapper}>
         <Dialog.Overlay className={classNamesLib.dialogOverlay} />
         <div
@@ -88,6 +83,11 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                   />
                   {errors.evmNode && (
                     <span className='text-red-500 text-sm'>Required Field</span>
+                  )}
+                  {!nodeActive && (
+                    <span className='text-red-500 text-sm'>
+                      Connection failed!
+                    </span>
                   )}
                 </div>
                 {/* <div className=''>
@@ -140,7 +140,7 @@ const SettingsDialog: FunctionComponent<RegisterProps> = ({
                 ${classNamesLib.buttonTransparentDark}
                 basis-full
               `}
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsOpenSettingsDialog(false)}
             >
               Cancel
             </button>

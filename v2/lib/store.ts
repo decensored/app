@@ -35,6 +35,14 @@ const useStore = create(
       contractPostsAddress: '0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3',
       setContractPostsAddress: (contractPostsAddress: string) =>
         set({ contractPostsAddress }),
+
+      nodeActive: false,
+      setNodeStatus: (nodeActive: boolean) => set({ nodeActive }),
+
+      // Dialogs
+
+      isOpenSettingsDialog: false,
+      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) => set({isOpenSettingsDialog})
     }),
     {
       name: 'decensored',
