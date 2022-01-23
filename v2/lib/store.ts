@@ -1,5 +1,6 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
+import { PostType, SpaceType } from 'api/types'
 
 const useStore = create(
   persist(
@@ -14,6 +15,12 @@ const useStore = create(
       // https://github.com/ChainSafe/web3.js/issues/4265#issuecomment-924554759
       contract: {}, // { accounts, posts, spaces },
       setContract: (contract: any) => set({ contract }),
+
+      spaces: [] as SpaceType[],
+      setSpaces: (spaces: SpaceType[]) => set({ spaces }),
+
+      posts: [] as PostType[],
+      setPosts: (posts: PostType[]) => set({ posts }),
 
       //
       // persistent state by the partialize function below
@@ -42,13 +49,16 @@ const useStore = create(
       // Dialogs
 
       isOpenSettingsDialog: false,
-      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) => set({isOpenSettingsDialog}),
+      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) =>
+        set({ isOpenSettingsDialog }),
 
       isOpenSignupDialog: false,
-      setIsOpenSignupDialog: (isOpenSignupDialog: boolean) => set({isOpenSignupDialog}),
+      setIsOpenSignupDialog: (isOpenSignupDialog: boolean) =>
+        set({ isOpenSignupDialog }),
 
       isOpenRecoverDialog: false,
-      setIsOpenRecoverDialog: (isOpenRecoverDialog: boolean) => set({isOpenRecoverDialog})
+      setIsOpenRecoverDialog: (isOpenRecoverDialog: boolean) =>
+        set({ isOpenRecoverDialog }),
     }),
     {
       name: 'decensored',

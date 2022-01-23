@@ -1,22 +1,16 @@
+import { SpaceType } from 'api/types'
+
 const log = (msg: string): void => {
   console.log('api/spaces:', msg) // or outcomment
 }
 
 export const getSpaceById = async (contract: any, space_id: number) => {
-  log(`getSpaceById ${space_id}`)
+  // log(`getSpaceById ${space_id}`)
 
   let name = await contract.spaces.methods.name_by_id(space_id).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
-  var result: {
-    id: number
-    name: string
-    owner: number
-    followers: number
-    posts: number
-    whatever: number
-    img: string
-  } = {
+  var result: SpaceType = {
     id: space_id,
     name: name,
     owner: owner,
@@ -55,7 +49,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
-  log('getLatestSpaceIndex')
+  // log('getLatestSpaceIndex (deprecated)')
 
   let index = await contract.spaces.methods
     .get_latest_space_index()
@@ -65,19 +59,11 @@ export const getLatestSpaceIndex = async (contract: any) => {
 }
 
 export const getAllSpaces = async (contract: any) => {
-  log('getAllSpaces')
+  log('getAllSpaces (deprecated)')
 
   const index = await getLatestSpaceIndex(contract)
 
-  let spaces: {
-    id: number
-    name: string
-    owner: number
-    followers: number
-    posts: number
-    whatever: number
-    img: string
-  }[] = []
+  let spaces: SpaceType[] = []
   for (let i = index; i > 0; i--) {
     let space = await getSpaceById(contract, i)
     spaces.push(space)

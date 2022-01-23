@@ -10,7 +10,9 @@ import Web3Client from 'components/Web3Client'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
-
+import { inBrowser } from 'lib/where'
+import 'lib/polling/polling_spaces'
+import 'lib/polling/polling_posts'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -59,7 +61,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       position={toast.POSITION.BOTTOM_CENTER}
     />
 
-    <Web3Client />
+    {inBrowser && <Web3Client />}
   </>
 )
 

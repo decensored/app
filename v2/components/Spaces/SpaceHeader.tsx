@@ -1,14 +1,15 @@
 import React, { FunctionComponent } from 'react'
+import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import { getAllSpaces } from 'api/spaces'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const SpaceHeader: FunctionComponent = () => {
-  const { isSignedUp, contract } = useStore((state) => ({
-    isSignedUp: state.isSignedUp,
-    contract: state.contract,
-  }))
+  const [isSignedUp, contract] = useStore(
+    (state) => [state.isSignedUp, state.contract],
+    shallow
+  )
 
   // GET DATA FROM AND SET STATE
   const [spaces, setSpaces] = React.useState<

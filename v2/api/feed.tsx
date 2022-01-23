@@ -1,24 +1,15 @@
 import { getUserNameById } from 'api/user'
+import { PostType } from 'api/types'
 
 const log = (msg: string): void => {
   console.log('api/feed:', msg) // or outcomment
-}
-
-type PostType = {
-  id: number
-  username: string
-  message: string
-  author: number
-  timestamp: string
-  space: number
-  mother_post: number
 }
 
 export const getPostById = async (
   contract: any,
   postId: number
 ): Promise<PostType> => {
-  log(`getPostById ${postId}`)
+  // log(`getPostById ${postId}`)
 
   const post = await contract.posts.methods.posts(postId).call()
   const username = await getUserNameById(contract, post.author)
@@ -54,7 +45,7 @@ export const getAllPostsForSpace = async (
   contract: any,
   spaceId: number
 ): Promise<PostType[]> => {
-  log(`getAllPostsForSpace ${spaceId}`)
+  log(`getAllPostsForSpace ${spaceId} (deprecated)`)
 
   const index = await getLatestSpacePostIndex(contract, spaceId)
 
