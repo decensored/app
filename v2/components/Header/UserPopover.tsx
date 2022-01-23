@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
 import { createPopper } from '@popperjs/core'
-import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faPlus, faRedoAlt, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -12,6 +12,7 @@ const UserPopover: FunctionComponent = () => {
   const btnRef: React.RefObject<HTMLButtonElement> = React.createRef()
   const popoverRef: React.RefObject<HTMLDivElement> = React.createRef()
 
+  const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
   const [userName, setIsSignedUp] = useStore(
     (state) => [state.userName, state.setIsSignedUp],
     shallow
@@ -53,7 +54,12 @@ const UserPopover: FunctionComponent = () => {
         ref={btnRef}
         className='cursor-pointer ml-5 text-white text-lg'
       >
-        <FontAwesomeIcon icon={faUser} />
+        {isSignedUp && (
+          <FontAwesomeIcon icon={faUser} />
+        )}
+        {!isSignedUp && (
+          <FontAwesomeIcon icon={faUserPlus} />
+        )}
       </button>
       <div
         className={`
@@ -62,36 +68,71 @@ const UserPopover: FunctionComponent = () => {
           ${popoverShow ? '' : 'hidden'}`}
         ref={popoverRef}
       >
-        <div className={`${classNamesLib.popoverHeader}`}>
-          <div className={`${classNamesLib.popoverHeaderLabel}`}>
-            <span>Logged in as</span>
-          </div>
-          <div className={`${classNamesLib.popoverHeaderName}`}>{userName}</div>
-        </div>
-        <div className={`${classNamesLib.popoverBody}`}>
-          <button
-            type='button'
-            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-          >
-            <FontAwesomeIcon icon={faUser} />
-            <span>Profile</span>
-          </button>
-          {/* <button
-            type='button'
-            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-          >
-            <FontAwesomeIcon icon={faUser} />
-            <span>Settings</span>
-          </button> */}
-          <button
-            onClick={setIsSignedUpWithToast}
-            type='button'
-            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-          >
-            <FontAwesomeIcon icon={faSignOutAlt} />
-            Logout
-          </button>
-        </div>
+        {isSignedUp && (
+          <>
+            <div className={`${classNamesLib.popoverHeader}`}>
+              <div className={`${classNamesLib.popoverHeaderLabel}`}>
+                <span>Logged in as</span>
+              </div>
+              <div className={`${classNamesLib.popoverHeaderName}`}>{userName}</div>
+            </div>
+            <div className={`${classNamesLib.popoverBody}`}>
+              <button
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faUser} />
+                <span>Profile</span>
+              </button>
+              <button
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faCog} />
+                <span>Node Settings</span>
+              </button>
+              <button
+                onClick={setIsSignedUpWithToast}
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                Logout
+              </button>
+            </div>
+          </>
+        )}
+        {!isSignedUp && (
+          <>
+            <div className={`${classNamesLib.popoverBody}`}>
+              <button
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+                <span>Sign up</span>
+              </button>
+            </div>
+            <div className={`${classNamesLib.popoverBody}`}>
+              <button
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faRedoAlt} />
+                <span>Recover account</span>
+              </button>
+            </div>
+            <div className={`${classNamesLib.popoverBody}`}>
+              <button
+                type='button'
+                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+              >
+                <FontAwesomeIcon icon={faCog} />
+                <span>Node Settings</span>
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   )

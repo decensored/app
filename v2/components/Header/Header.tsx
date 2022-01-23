@@ -13,7 +13,6 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Header: FunctionComponent = () => {
   const [settingsModalOpen, isOpenSettingsDialog] = React.useState(false)
-
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
   // const setIsSignedUpWithToast = (): void => {
@@ -83,16 +82,7 @@ const Header: FunctionComponent = () => {
             className='text-white text-lg cursor-pointer ml-5'
           />
 
-          {isSignedUp && (
-            <>
-              <UserPopover />
-              {/* <FontAwesomeIcon
-                onClick={setIsSignedUpWithToast}
-                icon={faSignOutAlt}
-                className='cursor-pointer ml-5'
-              /> */}
-            </>
-          )}
+          <UserPopover />
         </div>
       </div>
 
