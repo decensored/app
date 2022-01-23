@@ -58,7 +58,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
           onClick={setIsSignedUpWithToast}
           className={`
             ${classNamesLib.button}
-            ${classNamesLib.buttonDecensored}
+            ${classNamesLib.buttonDecensoredHeader}
           `}
         >
           Sign-up

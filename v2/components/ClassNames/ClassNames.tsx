@@ -9,7 +9,8 @@ export const classNamesLib = {
   inputDark: 'dark:bg-black dark:border-gray-500',
 
   button: 'font-medium px-4 rounded whitespace-nowrap cursor-pointer h-[40px]',
-  buttonDecensored: 'bg-purple-500 hover:bg-purple-700 text-white',
+  buttonDecensored: 'bg-decensored-900 hover:bg-purple-800 text-white',
+  buttonDecensoredHeader: 'bg-purple-500 hover:bg-purple-700 text-white',
   buttonTransparent: 'bg-transparent text-gray-900 hover:text-purple-900',
   buttonTransparentDark: 'dark:text-gray-500',
 
@@ -43,4 +44,14 @@ export const classNamesLib = {
   navigationBottomMotionSpan: 'h-[1px] absolute -left-1 -right-1 -bottom-2',
   navigationBottomMotionSpanColor: 'bg-purple-800',
   navigationBottomMotionSpanColorDark: 'dark:bg-decensored-100',
+
+  feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm',
+  feedItemWrapperDark: 'dark:bg-gray-900 dark:divide-gray-800',
+  feedItemInnerTop: 'rounded-t p-5',
+  feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
+  feedItemMetaWrapper: 'flex justify-between',
+  feedItemMetaName: 'font-bold text-gray-900',
+  feedItemMetaNameDark: 'dark:text-gray-300',
+  feedItemInteractionIcon: 'cursor-pointer text-gray-300 hover:text-gray-900',
+  feedItemInteractionIconDark: 'dark:text-gray-500 dark:hover:text-gray-300',
 }

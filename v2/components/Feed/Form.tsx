@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Form: FunctionComponent = () => {
   const { userName } = useStore((state) => ({
@@ -48,12 +49,7 @@ const Form: FunctionComponent = () => {
           <button
             type='button'
             id='submit'
-            className={`
-            ${buttonClasses.spacings}
-            ${buttonClasses.text}
-            ${buttonClasses.textColor}
-            ${buttonClasses.style}
-        `}
+            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
           >
             <span className='whitespace-nowrap'>Spread it</span>
           </button>

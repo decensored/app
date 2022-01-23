@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { faSatellite, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 interface RegisterProps {
   id: number
@@ -11,14 +12,14 @@ interface RegisterProps {
 const SpaceItem: FunctionComponent<RegisterProps> = ({ id, name }) => (
   <div
     key={id.toString()}
-    className='post bg-white dark:bg-gray-900 rounded shadow-sm'
+    className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
   >
-    <div className='rounded-t p-5'>
-      <div className='meta flex justify-between'>
+    <div className={classNamesLib.feedItemInnerTop}>
+      <div className={classNamesLib.feedItemMetaWrapper}>
         <Link href={`/space/${name}`} passHref>
           <a
             href='dummy-href'
-            className='space font-bold text-gray-900 dark:text-gray-300'
+            className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
           >
             <FontAwesomeIcon icon={faSatellite} className='mr-2' /> {name}
           </a>
@@ -33,7 +34,7 @@ const SpaceItem: FunctionComponent<RegisterProps> = ({ id, name }) => (
             className='text-md text-gray-900 dark:text-gray-300'
           />
           <span
-            className='flex-none uppercase bg-decensored-100 text-gray-600 
+            className='flex-none uppercase bg-decensored-100 text-gray-600
             text-xs tracking-wide font-semibold px-2 py-1 rounded-md'
           >
             578

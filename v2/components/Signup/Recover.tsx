@@ -27,7 +27,7 @@ const Recover: FunctionComponent<RecoverProps> = () => {
           onClick={() => setIsSignedUp(true)}
           className={`
             ${classNamesLib.button}
-            ${classNamesLib.buttonDecensored}
+            ${classNamesLib.buttonDecensoredHeader}
           `}
         >
           Recover

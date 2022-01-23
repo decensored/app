@@ -6,44 +6,39 @@ import {
   faShieldAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const FeedItem: FunctionComponent = () => (
-  <div
-    className='post bg-white dark:bg-gray-900 rounded divide-y divide-solid 
-    divide-gray-200 dark:divide-gray-800 shadow-sm'
-  >
-    <div className='rounded-t p-5'>
-      <div className='meta flex justify-between'>
+  <div className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}>
+    <div className={classNamesLib.feedItemInnerTop}>
+      <div className={classNamesLib.feedItemMetaWrapper}>
         <Link href='/user/NameOfUser' passHref>
           <a
             href='dummy-href'
-            className='author font-bold text-gray-900 dark:text-gray-300'
+            className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
           >
             Username
           </a>
         </Link>
-        <div className='time text-sm text-right'>Jan/19 2022, 19:16</div>
+        <div className='text-sm text-right'>23 min</div>
       </div>
-      <div className='message break-words mt-2'>This is a super cool text.</div>
+      <div className='break-words mt-2'>This is a super cool text.</div>
     </div>
-    <div className='px-5 py-3 rounded-b flex justify-between'>
+    <div className={classNamesLib.feedItemInnerBottom}>
       <div className='flex gap-x-3 items-center'>
         <FontAwesomeIcon
           icon={faShieldAlt}
-          className='cursor-pointer text-gray-300 hover:text-gray-900 
-            dark:text-gray-500 dark:hover:text-gray-300 fa-shield-alt'
+          className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
         />
       </div>
       <div className='flex gap-x-3 items-center'>
         <FontAwesomeIcon
           icon={faComment}
-          className='cursor-pointer text-gray-300 hover:text-gray-900 
-            dark:text-gray-500 dark:hover:text-gray-300 fa-shield-alt'
+          className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
         />
         <FontAwesomeIcon
           icon={faShare}
-          className='cursor-pointer text-gray-300 hover:text-gray-900 
-            dark:text-gray-500 dark:hover:text-gray-300 fa-shield-alt'
+          className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
         />
       </div>
     </div>

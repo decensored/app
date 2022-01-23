@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import { getAllSpaces } from 'api/spaces'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const SpaceHeader: FunctionComponent = () => {
   const { isSignedUp, contract } = useStore((state) => ({
@@ -50,7 +51,7 @@ const SpaceHeader: FunctionComponent = () => {
         {isSignedUp && (
           <div
             id='create-space'
-            className='p-5 bg-white dark:bg-gray-900 rounded shadow-sm mb-5'
+            className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
           >
             <div className='p-5'>
               <div className='flex flex-col justify-center items-center'>
