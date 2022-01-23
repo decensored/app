@@ -35,6 +35,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": ["off"],
+    "import/no-unresolved": ["off"],
     "import/extensions": [
       "error",
       "ignorePackages",
