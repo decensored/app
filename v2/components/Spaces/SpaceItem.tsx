@@ -4,12 +4,12 @@ import { faSatellite, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
-interface RegisterProps {
+interface SpaceItemProps {
   id: number
   name: string
 }
 
-const SpaceItem: FunctionComponent<RegisterProps> = ({ id, name }) => (
+const SpaceItem: FunctionComponent<SpaceItemProps> = ({ id, name }) => (
   <div
     key={id.toString()}
     className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}

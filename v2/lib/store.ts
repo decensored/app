@@ -12,7 +12,7 @@ const useStore = create(
 
       // smart contracts
       // https://github.com/ChainSafe/web3.js/issues/4265#issuecomment-924554759
-      contract: {}, // { accounts, posts, spaces },
+      contract: {}, // { accounts, posts, spaces, web3 },
       setContract: (contract: any) => set({ contract }),
 
       //
@@ -23,6 +23,9 @@ const useStore = create(
 
       privateKey: '',
       setPrivateKey: (privateKey: string) => set({ privateKey }),
+
+      userId: 1,
+      setUserId: (userId: string) => set({ userId }),
 
       // EVM node config
 

@@ -3,7 +3,7 @@ const log = (msg: string): void => {
 }
 
 export const getSpaceById = async (contract: any, space_id: number) => {
-  log(`getSpaceById ${space_id}`)
+  //log(`getSpaceById ${space_id}`)
 
   let name = await contract.spaces.methods.name_by_id(space_id).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
@@ -26,6 +26,10 @@ export const getSpaceById = async (contract: any, space_id: number) => {
     img: 'https://www.iota-services.com/wp-content/uploads/2019/05/iota-services.jpg',
   }
   return result
+}
+
+export const getSpaceNameById = async (contract: any, spaceId: number) => {
+  return await contract.spaces.methods.name_by_id(spaceId).call()
 }
 
 export const getSpaceByName = async (contract: any, name: string) => {
@@ -55,7 +59,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
-  log('getLatestSpaceIndex')
+  //log('getLatestSpaceIndex')
 
   let index = await contract.spaces.methods
     .get_latest_space_index()
@@ -65,7 +69,7 @@ export const getLatestSpaceIndex = async (contract: any) => {
 }
 
 export const getAllSpaces = async (contract: any) => {
-  log('getAllSpaces')
+  //log('getAllSpaces')
 
   const index = await getLatestSpaceIndex(contract)
 

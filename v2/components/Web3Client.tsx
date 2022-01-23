@@ -80,6 +80,7 @@ const Web3Client: FunctionComponent = () => {
               accounts: contractAccounts,
               posts: contractPosts,
               spaces: contractSpaces,
+              web3,
             })
             setNodeStatus(true)
             toast('All systems are Go for launch!')

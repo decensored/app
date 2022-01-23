@@ -8,6 +8,7 @@ import useStore from 'lib/store'
 import { getSpaceByName } from 'api/spaces'
 import { getAllPostsForSpace } from 'api/feed'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import Form from 'components/Feed/Form'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -64,43 +65,44 @@ const Space: NextPage = () => {
       <Header />
       <div className={classNamesLib.container}>
         <div className={classNamesLib.feedWrapper}>
-          {isSignedUp && (
-            <div className={classNamesLib.spaceHeaderWrapper}>
-              <div className={classNamesLib.spaceHeaderInner}>
-                {/* { <img className='h-12 w-12 rounded-full ring-2 ring-white center' src={space!.img} alt=''/>} */}
-                <div className={classNamesLib.spaceHeaderTitle}>
-                  {space.name ? `#${space.name}` : '#undefined'}
+          <div className={classNamesLib.spaceHeaderWrapper}>
+            <div className={classNamesLib.spaceHeaderInner}>
+              {/* { <img className='h-12 w-12 rounded-full ring-2 ring-white center' src={space!.img} alt=''/>} */}
+              <div className={classNamesLib.spaceHeaderTitle}>
+                {space.name ? `#${space.name}` : '#undefined'}
+              </div>
+              <div className={classNamesLib.spaceHeaderColsWrapper}>
+                <div className={classNamesLib.spaceHeaderColWrapper}>
+                  <span className={classNamesLib.spaceHeaderColTitle}>
+                    {space.posts}
+                  </span>
+                  <span className={classNamesLib.spaceHeaderColText}>
+                    Posts
+                  </span>
                 </div>
-                <div className={classNamesLib.spaceHeaderColsWrapper}>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
-                      {space.posts}
-                    </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
-                      Posts
-                    </span>
-                  </div>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
-                      {space.followers}
-                    </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
-                      Followers
-                    </span>
-                  </div>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
-                      {space.whatever}
-                    </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
-                      Whatever
-                    </span>
-                  </div>
+                <div className={classNamesLib.spaceHeaderColWrapper}>
+                  <span className={classNamesLib.spaceHeaderColTitle}>
+                    {space.followers}
+                  </span>
+                  <span className={classNamesLib.spaceHeaderColText}>
+                    Followers
+                  </span>
+                </div>
+                <div className={classNamesLib.spaceHeaderColWrapper}>
+                  <span className={classNamesLib.spaceHeaderColTitle}>
+                    {space.whatever}
+                  </span>
+                  <span className={classNamesLib.spaceHeaderColText}>
+                    Whatever
+                  </span>
                 </div>
               </div>
             </div>
-          )}
-          <div className={classNamesLib.feedPostsWrapper}>{showFeedItems}</div>
+          </div>
+          <div className={classNamesLib.feedPostsWrapper}>
+            {isSignedUp && <Form spaceId={space.id} />}
+            {showFeedItems}
+          </div>
         </div>
       </div>
       <Bottombar />
