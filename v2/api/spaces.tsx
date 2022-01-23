@@ -1,8 +1,12 @@
+const log = (msg: string): void => {
+  console.log('api/spaces:', msg) // or outcomment
+}
+
 export const getSpaceById = async (contract: any, space_id: number) => {
+  log(`getSpaceById ${space_id}`)
+
   let name = await contract.spaces.methods.name_by_id(space_id).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
-
-  console.log('GET SPACES')
 
   var result: {
     id: number
@@ -25,6 +29,8 @@ export const getSpaceById = async (contract: any, space_id: number) => {
 }
 
 export const getSpaceByName = async (contract: any, name: string) => {
+  log(`getSpaceByName ${name}`)
+
   let space_id = await contract.spaces.methods.id_by_name(name).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
@@ -49,6 +55,8 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
+  log('getLatestSpaceIndex')
+
   let index = await contract.spaces.methods
     .get_latest_space_index()
     .call()
@@ -57,6 +65,8 @@ export const getLatestSpaceIndex = async (contract: any) => {
 }
 
 export const getAllSpaces = async (contract: any) => {
+  log('getAllSpaces')
+
   const index = await getLatestSpaceIndex(contract)
 
   let spaces: {

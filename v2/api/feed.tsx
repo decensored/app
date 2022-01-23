@@ -1,20 +1,31 @@
 import { getUserNameById } from 'api/user'
 
-export const getPostById = async (contract: any, post_id: number) => {
-  let post = await contract.posts.methods.posts(post_id).call()
-  let username = await getUserNameById(contract, post.author)
+const log = (msg: string): void => {
+  console.log('api/feed:', msg) // or outcomment
+}
 
-  var result: {
-    id: number
-    username: string
-    message: string
-    author: number
-    timestamp: string
-    space: number
-    mother_post: number
-  } = {
-    id: post_id,
-    username: username,
+type PostType = {
+  id: number
+  username: string
+  message: string
+  author: number
+  timestamp: string
+  space: number
+  mother_post: number
+}
+
+export const getPostById = async (
+  contract: any,
+  postId: number
+): Promise<PostType> => {
+  log(`getPostById ${postId}`)
+
+  const post = await contract.posts.methods.posts(postId).call()
+  const username = await getUserNameById(contract, post.author)
+
+  const result: PostType = {
+    id: postId,
+    username,
     message: post.message,
     author: post.author,
     timestamp: readable_date_time_from_unix_timestamp(post.timestamp),
@@ -26,34 +37,35 @@ export const getPostById = async (contract: any, post_id: number) => {
 
 export const getLatestSpacePostIndex = async (
   contract: any,
-  space_id: number
-) => {
-  let index = await contract.posts.methods
+  spaceId: number
+): Promise<number> => {
+  log(`getLatestSpacePostIndex ${spaceId}`)
+
+  // XXX spaceId not actually used here, why is that?
+
+  const index = await contract.posts.methods
     .get_amount_of_posts()
     .call()
     .then(parseInt)
   return index
 }
 
-export const getAllPostsForSpace = async (contract: any, space_id: number) => {
-  const index = await getLatestSpacePostIndex(contract, space_id)
+export const getAllPostsForSpace = async (
+  contract: any,
+  spaceId: number
+): Promise<PostType[]> => {
+  log(`getAllPostsForSpace ${spaceId}`)
 
-  let posts: {
-    id: number
-    username: string
-    message: string
-    author: number
-    timestamp: string
-    space: number
-    mother_post: number
-  }[] = []
+  const index = await getLatestSpacePostIndex(contract, spaceId)
+
+  const posts: PostType[] = []
   for (let i = 20; i > 1; i--) {
     let post = await getPostById(contract, i)
-    if (post.space === space_id) {
+    if (post.space === spaceId) {
       posts.push(post)
     }
   }
-  //console.log(posts)
+  // console.log(posts)
   return posts
 }
 
