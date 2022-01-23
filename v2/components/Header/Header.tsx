@@ -50,7 +50,7 @@ const Header: FunctionComponent = () => {
               <img
                 alt='Decensored Logo'
                 src='/logo/logotype_invert.svg'
-                className='h-[20px] hidden sm:block'
+                className='h-[20px]'
               />
             </div>
           </Link>

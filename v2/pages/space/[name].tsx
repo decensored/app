@@ -7,6 +7,7 @@ import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getSpaceByName } from 'api/spaces'
 import { getAllPostsForSpace } from 'api/feed'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -61,41 +62,45 @@ const Space: NextPage = () => {
   return (
     <>
       <Header />
-      {isSignedUp && (
-        <div className='bg-decensored-gradient w-full flex flex-col h-40 items-center pt-3 top-0 sticky'>
-          <div className='flex font-extrabold text-xl text-white italic justify-evenly align-middle bg-img'>
-            <div>
-              {/*     {
-                <img
-                  className='h-12 w-12 rounded-full ring-2 ring-white center'
-                  src={space!.img}
-                  alt=''
-                />
-              } */}
+      <div className={classNamesLib.container}>
+        <div className={classNamesLib.feedWrapper}>
+          {isSignedUp && (
+            <div className={classNamesLib.spaceHeaderWrapper}>
+              <div className={classNamesLib.spaceHeaderInner}>
+                {/* { <img className='h-12 w-12 rounded-full ring-2 ring-white center' src={space!.img} alt=''/>} */}
+                <div className={classNamesLib.spaceHeaderTitle}>
+                  {space.name ? `#${space.name}` : '#undefined'}
+                </div>
+                <div className={classNamesLib.spaceHeaderColsWrapper}>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.posts}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Posts
+                    </span>
+                  </div>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.followers}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Followers
+                    </span>
+                  </div>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.whatever}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Whatever
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className='place-self-center px-5'>
-              <h1>{space.name ? `# ${space.name}` : '#undefined'}</h1>
-            </div>
-          </div>
-          <div className='flex w-full mx-auto justify-evenly text-white py-4 text-lg text-center'>
-            <div className='flex flex-col'>
-              <span className='text-s mt-2 font-bold'>{space.posts}</span>
-              <span className='text-xs'>Posts</span>
-            </div>
-            <div className='flex flex-col'>
-              <span className='text-s mt-2 font-bold'>{space.followers}</span>
-              <span className='text-xs'>Followers</span>
-            </div>
-            <div className='flex flex-col'>
-              <span className='text-s mt-2 font-bold'>{space.whatever}</span>
-              <span className='text-xs'>Whatever</span>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className='container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28'>
-        <div id='posts' className='flex flex-col gap-y-5 mb-28'>
-          {showFeedItems}
+          )}
+          <div className={classNamesLib.feedPostsWrapper}>{showFeedItems}</div>
         </div>
       </div>
       <Bottombar />

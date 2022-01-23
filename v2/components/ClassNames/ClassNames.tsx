@@ -60,7 +60,11 @@ export const classNamesLib = {
   feedItemInteractionIcon: 'cursor-pointer text-gray-300 hover:text-gray-900',
   feedItemInteractionIconDark: 'dark:text-gray-500 dark:hover:text-gray-300',
 
-  spaceHeaderWrapper: 'bg-decensored-gradient rounded p-5',
+  spaceHeaderWrapper: 'bg-decensored-gradient rounded px-5 py-7',
   spaceHeaderInner: 'flex flex-col justify-center',
-  spaceHeaderTitle: 'text-xl'
+  spaceHeaderTitle: 'text-center text-white text-2xl',
+  spaceHeaderColsWrapper: 'flex w-full mx-auto justify-evenly text-white pt-2 text-center',
+  spaceHeaderColWrapper: 'flex flex-col',
+  spaceHeaderColTitle: 'text-2xl mt-2 font-bold',
+  spaceHeaderColText: 'text-xs font-light'
 }
