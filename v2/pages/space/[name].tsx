@@ -6,14 +6,14 @@ import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getSpaceByName } from 'api/spaces'
-import { getAllPostsForSpace } from 'api/feed'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Form from 'components/Feed/Form'
 
 const Space: NextPage = () => {
   const router = useRouter()
   const { name } = router.query
-  const { isSignedUp, contract } = useStore((state) => ({
+  const { posts, isSignedUp, contract } = useStore((state) => ({
+    posts: state.posts,
     isSignedUp: state.isSignedUp,
     contract: state.contract,
   }))
@@ -42,16 +42,16 @@ const Space: NextPage = () => {
   >()
 
   React.useEffect(() => {
-    if (!contract.accounts || !name) return
+    if (!contract || !name) return
     getSpaceByName(contract, name as string).then(async (result) => {
       setSpace(result)
-      const posts = await getAllPostsForSpace(contract, result.id)
-      setSpacePosts(posts)
+      const postsForSpace = posts.filter((post) => post.space === result.id)
+      setSpacePosts(postsForSpace)
     })
-  }, [contract, name])
+  }, [contract, name, posts])
 
   // CHECK IF DATA IS PRESENT AND CREATE FEEDITEMS
-  if (!space || !spacePosts) {
+  if (!space || !posts || !spacePosts) {
     return null
   }
   let showFeedItems
