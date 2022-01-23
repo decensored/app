@@ -19,8 +19,14 @@ const useStore = create(
       spaces: [] as SpaceType[],
       setSpaces: (spaces: SpaceType[]) => set({ spaces }),
 
+      latestSpaceIndexFetched: 0,
+      setLatestSpaceIndexFetched: (latestSpaceFetched: number) => set({ latestSpaceFetched }),
+
       posts: [] as PostType[],
       setPosts: (posts: PostType[]) => set({ posts }),
+
+      latestPostIndexFetched: 0,
+      setLatestPostIndexFeched: (latestPostFetched: number) => set({ latestPostFetched }),
 
       //
       // persistent state by the partialize function below
