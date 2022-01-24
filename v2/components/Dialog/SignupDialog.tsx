@@ -50,21 +50,27 @@ const SignupDialog: FunctionComponent = () => {
       header='Signup'
       body={
         <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
-            type='text'
-            placeholder='Choose your username'
-            defaultValue={userName}
-            {...register('username', {
-              required: true,
-              pattern: /^[A-Za-z]+$/i,
-              min: 4,
-              max: 16,
-            })}
-          />
-          {errors.username && (
-            <span className='text-red-500 text-sm'>min:4 max:16 only:AZaz</span>
-          )}
+          <div className={classNamesLib.inputWrapper}>
+            <input
+              className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+              type='text'
+              placeholder='Choose your username'
+              defaultValue={userName}
+              {...register('username', {
+                required: true,
+                pattern: /^[A-Za-z]+$/i,
+                min: 4,
+                max: 16,
+              })}
+            />
+            {errors.username && (
+              <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
+                <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+                  min:4 max:16 only:AZaz
+                </span>
+              </div>
+            )}
+          </div>
         </form>
       }
       footer={

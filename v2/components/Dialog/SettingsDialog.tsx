@@ -60,21 +60,31 @@ const SettingsDialog: FunctionComponent = () => {
               >
                 EVM-Node
               </span>
-              <input
-                className={`
-                  ${classNamesLib.input}
-                  ${classNamesLib.inputDark}
-                `}
-                type='text'
-                defaultValue={evmNode}
-                {...register('evmNode', { required: true })}
-              />
-              {errors.evmNode && (
-                <span className='text-red-500 text-sm'>Required Field</span>
-              )}
-              {!nodeActive && (
-                <span className='text-red-500 text-sm'>Connection failed!</span>
-              )}
+              <div className={classNamesLib.inputWrapper}>
+                <input
+                  className={`
+                    ${classNamesLib.input}
+                    ${classNamesLib.inputDark}
+                  `}
+                  type='text'
+                  defaultValue={evmNode}
+                  {...register('evmNode', { required: true })}
+                />
+                {errors.evmNode && (
+                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
+                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+                    Required Field
+                    </span>
+                  </div>
+                )}
+                {!nodeActive && (
+                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
+                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+                      Connection failed!
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
             {/* <div className=''>
                   <span
@@ -104,15 +114,21 @@ const SettingsDialog: FunctionComponent = () => {
               >
                 Contract Address
               </span>
-              <input
-                className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
-                type='text'
-                defaultValue={contractAddress}
-                {...register('contractAddress', { required: true })}
-              />
-              {errors.contractAddress && (
-                <span className='text-red-500 text-sm'>Required Field</span>
-              )}
+              <div className={classNamesLib.inputWrapper}>
+                <input
+                  className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                  type='text'
+                  defaultValue={contractAddress}
+                  {...register('contractAddress', { required: true })}
+                />
+                {errors.contractAddress && (
+                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
+                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+                    Required Field
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </form>

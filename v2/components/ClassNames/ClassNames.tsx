@@ -7,8 +7,14 @@ export const classNamesLib = {
   headerWrapper: 'sticky top-0 left-0 right-0 bg-decensored-gradient w-full flex flex-col items-start z-10',
   headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
 
+  inputWrapper: 'relative',
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 focus:ring-2 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-black dark:border-gray-500',
+
+  formValidation: 'px-3 py-1 flex items-center absolute w-full -mt-[1px] rounded-b bg-opacity-40',
+  formValidationError: 'bg-red-500',
+  formValidationText: 'text-xs',
+  formValidationTextError: 'text-red-500',
 
   button: 'font-medium px-4 rounded whitespace-nowrap cursor-pointer h-[40px]',
   buttonDecensored: 'bg-decensored-900 hover:bg-purple-800 text-white',
