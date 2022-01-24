@@ -125,7 +125,7 @@ const UserPopover: FunctionComponent = () => {
               <span>Profile</span>
             </button>
           )}
-          {!isSignedUp && contract.accounts && (
+          {!isSignedUp && (contract as any).accounts && (
             <>
               <button
                 type='button'
