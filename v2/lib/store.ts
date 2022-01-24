@@ -20,16 +20,18 @@ const useStore = create(
       setSpaces: (spaces: SpaceType[]) => set({ spaces }),
 
       latestSpaceIndexFetched: 0,
-      setLatestSpaceIndexFetched: (latestSpaceFetched: number) => set({ latestSpaceFetched }),
+      setLatestSpaceIndexFetched: (latestSpaceFetched: number) =>
+        set({ latestSpaceFetched }),
 
       posts: [] as PostType[],
       setPosts: (posts: PostType[]) => set({ posts }),
 
       latestPostIndexFetched: 0,
-      setLatestPostIndexFeched: (latestPostFetched: number) => set({ latestPostFetched }),
+      setLatestPostIndexFeched: (latestPostFetched: number) =>
+        set({ latestPostFetched }),
 
       isDarkmode: false,
-      setIsDarkmode: (isDarkmode: string) => set({ isDarkmode }),
+      setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
 
       //
       // persistent state by the partialize function below
