@@ -4,14 +4,19 @@ import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 // import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import UserPopover from 'components/Header/UserPopover'
+import UserPopover from 'components/Popover/UserPopover'
+import SettingsPopover from 'components/Popover/SettingsPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const Header: FunctionComponent = () => {
   const [setIsOpenSettingsDialog, nodeActive] = useStore(
     (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
+    shallow
+  )
+
+  const [contract] = useStore(
+    (state) => [state.contract],
     shallow
   )
 
@@ -29,7 +34,7 @@ const Header: FunctionComponent = () => {
           onClick={() => {
             setIsOpenSettingsDialog(true)
           }}
-          className='absolute right-5 -bottom-5 translate-y-full'
+          className='absolute right-4 -bottom-5 translate-y-full'
         >
           <FontAwesomeIcon
             icon={faExclamationTriangle}
@@ -56,7 +61,7 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          <Link href='https://github.com/decensored/app' passHref>
+          {/* <Link href='https://github.com/decensored/app' passHref>
             <a
               href='dummy-href'
               target='_blank'
@@ -78,9 +83,12 @@ const Header: FunctionComponent = () => {
             >
               <FontAwesomeIcon icon={faDiscord} />
             </a>
-          </Link>
+          </Link> */}
 
-          <UserPopover />
+          {(contract as any).accounts && (
+            <UserPopover />
+          )}
+          <SettingsPopover />
         </div>
       </div>
     </div>

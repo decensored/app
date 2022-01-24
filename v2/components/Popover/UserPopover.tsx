@@ -3,13 +3,9 @@ import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
 import { createPopper } from '@popperjs/core'
 import {
-  faCog,
-  faExclamationTriangle,
-  faMoon,
   faPlus,
   faRedoAlt,
   faSignOutAlt,
-  faSun,
   faUser,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
@@ -22,15 +18,6 @@ const UserPopover: FunctionComponent = () => {
   const btnRef: React.RefObject<HTMLButtonElement> = React.createRef()
   const popoverRef: React.RefObject<HTMLDivElement> = React.createRef()
 
-  const [isSignedUp, setIsOpenSettingsDialog, nodeActive] = useStore(
-    (state) => [
-      state.isSignedUp,
-      state.setIsOpenSettingsDialog,
-      state.nodeActive,
-    ],
-    shallow
-  )
-
   const [setIsOpenSignupDialog] = useStore(
     (state) => [state.setIsOpenSignupDialog],
     shallow
@@ -41,15 +28,10 @@ const UserPopover: FunctionComponent = () => {
     shallow
   )
 
-  const [userName, setIsSignedUp, contract] = useStore(
-    (state) => [state.userName, state.setIsSignedUp, state.contract],
+  const [userName, isSignedUp, setIsSignedUp] = useStore(
+    (state) => [state.userName, state.isSignedUp, state.setIsSignedUp],
     shallow
   )
-
-  const [isDarkmode, setIsDarkmode] = useStore((state) => [
-    state.isDarkmode,
-    state.setIsDarkmode,
-  ])
 
   const openPopover = (): void => {
     if (!btnRef.current || !popoverRef.current) return // let the typechecker know it will not be null
@@ -77,14 +59,6 @@ const UserPopover: FunctionComponent = () => {
     setIsSignedUp(false)
     // https://fkhadra.github.io/react-toastify/introduction/
     toast('Logging out...')
-  }
-
-  const toggleDarkMode = (): void => {
-    if (isDarkmode) {
-      setIsDarkmode(false)
-    } else {
-      setIsDarkmode(true)
-    }
   }
 
   return (
@@ -125,7 +99,7 @@ const UserPopover: FunctionComponent = () => {
               <span>Profile</span>
             </button>
           )}
-          {!isSignedUp && (contract as any).accounts && (
+          {!isSignedUp && (
             <>
               <button
                 type='button'
@@ -151,41 +125,6 @@ const UserPopover: FunctionComponent = () => {
               </button>
             </>
           )}
-          <button
-            type='button'
-            onClick={() => {
-              setIsOpenSettingsDialog(true)
-              closePopover()
-            }}
-            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-          >
-            <FontAwesomeIcon icon={faCog} />
-            <span>Node Settings</span>
-            {!nodeActive && (
-              <FontAwesomeIcon
-                icon={faExclamationTriangle}
-                className='fixed right-4 animate-pulse text-red-500'
-              />
-            )}
-          </button>
-          <button
-            type='button'
-            onClick={toggleDarkMode}
-            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-          >
-            {isDarkmode && (
-              <>
-                <FontAwesomeIcon icon={faSun} />
-                <span>Lightmode</span>
-              </>
-            )}
-            {!isDarkmode && (
-              <>
-                <FontAwesomeIcon icon={faMoon} />
-                <span>Darkmode</span>
-              </>
-            )}
-          </button>
           {isSignedUp && (
             <button
               onClick={setIsSignedUpWithToast}
