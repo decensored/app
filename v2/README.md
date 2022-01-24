@@ -1,6 +1,6 @@
 # Decensored
 
-## Getting Started
+## Getting Started.
 
 First, run the development server:
 
