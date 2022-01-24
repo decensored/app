@@ -61,30 +61,6 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          {/* <Link href='https://github.com/decensored/app' passHref>
-            <a
-              href='dummy-href'
-              target='_blank'
-              title='github'
-              rel='noreferrer'
-              className='text-white text-lg'
-            >
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-          </Link>
-          <span className='mx-2 text-white'>|</span>
-          <Link href='https://t.co/Lmou3Qx5Ap' passHref>
-            <a
-              href='dummy-href'
-              target='_blank'
-              title='discord'
-              rel='noreferrer'
-              className='text-white text-lg'
-            >
-              <FontAwesomeIcon icon={faDiscord} />
-            </a>
-          </Link> */}
-
           {(contract as any).accounts && (
             <UserPopover />
           )}
