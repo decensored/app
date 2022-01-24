@@ -41,8 +41,8 @@ const UserPopover: FunctionComponent = () => {
     shallow
   )
 
-  const [userName, setIsSignedUp] = useStore(
-    (state) => [state.userName, state.setIsSignedUp],
+  const [userName, setIsSignedUp, contract] = useStore(
+    (state) => [state.userName, state.setIsSignedUp, state.contract],
     shallow
   )
 
@@ -125,7 +125,7 @@ const UserPopover: FunctionComponent = () => {
               <span>Profile</span>
             </button>
           )}
-          {!isSignedUp && (
+          {!isSignedUp && contract.accounts && (
             <>
               <button
                 type='button'
