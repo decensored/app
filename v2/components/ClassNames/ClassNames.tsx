@@ -11,7 +11,7 @@ export const classNamesLib = {
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 focus:ring-2 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-black dark:border-gray-500',
 
-  formValidation: 'px-3 py-1 flex items-center absolute w-full -mt-[1px] rounded-b bg-opacity-40',
+  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-opacity-40',
   formValidationError: 'bg-red-500',
   formValidationText: 'text-xs',
   formValidationTextError: 'text-red-500',
