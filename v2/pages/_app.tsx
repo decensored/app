@@ -2,14 +2,13 @@ import type { AppProps } from 'next/app'
 import React, { FunctionComponent } from 'react'
 import { Helmet } from 'react-helmet'
 import { toast, ToastContainer } from 'react-toastify'
-// without it fontawesome doesnt work
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'styles/globals.scss'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Web3Client from 'components/Web3Client'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
+import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
@@ -45,7 +44,6 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       />
       <meta name='msapplication-TileColor' content='#da532c' />
       <meta name='theme-color' content='#ffffff' />
-      <body className={classNamesLib.body} />
     </Helmet>
 
     <Component {...pageProps} />
@@ -53,6 +51,8 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
     <SettingsDialog />
     <SignupDialog />
     <RecoverDialog />
+
+    <DarkmodeToggle />
 
     <ToastContainer
       autoClose={2000}

@@ -5,9 +5,11 @@ import { createPopper } from '@popperjs/core'
 import {
   faCog,
   faExclamationTriangle,
+  faMoon,
   faPlus,
   faRedoAlt,
   faSignOutAlt,
+  faSun,
   faUser,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
@@ -30,16 +32,12 @@ const UserPopover: FunctionComponent = () => {
   )
 
   const [setIsOpenSignupDialog] = useStore(
-    (state) => [
-      state.setIsOpenSignupDialog,
-    ],
+    (state) => [state.setIsOpenSignupDialog],
     shallow
   )
 
   const [setIsOpenRecoverDialog] = useStore(
-    (state) => [
-      state.setIsOpenRecoverDialog,
-    ],
+    (state) => [state.setIsOpenRecoverDialog],
     shallow
   )
 
@@ -47,6 +45,11 @@ const UserPopover: FunctionComponent = () => {
     (state) => [state.userName, state.setIsSignedUp],
     shallow
   )
+
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [
+    state.isDarkmode,
+    state.setIsDarkmode,
+  ])
 
   const openPopover = (): void => {
     if (!btnRef.current || !popoverRef.current) return // let the typechecker know it will not be null
@@ -76,6 +79,14 @@ const UserPopover: FunctionComponent = () => {
     toast('Logging out...')
   }
 
+  const toggleDarkMode = (): void => {
+    if (isDarkmode) {
+      setIsDarkmode(false)
+    } else {
+      setIsDarkmode(true)
+    }
+  }
+
   return (
     <>
       <button
@@ -95,54 +106,27 @@ const UserPopover: FunctionComponent = () => {
         ref={popoverRef}
       >
         {isSignedUp && (
-          <>
-            <div className={`${classNamesLib.popoverHeader}`}>
-              <div className={`${classNamesLib.popoverHeaderLabel}`}>
-                <span>Logged in as</span>
-              </div>
-              <div className={`${classNamesLib.popoverHeaderName}`}>
-                {userName}
-              </div>
+          <div className={`${classNamesLib.popoverHeader}`}>
+            <div className={`${classNamesLib.popoverHeaderLabel}`}>
+              <span>Logged in as</span>
             </div>
-            <div className={`${classNamesLib.popoverBody}`}>
-              <button
-                type='button'
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-              >
-                <FontAwesomeIcon icon={faUser} />
-                <span>Profile</span>
-              </button>
-              <button
-                type='button'
-                onClick={() => {
-                  setIsOpenSettingsDialog(true)
-                  closePopover()
-                }}
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-              >
-                <FontAwesomeIcon icon={faCog} />
-                <span>Node Settings</span>
-                {!nodeActive && (
-                  <FontAwesomeIcon
-                    icon={faExclamationTriangle}
-                    className='fixed right-4 animate-pulse text-red-500'
-                  />
-                )}
-              </button>
-              <button
-                onClick={setIsSignedUpWithToast}
-                type='button'
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-              >
-                <FontAwesomeIcon icon={faSignOutAlt} />
-                Logout
-              </button>
+            <div className={`${classNamesLib.popoverHeaderName}`}>
+              {userName}
             </div>
-          </>
+          </div>
         )}
-        {!isSignedUp && (
-          <>
-            <div className={`${classNamesLib.popoverBody}`}>
+        <div className={`${classNamesLib.popoverBody}`}>
+          {isSignedUp && (
+            <button
+              type='button'
+              className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+            >
+              <FontAwesomeIcon icon={faUser} />
+              <span>Profile</span>
+            </button>
+          )}
+          {!isSignedUp && (
+            <>
               <button
                 type='button'
                 onClick={() => {
@@ -154,8 +138,6 @@ const UserPopover: FunctionComponent = () => {
                 <FontAwesomeIcon icon={faPlus} />
                 <span>Sign up</span>
               </button>
-            </div>
-            <div className={`${classNamesLib.popoverBody}`}>
               <button
                 type='button'
                 onClick={() => {
@@ -167,28 +149,54 @@ const UserPopover: FunctionComponent = () => {
                 <FontAwesomeIcon icon={faRedoAlt} />
                 <span>Recover account</span>
               </button>
-            </div>
-            <div className={`${classNamesLib.popoverBody}`}>
-              <button
-                type='button'
-                onClick={() => {
-                  setIsOpenSettingsDialog(true)
-                  closePopover()
-                }}
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-              >
-                <FontAwesomeIcon icon={faCog} />
-                <span>Node Settings</span>
-                {!nodeActive && (
-                  <FontAwesomeIcon
-                    icon={faExclamationTriangle}
-                    className='fixed right-4 animate-pulse text-red-500'
-                  />
-                )}
-              </button>
-            </div>
-          </>
-        )}
+            </>
+          )}
+          <button
+            type='button'
+            onClick={() => {
+              setIsOpenSettingsDialog(true)
+              closePopover()
+            }}
+            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+          >
+            <FontAwesomeIcon icon={faCog} />
+            <span>Node Settings</span>
+            {!nodeActive && (
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className='fixed right-4 animate-pulse text-red-500'
+              />
+            )}
+          </button>
+          <button
+            type='button'
+            onClick={toggleDarkMode}
+            className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+          >
+            {isDarkmode && (
+              <>
+                <FontAwesomeIcon icon={faSun} />
+                <span>Lightmode</span>
+              </>
+            )}
+            {!isDarkmode && (
+              <>
+                <FontAwesomeIcon icon={faMoon} />
+                <span>Darkmode</span>
+              </>
+            )}
+          </button>
+          {isSignedUp && (
+            <button
+              onClick={setIsSignedUpWithToast}
+              type='button'
+              className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} />
+              Logout
+            </button>
+          )}
+        </div>
       </div>
     </>
   )

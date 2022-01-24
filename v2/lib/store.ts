@@ -28,6 +28,9 @@ const useStore = create(
       latestPostIndexFetched: 0,
       setLatestPostIndexFeched: (latestPostFetched: number) => set({ latestPostFetched }),
 
+      isDarkmode: false,
+      setIsDarkmode: (isDarkmode: string) => set({ isDarkmode }),
+
       //
       // persistent state by the partialize function below
       //
@@ -73,6 +76,7 @@ const useStore = create(
       name: 'decensored',
 
       partialize: (state) => ({
+        isDarkmode: state.isDarkmode,
         userName: state.userName,
         privateKey: state.privateKey,
         evmNode: state.evmNode,
