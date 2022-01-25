@@ -13,7 +13,7 @@ export const classNamesLib = {
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 text-gray-900 focus:ring-1 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
 
-  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-opacity-40',
+  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-opacity-20',
   formValidationError: 'bg-red-500',
   formValidationText: 'text-xs',
   formValidationTextError: 'text-red-500',
@@ -45,7 +45,7 @@ export const classNamesLib = {
   popoverBodyButtonDark: 'dark:text-gray-500 dark:hover:text-white dark:hover:bg-highlight-900',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
-  navigationBottomWrapperDark: 'dark:bg-black dark:divide-gray-800',
+  navigationBottomWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   navigationBottomInner: 'py-4 sm:py-6 flex gap-y-5',
   navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-2xl sm:text-3xl',
   navigationBottomItemColor: 'text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100',
