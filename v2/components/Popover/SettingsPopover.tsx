@@ -18,17 +18,21 @@ const SettingsPopover: FunctionComponent = () => {
   const [referenceElement, setReferenceElement] = useState()
   const [popperElement, setPopperElement] = useState()
 
-  createPopper(referenceElement, popperElement, {
-    placement: 'bottom-end',
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 8],
+  const initPopover = ():void => {
+    if (!referenceElement || !popperElement) return // let the typechecker know it will not be null
+
+    createPopper(referenceElement, popperElement, {
+      placement: 'bottom-end',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 8],
+          },
         },
-      },
-    ],
-  })
+      ],
+    })
+  }
 
   const [setIsOpenSettingsDialog, nodeActive] = useStore(
     (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
@@ -48,15 +52,14 @@ const SettingsPopover: FunctionComponent = () => {
     }
   }
 
+  initPopover()
+
   return (
     <Popover>
       <Popover.Button ref={setReferenceElement}>
-        <button
-          type='button'
-          className='cursor-pointer ml-5 text-white text-lg'
-        >
+        <span className='cursor-pointer ml-5 text-white text-lg'>
           <FontAwesomeIcon icon={faCog} />
-        </button>
+        </span>
       </Popover.Button>
 
       <Popover.Panel ref={setPopperElement}>
