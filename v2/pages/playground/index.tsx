@@ -1,22 +1,33 @@
-import type { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import GUN from 'gun/gun'
-import Header from '../../components/Header/Header'
+import Header from 'components/Header/Header'
+import { inBrowser } from 'lib/where'
 
-const gun = GUN()
+const gun = Gun({
+  peers: inBrowser
+    ? [
+        'https://bullchat.syon.ca/gun',
+        // 'http://localhost:3001/gun/',
+        // `${location.origin}/gun`,
+        // `${location.origin}/api/gun`,
+      ]
+    : [],
+})
+// global.gun = gun // for debugging
 
-const Playground: NextPage = () => {
+const Playground: FunctionComponent = () => {
   const [inputText, setInputText] = useState('')
   const [items, setItems] = useState([])
   // console.log(items)
 
+  // .open() instead of .map().on() might be something to have a look at
   useEffect(
     () =>
       gun
         .get('items')
         .map()
-        .on((text: string, id: string) =>
+        .on((text, id) =>
           setItems((oldItems) => [{ text, id }, ...oldItems])
         ).off,
     []
@@ -48,28 +59,40 @@ const Playground: NextPage = () => {
                 >
                   Submit
                 </button>
+                <button
+                  type='button'
+                  onClick={() => {
+                    gun.get('items').set(null)
+                    setInputText('')
+                  }}
+                  className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                >
+                  Submit (null)
+                </button>
               </div>
             </div>
           </div>
-          {Object.values(items).map((item) => (
-            <div
-              key={item.id}
-              className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
-            >
-              <div className={classNamesLib.feedItemInnerTop}>
-                <div className={classNamesLib.feedItemMetaWrapper}>
-                  <div
-                    className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
-                  >
-                    Username
+          {Object.values(items)
+            .filter((item) => typeof item.text === 'string')
+            .map((item) => (
+              <div
+                key={item.id}
+                className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+              >
+                <div className={classNamesLib.feedItemInnerTop}>
+                  <div className={classNamesLib.feedItemMetaWrapper}>
+                    <div
+                      className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+                    >
+                      &lt;Username&gt;
+                    </div>
                   </div>
                 </div>
+                <div className={classNamesLib.feedItemInnerBottom}>
+                  {item.text}
+                </div>
               </div>
-              <div className={classNamesLib.feedItemInnerBottom}>
-                {item.text}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </>
