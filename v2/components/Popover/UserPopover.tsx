@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
-import { createPopper } from '@popperjs/core'
 import { Popover } from '@headlessui/react'
+import { usePopper } from 'react-popper'
 import {
   faPlus,
   faRedoAlt,
@@ -15,24 +15,19 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const UserPopover: FunctionComponent = () => {
-  const [referenceElement, setReferenceElement] = useState()
-  const [popperElement, setPopperElement] = useState()
-
-  const initPopover = (): void => {
-    if (!referenceElement || !popperElement) return // let the typechecker know it will not be null
-
-    createPopper(referenceElement, popperElement, {
-      placement: 'bottom-end',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 8],
-          },
-        },
-      ],
-    })
-  }
+  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: 'bottom-end',
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 5]
+        }
+      }
+    ]
+  })
 
   const [setIsOpenSignupDialog, setIsOpenRecoverDialog] = useStore(
     (state) => [state.setIsOpenSignupDialog, state.setIsOpenRecoverDialog],
@@ -50,8 +45,6 @@ const UserPopover: FunctionComponent = () => {
     toast('Logging out...')
   }
 
-  initPopover()
-
   return (
     <Popover>
       <Popover.Button ref={setReferenceElement}>
@@ -61,7 +54,7 @@ const UserPopover: FunctionComponent = () => {
         </span>
       </Popover.Button>
 
-      <Popover.Panel ref={setPopperElement}>
+      <Popover.Panel  ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         <div
           className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
         >

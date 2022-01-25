@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
 import shallow from 'zustand/shallow'
-import { createPopper } from '@popperjs/core'
 import { Popover } from '@headlessui/react'
+import { usePopper } from 'react-popper'
 import {
   faCog,
   faExclamationTriangle,
@@ -15,24 +15,19 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const SettingsPopover: FunctionComponent = () => {
-  const [referenceElement, setReferenceElement] = useState()
-  const [popperElement, setPopperElement] = useState()
-
-  const initPopover = (): void => {
-    if (!referenceElement || !popperElement) return // let the typechecker know it will not be null
-
-    createPopper(referenceElement, popperElement, {
-      placement: 'bottom-end',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 8],
-          },
-        },
-      ],
-    })
-  }
+  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: 'bottom-end',
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 5]
+        }
+      }
+    ]
+  })
 
   const [setIsOpenSettingsDialog, nodeActive] = useStore(
     (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
@@ -52,8 +47,6 @@ const SettingsPopover: FunctionComponent = () => {
     }
   }
 
-  initPopover()
-
   return (
     <Popover>
       <Popover.Button ref={setReferenceElement}>
@@ -62,7 +55,7 @@ const SettingsPopover: FunctionComponent = () => {
         </span>
       </Popover.Button>
 
-      <Popover.Panel ref={setPopperElement}>
+      <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         <div
           className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
         >
