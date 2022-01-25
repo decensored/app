@@ -34,7 +34,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ id, name }) => (
             className='text-md text-gray-900 dark:text-gray-300'
           />
           <span
-            className='flex-none uppercase bg-decensored-100 text-gray-600
+            className='flex-none uppercase bg-highlight-100 text-gray-600
             text-xs tracking-wide font-semibold px-2 py-1 rounded-md'
           >
             578

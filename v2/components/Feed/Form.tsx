@@ -34,7 +34,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
     spacings: 'py-2 px-3',
     text: 'font-medium',
     textColor: 'text-white ',
-    style: 'rounded cursor-pointer bg-decensored-900 hover:bg-purple-800',
+    style: 'rounded cursor-pointer bg-highlight-900 hover:bg-purple-800',
   }
 
   return (

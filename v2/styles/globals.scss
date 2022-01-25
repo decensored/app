@@ -3,19 +3,15 @@
 @tailwind utilities;
 
 body {
-  // opacity: 1;
-  //transition: 0.3s opacity;
+  background-repeat: repeat;
+  background-attachment: fixed;
   background-image: url('/background/light.svg');
   .dark & {
     background-image: url('/background/dark.svg');
   }
-  background-repeat: repeat;
-  background-attachment: fixed;
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
-html .bg-decensored-gradient {
+html .bg-gradient {
   background-color: #3833a4;
   background: rgb(57, 56, 161);
   background: linear-gradient(
@@ -25,10 +21,6 @@ html .bg-decensored-gradient {
     rgba(89, 56, 161, 1) 100%
   );
 }
-
-// .focus\:shadow-sm:focus {
-//   box-shadow: none !important;
-// }
 
 @media (min-width: 480px) {
   html .Toastify__toast-container--bottom-center {
@@ -40,11 +32,3 @@ html .bg-decensored-gradient {
   position: relative;
   z-index: 1000;
 }
-
-// .opacity-0 {
-//   opacity: 0;
-// }
-
-// #message {
-//   opacity: 0;
-// }

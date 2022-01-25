@@ -51,7 +51,14 @@ const Playground: NextPage = () => {
         </div>
           {Object.values(items).map((item) => (
             <div key={item.id} className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}>
-              <div className={classNamesLib.feedItemInner}>
+              <div className={classNamesLib.feedItemInnerTop}>
+                <div className={classNamesLib.feedItemMetaWrapper}>
+                  <div className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}>
+                    Username
+                  </div>
+                </div>
+              </div>
+              <div className={classNamesLib.feedItemInnerBottom}>
                 {item.text}
               </div>
             </div>
