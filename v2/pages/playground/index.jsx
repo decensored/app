@@ -1,4 +1,6 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+/* eslint-disable */
+
+import React, {  useEffect, useState } from 'react'
 import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Header from 'components/Header/Header'
@@ -18,7 +20,7 @@ const gun = Gun({
 
 const ITEMS = 'items-aab'
 
-const Playground: FunctionComponent = () => {
+const Playground = () => {
   const [inputText, setInputText] = useState('')
   const [items, setItems] = useState([])
   // console.log(items)
@@ -53,7 +55,7 @@ const Playground: FunctionComponent = () => {
                 <button
                   type='button'
                   onClick={() => {
-                    gun.get(ITEMS).set(inputText as any)
+                    gun.get(ITEMS).set(inputText)
                     setInputText('')
                   }}
                   className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
