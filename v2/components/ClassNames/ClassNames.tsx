@@ -2,7 +2,7 @@
 /* prettier-ignore */
 export const classNamesLib = {
   body: 'font-sans bg-slate-100 text-gray-900',
-  bodyDark: 'dark:bg-darkmode-100 dark:text-gray-500',
+  bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
   container: 'container mx-auto max-w-md px-3',
 
@@ -42,7 +42,7 @@ export const classNamesLib = {
   popoverHeaderName: 'text-lg dark:text-gray-300',
   popoverBody: 'p-2 flex flex-col gap-y-1',
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-100',
-  popoverBodyButtonDark: 'dark:text-gray-500 dark:hover:text-white dark:hover:bg-highlight-900',
+  popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
   navigationBottomWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
@@ -63,9 +63,13 @@ export const classNamesLib = {
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
-  feedItemMetaWrapper: 'flex justify-between',
+  feedItemInnerBottomCol: 'flex gap-x-3 items-center',
+  feedItemMetaWrapper: 'flex justify-between mb-2',
+  feedItemMetaTimestamp: 'text-sm text-right',
   feedItemMetaName: 'font-bold text-gray-900',
   feedItemMetaNameDark: 'dark:text-gray-300',
+  feedItemText: 'break-words font-light',
+  feedItemTextDark: '',
   feedItemInteractionIcon: 'cursor-pointer text-gray-300 hover:text-gray-900',
   feedItemInteractionIconDark: 'dark:text-gray-500 dark:hover:text-gray-300',
 
