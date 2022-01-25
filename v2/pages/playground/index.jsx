@@ -1,7 +1,8 @@
 /* eslint-disable */
 
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
+import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
@@ -9,32 +10,40 @@ import { inBrowser } from 'lib/where'
 const gun = Gun({
   peers: inBrowser
     ? [
-        'http://localhost:3001/gun',
         'https://bullchat.syon.ca/gun',
+        'https://gunjs.herokuapp.com/gun',
+        // 'http://localhost:3001/gun',
+        // 'http://localhost:8765/gun',
         // `${location.origin}/gun`,
         // `${location.origin}/api/gun`,
       ]
     : [],
 })
-// global.gun = gun // for debugging
+global.gun = gun // for debugging
 
-const ITEMS = 'items-aab'
+const NAMESPACE = 'decensored'
 
 const Playground = () => {
+  const [chatRoom, setChatRoom] = useState('room-102')
   const [inputText, setInputText] = useState('')
   const [items, setItems] = useState([])
-  // console.log(items)
+  // console.log('items', items)
 
-  // .open() instead of .map().on() might be something to have a look at
-  useEffect(
-    () =>
-      gun
-        .get(ITEMS)
-        .map()
-        .on((text, id) => setItems((oldItems) => [{ text, id }, ...oldItems]))
-        .off,
-    []
-  )
+  useEffect(() => {
+    const getter = gun.get(NAMESPACE).get(chatRoom)
+
+    getter.open((data) => {
+      const items = Object.values(data)
+        .filter((item) => !!item) // filter out deleted values which will appear as null
+        .reverse()
+      setItems(items)
+    })
+
+    // I don't know why "return getter.off" doesn't work when going to another page
+    return () => {
+      getter.off()
+    }
+  }, [chatRoom])
 
   return (
     <>
@@ -48,6 +57,12 @@ const Playground = () => {
               <div className='flex gap-x-3'>
                 <input
                   type='text'
+                  value={chatRoom}
+                  onChange={(e) => setChatRoom(e.target.value)}
+                  className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                />
+                <input
+                  type='text'
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
@@ -55,7 +70,12 @@ const Playground = () => {
                 <button
                   type='button'
                   onClick={() => {
-                    gun.get(ITEMS).set(inputText)
+                    const randomId = `id_${Date.now()}`
+                    gun
+                      .get(NAMESPACE)
+                      .get(chatRoom)
+                      .get(randomId)
+                      .put({ text: inputText, id: randomId })
                     setInputText('')
                   }}
                   className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
@@ -65,27 +85,35 @@ const Playground = () => {
               </div>
             </div>
           </div>
-          {Object.values(items)
-            .filter((item) => typeof item.text === 'string')
-            .map((item) => (
-              <div
-                key={item.id}
-                className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
-              >
-                <div className={classNamesLib.feedItemInnerTop}>
-                  <div className={classNamesLib.feedItemMetaWrapper}>
-                    <div
-                      className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+            >
+              <div className={classNamesLib.feedItemInnerTop}>
+                <div className={classNamesLib.feedItemMetaWrapper}>
+                  <div
+                    className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+                  >
+                    <button
+                      type='button'
+                      onClick={() => {
+                        gun.get(NAMESPACE).get(chatRoom).get(item.id).put(null)
+                      }}
+                      className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
                     >
-                      &lt;Username&gt;
-                    </div>
+                      Delete
+                    </button>
+                    {/* &lt;Username&gt; */}
                   </div>
                 </div>
-                <div className={classNamesLib.feedItemInnerBottom}>
-                  {item.text}
-                </div>
               </div>
-            ))}
+              <div className={classNamesLib.feedItemInnerBottom}>
+                {item.text}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
