@@ -15,33 +15,43 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const UserPopover: FunctionComponent = () => {
-  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  )
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom-end',
     modifiers: [
       {
         name: 'offset',
         options: {
-          offset: [0, 5]
-        }
-      }
-    ]
+          offset: [0, 5],
+        },
+      },
+    ],
   })
 
-  const [setIsOpenSignupDialog, setIsOpenRecoverDialog] = useStore(
-    (state) => [state.setIsOpenSignupDialog, state.setIsOpenRecoverDialog],
-    shallow
-  )
-
-  const [isSignedUp, setIsSignedUp, userName] = useStore(
-    (state) => [state.isSignedUp, state.setIsSignedUp, state.userName],
+  const [
+    setIsOpenSignupDialog,
+    setIsOpenRecoverDialog,
+    isSignedUp,
+    setIsSignedUp,
+    userName,
+  ] = useStore(
+    (state) => [
+      state.setIsOpenSignupDialog,
+      state.setIsOpenRecoverDialog,
+      state.isSignedUp,
+      state.setIsSignedUp,
+      state.userName,
+    ],
     shallow
   )
 
   const setIsSignedUpWithToast = (): void => {
     setIsSignedUp(false)
-    // https://fkhadra.github.io/react-toastify/introduction/
+    localStorage.removeItem('account_private_key')
     toast('Logging out...')
   }
 
@@ -54,7 +64,11 @@ const UserPopover: FunctionComponent = () => {
         </span>
       </Popover.Button>
 
-      <Popover.Panel  ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+      <Popover.Panel
+        ref={setPopperElement}
+        style={styles.popper}
+        {...attributes.popper}
+      >
         <div
           className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
         >
