@@ -7,6 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gradient: {
+          0: '#4739b1',
+          30: '#4739b1',
+          100: '#6b37b1',
+        },
         highlight: {
           100: '#c7caeb',
           200: '#acb2e2',

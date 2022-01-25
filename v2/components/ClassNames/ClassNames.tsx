@@ -44,8 +44,8 @@ export const classNamesLib = {
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-100',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
-  navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white shadow-2xl',
-  navigationBottomWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
+  navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
+  navigationBottomWrapperDark: 'dark:bg-darkmode-100 dark:divide-darkmode-1000',
   navigationBottomInner: 'py-4 sm:py-6 flex gap-y-5',
   navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-2xl sm:text-3xl',
   navigationBottomItemColor: 'text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100',
@@ -59,7 +59,7 @@ export const classNamesLib = {
   feedPostsWrapper: 'flex flex-col gap-y-5',
 
   feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm',
-  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
+  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',

@@ -11,15 +11,18 @@ body {
   }
 }
 
-html .bg-gradient {
-  background-color: #3833a4;
-  background: rgb(57, 56, 161);
-  background: linear-gradient(
-    45deg,
-    rgba(57, 56, 161, 1) 0%,
-    rgba(57, 56, 161, 1) 35%,
-    rgba(89, 56, 161, 1) 100%
-  );
+html {
+  .bg-gradient,
+  &.dark .dark\:bg-gradient {
+    background-color: #3833a4;
+    background: rgb(57, 56, 161);
+    background: linear-gradient(
+      45deg,
+      rgba(57, 56, 161, 1) 0%,
+      rgba(57, 56, 161, 1) 35%,
+      rgba(89, 56, 161, 1) 100%
+    );
+  }
 }
 
 @media (min-width: 480px) {
