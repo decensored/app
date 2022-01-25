@@ -58,6 +58,7 @@ export const classNamesLib = {
 
   feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm',
   feedItemWrapperDark: 'dark:bg-gray-900 dark:divide-gray-800',
+  feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
   feedItemMetaWrapper: 'flex justify-between',
