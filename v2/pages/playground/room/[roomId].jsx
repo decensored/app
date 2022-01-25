@@ -46,7 +46,7 @@ const Playground = () => {
     return () => {
       getter.off()
     }
-  }, [])
+  }, [roomId])
 
   return (
     <>
