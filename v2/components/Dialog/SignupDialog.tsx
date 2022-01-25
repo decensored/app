@@ -4,29 +4,30 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
-import BaseDialog from 'components/Dialog/BaseDialog'
+import BaseDialog from './BaseDialog'
 
 const SignupDialog: FunctionComponent = () => {
-  const { isOpenSignupDialog, setIsOpenSignupDialog } = useStore((state) => ({
+  const {
+    setIsSignedUp,
+    userName,
+    setUserName,
+    contract,
+    isOpenSignupDialog,
+    setIsOpenSignupDialog,
+  } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
+    setIsSignedUp: state.setIsSignedUp,
+    userName: state.userName,
+    setUserName: state.setUserName,
+    contract: state.contract,
     isOpenSignupDialog: state.isOpenSignupDialog,
     setIsOpenSignupDialog: state.setIsOpenSignupDialog,
   }))
-
-  const { setIsSignedUp, userName, setUserName, contract } = useStore(
-    (state) => ({
-      isSignedUp: state.isSignedUp,
-      setIsSignedUp: state.setIsSignedUp,
-      userName: state.userName,
-      setUserName: state.setUserName,
-      contract: state.contract,
-    })
-  )
 
   // HANDLE FORM SUBMIT
   type FormValues = {
     username: string
   }
-
   const {
     register,
     handleSubmit,
@@ -34,11 +35,13 @@ const SignupDialog: FunctionComponent = () => {
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const result = await signUpUser(contract, data.username)
-    console.log(JSON.stringify(result, null, 2))
-
-    setIsSignedUp(true)
-    setUserName(data.username)
-    setIsOpenSignupDialog(false)
+    if (result.success === true) {
+      setIsSignedUp(true)
+      setUserName(data.username)
+      setIsOpenSignupDialog(false)
+    } else {
+      throw new Error(JSON.stringify(result))
+    }
   }
 
   const handleClose = (): void => {

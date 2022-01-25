@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { inBrowser } from 'lib/where'
+import { isSignedUp } from 'api/user'
 
 import {
   CONTRACT_ACCOUNTS_ABI,
@@ -14,12 +15,19 @@ import {
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const [evmNode, contractPostsAddress, setContract, setNodeStatus] = useStore(
+  const [
+    evmNode,
+    contractPostsAddress,
+    setContract,
+    setNodeStatus,
+    setIsSignedUp,
+  ] = useStore(
     (state) => [
       state.evmNode,
       state.contractPostsAddress,
       state.setContract,
       state.setNodeStatus,
+      state.setIsSignedUp,
     ],
     shallow
   )
@@ -69,21 +77,29 @@ const Web3Client: FunctionComponent = () => {
         contractSpaces.methods
           .accounts()
           .call()
-          .then((contractAccountsAddress: any) => {
+          .then(async (contractAccountsAddress: any) => {
             const contractAccounts = new web3.eth.Contract(
               CONTRACT_ACCOUNTS_ABI,
               contractAccountsAddress
             )
             // console.log('Web3Client.contractAccounts', contractAccounts)
 
-            setContract({
+            const contract = {
               accounts: contractAccounts,
               posts: contractPosts,
               spaces: contractSpaces,
               web3,
-            })
+            }
+
+            setContract(contract)
             setNodeStatus(true)
             toast('All systems are Go for launch!')
+
+            // Check if privateKey is stored and user exists
+            const privateKey = await localStorage.getItem('account_private_key')
+            if (privateKey && (await isSignedUp(contract))) {
+              setIsSignedUp(true)
+            }
           })
           .catch((e: any) => {
             setNodeStatus(false)
@@ -98,7 +114,7 @@ const Web3Client: FunctionComponent = () => {
           autoClose: 5000,
         })
       })
-  }, [evmNode, contractPostsAddress, setContract, setNodeStatus])
+  }, [evmNode, contractPostsAddress, setContract, setNodeStatus, setIsSignedUp])
 
   return null
 }

@@ -4,9 +4,9 @@ const log = (msg: string): void => {
 
 export const executeContractFunction = async (
   web3: any,
-  function_call: any
+  function_call: any,
+  privateKey: string
 ) => {
-  const privateKey = await getPrivateKey()
   console.log('executeContractFunction.privateKey', privateKey)
 
   const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey)
@@ -27,6 +27,7 @@ export const executeContractFunction = async (
 export const signUpUser = async (contract: any, username: string) => {
   log(`signUpUser ${username}`)
 
+  /* I think we dont need this?
   // const privateKey = await createNewPrivateKey(contract) // overwrite existing or debugging only
   // console.log('new privateKey', privateKey)
 
@@ -38,30 +39,29 @@ export const signUpUser = async (contract: any, username: string) => {
 
     const username3 = await getUserNameByAddress(contract)
     console.log('username3', username3)
-  }
+  } 
+  */
+
+  const privateKey = await createNewPrivateKey(contract) // overwrite existing or debugging only
+  console.log('new privateKey', privateKey)
 
   try {
     await executeContractFunction(
       contract.web3,
-      contract.accounts.methods.sign_up(username)
+      contract.accounts.methods.sign_up(username),
+      privateKey
     )
-
-    const username2 = await getUserNameByAddress(contract)
-    console.log('username2', username2)
     const userId = await getIdByUserName(contract, username)
-    console.log('userId', userId)
     const signedUp = await isSignedUp(contract)
-    console.log('signedUp', signedUp)
 
     return {
       success: true,
       signedUp,
-      // privateKey,
       username,
-      username2,
       userId,
     }
   } catch (err) {
+    localStorage.removeItem('account_private_key')
     return {
       success: false,
       err: (err as any).toString(),
@@ -88,8 +88,13 @@ export const createNewPrivateKey = async (contract: any) => {
 }
 
 export const getPrivateKey = async () => {
-  const privateKey = await localStorage.getItem('account_private_key')
-  return privateKey
+  const privateKey = localStorage.getItem('account_private_key')
+  if (privateKey) {
+    return privateKey
+  } else {
+    console.log('bla')
+    return
+  }
 }
 
 export const getAddress = async (contract: any) => {
@@ -97,7 +102,6 @@ export const getAddress = async (contract: any) => {
   return contract.web3.eth.accounts.privateKeyToAccount(private_key).address
 }
 
-// CHECK IF NEEDED
 export const getUserNameByAddress = async (contract: any) => {
   let address = await getAddress(contract)
 
@@ -121,4 +125,27 @@ export const getUserNameById = async (contract: any, user_id: number) => {
 
 export const getIdByUserName = async (contract: any, username: string) => {
   return contract.accounts.methods.id_by_username(username).call()
+}
+
+export const recoverUser = async (contract: any, privateKey: string) => {
+  log(`recoverUser} with key ${privateKey}`)
+  localStorage.setItem('account_private_key', privateKey)
+  if (await isSignedUp(contract)) {
+    const username = await getUserNameByAddress(contract)
+    const userId = await getIdByUserName(contract, username)
+    const result = {
+      success: true,
+      username: username,
+      userId: userId,
+    }
+    return result
+  } else {
+    localStorage.removeItem('account_private_key')
+    const result = {
+      success: false,
+      message: 'Couldnt find a user with that key',
+      username: '',
+    }
+    return result
+  }
 }
