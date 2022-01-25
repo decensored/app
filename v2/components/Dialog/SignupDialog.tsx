@@ -33,7 +33,9 @@ const SignupDialog: FunctionComponent = () => {
     formState: { errors },
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await signUpUser(contract, data.username)
+    const result = await signUpUser(contract, data.username)
+    console.log(JSON.stringify(result, null, 2))
+
     setIsSignedUp(true)
     setUserName(data.username)
     setIsOpenSignupDialog(false)

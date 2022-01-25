@@ -7,53 +7,72 @@ export const executeContractFunction = async (
   function_call: any
 ) => {
   const privateKey = await getPrivateKey()
-  const account_address = await web3.eth.accounts.privateKeyToAccount(
-    privateKey
-  ).address
+  console.log('executeContractFunction.privateKey', privateKey)
+
+  const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey)
+    .address
+  console.log('executeContractFunction.accountAddress', accountAddress)
+
   const options = {
     to: await function_call._parent._address,
     data: await function_call.encodeABI(),
-    gas: await function_call.estimateGas({ from: account_address }),
+    gas: await function_call.estimateGas({ from: accountAddress }),
     gasPrice: 0,
   }
+
   const signed = await web3.eth.accounts.signTransaction(options, privateKey)
   return web3.eth.sendSignedTransaction(signed.rawTransaction)
 }
 
 export const signUpUser = async (contract: any, username: string) => {
   log(`signUpUser ${username}`)
-  const privateKey = await createNewPrivateKey(contract)
-  executeContractFunction(
-    contract.web3,
-    contract.accounts.methods.sign_up(username)
-  )
-    .then(async () => {
-      const username = await getUserNameByAddress(contract)
-      const userId = await getIdByUserName(contract, username)
-      const check = await isSignedUp(contract)
-      const result = {
-        success: true,
-        signedUp: check,
-        privateKey: privateKey,
-        username: username,
-        userId: userId,
-      }
-      console.log(result)
-      return result
-    })
-    .catch((error) => {
-      const result = {
-        success: false,
-        message: 'User name already exists!',
-        error: error,
-      }
-      console.log(result)
-      return result
-    })
+
+  // const privateKey = await createNewPrivateKey(contract) // overwrite existing or debugging only
+  // console.log('new privateKey', privateKey)
+
+  const isSignedUp1 = await isSignedUp(contract)
+  console.log('isSignedUp1', isSignedUp1)
+  if (isSignedUp1) {
+    let address = await getAddress(contract)
+    console.log('address', address)
+
+    const username3 = await getUserNameByAddress(contract)
+    console.log('username3', username3)
+  }
+
+  try {
+    await executeContractFunction(
+      contract.web3,
+      contract.accounts.methods.sign_up(username)
+    )
+
+    const username2 = await getUserNameByAddress(contract)
+    console.log('username2', username2)
+    const userId = await getIdByUserName(contract, username)
+    console.log('userId', userId)
+    const signedUp = await isSignedUp(contract)
+    console.log('signedUp', signedUp)
+
+    return {
+      success: true,
+      signedUp,
+      // privateKey,
+      username,
+      username2,
+      userId,
+    }
+  } catch (err) {
+    return {
+      success: false,
+      err: (err as any).toString(),
+    }
+  }
 }
 
 export const isSignedUp = async (contract: any) => {
   let address = await getAddress(contract)
+  console.log('isSignedUp.address', address)
+
   return contract.accounts.methods
     .id_by_address(address)
     .call()
