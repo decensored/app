@@ -8,6 +8,7 @@ import Web3Client from 'components/Web3Client'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
+import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
 import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_spaces'
@@ -51,6 +52,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
     <SettingsDialog />
     <SignupDialog />
     <RecoverDialog />
+    <CreateSpaceDialog />
 
     <DarkmodeToggle />
 

@@ -4,7 +4,7 @@ import useStore from 'lib/store'
 import Header from 'components/Header/Header'
 import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
-import CreateSpace from 'components/Spaces/CreateSpace'
+import SpaceHeader from 'components/Spaces/SpaceHeader'
 
 const Spaces: NextPage = () => {
   const { isSignedUp, spaces } = useStore((state) => ({
@@ -24,7 +24,7 @@ const Spaces: NextPage = () => {
       <Header />
       <div id='spaces'>
         <div className='container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28'>
-          {isSignedUp && <CreateSpace />}
+          {isSignedUp && <SpaceHeader />}
           <div className='flex flex-col gap-y-5 mb-28'>{createSpaceItems}</div>
         </div>
       </div>
