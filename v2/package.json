@@ -6,7 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint-full": "next lint && next build",
     "precommit": "npm run lint",
+    "precommit-full": "npm run lint-full",
     "validate": "npm run precommit",
     "prepare": "cd .. && husky install v2/.husky"
   },
