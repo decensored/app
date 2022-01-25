@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
@@ -85,10 +87,14 @@ const SettingsDialog: FunctionComponent = () => {
                   <div
                     className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
                   >
+                    <FontAwesomeIcon
+                      icon={faExclamationTriangle}
+                      className='animate-pulse text-red-500'
+                    />
                     <span
                       className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
                     >
-                      Connection failed!
+                      &nbsp;&nbsp;Connection failed!
                     </span>
                   </div>
                 )}

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import Link from 'next/link'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
@@ -8,14 +8,20 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import UserPopover from 'components/Popover/UserPopover'
 import SettingsPopover from 'components/Popover/SettingsPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import useTimeout from 'hooks/useTimeout.js'
 
 const Header: FunctionComponent = () => {
-  const [setIsOpenSettingsDialog, nodeActive] = useStore(
-    (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
+  const [setIsOpenSettingsDialog, nodeActive, contract] = useStore(
+    (state) => [
+      state.setIsOpenSettingsDialog,
+      state.nodeActive,
+      state.contract,
+    ],
     shallow
   )
 
-  const [contract] = useStore((state) => [state.contract], shallow)
+  const [gracePeriodDone, setGracePeriodDone] = useState(false)
+  useTimeout(() => setGracePeriodDone(true), 500)
 
   // const setIsSignedUpWithToast = (): void => {
   //   setIsSignedUp(false)
@@ -25,7 +31,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      {!nodeActive && (
+      {!nodeActive && gracePeriodDone && (
         <button
           type='button'
           onClick={() => {
