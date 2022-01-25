@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -24,13 +25,15 @@ global.gun = gun // for debugging
 const NAMESPACE = 'decensored'
 
 const Playground = () => {
-  const [chatRoom, setChatRoom] = useState('room-102')
+  const router = useRouter()
+  const { roomId } = router.query
+
   const [inputText, setInputText] = useState('')
   const [items, setItems] = useState([])
   // console.log('items', items)
 
   useEffect(() => {
-    const getter = gun.get(NAMESPACE).get(chatRoom)
+    const getter = gun.get(NAMESPACE).get(roomId)
 
     getter.open((data) => {
       const items = Object.values(data)
@@ -43,7 +46,7 @@ const Playground = () => {
     return () => {
       getter.off()
     }
-  }, [chatRoom])
+  }, [])
 
   return (
     <>
@@ -54,13 +57,8 @@ const Playground = () => {
             className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
           >
             <div className={classNamesLib.feedItemInner}>
+              {roomId}
               <div className='flex gap-x-3'>
-                <input
-                  type='text'
-                  value={chatRoom}
-                  onChange={(e) => setChatRoom(e.target.value)}
-                  className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
-                />
                 <input
                   type='text'
                   value={inputText}
@@ -73,7 +71,7 @@ const Playground = () => {
                     const randomId = `id_${Date.now()}`
                     gun
                       .get(NAMESPACE)
-                      .get(chatRoom)
+                      .get(roomId)
                       .get(randomId)
                       .put({ text: inputText, id: randomId })
                     setInputText('')
@@ -99,7 +97,7 @@ const Playground = () => {
                     <button
                       type='button'
                       onClick={() => {
-                        gun.get(NAMESPACE).get(chatRoom).get(item.id).put(null)
+                        gun.get(NAMESPACE).get(roomId).get(item.id).put(null)
                       }}
                       className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
                     >
