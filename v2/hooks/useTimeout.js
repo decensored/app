@@ -1,19 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/ but now using setTimeout
 const useTimeout = (callback, delay) => {
-  const savedCallback = useRef();
+  const savedCallback = useRef()
   useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
+    savedCallback.current = callback
+  }, [callback])
   useEffect(() => {
-    const handler = (...args) => savedCallback.current(...args);
+    const handler = (...args) => savedCallback.current(...args)
 
     if (delay !== null) {
-      const id = setTimeout(handler, delay);
-      return () => clearTimeout(id);
+      const id = setTimeout(handler, delay)
+      return () => clearTimeout(id)
     }
-  }, [delay]);
-};
+  }, [delay])
+}
 
-export default useTimeout;
+export default useTimeout

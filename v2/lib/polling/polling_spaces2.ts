@@ -30,7 +30,7 @@ const SpaceSPoll = async (): Promise<void> => {
     .then(parseInt)
 
   // Check if new spaces exist
-  if(latestSpaceIndex > latestSpaceIndexFetched) {
+  if (latestSpaceIndex > latestSpaceIndexFetched) {
     const spacesPromises: Promise<SpaceType>[] = []
     for (let i = latestSpaceIndex; i > latestSpaceIndexFetched; i -= 1) {
       const p = getSpaceById(contract, i)
@@ -40,7 +40,7 @@ const SpaceSPoll = async (): Promise<void> => {
 
     // Set new index & push new spaces into possibly existing array
     setLatestSpaceIndexFetched(latestSpaceIndex)
-    existingSpaces.map(space => spaces.push(space))
+    existingSpaces.map((space) => spaces.push(space))
     state.setSpaces(spaces)
   }
 

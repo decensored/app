@@ -71,15 +71,23 @@ const SettingsDialog: FunctionComponent = () => {
                   {...register('evmNode', { required: true })}
                 />
                 {errors.evmNode && (
-                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
-                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
-                    Required Field
+                  <div
+                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                  >
+                    <span
+                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                    >
+                      Required Field
                     </span>
                   </div>
                 )}
                 {!nodeActive && (
-                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
-                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+                  <div
+                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                  >
+                    <span
+                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                    >
                       Connection failed!
                     </span>
                   </div>
@@ -122,9 +130,13 @@ const SettingsDialog: FunctionComponent = () => {
                   {...register('contractAddress', { required: true })}
                 />
                 {errors.contractAddress && (
-                  <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
-                    <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
-                    Required Field
+                  <div
+                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                  >
+                    <span
+                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                    >
+                      Required Field
                     </span>
                   </div>
                 )}

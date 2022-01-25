@@ -6,15 +6,12 @@ import { getPostById } from 'api/feed'
 const INTERVAL = 10 * 1000
 
 const PostsPoll = async (): Promise<void> => {
-  const {
-    latestPostIndexFetched,
-    setLatestPostIndexFetched,
-    existingPosts,
-  } = useStore((state) => ({
-    latestPostIndexFetched: state.latestPostIndexFetched,
-    setLatestPostIndexFetched: state.setLatestPostIndexFeched,
-    existingPosts: state.posts,
-  }))
+  const { latestPostIndexFetched, setLatestPostIndexFetched, existingPosts } =
+    useStore((state) => ({
+      latestPostIndexFetched: state.latestPostIndexFetched,
+      setLatestPostIndexFetched: state.setLatestPostIndexFeched,
+      existingPosts: state.posts,
+    }))
 
   const state = useStore.getState()
   const contract: any = state?.contract
@@ -24,11 +21,11 @@ const PostsPoll = async (): Promise<void> => {
   }
 
   const latestPostIndex = await await contract.posts.methods
-  .get_amount_of_posts()
-  .call()
-  .then(parseInt)
+    .get_amount_of_posts()
+    .call()
+    .then(parseInt)
 
-  if(latestPostIndex > latestPostIndexFetched) {
+  if (latestPostIndex > latestPostIndexFetched) {
     const postsPromises: Promise<PostType>[] = []
     for (let i = latestPostIndex; i >= latestPostIndexFetched; i -= 1) {
       const p = getPostById(contract, i)
@@ -39,7 +36,7 @@ const PostsPoll = async (): Promise<void> => {
 
     // Set new index & push new posts into possibly existing array
     setLatestPostIndexFetched(latestPostIndex)
-    existingPosts.map(post => posts.push(post))
+    existingPosts.map((post) => posts.push(post))
     state.setPosts(posts)
   }
 

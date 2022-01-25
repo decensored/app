@@ -5,7 +5,7 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 const DecensoredDocument: FunctionComponent = () => (
   <Html>
     <Head />
-    <body className={`${classNamesLib.body} ${classNamesLib.bodyDark}`} >
+    <body className={`${classNamesLib.body} ${classNamesLib.bodyDark}`}>
       <Main />
       <NextScript />
     </body>

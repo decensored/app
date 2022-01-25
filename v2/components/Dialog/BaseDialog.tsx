@@ -20,16 +20,16 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   <Dialog open={showDialog} onClose={onClose}>
     <div className={classNamesLib.dialogWrapper}>
       <Dialog.Overlay className={classNamesLib.dialogOverlay} />
-      <div className={`${classNamesLib.dialogInner} ${classNamesLib.dialogInnerDark}`}>
-        <div className={`${classNamesLib.dialogHeader} ${classNamesLib.dialogHeaderDark}`}>
+      <div
+        className={`${classNamesLib.dialogInner} ${classNamesLib.dialogInnerDark}`}
+      >
+        <div
+          className={`${classNamesLib.dialogHeader} ${classNamesLib.dialogHeaderDark}`}
+        >
           {header}
         </div>
-        <div className={classNamesLib.dialogBody}>
-          {body}
-        </div>
-        <div className={classNamesLib.dialogFooter}>
-          {footer}
-        </div>
+        <div className={classNamesLib.dialogBody}>{body}</div>
+        <div className={classNamesLib.dialogFooter}>{footer}</div>
       </div>
     </div>
   </Dialog>

@@ -27,33 +27,40 @@ const Playground: NextPage = () => {
       <Header />
       <div className={classNamesLib.container}>
         <div className={classNamesLib.feedWrapper}>
-        <div className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}>
-          <div className={classNamesLib.feedItemInner}>
-            <div className='flex gap-x-3'>
-              <input
-                type='text'
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
-              />
-              <button
-                type='button'
-                onClick={() => {
-                  gun.get('items').set(inputText as any)
-                  setInputText('')
-                }}
-                className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
-              >
-                Submit
-              </button>
+          <div
+            className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+          >
+            <div className={classNamesLib.feedItemInner}>
+              <div className='flex gap-x-3'>
+                <input
+                  type='text'
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                />
+                <button
+                  type='button'
+                  onClick={() => {
+                    gun.get('items').set(inputText as any)
+                    setInputText('')
+                  }}
+                  className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
-        </div>
           {Object.values(items).map((item) => (
-            <div key={item.id} className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}>
+            <div
+              key={item.id}
+              className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+            >
               <div className={classNamesLib.feedItemInnerTop}>
                 <div className={classNamesLib.feedItemMetaWrapper}>
-                  <div className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}>
+                  <div
+                    className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+                  >
                     Username
                   </div>
                 </div>

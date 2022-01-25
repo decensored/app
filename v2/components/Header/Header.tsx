@@ -15,10 +15,7 @@ const Header: FunctionComponent = () => {
     shallow
   )
 
-  const [contract] = useStore(
-    (state) => [state.contract],
-    shallow
-  )
+  const [contract] = useStore((state) => [state.contract], shallow)
 
   // const setIsSignedUpWithToast = (): void => {
   //   setIsSignedUp(false)
@@ -61,9 +58,7 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          {(contract as any).accounts && (
-            <UserPopover />
-          )}
+          {(contract as any).accounts && <UserPopover />}
           <SettingsPopover />
         </div>
       </div>

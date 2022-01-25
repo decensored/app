@@ -64,8 +64,12 @@ const SignupDialog: FunctionComponent = () => {
               })}
             />
             {errors.username && (
-              <div className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}>
-                <span className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}>
+              <div
+                className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+              >
+                <span
+                  className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                >
                   min:4 max:16 only:AZaz
                 </span>
               </div>

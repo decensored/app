@@ -18,7 +18,7 @@ const UserPopover: FunctionComponent = () => {
   const [referenceElement, setReferenceElement] = useState()
   const [popperElement, setPopperElement] = useState()
 
-  const initPopover = ():void => {
+  const initPopover = (): void => {
     if (!referenceElement || !popperElement) return // let the typechecker know it will not be null
 
     createPopper(referenceElement, popperElement, {

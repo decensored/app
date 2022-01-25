@@ -18,7 +18,7 @@ const SettingsPopover: FunctionComponent = () => {
   const [referenceElement, setReferenceElement] = useState()
   const [popperElement, setPopperElement] = useState()
 
-  const initPopover = ():void => {
+  const initPopover = (): void => {
     if (!referenceElement || !popperElement) return // let the typechecker know it will not be null
 
     createPopper(referenceElement, popperElement, {
@@ -63,7 +63,9 @@ const SettingsPopover: FunctionComponent = () => {
       </Popover.Button>
 
       <Popover.Panel ref={setPopperElement}>
-        <div className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}>
+        <div
+          className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
+        >
           <div className={`${classNamesLib.popoverBody}`}>
             <Link href='https://t.co/Lmou3Qx5Ap' passHref>
               <a

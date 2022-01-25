@@ -19,10 +19,7 @@ const SignupForm: FunctionComponent<SignupFormProps> = ({ type }) => {
 
   return (
     <div id='screen_sign_up' className='w-full mt-5 mb-10'>
-      <div
-        id='screen_signup_inner'
-        className='container mx-auto px-3 max-w-md'
-      >
+      <div id='screen_signup_inner' className='container mx-auto px-3 max-w-md'>
         <div className='flex justify-center mb-6'>
           <img
             src='/logo/logotype_invert.svg'
