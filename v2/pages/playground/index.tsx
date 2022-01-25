@@ -7,8 +7,8 @@ import { inBrowser } from 'lib/where'
 const gun = Gun({
   peers: inBrowser
     ? [
+        'http://localhost:3001/gun',
         'https://bullchat.syon.ca/gun',
-        // 'http://localhost:3001/gun/',
         // `${location.origin}/gun`,
         // `${location.origin}/api/gun`,
       ]
@@ -16,7 +16,7 @@ const gun = Gun({
 })
 // global.gun = gun // for debugging
 
-const ITEMS = 'items-aaa'
+const ITEMS = 'items-aab'
 
 const Playground: FunctionComponent = () => {
   const [inputText, setInputText] = useState('')
