@@ -32,18 +32,18 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             {username}
           </a>
         </Link>
-        <div className='text-sm text-right'>{timestamp}</div>
+        <div className={classNamesLib.feedItemMetaTimestamp}>{timestamp}</div>
       </div>
-      <div className='break-words mt-2'>{message}</div>
+      <div className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}>{message}</div>
     </div>
     <div className={classNamesLib.feedItemInnerBottom}>
-      <div className='flex gap-x-3 items-center'>
+      <div className={classNamesLib.feedItemInnerBottomCol}>
         <FontAwesomeIcon
           icon={faShieldAlt}
           className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
         />
       </div>
-      <div className='flex gap-x-3 items-center'>
+      <div className={classNamesLib.feedItemInnerBottomCol}>
         <FontAwesomeIcon
           icon={faComment}
           className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}

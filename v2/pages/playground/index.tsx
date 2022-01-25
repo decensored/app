@@ -2,6 +2,12 @@ import type { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import GUN from 'gun/gun'
+import {
+  faComment,
+  faShare,
+  faShieldAlt,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Header from '../../components/Header/Header'
 
 const gun = GUN()
@@ -63,10 +69,27 @@ const Playground: NextPage = () => {
                   >
                     Username
                   </div>
+                  <div className={classNamesLib.feedItemMetaTimestamp}>22 min</div>
                 </div>
+                <div className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}>{item.text}</div>
               </div>
               <div className={classNamesLib.feedItemInnerBottom}>
-                {item.text}
+                <div className={classNamesLib.feedItemInnerBottomCol}>
+                  <FontAwesomeIcon
+                    icon={faShieldAlt}
+                    className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                  />
+                </div>
+                <div className={classNamesLib.feedItemInnerBottomCol}>
+                  <FontAwesomeIcon
+                    icon={faComment}
+                    className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                  />
+                  <FontAwesomeIcon
+                    icon={faShare}
+                    className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                  />
+                </div>
               </div>
             </div>
           ))}
