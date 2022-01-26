@@ -1,7 +1,5 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
-import { Popover } from '@headlessui/react'
-import { usePopper } from 'react-popper'
 import {
   faCog,
   faExclamationTriangle,
@@ -13,22 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import BasePopover from './BasePopover'
 
 const SettingsPopover: FunctionComponent = () => {
-  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: 'bottom-end',
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 5]
-        }
-      }
-    ]
-  })
-
   const [setIsOpenSettingsDialog, nodeActive] = useStore(
     (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
     shallow
@@ -48,17 +33,14 @@ const SettingsPopover: FunctionComponent = () => {
   }
 
   return (
-    <Popover>
-      <Popover.Button ref={setReferenceElement}>
+    <BasePopover
+      popoverButton={
         <span className='cursor-pointer ml-5 text-white text-lg'>
           <FontAwesomeIcon icon={faCog} />
         </span>
-      </Popover.Button>
-
-      <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
-        <div
-          className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
-        >
+      }
+      popoverPanel={
+        <div className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}>
           <div className={`${classNamesLib.popoverBody}`}>
             <Link href='https://t.co/Lmou3Qx5Ap' passHref>
               <a
@@ -120,8 +102,8 @@ const SettingsPopover: FunctionComponent = () => {
             </button>
           </div>
         </div>
-      </Popover.Panel>
-    </Popover>
+      }
+    />
   )
 }
 
