@@ -44,11 +44,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ id, name }) => (
       <div className='message break-words mt-2'>
         IOTA is a scalable, decentralized, feeless, modular, open-source
         distributed ledger protocol that goes beyond blockchain through its core
-        invention of the blockless ‘Tangle’. The IOTA Tangle is a Directed
-        Acyclic Graph (DAG). IOTA is aiming to be the backbone of the emerging
-        machine-to-machine (m2m) economy of the Internet-of-Things (IoT), data
-        integrity, micro-/nano- payments, and other cases where a scalable
-        decentralized system adds value.
+        invention of the blockless ‘Tangle’.
       </div>
     </div>
   </div>

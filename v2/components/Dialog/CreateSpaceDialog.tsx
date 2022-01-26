@@ -3,15 +3,25 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
-import { createSpace } from 'api/spaces'
+import { createSpace, getSpaceByName } from 'api/spaces'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 const CreateSpaceDialog: FunctionComponent = () => {
-  const { contract, isOpenCreateSpaceDialog, setIsOpenCreateSpaceDialog } =
-    useStore((state) => ({
-      contract: state.contract,
-      isOpenCreateSpaceDialog: state.isOpenCreateSpaceDialog,
-      setIsOpenCreateSpaceDialog: state.setIsOpenCreateSpaceDialog,
-    }))
+  const [isLoading, setIsLoading] = React.useState(false)
+  const {
+    contract,
+    isOpenCreateSpaceDialog,
+    setIsOpenCreateSpaceDialog,
+    spaces,
+    setSpaces,
+  } = useStore((state) => ({
+    contract: state.contract,
+    isOpenCreateSpaceDialog: state.isOpenCreateSpaceDialog,
+    setIsOpenCreateSpaceDialog: state.setIsOpenCreateSpaceDialog,
+    spaces: state.spaces,
+    setSpaces: state.setSpaces,
+  }))
 
   // HANDLE FORM SUBMIT
   type FormValues = {
@@ -23,8 +33,18 @@ const CreateSpaceDialog: FunctionComponent = () => {
     formState: { errors },
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    // console.log(data)
-    await createSpace(contract, data.name)
+    setIsLoading(true)
+    const result = await createSpace(contract, data.name)
+    if (result.success) {
+      const newSpace = await getSpaceByName(contract, data.name)
+      spaces.push(newSpace)
+      setSpaces(spaces)
+      setIsLoading(false)
+      setIsOpenCreateSpaceDialog(false)
+    } else {
+      // console.log(result)
+      setIsLoading(false)
+    }
   }
 
   const handleClose = (): void => {
@@ -92,7 +112,15 @@ const CreateSpaceDialog: FunctionComponent = () => {
             form='createSpaceForm'
             className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
           >
-            Confirm
+            <span className='whitespace-nowrap'>
+              Create{' '}
+              {isLoading && (
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className='ml-2 animate-spin'
+                />
+              )}
+            </span>
           </button>
         </>
       }

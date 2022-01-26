@@ -1,4 +1,5 @@
 import { SpaceType } from 'api/types'
+import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
   console.log('api/spaces:', msg) // or outcomment
@@ -70,6 +71,13 @@ export const getAllSpaces = async (contract: any) => {
 export const createSpace = async (contract: any, name: string) => {
   log(`CreateSpace ${name}`)
 
-  const result = await contract.spaces.methods.create(name.toString()).call()
-  console.log(result)
+  try {
+    const result = await executeContractFunction(
+      contract.web3,
+      contract.spaces.methods.create(name)
+    )
+    return { success: true }
+  } catch (error) {
+    return { success: false, error }
+  }
 }

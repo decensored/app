@@ -4,9 +4,9 @@ const log = (msg: string): void => {
 
 export const executeContractFunction = async (
   web3: any,
-  function_call: any,
-  privateKey: string
+  function_call: any
 ) => {
+  const privateKey = await getPrivateKey()
   console.log('executeContractFunction.privateKey', privateKey)
 
   const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey)
@@ -48,8 +48,7 @@ export const signUpUser = async (contract: any, username: string) => {
   try {
     await executeContractFunction(
       contract.web3,
-      contract.accounts.methods.sign_up(username),
-      privateKey
+      contract.accounts.methods.sign_up(username)
     )
     const userId = await getIdByUserName(contract, username)
     const signedUp = await isSignedUp(contract)
