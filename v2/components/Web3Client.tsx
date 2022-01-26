@@ -6,6 +6,10 @@ import useStore from 'lib/store'
 import { inBrowser } from 'lib/where'
 import { isSignedUp } from 'api/user'
 
+// const contractAbis = require('lib/contract_abis.json').output.contracts
+// console.log(contractAbis)
+// const CONTRACT_ACCOUNTS_ABI
+
 import {
   CONTRACT_ACCOUNTS_ABI,
   CONTRACT_POSTS_ABI,
@@ -17,20 +21,36 @@ let web3: any // TODO: move to store.ts
 const Web3Client: FunctionComponent = () => {
   const [
     evmNode,
+    setEVMnode,
     contractPostsAddress,
+    setContractPostsAddress,
     setContract,
     setNodeStatus,
     setIsSignedUp,
   ] = useStore(
     (state) => [
       state.evmNode,
+      state.setEVMnode,
       state.contractPostsAddress,
+      state.setContractPostsAddress,
       state.setContract,
       state.setNodeStatus,
       state.setIsSignedUp,
     ],
     shallow
   )
+
+  // support for deeplink
+  const q = new URLSearchParams(window.location.search)
+  if (q.get('evmNode') && q.get('evmNode') !== evmNode) {
+    setEVMnode(q.get('evmNode') as string)
+  }
+  if (
+    q.get('contractPostsAddress') &&
+    q.get('contractPostsAddress') !== contractPostsAddress
+  ) {
+    setContractPostsAddress(q.get('contractPostsAddress') as string)
+  }
 
   useEffect(() => {
     if (!inBrowser) return
