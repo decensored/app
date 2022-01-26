@@ -27,7 +27,7 @@ export const getSpaceNameById = async (contract: any, spaceId: number) => {
 }
 
 export const getSpaceByName = async (contract: any, name: string) => {
-  log(`getSpaceByName ${name}`)
+  // log(`getSpaceByName ${name}`)
 
   let space_id = await contract.spaces.methods.id_by_name(name).call()
   let owner = await contract.spaces.methods.owner_by_id(space_id).call()
@@ -45,7 +45,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
-  log('getLatestSpaceIndex (deprecated)')
+  // log('getLatestSpaceIndex (deprecated)')
 
   let index = await contract.spaces.methods
     .get_latest_space_index()
@@ -55,7 +55,7 @@ export const getLatestSpaceIndex = async (contract: any) => {
 }
 
 export const getAllSpaces = async (contract: any) => {
-  log('getAllSpaces (deprecated)')
+  // log('getAllSpaces (deprecated)')
 
   const index = await getLatestSpaceIndex(contract)
 
@@ -67,47 +67,9 @@ export const getAllSpaces = async (contract: any) => {
   return spaces
 }
 
-/* const createSpace = (owner: number, name: string) =>
-    new Promise((resolve, reject) => {
-        if (!data.name || !data.description) {
-            reject(new Error('Not all information provided'));
-        }
- 
-        const id = uuidv4();
-        const newSpace = { id, ...data };
- 
-        spaces = { ...spaces, [id]: newSpace };
- 
-        setTimeout(() => resolve(true), 250);
-    });
- 
-const updateSpace = (id, data) =>
-    new Promise((resolve, reject) => {
-        if (!spaces[id]) {
-            return setTimeout(
-                () => reject(new Error('Spae not found')),
-                250
-            );
-        }
- 
-        spaces[id] = { ...spaces[id], ...data };
- 
-        return setTimeout(() => resolve(true), 250);
-    });
- 
-const deleteSpace = (id) =>
-    new Promise((resolve, reject) => {
-        const { [id]: space, ...rest } = spaces;
- 
-        if (!space) {
-            return setTimeout(
-                () => reject(new Error('Space not found')),
-                250
-            );
-        }
- 
-        spaces = { ...rest };
- 
-        return setTimeout(() => resolve(true), 250);
-    });
-*/
+export const createSpace = async (contract: any, name: string) => {
+  log(`CreateSpace ${name}`)
+
+  const result = await contract.spaces.methods.create(name.toString()).call()
+  console.log(result)
+}
