@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { toast, ToastContainer } from 'react-toastify'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'styles/globals.scss'
+import VersionCheck from 'components/VersionCheck'
 import Web3Client from 'components/Web3Client'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
@@ -13,7 +14,6 @@ import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
-import 'lib/versionCheck'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
@@ -64,7 +64,12 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       position={toast.POSITION.BOTTOM_CENTER}
     />
 
-    {inBrowser && <Web3Client />}
+    {inBrowser && (
+      <>
+        <VersionCheck />
+        <Web3Client />
+      </>
+    )}
   </>
 )
 
