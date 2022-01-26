@@ -13,6 +13,7 @@ import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
+import 'lib/versionCheck'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
