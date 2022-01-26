@@ -39,10 +39,11 @@ const Space: NextPage = () => {
       space: number
       mother_post: number
     }[]
-  >()
+  >([])
 
   React.useEffect(() => {
-    if (!contract || !name) return
+    if (!(contract as any).accounts || !name) return
+
     getSpaceByName(contract, name as string).then(async (result) => {
       setSpace(result)
       const postsForSpace = posts.filter((post) => post.space === result.id)
@@ -51,60 +52,60 @@ const Space: NextPage = () => {
   }, [contract, name, posts])
 
   // CHECK IF DATA IS PRESENT AND CREATE FEEDITEMS
-  if (!space || !posts || !spacePosts) {
-    return null
-  }
-  let showFeedItems
-  if (spacePosts.length > 0) {
-    showFeedItems = spacePosts.map((post) => (
-      <FeedItem key={post.id} {...post} />
-    ))
-  }
+  // if (!space || !posts || !spacePosts) {
+  //   return null
+  // }
+
+  const showFeedItems = spacePosts.map((post) => (
+    <FeedItem key={post.id} {...post} />
+  ))
 
   return (
     <>
       <Header />
       <div className={classNamesLib.container}>
-        <div className={classNamesLib.feedWrapper}>
-          <div className={classNamesLib.spaceHeaderWrapper}>
-            <div className={classNamesLib.spaceHeaderInner}>
-              {/* { <img className='h-12 w-12 rounded-full ring-2 ring-white center' src={space!.img} alt=''/>} */}
-              <div className={classNamesLib.spaceHeaderTitle}>
-                {space.name ? `#${space.name}` : '#undefined'}
-              </div>
-              <div className={classNamesLib.spaceHeaderColsWrapper}>
-                <div className={classNamesLib.spaceHeaderColWrapper}>
-                  <span className={classNamesLib.spaceHeaderColTitle}>
-                    {space.posts}
-                  </span>
-                  <span className={classNamesLib.spaceHeaderColText}>
-                    Posts
-                  </span>
+        {space && (
+          <div className={classNamesLib.feedWrapper}>
+            <div className={classNamesLib.spaceHeaderWrapper}>
+              <div className={classNamesLib.spaceHeaderInner}>
+                {/* { <img className='h-12 w-12 rounded-full ring-2 ring-white center' src={space!.img} alt=''/>} */}
+                <div className={classNamesLib.spaceHeaderTitle}>
+                  {space.name ? `#${space.name}` : '#undefined'}
                 </div>
-                <div className={classNamesLib.spaceHeaderColWrapper}>
-                  <span className={classNamesLib.spaceHeaderColTitle}>
-                    {space.followers}
-                  </span>
-                  <span className={classNamesLib.spaceHeaderColText}>
-                    Followers
-                  </span>
-                </div>
-                <div className={classNamesLib.spaceHeaderColWrapper}>
-                  <span className={classNamesLib.spaceHeaderColTitle}>
-                    {space.whatever}
-                  </span>
-                  <span className={classNamesLib.spaceHeaderColText}>
-                    Whatever
-                  </span>
+                <div className={classNamesLib.spaceHeaderColsWrapper}>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.posts}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Posts
+                    </span>
+                  </div>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.followers}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Followers
+                    </span>
+                  </div>
+                  <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <span className={classNamesLib.spaceHeaderColTitle}>
+                      {space.whatever}
+                    </span>
+                    <span className={classNamesLib.spaceHeaderColText}>
+                      Whatever
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className={classNamesLib.feedPostsWrapper}>
+              {isSignedUp && <Form spaceId={space.id} />}
+              {showFeedItems}
+            </div>
           </div>
-          <div className={classNamesLib.feedPostsWrapper}>
-            {isSignedUp && <Form spaceId={space.id} />}
-            {showFeedItems}
-          </div>
-        </div>
+        )}
       </div>
       <Bottombar />
     </>
