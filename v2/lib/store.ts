@@ -53,7 +53,7 @@ const useStore = create(
       // chainId: 1075,
       // setChainId: (chainId: number) => set({ chainId }),
 
-      contractPostsAddress: '0x1E41f418e97af96ee37c905e3e01D1e966E3A6C3',
+      contractPostsAddress: '0x880Ac96e85b62f6628C99ec02a147699bf0711cE',
       setContractPostsAddress: (contractPostsAddress: string) =>
         set({ contractPostsAddress }),
 
@@ -73,6 +73,10 @@ const useStore = create(
       isOpenRecoverDialog: false,
       setIsOpenRecoverDialog: (isOpenRecoverDialog: boolean) =>
         set({ isOpenRecoverDialog }),
+
+      isOpenCreateSpaceDialog: false,
+      setIsOpenCreateSpaceDialog: (isOpenCreateSpaceDialog: boolean) =>
+        set({ isOpenCreateSpaceDialog }),
     }),
     {
       name: 'decensored',

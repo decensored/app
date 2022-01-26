@@ -6,8 +6,12 @@ import { getAllSpaces } from 'api/spaces'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const SpaceHeader: FunctionComponent = () => {
-  const [isSignedUp, contract] = useStore(
-    (state) => [state.isSignedUp, state.contract],
+  const [isSignedUp, contract, setIsOpenCreateSpaceDialog] = useStore(
+    (state) => [
+      state.isSignedUp,
+      state.contract,
+      state.setIsOpenCreateSpaceDialog,
+    ],
     shallow
   )
 
@@ -58,6 +62,9 @@ const SpaceHeader: FunctionComponent = () => {
                 <p className='text-md mb-4'>Build your own network</p>
                 <button
                   type='button'
+                  onClick={() => {
+                    setIsOpenCreateSpaceDialog(true)
+                  }}
                   className='bg-highlight-900 hover:bg-purple-800 text-white
                 font-medium py-2 px-3 rounded cursor-pointer'
                 >
