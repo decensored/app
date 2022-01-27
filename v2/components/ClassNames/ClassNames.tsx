@@ -13,6 +13,11 @@ export const classNamesLib = {
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 text-gray-900 focus:ring-1 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
 
+  form: 'px-3 w-full rounded w-full h-28',
+  formTransparent: '!p-0 bg-transparent border-none outline-none focus:outline-none resize-none',
+  formDark: 'placeholder:text-gray-900',
+  formPlaceholder: 'placeholder:italic placeholder:text-gray-500',
+  formPlaceholderDark: 'placeholder:dark:text-gray-500',
   formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-opacity-20',
   formValidationError: 'bg-red-500',
   formValidationText: 'text-xs',
@@ -41,7 +46,7 @@ export const classNamesLib = {
   popoverHeaderLabel: 'text-xs',
   popoverHeaderName: 'text-lg dark:text-gray-300',
   popoverBody: 'p-2 flex flex-col gap-y-1',
-  popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-100',
+  popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
@@ -70,8 +75,8 @@ export const classNamesLib = {
   feedItemMetaNameDark: 'dark:text-gray-300',
   feedItemText: 'break-words font-light',
   feedItemTextDark: '',
-  feedItemInteractionIcon: 'cursor-pointer text-gray-300 hover:text-gray-900',
-  feedItemInteractionIconDark: 'dark:text-gray-500 dark:hover:text-gray-300',
+  feedItemInteractionIcon: 'cursor-pointer text-highlight-40 hover:text-highlight-500',
+  feedItemInteractionIconDark: 'dark:text-darkmode-1700 dark:hover:text-highlight-400',
 
   spaceHeaderWrapper: 'bg-gradient rounded px-5 py-7',
   spaceHeaderInner: 'flex flex-col justify-center',
@@ -80,4 +85,10 @@ export const classNamesLib = {
   spaceHeaderColWrapper: 'flex flex-col',
   spaceHeaderColTitle: 'text-2xl mt-2 font-bold',
   spaceHeaderColText: 'text-xs font-light',
+
+  tag: 'flex-none uppercase text-xs tracking-wide font-medium px-2 py-1 rounded',
+  tagNotClickable: 'bg-highlight-10 text-highlight-900',
+  tagNotClickableDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
+  tagClickable: 'bg-highlight-10 text-highlight-500 hover:text-highlight-900',
+  tagClickableDark: 'dark:bg-darkmode-1000 dark:text-darkmode-1900 dark:hover:text-highlight-400',
 }
