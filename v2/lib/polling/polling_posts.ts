@@ -3,7 +3,7 @@ import useStore from 'lib/store'
 import type { PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
-const INTERVAL = 15 * 1000
+const INTERVAL = 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
@@ -15,10 +15,9 @@ const poll = async (): Promise<void> => {
   }
 
   const latestPostIndex = await getLatestPostIndex(state.contract)
+  // console.log(latestPostIndex - state.latestPostIndexFetched, 'NEW POSTS')
 
   if (latestPostIndex > state.latestPostIndexFetched) {
-    console.log(latestPostIndex - state.latestPostIndexFetched, 'NEW POSTS')
-
     const postsPromises: Promise<PostType>[] = []
     for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
       const p = getPostById(contract, i)
@@ -30,9 +29,9 @@ const poll = async (): Promise<void> => {
     state.setLatestPostIndexFeched(latestPostIndex)
     state.posts.map((post) => posts.push(post))
     state.setPosts(posts)
-
-    setTimeout(poll, INTERVAL)
   }
+
+  setTimeout(poll, INTERVAL)
 } // end of poll()
 
 if (inBrowser) poll() // start your engines */

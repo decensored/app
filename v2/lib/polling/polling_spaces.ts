@@ -3,7 +3,7 @@ import useStore from 'lib/store'
 import type { SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
 
-const INTERVAL = 15 * 1000
+const INTERVAL = 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
@@ -21,7 +21,7 @@ const poll = async (): Promise<void> => {
 
   // Check if new spaces exist
   if (latestSpaceIndex > state.latestSpaceIndexFetched) {
-    console.log(latestSpaceIndex - state.latestSpaceIndexFetched, 'NEW SPACES')
+    // console.log(latestSpaceIndex - state.latestSpaceIndexFetched, 'NEW SPACES')
 
     const spacesPromises: Promise<SpaceType>[] = []
     for (let i = latestSpaceIndex; i > state.latestSpaceIndexFetched; i -= 1) {

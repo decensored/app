@@ -22,10 +22,16 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
   type FormValues = {
     message: string
   }
-  const { register, handleSubmit } = useForm<FormValues>()
+
+  const { register, setValue, handleSubmit } = useForm<FormValues>()
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const { message } = data
+    setValue('message', '') // clear out entry field
+
     setIsLoading(true)
-    createPost(contract, spaceId, data.message).then(() => {
+
+    createPost(contract, spaceId, message).then(() => {
       // TODO: Push Post into posts array
       setIsLoading(false)
     })
