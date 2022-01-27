@@ -1,6 +1,6 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import { PostType, SpaceType } from 'api/types'
+import type { PostType, SpaceType } from 'lib/types'
 
 const useStore = create(
   persist(

@@ -55,52 +55,45 @@ export const signUpUser = async (contract: any, username: string) => {
 }
 
 export const isSignedUp = async (contract: any) => {
-  let address = await getAddress(contract)
+  const address = await getAddress(contract)
   console.log('isSignedUp.address', address)
 
   return contract.accounts.methods
     .id_by_address(address)
     .call()
-    .then((id: number) => {
-      return id > 0
-    })
+    .then((id: number) => id > 0)
 }
 
 export const createNewPrivateKey = async (contract: any) => {
-  let account = await contract.web3.eth.accounts.create()
-  localStorage.setItem('account_private_key', account['privateKey'])
-  return account['privateKey']
+  const account = await contract.web3.eth.accounts.create()
+  localStorage.setItem('account_private_key', account.privateKey)
+  return account.privateKey
 }
 
 export const getPrivateKey = async () => {
   const privateKey = localStorage.getItem('account_private_key')
   if (privateKey) {
     return privateKey
-  } else {
-    console.log('bla')
-    return
   }
 }
 
 export const getAddress = async (contract: any) => {
-  let private_key = await getPrivateKey()
+  const private_key = await getPrivateKey()
   return contract.web3.eth.accounts.privateKeyToAccount(private_key).address
 }
 
 export const getUserNameByAddress = async (contract: any) => {
-  let address = await getAddress(contract)
+  const address = await getAddress(contract)
 
   return contract.accounts.methods
     .id_by_address(address)
     .call()
-    .then((id: number) => {
-      return contract.accounts.methods.username_by_id(id).call()
-    })
+    .then((id: number) => contract.accounts.methods.username_by_id(id).call())
 }
 
 export const getUserNameById = async (contract: any, user_id: number) => {
-  let user = await contract.accounts.methods.username_by_id(user_id).call()
-  var result: {
+  const user = await contract.accounts.methods.username_by_id(user_id).call()
+  const result: {
     name: string
   } = {
     name: user,
@@ -122,17 +115,16 @@ export const recoverUser = async (contract: any, privateKey: string) => {
     const userId = await getIdByUserName(contract, username)
     const result = {
       success: true,
-      username: username,
-      userId: userId,
-    }
-    return result
-  } else {
-    localStorage.removeItem('account_private_key')
-    const result = {
-      success: false,
-      message: 'Couldnt find a user with that key',
-      username: '',
+      username,
+      userId,
     }
     return result
   }
+  localStorage.removeItem('account_private_key')
+  const result = {
+    success: false,
+    message: 'Couldnt find a user with that key',
+    username: '',
+  }
+  return result
 }

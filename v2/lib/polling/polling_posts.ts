@@ -1,6 +1,6 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import { PostType } from 'api/types'
+import type { PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
 const INTERVAL = 15 * 1000
@@ -33,4 +33,4 @@ const poll = async (): Promise<void> => {
   }
 } // end of poll()
 
-if (inBrowser) poll() // start your engines */ 
+if (inBrowser) poll() // start your engines */

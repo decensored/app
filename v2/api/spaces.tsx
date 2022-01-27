@@ -1,4 +1,4 @@
-import { SpaceType } from 'api/types'
+import type { SpaceType } from 'lib/types'
 import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
@@ -8,13 +8,13 @@ const log = (msg: string): void => {
 export const getSpaceById = async (contract: any, space_id: number) => {
   // log(`getSpaceById ${space_id}`)
 
-  let name = await contract.spaces.methods.name_by_id(space_id).call()
-  let owner = await contract.spaces.methods.owner_by_id(space_id).call()
+  const name = await contract.spaces.methods.name_by_id(space_id).call()
+  const owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
-  var result: SpaceType = {
+  const result: SpaceType = {
     id: space_id,
-    name: name,
-    owner: owner,
+    name,
+    owner,
     followers: 5,
     posts: 10,
     whatever: 30,
@@ -23,20 +23,19 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   return result
 }
 
-export const getSpaceNameById = async (contract: any, spaceId: number) => {
-  return await contract.spaces.methods.name_by_id(spaceId).call()
-}
+export const getSpaceNameById = async (contract: any, spaceId: number) =>
+  await contract.spaces.methods.name_by_id(spaceId).call()
 
 export const getSpaceByName = async (contract: any, name: string) => {
   // log(`getSpaceByName ${name}`)
 
-  let space_id = await contract.spaces.methods.id_by_name(name).call()
-  let owner = await contract.spaces.methods.owner_by_id(space_id).call()
+  const space_id = await contract.spaces.methods.id_by_name(name).call()
+  const owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
-  var result: SpaceType = {
+  const result: SpaceType = {
     id: space_id,
-    name: name,
-    owner: owner,
+    name,
+    owner,
     followers: Math.floor(Math.random() * 200),
     posts: Math.floor(Math.random() * 500),
     whatever: Math.floor(Math.random() * 30),
@@ -48,7 +47,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 export const getLatestSpaceIndex = async (contract: any) => {
   // log('getLatestSpaceIndex (deprecated)')
 
-  let index = await contract.spaces.methods
+  const index = await contract.spaces.methods
     .get_latest_space_index()
     .call()
     .then(parseInt)
@@ -60,9 +59,9 @@ export const getAllSpaces = async (contract: any) => {
 
   const index = await getLatestSpaceIndex(contract)
 
-  let spaces: SpaceType[] = []
+  const spaces: SpaceType[] = []
   for (let i = index; i > 0; i--) {
-    let space = await getSpaceById(contract, i)
+    const space = await getSpaceById(contract, i)
     spaces.push(space)
   }
   return spaces

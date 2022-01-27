@@ -1,6 +1,6 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import { PostType } from 'api/types'
+import type { PostType } from 'lib/types'
 import { getPostById } from 'api/feed'
 
 const INTERVAL = 10 * 1000

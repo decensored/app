@@ -5,6 +5,7 @@ import Header from 'components/Header/Header'
 import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
+import type { PostType, SpaceType } from 'lib/types'
 import { getSpaceByName } from 'api/spaces'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Form from 'components/Feed/Form'
@@ -12,35 +13,20 @@ import Form from 'components/Feed/Form'
 const Space: NextPage = () => {
   const router = useRouter()
   const { name } = router.query
+
   const { posts, isSignedUp, contract } = useStore((state) => ({
     posts: state.posts,
     isSignedUp: state.isSignedUp,
     contract: state.contract,
   }))
 
-  // GET DATA FOR SPACE
-  const [space, setSpace] = React.useState<{
-    id: number
-    name: string
-    owner: number
-    followers: number
-    posts: number
-    whatever: number
-    img: string
-  }>()
+  // TODO: refactor to just computer the space and spacePosts from what we have in the store
+  //       no need for doing extra calls to the smartcontract.
 
-  const [spacePosts, setSpacePosts] = React.useState<
-    {
-      id: number
-      username: string
-      message: string
-      author: number
-      timestamp: string
-      space: number
-      spaceName: string
-      mother_post: number
-    }[]
-  >([])
+  // GET DATA FOR SPACE
+  const [space, setSpace] = React.useState<SpaceType>()
+
+  const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
 
   React.useEffect(() => {
     if (!(contract as any).accounts || !name) return
@@ -51,11 +37,6 @@ const Space: NextPage = () => {
       setSpacePosts(postsForSpace)
     })
   }, [contract, name, posts])
-
-  // CHECK IF DATA IS PRESENT AND CREATE FEEDITEMS
-  // if (!space || !posts || !spacePosts) {
-  //   return null
-  // }
 
   const showFeedItems = spacePosts.map((post) => (
     <FeedItem key={post.id} type='space' {...post} />

@@ -1,7 +1,6 @@
-import { getUserNameById } from 'api/user'
-import { PostType } from 'api/types'
+import { executeContractFunction, getUserNameById } from 'api/user'
+import type { PostType } from 'lib/types'
 import { getSpaceNameById } from './spaces'
-import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
   console.log('api/feed:', msg) // or outcomment
@@ -11,13 +10,12 @@ export const createPost = async (
   contract: any,
   spaceId: number,
   message: string
-): Promise<PostType[]> => {
-  //log(`createPostForSpace ${spaceId}`)
-  return await executeContractFunction(
+): Promise<PostType[]> =>
+  // log(`createPostForSpace ${spaceId}`)
+  await executeContractFunction(
     contract.web3,
     contract.posts.methods.submit_post(spaceId, message)
   )
-}
 
 export const getPostById = async (
   contract: any,
@@ -58,13 +56,13 @@ export const getLatestPostIndex = async (contract: any): Promise<number> => {
 }
 
 export const getAllPosts = async (contract: any): Promise<PostType[]> => {
-  //log(`getAllPostsForFeed`)
+  // log(`getAllPostsForFeed`)
 
   const index = await getLatestPostIndex(contract)
 
   const posts: PostType[] = []
   for (let i = index; i > 1; i--) {
-    let post = await getPostById(contract, i)
+    const post = await getPostById(contract, i)
     posts.push(post)
   }
   return posts
@@ -74,13 +72,13 @@ export const getAllPostsForSpace = async (
   contract: any,
   spaceId: number
 ): Promise<PostType[]> => {
-  //log(`getAllPostsForSpace ${spaceId} (deprecated)`)
+  // log(`getAllPostsForSpace ${spaceId} (deprecated)`)
 
   const index = await getLatestPostIndex(contract)
 
   const posts: PostType[] = []
   for (let i = 20; i > 1; i--) {
-    let post = await getPostById(contract, i)
+    const post = await getPostById(contract, i)
     if (post.space === spaceId) {
       posts.push(post)
     }
@@ -104,16 +102,12 @@ function readable_date_time_from_unix_timestamp(unix_timestamp: number) {
     'Nov',
     'Dec',
   ]
-  let date = new Date(unix_timestamp * 1000)
-  return (
-    months[date.getMonth()] +
-    '/' +
-    date.getDate() +
-    ' ' +
-    date.getFullYear() +
-    ', ' +
-    date.toTimeString().substr(0, 5)
-  )
+  const date = new Date(unix_timestamp * 1000)
+  return `${
+    months[date.getMonth()]
+  }/${date.getDate()} ${date.getFullYear()}, ${date
+    .toTimeString()
+    .substr(0, 5)}`
 }
 
 /*

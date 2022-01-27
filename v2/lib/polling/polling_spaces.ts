@@ -1,6 +1,6 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import { SpaceType } from 'api/types'
+import type { SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
 
 const INTERVAL = 15 * 1000
@@ -32,7 +32,7 @@ const poll = async (): Promise<void> => {
     state.setLatestSpaceIndexFetched(latestSpaceIndex)
     state.spaces.map((space) => spaces.push(space))
     state.setSpaces(spaces)
-  } 
+  }
 
   setTimeout(poll, INTERVAL)
 } // end of poll()
