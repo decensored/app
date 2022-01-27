@@ -15,5 +15,6 @@ export type PostType = {
   author: number
   timestamp: string
   space: number
+  spaceName: string
   mother_post: number
 }

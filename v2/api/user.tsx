@@ -27,23 +27,9 @@ export const executeContractFunction = async (
 export const signUpUser = async (contract: any, username: string) => {
   log(`signUpUser ${username}`)
 
-  /* I think we dont need this?
-  // const privateKey = await createNewPrivateKey(contract) // overwrite existing or debugging only
-  // console.log('new privateKey', privateKey)
-
-  const isSignedUp1 = await isSignedUp(contract)
-  console.log('isSignedUp1', isSignedUp1)
-  if (isSignedUp1) {
-    let address = await getAddress(contract)
-    console.log('address', address)
-
-    const username3 = await getUserNameByAddress(contract)
-    console.log('username3', username3)
-  } 
-  */
-
-  const privateKey = await createNewPrivateKey(contract) // overwrite existing or debugging only
-  console.log('new privateKey', privateKey)
+  // Create a new web3 account
+  const privateKey = await createNewPrivateKey(contract)
+  console.log(`New account with privateKey ${privateKey} generated`)
 
   try {
     await executeContractFunction(
@@ -128,6 +114,7 @@ export const getIdByUserName = async (contract: any, username: string) => {
 
 export const recoverUser = async (contract: any, privateKey: string) => {
   log(`recoverUser} with key ${privateKey}`)
+
   localStorage.setItem('account_private_key', privateKey)
   if (await isSignedUp(contract)) {
     const username = await getUserNameByAddress(contract)

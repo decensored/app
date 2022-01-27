@@ -26,6 +26,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true)
     createPost(contract, spaceId, data.message).then(() => {
+      // TODO: Push Post into posts array
       setIsLoading(false)
     })
   }

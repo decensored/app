@@ -1,31 +1,36 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
 import { PostType } from 'api/types'
-import { getPostById } from 'api/feed'
+import { getLatestPostIndex, getPostById } from 'api/feed'
 
-const INTERVAL = 10 * 1000
+const INTERVAL = 15 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
+
   const contract: any = state?.contract
   if (!contract.accounts) {
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
 
-  // XXX this should be optimized to only fecth new posts
+  const latestPostIndex = await getLatestPostIndex(state.contract)
 
-  const postsPromises: Promise<PostType>[] = []
-  for (let i = 20; i >= 1; i -= 1) {
-    const p = getPostById(contract, i)
-    postsPromises.push(p)
+  if (latestPostIndex > state.latestPostIndexFetched) {
+    const postsPromises: Promise<PostType>[] = []
+    for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
+      const p = getPostById(contract, i)
+      postsPromises.push(p)
+    }
+    const posts = await Promise.all(postsPromises)
+
+    // Set new index & push new spaces into possibly existing array
+    state.setLatestPostIndexFeched(latestPostIndex)
+    state.posts.map((post) => posts.push(post))
+    state.setPosts(posts)
+
+    setTimeout(poll, INTERVAL)
   }
-  const posts = await Promise.all(postsPromises)
-  // TODO: sort by postId
-  state.setPosts(posts)
-  // console.log('posts', posts)
-
-  setTimeout(poll, INTERVAL)
 } // end of poll()
 
-if (inBrowser) poll() // start your engines
+if (inBrowser) poll() // start your engines */ 

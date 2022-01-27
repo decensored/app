@@ -37,6 +37,7 @@ const Space: NextPage = () => {
       author: number
       timestamp: string
       space: number
+      spaceName: string
       mother_post: number
     }[]
   >([])
@@ -57,7 +58,7 @@ const Space: NextPage = () => {
   // }
 
   const showFeedItems = spacePosts.map((post) => (
-    <FeedItem key={post.id} {...post} />
+    <FeedItem key={post.id} type='space' {...post} />
   ))
 
   return (

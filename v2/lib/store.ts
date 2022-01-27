@@ -20,15 +20,15 @@ const useStore = create(
       setSpaces: (spaces: SpaceType[]) => set({ spaces }),
 
       latestSpaceIndexFetched: 0,
-      setLatestSpaceIndexFetched: (latestSpaceFetched: number) =>
-        set({ latestSpaceFetched }),
+      setLatestSpaceIndexFetched: (latestSpaceIndexFetched: number) =>
+        set({ latestSpaceIndexFetched }),
 
       posts: [] as PostType[],
       setPosts: (posts: PostType[]) => set({ posts }),
 
       latestPostIndexFetched: 0,
-      setLatestPostIndexFeched: (latestPostFetched: number) =>
-        set({ latestPostFetched }),
+      setLatestPostIndexFeched: (latestPostIndexFetched: number) =>
+        set({ latestPostIndexFetched }),
 
       isDarkmode: false,
       setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
@@ -47,13 +47,13 @@ const useStore = create(
 
       // EVM node config
 
-      evmNode: 'https://we.addiota.com',
+      evmNode: 'https://evm.wasp.sc.iota.org', // https://we.addiota.com
       setEVMnode: (evmNode: string) => set({ evmNode }),
 
       // chainId: 1075,
       // setChainId: (chainId: number) => set({ chainId }),
 
-      contractPostsAddress: '0x880Ac96e85b62f6628C99ec02a147699bf0711cE',
+      contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
       setContractPostsAddress: (contractPostsAddress: string) =>
         set({ contractPostsAddress }),
 

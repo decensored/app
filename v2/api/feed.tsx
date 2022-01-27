@@ -1,5 +1,7 @@
 import { getUserNameById } from 'api/user'
 import { PostType } from 'api/types'
+import { getSpaceNameById } from './spaces'
+import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
   console.log('api/feed:', msg) // or outcomment
@@ -10,8 +12,11 @@ export const createPost = async (
   spaceId: number,
   message: string
 ): Promise<PostType[]> => {
-  log(`createPostForSpace ${spaceId}`)
-  return await contract.posts.methods.submit_post(spaceId, message).call()
+  //log(`createPostForSpace ${spaceId}`)
+  return await executeContractFunction(
+    contract.web3,
+    contract.posts.methods.submit_post(spaceId, message)
+  )
 }
 
 export const getPostById = async (
@@ -22,6 +27,7 @@ export const getPostById = async (
 
   const post = await contract.posts.methods.posts(postId).call()
   const username = await getUserNameById(contract, post.author)
+  const spaceName = await getSpaceNameById(contract, post.space)
 
   const result: PostType = {
     id: postId,
@@ -30,17 +36,20 @@ export const getPostById = async (
     author: post.author,
     timestamp: readable_date_time_from_unix_timestamp(post.timestamp),
     space: post.space,
+    spaceName,
     mother_post: post.mother_post,
   }
   return result
 }
 
-export const getLatestSpacePostIndex = async (
+/* export const getNumberOfRepliesForPost = async (
   contract: any,
   spaceId: number
 ): Promise<number> => {
-  log(`getLatestSpacePostIndex ${spaceId}`)
+  return contract.accounts.methods.get_amount_of_replies_by_post(spaceId).call()
+} */
 
+export const getLatestPostIndex = async (contract: any): Promise<number> => {
   const index = await contract.posts.methods
     .get_amount_of_posts()
     .call()
@@ -49,9 +58,9 @@ export const getLatestSpacePostIndex = async (
 }
 
 export const getAllPosts = async (contract: any): Promise<PostType[]> => {
-  log(`getAllPostsForFeed`)
+  //log(`getAllPostsForFeed`)
 
-  const index = await getLatestSpacePostIndex(contract, 0)
+  const index = await getLatestPostIndex(contract)
 
   const posts: PostType[] = []
   for (let i = index; i > 1; i--) {
@@ -65,9 +74,9 @@ export const getAllPostsForSpace = async (
   contract: any,
   spaceId: number
 ): Promise<PostType[]> => {
-  log(`getAllPostsForSpace ${spaceId} (deprecated)`)
+  //log(`getAllPostsForSpace ${spaceId} (deprecated)`)
 
-  const index = await getLatestSpacePostIndex(contract, spaceId)
+  const index = await getLatestPostIndex(contract)
 
   const posts: PostType[] = []
   for (let i = 20; i > 1; i--) {

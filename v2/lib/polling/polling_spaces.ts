@@ -3,33 +3,36 @@ import useStore from 'lib/store'
 import { SpaceType } from 'api/types'
 import { getSpaceById } from 'api/spaces'
 
-const INTERVAL = 10 * 1000
+const INTERVAL = 15 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
+
   const contract: any = state?.contract
   if (!contract.accounts) {
-    // console.log(contract)
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
 
-  const latestSpaceIndex = await await contract.spaces.methods
+  const latestSpaceIndex = await contract.spaces.methods
     .get_latest_space_index()
     .call()
     .then(parseInt)
 
-  // XXX this should be optimized to only fecth new spaces
+  // Check if new spaces exist
+  if (latestSpaceIndex > state.latestSpaceIndexFetched) {
+    const spacesPromises: Promise<SpaceType>[] = []
+    for (let i = latestSpaceIndex; i > state.latestSpaceIndexFetched; i -= 1) {
+      const p = getSpaceById(contract, i)
+      spacesPromises.push(p)
+    }
+    const spaces = await Promise.all(spacesPromises)
 
-  const spacesPromises: Promise<SpaceType>[] = []
-  for (let i = latestSpaceIndex; i > 0; i -= 1) {
-    const p = getSpaceById(contract, i)
-    spacesPromises.push(p)
-  }
-  const spaces = await Promise.all(spacesPromises)
-  // TODO: sort by spaceId
-  state.setSpaces(spaces)
-  // console.log(spaces)
+    // Set new index & push new spaces into possibly existing array
+    state.setLatestSpaceIndexFetched(latestSpaceIndex)
+    state.spaces.map((space) => spaces.push(space))
+    state.setSpaces(spaces)
+  } 
 
   setTimeout(poll, INTERVAL)
 } // end of poll()

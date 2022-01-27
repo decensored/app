@@ -72,7 +72,7 @@ export const createSpace = async (contract: any, name: string) => {
   log(`CreateSpace ${name}`)
 
   try {
-    const result = await executeContractFunction(
+    await executeContractFunction(
       contract.web3,
       contract.spaces.methods.create(name)
     )
