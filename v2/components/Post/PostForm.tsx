@@ -55,6 +55,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
           <div className='relative'>
             <TextareaAutosize
               minRows={3}
+              maxLength={280}
               placeholder={`${userName}, your story starts here...`}
               className={`
                 ${classNamesLib.form}
