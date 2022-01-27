@@ -1,4 +1,5 @@
 import type { SpaceType } from 'lib/types'
+import { readableError } from 'lib/helper'
 import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
@@ -81,6 +82,6 @@ export const createSpace = async (contract: any, name: string) => {
     )
     return { success: true }
   } catch (error) {
-    return { success: false, error }
+    return { success: false, error: readableError(error) }
   }
 }

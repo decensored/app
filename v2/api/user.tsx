@@ -1,3 +1,5 @@
+import { readableError } from 'lib/helper'
+
 const log = (msg: string): void => {
   console.log('api/accounts:', msg) // or outcomment
 }
@@ -7,11 +9,11 @@ export const executeContractFunction = async (
   function_call: any
 ) => {
   const privateKey = await getPrivateKey()
-  console.log('executeContractFunction.privateKey', privateKey)
+  // console.log('executeContractFunction.privateKey', privateKey)
 
   const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey)
     .address
-  console.log('executeContractFunction.accountAddress', accountAddress)
+  // console.log('executeContractFunction.accountAddress', accountAddress)
 
   const options = {
     to: await function_call._parent._address,
@@ -45,18 +47,18 @@ export const signUpUser = async (contract: any, username: string) => {
       username,
       userId,
     }
-  } catch (err) {
+  } catch (error: any) {
     localStorage.removeItem('account_private_key')
     return {
       success: false,
-      err: (err as any).toString(),
+      error: readableError(error),
     }
   }
 }
 
 export const isSignedUp = async (contract: any) => {
   const address = await getAddress(contract)
-  console.log('isSignedUp.address', address)
+  // console.log('isSignedUp.address', address)
 
   return contract.accounts.methods
     .id_by_address(address)
@@ -102,7 +104,6 @@ export const getUserNameById = async (contract: any, user_id: number) => {
 }
 
 export const getIdByUserName = async (contract: any, username: string) => {
-  console.log('ID BY USERNAME')
   return contract.accounts.methods.id_by_username(username).call()
 }
 
@@ -117,14 +118,16 @@ export const recoverUser = async (contract: any, privateKey: string) => {
       success: true,
       username,
       userId,
+      error: '',
+    }
+    return result
+  } else {
+    localStorage.removeItem('account_private_key')
+    const result = {
+      success: false,
+      error: 'Couldnt find a user with that key',
+      username: '',
     }
     return result
   }
-  localStorage.removeItem('account_private_key')
-  const result = {
-    success: false,
-    message: 'Couldnt find a user with that key',
-    username: '',
-  }
-  return result
 }

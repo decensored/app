@@ -4,9 +4,12 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import BaseDialog from './BaseDialog'
 
 const SignupDialog: FunctionComponent = () => {
+  const [isLoading, setIsLoading] = React.useState(false)
   const {
     setIsSignedUp,
     userName,
@@ -31,16 +34,25 @@ const SignupDialog: FunctionComponent = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setIsLoading(true)
     const result = await signUpUser(contract, data.username)
     if (result.success === true) {
       setIsSignedUp(true)
       setUserName(data.username)
       setIsOpenSignupDialog(false)
+      setIsLoading(false)
     } else {
-      throw new Error(JSON.stringify(result))
+      setError(
+        'username',
+        { type: 'manual', message: `${result.error}` },
+        { shouldFocus: true }
+      )
+      setIsLoading(false)
+      //  throw new Error(JSON.stringify(result))
     }
   }
 
@@ -75,7 +87,9 @@ const SignupDialog: FunctionComponent = () => {
                 <span
                   className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
                 >
-                  min:4 max:16 only:AZaz
+                  {errors.username?.type === 'required' &&
+                    'Cant be empty! chars: azAZ'}
+                  {errors.username.message}
                 </span>
               </div>
             )}
@@ -101,7 +115,15 @@ const SignupDialog: FunctionComponent = () => {
             form='registerForm'
             className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
           >
-            Sign-up
+            <span className='whitespace-nowrap'>
+              Sign-up{' '}
+              {isLoading && (
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className='ml-2 animate-spin'
+                />
+              )}
+            </span>
           </button>
         </>
       }

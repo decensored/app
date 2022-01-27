@@ -70,7 +70,7 @@ export const classNamesLib = {
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
   feedItemInnerBottomCol: 'flex gap-x-3 items-center',
   feedItemMetaWrapper: 'flex justify-between mb-2',
-  feedItemMetaTimestamp: 'text-sm text-right',
+  feedItemMetaTimestamp: 'text-xs text-right text-gray-500',
   feedItemMetaName: 'font-bold text-gray-900',
   feedItemMetaNameDark: 'dark:text-gray-300',
   feedItemText: 'break-words font-light',

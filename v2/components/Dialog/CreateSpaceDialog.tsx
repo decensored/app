@@ -31,6 +31,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -44,7 +45,11 @@ const CreateSpaceDialog: FunctionComponent = () => {
       setIsOpenCreateSpaceDialog(false)
       router.push(`/space/${data.name}`)
     } else {
-      // console.log(result)
+      setError(
+        'name',
+        { type: 'manual', message: `${result.error}` },
+        { shouldFocus: true }
+      )
       setIsLoading(false)
     }
   }
@@ -86,7 +91,9 @@ const CreateSpaceDialog: FunctionComponent = () => {
                     <span
                       className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
                     >
-                      Required Field
+                      {errors.name?.type === 'required' &&
+                        'Cant be empty! chars: azAZ'}
+                      {errors.name.message}
                     </span>
                   </div>
                 )}
