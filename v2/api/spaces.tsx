@@ -27,7 +27,9 @@ export const getSpaceNameById = async (contract: any, spaceId: number) =>
   await contract.spaces.methods.name_by_id(spaceId).call()
 
 export const getSpaceByName = async (contract: any, name: string) => {
-  // log(`getSpaceByName ${name}`)
+  log(
+    `getSpaceByName ${name} (deprecated, use version from lib/storeUtils instead)`
+  )
 
   const space_id = parseInt(
     await contract.spaces.methods.id_by_name(name).call()

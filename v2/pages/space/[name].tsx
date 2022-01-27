@@ -5,8 +5,8 @@ import Header from 'components/Header/Header'
 import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
+import { getPostsInSpace, getSpaceById, getSpaceIdByName } from 'lib/storeUtils'
 import type { PostType, SpaceType } from 'lib/types'
-import { getSpaceByName } from 'api/spaces'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import PostForm from 'components/Post/PostForm'
 
@@ -14,29 +14,27 @@ const Space: NextPage = () => {
   const router = useRouter()
   const { name } = router.query
 
-  const { posts, isSignedUp, contract } = useStore((state) => ({
+  const { spaces, posts, isSignedUp, contract } = useStore((state) => ({
+    spaces: state.spaces,
     posts: state.posts,
     isSignedUp: state.isSignedUp,
     contract: state.contract,
   }))
 
-  // TODO: refactor to just computer the space and spacePosts from what we have in the store
-  //       no need for doing extra calls to the smartcontract.
-
-  // GET DATA FOR SPACE
   const [space, setSpace] = React.useState<SpaceType>()
-
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
 
   React.useEffect(() => {
-    if (!(contract as any).accounts || !name) return
+    if (!(contract as any).accounts || !name || !posts.length || !spaces.length)
+      return
 
-    getSpaceByName(contract, name as string).then(async (result) => {
-      setSpace(result)
-      const postsForSpace = posts.filter((post) => post.space === result.id)
-      setSpacePosts(postsForSpace)
-    })
-  }, [contract, name, posts])
+    const spaceId = getSpaceIdByName(spaces, name as string)
+    const currentSpace = getSpaceById(spaces, spaceId)
+    setSpace(currentSpace)
+
+    const postsForSpace = getPostsInSpace(posts, currentSpace)
+    setSpacePosts(postsForSpace)
+  }, [contract, name, posts, spaces])
 
   const showFeedItems = spacePosts.map((post) => (
     <FeedItem key={post.id} type='space' {...post} />

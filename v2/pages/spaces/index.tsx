@@ -7,7 +7,7 @@ import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import { numberOfPostsInSpace } from 'lib/storeUtils'
+import { getNumberOfPostsInSpace } from 'lib/storeUtils'
 
 const Spaces: NextPage = () => {
   const [isSignedUp, spaces, posts] = useStore(
@@ -19,7 +19,7 @@ const Spaces: NextPage = () => {
     <SpaceItem
       key={space.id}
       {...space}
-      numberOfPostsInSpace={numberOfPostsInSpace(posts, space)}
+      numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)}
     />
   ))
 
