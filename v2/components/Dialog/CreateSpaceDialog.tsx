@@ -6,6 +6,7 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 import { createSpace, getSpaceByName } from 'api/spaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import router from 'next/router'
 
 const CreateSpaceDialog: FunctionComponent = () => {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -41,6 +42,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
       setSpaces(spaces)
       setIsLoading(false)
       setIsOpenCreateSpaceDialog(false)
+      router.push(`/space/${data.name}`)
     } else {
       // console.log(result)
       setIsLoading(false)
