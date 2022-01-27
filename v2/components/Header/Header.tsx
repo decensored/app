@@ -53,12 +53,12 @@ const Header: FunctionComponent = () => {
               <img
                 alt='Decensored Logo'
                 src='/logo/signet.svg'
-                className='h-[30px] -mt-1'
+                className='h-[30px] -mt-1 xs:hidden'
               />
               <img
                 alt='Decensored Logo'
                 src='/logo/logotype_invert.svg'
-                className='h-[20px]'
+                className='h-[20px] hidden xs:block'
               />
             </div>
           </Link>
