@@ -109,6 +109,7 @@ export const getUserNameById = async (contract: any, user_id: number) => {
 }
 
 export const getIdByUserName = async (contract: any, username: string) => {
+  console.log('ID BY USERNAME')
   return contract.accounts.methods.id_by_username(username).call()
 }
 

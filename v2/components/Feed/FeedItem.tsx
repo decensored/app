@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { faComment, faShare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import TimeAgo from 'react-timeago'
+import moment from 'moment'
 
 interface FeedItemProps {
   username: string
@@ -32,7 +34,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             {username}
           </a>
         </Link>
-        <div className={classNamesLib.feedItemMetaTimestamp}>{timestamp}</div>
+        <div className={classNamesLib.feedItemMetaTimestamp}>
+          <TimeAgo date={moment(timestamp).format('YYYY-MM-DD HH:mm:ss')} />
+        </div>
       </div>
       <div
         className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
@@ -50,7 +54,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Link href={`/space/${spaceName}`} passHref>
             <a
               href='dummy-href'
-              className='text-sm italic text-orange-400 hover:text-orange-500'
+              className='text-sm italic text-orange-400 hover:text-orange-500 bg-gray-100 py-1 px-2 rounded-sm'
             >
               #{spaceName}
             </a>
