@@ -13,6 +13,7 @@ const gun = Gun({
     ? [
         'https://bullchat.syon.ca/gun',
         'https://gunjs.herokuapp.com/gun',
+        'https://notabug.io/gun',
         // 'http://localhost:3001/gun',
         // 'http://localhost:8765/gun',
         // `${location.origin}/gun`,

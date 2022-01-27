@@ -3,6 +3,7 @@ import shallow from 'zustand/shallow'
 import {
   faCog,
   faExclamationTriangle,
+  faExternalLinkAlt,
   faMoon,
   faSun,
 } from '@fortawesome/free-solid-svg-icons'
@@ -40,7 +41,9 @@ const SettingsPopover: FunctionComponent = () => {
         </span>
       }
       popoverPanel={
-        <div className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}>
+        <div
+          className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
+        >
           <div className={`${classNamesLib.popoverBody}`}>
             <Link href='https://t.co/Lmou3Qx5Ap' passHref>
               <a
@@ -52,6 +55,10 @@ const SettingsPopover: FunctionComponent = () => {
               >
                 <FontAwesomeIcon icon={faDiscord} className='text-[11px]' />
                 <span>Discord</span>
+                <FontAwesomeIcon
+                  icon={faExternalLinkAlt}
+                  className='text-[11px]'
+                />
               </a>
             </Link>
             <Link href='https://github.com/decensored/app' passHref>
@@ -64,6 +71,10 @@ const SettingsPopover: FunctionComponent = () => {
               >
                 <FontAwesomeIcon icon={faGithub} />
                 <span>Github</span>
+                <FontAwesomeIcon
+                  icon={faExternalLinkAlt}
+                  className='text-[11px]'
+                />
               </a>
             </Link>
             <button
