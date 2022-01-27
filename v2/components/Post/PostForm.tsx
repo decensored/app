@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { createPost } from 'api/feed'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import TextareaAutosize from 'react-textarea-autosize'
 
 interface FormProps {
   spaceId: number
@@ -52,7 +53,8 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
       <div className={classNamesLib.feedItemInnerTop}>
         <form id='postForm' onSubmit={handleSubmit(onSubmit)}>
           <div className='relative'>
-            <textarea
+            <TextareaAutosize
+              minRows={3}
               placeholder={`${userName}, your story starts here...`}
               className={`
                 ${classNamesLib.form}
