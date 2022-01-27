@@ -17,6 +17,8 @@ const poll = async (): Promise<void> => {
   const latestPostIndex = await getLatestPostIndex(state.contract)
 
   if (latestPostIndex > state.latestPostIndexFetched) {
+    console.log(latestPostIndex - state.latestPostIndexFetched, 'NEW POSTS')
+
     const postsPromises: Promise<PostType>[] = []
     for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
       const p = getPostById(contract, i)

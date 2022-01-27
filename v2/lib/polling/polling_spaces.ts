@@ -21,6 +21,8 @@ const poll = async (): Promise<void> => {
 
   // Check if new spaces exist
   if (latestSpaceIndex > state.latestSpaceIndexFetched) {
+    console.log(latestSpaceIndex - state.latestSpaceIndexFetched, 'NEW SPACES')
+
     const spacesPromises: Promise<SpaceType>[] = []
     for (let i = latestSpaceIndex; i > state.latestSpaceIndexFetched; i -= 1) {
       const p = getSpaceById(contract, i)
