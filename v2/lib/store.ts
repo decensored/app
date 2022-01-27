@@ -61,6 +61,9 @@ const useStore = create(
       setNodeStatus: (nodeActive: boolean) => set({ nodeActive }),
 
       // Dialogs
+      isOpenPostDialog: false,
+      setIsOpenPostDialog: (isOpenPostDialog: boolean) =>
+        set({ isOpenPostDialog }),
 
       isOpenSettingsDialog: false,
       setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) =>

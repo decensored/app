@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'styles/globals.scss'
 import VersionCheck from 'components/VersionCheck'
 import Web3Client from 'components/Web3Client'
+import PostDialog from 'components/Dialog/PostDialog'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
@@ -50,6 +51,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
 
     <Component {...pageProps} />
 
+    <PostDialog />
     <SettingsDialog />
     <SignupDialog />
     <RecoverDialog />

@@ -4,16 +4,18 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 interface DialogProps {
   body: string | JSX.Element[] | JSX.Element
-  footer: JSX.Element[] | JSX.Element
-  header: string
+  bodyPadding?: string
+  header?: string
+  footer?: JSX.Element
   onClose: () => void
   showDialog: boolean
 }
 
 const BaseDialog: FunctionComponent<DialogProps> = ({
   body,
-  footer,
-  header,
+  bodyPadding = classNamesLib.dialogBody,
+  footer = null,
+  header = null,
   onClose,
   showDialog,
 }) => (
@@ -23,13 +25,15 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
       <div
         className={`${classNamesLib.dialogInner} ${classNamesLib.dialogInnerDark}`}
       >
-        <div
-          className={`${classNamesLib.dialogHeader} ${classNamesLib.dialogHeaderDark}`}
-        >
-          {header}
-        </div>
-        <div className={classNamesLib.dialogBody}>{body}</div>
-        <div className={classNamesLib.dialogFooter}>{footer}</div>
+        {header && (
+          <div
+            className={`${classNamesLib.dialogHeader} ${classNamesLib.dialogHeaderDark}`}
+          >
+            {header}
+          </div>
+        )}
+        <div className={bodyPadding}>{body}</div>
+        {footer && <div className={classNamesLib.dialogFooter}>{footer}</div>}
       </div>
     </div>
   </Dialog>
