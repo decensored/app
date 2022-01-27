@@ -7,7 +7,7 @@ import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getSpaceByName } from 'api/spaces'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import Form from 'components/Feed/Form'
+import PostForm from 'components/Post/PostForm'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -102,7 +102,7 @@ const Space: NextPage = () => {
               </div>
             </div>
             <div className={classNamesLib.feedPostsWrapper}>
-              {isSignedUp && <Form spaceId={space.id} />}
+              {isSignedUp && <PostForm spaceId={space.id} />}
               {showFeedItems}
             </div>
           </div>

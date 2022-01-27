@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
@@ -36,11 +37,9 @@ const Feed: FunctionComponent = () => {
     ))
   }
   return (
-    <div id='feed'>
-      <div className='container mx-auto py-10 px-3 max-w-md flex flex-col gap-y-5 mb-28'>
-        <div id='posts' className='flex flex-col gap-y-5 mb-28'>
-          {showFeedItems}
-        </div>
+    <div className={classNamesLib.container}>
+      <div id='posts' className={classNamesLib.feedWrapper}>
+        {showFeedItems}
       </div>
     </div>
   )

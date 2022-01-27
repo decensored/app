@@ -54,7 +54,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Link href={`/space/${spaceName}`} passHref>
             <a
               href='dummy-href'
-              className='text-sm italic text-orange-400 hover:text-orange-500 bg-gray-100 py-1 px-2 rounded-sm'
+              className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
             >
               #{spaceName}
             </a>
