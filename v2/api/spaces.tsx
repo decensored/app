@@ -29,7 +29,9 @@ export const getSpaceNameById = async (contract: any, spaceId: number) =>
 export const getSpaceByName = async (contract: any, name: string) => {
   // log(`getSpaceByName ${name}`)
 
-  const space_id = await contract.spaces.methods.id_by_name(name).call()
+  const space_id = parseInt(
+    await contract.spaces.methods.id_by_name(name).call()
+  )
   const owner = await contract.spaces.methods.owner_by_id(space_id).call()
 
   const result: SpaceType = {

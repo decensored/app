@@ -33,7 +33,7 @@ export const getPostById = async (
     message: post.message,
     author: post.author,
     timestamp: readable_date_time_from_unix_timestamp(post.timestamp),
-    space: post.space,
+    space: parseInt(post.space),
     spaceName,
     mother_post: post.mother_post,
   }

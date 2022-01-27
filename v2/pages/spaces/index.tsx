@@ -1,21 +1,26 @@
 import React from 'react'
 import type { NextPage } from 'next'
+import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import Header from 'components/Header/Header'
 import Bottombar from 'components/BottomNavigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import shallow from 'zustand/shallow'
+import { numberOfPostsInSpace } from 'lib/storeUtils'
 
 const Spaces: NextPage = () => {
-  const [isSignedUp, spaces] = useStore(
-    (state) => [state.isSignedUp, state.spaces],
+  const [isSignedUp, spaces, posts] = useStore(
+    (state) => [state.isSignedUp, state.spaces, state.posts],
     shallow
   )
 
   const createSpaceItems = spaces.map((space) => (
-    <SpaceItem key={space.id} {...space} />
+    <SpaceItem
+      key={space.id}
+      {...space}
+      numberOfPostsInSpace={numberOfPostsInSpace(posts, space)}
+    />
   ))
 
   return (

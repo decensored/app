@@ -7,9 +7,14 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 interface SpaceItemProps {
   id: number
   name: string
+  numberOfPostsInSpace: number
 }
 
-const SpaceItem: FunctionComponent<SpaceItemProps> = ({ id, name }) => (
+const SpaceItem: FunctionComponent<SpaceItemProps> = ({
+  id,
+  name,
+  numberOfPostsInSpace,
+}) => (
   <div
     key={id.toString()}
     className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
@@ -40,7 +45,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ id, name }) => (
             ${classNamesLib.tagNotClickableDark}
           `}
           >
-            578
+            {numberOfPostsInSpace}
           </span>
         </div>
       </div>
