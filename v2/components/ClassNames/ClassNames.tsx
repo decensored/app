@@ -5,7 +5,7 @@ export const classNamesLib = {
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
   bodyContainer: 'container mx-auto max-w-2xl px-3 flex pt-10',
-  bodyContainerCol1: 'flex-none w-8 sm:w-32',
+  bodyContainerCol1: 'flex-none w-[34px] sm:w-32',
   bodyContainerCol2: 'flex-auto px-3',
   container: 'container mx-auto max-w-md px-3',
 
@@ -55,15 +55,15 @@ export const classNamesLib = {
   navigationAsideWrapper: 'sticky top-[100px]',
   navigationAsideInner: 'flex flex-col justify-between h-screen-header',
   navigationAsideInnerTop: '',
-  navigationAsideInnerBottom: 'pb-10',
+  navigationAsideInnerBottom: 'pb-2',
   navigationAsideButtonWrapper: 'flex flex-col gap-y-1',
   navigationAsideButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-white hover:bg-highlight-500 cursor-pointer',
   navigationAsideButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-500',
   navigationAsideButtonActive: 'text-white bg-highlight-900 dark:text-white dark:bg-highlight-900',
   navigationAsideButtonText: 'hidden sm:block',
   navigationAsideButtonIcon: 'text-lg sm:text-sm',
-  navigationAsideSocialWrapper: 'flex justify-between',
-  navigationAsideSocialButton: 'text-2xl text-gray-900 hover:text-highlight-900',
+  navigationAsideSocialWrapper: 'flex flex-col items-center gap-2 sm:gap-3 sm:justify-center sm:flex-row',
+  navigationAsideSocialButton: 'text-lg sm:text-xl text-gray-900 hover:text-highlight-900',
   navigationAsideSocialButtonDark: 'dark:text-gray-300 dark:hover:text-white',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
