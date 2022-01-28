@@ -15,22 +15,31 @@ import { addUserToBlacklist, removeUserFromBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
 
 interface FeedItemProps {
+  author: number
   username: string
   message: string
   timestamp: number
-  type: string
-  owner: boolean
+  space: number
   spaceName: string
+  type: string
+  moderator: boolean
+  blacklist?: any
+  setBlacklist?: any
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
+  author,
   username,
   message,
   timestamp,
-  type,
-  owner,
+  space,
   spaceName,
+  type,
+  moderator,
+  blacklist,
+  setBlacklist,
 }) => {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [setIsOpenPostDialog, contract] = useStore(
     (state) => [state.setIsOpenPostDialog, state.contract],
     shallow
@@ -38,28 +47,45 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
   // BLACKLIST STUFF
   const setAddUserToBlacklist = async (): Promise<void> => {
-    const result = await addUserToBlacklist(contract, spaceName, username)
+    setIsLoading(true)
+    const result = await addUserToBlacklist(contract, space, author)
     if (result.success) {
       toast.success(`User ${username} has been blacklisted for this space!`, {
-        autoClose: 5000,
+        autoClose: 3000,
       })
+      // Add user to blacklistArray
+      const user = {
+        userId: author,
+        username,
+      }
+      blacklist.push(user)
+      setIsLoading(false)
     } else {
       toast.error(`${result.error}`, {
-        autoClose: 5000,
+        autoClose: 3000,
       })
+      setIsLoading(false)
     }
   }
 
   const setRemoveUserFromBlacklist = async (): Promise<void> => {
-    const result = await removeUserFromBlacklist(contract, spaceName, username)
+    setIsLoading(true)
+    const result = await removeUserFromBlacklist(contract, space, author)
     if (result.success) {
       toast.success(`User ${username} has access to this space again!`, {
-        autoClose: 5000,
+        autoClose: 3000,
       })
+      // Remove user from blacklistArray
+      const newBlackList = blacklist.filter(
+        (user: any) => user.userId !== author
+      )
+      setBlacklist(newBlackList)
+      setIsLoading(false)
     } else {
       toast.error(`${result.error}`, {
-        autoClose: 5000,
+        autoClose: 3000,
       })
+      setIsLoading(false)
     }
   }
 
@@ -89,18 +115,22 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       </div>
       <div className={classNamesLib.feedItemInnerBottom}>
         <div className={classNamesLib.feedItemInnerBottomCol}>
-          {owner && (
+          {moderator && (
             <>
               <FontAwesomeIcon
                 icon={faShieldAlt}
-                className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                className={`${classNamesLib.feedItemInteractionIcon} ${
+                  classNamesLib.feedItemInteractionIconDark
+                } ${isLoading && ' animate-pulse text-green-600'}`}
                 onClick={() => {
                   setAddUserToBlacklist()
                 }}
               />
               <FontAwesomeIcon
                 icon={faMinusSquare}
-                className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                className={`${classNamesLib.feedItemInteractionIcon} ${
+                  classNamesLib.feedItemInteractionIconDark
+                } ${isLoading && ' animate-pulse text-green-600'}`}
                 onClick={() => {
                   setRemoveUserFromBlacklist()
                 }}

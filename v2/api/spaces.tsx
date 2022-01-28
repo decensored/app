@@ -92,21 +92,21 @@ export const createSpace = async (contract: any, name: string) => {
 */
 export const addUserToBlacklist = async (
   contract: any,
-  spaceName: string,
-  userName: string
+  spaceId: number,
+  authorId: number
 ) => {
-  log(`Add user ${userName} to blacklist for space ${spaceName}`)
+  // log(`Add user ${userName} to blacklist for space ${spaceName}`)
 
-  const spaceId = await contract.spaces.methods.id_by_name(spaceName).call()
-  const userId = await getIdByUserName(contract, userName)
+  /*   const spaceId = await contract.spaces.methods.id_by_name(spaceName).call()
+  const userId = await getIdByUserName(contract, userName) */
 
   try {
     await executeContractFunction(
       contract.web3,
-      contract.spaces.methods.add_account_to_blacklist(spaceId, userId)
+      contract.spaces.methods.add_account_to_blacklist(spaceId, authorId)
     )
-    const check = await userBlackListedForSpace(contract, spaceId, userId)
-    console.log(`User ${userId} blacklisted for ${spaceId} is ${check}`)
+    const check = await userBlackListedForSpace(contract, spaceId, authorId)
+    console.log(`User ${authorId} blacklisted for ${spaceId} is ${check}`)
     return { success: true }
   } catch (error) {
     return { success: false, error: readableError(error) }
@@ -115,21 +115,21 @@ export const addUserToBlacklist = async (
 
 export const removeUserFromBlacklist = async (
   contract: any,
-  spaceName: string,
-  userName: string
+  spaceId: number,
+  authorId: number
 ) => {
-  log(`Remove user ${userName} from blacklist for space ${spaceName}`)
+  // log(`Remove user ${userName} from blacklist for space ${spaceName}`)
 
-  const spaceId = await contract.spaces.methods.id_by_name(spaceName).call()
-  const userId = await getIdByUserName(contract, userName)
+  /*   const spaceId = await contract.spaces.methods.id_by_name(spaceName).call()
+  const userId = await getIdByUserName(contract, userName) */
 
   try {
     await executeContractFunction(
       contract.web3,
-      contract.spaces.methods.remove_account_from_blacklist(spaceId, userId)
+      contract.spaces.methods.remove_account_from_blacklist(spaceId, authorId)
     )
-    const check = await userBlackListedForSpace(contract, spaceId, userId)
-    console.log(`User ${userName} blacklisted for ${spaceId} is ${check}`)
+    const check = await userBlackListedForSpace(contract, spaceId, authorId)
+    console.log(`User ${authorId} blacklisted for ${spaceId} is ${check}`)
     return { success: true }
   } catch (error) {
     return { success: false, error: readableError(error) }
@@ -141,6 +141,6 @@ export const userBlackListedForSpace = async (
   spaceId: number,
   userId: number
 ) => {
-  console.log(`Check if user ${userId} is blacklisted for Space ${spaceId}`)
+  //console.log(`Check if user ${userId} is blacklisted for Space ${spaceId}`)
   return await contract.spaces.methods.is_blacklisted(spaceId, userId).call()
 }

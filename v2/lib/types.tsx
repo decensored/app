@@ -23,3 +23,8 @@ export type SpaceType = {
   whatever: number
   img: string
 }
+
+export type BlackListType = {
+  userId: number
+  username: string
+}

@@ -74,6 +74,10 @@ const useStore = create(
       isOpenCreateSpaceDialog: false,
       setIsOpenCreateSpaceDialog: (isOpenCreateSpaceDialog: boolean) =>
         set({ isOpenCreateSpaceDialog }),
+
+      isOpenSpaceSettingsDialog: false,
+      setIsOpenSpaceSettingsDialog: (isOpenSpaceSettingsDialog: boolean) =>
+        set({ isOpenSpaceSettingsDialog }),
     }),
     {
       name: 'decensored',
