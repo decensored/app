@@ -1,6 +1,6 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { PostType, SpaceType } from 'lib/types'
+import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
 
 const useStore = create(
   persist(
@@ -39,13 +39,23 @@ const useStore = create(
       userId: 0,
       setUserId: (userId: number) => set({ userId }),
 
-      // EVM node config
+      nodeInfo: {
+        url: 'https://hh.addiota.com',
+        postsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
+      } as NodeInfoType,
+      setNodeInfo: (nodeInfo: NodeInfoType) => {
+        // console.log('setNodeInfo')
+        set({
+          nodeInfo,
+          posts: [],
+          spaces: [],
+          setLatestPostIndexFeched: 0,
+          latestSpaceIndexFetched: 0,
+        })
+      },
 
       evmNode: 'https://hh.addiota.com',
       setEVMnode: (evmNode: string) => set({ evmNode }),
-
-      // chainId: 1075,
-      // setChainId: (chainId: number) => set({ chainId }),
 
       contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
       setContractPostsAddress: (contractPostsAddress: string) =>
@@ -87,8 +97,8 @@ const useStore = create(
         userName: state.userName,
         userId: state.userId,
         privateKey: state.privateKey,
+        nodeInfo: state.nodeInfo,
         evmNode: state.evmNode,
-        // chainId: state.chainId,
         contractPostsAddress: state.contractPostsAddress,
       }),
     }

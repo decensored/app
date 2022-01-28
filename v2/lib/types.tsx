@@ -1,11 +1,6 @@
-export type SpaceType = {
-  id: number
-  name: string
-  owner: number
-  followers: number
-  posts: number
-  whatever: number
-  img: string
+export type NodeInfoType = {
+  url: string
+  postsAddress: string
 }
 
 export type PostType = {
@@ -17,4 +12,14 @@ export type PostType = {
   space: number
   spaceName: string
   mother_post: number
+}
+
+export type SpaceType = {
+  id: number
+  name: string
+  owner: number
+  followers: number
+  posts: number
+  whatever: number
+  img: string
 }
