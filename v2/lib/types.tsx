@@ -1,6 +1,6 @@
 export type NodeInfoType = {
-  url: string
-  postsAddress: string
+  evmNode: string
+  contractPostsAddress: string
 }
 
 export type PostType = {

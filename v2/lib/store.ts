@@ -40,26 +40,19 @@ const useStore = create(
       setUserId: (userId: number) => set({ userId }),
 
       nodeInfo: {
-        url: 'https://hh.addiota.com',
-        postsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
+        evmNode: 'https://hh.addiota.com',
+        contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
       } as NodeInfoType,
       setNodeInfo: (nodeInfo: NodeInfoType) => {
-        // console.log('setNodeInfo')
         set({
           nodeInfo,
+          // delete whatever we had cached...
           posts: [],
           spaces: [],
-          setLatestPostIndexFeched: 0,
+          latestPostIndexFetched: 0,
           latestSpaceIndexFetched: 0,
         })
       },
-
-      evmNode: 'https://hh.addiota.com',
-      setEVMnode: (evmNode: string) => set({ evmNode }),
-
-      contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
-      setContractPostsAddress: (contractPostsAddress: string) =>
-        set({ contractPostsAddress }),
 
       nodeActive: false,
       setNodeStatus: (nodeActive: boolean) => set({ nodeActive }),
@@ -98,8 +91,6 @@ const useStore = create(
         userId: state.userId,
         privateKey: state.privateKey,
         nodeInfo: state.nodeInfo,
-        evmNode: state.evmNode,
-        contractPostsAddress: state.contractPostsAddress,
       }),
     }
   )

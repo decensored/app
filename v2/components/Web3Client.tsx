@@ -14,49 +14,43 @@ import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const [
-    evmNode,
-    setEVMnode,
-    contractPostsAddress,
-    setContractPostsAddress,
-    setContract,
-    setNodeStatus,
-    setIsSignedUp,
-  ] = useStore(
-    (state) => [
-      state.evmNode,
-      state.setEVMnode,
-      state.contractPostsAddress,
-      state.setContractPostsAddress,
-      state.setContract,
-      state.setNodeStatus,
-      state.setIsSignedUp,
-    ],
-    shallow
-  )
+  const [nodeInfo, setNodeInfo, setContract, setNodeStatus, setIsSignedUp] =
+    useStore(
+      (state) => [
+        state.nodeInfo,
+        state.setNodeInfo,
+        state.setContract,
+        state.setNodeStatus,
+        state.setIsSignedUp,
+      ],
+      shallow
+    )
 
   // support for deeplink
   const q = new URLSearchParams(window.location.search)
-  if (q.get('evmNode') && q.get('evmNode') !== evmNode) {
-    setEVMnode(q.get('evmNode') as string)
-  }
   if (
+    q.get('evmNode') &&
     q.get('contractPostsAddress') &&
-    q.get('contractPostsAddress') !== contractPostsAddress
+    (q.get('evmNode') !== nodeInfo.evmNode ||
+      q.get('contractPostsAddress') !== nodeInfo.contractPostsAddress)
   ) {
-    setContractPostsAddress(q.get('contractPostsAddress') as string)
+    setNodeInfo({
+      evmNode: q.get('evmNode') as string,
+      contractPostsAddress: q.get('contractPostsAddress') as string,
+    })
   }
 
+  //
   useEffect(() => {
     if (!inBrowser) return
 
-    // console.log('Web3Client.config', evmNode, contractPostsAddress)
+    // console.log('Web3Client.config', nodeInfo)
 
     // make sure we only can access the contracts when all is well
     setContract({})
 
     try {
-      web3 = new Web3(evmNode)
+      web3 = new Web3(nodeInfo.evmNode)
       // console.log('Web3Client.web3', web3)
     } catch (e: any) {
       toast.error(`Web3 error: ${e.message}`, {
@@ -69,7 +63,7 @@ const Web3Client: FunctionComponent = () => {
     try {
       contractPosts = new web3.eth.Contract(
         CONTRACT_POSTS_ABI,
-        contractPostsAddress
+        nodeInfo.contractPostsAddress
       )
       // console.log('Web3Client.contractPosts', contractPosts)
     } catch (e: any) {
@@ -129,7 +123,7 @@ const Web3Client: FunctionComponent = () => {
           autoClose: 5000,
         })
       })
-  }, [evmNode, contractPostsAddress, setContract, setNodeStatus, setIsSignedUp])
+  }, [nodeInfo, setContract, setNodeStatus, setIsSignedUp])
 
   return null
 }

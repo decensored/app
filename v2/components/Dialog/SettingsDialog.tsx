@@ -9,18 +9,14 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 const SettingsDialog: FunctionComponent = () => {
   const {
     nodeActive,
-    evmNode,
-    setEVMnode,
-    contractAddress,
-    setContractPostsAddress,
+    nodeInfo,
+    setNodeInfo,
     isOpenSettingsDialog,
     setIsOpenSettingsDialog,
   } = useStore((state) => ({
     nodeActive: state.nodeActive,
-    evmNode: state.evmNode,
-    setEVMnode: state.setEVMnode,
-    contractAddress: state.contractPostsAddress,
-    setContractPostsAddress: state.setContractPostsAddress,
+    nodeInfo: state.nodeInfo,
+    setNodeInfo: state.setNodeInfo,
     isOpenSettingsDialog: state.isOpenSettingsDialog,
     setIsOpenSettingsDialog: state.setIsOpenSettingsDialog,
   }))
@@ -30,14 +26,18 @@ const SettingsDialog: FunctionComponent = () => {
     evmNode: string
     contractAddress: string
   }
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>()
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setEVMnode(data.evmNode)
-    setContractPostsAddress(data.contractAddress)
+    setNodeInfo({
+      evmNode: data.evmNode,
+      contractPostsAddress: data.contractAddress,
+    })
     setIsOpenSettingsDialog(false)
   }
 
@@ -69,7 +69,7 @@ const SettingsDialog: FunctionComponent = () => {
                     ${classNamesLib.inputDark}
                   `}
                   type='text'
-                  defaultValue={evmNode}
+                  defaultValue={nodeInfo.evmNode}
                   {...register('evmNode', { required: true })}
                 />
                 {errors.evmNode && (
@@ -132,7 +132,7 @@ const SettingsDialog: FunctionComponent = () => {
                 <input
                   className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
                   type='text'
-                  defaultValue={contractAddress}
+                  defaultValue={nodeInfo.contractPostsAddress}
                   {...register('contractAddress', { required: true })}
                 />
                 {errors.contractAddress && (
