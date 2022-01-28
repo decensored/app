@@ -14,9 +14,13 @@ const VersionCheck: FunctionComponent = () => {
   useInteval(async () => {
     if (!inBrowser || versionInfoGiven) return
 
-    const api = await (await fetch('/api/version')).json()
-    setApiVersion(api.version)
-    // console.log('VersionCheck fetch /api/version', api)
+    try {
+      const api = await (await fetch('/api/version')).json()
+      setApiVersion(api.version)
+      // console.log('VersionCheck fetch /api/version', api)
+    } catch (e) {
+      console.error(e)
+    }
   }, INTERVAL)
 
   //
