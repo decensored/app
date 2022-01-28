@@ -46,7 +46,13 @@ html {
 }
 
 .h-screen-header {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px); // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100 - 100px);
+
+  @media (max-width: 640px) {
+    min-height: calc(100vh - 80px); // --vh fallback
+    min-height: calc(var(--vh, 1vh) * 100 - 80px);
+  }
 }
 
 

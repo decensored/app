@@ -12,6 +12,7 @@ import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
 import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
+import CalculateViewportHeight from 'components/Viewport/CalculateViewportHeight'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
@@ -58,6 +59,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
     <CreateSpaceDialog />
 
     <DarkmodeToggle />
+    <CalculateViewportHeight />
 
     <ToastContainer
       autoClose={2000}

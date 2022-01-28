@@ -4,7 +4,7 @@ export const classNamesLib = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
-  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-10 gap-x-[2%]',
+  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-5 sm:pt-10 gap-x-[2%]',
   bodyContainerCol1: 'flex-none w-[34px] sm:w-48',
   bodyContainerCol2: 'flex-auto px-3',
   container: 'container mx-auto max-w-md px-3',
@@ -52,7 +52,7 @@ export const classNamesLib = {
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
-  navigationAsideWrapper: 'sticky top-[100px]',
+  navigationAsideWrapper: 'sticky top-[80px] sm:top-[100px]',
   navigationAsideInner: 'flex flex-col justify-between h-screen-header',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-2',
