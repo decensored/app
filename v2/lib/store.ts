@@ -38,7 +38,7 @@ const useStore = create(
 
       // EVM node config
 
-      evmNode: 'https://evm.wasp.sc.iota.org', // https://we.addiota.com
+      evmNode: 'https://hh.addiota.com',
       setEVMnode: (evmNode: string) => set({ evmNode }),
 
       // chainId: 1075,
