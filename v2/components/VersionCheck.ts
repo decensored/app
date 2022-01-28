@@ -1,35 +1,37 @@
 import { FunctionComponent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { inBrowser } from 'lib/where'
+import useInteval from 'hooks/useInterval.js'
 import packageJson from '../package.json'
+
+const INTERVAL = 60 * 1000 // between version checks
 
 let versionInfoGiven = false // not with useState because we want the update immediately
 
 const VersionCheck: FunctionComponent = () => {
   const [apiVersion, setApiVersion] = useState('')
 
-  if (inBrowser) {
-    if (!apiVersion) {
-      // console.log('fetch /api/version')
-      fetch('/api/version')
-        .then((text) => text.json())
-        .then((json) => {
-          setApiVersion(json.version)
-        })
-    }
+  useInteval(async () => {
+    if (!inBrowser || versionInfoGiven) return
 
-    if (!versionInfoGiven && apiVersion && apiVersion !== packageJson.version) {
-      versionInfoGiven = true
+    const api = await (await fetch('/api/version')).json()
+    setApiVersion(api.version)
+    // console.log('VersionCheck fetch /api/version', api)
+  }, INTERVAL)
 
-      toast.info(
-        `You are running version ${packageJson.version}. Refresh this window for version ${apiVersion}`,
-        {
-          autoClose: 5000,
-        }
-      )
-    }
-  } // else !inBrowser
+  //
+  if (!versionInfoGiven && apiVersion && apiVersion !== packageJson.version) {
+    versionInfoGiven = true
 
+    toast.info(
+      `You are running version ${packageJson.version}. Refresh this window for version ${apiVersion}`,
+      {
+        autoClose: 5000,
+      }
+    )
+  }
+
+  //
   return null
 }
 
