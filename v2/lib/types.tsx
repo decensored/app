@@ -13,7 +13,7 @@ export type PostType = {
   username: string
   message: string
   author: number
-  timestamp: string
+  timestamp: number
   space: number
   spaceName: string
   mother_post: number

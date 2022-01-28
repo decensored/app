@@ -6,12 +6,11 @@ import { faComment, faShare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import TimeAgo from 'react-timeago'
-import moment from 'moment'
 
 interface FeedItemProps {
   username: string
   message: string
-  timestamp: string
+  timestamp: number
   type: string
   spaceName: string
 }
@@ -43,7 +42,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             </a>
           </Link>
           <div className={classNamesLib.feedItemMetaTimestamp}>
-            <TimeAgo date={moment(timestamp).format('YYYY-MM-DD HH:mm:ss')} />
+            <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
         <div

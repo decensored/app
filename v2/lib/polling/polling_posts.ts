@@ -25,7 +25,7 @@ const poll = async (): Promise<void> => {
     }
     const posts = await Promise.all(postsPromises)
 
-    // Set new index & push new spaces into possibly existing array
+    // Set new index & push new posts into possibly existing array
     state.setLatestPostIndexFeched(latestPostIndex)
     state.posts.map((post) => posts.push(post))
     state.setPosts(posts)

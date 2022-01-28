@@ -32,7 +32,7 @@ export const getPostById = async (
     username,
     message: post.message,
     author: post.author,
-    timestamp: readable_date_time_from_unix_timestamp(post.timestamp),
+    timestamp: post.timestamp,
     space: parseInt(post.space),
     spaceName,
     mother_post: post.mother_post,
@@ -85,29 +85,6 @@ export const getAllPostsForSpace = async (
   }
   // console.log(posts)
   return posts
-}
-
-function readable_date_time_from_unix_timestamp(unix_timestamp: number) {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-  const date = new Date(unix_timestamp * 1000)
-  return `${
-    months[date.getMonth()]
-  }/${date.getDate()} ${date.getFullYear()}, ${date
-    .toTimeString()
-    .substr(0, 5)}`
 }
 
 /*

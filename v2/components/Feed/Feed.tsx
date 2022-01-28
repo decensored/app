@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import FeedItem from './FeedItem'
@@ -9,18 +10,7 @@ const Feed: FunctionComponent = () => {
   }))
 
   // GET DATA FOR FEED
-  const [feedPosts, setFeedPosts] = React.useState<
-    {
-      id: number
-      username: string
-      message: string
-      author: number
-      timestamp: string
-      space: number
-      spaceName: string
-      mother_post: number
-    }[]
-  >()
+  const [feedPosts, setFeedPosts] = React.useState<PostType[]>()
 
   React.useEffect(() => {
     setFeedPosts(posts)
