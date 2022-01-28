@@ -17,6 +17,7 @@ const RecoverDialog: FunctionComponent = () => {
   const {
     setIsSignedUp,
     setUserName,
+    setUserId,
     contract,
     isOpenRecoverDialog,
     setIsOpenRecoverDialog,
@@ -25,6 +26,7 @@ const RecoverDialog: FunctionComponent = () => {
     setIsSignedUp: state.setIsSignedUp,
     userName: state.userName,
     setUserName: state.setUserName,
+    setUserId: state.setUserId,
     contract: state.contract,
     isOpenRecoverDialog: state.isOpenRecoverDialog,
     setIsOpenRecoverDialog: state.setIsOpenRecoverDialog,
@@ -43,9 +45,10 @@ const RecoverDialog: FunctionComponent = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true)
     const result = await recoverUser(contract, data.privateKey)
-    if (result.success === true) {
+    if (result.success) {
       setIsSignedUp(true)
       setUserName(result.username)
+      setUserId(result.userId)
       setIsOpenRecoverDialog(false)
       setIsLoading(false)
     } else {

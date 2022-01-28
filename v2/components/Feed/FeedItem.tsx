@@ -2,16 +2,24 @@ import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import useStore from 'lib/store'
-import { faComment, faShare } from '@fortawesome/free-solid-svg-icons'
+import {
+  faComment,
+  faMinusSquare,
+  faShare,
+  faShieldAlt,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import TimeAgo from 'react-timeago'
+import { addUserToBlacklist, removeUserFromBlacklist } from 'api/spaces'
+import { toast } from 'react-toastify'
 
 interface FeedItemProps {
   username: string
   message: string
   timestamp: number
   type: string
+  owner: boolean
   spaceName: string
 }
 
@@ -20,12 +28,40 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   message,
   timestamp,
   type,
+  owner,
   spaceName,
 }) => {
-  const [setIsOpenPostDialog] = useStore(
-    (state) => [state.setIsOpenPostDialog],
+  const [setIsOpenPostDialog, contract] = useStore(
+    (state) => [state.setIsOpenPostDialog, state.contract],
     shallow
   )
+
+  // BLACKLIST STUFF
+  const setAddUserToBlacklist = async (): Promise<void> => {
+    const result = await addUserToBlacklist(contract, spaceName, username)
+    if (result.success) {
+      toast.success(`User ${username} has been blacklisted for this space!`, {
+        autoClose: 5000,
+      })
+    } else {
+      toast.error(`${result.error}`, {
+        autoClose: 5000,
+      })
+    }
+  }
+
+  const setRemoveUserFromBlacklist = async (): Promise<void> => {
+    const result = await removeUserFromBlacklist(contract, spaceName, username)
+    if (result.success) {
+      toast.success(`User ${username} has access to this space again!`, {
+        autoClose: 5000,
+      })
+    } else {
+      toast.error(`${result.error}`, {
+        autoClose: 5000,
+      })
+    }
+  }
 
   return (
     <div
@@ -53,10 +89,24 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       </div>
       <div className={classNamesLib.feedItemInnerBottom}>
         <div className={classNamesLib.feedItemInnerBottomCol}>
-          {/*         <FontAwesomeIcon
-            icon={faShieldAlt}
-            className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
-          /> */}
+          {owner && (
+            <>
+              <FontAwesomeIcon
+                icon={faShieldAlt}
+                className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                onClick={() => {
+                  setAddUserToBlacklist()
+                }}
+              />
+              <FontAwesomeIcon
+                icon={faMinusSquare}
+                className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
+                onClick={() => {
+                  setRemoveUserFromBlacklist()
+                }}
+              />
+            </>
+          )}
           {type === 'feed' && (
             <Link href={`/space/${spaceName}`} passHref>
               <a

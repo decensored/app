@@ -36,6 +36,9 @@ const useStore = create(
       privateKey: '',
       setPrivateKey: (privateKey: string) => set({ privateKey }),
 
+      userId: 0,
+      setUserId: (userId: number) => set({ userId }),
+
       // EVM node config
 
       evmNode: 'https://hh.addiota.com',
@@ -82,6 +85,7 @@ const useStore = create(
         spaces: state.spaces,
         latestSpaceIndexFetched: state.latestSpaceIndexFetched,
         userName: state.userName,
+        userId: state.userId,
         privateKey: state.privateKey,
         evmNode: state.evmNode,
         // chainId: state.chainId,

@@ -23,7 +23,7 @@ const Feed: FunctionComponent = () => {
   let showFeedItems
   if (feedPosts.length > 0) {
     showFeedItems = feedPosts.map((post) => (
-      <FeedItem key={post.id} type='feed' {...post} />
+      <FeedItem key={post.id} type='feed' owner={false} {...post} />
     ))
   }
   return (

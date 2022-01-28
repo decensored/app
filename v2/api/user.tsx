@@ -38,9 +38,9 @@ export const signUpUser = async (contract: any, username: string) => {
       contract.web3,
       contract.accounts.methods.sign_up(username)
     )
+
     const userId = await getIdByUserName(contract, username)
     const signedUp = await isSignedUp(contract)
-
     return {
       success: true,
       signedUp,
@@ -104,7 +104,15 @@ export const getUserNameById = async (contract: any, user_id: number) => {
 }
 
 export const getIdByUserName = async (contract: any, username: string) => {
-  return contract.accounts.methods.id_by_username(username).call()
+  const userId = await contract.accounts.methods
+    .id_by_username(username.toLowerCase())
+    .call()
+  return userId
+}
+
+export const getIdByAddress = async (contract: any) => {
+  const address = await getAddress(contract)
+  return contract.accounts.methods.id_by_address(address).call().then()
 }
 
 export const recoverUser = async (contract: any, privateKey: string) => {
@@ -127,6 +135,7 @@ export const recoverUser = async (contract: any, privateKey: string) => {
       success: false,
       error: 'Couldnt find a user with that key',
       username: '',
+      userId: 0,
     }
     return result
   }

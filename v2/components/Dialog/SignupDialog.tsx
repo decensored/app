@@ -14,6 +14,7 @@ const SignupDialog: FunctionComponent = () => {
     setIsSignedUp,
     userName,
     setUserName,
+    setUserId,
     contract,
     isOpenSignupDialog,
     setIsOpenSignupDialog,
@@ -22,6 +23,7 @@ const SignupDialog: FunctionComponent = () => {
     setIsSignedUp: state.setIsSignedUp,
     userName: state.userName,
     setUserName: state.setUserName,
+    setUserId: state.setUserId,
     contract: state.contract,
     isOpenSignupDialog: state.isOpenSignupDialog,
     setIsOpenSignupDialog: state.setIsOpenSignupDialog,
@@ -43,6 +45,7 @@ const SignupDialog: FunctionComponent = () => {
     if (result.success === true) {
       setIsSignedUp(true)
       setUserName(data.username)
+      setUserId(result.userId)
       setIsOpenSignupDialog(false)
       setIsLoading(false)
     } else {
