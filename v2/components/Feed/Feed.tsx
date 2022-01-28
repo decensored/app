@@ -37,10 +37,8 @@ const Feed: FunctionComponent = () => {
     ))
   }
   return (
-    <div className={classNamesLib.container}>
-      <div id='posts' className={classNamesLib.feedWrapper}>
-        {showFeedItems}
-      </div>
+    <div id='posts' className={classNamesLib.feedWrapper}>
+      {showFeedItems}
     </div>
   )
 }

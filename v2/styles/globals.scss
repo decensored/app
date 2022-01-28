@@ -32,13 +32,24 @@ html {
   }
 }
 
-@media (min-width: 480px) {
-  html .Toastify__toast-container--bottom-center {
-    bottom: 120px;
-  }
+.h-screen-header {
+  min-height: calc(100vh - 100px);
 }
+
+
+// @media (min-width: 480px) {
+//   html .Toastify__toast-container--bottom-center {
+//     bottom: 120px;
+//   }
+// }
 
 #headlessui-portal-root {
   position: relative;
   z-index: 1000;
 }
+
+// #posts > div {
+//   &:nth-child(n+2) {
+//     display: none;
+//   }
+// }

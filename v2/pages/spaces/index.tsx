@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import Header from 'components/Header/Header'
-import Bottombar from 'components/BottomNavigation/BottomNavigation'
+import AsideNavigation from 'components/Navigation/AsideNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -26,15 +26,17 @@ const Spaces: NextPage = () => {
   return (
     <>
       <Header />
-      <div className={classNamesLib.container}>
-        <div className={classNamesLib.feedWrapper}>
-          {isSignedUp && <SpaceHeader />}
-          <div className={classNamesLib.feedPostsWrapper}>
+      <div className={classNamesLib.bodyContainer}>
+        <div className={classNamesLib.bodyContainerCol1}>
+          <AsideNavigation />
+        </div>
+        <div className={classNamesLib.bodyContainerCol2}>
+          <div className={classNamesLib.feedWrapper}>
+            {isSignedUp && <SpaceHeader />}
             {createSpaceItems}
           </div>
         </div>
       </div>
-      <Bottombar />
     </>
   )
 }

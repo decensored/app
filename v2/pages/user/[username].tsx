@@ -2,7 +2,8 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Header from 'components/Header/Header'
-import Bottombar from 'components/BottomNavigation/BottomNavigation'
+import AsideNavigation from 'components/Navigation/AsideNavigation'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 const User: NextPage = () => {
   const router = useRouter()
@@ -11,8 +12,14 @@ const User: NextPage = () => {
   return (
     <>
       <Header />
-      <h1>User {username} </h1>
-      <Bottombar />
+      <div className={classNamesLib.bodyContainer}>
+        <div className={classNamesLib.bodyContainerCol1}>
+          <AsideNavigation />
+        </div>
+        <div className={classNamesLib.bodyContainerCol2}>
+          <h1>User {username} </h1>
+        </div>
+      </div>
     </>
   )
 }

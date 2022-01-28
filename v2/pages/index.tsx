@@ -1,14 +1,21 @@
 import type { NextPage } from 'next'
 import React from 'react'
+import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Header from '../components/Header/Header'
 import Feed from '../components/Feed/Feed'
-import Bottombar from '../components/BottomNavigation/BottomNavigation'
+import AsideNavigation from '../components/Navigation/AsideNavigation'
 
 const Home: NextPage = () => (
   <>
     <Header />
-    <Feed />
-    <Bottombar />
+    <div className={classNamesLib.bodyContainer}>
+      <div className={classNamesLib.bodyContainerCol1}>
+        <AsideNavigation />
+      </div>
+      <div className={classNamesLib.bodyContainerCol2}>
+        <Feed />
+      </div>
+    </div>
   </>
 )
 

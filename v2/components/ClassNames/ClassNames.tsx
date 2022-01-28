@@ -4,6 +4,9 @@ export const classNamesLib = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
+  bodyContainer: 'container mx-auto max-w-xl px-3 flex pt-10',
+  bodyContainerCol1: 'flex-none w-8 sm:w-32',
+  bodyContainerCol2: 'flex-auto px-3',
   container: 'container mx-auto max-w-md px-3',
 
   headerWrapper: 'sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
@@ -49,6 +52,15 @@ export const classNamesLib = {
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
+  navigationAsideWrapper: 'sticky top-[100px]',
+  navigationAsideInner: 'flex flex-col justify-between h-screen-header',
+  navigationAsideInnerTop: '',
+  navigationAsideInnerBottom: 'pb-10',
+  navigationAsideButtonWrapper: 'flex flex-col gap-y-1',
+  navigationAsideButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10 cursor-pointer',
+  navigationAsideButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
+  navigationAsideButtonText: 'hidden sm:block',
+
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
   navigationBottomWrapperDark: 'dark:bg-darkmode-100 dark:divide-darkmode-1000',
   navigationBottomInner: 'py-4 sm:py-6 flex gap-y-5',
@@ -60,8 +72,8 @@ export const classNamesLib = {
   navigationBottomMotionSpanColor: 'bg-purple-800',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
-  feedWrapper: 'pt-10 px-3 flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
-  feedPostsWrapper: 'flex flex-col gap-y-5',
+  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
+  // feedPostsWrapper: 'flex flex-col gap-y-5',
 
   feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
@@ -73,7 +85,7 @@ export const classNamesLib = {
   feedItemMetaTimestamp: 'text-xs text-right text-gray-500',
   feedItemMetaName: 'font-bold text-gray-900',
   feedItemMetaNameDark: 'dark:text-gray-300',
-  feedItemText: 'break-words font-light',
+  feedItemText: 'break-words break-all font-light',
   feedItemTextDark: '',
   feedItemInteractionIcon: 'cursor-pointer text-highlight-40 hover:text-highlight-500',
   feedItemInteractionIconDark: 'dark:text-darkmode-1700 dark:hover:text-highlight-400',
