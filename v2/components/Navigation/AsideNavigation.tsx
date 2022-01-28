@@ -6,7 +6,11 @@ import {
   faSatelliteDish,
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons'
-import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import {
+  faDiscord,
+  faGithub,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -43,8 +47,13 @@ const AsideNavigation: FunctionComponent = () => {
                   }
                 `}
               >
-                <FontAwesomeIcon icon={faSatelliteDish} className={classNamesLib.navigationAsideButtonIcon} />
-                <span className={classNamesLib.navigationAsideButtonText}>Feed</span>
+                <FontAwesomeIcon
+                  icon={faSatelliteDish}
+                  className={classNamesLib.navigationAsideButtonIcon}
+                />
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Feed
+                </span>
               </span>
             </Link>
             <Link href='/spaces' passHref>
@@ -59,8 +68,13 @@ const AsideNavigation: FunctionComponent = () => {
                 }
               `}
               >
-                <FontAwesomeIcon icon={faSatellite} className={classNamesLib.navigationAsideButtonIcon} />
-                <span className={classNamesLib.navigationAsideButtonText}>Spaces</span>
+                <FontAwesomeIcon
+                  icon={faSatellite}
+                  className={classNamesLib.navigationAsideButtonIcon}
+                />
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Spaces
+                </span>
               </span>
             </Link>
             {isSignedUp && (
@@ -76,8 +90,13 @@ const AsideNavigation: FunctionComponent = () => {
                   }
                 `}
                 >
-                  <FontAwesomeIcon icon={faUserAstronaut} className={classNamesLib.navigationAsideButtonIcon} />
-                  <span className={classNamesLib.navigationAsideButtonText}>My Posts</span>
+                  <FontAwesomeIcon
+                    icon={faUserAstronaut}
+                    className={classNamesLib.navigationAsideButtonIcon}
+                  />
+                  <span className={classNamesLib.navigationAsideButtonText}>
+                    My Posts
+                  </span>
                 </span>
               </Link>
             )}
@@ -99,7 +118,7 @@ const AsideNavigation: FunctionComponent = () => {
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
             </Link>
-            <Link href='https://t.co/Lmou3Qx5Ap' passHref>
+            <Link href='https://discord.gg/gKvXUu4X' passHref>
               <a
                 href='dummy-href'
                 target='_blank'
