@@ -2,8 +2,13 @@ import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import {
+  faBookmark,
+  faHeart,
+  faMoon,
+  faPlus,
   faSatellite,
   faSatelliteDish,
+  faSun,
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -21,7 +26,7 @@ const AsideNavigation: FunctionComponent = () => {
 
   let tabIndex = -1
   if (pathname === '/') tabIndex = 0
-  else if (pathname.startsWith('/space')) tabIndex = 1
+  else if (pathname.startsWith('/spaces')) tabIndex = 1
   else if (pathname.startsWith('/user/')) tabIndex = 2
   // console.log(pathname, tabIndex)
 
@@ -29,6 +34,19 @@ const AsideNavigation: FunctionComponent = () => {
     state.isSignedUp,
     state.userName,
   ])
+
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [
+    state.isDarkmode,
+    state.setIsDarkmode,
+  ])
+
+  const toggleDarkMode = (): void => {
+    if (isDarkmode) {
+      setIsDarkmode(false)
+    } else {
+      setIsDarkmode(true)
+    }
+  }
 
   return (
     <div className={classNamesLib.navigationAsideWrapper}>
@@ -48,6 +66,7 @@ const AsideNavigation: FunctionComponent = () => {
                 `}
               >
                 <FontAwesomeIcon
+                  fixedWidth
                   icon={faSatelliteDish}
                   className={classNamesLib.navigationAsideButtonIcon}
                 />
@@ -69,6 +88,7 @@ const AsideNavigation: FunctionComponent = () => {
               `}
               >
                 <FontAwesomeIcon
+                  fixedWidth
                   icon={faSatellite}
                   className={classNamesLib.navigationAsideButtonIcon}
                 />
@@ -77,6 +97,54 @@ const AsideNavigation: FunctionComponent = () => {
                 </span>
               </span>
             </Link>
+            {isSignedUp && (
+              <Link href='/' passHref>
+                <span
+                  className={`
+                  ${classNamesLib.navigationAsideButton}
+                  ${classNamesLib.navigationAsideButtonDark}
+                  ${
+                    tabIndex === 2
+                      ? classNamesLib.navigationAsideButtonActive
+                      : ''
+                  }
+                `}
+                >
+                  <FontAwesomeIcon
+                    fixedWidth
+                    icon={faBookmark}
+                    className={classNamesLib.navigationAsideButtonIcon}
+                  />
+                  <span className={classNamesLib.navigationAsideButtonText}>
+                    Bookmarks
+                  </span>
+                </span>
+              </Link>
+            )}
+            {isSignedUp && (
+              <Link href='/' passHref>
+                <span
+                  className={`
+                  ${classNamesLib.navigationAsideButton}
+                  ${classNamesLib.navigationAsideButtonDark}
+                  ${
+                    tabIndex === 2
+                      ? classNamesLib.navigationAsideButtonActive
+                      : ''
+                  }
+                `}
+                >
+                  <FontAwesomeIcon
+                    fixedWidth
+                    icon={faHeart}
+                    className={classNamesLib.navigationAsideButtonIcon}
+                  />
+                  <span className={classNamesLib.navigationAsideButtonText}>
+                    Likes
+                  </span>
+                </span>
+              </Link>
+            )}
             {isSignedUp && (
               <Link href={`/user/${userName}`} passHref>
                 <span
@@ -91,6 +159,7 @@ const AsideNavigation: FunctionComponent = () => {
                 `}
                 >
                   <FontAwesomeIcon
+                    fixedWidth
                     icon={faUserAstronaut}
                     className={classNamesLib.navigationAsideButtonIcon}
                   />
@@ -100,52 +169,92 @@ const AsideNavigation: FunctionComponent = () => {
                 </span>
               </Link>
             )}
+            {isSignedUp && (
+              <>
+                <div className={classNamesLib.navigationAsideButtonSpacer} />
+                <button
+                  type='submit'
+                  className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faPlus} />
+                  <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
+                    New Post
+                  </span>
+                </button>
+              </>
+            )}
           </div>
         </div>
         <div className={classNamesLib.navigationAsideInnerBottom}>
-          <div className={classNamesLib.navigationAsideSocialWrapper}>
-            <Link href='https://twitter.com/decensored_app' passHref>
-              <a
-                href='dummy-href'
-                target='_blank'
-                title='discord'
-                rel='noreferrer'
-                className={`
-                  ${classNamesLib.navigationAsideSocialButton}
-                  ${classNamesLib.navigationAsideSocialButtonDark}
-                `}
+          <div
+            className={classNamesLib.navigationAsideBottomInteractionWrapper}
+          >
+            <div>
+              <button
+                type='button'
+                onClick={toggleDarkMode}
+                className={`toggleDarkMode ${classNamesLib.switch} ${classNamesLib.switchDark}`}
               >
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-            </Link>
-            <Link href='https://discord.gg/gKvXUu4X' passHref>
-              <a
-                href='dummy-href'
-                target='_blank'
-                title='discord'
-                rel='noreferrer'
-                className={`
-                  ${classNamesLib.navigationAsideSocialButton}
-                  ${classNamesLib.navigationAsideSocialButtonDark}
-                `}
-              >
-                <FontAwesomeIcon icon={faDiscord} />
-              </a>
-            </Link>
-            <Link href='https://github.com/decensored/app' passHref>
-              <a
-                href='dummy-href'
-                target='_blank'
-                title='github'
-                rel='noreferrer'
-                className={`
-                  ${classNamesLib.navigationAsideSocialButton}
-                  ${classNamesLib.navigationAsideSocialButtonDark}
-                `}
-              >
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-            </Link>
+                {isDarkmode && (
+                  <div
+                    className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={faMoon} />
+                  </div>
+                )}
+                {!isDarkmode && (
+                  <div
+                    className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={faSun} />
+                  </div>
+                )}
+              </button>
+            </div>
+            <div className={classNamesLib.navigationAsideSocialButtonWrapper}>
+              <Link href='https://twitter.com/decensored_app' passHref>
+                <a
+                  href='dummy-href'
+                  target='_blank'
+                  title='discord'
+                  rel='noreferrer'
+                  className={`
+                    ${classNamesLib.navigationAsideSocialButton}
+                    ${classNamesLib.navigationAsideSocialButtonDark}
+                  `}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faTwitter} />
+                </a>
+              </Link>
+              <Link href='https://discord.gg/gKvXUu4X' passHref>
+                <a
+                  href='dummy-href'
+                  target='_blank'
+                  title='discord'
+                  rel='noreferrer'
+                  className={`
+                    ${classNamesLib.navigationAsideSocialButton}
+                    ${classNamesLib.navigationAsideSocialButtonDark}
+                  `}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faDiscord} />
+                </a>
+              </Link>
+              <Link href='https://github.com/decensored/app' passHref>
+                <a
+                  href='dummy-href'
+                  target='_blank'
+                  title='github'
+                  rel='noreferrer'
+                  className={`
+                    ${classNamesLib.navigationAsideSocialButton}
+                    ${classNamesLib.navigationAsideSocialButtonDark}
+                  `}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faGithub} />
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -3,8 +3,6 @@ import shallow from 'zustand/shallow'
 import {
   faCog,
   faExclamationTriangle,
-  faMoon,
-  faSun,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
@@ -16,19 +14,6 @@ const SettingsPopover: FunctionComponent = () => {
     (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
     shallow
   )
-
-  const [isDarkmode, setIsDarkmode] = useStore((state) => [
-    state.isDarkmode,
-    state.setIsDarkmode,
-  ])
-
-  const toggleDarkMode = (): void => {
-    if (isDarkmode) {
-      setIsDarkmode(false)
-    } else {
-      setIsDarkmode(true)
-    }
-  }
 
   return (
     <BasePopover
@@ -56,24 +41,6 @@ const SettingsPopover: FunctionComponent = () => {
                   icon={faExclamationTriangle}
                   className='fixed right-4 animate-pulse text-red-500'
                 />
-              )}
-            </button>
-            <button
-              type='button'
-              onClick={toggleDarkMode}
-              className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
-            >
-              {isDarkmode && (
-                <>
-                  <FontAwesomeIcon icon={faSun} />
-                  <span>Lightmode</span>
-                </>
-              )}
-              {!isDarkmode && (
-                <>
-                  <FontAwesomeIcon icon={faMoon} />
-                  <span>Darkmode</span>
-                </>
               )}
             </button>
           </div>

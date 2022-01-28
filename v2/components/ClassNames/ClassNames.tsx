@@ -4,8 +4,8 @@ export const classNamesLib = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
-  bodyContainer: 'container mx-auto max-w-2xl px-3 flex pt-10',
-  bodyContainerCol1: 'flex-none w-[34px] sm:w-32',
+  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-10 gap-x-[2%]',
+  bodyContainerCol1: 'flex-none w-[34px] sm:w-48',
   bodyContainerCol2: 'flex-auto px-3',
   container: 'container mx-auto max-w-md px-3',
 
@@ -59,10 +59,13 @@ export const classNamesLib = {
   navigationAsideButtonWrapper: 'flex flex-col gap-y-1',
   navigationAsideButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-white hover:bg-highlight-500 cursor-pointer',
   navigationAsideButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-500',
-  navigationAsideButtonActive: 'text-white bg-highlight-900 dark:text-white dark:bg-highlight-900',
+  navigationAsideButtonActive: 'font-bold text-highlight-900 dark:text-highlight-500',
   navigationAsideButtonText: 'hidden sm:block',
-  navigationAsideButtonIcon: 'text-lg sm:text-sm',
-  navigationAsideSocialWrapper: 'flex flex-col items-center gap-2 sm:gap-3 sm:justify-center sm:flex-row',
+  navigationAsideButtonIcon: 'w-[40px] text-lg sm:text-sm',
+  navigationAsideButtonIconInvisible: 'text-lg sm:text-sm opacity-0',
+  navigationAsideButtonSpacer: 'h-10',
+  navigationAsideBottomInteractionWrapper: 'flex flex-col flex-col-reverse items-center gap-2 sm:gap-3 sm:justify-between sm:flex-row',
+  navigationAsideSocialButtonWrapper: 'flex flex-col sm:flex-row gap-2',
   navigationAsideSocialButton: 'text-lg sm:text-xl text-gray-900 hover:text-highlight-900',
   navigationAsideSocialButtonDark: 'dark:text-gray-300 dark:hover:text-white',
 
@@ -108,4 +111,9 @@ export const classNamesLib = {
   tagNotClickableDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
   tagClickable: 'bg-highlight-10 text-highlight-500 hover:text-highlight-900',
   tagClickableDark: 'dark:bg-darkmode-1000 dark:text-darkmode-1900 dark:hover:text-highlight-400',
+
+  switch: 'rounded-full bg-slate-300 p-[3px] w-[40px] h-[25px] flex',
+  switchDark: 'rounded-full dark:bg-darkmode-600',
+  switchInner: 'rounded-full text-gray-900 w-[19px] h-[19px] flex justify-center items-center',
+  switchInnerDark: 'dark:text-white',
 }
