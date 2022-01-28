@@ -225,7 +225,7 @@ const AsideNavigation: FunctionComponent = () => {
                 <a
                   href='dummy-href'
                   target='_blank'
-                  title='discord'
+                  title='twitter'
                   rel='noreferrer'
                   className={`
                     ${classNamesLib.navigationAsideSocialButton}
