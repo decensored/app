@@ -9,8 +9,11 @@ const log = (msg: string): void => {
 export const getSpaceById = async (contract: any, space_id: number) => {
   // log(`getSpaceById ${space_id}`)
 
-  const name = await contract.spaces.methods.name_by_id(space_id).call()
-  const owner = await contract.spaces.methods.owner_by_id(space_id).call()
+  // const name = await contract.spaces.methods.name_by_id(space_id).call()
+  // const owner = await contract.spaces.methods.owner_by_id(space_id).call()
+
+  const space = await contract.spaces.methods.spaces(space_id).call()
+  const { name, owner } = space
 
   const result: SpaceType = {
     id: space_id,
@@ -25,7 +28,8 @@ export const getSpaceById = async (contract: any, space_id: number) => {
 }
 
 export const getSpaceNameById = async (contract: any, spaceId: number) =>
-  await contract.spaces.methods.name_by_id(spaceId).call()
+  (await contract.spaces.methods.spaces(spaceId).call()).name
+// await contract.spaces.methods.name_by_id(spaceId).call()
 
 export const getSpaceByName = async (contract: any, name: string) => {
   log(
