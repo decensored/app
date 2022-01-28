@@ -54,9 +54,6 @@ const useStore = create(
         })
       },
 
-      nodeActive: false,
-      setNodeStatus: (nodeActive: boolean) => set({ nodeActive }),
-
       // Dialogs
       isOpenPostDialog: false,
       setIsOpenPostDialog: (isOpenPostDialog: boolean) =>

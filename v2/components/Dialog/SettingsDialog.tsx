@@ -8,13 +8,13 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 
 const SettingsDialog: FunctionComponent = () => {
   const {
-    nodeActive,
+    contract,
     nodeInfo,
     setNodeInfo,
     isOpenSettingsDialog,
     setIsOpenSettingsDialog,
   } = useStore((state) => ({
-    nodeActive: state.nodeActive,
+    contract: state.contract,
     nodeInfo: state.nodeInfo,
     setNodeInfo: state.setNodeInfo,
     isOpenSettingsDialog: state.isOpenSettingsDialog,
@@ -83,7 +83,7 @@ const SettingsDialog: FunctionComponent = () => {
                     </span>
                   </div>
                 )}
-                {!nodeActive && (
+                {!(contract as any)?.accounts && (
                   <div
                     className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
                   >

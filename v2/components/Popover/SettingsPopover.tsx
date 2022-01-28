@@ -1,17 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
-import {
-  faCog,
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCog, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BasePopover from './BasePopover'
 
 const SettingsPopover: FunctionComponent = () => {
-  const [setIsOpenSettingsDialog, nodeActive] = useStore(
-    (state) => [state.setIsOpenSettingsDialog, state.nodeActive],
+  const [setIsOpenSettingsDialog, contract] = useStore(
+    (state) => [state.setIsOpenSettingsDialog, state.contract],
     shallow
   )
 
@@ -36,7 +33,7 @@ const SettingsPopover: FunctionComponent = () => {
             >
               <FontAwesomeIcon icon={faCog} />
               <span>Node Settings</span>
-              {!nodeActive && (
+              {!(contract as any)?.accounts && (
                 <FontAwesomeIcon
                   icon={faExclamationTriangle}
                   className='fixed right-4 animate-pulse text-red-500'

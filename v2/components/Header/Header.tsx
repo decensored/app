@@ -11,12 +11,8 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 import useTimeout from 'hooks/useTimeout.js'
 
 const Header: FunctionComponent = () => {
-  const [setIsOpenSettingsDialog, nodeActive, contract] = useStore(
-    (state) => [
-      state.setIsOpenSettingsDialog,
-      state.nodeActive,
-      state.contract,
-    ],
+  const [setIsOpenSettingsDialog, contract] = useStore(
+    (state) => [state.setIsOpenSettingsDialog, state.contract],
     shallow
   )
 
@@ -31,7 +27,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      {!nodeActive && gracePeriodDone && (
+      {!(contract as any)?.accounts && gracePeriodDone && (
         <button
           type='button'
           onClick={() => {

@@ -14,17 +14,15 @@ import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const [nodeInfo, setNodeInfo, setContract, setNodeStatus, setIsSignedUp] =
-    useStore(
-      (state) => [
-        state.nodeInfo,
-        state.setNodeInfo,
-        state.setContract,
-        state.setNodeStatus,
-        state.setIsSignedUp,
-      ],
-      shallow
-    )
+  const [nodeInfo, setNodeInfo, setContract, setIsSignedUp] = useStore(
+    (state) => [
+      state.nodeInfo,
+      state.setNodeInfo,
+      state.setContract,
+      state.setIsSignedUp,
+    ],
+    shallow
+  )
 
   // support for deeplink
   const q = new URLSearchParams(window.location.search)
@@ -101,7 +99,6 @@ const Web3Client: FunctionComponent = () => {
             }
 
             setContract(contract)
-            setNodeStatus(true)
             toast('All systems are Go for launch!')
 
             // Check if privateKey is stored and user exists
@@ -111,19 +108,17 @@ const Web3Client: FunctionComponent = () => {
             }
           })
           .catch((e: any) => {
-            setNodeStatus(false)
             toast.error(`Accounts contract error: ${e.message}`, {
               autoClose: 5000,
             })
           })
       })
       .catch((e: any) => {
-        setNodeStatus(false)
         toast.error(`Spaces contract error\n${e.message}`, {
           autoClose: 5000,
         })
       })
-  }, [nodeInfo, setContract, setNodeStatus, setIsSignedUp])
+  }, [nodeInfo, setContract, setIsSignedUp])
 
   return null
 }
