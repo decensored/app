@@ -19,7 +19,7 @@ const VersionCheck: FunctionComponent = () => {
       setApiVersion(api.version)
       // console.log('VersionCheck fetch /api/version', api)
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   }, INTERVAL)
 

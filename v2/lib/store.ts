@@ -5,9 +5,6 @@ import type { PostType, SpaceType } from 'lib/types'
 const useStore = create(
   persist(
     (set) => ({
-      //
-      // non-persistent state
-      //
       isSignedUp: false,
       setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
@@ -33,17 +30,11 @@ const useStore = create(
       isDarkmode: false,
       setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
 
-      //
-      // persistent state by the partialize function below
-      //
       userName: '',
       setUserName: (userName: string) => set({ userName }),
 
       privateKey: '',
       setPrivateKey: (privateKey: string) => set({ privateKey }),
-
-      userId: 1,
-      setUserId: (userId: string) => set({ userId }),
 
       // EVM node config
 
@@ -86,6 +77,10 @@ const useStore = create(
 
       partialize: (state) => ({
         isDarkmode: state.isDarkmode,
+        posts: state.posts,
+        latestPostIndexFetched: state.latestPostIndexFetched,
+        spaces: state.spaces,
+        latestSpaceIndexFetched: state.latestSpaceIndexFetched,
         userName: state.userName,
         privateKey: state.privateKey,
         evmNode: state.evmNode,

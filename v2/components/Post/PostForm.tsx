@@ -15,7 +15,6 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
     userName: state.userName,
-    userId: state.userId,
     contract: state.contract,
   }))
 

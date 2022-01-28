@@ -17,7 +17,13 @@ const poll = async (): Promise<void> => {
   const latestPostIndex = await getLatestPostIndex(state.contract)
   // console.log(latestPostIndex - state.latestPostIndexFetched, 'NEW POSTS')
 
-  if (latestPostIndex > state.latestPostIndexFetched) {
+  if (latestPostIndex < state.latestPostIndexFetched) {
+    // the smartcontract has been reset
+    state.setLatestPostIndexFeched(0)
+    state.setPosts([])
+  } else if (latestPostIndex > state.latestPostIndexFetched) {
+    // new posts exist
+
     const postsPromises: Promise<PostType>[] = []
     for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
       const p = getPostById(contract, i)

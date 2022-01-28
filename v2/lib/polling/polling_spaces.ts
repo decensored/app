@@ -19,8 +19,13 @@ const poll = async (): Promise<void> => {
     .call()
     .then(parseInt)
 
-  // Check if new spaces exist
-  if (latestSpaceIndex > state.latestSpaceIndexFetched) {
+  if (latestSpaceIndex < state.latestSpaceIndexFetched) {
+    // the smartcontract has been reset
+    state.setLatestSpaceIndexFetched(0)
+    state.setSpaces([])
+  } else if (latestSpaceIndex > state.latestSpaceIndexFetched) {
+    // new spaces exist
+
     // console.log(latestSpaceIndex - state.latestSpaceIndexFetched, 'NEW SPACES')
 
     const spacesPromises: Promise<SpaceType>[] = []

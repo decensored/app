@@ -49,7 +49,9 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
           </span>
         </div>
       </div>
-      <div className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}>
+      <div
+        className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
+      >
         IOTA is a scalable, decentralized, feeless, modular, open-source
         distributed ledger protocol that goes beyond blockchain through its core
         invention of the blockless Tangle.
