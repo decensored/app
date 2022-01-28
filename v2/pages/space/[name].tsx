@@ -25,8 +25,7 @@ const Space: NextPage = () => {
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
 
   React.useEffect(() => {
-    if (!(contract as any).accounts || !name || !posts.length || !spaces.length)
-      return
+    if (!(contract as any).accounts || !name || !spaces.length) return
 
     const spaceId = getSpaceIdByName(spaces, name as string)
     const currentSpace = getSpaceById(spaces, spaceId)

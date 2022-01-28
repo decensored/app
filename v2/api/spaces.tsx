@@ -39,12 +39,12 @@ export const getSpaceByName = async (contract: any, name: string) => {
   const space_id = parseInt(
     await contract.spaces.methods.id_by_name(name).call()
   )
-  const owner = await contract.spaces.methods.owner_by_id(space_id).call()
+  const space = await getSpaceById(contract, space_id)
 
   const result: SpaceType = {
     id: space_id,
-    name,
-    owner,
+    name: space.name,
+    owner: space.id,
     followers: Math.floor(Math.random() * 200),
     posts: Math.floor(Math.random() * 500),
     whatever: Math.floor(Math.random() * 30),
