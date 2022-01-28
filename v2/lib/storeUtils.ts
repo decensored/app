@@ -1,5 +1,10 @@
 import type { PostType, SpaceType } from 'lib/types'
 
+// CONTRACTS
+export const nodeIsUpAndRunning = (
+  contract: Record<string, unknown>
+): boolean => !!contract?.accounts
+
 // POSTS
 export const getNumberOfPostsInSpace = (
   posts: PostType[],

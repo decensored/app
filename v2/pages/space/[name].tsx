@@ -5,7 +5,12 @@ import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import { getPostsInSpace, getSpaceById, getSpaceIdByName } from 'lib/storeUtils'
+import {
+  getPostsInSpace,
+  getSpaceById,
+  getSpaceIdByName,
+  nodeIsUpAndRunning,
+} from 'lib/storeUtils'
 import type { BlackListType, PostType, SpaceType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import PostForm from 'components/Post/PostForm'
@@ -44,7 +49,7 @@ const Space: NextPage = () => {
   )
 
   React.useEffect(() => {
-    if (!(contract as any).accounts || !name || !spaces.length) return
+    if (!nodeIsUpAndRunning(contract) || !name || !spaces.length) return
 
     // Get information for Space
     const spaceId = getSpaceIdByName(spaces, name as string)

@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react'
 import Link from 'next/link'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
-// import { toast } from 'react-toastify'
+import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import UserPopover from 'components/Popover/UserPopover'
@@ -27,7 +27,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      {!(contract as any)?.accounts && gracePeriodDone && (
+      {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
         <button
           type='button'
           onClick={() => {
@@ -60,7 +60,7 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          {(contract as any).accounts && <UserPopover />}
+          {nodeIsUpAndRunning(contract) && <UserPopover />}
           <SettingsPopover />
         </div>
       </div>

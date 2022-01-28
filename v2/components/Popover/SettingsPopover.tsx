@@ -3,6 +3,7 @@ import shallow from 'zustand/shallow'
 import { faCog, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
+import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BasePopover from './BasePopover'
 
@@ -33,7 +34,7 @@ const SettingsPopover: FunctionComponent = () => {
             >
               <FontAwesomeIcon icon={faCog} />
               <span>Node Settings</span>
-              {!(contract as any)?.accounts && (
+              {!nodeIsUpAndRunning(contract) && (
                 <FontAwesomeIcon
                   icon={faExclamationTriangle}
                   className='fixed right-4 animate-pulse text-red-500'

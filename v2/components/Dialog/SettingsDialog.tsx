@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import useStore from 'lib/store'
+import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
 
@@ -83,7 +84,7 @@ const SettingsDialog: FunctionComponent = () => {
                     </span>
                   </div>
                 )}
-                {!(contract as any)?.accounts && (
+                {!nodeIsUpAndRunning(contract) && (
                   <div
                     className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
                   >

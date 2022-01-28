@@ -1,5 +1,6 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
+import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
@@ -9,7 +10,7 @@ const poll = async (): Promise<void> => {
   const state = useStore.getState()
 
   const contract: any = state?.contract
-  if (!contract.accounts) {
+  if (!nodeIsUpAndRunning(contract)) {
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
