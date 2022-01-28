@@ -174,7 +174,11 @@ const AsideNavigation: FunctionComponent = () => {
                 <div className={classNamesLib.navigationAsideButtonSpacer} />
                 <button
                   type='submit'
-                  className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                  className={`
+                   ${classNamesLib.button}
+                   ${classNamesLib.buttonDecensored}
+                   ${classNamesLib.buttonNoXsPadding}
+                  `}
                 >
                   <FontAwesomeIcon fixedWidth icon={faPlus} />
                   <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
@@ -193,7 +197,12 @@ const AsideNavigation: FunctionComponent = () => {
               <button
                 type='button'
                 onClick={toggleDarkMode}
-                className={`toggleDarkMode ${classNamesLib.switch} ${classNamesLib.switchDark}`}
+                className={`
+                  toggleDarkMode
+                  ${classNamesLib.switch}
+                  ${classNamesLib.switchDark}
+                  ${classNamesLib.navigationAsideInteractionSwitch}
+                `}
               >
                 {isDarkmode && (
                   <div
