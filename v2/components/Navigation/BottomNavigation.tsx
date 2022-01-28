@@ -21,7 +21,10 @@ const Bottombar: FunctionComponent = () => {
   else if (pathname.startsWith('/user/')) tabIndex = 2
   // console.log(pathname, tabIndex)
 
-  const isSignedUp = useStore((state) => state.isSignedUp)
+  const [isSignedUp, userName] = useStore((state) => [
+    state.isSignedUp,
+    state.userName,
+  ])
 
   return (
     <div
@@ -87,7 +90,7 @@ const Bottombar: FunctionComponent = () => {
             </span>
           </Link>
           {isSignedUp && (
-            <Link href='/user/MrSupertramp' passHref>
+            <Link href={`/user/${userName}`} passHref>
               <span
                 className={`
                   ${classNamesLib.navigationBottomItem}

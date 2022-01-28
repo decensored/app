@@ -21,7 +21,10 @@ const AsideNavigation: FunctionComponent = () => {
   else if (pathname.startsWith('/user/')) tabIndex = 2
   // console.log(pathname, tabIndex)
 
-  const isSignedUp = useStore((state) => state.isSignedUp)
+  const [isSignedUp, userName] = useStore((state) => [
+    state.isSignedUp,
+    state.userName,
+  ])
 
   return (
     <div className={classNamesLib.navigationAsideWrapper}>
@@ -41,7 +44,9 @@ const AsideNavigation: FunctionComponent = () => {
                 `}
               >
                 <FontAwesomeIcon icon={faSatelliteDish} />
-                <span className={classNamesLib.navigationAsideButtonText}>Feed</span>
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Feed
+                </span>
               </span>
             </Link>
             <Link href='/spaces' passHref>
@@ -57,11 +62,13 @@ const AsideNavigation: FunctionComponent = () => {
               `}
               >
                 <FontAwesomeIcon icon={faSatellite} />
-                <span className={classNamesLib.navigationAsideButtonText}>Spaces</span>
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Spaces
+                </span>
               </span>
             </Link>
             {isSignedUp && (
-              <Link href='/user/MrSupertramp' passHref>
+              <Link href={`/user/${userName}`} passHref>
                 <span
                   className={`
                   ${classNamesLib.navigationAsideButton}
@@ -74,7 +81,9 @@ const AsideNavigation: FunctionComponent = () => {
                 `}
                 >
                   <FontAwesomeIcon icon={faUserAstronaut} />
-                  <span className={classNamesLib.navigationAsideButtonText}>My Posts</span>
+                  <span className={classNamesLib.navigationAsideButtonText}>
+                    My Posts
+                  </span>
                 </span>
               </Link>
             )}
@@ -91,7 +100,9 @@ const AsideNavigation: FunctionComponent = () => {
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
                 <FontAwesomeIcon icon={faDiscord} className='text-[11px]' />
-                <span className={classNamesLib.navigationAsideButtonText}>Discord</span>
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Discord
+                </span>
               </a>
             </Link>
             <Link href='https://github.com/decensored/app' passHref>
@@ -103,7 +114,9 @@ const AsideNavigation: FunctionComponent = () => {
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
                 <FontAwesomeIcon icon={faGithub} />
-                <span className={classNamesLib.navigationAsideButtonText}>Github</span>
+                <span className={classNamesLib.navigationAsideButtonText}>
+                  Github
+                </span>
               </a>
             </Link>
           </div>
