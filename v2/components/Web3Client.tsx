@@ -6,18 +6,10 @@ import useStore from 'lib/store'
 import { inBrowser } from 'lib/where'
 import { isSignedUp } from 'api/user'
 
-// new abi imports
-// import CONTRACT_ACCOUNTS_ABI from 'abis/contracts_Accounts_sol_Accounts.json'
-// import CONTRACT_POSTS_ABI from 'abis/contracts_Posts_sol_Posts.json'
-// import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
-// // import CONTRACT_RATECONTROL_ABI from 'abis/contracts_RateControl_sol_RateControl.json'
-
-// old abi imports
-import {
-  CONTRACT_ACCOUNTS_ABI,
-  CONTRACT_POSTS_ABI,
-  CONTRACT_SPACES_ABI,
-} from 'lib/contract_abis.js'
+import CONTRACT_ACCOUNTS_ABI from 'abis/contracts_Accounts_sol_Accounts.json'
+import CONTRACT_POSTS_ABI from 'abis/contracts_Posts_sol_Posts.json'
+import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
+// import CONTRACT_RATECONTROL_ABI from 'abis/contracts_RateControl_sol_RateControl.json'
 
 let web3: any // TODO: move to store.ts
 
