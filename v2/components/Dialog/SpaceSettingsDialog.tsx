@@ -4,11 +4,13 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
 
 interface SpaceSettingsProbs {
+  space: number
   name: string
   blacklistedUsers: any
 }
 
 const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
+  space,
   name,
   blacklistedUsers,
 }) => {
@@ -45,7 +47,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
                   ${classNamesLib.dialogLabelDark}
                 `}
               >
-                Name
+                Name {space}
               </span>
               <div className={classNamesLib.inputWrapper}>
                 <input

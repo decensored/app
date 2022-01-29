@@ -21,8 +21,10 @@ const Space: NextPage = () => {
     contract: state.contract,
   }))
 
-  /*   const [profileOwner, setProfileOwner] = React.useState(false) */
+  /*   const [setProfileOwner] = React.useState(false) */
   const [userPosts, setUserPosts] = React.useState<PostType[]>([])
+
+  /*   setBlackListArray([]) */
 
   React.useEffect(() => {
     if (!nodeIsUpAndRunning(contract) || !username) return
@@ -35,7 +37,7 @@ const Space: NextPage = () => {
     /*     if (currentUserId === 13) {
       setProfileOwner(true)
     } */
-  }, [contract, username, posts, userPosts, currentUserId])
+  }, [contract, username, posts, currentUserId, userPosts])
 
   const showFeedItems = userPosts.map((post) => (
     <FeedItem key={post.id} type='feed' {...post} />
