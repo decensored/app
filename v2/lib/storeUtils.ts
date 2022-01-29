@@ -18,6 +18,11 @@ export const getPostsInSpace = (
   space: SpaceType
 ): PostType[] => posts.filter((post) => post.space === space.id)
 
+export const getPostsForUser = (
+  posts: PostType[],
+  username: string
+): PostType[] => posts.filter((post) => post.username === username)
+
 // SPACES
 export const getSpaceIdByName = (
   spaces: SpaceType[],

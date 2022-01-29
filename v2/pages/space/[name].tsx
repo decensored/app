@@ -48,6 +48,8 @@ const Space: NextPage = () => {
     []
   )
 
+  /*   setBlackListArray([]) */
+
   React.useEffect(() => {
     if (!nodeIsUpAndRunning(contract) || !name || !spaces.length) return
 
@@ -65,25 +67,37 @@ const Space: NextPage = () => {
       setSpaceOwner(true)
     }
 
-    // Create an array of blacklisted users for the moderator
+    /*     // Get unique users from posts
     const uniqueAuthorIds = postsForSpace.map((post) => ({
       userId: post.author,
       username: post.username,
-    }))
-    uniqueAuthorIds.forEach(async (author) => {
+    })) */
+
+    // Get unique users from posts
+    /*     const unique = Array.from(
+      new Set(postsForSpace.map((post) => post.author))
+    ).map((author) => {
+      return {
+        userId: author,
+        username: postsForSpace.find((p) => p.author === author).username,
+      }
+    })  */
+    const uniqueAuthors = Array.from(
+      new Set(postsForSpace.map((post) => post.author))
+    )
+
+    // Create an array of blacklisted users for the moderator
+    const newBlacklist = []
+    uniqueAuthors.forEach(async (author) => {
       const isUserBlacklisted = await userBlackListedForSpace(
         contract,
         spaceId,
-        author.userId
+        author
       )
       if (isUserBlacklisted) {
-        const user = {
-          userId: author.userId,
-          username: author.username,
-        }
-        blackListArray.push(user)
+        newBlacklist.push(author)
         // Check if current user is blacklisted to hide post-form
-        if (author.userId === currentUserId) {
+        if (author === currentUserId) {
           setUserIsBlacklisted(true)
         }
       }
@@ -124,6 +138,7 @@ const Space: NextPage = () => {
                   {spaceOwner && (
                     <>
                       <SpaceSettingsDialog
+                        space={space.id}
                         name={space.name}
                         blacklistedUsers={blackListArray}
                       />

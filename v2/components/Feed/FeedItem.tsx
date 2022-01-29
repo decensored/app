@@ -22,7 +22,7 @@ interface FeedItemProps {
   space: number
   spaceName: string
   type: string
-  moderator: boolean
+  moderator?: boolean
   blacklist?: any
   setBlacklist?: any
 }
@@ -45,7 +45,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     shallow
   )
 
-  // BLACKLIST STUFF
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
     const result = await addUserToBlacklist(contract, space, author)
