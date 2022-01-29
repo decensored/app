@@ -17,6 +17,7 @@ export type PostType = {
 export type SpaceType = {
   id: number
   name: string
+  description: string
   owner: number
   followers: number
   posts: number
