@@ -62,6 +62,16 @@ const AsideNavigation: FunctionComponent = () => {
             </Link>
             {isSignedUp && (
               <>
+                <Link href={`/user/${userName}`} passHref>
+                  <span>
+                    <AsideNavigationItem
+                      isActive={tabIndex === 5}
+                      icon='faUserAstronaut'
+                      name='My Posts'
+                    />
+                  </span>
+                </Link>
+
                 <Tooltip
                   classNames='disabled-link'
                   text='Good things take time'
@@ -91,16 +101,6 @@ const AsideNavigation: FunctionComponent = () => {
                     </span>
                   </Link>
                 </Tooltip>
-
-                <Link href={`/user/${userName}`} passHref>
-                  <span>
-                    <AsideNavigationItem
-                      isActive={tabIndex === 5}
-                      icon='faUserAstronaut'
-                      name='My Posts'
-                    />
-                  </span>
-                </Link>
 
                 <div className={classNamesLib.navigationAsideButtonSpacer} />
                 <button
