@@ -1,14 +1,14 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import { nodeIsUpAndRunning } from 'lib/storeUtils'
+import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
 const INTERVAL = 10 * 1000
 
-export const poll = async (): Promise<void> => {
+/* export */ const poll = async (): Promise<void> => {
+  // console.log('polling_posts')
   const state = useStore.getState()
-  // console.log(state)
 
   const contract: any = state?.contract
   if (!nodeIsUpAndRunning(contract)) {
@@ -23,7 +23,11 @@ export const poll = async (): Promise<void> => {
     // console.log('reset posts')
     state.setLatestPostIndexFeched(0)
     state.setPosts([])
+    state.setPostsQueued([])
   } else if (latestPostIndex > state.latestPostIndexFetched) {
+    // Set new index & prepend new posts
+    state.setLatestPostIndexFeched(latestPostIndex)
+
     // console.log(
     //   'new posts exist',
     //   latestPostIndex - state.latestPostIndexFetched
@@ -36,16 +40,20 @@ export const poll = async (): Promise<void> => {
     }
     const newPosts = await Promise.all(postsPromises)
 
-    // Set new index & push new posts into possibly existing array
-    state.setLatestPostIndexFeched(latestPostIndex)
-
-    // note: it would be quicker and easier to use ES6 spread operator here
+    // store newPosts
     if (state.isPolledDataQueued && state.posts.length) {
-      state.postsQueued.map((post) => newPosts.push(post))
-      state.setPostsQueued(newPosts)
+      const allPostsQueued = newPosts.concat(state.postsQueued)
+      state.setPostsQueued(allPostsQueued)
+
+      // auto-deque when I'm the author of at least one queued post
+      if (
+        allPostsQueued.findIndex((post) => post.author === state.userId) >= 0
+      ) {
+        dequeuePostsAndSpaces()
+      }
     } else {
-      state.posts.map((post) => newPosts.push(post))
-      state.setPosts(newPosts)
+      const allPosts = newPosts.concat(state.posts)
+      state.setPosts(allPosts)
     }
   }
 

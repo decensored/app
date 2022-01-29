@@ -1,6 +1,6 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import { nodeIsUpAndRunning } from 'lib/storeUtils'
+import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
 
@@ -30,7 +30,11 @@ const poll = async (): Promise<void> => {
     // console.log('reset spaces')
     state.setLatestSpaceIndexFetched(0)
     state.setSpaces([])
+    state.setSpacesQueued([])
   } else if (latestSpaceIndex > state.latestSpaceIndexFetched) {
+    // Set new index & prepend new posts
+    state.setLatestSpaceIndexFetched(latestSpaceIndex)
+
     // console.log('new spaces exist', latestSpaceIndex - state.latestSpaceIndexFetched)
 
     const spacesPromises: Promise<SpaceType>[] = []
@@ -40,16 +44,20 @@ const poll = async (): Promise<void> => {
     }
     const newSpaces = await Promise.all(spacesPromises)
 
-    // Set new index & push new spaces into possibly existing array
-    state.setLatestSpaceIndexFetched(latestSpaceIndex)
-
-    // note: it would be quicker and easier to use ES6 spread operator here
+    // store newSpaces
     if (state.isPolledDataQueued && state.spaces.length) {
-      state.spacesQueued.map((space) => newSpaces.push(space))
-      state.setSpacesQueued(newSpaces)
+      const allSpacesQueued = newSpaces.concat(state.spacesQueued)
+      state.setSpacesQueued(allSpacesQueued)
+
+      // auto-deque when I'm the author of at least one queued post
+      if (
+        allSpacesQueued.findIndex((space) => space.owner === state.userId) >= 0
+      ) {
+        dequeuePostsAndSpaces()
+      }
     } else {
-      state.spaces.map((space) => newSpaces.push(space))
-      state.setSpaces(newSpaces)
+      const allSpaces = newSpaces.concat(state.spaces)
+      state.setSpaces(allSpaces)
     }
   }
 

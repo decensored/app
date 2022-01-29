@@ -1,6 +1,6 @@
 import type { SpaceType } from 'lib/types'
 import { readableError } from 'lib/helper'
-import { executeContractFunction, getIdByUserName } from 'api/user'
+import { executeContractFunction /* , getIdByUserName */ } from 'api/user'
 
 const log = (msg: string): void => {
   console.log('api/spaces:', msg) // or outcomment
@@ -24,7 +24,6 @@ export const getSpaceById = async (contract: any, space_id: number) => {
 
 export const getSpaceNameById = async (contract: any, spaceId: number) =>
   (await contract.spaces.methods.spaces(spaceId).call()).name
-// await contract.spaces.methods.name_by_id(spaceId).call()
 
 export const getSpaceByName = async (contract: any, name: string) => {
   log(
@@ -48,7 +47,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 }
 
 export const getLatestSpaceIndex = async (contract: any) => {
-  // log('getLatestSpaceIndex (deprecated)')
+  log('getLatestSpaceIndex (deprecated)')
 
   const index = await contract.spaces.methods
     .get_latest_space_index()
@@ -58,7 +57,7 @@ export const getLatestSpaceIndex = async (contract: any) => {
 }
 
 export const getAllSpaces = async (contract: any) => {
-  // log('getAllSpaces (deprecated)')
+  log('getAllSpaces (deprecated)')
 
   const index = await getLatestSpaceIndex(contract)
 
@@ -138,7 +137,6 @@ export const userBlackListedForSpace = async (
   contract: any,
   spaceId: number,
   userId: number
-) => {
-  //console.log(`Check if user ${userId} is blacklisted for Space ${spaceId}`)
-  return await contract.spaces.methods.is_blacklisted(spaceId, userId).call()
-}
+) =>
+  // console.log(`Check if user ${userId} is blacklisted for Space ${spaceId}`)
+  await contract.spaces.methods.is_blacklisted(spaceId, userId).call()

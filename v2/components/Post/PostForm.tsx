@@ -6,8 +6,8 @@ import { createPost } from 'api/feed'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
-import { dequeuePostsAndSpaces } from 'lib/storeUtils'
-import { poll } from 'lib/polling/polling_posts'
+// import { dequeuePostsAndSpaces } from 'lib/storeUtils'
+// import { poll } from 'lib/polling/polling_posts'
 
 interface FormProps {
   spaceId: number
@@ -34,11 +34,11 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
     setIsLoading(true)
 
     createPost(contract, spaceId, message).then(() => {
-      // TODO: Push Post into posts array
-      poll()
+      // TODO: Push Post into posts array which will be earmarked and deleted once a message by me gets polled
+      // poll() // XXX don't do this because we don't know when the message is available afteer createPost
       setTimeout(() => {
-        dequeuePostsAndSpaces()
-        setIsLoading(false)
+        // dequeuePostsAndSpaces() // XXX this will become automatic during polling when a meesage by me arrives
+        setIsLoading(false) // XXX we could detect 'loading' as long as an earmarked message exists
       }, 2 * 1000)
     })
   }

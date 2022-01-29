@@ -40,6 +40,8 @@ export const getSpaceByName = (
 
 // QUEUE
 export const dequeuePostsAndSpaces = (): void => {
+  // console.log('dequeuePostsAndSpaces')
+
   const state = useStore.getState()
 
   state.setPosts(state.postsQueued.concat(state.posts))

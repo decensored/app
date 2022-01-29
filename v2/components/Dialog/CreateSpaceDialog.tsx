@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
-import { createSpace, getSpaceByName } from 'api/spaces'
+import { createSpace /* , getSpaceByName */ } from 'api/spaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import router from 'next/router'
@@ -14,14 +14,14 @@ const CreateSpaceDialog: FunctionComponent = () => {
     contract,
     isOpenCreateSpaceDialog,
     setIsOpenCreateSpaceDialog,
-    spaces,
-    setSpaces,
+    // spaces,
+    // setSpaces,
   } = useStore((state) => ({
     contract: state.contract,
     isOpenCreateSpaceDialog: state.isOpenCreateSpaceDialog,
     setIsOpenCreateSpaceDialog: state.setIsOpenCreateSpaceDialog,
-    spaces: state.spaces,
-    setSpaces: state.setSpaces,
+    // spaces: state.spaces,
+    // setSpaces: state.setSpaces,
   }))
 
   // HANDLE FORM SUBMIT
@@ -38,9 +38,9 @@ const CreateSpaceDialog: FunctionComponent = () => {
     setIsLoading(true)
     const result = await createSpace(contract, data.name)
     if (result.success) {
-      const newSpace = await getSpaceByName(contract, data.name)
-      spaces.push(newSpace)
-      setSpaces(spaces)
+      // const newSpace = await getSpaceByName(contract, data.name)
+      // spaces.push(newSpace)
+      // setSpaces(spaces) // let the appending of the new space new done by polling_spaces.ts for now
       setIsLoading(false)
       setIsOpenCreateSpaceDialog(false)
       router.push(`/space/${data.name}`)
