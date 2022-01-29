@@ -2,11 +2,13 @@ import React, { FunctionComponent } from 'react'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { dequeuePostsAndSpaces } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
-  const { posts } = useStore((state) => ({
+  const { posts, postsQueued } = useStore((state) => ({
     posts: state.posts,
+    postsQueued: state.postsQueued,
   }))
 
   // GET DATA FOR FEED
@@ -27,9 +29,20 @@ const Feed: FunctionComponent = () => {
     ))
   }
   return (
-    <div id='posts' className={classNamesLib.feedWrapper}>
-      {showFeedItems}
-    </div>
+    <>
+      {postsQueued.length > 0 && (
+        <button
+          type='button'
+          onClick={dequeuePostsAndSpaces}
+          className='w-full bg-highlight-900 hover:bg-highlight-700 mb-5 p-3 text-white'
+        >
+          Show new posts
+        </button>
+      )}
+      <div id='posts' className={classNamesLib.feedWrapper}>
+        {showFeedItems}
+      </div>
+    </>
   )
 }
 
