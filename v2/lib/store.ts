@@ -8,25 +8,37 @@ const useStore = create(
       isSignedUp: false,
       setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
+      isPolledDataQueued: true,
+      setIsPolledDataQueued: (isPolledDataQueued: boolean) =>
+        set({ isPolledDataQueued }),
+
       // smart contracts
-      // https://github.com/ChainSafe/web3.js/issues/4265#issuecomment-924554759
       contract: {}, // { accounts, posts, spaces, web3 },
       setContract: (contract: any) => set({ contract }),
 
+      //
       spaces: [] as SpaceType[],
       setSpaces: (spaces: SpaceType[]) => set({ spaces }),
+
+      spacesQueued: [] as SpaceType[],
+      setSpacesQueued: (spacesQueued: SpaceType[]) => set({ spacesQueued }),
 
       latestSpaceIndexFetched: 0,
       setLatestSpaceIndexFetched: (latestSpaceIndexFetched: number) =>
         set({ latestSpaceIndexFetched }),
 
+      //
       posts: [] as PostType[],
       setPosts: (posts: PostType[]) => set({ posts }),
+
+      postsQueued: [] as PostType[],
+      setPostsQueued: (postsQueued: PostType[]) => set({ postsQueued }),
 
       latestPostIndexFetched: 0,
       setLatestPostIndexFeched: (latestPostIndexFetched: number) =>
         set({ latestPostIndexFetched }),
 
+      //
       isDarkmode: false,
       setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
 
@@ -48,7 +60,9 @@ const useStore = create(
           nodeInfo,
           // delete whatever we had cached...
           posts: [],
+          postsQueued: [],
           spaces: [],
+          spacesQueued: [],
           latestPostIndexFetched: 0,
           latestSpaceIndexFetched: 0,
         })
@@ -85,8 +99,10 @@ const useStore = create(
       partialize: (state) => ({
         isDarkmode: state.isDarkmode,
         posts: state.posts,
+        postsQueued: state.postsQueued,
         latestPostIndexFetched: state.latestPostIndexFetched,
         spaces: state.spaces,
+        spacesQueued: state.spacesQueued,
         latestSpaceIndexFetched: state.latestSpaceIndexFetched,
         userName: state.userName,
         userId: state.userId,

@@ -38,12 +38,19 @@ const poll = async (): Promise<void> => {
       const p = getSpaceById(contract, i)
       spacesPromises.push(p)
     }
-    const spaces = await Promise.all(spacesPromises)
+    const newSpaces = await Promise.all(spacesPromises)
 
     // Set new index & push new spaces into possibly existing array
     state.setLatestSpaceIndexFetched(latestSpaceIndex)
-    state.spaces.map((space) => spaces.push(space))
-    state.setSpaces(spaces)
+
+    // note: it would be quicker and easier to use ES6 spread operator here
+    if (state.isPolledDataQueued && state.spaces.length) {
+      state.spacesQueued.map((space) => newSpaces.push(space))
+      state.setSpacesQueued(newSpaces)
+    } else {
+      state.spaces.map((space) => newSpaces.push(space))
+      state.setSpaces(newSpaces)
+    }
   }
 
   setTimeout(poll, INTERVAL)

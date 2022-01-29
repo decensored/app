@@ -8,6 +8,7 @@ const INTERVAL = 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
+  // console.log(state)
 
   const contract: any = state?.contract
   if (!nodeIsUpAndRunning(contract)) {
@@ -33,12 +34,19 @@ const poll = async (): Promise<void> => {
       const p = getPostById(contract, i)
       postsPromises.push(p)
     }
-    const posts = await Promise.all(postsPromises)
+    const newPosts = await Promise.all(postsPromises)
 
     // Set new index & push new posts into possibly existing array
     state.setLatestPostIndexFeched(latestPostIndex)
-    state.posts.map((post) => posts.push(post))
-    state.setPosts(posts)
+
+    // note: it would be quicker and easier to use ES6 spread operator here
+    if (state.isPolledDataQueued && state.posts.length) {
+      state.postsQueued.map((post) => newPosts.push(post))
+      state.setPostsQueued(newPosts)
+    } else {
+      state.posts.map((post) => newPosts.push(post))
+      state.setPosts(newPosts)
+    }
   }
 
   setTimeout(poll, INTERVAL)

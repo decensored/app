@@ -6,6 +6,7 @@ import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import UserPopover from 'components/Popover/UserPopover'
+import QueueControl from 'components/QueueControl/QueueControl'
 import SettingsPopover from 'components/Popover/SettingsPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import useTimeout from 'hooks/useTimeout.js'
@@ -27,6 +28,8 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
+      <QueueControl />
+
       {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
         <button
           type='button'

@@ -1,4 +1,5 @@
 import type { PostType, SpaceType } from 'lib/types'
+import useStore from 'lib/store'
 
 // CONTRACTS
 export const nodeIsUpAndRunning = (
@@ -31,5 +32,16 @@ export const getSpaceByName = (
   spaceName: string
 ): SpaceType =>
   spaces.find((space) => space.name === spaceName) || ({} as SpaceType)
+
+// QUEUE
+export const dequeuePostsAndSpaces = (): void => {
+  const state = useStore.getState()
+
+  state.setPosts(state.postsQueued.concat(state.posts))
+  state.setPostsQueued([])
+
+  state.setSpaces(state.spacesQueued.concat(state.spaces))
+  state.setSpacesQueued([])
+}
 
 //
