@@ -85,8 +85,8 @@ export const classNamesLib = {
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
   // feedPostsWrapper: 'flex flex-col gap-y-5',
 
-  feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm cursor-pointer',
-  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 cursor-pointer',
+  feedItemWrapper: 'bg-white rounded divide-y divide-solid divide-gray-200 shadow-sm',
+  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',

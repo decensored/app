@@ -18,7 +18,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
   <Link href={`/space/${name}`} passHref>
     <div
       key={id.toString()}
-      className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+      className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark} cursor-pointer`}
     >
       <div className={classNamesLib.feedItemInnerTop}>
         <div className={classNamesLib.feedItemMetaWrapper}>
