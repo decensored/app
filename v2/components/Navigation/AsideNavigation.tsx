@@ -1,16 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import {
-  faBookmark,
-  faHeart,
-  faMoon,
-  faPlus,
-  faSatellite,
-  faSatelliteDish,
-  faSun,
-  faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faPlus, faSun } from '@fortawesome/free-solid-svg-icons'
 import {
   faDiscord,
   faGithub,
@@ -20,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Tooltip from 'components/Tooltip/Tooltip'
-import AsideNavigationItem from './AsideNavigationItem'
+import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 
 const AsideNavigation: FunctionComponent = () => {
   const router = useRouter()
@@ -61,7 +52,7 @@ const AsideNavigation: FunctionComponent = () => {
               <span>
                 <AsideNavigationItem
                   isActive={tabIndex === 0}
-                  faIcon={faSatelliteDish}
+                  icon='faSatelliteDish'
                   name='Feed'
                 />
               </span>
@@ -70,7 +61,7 @@ const AsideNavigation: FunctionComponent = () => {
               <span>
                 <AsideNavigationItem
                   isActive={tabIndex === 1}
-                  faIcon={faSatellite}
+                  icon='faSatellite'
                   name='Spaces'
                 />
               </span>
@@ -85,8 +76,9 @@ const AsideNavigation: FunctionComponent = () => {
                     <span>
                       <AsideNavigationItem
                         isActive={tabIndex === 3}
-                        faIcon={faBookmark}
-                        name='Bookmarks' />
+                        icon='faBookmark'
+                        name='Bookmarks'
+                      />
                     </span>
                   </Link>
                 </Tooltip>
@@ -97,10 +89,11 @@ const AsideNavigation: FunctionComponent = () => {
                 >
                   <Link href='/' passHref>
                     <span>
-                        <AsideNavigationItem
-                          isActive={tabIndex === 4}
-                          faIcon={faHeart}
-                          name='Likes' />
+                      <AsideNavigationItem
+                        isActive={tabIndex === 4}
+                        icon='faHeart'
+                        name='Likes'
+                      />
                     </span>
                   </Link>
                 </Tooltip>
@@ -109,8 +102,9 @@ const AsideNavigation: FunctionComponent = () => {
                   <span>
                     <AsideNavigationItem
                       isActive={tabIndex === 5}
-                      faIcon={faUserAstronaut}
-                      name='My Posts' />
+                      icon='faUserAstronaut'
+                      name='My Posts'
+                    />
                   </span>
                 </Link>
 

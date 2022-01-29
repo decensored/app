@@ -1,38 +1,31 @@
 import React, { FunctionComponent } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import SVGIcon from 'components/Icon/SVGIcon'
 
 interface AsideNavigationItemProps {
   isActive: boolean
-  faIcon: IconProp
+  icon: string
   name: string
 }
 
 const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
   isActive,
   name,
-  faIcon
+  icon,
 }) => (
   <span
     className={`
       ${classNamesLib.navigationAsideButton}
       ${classNamesLib.navigationAsideButtonDark}
-      ${
-        isActive
-          ? classNamesLib.navigationAsideButtonActive
-          : ''
-      }
+      ${isActive ? classNamesLib.navigationAsideButtonActive : ''}
     `}
   >
-    <FontAwesomeIcon
-      fixedWidth
-      icon={faIcon}
-      className={classNamesLib.navigationAsideButtonIcon}
+    <SVGIcon
+      icon={icon}
+      classNames={classNamesLib.navigationAsideButtonIcon}
+      isFixed
     />
-    <span className={classNamesLib.navigationAsideButtonText}>
-      {name}
-    </span>
+    <span className={classNamesLib.navigationAsideButtonText}>{name}</span>
   </span>
 )
 
