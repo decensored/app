@@ -14,8 +14,6 @@ const Space: NextPage = () => {
   const router = useRouter()
   const { username } = router.query
 
-  console.log('RERENDER')
-
   // State Management
   const { posts, currentUserId, contract } = useStore((state) => ({
     posts: state.posts,
@@ -26,7 +24,6 @@ const Space: NextPage = () => {
 
   /*   const [setProfileOwner] = React.useState(false) */
   const [userPosts, setUserPosts] = React.useState<PostType[]>([])
-
   /*   setBlackListArray([]) */
 
   React.useEffect(() => {
@@ -40,7 +37,7 @@ const Space: NextPage = () => {
     /*     if (currentUserId === 13) {
       setProfileOwner(true)
     } */
-  }, [contract, username, posts, currentUserId, userPosts])
+  }, [contract, username, posts, currentUserId])
 
   const showFeedItems = userPosts.map((post) => (
     <FeedItem key={cuid()} type='feed' {...post} />
