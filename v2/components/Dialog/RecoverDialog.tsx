@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import SVGIcon from 'components/Icon/SVGIcon'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { recoverUser } from 'api/user'
@@ -119,8 +118,8 @@ const RecoverDialog: FunctionComponent = () => {
             <span className='whitespace-nowrap'>
               Recover{' '}
               {isLoading && (
-                <FontAwesomeIcon
-                  icon={faSpinner}
+                <SVGIcon
+                  icon='faSpinner'
                   className='ml-2 animate-spin'
                 />
               )}

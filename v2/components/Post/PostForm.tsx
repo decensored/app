@@ -3,8 +3,7 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { createPost } from 'api/feed'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import TextareaAutosize from 'react-textarea-autosize'
 import { dequeuePostsAndSpaces } from 'lib/storeUtils'
 import { poll } from 'lib/polling/polling_posts'
@@ -96,8 +95,8 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
             <span className='whitespace-nowrap'>
               Spread it{' '}
               {isLoading && (
-                <FontAwesomeIcon
-                  icon={faSpinner}
+                <SVGIcon
+                  icon='faSpinner'
                   className='ml-2 animate-spin'
                 />
               )}

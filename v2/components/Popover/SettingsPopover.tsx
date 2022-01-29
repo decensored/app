@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
-import { faCog, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -17,7 +16,7 @@ const SettingsPopover: FunctionComponent = () => {
     <BasePopover
       popoverButton={
         <span className='cursor-pointer ml-5 text-white text-lg'>
-          <FontAwesomeIcon icon={faCog} />
+          <SVGIcon icon='faCog' />
         </span>
       }
       popoverPanel={
@@ -32,11 +31,11 @@ const SettingsPopover: FunctionComponent = () => {
               }}
               className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
             >
-              <FontAwesomeIcon icon={faCog} />
+              <SVGIcon icon='faCog' />
               <span>Node Settings</span>
               {!nodeIsUpAndRunning(contract) && (
-                <FontAwesomeIcon
-                  icon={faExclamationTriangle}
+                <SVGIcon
+                  icon='faExclamationTriangle'
                   className='fixed right-4 animate-pulse text-red-500'
                 />
               )}

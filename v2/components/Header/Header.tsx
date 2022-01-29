@@ -3,8 +3,7 @@ import Link from 'next/link'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import SVGIcon from 'components/Icon/SVGIcon'
 import UserPopover from 'components/Popover/UserPopover'
 import QueueControl from 'components/QueueControl/QueueControl'
 import SettingsPopover from 'components/Popover/SettingsPopover'
@@ -38,8 +37,8 @@ const Header: FunctionComponent = () => {
           }}
           className='absolute right-4 -bottom-5 translate-y-full'
         >
-          <FontAwesomeIcon
-            icon={faExclamationTriangle}
+          <SVGIcon
+            icon='faExclamationTriangle'
             className='animate-pulse text-red-500'
           />
         </button>

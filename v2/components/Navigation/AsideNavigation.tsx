@@ -1,13 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { faMoon, faPlus, faSun } from '@fortawesome/free-solid-svg-icons'
-import {
-  faDiscord,
-  faGithub,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Tooltip from 'components/Tooltip/Tooltip'
@@ -117,7 +111,7 @@ const AsideNavigation: FunctionComponent = () => {
                    ${classNamesLib.buttonNoXsPadding}
                   `}
                 >
-                  <FontAwesomeIcon fixedWidth icon={faPlus} />
+                  <SVGIcon icon='faPlus' isFixed/>
                   <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
                     New Post
                   </span>
@@ -145,14 +139,14 @@ const AsideNavigation: FunctionComponent = () => {
                   <div
                     className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
                   >
-                    <FontAwesomeIcon fixedWidth icon={faMoon} />
+                    <SVGIcon icon='faMoon' isFixed/>
                   </div>
                 )}
                 {!isDarkmode && (
                   <div
                     className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
                   >
-                    <FontAwesomeIcon fixedWidth icon={faSun} />
+                    <SVGIcon icon='faSun' isFixed/>
                   </div>
                 )}
               </button>
@@ -169,7 +163,7 @@ const AsideNavigation: FunctionComponent = () => {
                     ${classNamesLib.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <FontAwesomeIcon fixedWidth icon={faTwitter} />
+                  <SVGIcon icon='faTwitter' isFixed/>
                 </a>
               </Link>
               <Link href='https://discord.gg/gKvXUu4X' passHref>
@@ -183,7 +177,7 @@ const AsideNavigation: FunctionComponent = () => {
                     ${classNamesLib.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <FontAwesomeIcon fixedWidth icon={faDiscord} />
+                  <SVGIcon icon='faDiscord' isFixed/>
                 </a>
               </Link>
               <Link href='https://github.com/decensored/app' passHref>
@@ -197,7 +191,7 @@ const AsideNavigation: FunctionComponent = () => {
                     ${classNamesLib.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <FontAwesomeIcon fixedWidth icon={faGithub} />
+                  <SVGIcon icon='faGithub' isFixed/>
                 </a>
               </Link>
             </div>

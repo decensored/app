@@ -22,7 +22,7 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
   >
     <SVGIcon
       icon={icon}
-      classNames={classNamesLib.navigationAsideButtonIcon}
+      className={classNamesLib.navigationAsideButtonIcon}
       isFixed
     />
     <span className={classNamesLib.navigationAsideButtonText}>{name}</span>

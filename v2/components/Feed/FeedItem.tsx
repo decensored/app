@@ -2,12 +2,7 @@ import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import useStore from 'lib/store'
-import {
-  faComment,
-  faShare,
-  faShieldAlt,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import TimeAgo from 'react-timeago'
 import { addUserToBlacklist } from 'api/spaces'
@@ -99,13 +94,14 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             <div className='group flex'>
               {!userBlacklisted && (
                 <>
-                  <FontAwesomeIcon
-                    icon={faShieldAlt}
-                    className={`${classNamesLib.feedItemInteractionIcon} ${
-                      classNamesLib.feedItemInteractionIconDark
-                    } hover:text-red-400  cursor-default ${
-                      isLoading && ' animate-pulse text-green-600'
-                    }`}
+                  <SVGIcon
+                    icon='faShieldAlt'
+                    className={`
+                      ${classNamesLib.feedItemInteractionIcon}
+                      ${classNamesLib.feedItemInteractionIconDark}
+                      hover:text-red-400 cursor-default
+                      ${ isLoading && ' animate-pulse text-green-600'}
+                    `}
                   />
                   <button
                     type='button'
@@ -132,15 +128,15 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
         </div>
         <div className={classNamesLib.feedItemInnerBottomCol}>
-          <FontAwesomeIcon
-            icon={faComment}
+          <SVGIcon
+            icon='faComment'
             className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
             onClick={() => {
               setIsOpenPostDialog(true)
             }}
           />
-          <FontAwesomeIcon
-            icon={faShare}
+          <SVGIcon
+            icon='faShare'
             className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
           />
         </div>
