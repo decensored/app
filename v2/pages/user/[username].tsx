@@ -8,6 +8,7 @@ import useStore from 'lib/store'
 import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import cuid from 'cuid'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -23,7 +24,6 @@ const Space: NextPage = () => {
 
   /*   const [setProfileOwner] = React.useState(false) */
   const [userPosts, setUserPosts] = React.useState<PostType[]>([])
-
   /*   setBlackListArray([]) */
 
   React.useEffect(() => {
@@ -37,10 +37,10 @@ const Space: NextPage = () => {
     /*     if (currentUserId === 13) {
       setProfileOwner(true)
     } */
-  }, [contract, username, posts, currentUserId, userPosts])
+  }, [contract, username, posts, currentUserId])
 
   const showFeedItems = userPosts.map((post) => (
-    <FeedItem key={post.id} type='feed' {...post} />
+    <FeedItem key={cuid()} type='feed' {...post} />
   ))
 
   return (

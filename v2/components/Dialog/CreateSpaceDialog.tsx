@@ -6,6 +6,7 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 import { createSpace /* , getSpaceByName */ } from 'api/spaces'
 import SVGIcon from 'components/Icon/SVGIcon'
 import router from 'next/router'
+import TextareaAutosize from 'react-textarea-autosize'
 
 const CreateSpaceDialog: FunctionComponent = () => {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -26,6 +27,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
   // HANDLE FORM SUBMIT
   type FormValues = {
     name: string
+    description: string
   }
   const {
     register,
@@ -35,7 +37,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true)
-    const result = await createSpace(contract, data.name)
+    const result = await createSpace(contract, data.name, data.description)
     if (result.success) {
       // const newSpace = await getSpaceByName(contract, data.name)
       // spaces.push(newSpace)
@@ -82,6 +84,39 @@ const CreateSpaceDialog: FunctionComponent = () => {
                   `}
                   type='text'
                   {...register('name', { required: true })}
+                />
+                {errors.name && (
+                  <div
+                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                  >
+                    <span
+                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                    >
+                      {errors.name?.type === 'required' &&
+                        'Cant be empty! chars: azAZ'}
+                      {errors.name.message}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <span
+                className={`pt-5
+                  ${classNamesLib.dialogLabel}
+                  ${classNamesLib.dialogLabelDark}
+                `}
+              >
+                Description
+              </span>
+              <div className={classNamesLib.inputWrapper}>
+                <TextareaAutosize
+                  minRows={3}
+                  maxLength={280}
+                  placeholder='Your description..'
+                  className={`
+                  ${classNamesLib.input}
+                  ${classNamesLib.inputDark}
+              `}
+                  {...register('description', { required: true })}
                 />
                 {errors.name && (
                   <div

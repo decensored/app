@@ -63,7 +63,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
   return (
     <div
-      key={timestamp}
       className={`${classNamesLib.feedItemWrapper} ${
         classNamesLib.feedItemWrapperDark
       } ${userBlacklisted && `hidden`}`}
@@ -100,7 +99,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                       ${classNamesLib.feedItemInteractionIcon}
                       ${classNamesLib.feedItemInteractionIconDark}
                       hover:text-red-400 cursor-default
-                      ${ isLoading && ' animate-pulse text-green-600'}
+                      ${isLoading && ' animate-pulse text-green-600'}
                     `}
                   />
                   <button
