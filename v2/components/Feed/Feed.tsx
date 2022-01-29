@@ -3,6 +3,7 @@ import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { dequeuePostsAndSpaces } from 'lib/storeUtils'
+import cuid from 'cuid'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
@@ -25,7 +26,7 @@ const Feed: FunctionComponent = () => {
   let showFeedItems
   if (feedPosts.length > 0) {
     showFeedItems = feedPosts.map((post) => (
-      <FeedItem key={post.id} type='feed' moderator={false} {...post} />
+      <FeedItem key={cuid()} type='feed' moderator={false} {...post} />
     ))
   }
   return (

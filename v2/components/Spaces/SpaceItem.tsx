@@ -4,19 +4,16 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 interface SpaceItemProps {
-  id: number
   name: string
   numberOfPostsInSpace: number
 }
 
 const SpaceItem: FunctionComponent<SpaceItemProps> = ({
-  id,
   name,
   numberOfPostsInSpace,
 }) => (
   <Link href={`/space/${name}`} passHref>
     <div
-      key={id.toString()}
       className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark} cursor-pointer`}
     >
       <div className={classNamesLib.feedItemInnerTop}>
@@ -24,10 +21,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
           <span
             className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
           >
-            <SVGIcon
-              icon='faSatellite'
-              className='mr-2'
-            /> {name}
+            <SVGIcon icon='faSatellite' className='mr-2' /> {name}
           </span>
           <div
             className='members flex justify-end items-center
@@ -37,7 +31,8 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
               icon='faUserAstronaut'
               className='text-md text-gray-900 dark:text-gray-300'
             />
-            <span className={`
+            <span
+              className={`
               ${classNamesLib.tag}
               ${classNamesLib.tagNotClickable}
               ${classNamesLib.tagNotClickableDark}

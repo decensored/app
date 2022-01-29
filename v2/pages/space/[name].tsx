@@ -17,6 +17,7 @@ import PostForm from 'components/Post/PostForm'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
+import cuid from 'cuid'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -111,7 +112,7 @@ const Space: NextPage = () => {
       blackListArray.filter((user) => user.userId === post.author).length > 0
     return (
       <FeedItem
-        key={post.id}
+        key={cuid()}
         type='space'
         moderator={spaceOwner}
         blacklist={blackListArray}

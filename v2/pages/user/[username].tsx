@@ -8,10 +8,13 @@ import useStore from 'lib/store'
 import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import cuid from 'cuid'
 
 const Space: NextPage = () => {
   const router = useRouter()
   const { username } = router.query
+
+  console.log('RERENDER')
 
   // State Management
   const { posts, currentUserId, contract } = useStore((state) => ({
@@ -40,7 +43,7 @@ const Space: NextPage = () => {
   }, [contract, username, posts, currentUserId, userPosts])
 
   const showFeedItems = userPosts.map((post) => (
-    <FeedItem key={post.id} type='feed' {...post} />
+    <FeedItem key={cuid()} type='feed' {...post} />
   ))
 
   return (
