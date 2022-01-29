@@ -36,6 +36,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": ["off"],
+    "jsx-a11y/tabindex-no-positive": "off",
     "import/no-unresolved": ["off"],
     "import/extensions": [
       "error",

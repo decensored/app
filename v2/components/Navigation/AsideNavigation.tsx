@@ -19,6 +19,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import AsideNavigationItem from './AsideNavigationItem'
 
 const AsideNavigation: FunctionComponent = () => {
   const router = useRouter()
@@ -27,8 +28,10 @@ const AsideNavigation: FunctionComponent = () => {
   let tabIndex = -1
   if (pathname === '/') tabIndex = 0
   else if (pathname.startsWith('/spaces')) tabIndex = 1
-  else if (pathname.startsWith('/user/')) tabIndex = 2
-  // console.log(pathname, tabIndex)
+  else if (pathname.startsWith('/space/')) tabIndex = 2
+  else if (pathname.startsWith('/bookmarks/')) tabIndex = 3
+  else if (pathname.startsWith('/likes/')) tabIndex = 4
+  else if (pathname.startsWith('/user/')) tabIndex = 5
 
   const [isSignedUp, userName] = useStore((state) => [
     state.isSignedUp,
@@ -54,123 +57,52 @@ const AsideNavigation: FunctionComponent = () => {
         <div className={classNamesLib.navigationAsideInnerTop}>
           <div className={classNamesLib.navigationAsideButtonWrapper}>
             <Link href='/' passHref>
-              <span
-                className={`
-                  ${classNamesLib.navigationAsideButton}
-                  ${classNamesLib.navigationAsideButtonDark}
-                  ${
-                    tabIndex === 0
-                      ? classNamesLib.navigationAsideButtonActive
-                      : ''
-                  }
-                `}
-              >
-                <FontAwesomeIcon
-                  fixedWidth
-                  icon={faSatelliteDish}
-                  className={classNamesLib.navigationAsideButtonIcon}
+              <span>
+                <AsideNavigationItem
+                  isActive={tabIndex === 0}
+                  faIcon={faSatelliteDish}
+                  name='Feed'
                 />
-                <span className={classNamesLib.navigationAsideButtonText}>
-                  Feed
-                </span>
               </span>
             </Link>
             <Link href='/spaces' passHref>
-              <span
-                className={`
-                ${classNamesLib.navigationAsideButton}
-                ${classNamesLib.navigationAsideButtonDark}
-                ${
-                  tabIndex === 1
-                    ? classNamesLib.navigationAsideButtonActive
-                    : ''
-                }
-              `}
-              >
-                <FontAwesomeIcon
-                  fixedWidth
-                  icon={faSatellite}
-                  className={classNamesLib.navigationAsideButtonIcon}
+              <span>
+                <AsideNavigationItem
+                  isActive={tabIndex === 1}
+                  faIcon={faSatellite}
+                  name='Spaces'
                 />
-                <span className={classNamesLib.navigationAsideButtonText}>
-                  Spaces
-                </span>
               </span>
             </Link>
             {isSignedUp && (
-              <Link href='/' passHref>
-                <span
-                  className={`
-                  ${classNamesLib.navigationAsideButton}
-                  ${classNamesLib.navigationAsideButtonDark}
-                  ${
-                    tabIndex === 2
-                      ? classNamesLib.navigationAsideButtonActive
-                      : ''
-                  }
-                `}
-                >
-                  <FontAwesomeIcon
-                    fixedWidth
-                    icon={faBookmark}
-                    className={classNamesLib.navigationAsideButtonIcon}
-                  />
-                  <span className={classNamesLib.navigationAsideButtonText}>
-                    Bookmarks
-                  </span>
-                </span>
-              </Link>
-            )}
-            {isSignedUp && (
-              <Link href='/' passHref>
-                <span
-                  className={`
-                  ${classNamesLib.navigationAsideButton}
-                  ${classNamesLib.navigationAsideButtonDark}
-                  ${
-                    tabIndex === 2
-                      ? classNamesLib.navigationAsideButtonActive
-                      : ''
-                  }
-                `}
-                >
-                  <FontAwesomeIcon
-                    fixedWidth
-                    icon={faHeart}
-                    className={classNamesLib.navigationAsideButtonIcon}
-                  />
-                  <span className={classNamesLib.navigationAsideButtonText}>
-                    Likes
-                  </span>
-                </span>
-              </Link>
-            )}
-            {isSignedUp && (
-              <Link href={`/user/${userName}`} passHref>
-                <span
-                  className={`
-                  ${classNamesLib.navigationAsideButton}
-                  ${classNamesLib.navigationAsideButtonDark}
-                  ${
-                    tabIndex === 2
-                      ? classNamesLib.navigationAsideButtonActive
-                      : ''
-                  }
-                `}
-                >
-                  <FontAwesomeIcon
-                    fixedWidth
-                    icon={faUserAstronaut}
-                    className={classNamesLib.navigationAsideButtonIcon}
-                  />
-                  <span className={classNamesLib.navigationAsideButtonText}>
-                    My Posts
-                  </span>
-                </span>
-              </Link>
-            )}
-            {isSignedUp && (
               <>
+                <Link href='/' passHref>
+                  <span>
+                    <AsideNavigationItem
+                      isActive={tabIndex === 3}
+                      faIcon={faBookmark}
+                      name='Bookmarks' />
+                  </span>
+                </Link>
+
+                <Link href='/' passHref>
+                 <span>
+                    <AsideNavigationItem
+                      isActive={tabIndex === 4}
+                      faIcon={faHeart}
+                      name='Likes' />
+                 </span>
+                </Link>
+
+                <Link href={`/user/${userName}`} passHref>
+                  <span>
+                    <AsideNavigationItem
+                      isActive={tabIndex === 5}
+                      faIcon={faUserAstronaut}
+                      name='My Posts' />
+                  </span>
+                </Link>
+
                 <div className={classNamesLib.navigationAsideButtonSpacer} />
                 <button
                   type='submit'
