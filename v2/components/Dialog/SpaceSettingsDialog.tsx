@@ -4,8 +4,7 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { removeUserFromBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 
 interface SpaceSettingsProbs {
   space: number
@@ -53,8 +52,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
   const usersOnBlacklist = blacklistedUsers.map((user: any) => (
     <div className={`${classNamesLib.blackListTagWrapper} group`}>
       <span className={`${classNamesLib.blackListItem}`}>{user.username}</span>
-      <FontAwesomeIcon
-        icon={faTimes}
+      <SVGIcon
+        icon='faTimes'
         className='cursor-pointer text-l text-red-500 hidden group-hover:block'
         onClick={() => {
           setRemoveUserFromBlacklist(user.userId)

@@ -16,7 +16,7 @@ const QueueControl: FunctionComponent = () => {
   }))
 
   return (
-    <span>
+    <span className='absolute'>
       queued posts: {postsQueued.length},&nbsp; queued spaces:{' '}
       {spacesQueued.length}&nbsp;
       <button

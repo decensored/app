@@ -14,8 +14,7 @@ import {
 import type { BlackListType, PostType, SpaceType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import PostForm from 'components/Post/PostForm'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
+import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
 
@@ -142,12 +141,12 @@ const Space: NextPage = () => {
                         blacklistedUsers={blackListArray}
                         setBlacklist={setBlackListArray}
                       />
-                      <FontAwesomeIcon
-                        icon={faCog}
+                      <SVGIcon
+                        icon='faCog'
+                        className='top-0 left-0 text-white cursor-pointer'
                         onClick={() => {
                           setIsOpenSpaceSettingsDialog(true)
                         }}
-                        className='top-0 left-0 text-white cursor-pointer'
                       />
                     </>
                   )}

@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
-import { faSatellite, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
 interface SpaceItemProps {
@@ -25,23 +24,24 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
           <span
             className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
           >
-            <FontAwesomeIcon icon={faSatellite} className='mr-2' /> {name}
+            <SVGIcon
+              icon='faSatellite'
+              className='mr-2'
+            /> {name}
           </span>
           <div
             className='members flex justify-end items-center
          gap-x-2 pointer-events-none'
           >
-            <FontAwesomeIcon
-              icon={faUserAstronaut}
-              title='member'
+            <SVGIcon
+              icon='faUserAstronaut'
               className='text-md text-gray-900 dark:text-gray-300'
             />
-            <span
-              className={`
-            ${classNamesLib.tag}
-            ${classNamesLib.tagNotClickable}
-            ${classNamesLib.tagNotClickableDark}
-          `}
+            <span className={`
+              ${classNamesLib.tag}
+              ${classNamesLib.tagNotClickable}
+              ${classNamesLib.tagNotClickableDark}
+            `}
             >
               {numberOfPostsInSpace}
             </span>

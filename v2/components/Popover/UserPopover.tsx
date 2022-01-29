@@ -1,14 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
-import {
-  faPlus,
-  faRedoAlt,
-  faSignOutAlt,
-  faUser,
-  faUserPlus,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BasePopover from './BasePopover'
@@ -41,8 +34,8 @@ const UserPopover: FunctionComponent = () => {
     <BasePopover
       popoverButton={
         <span className='cursor-pointer ml-5 text-white text-lg'>
-          {isSignedUp && <FontAwesomeIcon icon={faUser} />}
-          {!isSignedUp && <FontAwesomeIcon icon={faUserPlus} />}
+          {isSignedUp && <SVGIcon icon='faUser' />}
+          {!isSignedUp && <SVGIcon icon='faUserPlus' />}
         </span>
       }
       popoverPanel={
@@ -63,7 +56,7 @@ const UserPopover: FunctionComponent = () => {
               type='button'
               className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
             >
-              <FontAwesomeIcon icon={faUser} />
+              <SVGIcon icon='faUser' />
               <span>Profile</span>
             </button>
           )}
@@ -76,7 +69,7 @@ const UserPopover: FunctionComponent = () => {
                 }}
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
-                <FontAwesomeIcon icon={faPlus} />
+                <SVGIcon icon='faPlus' />
                 <span>Sign up</span>
               </button>
               <button
@@ -86,7 +79,7 @@ const UserPopover: FunctionComponent = () => {
                 }}
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
-                <FontAwesomeIcon icon={faRedoAlt} />
+                <SVGIcon icon='faRedoAlt' />
                 <span>Recover account</span>
               </button>
             </>
@@ -97,7 +90,7 @@ const UserPopover: FunctionComponent = () => {
               type='button'
               className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
             >
-              <FontAwesomeIcon icon={faSignOutAlt} />
+              <SVGIcon icon='faSignOutAlt' />
               Logout
             </button>
           )}

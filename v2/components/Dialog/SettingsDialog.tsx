@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -88,9 +87,9 @@ const SettingsDialog: FunctionComponent = () => {
                   <div
                     className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
                   >
-                    <FontAwesomeIcon
-                      icon={faExclamationTriangle}
-                      className='animate-pulse text-red-500'
+                    <SVGIcon
+                      icon='faExclamationTriangle'
+                      className='faExclamationTriangle'
                     />
                     <span
                       className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}

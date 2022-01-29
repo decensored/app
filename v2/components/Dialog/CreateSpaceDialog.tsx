@@ -4,8 +4,7 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { createSpace /* , getSpaceByName */ } from 'api/spaces'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import SVGIcon from 'components/Icon/SVGIcon'
 import router from 'next/router'
 
 const CreateSpaceDialog: FunctionComponent = () => {
@@ -124,10 +123,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
             <span className='whitespace-nowrap'>
               Create{' '}
               {isLoading && (
-                <FontAwesomeIcon
-                  icon={faSpinner}
-                  className='ml-2 animate-spin'
-                />
+                <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />
               )}
             </span>
           </button>

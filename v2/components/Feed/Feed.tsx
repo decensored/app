@@ -34,9 +34,13 @@ const Feed: FunctionComponent = () => {
         <button
           type='button'
           onClick={dequeuePostsAndSpaces}
-          className='w-full bg-highlight-900 hover:bg-highlight-700 mb-5 p-3 text-white'
+          className={`
+            ${classNamesLib.buttonTransparent}
+            ${classNamesLib.buttonTransparentDark}
+            w-full text-center underline hover:no-underline pb-5
+          `}
         >
-          Show new posts
+          There are X new posts
         </button>
       )}
       <div id='posts' className={classNamesLib.feedWrapper}>

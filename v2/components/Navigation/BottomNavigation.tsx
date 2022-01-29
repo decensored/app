@@ -2,12 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import {
-  faSatellite,
-  faSatelliteDish,
-  faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
@@ -46,7 +41,7 @@ const Bottombar: FunctionComponent = () => {
                 }
               `}
             >
-              <FontAwesomeIcon icon={faSatelliteDish} />
+              <SVGIcon icon='faSatelliteDish' />
               <span className={classNamesLib.navigationBottomItemText}>
                 <span className='hidden sm:inline'>Feed</span>
                 {tabIndex === 0 && (
@@ -73,7 +68,7 @@ const Bottombar: FunctionComponent = () => {
                 }
               `}
             >
-              <FontAwesomeIcon icon={faSatellite} />
+              <SVGIcon icon='faSatellite' />
               <span className={classNamesLib.navigationBottomItemText}>
                 <span className='hidden sm:inline'>Spaces</span>
                 {tabIndex === 1 && (
@@ -101,7 +96,7 @@ const Bottombar: FunctionComponent = () => {
                   }
                 `}
               >
-                <FontAwesomeIcon icon={faUserAstronaut} />
+                <SVGIcon icon='faUserAstronaut' />
                 <span className={classNamesLib.navigationBottomItemText}>
                   <span className='hidden sm:inline'>My Posts</span>
                   {tabIndex === 2 && (

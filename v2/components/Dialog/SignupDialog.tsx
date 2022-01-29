@@ -4,8 +4,7 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SVGIcon from 'components/Icon/SVGIcon'
 import BaseDialog from './BaseDialog'
 
 const SignupDialog: FunctionComponent = () => {
@@ -121,8 +120,8 @@ const SignupDialog: FunctionComponent = () => {
             <span className='whitespace-nowrap'>
               Sign-up{' '}
               {isLoading && (
-                <FontAwesomeIcon
-                  icon={faSpinner}
+                <SVGIcon
+                  icon='faSpinner'
                   className='ml-2 animate-spin'
                 />
               )}
