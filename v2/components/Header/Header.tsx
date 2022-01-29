@@ -5,7 +5,7 @@ import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SVGIcon from 'components/Icon/SVGIcon'
 import UserPopover from 'components/Popover/UserPopover'
-import QueueControl from 'components/QueueControl/QueueControl'
+// import QueueControl from 'components/QueueControl/QueueControl'
 import SettingsPopover from 'components/Popover/SettingsPopover'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import useTimeout from 'hooks/useTimeout.js'
@@ -27,7 +27,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={classNamesLib.headerWrapper}>
-      <QueueControl />
+      {/* <QueueControl /> */}
 
       {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
         <button
