@@ -2,34 +2,65 @@ import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
+import { removeUserFromBlacklist } from 'api/spaces'
+import { toast } from 'react-toastify'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface SpaceSettingsProbs {
   space: number
   name: string
   blacklistedUsers: any
+  setBlacklist: any
 }
 
 const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
   space,
   name,
   blacklistedUsers,
+  setBlacklist,
 }) => {
-  const { isOpenSpaceSettingsDialog, setIsOpenSpaceSettingsDialog } = useStore(
-    (state) => ({
+  const { contract, isOpenSpaceSettingsDialog, setIsOpenSpaceSettingsDialog } =
+    useStore((state) => ({
+      contract: state.contract,
       isOpenSpaceSettingsDialog: state.isOpenSpaceSettingsDialog,
       setIsOpenSpaceSettingsDialog: state.setIsOpenSpaceSettingsDialog,
-    })
-  )
+    }))
 
   const handleClose = (): void => {
     setIsOpenSpaceSettingsDialog(false)
   }
 
-  const users = blacklistedUsers.map((user: any) => (
-    <span className='first:mx-0 py-2 px-3 mx-2 rounded-sm bg-gray-200'>
-      {user.username}
-      <span>x</span>
-    </span>
+  // Remove user from blacklist on SC and change array
+  const setRemoveUserFromBlacklist = async (userId: number): Promise<void> => {
+    const result = await removeUserFromBlacklist(contract, space, userId)
+    if (result.success) {
+      toast.success(`User has access again!`, {
+        autoClose: 3000,
+      })
+      const newBlackList = blacklistedUsers.filter(
+        (user: any) => user.userId !== userId
+      )
+      setBlacklist(newBlackList)
+    } else {
+      toast.error(`${result.error}`, {
+        autoClose: 3000,
+      })
+    }
+  }
+
+  // Create objects for blacklisted users
+  const usersOnBlacklist = blacklistedUsers.map((user: any) => (
+    <div className={`${classNamesLib.blackListTagWrapper} group`}>
+      <span className={`${classNamesLib.blackListItem}`}>{user.username}</span>
+      <FontAwesomeIcon
+        icon={faTimes}
+        className='cursor-pointer text-l text-red-500 hidden group-hover:block'
+        onClick={() => {
+          setRemoveUserFromBlacklist(user.userId)
+        }}
+      />
+    </div>
   ))
 
   return (
@@ -47,7 +78,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
                   ${classNamesLib.dialogLabelDark}
                 `}
               >
-                Name {space}
+                Name
               </span>
               <div className={classNamesLib.inputWrapper}>
                 <input
@@ -68,11 +99,18 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
                   ${classNamesLib.dialogLabelDark}
                 `}
               >
-                Blacklisted User {users.length > 0 && `(${users.length})`}
+                Blacklisted User{' '}
+                {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
               </span>
               <div className={classNamesLib.inputWrapper}>
-                {users.length > 0 && users}
-                {users.length === 0 && <p>No users on the blacklist</p>}
+                <div className='my-2'>
+                  <div className='flex flex-wrap gap-x-2 gap-y-2'>
+                    {usersOnBlacklist.length > 0 && usersOnBlacklist}
+                    {usersOnBlacklist.length === 0 && (
+                      <p>No users on the blacklist</p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -96,6 +134,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
             type='submit'
             form='spaceSettingsForm'
             className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            onClick={() => setIsOpenSpaceSettingsDialog(false)}
           >
             Save
           </button>

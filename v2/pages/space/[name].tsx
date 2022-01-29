@@ -67,61 +67,50 @@ const Space: NextPage = () => {
       setSpaceOwner(true)
     }
 
-    /*     // Get unique users from posts
-    const uniqueAuthorIds = postsForSpace.map((post) => ({
-      userId: post.author,
-      username: post.username,
-    })) */
-
-    // Get unique users from posts
-    /*     const unique = Array.from(
-      new Set(postsForSpace.map((post) => post.author))
-    ).map((author) => {
-      return {
-        userId: author,
-        username: postsForSpace.find((p) => p.author === author).username,
-      }
-    })  */
-    const uniqueAuthors = Array.from(
-      new Set(postsForSpace.map((post) => post.author))
-    )
+    // Get unqique users with post in space
+    const uniqueUsers = [
+      ...new Map(
+        postsForSpace.map((post) => [
+          post.username,
+          { userId: post.author, username: post.username },
+        ])
+      ).values(),
+    ]
 
     // Create an array of blacklisted users for the moderator
-    const newBlacklist = []
-    uniqueAuthors.forEach(async (author) => {
+    const newBlacklist: { userId: number; username: string }[] = []
+    uniqueUsers.forEach(async (user) => {
       const isUserBlacklisted = await userBlackListedForSpace(
         contract,
         spaceId,
-        author
+        user.userId
       )
       if (isUserBlacklisted) {
-        newBlacklist.push(author)
+        newBlacklist.push(user)
         // Check if current user is blacklisted to hide post-form
-        if (author === currentUserId) {
+        if (user.userId === currentUserId) {
           setUserIsBlacklisted(true)
         }
       }
     })
-  }, [
-    contract,
-    name,
-    posts,
-    spaces,
-    currentUserId,
-    blackListArray,
-    userIsBlacklisted,
-  ])
+    setBlackListArray(newBlacklist)
+  }, [contract, name, posts, spaces, currentUserId, userIsBlacklisted])
 
-  const showFeedItems = spacePosts.map((post) => (
-    <FeedItem
-      key={post.id}
-      type='space'
-      moderator={spaceOwner}
-      blacklist={blackListArray}
-      setBlacklist={setBlackListArray}
-      {...post}
-    />
-  ))
+  // Create Feediteams and check if user of post is blacklisted
+  const showFeedItems = spacePosts.map((post) => {
+    const userBlacklisted =
+      blackListArray.filter((user) => user.userId === post.author).length > 0
+    return (
+      <FeedItem
+        key={post.id}
+        type='space'
+        moderator={spaceOwner}
+        blacklist={blackListArray}
+        userBlacklisted={userBlacklisted}
+        {...post}
+      />
+    )
+  })
 
   return (
     <>
@@ -141,6 +130,7 @@ const Space: NextPage = () => {
                         space={space.id}
                         name={space.name}
                         blacklistedUsers={blackListArray}
+                        setBlacklist={setBlackListArray}
                       />
                       <FontAwesomeIcon
                         icon={faCog}

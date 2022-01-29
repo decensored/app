@@ -14,6 +14,7 @@ module.exports = {
       '2xl': '1536px',
     },
     extend: {
+      display: ["group-hover"],
       colors: {
         gradient: {
           0: '#4739b1',

@@ -100,6 +100,11 @@ export const classNamesLib = {
   feedItemInteractionIcon: 'cursor-pointer text-highlight-40 hover:text-highlight-500',
   feedItemInteractionIconDark: 'dark:text-darkmode-1700 dark:hover:text-highlight-400',
 
+  blackListTagWrapper: 'flex gap-x-1 items-center uppercase bg-highlight-100 text-gray-600 text-xs tracking-wide px-2 py-1 rounded-md',
+  blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',
+  blackListButton: 'hidden cursor-pointer group-hover:block text-xs bg-red-400 text-white px-2 ml-2 rounded-md',
+
+
   spaceHeaderWrapper: 'bg-gradient rounded px-5 py-7',
   spaceHeaderInner: 'flex flex-col justify-center',
   spaceHeaderTitle: 'text-center text-white text-2xl',

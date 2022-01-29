@@ -4,14 +4,13 @@ import Link from 'next/link'
 import useStore from 'lib/store'
 import {
   faComment,
-  faMinusSquare,
   faShare,
   faShieldAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import TimeAgo from 'react-timeago'
-import { addUserToBlacklist, removeUserFromBlacklist } from 'api/spaces'
+import { addUserToBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
 
 interface FeedItemProps {
@@ -24,7 +23,7 @@ interface FeedItemProps {
   type: string
   moderator?: boolean
   blacklist?: any
-  setBlacklist?: any
+  userBlacklisted?: boolean
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
@@ -37,7 +36,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   type,
   moderator,
   blacklist,
-  setBlacklist,
+  userBlacklisted,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [setIsOpenPostDialog, contract] = useStore(
@@ -67,30 +66,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     }
   }
 
-  const setRemoveUserFromBlacklist = async (): Promise<void> => {
-    setIsLoading(true)
-    const result = await removeUserFromBlacklist(contract, space, author)
-    if (result.success) {
-      toast.success(`User ${username} has access to this space again!`, {
-        autoClose: 3000,
-      })
-      // Remove user from blacklistArray
-      const newBlackList = blacklist.filter(
-        (user: any) => user.userId !== author
-      )
-      setBlacklist(newBlackList)
-      setIsLoading(false)
-    } else {
-      toast.error(`${result.error}`, {
-        autoClose: 3000,
-      })
-      setIsLoading(false)
-    }
-  }
-
   return (
     <div
-      className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+      key={timestamp}
+      className={`${classNamesLib.feedItemWrapper} ${
+        classNamesLib.feedItemWrapperDark
+      } ${userBlacklisted && `hidden`}`}
     >
       <div className={classNamesLib.feedItemInnerTop}>
         <div className={classNamesLib.feedItemMetaWrapper}>
@@ -115,26 +96,29 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       <div className={classNamesLib.feedItemInnerBottom}>
         <div className={classNamesLib.feedItemInnerBottomCol}>
           {moderator && (
-            <>
-              <FontAwesomeIcon
-                icon={faShieldAlt}
-                className={`${classNamesLib.feedItemInteractionIcon} ${
-                  classNamesLib.feedItemInteractionIconDark
-                } ${isLoading && ' animate-pulse text-green-600'}`}
-                onClick={() => {
-                  setAddUserToBlacklist()
-                }}
-              />
-              <FontAwesomeIcon
-                icon={faMinusSquare}
-                className={`${classNamesLib.feedItemInteractionIcon} ${
-                  classNamesLib.feedItemInteractionIconDark
-                } ${isLoading && ' animate-pulse text-green-600'}`}
-                onClick={() => {
-                  setRemoveUserFromBlacklist()
-                }}
-              />
-            </>
+            <div className='group flex'>
+              {!userBlacklisted && (
+                <>
+                  <FontAwesomeIcon
+                    icon={faShieldAlt}
+                    className={`${classNamesLib.feedItemInteractionIcon} ${
+                      classNamesLib.feedItemInteractionIconDark
+                    } hover:text-red-400  cursor-default ${
+                      isLoading && ' animate-pulse text-green-600'
+                    }`}
+                  />
+                  <button
+                    type='button'
+                    onClick={() => {
+                      setAddUserToBlacklist()
+                    }}
+                    className={`${classNamesLib.blackListButton}`}
+                  >
+                    Blacklist User
+                  </button>
+                </>
+              )}
+            </div>
           )}
           {type === 'feed' && (
             <Link href={`/space/${spaceName}`} passHref>
