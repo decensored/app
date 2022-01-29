@@ -20,7 +20,6 @@ export type SpaceType = {
   owner: number
   followers: number
   posts: number
-  whatever: number
   img: string
 }
 

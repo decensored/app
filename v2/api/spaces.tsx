@@ -15,9 +15,8 @@ export const getSpaceById = async (contract: any, space_id: number) => {
     id: space_id,
     name,
     owner,
-    followers: 5,
-    posts: 10,
-    whatever: 30,
+    followers: 0,
+    posts: 0,
     img: 'https://www.iota-services.com/wp-content/uploads/2019/05/iota-services.jpg',
   }
   return result
@@ -41,9 +40,8 @@ export const getSpaceByName = async (contract: any, name: string) => {
     id: space_id,
     name: space.name,
     owner: space.id,
-    followers: Math.floor(Math.random() * 200),
-    posts: Math.floor(Math.random() * 500),
-    whatever: Math.floor(Math.random() * 30),
+    followers: 0,
+    posts: 0,
     img: 'https://www.iota-services.com/wp-content/uploads/2019/05/iota-services.jpg',
   }
   return result

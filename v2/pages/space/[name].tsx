@@ -43,6 +43,8 @@ const Space: NextPage = () => {
   const [spaceOwner, setSpaceOwner] = React.useState(false)
   const [space, setSpace] = React.useState<SpaceType>()
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
+  const [nrOfPosts, setNrOfPosts] = React.useState(0)
+  const [nrOfUSers, setNrOfUsers] = React.useState(0)
   const [userIsBlacklisted, setUserIsBlacklisted] = React.useState(false)
   const [blackListArray, setBlackListArray] = React.useState<BlackListType[]>(
     []
@@ -61,11 +63,19 @@ const Space: NextPage = () => {
     // Get Posts for Space
     const postsForSpace = getPostsInSpace(posts, currentSpace)
     setSpacePosts(postsForSpace)
+    setNrOfPosts(postsForSpace.length)
 
     // Check if current user is the owner so he can perform actions
     if (currentUserId === currentSpace.owner) {
       setSpaceOwner(true)
     }
+
+    const uniqueUserIds = [
+      ...new Map(
+        postsForSpace.map((post) => [post.username, post.author])
+      ).values(),
+    ]
+    setNrOfUsers(uniqueUserIds.length)
 
     // Get unqique users with post in space
     const uniqueUsers = [
@@ -147,7 +157,7 @@ const Space: NextPage = () => {
                   <div className={classNamesLib.spaceHeaderColsWrapper}>
                     <div className={classNamesLib.spaceHeaderColWrapper}>
                       <span className={classNamesLib.spaceHeaderColTitle}>
-                        {space.posts}
+                        {nrOfPosts}
                       </span>
                       <span className={classNamesLib.spaceHeaderColText}>
                         Posts
@@ -155,18 +165,10 @@ const Space: NextPage = () => {
                     </div>
                     <div className={classNamesLib.spaceHeaderColWrapper}>
                       <span className={classNamesLib.spaceHeaderColTitle}>
-                        {space.followers}
+                        {nrOfUSers}
                       </span>
                       <span className={classNamesLib.spaceHeaderColText}>
                         Followers
-                      </span>
-                    </div>
-                    <div className={classNamesLib.spaceHeaderColWrapper}>
-                      <span className={classNamesLib.spaceHeaderColTitle}>
-                        {space.whatever}
-                      </span>
-                      <span className={classNamesLib.spaceHeaderColText}>
-                        Whatever
                       </span>
                     </div>
                   </div>
