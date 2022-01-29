@@ -34,8 +34,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   userBlacklisted,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false)
-  const [setIsOpenPostDialog, contract] = useStore(
-    (state) => [state.setIsOpenPostDialog, state.contract],
+  const [setIsOpenPostDialog, contract, userId] = useStore(
+    (state) => [state.setIsOpenPostDialog, state.contract, state.userId],
     shallow
   )
 
@@ -60,6 +60,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       setIsLoading(false)
     }
   }
+
+  const showBlackListLabel = !userBlacklisted && author !== userId
 
   return (
     <div
@@ -91,7 +93,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         <div className={classNamesLib.feedItemInnerBottomCol}>
           {moderator && (
             <div className='group flex'>
-              {!userBlacklisted && (
+              {showBlackListLabel && (
                 <>
                   <SVGIcon
                     icon='faShieldAlt'
