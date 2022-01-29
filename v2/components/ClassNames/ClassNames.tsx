@@ -114,6 +114,9 @@ export const classNamesLib = {
   tagClickable: 'bg-highlight-10 text-highlight-500 hover:text-highlight-900',
   tagClickableDark: 'dark:bg-darkmode-1000 dark:text-darkmode-1900 dark:hover:text-highlight-400',
 
+  tooltip: 'uppercase text-xs tracking-wide font-medium px-2 py-1 rounded bg-highlight-100 text-highlight-900',
+  tooltipDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
+
   switch: 'rounded-full bg-slate-300 p-[3px] w-[40px] h-[25px] flex',
   switchDark: 'rounded-full dark:bg-darkmode-600',
   switchInner: 'rounded-full text-gray-900 w-[19px] h-[19px] flex justify-center items-center',

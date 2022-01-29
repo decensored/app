@@ -9,15 +9,6 @@ html:not([style*='overflow: hidden']) {
   }
 }
 
-// body {
-//   background-repeat: repeat;
-//   background-attachment: fixed;
-//   background-image: url('/background/light.svg');
-//   .dark & {
-//     background-image: url('/background/dark.svg');
-//   }
-// }
-
 html {
   &.dark {
     .toggleDarkMode {
@@ -55,6 +46,11 @@ html {
   }
 }
 
+.disabled-link > * {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 
 // @media (min-width: 480px) {
 //   html .Toastify__toast-container--bottom-center {
@@ -66,9 +62,3 @@ html {
   position: relative;
   z-index: 1000;
 }
-
-// #posts > div {
-//   &:nth-child(n+2) {
-//     display: none;
-//   }
-// }

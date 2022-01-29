@@ -19,6 +19,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from './AsideNavigationItem'
 
 const AsideNavigation: FunctionComponent = () => {
@@ -76,23 +77,33 @@ const AsideNavigation: FunctionComponent = () => {
             </Link>
             {isSignedUp && (
               <>
-                <Link href='/' passHref>
-                  <span>
-                    <AsideNavigationItem
-                      isActive={tabIndex === 3}
-                      faIcon={faBookmark}
-                      name='Bookmarks' />
-                  </span>
-                </Link>
+                <Tooltip
+                  classNames='disabled-link'
+                  text='Good things take time'
+                >
+                  <Link href='/' passHref>
+                    <span>
+                      <AsideNavigationItem
+                        isActive={tabIndex === 3}
+                        faIcon={faBookmark}
+                        name='Bookmarks' />
+                    </span>
+                  </Link>
+                </Tooltip>
 
-                <Link href='/' passHref>
-                 <span>
-                    <AsideNavigationItem
-                      isActive={tabIndex === 4}
-                      faIcon={faHeart}
-                      name='Likes' />
-                 </span>
-                </Link>
+                <Tooltip
+                  classNames='disabled-link'
+                  text='Good things take time'
+                >
+                  <Link href='/' passHref>
+                    <span>
+                        <AsideNavigationItem
+                          isActive={tabIndex === 4}
+                          faIcon={faHeart}
+                          name='Likes' />
+                    </span>
+                  </Link>
+                </Tooltip>
 
                 <Link href={`/user/${userName}`} passHref>
                   <span>
