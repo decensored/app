@@ -6,7 +6,7 @@ import { getLatestPostIndex, getPostById } from 'api/feed'
 
 const INTERVAL = 10 * 1000
 
-const poll = async (): Promise<void> => {
+export const poll = async (): Promise<void> => {
   const state = useStore.getState()
   // console.log(state)
 

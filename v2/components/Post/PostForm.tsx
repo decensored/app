@@ -6,6 +6,8 @@ import { createPost } from 'api/feed'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
+import { dequeuePostsAndSpaces } from 'lib/storeUtils'
+import { poll } from 'lib/polling/polling_posts'
 
 interface FormProps {
   spaceId: number
@@ -33,7 +35,11 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
 
     createPost(contract, spaceId, message).then(() => {
       // TODO: Push Post into posts array
-      setIsLoading(false)
+      poll()
+      setTimeout(() => {
+        dequeuePostsAndSpaces()
+        setIsLoading(false)
+      }, 2 * 1000)
     })
   }
 
