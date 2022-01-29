@@ -42,7 +42,7 @@ const Feed: FunctionComponent = () => {
         >
           {postsQueued.length === 1 && 'Click to see a new post'}
           {postsQueued.length > 1 &&
-            'Click to see {postsQueued.length} new posts'}
+            `Click to see {postsQueued.length} new posts`}
         </button>
       )}
       <div id='posts' className={classNamesLib.feedWrapper}>
