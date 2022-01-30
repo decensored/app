@@ -97,8 +97,7 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
-  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
-  // feedPostsWrapper: 'flex flex-col gap-y-5',
+  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px] children:border-none',
 
   feedItemWrapper: 'bg-white border-l border-gray-100 pt-1',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',

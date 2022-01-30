@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const plugin = require('tailwindcss/plugin')
@@ -79,10 +80,11 @@ module.exports = {
     },
   },
   variants: {
-    empty: ['before', 'after'],
+    empty: ['before', 'after','children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-not-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
   },
   plugins: [
     require('tailwindcss-pseudo-elements'),
+    require('tailwindcss-children'),
     plugin(({addUtilities}) => {
       const newUtilities = {
         '.empty-content': {
