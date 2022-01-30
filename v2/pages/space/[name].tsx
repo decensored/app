@@ -20,7 +20,6 @@ import PostForm from 'components/Post/PostForm'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
-import cuid from 'cuid'
 import UserDialog from 'components/Dialog/UserDialog'
 
 const Space: NextPage = () => {
@@ -91,6 +90,7 @@ const Space: NextPage = () => {
       )
       if (isUserBlacklisted) {
         newBlacklist.push(user)
+        console.log(`${user.userId} vs. ${currentUserId}`)
         // Check if current user is blacklisted to hide post-form
         if (user.userId === currentUserId) {
           setUserIsBlacklisted(true)
@@ -109,13 +109,14 @@ const Space: NextPage = () => {
     if (post.mother_post === 0) {
       return (
         <FeedItem
-          key={cuid()}
-          type='feed'
+          key={post.timestamp}
           moderator={spaceOwner}
           blacklist={blackListArray}
           userBlacklisted={userBlacklisted}
           replies={repliesForPost}
           {...post}
+          type='space'
+          parent
         />
       )
     }

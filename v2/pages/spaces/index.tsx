@@ -10,7 +10,6 @@ import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { getNumberOfPostsInSpace } from 'lib/storeUtils'
-import cuid from 'cuid'
 
 const Spaces: NextPage = () => {
   const [isSignedUp, spaces, posts] = useStore(
@@ -20,7 +19,7 @@ const Spaces: NextPage = () => {
 
   const createSpaceItems = spaces.map((space) => (
     <SpaceItem
-      key={cuid()}
+      key={space.id}
       {...space}
       numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)}
     />

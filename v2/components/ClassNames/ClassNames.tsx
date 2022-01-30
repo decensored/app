@@ -100,8 +100,7 @@ export const classNamesLib = {
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
   // feedPostsWrapper: 'flex flex-col gap-y-5',
 
-  feedItemWrapper: 'bg-white',
-  feedItemReplyWrapper: 'bg-white border-l border-gray-100 pt-1',
+  feedItemWrapper: 'bg-white border-l border-gray-100 pt-1',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 border-black',

@@ -14,7 +14,6 @@ import {
 } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import cuid from 'cuid'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -38,18 +37,19 @@ const Space: NextPage = () => {
     // Get Posts for Space
     const postsForUser = getPostsForUser(posts, username as string)
     setUserPosts(postsForUser)
-
-    // Check if current user is the owner so he can perform actions
-    /*     if (currentUserId === 13) {
-      setProfileOwner(true)
-    } */
   }, [contract, username, posts, currentUserId])
 
   const showFeedItems = userPosts.map((post) => {
     const repliesForPost = getRepliesForPost(posts, post.id)
     if (post.mother_post === 0) {
       return (
-        <FeedItem key={cuid()} type='feed' replies={repliesForPost} {...post} />
+        <FeedItem
+          key={post.timestamp}
+          type='feed'
+          parent
+          replies={repliesForPost}
+          {...post}
+        />
       )
     }
     return null

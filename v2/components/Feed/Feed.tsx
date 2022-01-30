@@ -7,7 +7,6 @@ import {
   // getPostsWithoutMother,
   getRepliesForPost,
 } from 'lib/storeUtils'
-import cuid from 'cuid'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
@@ -24,10 +23,11 @@ const Feed: FunctionComponent = () => {
 
     return (
       <FeedItem
-        key={cuid()}
-        type='feed'
+        key={post.timestamp}
         moderator={false}
         replies={getRepliesForPost(posts, post.id)}
+        type='feed'
+        parent
         {...post}
       />
     )

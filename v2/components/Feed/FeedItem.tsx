@@ -8,7 +8,6 @@ import TimeAgo from 'react-timeago'
 import { addUserToBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
-import FeedItemReply from 'components/Feed/FeedItemReply'
 import { getRepliesForPost } from 'lib/storeUtils'
 
 interface FeedItemProps {
@@ -19,11 +18,12 @@ interface FeedItemProps {
   timestamp: number
   space: number
   spaceName: string
-  type: string
   moderator?: boolean
   blacklist?: any
   userBlacklisted?: boolean
   replies?: any
+  type: string
+  parent?: boolean
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
@@ -34,11 +34,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   timestamp,
   space,
   spaceName,
-  type,
   moderator,
   blacklist,
   userBlacklisted,
   replies,
+  type,
+  parent,
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
@@ -78,11 +79,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     replyItems = replies.map((post: any) => {
       const repliesForPost = getRepliesForPost(posts, post.id)
       return (
-        <FeedItemReply
+        <FeedItem
           key={post.timestamp}
           type='reply'
           replies={repliesForPost}
           moderator={false}
+          parent={false}
           {...post}
         />
       )
@@ -102,9 +104,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
   return (
     <div
-      className={`${classNamesLib.feedItemWrapper} ${
-        classNamesLib.feedItemWrapperDark
-      } ${userBlacklisted && `hidden`}`}
+      className={`
+      ${classNamesLib.feedItemWrapper} 
+      ${classNamesLib.feedItemWrapperDark} ${userBlacklisted && `hidden`} ${
+        parent && `rounded-md`
+      }`}
     >
       <div className={classNamesLib.feedItemInnerTop}>
         <div className={classNamesLib.feedItemMetaWrapper}>
@@ -173,13 +177,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               )}
             </>
           )}
-        </div>
-      </div>
-      {openReplies && <div className='pl-7'> {replyItems}</div>}
-      <div className={classNamesLib.feedItemInnerBottom}>
-        <div className={classNamesLib.feedItemInnerBottomCol}>
           {moderator && (
-            <div className='group flex'>
+            <div className='group flex ml-3'>
               {showBlackListLabel && (
                 <>
                   <SVGIcon
@@ -204,29 +203,25 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               )}
             </div>
           )}
-          {type === 'feed' && (
-            <Link href={`/space/${spaceName}`} passHref>
-              <a
-                href='dummy-href'
-                className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
-              >
-                #{spaceName}
-              </a>
-            </Link>
-          )}
         </div>
-        {/*           <div className={classNamesLib.feedItemInnerBottomCol}>
-            <SVGIcon
-              icon='faComment'
-              className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
-              onClick={() => setOpenPostDialog(true)}
-            />
-            <SVGIcon
-              icon='faShare'
-              className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
-            />
-          </div> */}
       </div>
+      {openReplies && <div className='pl-7'> {replyItems}</div>}
+      {parent && (
+        <div className={classNamesLib.feedItemInnerBottom}>
+          <div className={classNamesLib.feedItemInnerBottomCol}>
+            {type === 'feed' && (
+              <Link href={`/space/${spaceName}`} passHref>
+                <a
+                  href='dummy-href'
+                  className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
+                >
+                  #{spaceName}
+                </a>
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
