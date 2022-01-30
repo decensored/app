@@ -14,10 +14,8 @@ const Home: NextPage = () => (
       <div className={classNamesLib.bodyContainerCol2}>
         <Feed />
       </div>
-      <BrowserView>
-        <div className={classNamesLib.bodyContainerCol1}>
-          <AsideNavigation />
-        </div>
+      <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <AsideNavigation />
       </BrowserView>
     </div>
     <MobileView>

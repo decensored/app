@@ -55,8 +55,8 @@ const BottomNavigation: FunctionComponent = () => {
           </span>
         </Link>
 
-        {/* {isSignedUp && ( */}
-          {/* <> */}
+        {isSignedUp && (
+          <>
           <div className={classNamesLib.navigationBottomPostButtonWrapper}>
             <div
               className={`
@@ -100,8 +100,8 @@ const BottomNavigation: FunctionComponent = () => {
               showDialog={openPostDialog}
               onClose={() => setOpenPostDialog(false)}
             />
-          {/* </> */}
-        {/* )} */}
+          </>
+        )}
 
         <Link href='/spaces' passHref>
           <span

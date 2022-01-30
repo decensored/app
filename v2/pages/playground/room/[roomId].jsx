@@ -119,11 +119,9 @@ const Playground = () => {
             ))}
           </div>
         </div>
-        <BrowserView>
-          <div className={classNamesLib.bodyContainerCol1}>
-            <AsideNavigation />
-          </div>
-        </BrowserView>
+        <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <AsideNavigation />
+      </BrowserView>
       </div>
       <MobileView>
         <BottomNavigation />

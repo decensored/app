@@ -179,10 +179,8 @@ const Space: NextPage = () => {
             </div>
           )}
         </div>
-        <BrowserView>
-          <div className={classNamesLib.bodyContainerCol1}>
-            <AsideNavigation />
-          </div>
+        <BrowserView className={classNamesLib.bodyContainerCol1}>
+          <AsideNavigation />
         </BrowserView>
       </div>
       <MobileView>
