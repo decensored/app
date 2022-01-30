@@ -105,10 +105,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   return (
     <div
       className={`
-      ${style.feedItemWrapper}
-      ${style.feedItemWrapperDark} ${userBlacklisted && `hidden`} ${
-        parent && `rounded-md`
-      }`}
+        ${style.feedItemWrapper}
+        ${style.feedItemWrapperDark} ${userBlacklisted && `hidden`}
+      `}
     >
       <div className={style.feedItemInnerTop}>
         <div className={style.feedItemMetaWrapper}>
@@ -124,9 +123,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
-        <div
-          className={`${style.feedItemText} ${style.feedItemTextDark}`}
-        >
+        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
           {message}
         </div>
         <div className='flex pt-3'>
@@ -205,7 +202,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
         </div>
       </div>
-      {openReplies && <div className='pl-7'> {replyItems}</div>}
+      {openReplies && <div className={style.feedReplyItemOffset}>{replyItems}</div>}
       {parent && (
         <div className={style.feedItemInnerBottom}>
           <div className={style.feedItemInnerBottomCol}>

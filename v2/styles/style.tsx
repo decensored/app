@@ -99,11 +99,10 @@ export const style = {
 
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px] children:border-none',
 
-  feedItemWrapper: 'bg-white border-l border-gray-100 pt-1',
+  feedItemWrapper: 'bg-white rounded border-l border-gray-200',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 border-black',
-  feedItemReplyInnerTop: 'rounded-t p-5',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
   feedItemInnerBottomCol: 'flex gap-x-3 items-center',
   feedItemMetaWrapper: 'flex justify-between mb-2',
@@ -114,6 +113,9 @@ export const style = {
   feedItemTextDark: '',
   feedItemInteractionIcon: 'cursor-pointer text-highlight-40 hover:text-highlight-500',
   feedItemInteractionIconDark: 'dark:text-darkmode-1700 dark:hover:text-highlight-400',
+
+  feedReplyItemWrapper: 'rounded-none',
+  feedReplyItemOffset: 'pl-7 children:rounded-none',
 
   blackListTagWrapper: 'flex gap-x-1 items-center uppercase bg-highlight-100 text-gray-600 text-xs tracking-wide px-2 py-1 rounded-md',
   blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',
