@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 const SpaceHeader: FunctionComponent = () => {
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
@@ -8,9 +8,9 @@ const SpaceHeader: FunctionComponent = () => {
   return (
     <>
       <div
-        className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark} p-5`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} p-5`}
       >
-        <div className={classNamesLib.feedItemInner}>
+        <div className={style.feedItemInner}>
           <div className='flex flex-col justify-center items-center'>
             <p className='text-3xl mb-1 text-gray-900 dark:text-gray-300'>
               Start a new space

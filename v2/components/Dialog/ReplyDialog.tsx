@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import PostForm from 'components/Post/PostForm'
 import FeedItem from 'components/Feed/FeedItem'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 interface ReplyDialogProbs {
   showDialog: boolean
@@ -25,7 +25,7 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
         body={
           <div className='flex flex-col p-5'>
             <span
-              className={`${classNamesLib.tag} ${classNamesLib.tagClickable} cursor-default mb-3`}
+              className={`${style.tag} ${style.tagClickable} cursor-default mb-3`}
             >
               Answer to post in <b>#{post.spaceName}</b>
             </span>

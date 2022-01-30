@@ -8,7 +8,7 @@ import UserPopover from 'components/Popover/UserPopover'
 // import QueueControl from 'components/QueueControl/QueueControl'
 import SettingsPopover from 'components/Popover/SettingsPopover'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
 
 const Header: FunctionComponent = () => {
@@ -29,7 +29,7 @@ const Header: FunctionComponent = () => {
   // }
 
   return (
-    <div className={classNamesLib.headerWrapper}>
+    <div className={style.headerWrapper}>
       {/* <QueueControl /> */}
 
       {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
@@ -51,7 +51,7 @@ const Header: FunctionComponent = () => {
         </>
       )}
 
-      <div className={classNamesLib.headerInner}>
+      <div className={style.headerInner}>
         <div id='logo'>
           <Link href='/' passHref>
             <div className='flex gap-2 items-center'>

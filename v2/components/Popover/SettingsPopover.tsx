@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { isMobile } from 'react-device-detect'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import BasePopover from './BasePopover'
@@ -39,13 +39,13 @@ const SettingsPopover: FunctionComponent = () => {
         }
         popoverPanel={
           <div
-            className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}
+            className={`${style.popoverWrapper} ${style.popoverWrapperDark}`}
           >
-            <div className={`${classNamesLib.popoverBody}`}>
+            <div className={`${style.popoverBody}`}>
               <button
                 type='button'
                 onClick={() => setOpenSettingsDialog(true)}
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
               >
                 <SVGIcon icon='faCog' />
                 <span>Node Settings</span>
@@ -61,7 +61,7 @@ const SettingsPopover: FunctionComponent = () => {
                 <button
                   type='button'
                   onClick={toggleDarkMode}
-                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
                 >
                   {isDarkmode && (
                     <>

@@ -56,7 +56,7 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       autoClose={2000}
       pauseOnHover={false}
       newestOnTop
-      position={toast.POSITION.BOTTOM_CENTER}
+      position={toast.POSITION.TOP_CENTER}
     />
 
     {inBrowser && (

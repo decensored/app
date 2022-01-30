@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
 
@@ -42,7 +42,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
         <div className='flex gap-3'>
           <div className='grow shrink'>
             <input
-              className={classNamesLib.input}
+              className={style.input}
               type='text'
               placeholder='Choose your username'
               defaultValue={userName}
@@ -63,8 +63,8 @@ const Register: FunctionComponent<RegisterProps> = () => {
             type='submit'
             form='registerForm'
             className={`
-            ${classNamesLib.button}
-            ${classNamesLib.buttonDecensoredHeader}
+            ${style.button}
+            ${style.buttonDecensoredHeader}
           `}
           >
             Sign-up

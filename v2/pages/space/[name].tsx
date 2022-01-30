@@ -15,7 +15,7 @@ import {
   nodeIsUpAndRunning,
 } from 'lib/storeUtils'
 import type { PostType, SpaceType, UserType } from 'lib/types'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import PostForm from 'components/Post/PostForm'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
@@ -126,12 +126,12 @@ const Space: NextPage = () => {
   return (
     <>
       <Header />
-      <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol2}>
+      <div className={style.bodyContainer}>
+        <div className={style.bodyContainerCol2}>
           {space && (
-            <div className={classNamesLib.feedWrapper}>
-              <div className={classNamesLib.spaceHeaderWrapper}>
-                <div className={classNamesLib.spaceHeaderInner}>
+            <div className={style.feedWrapper}>
+              <div className={style.spaceHeaderWrapper}>
+                <div className={style.spaceHeaderInner}>
                   {spaceOwner && (
                     <>
                       <SVGIcon
@@ -149,29 +149,29 @@ const Space: NextPage = () => {
                       />
                     </>
                   )}
-                  <div className={classNamesLib.spaceHeaderTitle}>
+                  <div className={style.spaceHeaderTitle}>
                     {space.name ? `#${space.name}` : '#undefined'}
                   </div>
-                  <div className={classNamesLib.spaceHeaderColsWrapper}>
-                    <div className={classNamesLib.spaceHeaderColWrapper}>
-                      <span className={classNamesLib.spaceHeaderColTitle}>
+                  <div className={style.spaceHeaderColsWrapper}>
+                    <div className={style.spaceHeaderColWrapper}>
+                      <span className={style.spaceHeaderColTitle}>
                         {nrOfPosts}
                       </span>
-                      <span className={classNamesLib.spaceHeaderColText}>
+                      <span className={style.spaceHeaderColText}>
                         Posts
                       </span>
                     </div>
-                    <div className={classNamesLib.spaceHeaderColWrapper}>
+                    <div className={style.spaceHeaderColWrapper}>
                       <button
                         type='button'
                         onClick={() => {
                           setOpenUserDialog(true)
                         }}
-                        className={classNamesLib.spaceHeaderColTitle}
+                        className={style.spaceHeaderColTitle}
                       >
                         {nrOfUSers}
                       </button>
-                      <span className={classNamesLib.spaceHeaderColText}>
+                      <span className={style.spaceHeaderColText}>
                         Followers
                       </span>
                       <UserDialog
@@ -190,7 +190,7 @@ const Space: NextPage = () => {
             </div>
           )}
         </div>
-        <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <BrowserView className={style.bodyContainerCol1}>
           <AsideNavigation />
         </BrowserView>
       </div>

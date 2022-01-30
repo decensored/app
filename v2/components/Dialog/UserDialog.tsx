@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import BaseDialog from 'components/Dialog/BaseDialog'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import Link from 'next/link'
 
 interface UserDialogProbs {
@@ -37,9 +37,9 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({
         <button
           type='button'
           className={`
-            ${classNamesLib.button}
-            ${classNamesLib.buttonTransparent}
-            ${classNamesLib.buttonTransparentDark}
+            ${style.button}
+            ${style.buttonTransparent}
+            ${style.buttonTransparentDark}
             basis-full
           `}
           onClick={() => onClose()}

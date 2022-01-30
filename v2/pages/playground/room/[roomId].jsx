@@ -7,7 +7,7 @@ import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playgrou
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import { BrowserView, MobileView } from 'react-device-detect'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
 
@@ -55,20 +55,20 @@ const Playground = () => {
   return (
     <>
       <Header />
-      <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol2}>
-          <div className={classNamesLib.feedWrapper}>
+      <div className={style.bodyContainer}>
+        <div className={style.bodyContainerCol2}>
+          <div className={style.feedWrapper}>
             <div
-              className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+              className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
             >
-              <div className={classNamesLib.feedItemInner}>
+              <div className={style.feedItemInner}>
                 {roomId}
                 <div className='flex gap-x-3'>
                   <input
                     type='text'
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                    className={`${style.input} ${style.inputDark}`}
                   />
                   <button
                     type='button'
@@ -81,7 +81,7 @@ const Playground = () => {
                         .put({ text: inputText, id: randomId })
                       setInputText('')
                     }}
-                    className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                    className={`${style.button} ${style.buttonDecensored}`}
                   >
                     Submit
                   </button>
@@ -92,19 +92,19 @@ const Playground = () => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+                className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
               >
-                <div className={classNamesLib.feedItemInnerTop}>
-                  <div className={classNamesLib.feedItemMetaWrapper}>
+                <div className={style.feedItemInnerTop}>
+                  <div className={style.feedItemMetaWrapper}>
                     <div
-                      className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+                      className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
                     >
                       <button
                         type='button'
                         onClick={() => {
                           gun.get(NAMESPACE).get(roomId).get(item.id).put(null)
                         }}
-                        className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+                        className={`${style.button} ${style.buttonDecensored}`}
                       >
                         Delete
                       </button>
@@ -112,14 +112,14 @@ const Playground = () => {
                     </div>
                   </div>
                 </div>
-                <div className={classNamesLib.feedItemInnerBottom}>
+                <div className={style.feedItemInnerBottom}>
                   {item.text}
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <BrowserView className={style.bodyContainerCol1}>
         <AsideNavigation />
       </BrowserView>
       </div>

@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 
 interface SettingsDialogProps {
@@ -56,17 +56,17 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 EVM-Node
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <input
                   className={`
-                    ${classNamesLib.input}
-                    ${classNamesLib.inputDark}
+                    ${style.input}
+                    ${style.inputDark}
                   `}
                   type='text'
                   defaultValue={nodeInfo.evmNode}
@@ -74,10 +74,10 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 />
                 {errors.evmNode && (
                   <div
-                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                    className={`${style.formValidation} ${style.formValidationError}`}
                   >
                     <span
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                      className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       Required Field
                     </span>
@@ -85,14 +85,14 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 )}
                 {!nodeIsUpAndRunning(contract) && (
                   <div
-                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                    className={`${style.formValidation} ${style.formValidationError}`}
                   >
                     <SVGIcon
                       icon='faExclamationTriangle'
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError} mr-3`}
+                      className={`${style.formValidationText} ${style.formValidationTextError} mr-3`}
                     />
                     <span
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                      className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       Connection failed!
                     </span>
@@ -103,14 +103,14 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
             {/* <div className=''>
                   <span
                     className={`
-                      ${classNamesLib.dialogLabel}
-                      ${classNamesLib.dialogLabelDark}
+                      ${style.dialogLabel}
+                      ${style.dialogLabelDark}
                     `}
                   >
                     Chain-ID
                   </span>
                   <input
-                    className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                    className={`${style.input} ${style.inputDark}`}
                     type='text'
                     defaultValue={chainId}
                     {...register('chainId', { required: true })}
@@ -122,25 +122,25 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 Contract Address
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <input
-                  className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+                  className={`${style.input} ${style.inputDark}`}
                   type='text'
                   defaultValue={nodeInfo.contractPostsAddress}
                   {...register('contractAddress', { required: true })}
                 />
                 {errors.contractAddress && (
                   <div
-                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                    className={`${style.formValidation} ${style.formValidationError}`}
                   >
                     <span
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                      className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       Required Field
                     </span>
@@ -156,9 +156,9 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
           <button
             type='button'
             className={`
-            ${classNamesLib.button}
-            ${classNamesLib.buttonTransparent}
-            ${classNamesLib.buttonTransparentDark}
+            ${style.button}
+            ${style.buttonTransparent}
+            ${style.buttonTransparentDark}
             basis-full
           `}
             onClick={() => onClose()}
@@ -168,7 +168,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
           <button
             type='submit'
             form='settingsForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            className={`${style.button} ${style.buttonDecensored} basis-full`}
           >
             Confirm
           </button>

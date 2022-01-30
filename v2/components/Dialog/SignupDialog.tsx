@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -69,9 +69,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
       header='Signup'
       body={
         <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
-          <div className={classNamesLib.inputWrapper}>
+          <div className={style.inputWrapper}>
             <input
-              className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+              className={`${style.input} ${style.inputDark}`}
               type='text'
               placeholder='Choose your username'
               defaultValue={userName}
@@ -84,10 +84,10 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
             />
             {errors.username && (
               <div
-                className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                className={`${style.formValidation} ${style.formValidationError}`}
               >
                 <span
-                  className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                  className={`${style.formValidationText} ${style.formValidationTextError}`}
                 >
                   {errors.username?.type === 'required' &&
                     'Cant be empty! chars: azAZ'}
@@ -103,9 +103,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           <button
             type='button'
             className={`
-              ${classNamesLib.button}
-              ${classNamesLib.buttonTransparent}
-              ${classNamesLib.buttonTransparentDark}
+              ${style.button}
+              ${style.buttonTransparent}
+              ${style.buttonTransparentDark}
               basis-full
             `}
             onClick={() => onClose()}
@@ -115,7 +115,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           <button
             type='submit'
             form='registerForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            className={`${style.button} ${style.buttonDecensored} basis-full`}
           >
             <span className='whitespace-nowrap'>
               Sign-up{' '}

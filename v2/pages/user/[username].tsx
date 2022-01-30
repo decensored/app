@@ -13,7 +13,7 @@ import {
   nodeIsUpAndRunning,
 } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -58,36 +58,36 @@ const Space: NextPage = () => {
   return (
     <>
       <Header />
-      <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol2}>
-          <div className={classNamesLib.feedWrapper}>
-            <div className={classNamesLib.spaceHeaderWrapper}>
-              <div className={classNamesLib.spaceHeaderInner}>
-                <div className={classNamesLib.spaceHeaderTitle}>
+      <div className={style.bodyContainer}>
+        <div className={style.bodyContainerCol2}>
+          <div className={style.feedWrapper}>
+            <div className={style.spaceHeaderWrapper}>
+              <div className={style.spaceHeaderInner}>
+                <div className={style.spaceHeaderTitle}>
                   {username ? `#${username}` : '#undefined'}
                 </div>
-                {/*                 <div className={classNamesLib.spaceHeaderColsWrapper}>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
+                {/*                 <div className={style.spaceHeaderColsWrapper}>
+                  <div className={style.spaceHeaderColWrapper}>
+                    <span className={style.spaceHeaderColTitle}>
                       {space.posts}
                     </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
+                    <span className={style.spaceHeaderColText}>
                       Posts
                     </span>
                   </div>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
+                  <div className={style.spaceHeaderColWrapper}>
+                    <span className={style.spaceHeaderColTitle}>
                       {space.followers}
                     </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
+                    <span className={style.spaceHeaderColText}>
                       Followers
                     </span>
                   </div>
-                  <div className={classNamesLib.spaceHeaderColWrapper}>
-                    <span className={classNamesLib.spaceHeaderColTitle}>
+                  <div className={style.spaceHeaderColWrapper}>
+                    <span className={style.spaceHeaderColTitle}>
                       {space.whatever}
                     </span>
-                    <span className={classNamesLib.spaceHeaderColText}>
+                    <span className={style.spaceHeaderColText}>
                       Whatever
                     </span>
                   </div>
@@ -97,7 +97,7 @@ const Space: NextPage = () => {
             {showFeedItems}
           </div>
         </div>
-        <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <BrowserView className={style.bodyContainerCol1}>
           <AsideNavigation />
         </BrowserView>
       </div>

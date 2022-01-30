@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { BrowserView, MobileView } from 'react-device-detect'
 import Header from 'components/Header/Header'
 import Feed from 'components/Feed/Feed'
@@ -10,11 +10,11 @@ import BottomNavigation from 'components/Navigation/BottomNavigation'
 const Home: NextPage = () => (
   <>
     <Header />
-    <div className={classNamesLib.bodyContainer}>
-      <div className={classNamesLib.bodyContainerCol2}>
+    <div className={style.bodyContainer}>
+      <div className={style.bodyContainerCol2}>
         <Feed />
       </div>
-      <BrowserView className={classNamesLib.bodyContainerCol1}>
+      <BrowserView className={style.bodyContainerCol1}>
         <AsideNavigation />
       </BrowserView>
     </div>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import PostDialog from 'components/Dialog/PostDialog'
@@ -40,10 +40,10 @@ const AsideNavigation: FunctionComponent = () => {
   }
 
   return (
-    <div className={classNamesLib.navigationAsideWrapper}>
-      <div className={classNamesLib.navigationAsideInner}>
-        <div className={classNamesLib.navigationAsideInnerTop}>
-          <div className={classNamesLib.navigationAsideButtonWrapper}>
+    <div className={style.navigationAsideWrapper}>
+      <div className={style.navigationAsideInner}>
+        <div className={style.navigationAsideInnerTop}>
+          <div className={style.navigationAsideButtonWrapper}>
             <Link href='/' passHref>
               <span>
                 <AsideNavigationItem
@@ -104,13 +104,13 @@ const AsideNavigation: FunctionComponent = () => {
                   </Link>
                 </Tooltip>
 
-                <div className={classNamesLib.navigationAsideButtonSpacer} />
+                <div className={style.navigationAsideButtonSpacer} />
                 <button
                   type='submit'
                   className={`
-                   ${classNamesLib.button}
-                   ${classNamesLib.buttonDecensored}
-                   ${classNamesLib.buttonNoXsPadding}
+                   ${style.button}
+                   ${style.buttonDecensored}
+                   ${style.buttonNoXsPadding}
                   `}
                   onClick={() => setOpenPostDialog(true)}
                 >
@@ -128,9 +128,9 @@ const AsideNavigation: FunctionComponent = () => {
             )}
           </div>
         </div>
-        <div className={classNamesLib.navigationAsideInnerBottom}>
+        <div className={style.navigationAsideInnerBottom}>
           <div
-            className={classNamesLib.navigationAsideBottomInteractionWrapper}
+            className={style.navigationAsideBottomInteractionWrapper}
           >
             <div>
               <button
@@ -138,28 +138,28 @@ const AsideNavigation: FunctionComponent = () => {
                 onClick={toggleDarkMode}
                 className={`
                   toggleDarkMode
-                  ${classNamesLib.switch}
-                  ${classNamesLib.switchDark}
-                  ${classNamesLib.navigationAsideInteractionSwitch}
+                  ${style.switch}
+                  ${style.switchDark}
+                  ${style.navigationAsideInteractionSwitch}
                 `}
               >
                 {isDarkmode && (
                   <div
-                    className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
+                    className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
                     <SVGIcon icon='faMoon' isFixed/>
                   </div>
                 )}
                 {!isDarkmode && (
                   <div
-                    className={`${classNamesLib.switchInner} ${classNamesLib.switchInnerDark}`}
+                    className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
                     <SVGIcon icon='faSun' isFixed/>
                   </div>
                 )}
               </button>
             </div>
-            <div className={classNamesLib.navigationAsideSocialButtonWrapper}>
+            <div className={style.navigationAsideSocialButtonWrapper}>
               <Link href='https://twitter.com/decensored_app' passHref>
                 <a
                   href='dummy-href'
@@ -167,8 +167,8 @@ const AsideNavigation: FunctionComponent = () => {
                   title='twitter'
                   rel='noreferrer'
                   className={`
-                    ${classNamesLib.navigationAsideSocialButton}
-                    ${classNamesLib.navigationAsideSocialButtonDark}
+                    ${style.navigationAsideSocialButton}
+                    ${style.navigationAsideSocialButtonDark}
                   `}
                 >
                   <SVGIcon icon='faTwitter' isFixed/>
@@ -181,8 +181,8 @@ const AsideNavigation: FunctionComponent = () => {
                   title='discord'
                   rel='noreferrer'
                   className={`
-                    ${classNamesLib.navigationAsideSocialButton}
-                    ${classNamesLib.navigationAsideSocialButtonDark}
+                    ${style.navigationAsideSocialButton}
+                    ${style.navigationAsideSocialButtonDark}
                   `}
                 >
                   <SVGIcon icon='faDiscord' isFixed/>
@@ -195,8 +195,8 @@ const AsideNavigation: FunctionComponent = () => {
                   title='github'
                   rel='noreferrer'
                   className={`
-                    ${classNamesLib.navigationAsideSocialButton}
-                    ${classNamesLib.navigationAsideSocialButtonDark}
+                    ${style.navigationAsideSocialButton}
+                    ${style.navigationAsideSocialButtonDark}
                   `}
                 >
                   <SVGIcon icon='faGithub' isFixed/>

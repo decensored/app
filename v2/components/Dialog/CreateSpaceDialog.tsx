@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { createSpace /* , getSpaceByName */ } from 'api/spaces'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -70,27 +70,27 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 Create Space
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <input
                   className={`
-                    ${classNamesLib.input}
-                    ${classNamesLib.inputDark}
+                    ${style.input}
+                    ${style.inputDark}
                   `}
                   type='text'
                   {...register('name', { required: true })}
                 />
                 {errors.name && (
                   <div
-                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                    className={`${style.formValidation} ${style.formValidationError}`}
                   >
                     <span
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                      className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       {errors.name?.type === 'required' &&
                         'Cant be empty! chars: azAZ'}
@@ -101,29 +101,29 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
               </div>
               <span
                 className={`pt-5
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 Description
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <TextareaAutosize
                   minRows={3}
                   maxLength={280}
                   placeholder='Your description..'
                   className={`
-                  ${classNamesLib.input}
-                  ${classNamesLib.inputDark}
+                  ${style.input}
+                  ${style.inputDark}
               `}
                   {...register('description', { required: true })}
                 />
                 {errors.name && (
                   <div
-                    className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                    className={`${style.formValidation} ${style.formValidationError}`}
                   >
                     <span
-                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                      className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       {errors.name?.type === 'required' &&
                         'Cant be empty! chars: azAZ'}
@@ -141,9 +141,9 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
           <button
             type='button'
             className={`
-              ${classNamesLib.button}
-              ${classNamesLib.buttonTransparent}
-              ${classNamesLib.buttonTransparentDark}
+              ${style.button}
+              ${style.buttonTransparent}
+              ${style.buttonTransparentDark}
               basis-full
             `}
             onClick={() => onClose()}
@@ -153,7 +153,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
           <button
             type='submit'
             form='createSpaceForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            className={`${style.button} ${style.buttonDecensored} basis-full`}
           >
             <span className='whitespace-nowrap'>
               Create{' '}

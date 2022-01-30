@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 const CreateSpace: FunctionComponent = () => {
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
@@ -9,7 +9,7 @@ const CreateSpace: FunctionComponent = () => {
     <>
       <div
         id='create-space'
-        className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
       >
         <div className='p-5'>
           <div className='flex flex-col justify-center items-center'>

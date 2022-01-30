@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* prettier-ignore */
-export const classNamesLib = {
+export const style = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
@@ -54,7 +54,7 @@ export const classNamesLib = {
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
   navigationAsideWrapper: 'sticky top-[80px] sm:top-[100px]',
-  navigationAsideInner: 'flex flex-col justify-between h-screen-header',
+  navigationAsideInner: 'flex flex-col justify-between h-screen-sidebar',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
   navigationAsideButtonWrapper: 'flex flex-col gap-y-1',

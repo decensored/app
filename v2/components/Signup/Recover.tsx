@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 interface RecoverProps {
   // type: string
@@ -17,7 +17,7 @@ const Recover: FunctionComponent<RecoverProps> = () => {
       <div className='flex gap-3'>
         <div className='grow shrink'>
           <input
-            className={classNamesLib.input}
+            className={style.input}
             type='text'
             placeholder='Paste in your key'
           />
@@ -26,8 +26,8 @@ const Recover: FunctionComponent<RecoverProps> = () => {
           type='button'
           onClick={() => setIsSignedUp(true)}
           className={`
-            ${classNamesLib.button}
-            ${classNamesLib.buttonDecensoredHeader}
+            ${style.button}
+            ${style.buttonDecensoredHeader}
           `}
         >
           Recover

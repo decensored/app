@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import ReactDOM from 'react-dom'
 import { usePopperTooltip } from 'react-popper-tooltip'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 interface TooltipProps {
   classNames: string
@@ -23,7 +23,7 @@ const Tooltip: FunctionComponent<TooltipProps> = ({
     })
 
   const tooltipStyles = (
-    classNamesLib.tooltip + classNamesLib.tooltipDark
+    style.tooltip + style.tooltipDark
   )
 
   return (

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import PostDialog from 'components/Dialog/PostDialog'
 
 const BottomNavigation: FunctionComponent = () => {
@@ -24,31 +24,31 @@ const BottomNavigation: FunctionComponent = () => {
   return (
     <div
       className={`
-        ${classNamesLib.navigationBottomWrapper}
-        ${classNamesLib.navigationBottomWrapperDark}
+        ${style.navigationBottomWrapper}
+        ${style.navigationBottomWrapperDark}
       `}
     >
-      <div className={classNamesLib.navigationBottomWrapperBorder} />
-      <div className={classNamesLib.navigationBottomInner}>
+      <div className={style.navigationBottomWrapperBorder} />
+      <div className={style.navigationBottomInner}>
         <Link href='/' passHref>
           <span
             className={`
-              ${classNamesLib.navigationBottomItem}
+              ${style.navigationBottomItem}
               ${
                 tabIndex === 0
-                  ? classNamesLib.navigationBottomItemColorActive
-                  : classNamesLib.navigationBottomItemColor
+                  ? style.navigationBottomItemColorActive
+                  : style.navigationBottomItemColor
               }
             `}
           >
             <SVGIcon icon='faSatelliteDish' />
-            <span className={classNamesLib.navigationBottomItemText}>Feed</span>
+            <span className={style.navigationBottomItemText}>Feed</span>
             {tabIndex === 0 && (
               <motion.span
                 className={`
-                  ${classNamesLib.navigationBottomMotionSpan}
-                  ${classNamesLib.navigationBottomMotionSpanColor}
-                  ${classNamesLib.navigationBottomMotionSpanColorDark}
+                  ${style.navigationBottomMotionSpan}
+                  ${style.navigationBottomMotionSpanColor}
+                  ${style.navigationBottomMotionSpanColorDark}
                 `}
                 layoutId='activeTab'
               />
@@ -58,41 +58,41 @@ const BottomNavigation: FunctionComponent = () => {
 
         {isSignedUp && (
           <>
-          <div className={classNamesLib.navigationBottomPostButtonWrapper}>
+          <div className={style.navigationBottomPostButtonWrapper}>
             <div
               className={`
-                ${classNamesLib.navigationBottomPostButtonPseudo}
-                ${classNamesLib.navigationBottomPostButtonBefore}
-                ${classNamesLib.navigationBottomPostButtonBeforeDark}
+                ${style.navigationBottomPostButtonPseudo}
+                ${style.navigationBottomPostButtonBefore}
+                ${style.navigationBottomPostButtonBeforeDark}
               `}
             >
               <div
                 className={`
-                  ${classNamesLib.navigationBottomPostButtonPseudoInner}
-                  ${classNamesLib.navigationBottomPostButtonBeforeInner}
-                  ${classNamesLib.navigationBottomPostButtonBeforeInnerDark}
+                  ${style.navigationBottomPostButtonPseudoInner}
+                  ${style.navigationBottomPostButtonBeforeInner}
+                  ${style.navigationBottomPostButtonBeforeInnerDark}
                 `}
               />
             </div>
             <button
               type='button'
-              className={`${classNamesLib.navigationBottomPostButton} ${classNamesLib.buttonDecensored}`}
+              className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
               onClick={() => setOpenPostDialog(true)}
             >
               <SVGIcon icon='faPlus' />
             </button>
             <div
               className={`
-                ${classNamesLib.navigationBottomPostButtonPseudo}
-                ${classNamesLib.navigationBottomPostButtonAfter}
-                ${classNamesLib.navigationBottomPostButtonAfterDark}
+                ${style.navigationBottomPostButtonPseudo}
+                ${style.navigationBottomPostButtonAfter}
+                ${style.navigationBottomPostButtonAfterDark}
               `}
             >
               <div
                 className={`
-                  ${classNamesLib.navigationBottomPostButtonPseudoInner}
-                  ${classNamesLib.navigationBottomPostButtonAfterInner}
-                  ${classNamesLib.navigationBottomPostButtonAfterInnerDark}
+                  ${style.navigationBottomPostButtonPseudoInner}
+                  ${style.navigationBottomPostButtonAfterInner}
+                  ${style.navigationBottomPostButtonAfterInnerDark}
                 `}
               />
             </div>
@@ -107,22 +107,22 @@ const BottomNavigation: FunctionComponent = () => {
         <Link href='/spaces' passHref>
           <span
             className={`
-              ${classNamesLib.navigationBottomItem}
+              ${style.navigationBottomItem}
               ${
                 tabIndex === 1
-                  ? classNamesLib.navigationBottomItemColorActive
-                  : classNamesLib.navigationBottomItemColor
+                  ? style.navigationBottomItemColorActive
+                  : style.navigationBottomItemColor
               }
             `}
           >
             <SVGIcon icon='faSatellite' />
-            <span className={classNamesLib.navigationBottomItemText}>Spaces</span>
+            <span className={style.navigationBottomItemText}>Spaces</span>
             {tabIndex === 1 && (
               <motion.span
                 className={`
-                  ${classNamesLib.navigationBottomMotionSpan}
-                  ${classNamesLib.navigationBottomMotionSpanColor}
-                  ${classNamesLib.navigationBottomMotionSpanColorDark}
+                  ${style.navigationBottomMotionSpan}
+                  ${style.navigationBottomMotionSpanColor}
+                  ${style.navigationBottomMotionSpanColorDark}
                 `}
                 layoutId='activeTab'
               />

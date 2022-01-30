@@ -1,7 +1,7 @@
 import React, { FunctionComponent /* , useEffect, useState */ } from 'react'
 // import { Virtuoso } from 'react-virtuoso'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import {
   dequeuePostsAndSpaces,
   // getPostsWithoutMother,
@@ -57,8 +57,8 @@ const Feed: FunctionComponent = () => {
           type='button'
           onClick={dequeuePostsAndSpaces}
           className={`
-            ${classNamesLib.buttonTransparent}
-            ${classNamesLib.buttonTransparentDark}
+            ${style.buttonTransparent}
+            ${style.buttonTransparentDark}
             w-full text-center underline hover:no-underline pb-5
           `}
         >
@@ -68,7 +68,7 @@ const Feed: FunctionComponent = () => {
         </button>
       )}
 
-      <div id='posts' className={classNamesLib.feedWrapper}>
+      <div id='posts' className={style.feedWrapper}>
         {showFeedItems}
         {/* <Virtuoso
           style={{ height: '600px' }}

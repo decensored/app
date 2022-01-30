@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import SVGIcon from 'components/Icon/SVGIcon'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import useStore from 'lib/store'
 
 interface SpaceItemProps {
@@ -19,18 +19,18 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
   return (
     <Link href={`/space/${name}`} passHref>
       <div
-        className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark} cursor-pointer`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}
       >
-        <div className={classNamesLib.feedItemInnerTop}>
-          <div className={classNamesLib.feedItemMetaWrapper}>
+        <div className={style.feedItemInnerTop}>
+          <div className={style.feedItemMetaWrapper}>
             <span
-              className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+              className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
             >
               <div className='flex'>
                 {name}
                 {owner === userId && (
                   <span
-                    className={`${classNamesLib.tag} ${classNamesLib.tagClickable} cursor-default ml-3`}
+                    className={`${style.tag} ${style.tagClickable} cursor-default ml-3`}
                   >
                     Owner
                   </span>
@@ -47,9 +47,9 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
               />
               <span
                 className={`
-              ${classNamesLib.tag}
-              ${classNamesLib.tagNotClickable}
-              ${classNamesLib.tagNotClickableDark}
+              ${style.tag}
+              ${style.tagNotClickable}
+              ${style.tagNotClickableDark}
             `}
               >
                 {numberOfPostsInSpace}
@@ -57,7 +57,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
             </div>
           </div>
           <div
-            className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
+            className={`${style.feedItemText} ${style.feedItemTextDark}`}
           >
             IOTA is a scalable, decentralized, feeless, modular, open-source
             distributed ledger protocol that goes beyond blockchain through its

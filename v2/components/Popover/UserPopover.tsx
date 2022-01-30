@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { isMobile } from 'react-device-detect'
 import Link from 'next/link'
 import BasePopover from 'components/Popover/BasePopover'
@@ -43,22 +43,22 @@ const UserPopover: FunctionComponent = () => {
           </span>
         }
         popoverPanel={
-          <div className={`${classNamesLib.popoverWrapper} ${classNamesLib.popoverWrapperDark}`}>
+          <div className={`${style.popoverWrapper} ${style.popoverWrapperDark}`}>
           {isSignedUp && (
-            <div className={`${classNamesLib.popoverHeader}`}>
-              <div className={`${classNamesLib.popoverHeaderLabel}`}>
+            <div className={`${style.popoverHeader}`}>
+              <div className={`${style.popoverHeaderLabel}`}>
                 <span>Logged in as</span>
               </div>
-              <div className={`${classNamesLib.popoverHeaderName}`}>
+              <div className={`${style.popoverHeaderName}`}>
                 {userName}
               </div>
             </div>
           )}
-          <div className={`${classNamesLib.popoverBody}`}>
+          <div className={`${style.popoverBody}`}>
             {/* {isSignedUp && (
               <button
                 type='button'
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
               >
                 <SVGIcon icon='faUser'isFixed />
                 <span>Profile</span>
@@ -69,7 +69,7 @@ const UserPopover: FunctionComponent = () => {
               <Link href={`/user/${userName}`} passHref>
                 <button
                   type='button'
-                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
                 >
                   <SVGIcon icon='faUserAstronaut'isFixed />
                   <span>My Posts</span>
@@ -82,7 +82,7 @@ const UserPopover: FunctionComponent = () => {
                 <button
                   type='button'
                   onClick={() => setOpenSignupDialog(true)}
-                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
                 >
                   <SVGIcon icon='faPlus' />
                   <span>Sign up</span>
@@ -90,7 +90,7 @@ const UserPopover: FunctionComponent = () => {
                 <button
                   type='button'
                   onClick={() => setOpenRecoverDialog(true)}
-                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
                 >
                   <SVGIcon icon='faRedoAlt' isFixed />
                   <span>Recover account</span>
@@ -102,7 +102,7 @@ const UserPopover: FunctionComponent = () => {
               <button
                 onClick={setIsSignedUpWithToast}
                 type='button'
-                className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
               >
                 <SVGIcon icon='faSignOutAlt' isFixed />
                 Logout

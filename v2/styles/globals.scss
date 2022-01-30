@@ -36,7 +36,12 @@ html {
   }
 }
 
-.h-screen-header {
+.h-screen-body {
+  min-height: 100vh; // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.h-screen-sidebar {
   min-height: calc(100vh - 100px); // --vh fallback
   min-height: calc(var(--vh, 1vh) * 100 - 100px);
 

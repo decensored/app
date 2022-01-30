@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import SVGIcon from 'components/Icon/SVGIcon'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -67,9 +67,9 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
       header='Recover'
       body={
         <form id='RecoverForm' onSubmit={handleSubmit(onSubmit)}>
-          <div className={classNamesLib.inputWrapper}>
+          <div className={style.inputWrapper}>
             <input
-              className={`${classNamesLib.input} ${classNamesLib.inputDark}`}
+              className={`${style.input} ${style.inputDark}`}
               type='text'
               placeholder='Enter your key'
               {...register('privateKey', {
@@ -80,10 +80,10 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
             />
             {errors.privateKey && (
               <div
-                className={`${classNamesLib.formValidation} ${classNamesLib.formValidationError}`}
+                className={`${style.formValidation} ${style.formValidationError}`}
               >
                 <span
-                  className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
+                  className={`${style.formValidationText} ${style.formValidationTextError}`}
                 >
                   {errors.privateKey?.type === 'required' &&
                     'Field cant be empty'}
@@ -101,9 +101,9 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
           <button
             type='button'
             className={`
-                ${classNamesLib.button}
-                ${classNamesLib.buttonTransparent}
-                ${classNamesLib.buttonTransparentDark}
+                ${style.button}
+                ${style.buttonTransparent}
+                ${style.buttonTransparentDark}
                 basis-full
               `}
             onClick={() => onClose()}
@@ -113,7 +113,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
           <button
             type='submit'
             form='RecoverForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            className={`${style.button} ${style.buttonDecensored} basis-full`}
           >
             <span className='whitespace-nowrap'>
               Recover{' '}

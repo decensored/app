@@ -8,7 +8,7 @@ import BottomNavigation from 'components/Navigation/BottomNavigation'
 import { BrowserView, MobileView } from 'react-device-detect'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { getNumberOfPostsInSpace } from 'lib/storeUtils'
 
 const Spaces: NextPage = () => {
@@ -28,14 +28,14 @@ const Spaces: NextPage = () => {
   return (
     <>
       <Header />
-      <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol2}>
-          <div className={classNamesLib.feedWrapper}>
+      <div className={style.bodyContainer}>
+        <div className={style.bodyContainerCol2}>
+          <div className={style.feedWrapper}>
             {isSignedUp && <SpaceHeader />}
             {createSpaceItems}
           </div>
         </div>
-        <BrowserView className={classNamesLib.bodyContainerCol1}>
+        <BrowserView className={style.bodyContainerCol1}>
           <AsideNavigation />
         </BrowserView>
       </div>

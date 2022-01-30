@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import SVGIcon from 'components/Icon/SVGIcon'
 
 interface AsideNavigationItemProps {
@@ -15,17 +15,17 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
 }) => (
   <span
     className={`
-      ${classNamesLib.navigationAsideButton}
-      ${classNamesLib.navigationAsideButtonDark}
-      ${isActive ? classNamesLib.navigationAsideButtonActive : ''}
+      ${style.navigationAsideButton}
+      ${style.navigationAsideButtonDark}
+      ${isActive ? style.navigationAsideButtonActive : ''}
     `}
   >
     <SVGIcon
       icon={icon}
-      className={classNamesLib.navigationAsideButtonIcon}
+      className={style.navigationAsideButtonIcon}
       isFixed
     />
-    <span className={classNamesLib.navigationAsideButtonText}>{name}</span>
+    <span className={style.navigationAsideButtonText}>{name}</span>
   </span>
 )
 

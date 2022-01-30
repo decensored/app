@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { removeUserFromBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
@@ -48,8 +48,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
 
   // Create objects for blacklisted users
   const usersOnBlacklist = blacklistedUsers.map((user: any) => (
-    <div className={`${classNamesLib.blackListTagWrapper} group`}>
-      <span className={`${classNamesLib.blackListItem}`}>{user.username}</span>
+    <div className={`${style.blackListTagWrapper} group`}>
+      <span className={`${style.blackListItem}`}>{user.username}</span>
       <SVGIcon
         icon='faTimes'
         className='cursor-pointer text-l text-red-500 hidden group-hover:block'
@@ -71,17 +71,17 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 Name
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <input
                   className={`
-                    ${classNamesLib.input}
-                    ${classNamesLib.inputDark}
+                    ${style.input}
+                    ${style.inputDark}
                   `}
                   type='text'
                   disabled
@@ -92,14 +92,14 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${classNamesLib.dialogLabel}
-                  ${classNamesLib.dialogLabelDark}
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
                 `}
               >
                 Blacklisted User{' '}
                 {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
               </span>
-              <div className={classNamesLib.inputWrapper}>
+              <div className={style.inputWrapper}>
                 <div className='my-2'>
                   <div className='flex flex-wrap gap-x-2 gap-y-2'>
                     {usersOnBlacklist.length > 0 && usersOnBlacklist}
@@ -118,9 +118,9 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
           <button
             type='button'
             className={`
-              ${classNamesLib.button}
-              ${classNamesLib.buttonTransparent}
-              ${classNamesLib.buttonTransparentDark}
+              ${style.button}
+              ${style.buttonTransparent}
+              ${style.buttonTransparentDark}
               basis-full
             `}
             onClick={() => onClose()}
@@ -130,7 +130,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
           <button
             type='submit'
             form='spaceSettingsForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
+            className={`${style.button} ${style.buttonDecensored} basis-full`}
             onClick={() => onClose()}
           >
             Save

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { Dialog } from '@headlessui/react'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 
 interface DialogProps {
   body: string | JSX.Element[] | JSX.Element
@@ -14,7 +14,7 @@ interface DialogProps {
 
 const BaseDialog: FunctionComponent<DialogProps> = ({
   body,
-  bodyPadding = classNamesLib.dialogBody,
+  bodyPadding = style.dialogBody,
   header = null,
   footer = null,
   width = 'sm',
@@ -22,10 +22,10 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   showDialog,
 }) => {
   const widthLookup: { [unit: string]: string } = {
-    sm: 'max-w-sm',
-    md: 'max-w-md',
-    lg: 'max-w-lg',
-    xl: 'max-w-xl',
+    'sm': 'max-w-sm',
+    'md': 'max-w-md',
+    'lg': 'max-w-lg',
+    'xl': 'max-w-xl',
     '2xl': 'max-w-2xl',
     '3xl': 'max-w-3xl',
     '4xl': 'max-w-4xl',
@@ -41,22 +41,22 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
 
   return (
     <Dialog open={showDialog} onClose={onClose}>
-      <div className={classNamesLib.dialogWrapper}>
-        <Dialog.Overlay className={classNamesLib.dialogOverlay} />
+      <div className={style.dialogWrapper}>
+        <Dialog.Overlay className={style.dialogOverlay} />
         <div
-          className={`${classNamesLib.dialogInner} ${
-            classNamesLib.dialogInnerDark
+          className={`${style.dialogInner} ${
+            style.dialogInnerDark
           } ${setWidth()}`}
         >
           {header && (
             <div
-              className={`${classNamesLib.dialogHeader} ${classNamesLib.dialogHeaderDark}`}
+              className={`${style.dialogHeader} ${style.dialogHeaderDark}`}
             >
               {header}
             </div>
           )}
           <div className={bodyPadding}>{body}</div>
-          {footer && <div className={classNamesLib.dialogFooter}>{footer}</div>}
+          {footer && <div className={style.dialogFooter}>{footer}</div>}
         </div>
       </div>
     </Dialog>

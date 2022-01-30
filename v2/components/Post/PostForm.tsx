@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { createPost, createReply } from 'api/feed'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -74,9 +74,9 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
   return (
     <div
       id='input'
-      className={`${classNamesLib.feedItemWrapper} ${classNamesLib.feedItemWrapperDark}`}
+      className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
     >
-      <div className={classNamesLib.feedItemInnerTop}>
+      <div className={style.feedItemInnerTop}>
         <form id='postForm' onSubmit={handleSubmit(onSubmit)}>
           <div className='relative'>
             <TextareaAutosize
@@ -84,10 +84,10 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
               maxLength={280}
               placeholder={`${userName}, your story starts here...`}
               className={`
-                ${classNamesLib.form}
-                ${classNamesLib.formTransparent}
-                ${classNamesLib.formPlaceholder}
-                ${classNamesLib.formPlaceholderDark}
+                ${style.form}
+                ${style.formTransparent}
+                ${style.formPlaceholder}
+                ${style.formPlaceholderDark}
               `}
               {...register('message', { required: true })}
             />
@@ -100,7 +100,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
           </div>
         </form>
       </div>
-      <div id='spread-bar' className={classNamesLib.feedItemInnerBottom}>
+      <div id='spread-bar' className={style.feedItemInnerBottom}>
         <div className='flex items-center mr-5'>
           <img
             src='/logo/logotype.svg'
@@ -112,7 +112,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
           <button
             type='submit'
             form='postForm'
-            className={`${classNamesLib.button} ${classNamesLib.buttonDecensored}`}
+            className={`${style.button} ${style.buttonDecensored}`}
           >
             <span className='whitespace-nowrap'>
               Spread it{' '}

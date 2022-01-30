@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
-import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { style } from 'styles/style'
 import TimeAgo from 'react-timeago'
 import { addUserToBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
@@ -105,27 +105,27 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   return (
     <div
       className={`
-      ${classNamesLib.feedItemWrapper} 
-      ${classNamesLib.feedItemWrapperDark} ${userBlacklisted && `hidden`} ${
+      ${style.feedItemWrapper}
+      ${style.feedItemWrapperDark} ${userBlacklisted && `hidden`} ${
         parent && `rounded-md`
       }`}
     >
-      <div className={classNamesLib.feedItemInnerTop}>
-        <div className={classNamesLib.feedItemMetaWrapper}>
+      <div className={style.feedItemInnerTop}>
+        <div className={style.feedItemMetaWrapper}>
           <Link href={`/user/${username}`} passHref>
             <a
               href='dummy-href'
-              className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+              className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
             >
               {username}
             </a>
           </Link>
-          <div className={classNamesLib.feedItemMetaTimestamp}>
+          <div className={style.feedItemMetaTimestamp}>
             <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
         <div
-          className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
+          className={`${style.feedItemText} ${style.feedItemTextDark}`}
         >
           {message}
         </div>
@@ -184,8 +184,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   <SVGIcon
                     icon='faShieldAlt'
                     className={`
-                        ${classNamesLib.feedItemInteractionIcon}
-                        ${classNamesLib.feedItemInteractionIconDark}
+                        ${style.feedItemInteractionIcon}
+                        ${style.feedItemInteractionIconDark}
                         hover:text-red-400 cursor-default
                         ${isLoading && ' animate-pulse text-green-600'}
                       `}
@@ -195,7 +195,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                     onClick={() => {
                       setAddUserToBlacklist()
                     }}
-                    className={`${classNamesLib.blackListButton}`}
+                    className={`${style.blackListButton}`}
                   >
                     Blacklist User
                   </button>
@@ -207,13 +207,13 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       </div>
       {openReplies && <div className='pl-7'> {replyItems}</div>}
       {parent && (
-        <div className={classNamesLib.feedItemInnerBottom}>
-          <div className={classNamesLib.feedItemInnerBottomCol}>
+        <div className={style.feedItemInnerBottom}>
+          <div className={style.feedItemInnerBottomCol}>
             {type === 'feed' && (
               <Link href={`/space/${spaceName}`} passHref>
                 <a
                   href='dummy-href'
-                  className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
+                  className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}
                 >
                   #{spaceName}
                 </a>
