@@ -1,7 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent /* , useEffect, useState */ } from 'react'
+// import { Virtuoso } from 'react-virtuoso'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import { dequeuePostsAndSpaces, getRepliesForPost } from 'lib/storeUtils'
+import {
+  dequeuePostsAndSpaces,
+  // getPostsWithoutMother,
+  getRepliesForPost,
+} from 'lib/storeUtils'
 import cuid from 'cuid'
 import FeedItem from './FeedItem'
 
@@ -11,24 +16,40 @@ const Feed: FunctionComponent = () => {
     postsQueued: state.postsQueued,
   }))
 
-  let showFeedItems
-  if (posts.length > 0) {
-    showFeedItems = posts.map((post) => {
-      const repliesForPost = getRepliesForPost(posts, post.id)
-      if (post.mother_post === 0) {
-        return (
-          <FeedItem
-            key={cuid()}
-            type='feed'
-            moderator={false}
-            replies={repliesForPost}
-            {...post}
-          />
-        )
-      }
-      return null
-    })
-  }
+  // const [postsWithoutMother, setPostsWithoutMother] = useState([])
+  // useEffect(() => setPostsWithoutMother(posts), [posts])
+
+  const showFeedItems = posts.map((post) => {
+    if (post.mother_post !== 0) return null
+
+    return (
+      <FeedItem
+        key={cuid()}
+        type='feed'
+        moderator={false}
+        replies={getRepliesForPost(posts, post.id)}
+        {...post}
+      />
+    )
+  })
+
+  // const Row = ({ index }) => {
+  //   console.log('Row', index)
+
+  //   const post = posts[index]
+  //   const repliesForPost = getRepliesForPost(posts, post.id)
+
+  //   return (
+  //     <FeedItem
+  //       key={cuid()}
+  //       type='feed'
+  //       moderator={false}
+  //       replies={repliesForPost}
+  //       {...post}
+  //     />
+  //   )
+  // }
+
   return (
     <>
       {postsQueued.length > 0 && (
@@ -46,8 +67,14 @@ const Feed: FunctionComponent = () => {
             `Click to see ${postsQueued.length} new posts`}
         </button>
       )}
+
       <div id='posts' className={classNamesLib.feedWrapper}>
         {showFeedItems}
+        {/* <Virtuoso
+          style={{ height: '600px' }}
+          totalCount={posts.length}
+          itemContent={(index) => <Row index={index} />}
+        /> */}
       </div>
     </>
   )

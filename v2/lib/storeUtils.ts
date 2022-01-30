@@ -28,6 +28,9 @@ export const getRepliesForPost = (
   postId: number
 ): PostType[] => posts.filter((post) => post.mother_post === postId)
 
+export const getPostsWithoutMother = (posts: PostType[]): PostType[] =>
+  posts.filter((post) => post.mother_post === 0)
+
 // SPACES
 export const getSpaceIdByName = (
   spaces: SpaceType[],
