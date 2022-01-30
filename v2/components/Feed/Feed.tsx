@@ -54,7 +54,7 @@ const Feed: FunctionComponent = () => {
         </button>
       )}
 
-      <div id='posts' className={style.feedWrapper}>
+      <div id='posts'>
         {oldskool ? (
           showFeedItems
         ) : (

@@ -43,7 +43,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
-  const [openReplies, setOpenReplies] = React.useState(true)
+  const [openReplies, setOpenReplies] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
   const [contract, userId, posts] = useStore(
     (state) => [state.contract, state.userId, state.posts],
@@ -108,7 +108,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     <div
       className={`
         ${style.feedItemWrapper}
-        ${style.feedItemWrapperDark} ${userBlacklisted && `hidden`}
+        ${style.feedItemWrapperDark} 
+        ${userBlacklisted && `hidden`}
+        ${parent} && ${style.feedWrapperVirtuoso}
       `}
     >
       <div className={style.feedItemInnerTop}>

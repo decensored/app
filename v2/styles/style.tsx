@@ -98,12 +98,13 @@ export const style = {
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px] children:border-none',
+  feedWrapperVirtuoso: 'flex flex-col last:mb-[20px] last:sm:mb-[20px]',
 
   feedItemWrapper: 'bg-white rounded border-l border-gray-300',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 pt-3 border-black',
-  feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
+  feedItemInnerBottom: 'px-5 py-3 pt-0 rounded-b flex justify-between',
   feedItemInnerBottomCol: 'flex gap-x-3 items-center',
   feedItemMetaWrapper: 'flex justify-between mb-2 items-baseline',
   feedItemMetaTimestamp: 'text-xs text-right text-gray-500',
