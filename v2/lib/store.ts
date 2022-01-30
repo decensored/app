@@ -73,14 +73,6 @@ const useStore = create(
       setIsOpenPostDialog: (isOpenPostDialog: boolean) =>
         set({ isOpenPostDialog }),
 
-      isOpenSignupDialog: false,
-      setIsOpenSignupDialog: (isOpenSignupDialog: boolean) =>
-        set({ isOpenSignupDialog }),
-
-      isOpenRecoverDialog: false,
-      setIsOpenRecoverDialog: (isOpenRecoverDialog: boolean) =>
-        set({ isOpenRecoverDialog }),
-
       isOpenCreateSpaceDialog: false,
       setIsOpenCreateSpaceDialog: (isOpenCreateSpaceDialog: boolean) =>
         set({ isOpenCreateSpaceDialog }),

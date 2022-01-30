@@ -6,20 +6,22 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { recoverUser } from 'api/user'
 
-const RecoverDialog: FunctionComponent = () => {
-  const [isLoading, setIsLoading] = React.useState(false)
+interface RecoverDialogProps {
+  showDialog: boolean
+  onClose: () => void
+}
 
-  const handleClose = (): void => {
-    setIsOpenRecoverDialog(false)
-  }
+const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
+  showDialog,
+  onClose,
+}) => {
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const {
     setIsSignedUp,
     setUserName,
     setUserId,
     contract,
-    isOpenRecoverDialog,
-    setIsOpenRecoverDialog,
   } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     setIsSignedUp: state.setIsSignedUp,
@@ -27,8 +29,6 @@ const RecoverDialog: FunctionComponent = () => {
     setUserName: state.setUserName,
     setUserId: state.setUserId,
     contract: state.contract,
-    isOpenRecoverDialog: state.isOpenRecoverDialog,
-    setIsOpenRecoverDialog: state.setIsOpenRecoverDialog,
   }))
 
   // HANDLE FORM SUBMIT
@@ -48,8 +48,8 @@ const RecoverDialog: FunctionComponent = () => {
       setIsSignedUp(true)
       setUserName(result.username)
       setUserId(result.userId)
-      setIsOpenRecoverDialog(false)
       setIsLoading(false)
+      onClose()
     } else {
       setError(
         'privateKey',
@@ -62,8 +62,8 @@ const RecoverDialog: FunctionComponent = () => {
 
   return (
     <BaseDialog
-      showDialog={isOpenRecoverDialog}
-      onClose={handleClose}
+      showDialog={showDialog}
+      onClose={onClose}
       header='Recover'
       body={
         <form id='RecoverForm' onSubmit={handleSubmit(onSubmit)}>
@@ -106,7 +106,7 @@ const RecoverDialog: FunctionComponent = () => {
                 ${classNamesLib.buttonTransparentDark}
                 basis-full
               `}
-            onClick={handleClose}
+            onClick={() => onClose()}
           >
             Cancel
           </button>

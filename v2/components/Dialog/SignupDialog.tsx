@@ -7,7 +7,15 @@ import { signUpUser } from 'api/user'
 import SVGIcon from 'components/Icon/SVGIcon'
 import BaseDialog from './BaseDialog'
 
-const SignupDialog: FunctionComponent = () => {
+interface SignupDialogProps {
+  showDialog: boolean
+  onClose: () => void
+}
+
+const SignupDialog: FunctionComponent<SignupDialogProps> = ({
+  showDialog,
+  onClose,
+}) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const {
     setIsSignedUp,
@@ -15,8 +23,6 @@ const SignupDialog: FunctionComponent = () => {
     setUserName,
     setUserId,
     contract,
-    isOpenSignupDialog,
-    setIsOpenSignupDialog,
   } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     setIsSignedUp: state.setIsSignedUp,
@@ -24,8 +30,6 @@ const SignupDialog: FunctionComponent = () => {
     setUserName: state.setUserName,
     setUserId: state.setUserId,
     contract: state.contract,
-    isOpenSignupDialog: state.isOpenSignupDialog,
-    setIsOpenSignupDialog: state.setIsOpenSignupDialog,
   }))
 
   // HANDLE FORM SUBMIT
@@ -45,8 +49,8 @@ const SignupDialog: FunctionComponent = () => {
       setIsSignedUp(true)
       setUserName(data.username)
       setUserId(result.userId)
-      setIsOpenSignupDialog(false)
       setIsLoading(false)
+      onClose()
     } else {
       setError(
         'username',
@@ -58,14 +62,10 @@ const SignupDialog: FunctionComponent = () => {
     }
   }
 
-  const handleClose = (): void => {
-    setIsOpenSignupDialog(false)
-  }
-
   return (
     <BaseDialog
-      showDialog={isOpenSignupDialog}
-      onClose={handleClose}
+      showDialog={showDialog}
+      onClose={onClose}
       header='Signup'
       body={
         <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
@@ -108,7 +108,7 @@ const SignupDialog: FunctionComponent = () => {
               ${classNamesLib.buttonTransparentDark}
               basis-full
             `}
-            onClick={handleClose}
+            onClick={() => onClose()}
           >
             Cancel
           </button>
