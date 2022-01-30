@@ -4,6 +4,8 @@ import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
+import BottomNavigation from 'components/Navigation/BottomNavigation'
+import { MobileView } from 'react-device-detect'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
@@ -28,15 +30,18 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol1}>
-          <AsideNavigation />
-        </div>
         <div className={classNamesLib.bodyContainerCol2}>
           <div className={classNamesLib.feedWrapper}>
             {isSignedUp && <SpaceHeader />}
             {createSpaceItems}
           </div>
         </div>
+        <div className={classNamesLib.bodyContainerCol1}>
+          <AsideNavigation />
+        </div>
+        <MobileView>
+          <BottomNavigation />
+        </MobileView>
       </div>
     </>
   )

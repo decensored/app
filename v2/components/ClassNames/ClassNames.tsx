@@ -7,7 +7,6 @@ export const classNamesLib = {
   bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-5 sm:pt-10 sm:gap-x-[2%] sm:flex-row-reverse',
   bodyContainerCol1: 'flex-none w-[34px] sm:w-48',
   bodyContainerCol2: 'flex-auto px-3 overflow-hidden',
-  container: 'container mx-auto max-w-md px-3',
 
   headerWrapper: 'sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
   headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
@@ -35,7 +34,7 @@ export const classNamesLib = {
 
   dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
-  dialogInner: 'relative bg-white w-full mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
+  dialogInner: 'relative bg-white w-full mx-auto shadow-xl px-3 rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',
@@ -73,7 +72,7 @@ export const classNamesLib = {
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
   navigationBottomWrapperDark: 'dark:bg-darkmode-100 dark:divide-darkmode-1000',
-  navigationBottomInner: 'py-4 sm:py-6 flex gap-y-5',
+  navigationBottomInner: 'py-4 sm:py-6 px-3 flex gap-y-5 mx-auto max-w-md w-full',
   navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-2xl',
   navigationBottomItemColor: 'text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100',
   navigationBottomItemColorActive: 'text-purple-800 dark:text-highlight-100',
@@ -103,7 +102,6 @@ export const classNamesLib = {
   blackListTagWrapper: 'flex gap-x-1 items-center uppercase bg-highlight-100 text-gray-600 text-xs tracking-wide px-2 py-1 rounded-md',
   blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',
   blackListButton: 'hidden cursor-pointer group-hover:block text-xs bg-red-400 text-white px-2 ml-2 rounded-md',
-
 
   spaceHeaderWrapper: 'bg-gradient rounded px-5 py-7',
   spaceHeaderInner: 'flex flex-col justify-center',

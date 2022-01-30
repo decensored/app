@@ -13,7 +13,7 @@ const SpaceHeader: FunctionComponent = () => {
         <div className={classNamesLib.feedItemInner}>
           <div className='flex flex-col justify-center items-center'>
             <p className='text-3xl mb-1 text-gray-900 dark:text-gray-300'>
-              Start a new space1
+              Start a new space
             </p>
             <p className='text-md mb-4'>Build your own network</p>
             <button
