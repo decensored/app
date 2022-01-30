@@ -76,19 +76,21 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   // Create list of Replies
   let replyItems = []
   if (replies) {
-    replyItems = replies.map((post: any) => {
-      const repliesForPost = getRepliesForPost(posts, post.id)
-      return (
-        <FeedItem
-          key={post.timestamp}
-          type='reply'
-          replies={repliesForPost}
-          moderator={false}
-          parent={false}
-          {...post}
-        />
-      )
-    })
+    replyItems = replies
+      .sort((a: any, b: any) => a.timestamp - b.timestamp)
+      .map((post: any) => {
+        const repliesForPost = getRepliesForPost(posts, post.id)
+        return (
+          <FeedItem
+            key={post.timestamp}
+            type='reply'
+            replies={repliesForPost}
+            moderator={false}
+            parent={false}
+            {...post}
+          />
+        )
+      })
   }
   const repliesExist = replyItems.length > 0
 
