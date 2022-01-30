@@ -20,7 +20,7 @@ export const style = {
   formDark: 'placeholder:text-gray-900',
   formPlaceholder: 'placeholder:italic placeholder:text-gray-400',
   formPlaceholderDark: 'placeholder:dark:text-darkmode-1500',
-  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-white before:rounded-b before:absolute before:inset-0 before:empty-content before:bg-opacity-20',
+  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-white before:rounded-b before:absolute before:inset-0 before:empty before:bg-opacity-20',
   formValidationBefore: '',
   formValidationError: 'before:bg-red-500',
   formValidationText: 'text-xs',
@@ -99,8 +99,8 @@ export const style = {
 
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px] children:border-none',
 
-  feedItemWrapper: 'bg-white rounded border-l border-gray-200',
-  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200',
+  feedItemWrapper: 'bg-white rounded border-l border-gray-300',
+  feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 pt-3 border-black',
   feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
@@ -116,6 +116,10 @@ export const style = {
 
   feedReplyItemWrapper: 'rounded-none',
   feedReplyItemOffset: 'pl-7 children:rounded-none',
+  feedReplyItemBar: 'flex items-center pt-3',
+  feedReplyItemButton: 'cursor-pointer text-xs text-highlight-500',
+  feedReplyItemText: 'cursor-pointer text-xs',
+  feedReplyItemSpacer: 'mx-2 text-[10px]',
 
   blackListTagWrapper: 'flex gap-x-1 items-center uppercase bg-highlight-100 text-gray-600 text-xs tracking-wide px-2 py-1 rounded-md',
   blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',

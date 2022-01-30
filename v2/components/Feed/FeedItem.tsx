@@ -126,7 +126,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
           {message}
         </div>
-        <div className='flex pt-3'>
+        <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && (
             <>
               <button
@@ -135,7 +135,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   setRenderDialog(true)
                   setOpenReplyDialog(true)
                 }}
-                className='cursor-pointer text-xs text-highlight-500'
+                className={style.feedReplyItemButton}
               >
                 Comment
               </button>
@@ -150,15 +150,16 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
           {repliesExist && (
             <>
+              <span className={style.feedReplyItemSpacer}>|</span>
               {!openReplies && (
                 <button
                   type='button'
                   onClick={() => {
                     setOpenReplies(true)
                   }}
-                  className='cursor-pointer text-xs pl-2'
+                  className={style.feedReplyItemText}
                 >
-                  - Show {replies.length} replie(s)
+                  Show {replies.length} replie(s)
                 </button>
               )}
               {openReplies && (
@@ -167,9 +168,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   onClick={() => {
                     setOpenReplies(false)
                   }}
-                  className='cursor-pointer text-xs pl-2'
+                  className={style.feedReplyItemText}
                 >
-                  - Hide replies
+                  Hide replies
                 </button>
               )}
             </>

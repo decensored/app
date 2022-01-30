@@ -88,7 +88,7 @@ module.exports = {
     require('tailwindcss-children'),
     plugin(({addUtilities}) => {
       const newUtilities = {
-        '.empty-content': {
+        '.empty': {
           content: '""',
         },
       }
