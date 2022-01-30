@@ -6,7 +6,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'styles/globals.scss'
 import VersionCheck from 'components/BrowserOnly/VersionCheck'
 import Web3Client from 'components/BrowserOnly/Web3Client'
-import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
 import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import CalculateViewportHeight from 'components/Viewport/CalculateViewportHeight'
 import { inBrowser } from 'lib/where'
@@ -49,8 +48,6 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
     </HelmetProvider>
 
     <Component {...pageProps} />
-
-    <CreateSpaceDialog />
 
     <DarkmodeToggle />
     <CalculateViewportHeight />

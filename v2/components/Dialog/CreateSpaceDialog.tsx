@@ -8,18 +8,22 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import router from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
 
-const CreateSpaceDialog: FunctionComponent = () => {
+interface CreateSpaceDialogProps {
+  showDialog: boolean
+  onClose: () => void
+}
+
+const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
+  showDialog,
+  onClose,
+}) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const {
     contract,
-    isOpenCreateSpaceDialog,
-    setIsOpenCreateSpaceDialog,
     // spaces,
     // setSpaces,
   } = useStore((state) => ({
     contract: state.contract,
-    isOpenCreateSpaceDialog: state.isOpenCreateSpaceDialog,
-    setIsOpenCreateSpaceDialog: state.setIsOpenCreateSpaceDialog,
     // spaces: state.spaces,
     // setSpaces: state.setSpaces,
   }))
@@ -43,8 +47,8 @@ const CreateSpaceDialog: FunctionComponent = () => {
       // spaces.push(newSpace)
       // setSpaces(spaces) // let the appending of the new space new done by polling_spaces.ts for now
       setIsLoading(false)
-      setIsOpenCreateSpaceDialog(false)
       router.push(`/space/${data.name}`)
+      onClose()
     } else {
       setError(
         'name',
@@ -55,14 +59,10 @@ const CreateSpaceDialog: FunctionComponent = () => {
     }
   }
 
-  const handleClose = (): void => {
-    setIsOpenCreateSpaceDialog(false)
-  }
-
   return (
     <BaseDialog
-      showDialog={isOpenCreateSpaceDialog}
-      onClose={handleClose}
+      showDialog={showDialog}
+      onClose={onClose}
       header='Create Space'
       body={
         <form id='createSpaceForm' onSubmit={handleSubmit(onSubmit)}>
@@ -146,7 +146,7 @@ const CreateSpaceDialog: FunctionComponent = () => {
               ${classNamesLib.buttonTransparentDark}
               basis-full
             `}
-            onClick={() => setIsOpenCreateSpaceDialog(false)}
+            onClick={() => onClose()}
           >
             Cancel
           </button>
