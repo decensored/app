@@ -1,10 +1,11 @@
-import React, { FunctionComponent /* , useEffect, useState */ } from 'react'
-// import { Virtuoso } from 'react-virtuoso'
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import { Virtuoso } from 'react-virtuoso'
+import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import {
   dequeuePostsAndSpaces,
-  // getPostsWithoutMother,
+  getPostsWithoutMother,
   getRepliesForPost,
 } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
@@ -15,15 +16,15 @@ const Feed: FunctionComponent = () => {
     postsQueued: state.postsQueued,
   }))
 
-  // const [postsWithoutMother, setPostsWithoutMother] = useState([])
-  // useEffect(() => setPostsWithoutMother(posts), [posts])
+  const [postsWithoutMother, setPostsWithoutMother] = useState([] as PostType[])
+  useEffect(() => setPostsWithoutMother(getPostsWithoutMother(posts)), [posts])
 
   const showFeedItems = posts.map((post) => {
-    if (post.mother_post !== 0) return null
+    if (post.mother_post !== 0) return null // it's a reply to something
 
     return (
       <FeedItem
-        key={post.timestamp}
+        key={`post-${post.id}`}
         moderator={false}
         replies={getRepliesForPost(posts, post.id)}
         type='feed'
@@ -33,22 +34,7 @@ const Feed: FunctionComponent = () => {
     )
   })
 
-  // const Row = ({ index }) => {
-  //   console.log('Row', index)
-
-  //   const post = posts[index]
-  //   const repliesForPost = getRepliesForPost(posts, post.id)
-
-  //   return (
-  //     <FeedItem
-  //       key={cuid()}
-  //       type='feed'
-  //       moderator={false}
-  //       replies={repliesForPost}
-  //       {...post}
-  //     />
-  //   )
-  // }
+  const oldskool = false
 
   return (
     <>
@@ -69,12 +55,25 @@ const Feed: FunctionComponent = () => {
       )}
 
       <div id='posts' className={style.feedWrapper}>
-        {showFeedItems}
-        {/* <Virtuoso
-          style={{ height: '600px' }}
-          totalCount={posts.length}
-          itemContent={(index) => <Row index={index} />}
-        /> */}
+        {oldskool ? (
+          showFeedItems
+        ) : (
+          <Virtuoso
+            style={{ height: '100vh' }}
+            data={postsWithoutMother}
+            totalCount={postsWithoutMother.length}
+            itemContent={(_, post) => (
+              <FeedItem
+                key={`post-${post.id}`}
+                moderator={false}
+                replies={getRepliesForPost(posts, post.id)}
+                type='feed'
+                parent
+                {...post}
+              />
+            )}
+          />
+        )}
       </div>
     </>
   )

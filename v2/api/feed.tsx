@@ -32,11 +32,12 @@ export const getPostById = async (
     username,
     message: post.message,
     author: parseInt(post.author, 10),
-    timestamp: post.timestamp,
+    timestamp: parseInt(post.timestamp, 10),
     space: parseInt(post.space, 10),
     spaceName,
     mother_post: parseInt(post.mother_post, 10),
   }
+  // console.log(result)
   return result
 }
 

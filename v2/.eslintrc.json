@@ -34,6 +34,7 @@
     "react/jsx-max-props-per-line": [1, { "when": "multiline" }],
     "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/no-unstable-nested-components": "off",
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": ["off"],
     "jsx-a11y/tabindex-no-positive": "off",
