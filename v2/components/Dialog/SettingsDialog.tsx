@@ -89,12 +89,12 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                   >
                     <SVGIcon
                       icon='faExclamationTriangle'
-                      className='faExclamationTriangle'
+                      className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError} mr-3`}
                     />
                     <span
                       className={`${classNamesLib.formValidationText} ${classNamesLib.formValidationTextError}`}
                     >
-                      &nbsp;&nbsp;Connection failed!
+                      Connection failed!
                     </span>
                   </div>
                 )}

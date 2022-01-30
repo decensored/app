@@ -1,3 +1,7 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -73,5 +77,20 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  variants: {
+    empty: ['before', 'after'],
+  },
+  plugins: [
+    require('tailwindcss-pseudo-elements'),
+    plugin(({addUtilities}) => {
+      const newUtilities = {
+        '.empty-content': {
+          content: '""',
+        },
+      }
+      addUtilities(newUtilities, {
+        variants: ['before', 'after'],
+      })
+    })
+  ],
 }

@@ -20,8 +20,9 @@ export const classNamesLib = {
   formDark: 'placeholder:text-gray-900',
   formPlaceholder: 'placeholder:italic placeholder:text-gray-400',
   formPlaceholderDark: 'placeholder:dark:text-darkmode-1500',
-  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-opacity-20',
-  formValidationError: 'bg-red-500',
+  formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-white before:rounded-b before:absolute before:inset-0 before:empty-content before:bg-opacity-20',
+  formValidationBefore: '',
+  formValidationError: 'before:bg-red-500',
   formValidationText: 'text-xs',
   formValidationTextError: 'text-red-500',
 
