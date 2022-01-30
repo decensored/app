@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -6,8 +6,10 @@ import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
+import PostDialog from 'components/Dialog/PostDialog'
 
 const AsideNavigation: FunctionComponent = () => {
+  const [openPostDialog, setOpenPostDialog] = useState(false)
   const router = useRouter()
   const { pathname } = router
 
@@ -110,12 +112,18 @@ const AsideNavigation: FunctionComponent = () => {
                    ${classNamesLib.buttonDecensored}
                    ${classNamesLib.buttonNoXsPadding}
                   `}
+                  onClick={() => setOpenPostDialog(true)}
                 >
                   <SVGIcon icon='faPlus' isFixed/>
                   <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
                     New Post
                   </span>
                 </button>
+
+                <PostDialog
+                  showDialog={openPostDialog}
+                  onClose={() => setOpenPostDialog(false)}
+                />
               </>
             )}
           </div>
