@@ -28,6 +28,7 @@ const BottomNavigation: FunctionComponent = () => {
         ${classNamesLib.navigationBottomWrapperDark}
       `}
     >
+      <div className={classNamesLib.navigationBottomWrapperBorder} />
       <div className={classNamesLib.navigationBottomInner}>
         <Link href='/' passHref>
           <span

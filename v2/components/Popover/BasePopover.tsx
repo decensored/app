@@ -26,7 +26,10 @@ const BasePopover: FunctionComponent<PopoverProps> = ({
   })
   return(
     <Popover>
-      <Popover.Button ref={setReferenceElement}>
+      <Popover.Button
+        ref={setReferenceElement}
+        className='outline-none focus:outline-none focus:ring-0'
+      >
         {popoverButton}
       </Popover.Button>
 

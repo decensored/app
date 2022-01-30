@@ -70,9 +70,10 @@ export const classNamesLib = {
   navigationAsideSocialButton: 'text-lg sm:text-xl text-gray-900 hover:text-highlight-900',
   navigationAsideSocialButtonDark: 'dark:text-gray-300 dark:hover:text-white',
 
-  navigationBottomWrapper: 'fixed items-center left-0 right-0 bottom-0 flex gap-y-5 bg-white h-[60px] shadow-neg-lg',
+  navigationBottomWrapperBorder: 'absolute left-0 right-0 bottom-0 h-[10px] bg-highlight-900',
+  navigationBottomWrapper: 'fixed items-center left-0 right-0 bottom-0 flex bg-white h-[60px] shadow-neg-lg',
   navigationBottomWrapperDark: 'dark:bg-darkmode-500 dark:divide-darkmode-1000',
-  navigationBottomInner: 'px-3 flex gap-y-5 mx-auto max-w-xl w-full shadow-2xl',
+  navigationBottomInner: 'px-3 flex mx-auto max-w-xl w-full',
   navigationBottomItem: 'relative flex grow flex-col items-center justify-center cursor-pointer text-[15px] z-10',
   navigationBottomItemText: 'text-[10px] leading-[10px] pt-[6px] pb-[4px]',
   navigationBottomItemColor: 'text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100',
