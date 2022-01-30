@@ -40,10 +40,9 @@ const BottomNavigation: FunctionComponent = () => {
               }
             `}
           >
-            <SVGIcon icon='faSatelliteDish' />
-            <span className={classNamesLib.navigationBottomItemText}>
-              <span className='hidden sm:inline'>Feed</span>
-              {tabIndex === 1 && (
+            <span>
+              <SVGIcon icon='faSatelliteDish' />
+              {tabIndex === 0 && (
                 <motion.span
                   className={`
                     ${classNamesLib.navigationBottomMotionSpan}
@@ -59,14 +58,41 @@ const BottomNavigation: FunctionComponent = () => {
 
         {isSignedUp && (
           <>
-            <span
-              className={`${classNamesLib.navigationBottomItem}`}
+          <div className='min-w-[70px] relative'>
+            <div
+              className={`
+                ${classNamesLib.navigationBottomPostButtonBefore}
+                ${classNamesLib.navigationBottomPostButtonBeforeDark}
+              `}
             >
-              <SVGIcon
-                icon='faPlus'
-                onClick={() => setOpenPostDialog(true)}
+              <div
+                className={`
+                  ${classNamesLib.navigationBottomPostButtonBeforeInner}
+                  ${classNamesLib.navigationBottomPostButtonBeforeInnerDark}
+                `}
               />
-            </span>
+            </div>
+            <button
+              type='button'
+              className={`${classNamesLib.navigationBottomPostButton} ${classNamesLib.buttonDecensored}`}
+              onClick={() => setOpenPostDialog(true)}
+            >
+              <SVGIcon icon='faPlus' />
+            </button>
+            <div
+              className={`
+                ${classNamesLib.navigationBottomPostButtonAfter}
+                ${classNamesLib.navigationBottomPostButtonAfterDark}
+              `}
+            >
+              <div
+                className={`
+                  ${classNamesLib.navigationBottomPostButtonAfterInner}
+                  ${classNamesLib.navigationBottomPostButtonAfterInnerDark}
+                `}
+              />
+            </div>
+          </div>
             <PostDialog
               showDialog={openPostDialog}
               onClose={() => setOpenPostDialog(false)}
@@ -85,9 +111,8 @@ const BottomNavigation: FunctionComponent = () => {
               }
             `}
           >
-            <SVGIcon icon='faSatellite' />
-            <span className={classNamesLib.navigationBottomItemText}>
-              <span className='hidden sm:inline'>Spaces</span>
+            <span>
+              <SVGIcon icon='faSatellite' />
               {tabIndex === 1 && (
                 <motion.span
                   className={`

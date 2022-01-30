@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
-import { MobileView } from 'react-device-detect'
+import { BrowserView, MobileView } from 'react-device-detect'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
@@ -87,13 +87,15 @@ const Space: NextPage = () => {
             {showFeedItems}
           </div>
         </div>
-        <div className={classNamesLib.bodyContainerCol1}>
-          <AsideNavigation />
-        </div>
-        <MobileView>
-          <BottomNavigation />
-        </MobileView>
+        <BrowserView>
+          <div className={classNamesLib.bodyContainerCol1}>
+            <AsideNavigation />
+          </div>
+        </BrowserView>
       </div>
+      <MobileView>
+        <BottomNavigation />
+      </MobileView>
     </>
   )
 }

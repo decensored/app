@@ -34,7 +34,7 @@ export const classNamesLib = {
 
   dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
-  dialogInner: 'relative bg-white w-full mx-auto shadow-xl px-3 rounded bg-white divide-y divide-solid divide-gray-200',
+  dialogInner: 'relative bg-white w-full mx-auto shadow-xl mx-3 rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',
@@ -71,13 +71,23 @@ export const classNamesLib = {
   navigationAsideSocialButtonDark: 'dark:text-gray-300 dark:hover:text-white',
 
   navigationBottomWrapper: 'fixed left-0 right-0 bottom-0 flex gap-y-5 bg-white',
-  navigationBottomWrapperDark: 'dark:bg-darkmode-100 dark:divide-darkmode-1000',
-  navigationBottomInner: 'py-4 sm:py-6 px-3 flex gap-y-5 mx-auto max-w-md w-full',
-  navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-2xl',
+  navigationBottomWrapperDark: 'dark:bg-darkmode-500 dark:divide-darkmode-1000',
+  navigationBottomInner: 'pt-3 pb-5 px-3 flex gap-y-5 mx-auto max-w-xl w-full shadow-2xl',
+  navigationBottomItem: 'flex grow flex-col items-center justify-center cursor-pointer text-2xl z-10',
   navigationBottomItemColor: 'text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100',
   navigationBottomItemColorActive: 'text-purple-800 dark:text-highlight-100',
-  navigationBottomItemText: 'relative text-xs mt-2 flex flex-col min-w-[30px]',
-  navigationBottomMotionSpan: 'h-[1px] absolute -left-1 -right-1 -bottom-2',
+
+  navigationBottomPostButton: 'rounded-t-full w-[65px] h-[65px] text-2xl absolute top-1/2 -translate-y-2/4',
+  navigationBottomPostButtonBefore: 'absolute bg-highlight-900 w-[50vw] h-[20px] absolute -bottom-full left-0 -translate-x-full',
+  navigationBottomPostButtonBeforeDark: '',
+  navigationBottomPostButtonBeforeInner: 'absolute rounded-br bg-white dark:bg-darkmode-500 w-full h-[20px] -top-[15px] left-0',
+  navigationBottomPostButtonBeforeInnerDark: '',
+  navigationBottomPostButtonAfter: 'absolute bg-highlight-900 w-[50vw] h-[20px] absolute -bottom-full right-0 translate-x-full',
+  navigationBottomPostButtonAfterDark: '',
+  navigationBottomPostButtonAfterInner: 'absolute rounded-bl bg-white dark:bg-darkmode-500 w-full h-[20px] -top-[15px]',
+  navigationBottomPostButtonAfterInnerDark: '',
+
+  navigationBottomMotionSpan: 'h-[1px] absolute -left-1/2 w-[60px] -top-2',
   navigationBottomMotionSpanColor: 'bg-purple-800',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 

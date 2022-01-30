@@ -6,7 +6,7 @@ import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-play
 import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
-import { MobileView } from 'react-device-detect'
+import { BrowserView, MobileView } from 'react-device-detect'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
@@ -119,13 +119,15 @@ const Playground = () => {
             ))}
           </div>
         </div>
-        <div className={classNamesLib.bodyContainerCol1}>
-          <AsideNavigation />
-        </div>
-        <MobileView>
-          <BottomNavigation />
-        </MobileView>
+        <BrowserView>
+          <div className={classNamesLib.bodyContainerCol1}>
+            <AsideNavigation />
+          </div>
+        </BrowserView>
       </div>
+      <MobileView>
+        <BottomNavigation />
+      </MobileView>
     </>
   )
 }

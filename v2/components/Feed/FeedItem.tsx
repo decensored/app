@@ -144,10 +144,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           </div>
         </div>
       </div>
-      <PostDialog
+      {/* <PostDialog
         showDialog={openPostDialog}
         onClose={() => setOpenPostDialog(false)}
-      />
+      /> */}
     </>
   )
 }
