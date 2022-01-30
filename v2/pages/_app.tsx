@@ -7,7 +7,6 @@ import 'styles/globals.scss'
 import VersionCheck from 'components/BrowserOnly/VersionCheck'
 import Web3Client from 'components/BrowserOnly/Web3Client'
 import PostDialog from 'components/Dialog/PostDialog'
-import SettingsDialog from 'components/Dialog/SettingsDialog'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
@@ -55,7 +54,6 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
     <Component {...pageProps} />
 
     <PostDialog />
-    <SettingsDialog />
     <SignupDialog />
     <RecoverDialog />
     <CreateSpaceDialog />

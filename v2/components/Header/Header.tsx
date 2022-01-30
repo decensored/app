@@ -7,14 +7,17 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import UserPopover from 'components/Popover/UserPopover'
 // import QueueControl from 'components/QueueControl/QueueControl'
 import SettingsPopover from 'components/Popover/SettingsPopover'
+import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import useTimeout from 'hooks/useTimeout.js'
 
 const Header: FunctionComponent = () => {
-  const [setIsOpenSettingsDialog, contract] = useStore(
-    (state) => [state.setIsOpenSettingsDialog, state.contract],
+  const [contract] = useStore(
+    (state) => [state.contract],
     shallow
   )
+
+  const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
 
   const [gracePeriodDone, setGracePeriodDone] = useState(false)
   useTimeout(() => setGracePeriodDone(true), 500)
@@ -30,18 +33,22 @@ const Header: FunctionComponent = () => {
       {/* <QueueControl /> */}
 
       {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
-        <button
-          type='button'
-          onClick={() => {
-            setIsOpenSettingsDialog(true)
-          }}
-          className='absolute right-4 -bottom-5 translate-y-full'
-        >
-          <SVGIcon
-            icon='faExclamationTriangle'
-            className='animate-pulse text-red-500'
+        <>
+          <button
+            type='button'
+            onClick={() => setOpenSettingsDialog(true)}
+            className='absolute right-4 -bottom-1 translate-y-full'
+          >
+            <SVGIcon
+              icon='faExclamationTriangle'
+              className='animate-pulse text-red-500'
+            />
+          </button>
+          <SettingsDialog
+            showDialog={openSettingsDialog}
+            onClose={() => setOpenSettingsDialog(false)}
           />
-        </button>
+        </>
       )}
 
       <div className={classNamesLib.headerInner}>

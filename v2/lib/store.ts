@@ -73,10 +73,6 @@ const useStore = create(
       setIsOpenPostDialog: (isOpenPostDialog: boolean) =>
         set({ isOpenPostDialog }),
 
-      isOpenSettingsDialog: false,
-      setIsOpenSettingsDialog: (isOpenSettingsDialog: boolean) =>
-        set({ isOpenSettingsDialog }),
-
       isOpenSignupDialog: false,
       setIsOpenSignupDialog: (isOpenSignupDialog: boolean) =>
         set({ isOpenSignupDialog }),

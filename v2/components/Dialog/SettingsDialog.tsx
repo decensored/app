@@ -6,19 +6,23 @@ import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import BaseDialog from 'components/Dialog/BaseDialog'
 
-const SettingsDialog: FunctionComponent = () => {
+interface SettingsDialogProps {
+  showDialog: boolean
+  onClose: () => void
+}
+
+const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
+  showDialog,
+  onClose,
+}) => {
   const {
     contract,
     nodeInfo,
     setNodeInfo,
-    isOpenSettingsDialog,
-    setIsOpenSettingsDialog,
   } = useStore((state) => ({
     contract: state.contract,
     nodeInfo: state.nodeInfo,
     setNodeInfo: state.setNodeInfo,
-    isOpenSettingsDialog: state.isOpenSettingsDialog,
-    setIsOpenSettingsDialog: state.setIsOpenSettingsDialog,
   }))
 
   // HANDLE FORM SUBMIT
@@ -38,17 +42,13 @@ const SettingsDialog: FunctionComponent = () => {
       evmNode: data.evmNode,
       contractPostsAddress: data.contractAddress,
     })
-    setIsOpenSettingsDialog(false)
-  }
-
-  const handleClose = (): void => {
-    setIsOpenSettingsDialog(false)
+    onClose()
   }
 
   return (
     <BaseDialog
-      showDialog={isOpenSettingsDialog}
-      onClose={handleClose}
+      showDialog={showDialog}
+      onClose={onClose}
       header='Node Settings'
       body={
         <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
@@ -161,7 +161,7 @@ const SettingsDialog: FunctionComponent = () => {
             ${classNamesLib.buttonTransparentDark}
             basis-full
           `}
-            onClick={() => setIsOpenSettingsDialog(false)}
+            onClick={() => onClose()}
           >
             Cancel
           </button>
