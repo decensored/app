@@ -146,4 +146,6 @@ export const style = {
   switchDark: 'rounded-full dark:bg-darkmode-600',
   switchInner: 'rounded-full text-gray-900 w-[19px] h-[19px] flex justify-center items-center',
   switchInnerDark: 'dark:text-white',
+
+  loadingWrapper: 'fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-slate-100 flex flex-col items-center justify-center'
 }
