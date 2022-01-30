@@ -69,10 +69,6 @@ const useStore = create(
       },
 
       // Dialogs
-      isOpenPostDialog: false,
-      setIsOpenPostDialog: (isOpenPostDialog: boolean) =>
-        set({ isOpenPostDialog }),
-
       isOpenCreateSpaceDialog: false,
       setIsOpenCreateSpaceDialog: (isOpenCreateSpaceDialog: boolean) =>
         set({ isOpenCreateSpaceDialog }),
