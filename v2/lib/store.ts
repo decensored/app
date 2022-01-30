@@ -67,11 +67,6 @@ const useStore = create(
           latestSpaceIndexFetched: 0,
         })
       },
-
-      // Dialogs
-      isOpenSpaceSettingsDialog: false,
-      setIsOpenSpaceSettingsDialog: (isOpenSpaceSettingsDialog: boolean) =>
-        set({ isOpenSpaceSettingsDialog }),
     }),
     {
       name: 'decensored',

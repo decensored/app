@@ -35,7 +35,7 @@ export const classNamesLib = {
 
   dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
-  dialogInner: 'relative bg-white w-full max-w-sm mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
+  dialogInner: 'relative bg-white w-full mx-auto shadow-xl rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',

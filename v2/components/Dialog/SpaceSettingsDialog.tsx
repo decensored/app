@@ -6,29 +6,27 @@ import { removeUserFromBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 
-interface SpaceSettingsProbs {
+interface SpaceSettingsDialogProbs {
   space: number
   name: string
   blacklistedUsers: any
   setBlacklist: any
+  showDialog: boolean
+  onClose: () => void
 }
 
-const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
+const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
   space,
   name,
   blacklistedUsers,
   setBlacklist,
+  showDialog,
+  onClose,
 }) => {
-  const { contract, isOpenSpaceSettingsDialog, setIsOpenSpaceSettingsDialog } =
+  const { contract } =
     useStore((state) => ({
       contract: state.contract,
-      isOpenSpaceSettingsDialog: state.isOpenSpaceSettingsDialog,
-      setIsOpenSpaceSettingsDialog: state.setIsOpenSpaceSettingsDialog,
     }))
-
-  const handleClose = (): void => {
-    setIsOpenSpaceSettingsDialog(false)
-  }
 
   // Remove user from blacklist on SC and change array
   const setRemoveUserFromBlacklist = async (userId: number): Promise<void> => {
@@ -64,8 +62,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
 
   return (
     <BaseDialog
-      showDialog={isOpenSpaceSettingsDialog}
-      onClose={handleClose}
+      showDialog={showDialog}
+      onClose={onClose}
       header='Space Settings'
       body={
         <form id='spaceSettingsForm'>
@@ -120,12 +118,12 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
           <button
             type='button'
             className={`
-            ${classNamesLib.button}
-            ${classNamesLib.buttonTransparent}
-            ${classNamesLib.buttonTransparentDark}
-            basis-full
-          `}
-            onClick={() => setIsOpenSpaceSettingsDialog(false)}
+              ${classNamesLib.button}
+              ${classNamesLib.buttonTransparent}
+              ${classNamesLib.buttonTransparentDark}
+              basis-full
+            `}
+            onClick={() => onClose()}
           >
             Cancel
           </button>
@@ -133,7 +131,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsProbs> = ({
             type='submit'
             form='spaceSettingsForm'
             className={`${classNamesLib.button} ${classNamesLib.buttonDecensored} basis-full`}
-            onClick={() => setIsOpenSpaceSettingsDialog(false)}
+            onClick={() => onClose()}
           >
             Save
           </button>

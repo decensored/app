@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Header from 'components/Header/Header'
@@ -20,6 +20,7 @@ import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
 import cuid from 'cuid'
 
 const Space: NextPage = () => {
+  const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
   const router = useRouter()
   const { name } = router.query
 
@@ -30,14 +31,12 @@ const Space: NextPage = () => {
     isSignedUp,
     currentUserId,
     contract,
-    setIsOpenSpaceSettingsDialog,
   } = useStore((state) => ({
     spaces: state.spaces,
     posts: state.posts,
     isSignedUp: state.isSignedUp,
     currentUserId: state.userId,
     contract: state.contract,
-    setIsOpenSpaceSettingsDialog: state.setIsOpenSpaceSettingsDialog,
   }))
 
   const [spaceOwner, setSpaceOwner] = React.useState(false)
@@ -136,18 +135,18 @@ const Space: NextPage = () => {
                 <div className={classNamesLib.spaceHeaderInner}>
                   {spaceOwner && (
                     <>
+                      <SVGIcon
+                        icon='faCog'
+                        className='top-0 left-0 text-white cursor-pointer'
+                        onClick={() => setOpenSpaceSettingsDialog(true)}
+                      />
                       <SpaceSettingsDialog
                         space={space.id}
                         name={space.name}
                         blacklistedUsers={blackListArray}
                         setBlacklist={setBlackListArray}
-                      />
-                      <SVGIcon
-                        icon='faCog'
-                        className='top-0 left-0 text-white cursor-pointer'
-                        onClick={() => {
-                          setIsOpenSpaceSettingsDialog(true)
-                        }}
+                        showDialog={openSpaceSettingsDialog}
+                        onClose={() => setOpenSpaceSettingsDialog(false)}
                       />
                     </>
                   )}
