@@ -40,33 +40,34 @@ const BottomNavigation: FunctionComponent = () => {
               }
             `}
           >
-            <span>
-              <SVGIcon icon='faSatelliteDish' />
-              {tabIndex === 0 && (
-                <motion.span
-                  className={`
-                    ${classNamesLib.navigationBottomMotionSpan}
-                    ${classNamesLib.navigationBottomMotionSpanColor}
-                    ${classNamesLib.navigationBottomMotionSpanColorDark}
-                  `}
-                  layoutId='activeTab'
-                />
-              )}
-            </span>
+            <SVGIcon icon='faSatelliteDish' />
+            <span className={classNamesLib.navigationBottomItemText}>Feed</span>
+            {tabIndex === 0 && (
+              <motion.span
+                className={`
+                  ${classNamesLib.navigationBottomMotionSpan}
+                  ${classNamesLib.navigationBottomMotionSpanColor}
+                  ${classNamesLib.navigationBottomMotionSpanColorDark}
+                `}
+                layoutId='activeTab'
+              />
+            )}
           </span>
         </Link>
 
-        {isSignedUp && (
-          <>
-          <div className='min-w-[70px] relative'>
+        {/* {isSignedUp && ( */}
+          {/* <> */}
+          <div className={classNamesLib.navigationBottomPostButtonWrapper}>
             <div
               className={`
+                ${classNamesLib.navigationBottomPostButtonPseudo}
                 ${classNamesLib.navigationBottomPostButtonBefore}
                 ${classNamesLib.navigationBottomPostButtonBeforeDark}
               `}
             >
               <div
                 className={`
+                  ${classNamesLib.navigationBottomPostButtonPseudoInner}
                   ${classNamesLib.navigationBottomPostButtonBeforeInner}
                   ${classNamesLib.navigationBottomPostButtonBeforeInnerDark}
                 `}
@@ -81,12 +82,14 @@ const BottomNavigation: FunctionComponent = () => {
             </button>
             <div
               className={`
+                ${classNamesLib.navigationBottomPostButtonPseudo}
                 ${classNamesLib.navigationBottomPostButtonAfter}
                 ${classNamesLib.navigationBottomPostButtonAfterDark}
               `}
             >
               <div
                 className={`
+                  ${classNamesLib.navigationBottomPostButtonPseudoInner}
                   ${classNamesLib.navigationBottomPostButtonAfterInner}
                   ${classNamesLib.navigationBottomPostButtonAfterInnerDark}
                 `}
@@ -97,8 +100,8 @@ const BottomNavigation: FunctionComponent = () => {
               showDialog={openPostDialog}
               onClose={() => setOpenPostDialog(false)}
             />
-          </>
-        )}
+          {/* </> */}
+        {/* )} */}
 
         <Link href='/spaces' passHref>
           <span
@@ -111,19 +114,18 @@ const BottomNavigation: FunctionComponent = () => {
               }
             `}
           >
-            <span>
-              <SVGIcon icon='faSatellite' />
-              {tabIndex === 1 && (
-                <motion.span
-                  className={`
-                    ${classNamesLib.navigationBottomMotionSpan}
-                    ${classNamesLib.navigationBottomMotionSpanColor}
-                    ${classNamesLib.navigationBottomMotionSpanColorDark}
-                  `}
-                  layoutId='activeTab'
-                />
-              )}
-            </span>
+            <SVGIcon icon='faSatellite' />
+            <span className={classNamesLib.navigationBottomItemText}>Spaces</span>
+            {tabIndex === 1 && (
+              <motion.span
+                className={`
+                  ${classNamesLib.navigationBottomMotionSpan}
+                  ${classNamesLib.navigationBottomMotionSpanColor}
+                  ${classNamesLib.navigationBottomMotionSpanColorDark}
+                `}
+                layoutId='activeTab'
+              />
+            )}
           </span>
         </Link>
       </div>
