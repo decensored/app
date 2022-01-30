@@ -38,6 +38,7 @@
     "@typescript-eslint/no-explicit-any": ["off"],
     "jsx-a11y/tabindex-no-positive": "off",
     "import/no-unresolved": ["off"],
+    "no-console": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

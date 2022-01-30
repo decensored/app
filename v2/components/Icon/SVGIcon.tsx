@@ -1,4 +1,3 @@
-/* prettier-ignore */
 import React, { FunctionComponent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -38,6 +37,33 @@ interface SVGIconProps {
   onClick?: () => void
 }
 
+const iconLookup: { [unit: string]: IconProp } = {
+  'faBookmark': faBookmark,
+  'faCircle': faCircle,
+  'faCog': faCog,
+  'faComment': faComment,
+  'faExclamationTriangle': faExclamationTriangle,
+  'faHeart': faHeart,
+  'faMinusSquare': faMinusSquare,
+  'faMoon': faMoon,
+  'faPlus': faPlus,
+  'faRedoAlt': faRedoAlt,
+  'faSatellite': faSatellite,
+  'faSatelliteDish': faSatelliteDish,
+  'faShare': faShare,
+  'faShieldAlt': faShieldAlt,
+  'faSignOutAlt': faSignOutAlt,
+  'faSpinner': faSpinner,
+  'faSun': faSun,
+  'faTimes': faTimes,
+  'faUser': faUser,
+  'faUserAstronaut': faUserAstronaut,
+  'faUserPlus': faUserPlus,
+  'faDiscord': faDiscord,
+  'faGithub': faGithub,
+  'faTwitter': faTwitter
+}
+
 const SVGIcon: FunctionComponent<SVGIconProps> = ({
   icon,
   className,
@@ -45,32 +71,9 @@ const SVGIcon: FunctionComponent<SVGIconProps> = ({
   onClick,
 }) => {
   const setIcon = (): IconProp => {
-    if (icon === 'faBookmark') { return faBookmark}
-    if (icon === 'faCircle') { return faCircle}
-    if (icon === 'faCog') { return faCog}
-    if (icon === 'faComment') { return faComment}
-    if (icon === 'faExclamationTriangle') { return faExclamationTriangle}
-    if (icon === 'faHeart') { return faHeart}
-    if (icon === 'faMinusSquare') { return faMinusSquare}
-    if (icon === 'faMoon') { return faMoon}
-    if (icon === 'faPlus') { return faPlus}
-    if (icon === 'faRedoAlt') { return faRedoAlt}
-    if (icon === 'faSatellite') { return faSatellite}
-    if (icon === 'faSatelliteDish') { return faSatelliteDish}
-    if (icon === 'faShare') { return faShare}
-    if (icon === 'faShieldAlt') { return faShieldAlt}
-    if (icon === 'faSignOutAlt') { return faSignOutAlt}
-    if (icon === 'faSpinner') { return faSpinner}
-    if (icon === 'faSun') { return faSun}
-    if (icon === 'faTimes') { return faTimes}
-    if (icon === 'faUser') { return faUser}
-    if (icon === 'faUserAstronaut') { return faUserAstronaut}
-    if (icon === 'faUserPlus') { return faUserPlus}
-    if (icon === 'faDiscord') { return faDiscord }
-    if (icon === 'faGithub') { return faGithub }
-    if (icon === 'faTwitter') { return faTwitter }
-
-    return faCircle
+    const getIcon = iconLookup[icon]
+    if (!getIcon) console.warn(`${icon} undefined`)
+    return getIcon
   }
 
   return (
