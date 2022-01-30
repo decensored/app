@@ -25,7 +25,7 @@ export const classNamesLib = {
   formValidationText: 'text-xs',
   formValidationTextError: 'text-red-500',
 
-  button: 'font-medium px-4 rounded whitespace-nowrap cursor-pointer h-[40px]',
+  button: 'font-medium px-4 rounded whitespace-nowrap cursor-pointer h-[40px] focus:outline-none',
   buttonNoXsPadding: 'px-0 sm:px-4',
   buttonDecensored: 'bg-highlight-900 hover:bg-purple-800 text-white',
   buttonDecensoredHeader: 'bg-purple-500 hover:bg-purple-700 text-white',

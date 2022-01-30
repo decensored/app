@@ -4,6 +4,8 @@ import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { isMobile } from 'react-device-detect'
+import Link from 'next/link'
 import BasePopover from 'components/Popover/BasePopover'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
@@ -53,15 +55,28 @@ const UserPopover: FunctionComponent = () => {
             </div>
           )}
           <div className={`${classNamesLib.popoverBody}`}>
-            {isSignedUp && (
+            {/* {isSignedUp && (
               <button
                 type='button'
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
-                <SVGIcon icon='faUser' />
+                <SVGIcon icon='faUser'isFixed />
                 <span>Profile</span>
               </button>
+            )} */}
+
+            {isSignedUp && isMobile && (
+              <Link href={`/user/${userName}`} passHref>
+                <button
+                  type='button'
+                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                >
+                  <SVGIcon icon='faUserAstronaut'isFixed />
+                  <span>My Posts</span>
+                </button>
+              </Link>
             )}
+
             {!isSignedUp && (
               <>
                 <button
@@ -77,18 +92,19 @@ const UserPopover: FunctionComponent = () => {
                   onClick={() => setOpenRecoverDialog(true)}
                   className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
                 >
-                  <SVGIcon icon='faRedoAlt' />
+                  <SVGIcon icon='faRedoAlt' isFixed />
                   <span>Recover account</span>
                 </button>
               </>
             )}
+
             {isSignedUp && (
               <button
                 onClick={setIsSignedUpWithToast}
                 type='button'
                 className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
               >
-                <SVGIcon icon='faSignOutAlt' />
+                <SVGIcon icon='faSignOutAlt' isFixed />
                 Logout
               </button>
             )}

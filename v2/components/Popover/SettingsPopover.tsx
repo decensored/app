@@ -4,6 +4,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
+import { isMobile } from 'react-device-detect'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import BasePopover from './BasePopover'
 
@@ -14,6 +15,19 @@ const SettingsPopover: FunctionComponent = () => {
   )
 
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
+
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [
+    state.isDarkmode,
+    state.setIsDarkmode,
+  ])
+
+  const toggleDarkMode = (): void => {
+    if (isDarkmode) {
+      setIsDarkmode(false)
+    } else {
+      setIsDarkmode(true)
+    }
+  }
 
   return (
     <>
@@ -42,6 +56,27 @@ const SettingsPopover: FunctionComponent = () => {
                   />
                 )}
               </button>
+
+              {isMobile && (
+                <button
+                  type='button'
+                  onClick={toggleDarkMode}
+                  className={`${classNamesLib.popoverBodyButton} ${classNamesLib.popoverBodyButtonDark}`}
+                >
+                  {isDarkmode && (
+                    <>
+                      <SVGIcon icon='faSun' isFixed />
+                      <span>Lightmode</span>
+                    </>
+                  )}
+                  {!isDarkmode && (
+                    <>
+                      <SVGIcon icon='faMoon' isFixed />
+                      <span>Darkmode</span>
+                    </>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         }
