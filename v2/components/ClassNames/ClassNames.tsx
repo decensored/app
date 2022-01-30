@@ -4,9 +4,9 @@ export const classNamesLib = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
-  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-5 sm:pt-10 sm:gap-x-[2%]',
+  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-5 sm:pt-10 sm:gap-x-[2%] sm:flex-row-reverse',
   bodyContainerCol1: 'flex-none w-[34px] sm:w-48',
-  bodyContainerCol2: 'flex-auto px-3',
+  bodyContainerCol2: 'flex-auto px-3 overflow-hidden',
   container: 'container mx-auto max-w-md px-3',
 
   headerWrapper: 'sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',

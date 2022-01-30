@@ -6,7 +6,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 
-const Bottombar: FunctionComponent = () => {
+const BottomNavigation: FunctionComponent = () => {
   const router = useRouter()
   const { pathname } = router
 
@@ -119,4 +119,4 @@ const Bottombar: FunctionComponent = () => {
   )
 }
 
-export default Bottombar
+export default BottomNavigation

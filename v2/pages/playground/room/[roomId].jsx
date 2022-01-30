@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
+import BottomNavigation from 'components/Navigation/BottomNavigation'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
+import { MobileView } from 'react-device-detect'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
@@ -54,9 +56,6 @@ const Playground = () => {
     <>
       <Header />
       <div className={classNamesLib.bodyContainer}>
-        <div className={classNamesLib.bodyContainerCol1}>
-          <AsideNavigation />
-        </div>
         <div className={classNamesLib.bodyContainerCol2}>
           <div className={classNamesLib.feedWrapper}>
             <div
@@ -120,6 +119,12 @@ const Playground = () => {
             ))}
           </div>
         </div>
+        <div className={classNamesLib.bodyContainerCol1}>
+          <AsideNavigation />
+        </div>
+        <MobileView>
+          <BottomNavigation />
+        </MobileView>
       </div>
     </>
   )
