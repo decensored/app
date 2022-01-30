@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
-import { dequeuePostsAndSpaces } from 'lib/storeUtils'
+import { dequeuePostsAndSpaces, getRepliesForPost } from 'lib/storeUtils'
 import cuid from 'cuid'
 import FeedItem from './FeedItem'
 
@@ -10,12 +10,25 @@ const Feed: FunctionComponent = () => {
     posts: state.posts,
     postsQueued: state.postsQueued,
   }))
-  // console.log(`${posts.length} posts`)
 
-  const showFeedItems = posts.map((post) => (
-    <FeedItem key={cuid()} type='feed' moderator={false} {...post} />
-  ))
-
+  let showFeedItems
+  if (posts.length > 0) {
+    showFeedItems = posts.map((post) => {
+      const repliesForPost = getRepliesForPost(posts, post.id)
+      if (post.mother_post === 0) {
+        return (
+          <FeedItem
+            key={cuid()}
+            type='feed'
+            moderator={false}
+            replies={repliesForPost}
+            {...post}
+          />
+        )
+      }
+      return null
+    })
+  }
   return (
     <>
       {postsQueued.length > 0 && (

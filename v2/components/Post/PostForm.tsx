@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { createPost } from 'api/feed'
+import { createPost, createReply } from 'api/feed'
 import SVGIcon from 'components/Icon/SVGIcon'
 import TextareaAutosize from 'react-textarea-autosize'
 // import { dequeuePostsAndSpaces } from 'lib/storeUtils'
@@ -10,14 +10,17 @@ import TextareaAutosize from 'react-textarea-autosize'
 
 interface FormProps {
   spaceId: number
+  motherPost?: number
 }
 
-const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
+const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
     userName: state.userName,
     contract: state.contract,
   }))
+
+  console.log(motherPost)
 
   // HANDLE FORM SUBMIT
   type FormValues = {
@@ -26,20 +29,39 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
 
   const { register, setValue, handleSubmit } = useForm<FormValues>()
 
+  // Send post on CMD + Enter
+  /*   React.useEffect(() => {
+    const listener = (event: { code: string; metaKey: any }) => {
+      if (event.code === 'Enter' && event.metaKey) {
+        alert('Enter key was pressed. Run your function.')
+        onSubmit
+      }
+    }
+    document.addEventListener('keydown', listener)
+    return () => {
+      document.removeEventListener('keydown', listener)
+    }
+  }, []) */
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const { message } = data
-    setValue('message', '') // clear out entry field
 
+    setValue('message', '') // clear out entry field
     setIsLoading(true)
 
-    createPost(contract, spaceId, message).then(() => {
-      // TODO: Push Post into posts array which will be earmarked and deleted once a message by me gets polled
-      // poll() // XXX don't do this because we don't know when the message is available afteer createPost
-      setTimeout(() => {
-        // dequeuePostsAndSpaces() // XXX this will become automatic during polling when a meesage by me arrives
-        setIsLoading(false) // XXX we could detect 'loading' as long as an earmarked message exists
-      }, 2 * 1000)
-    })
+    if (motherPost === 0 || !motherPost) {
+      createPost(contract, spaceId, message).then(() => {
+        // TODO: Push Post into posts array which will be earmarked and deleted once a message by me gets polled
+        // poll() // XXX don't do this because we don't know when the message is available afteer createPost
+        setTimeout(() => {
+          // dequeuePostsAndSpaces() // XXX this will become automatic during polling when a meesage by me arrives
+          setIsLoading(false) // XXX we could detect 'loading' as long as an earmarked message exists
+        }, 2 * 1000)
+      })
+    } else {
+      await createReply(contract, motherPost, message)
+      setIsLoading(false)
+    }
   }
 
   const buttonClasses = {
@@ -95,10 +117,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId }) => {
             <span className='whitespace-nowrap'>
               Spread it{' '}
               {isLoading && (
-                <SVGIcon
-                  icon='faSpinner'
-                  className='ml-2 animate-spin'
-                />
+                <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />
               )}
             </span>
           </button>

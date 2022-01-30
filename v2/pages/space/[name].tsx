@@ -9,47 +9,45 @@ import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import {
   getPostsInSpace,
+  getRepliesForPost,
   getSpaceById,
   getSpaceIdByName,
   nodeIsUpAndRunning,
 } from 'lib/storeUtils'
-import type { BlackListType, PostType, SpaceType } from 'lib/types'
+import type { PostType, SpaceType, UserType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import PostForm from 'components/Post/PostForm'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
 import cuid from 'cuid'
+import UserDialog from 'components/Dialog/UserDialog'
 
 const Space: NextPage = () => {
-  const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
   const router = useRouter()
   const { name } = router.query
 
   // State Management
-  const {
-    spaces,
-    posts,
-    isSignedUp,
-    currentUserId,
-    contract,
-  } = useStore((state) => ({
-    spaces: state.spaces,
-    posts: state.posts,
-    isSignedUp: state.isSignedUp,
-    currentUserId: state.userId,
-    contract: state.contract,
-  }))
+  const { spaces, posts, isSignedUp, currentUserId, contract } = useStore(
+    (state) => ({
+      spaces: state.spaces,
+      posts: state.posts,
+      isSignedUp: state.isSignedUp,
+      currentUserId: state.userId,
+      contract: state.contract,
+    })
+  )
 
+  const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
+  const [openUserDialog, setOpenUserDialog] = useState(false)
   const [spaceOwner, setSpaceOwner] = React.useState(false)
   const [space, setSpace] = React.useState<SpaceType>()
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
   const [nrOfPosts, setNrOfPosts] = React.useState(0)
   const [nrOfUSers, setNrOfUsers] = React.useState(0)
+  const [userArray, setUserArray] = React.useState<UserType[]>([])
   const [userIsBlacklisted, setUserIsBlacklisted] = React.useState(false)
-  const [blackListArray, setBlackListArray] = React.useState<BlackListType[]>(
-    []
-  )
+  const [blackListArray, setBlackListArray] = React.useState<UserType[]>([])
 
   /*   setBlackListArray([]) */
 
@@ -71,13 +69,6 @@ const Space: NextPage = () => {
       setSpaceOwner(true)
     }
 
-    const uniqueUserIds = [
-      ...new Map(
-        postsForSpace.map((post) => [post.username, post.author])
-      ).values(),
-    ]
-    setNrOfUsers(uniqueUserIds.length)
-
     // Get unqique users with post in space
     const uniqueUsers = [
       ...new Map(
@@ -87,6 +78,8 @@ const Space: NextPage = () => {
         ])
       ).values(),
     ]
+    setNrOfUsers(uniqueUsers.length)
+    setUserArray(uniqueUsers)
 
     // Create an array of blacklisted users for the moderator
     const newBlacklist: { userId: number; username: string }[] = []
@@ -111,16 +104,22 @@ const Space: NextPage = () => {
   const showFeedItems = spacePosts.map((post) => {
     const userBlacklisted =
       blackListArray.filter((user) => user.userId === post.author).length > 0
-    return (
-      <FeedItem
-        key={cuid()}
-        type='space'
-        moderator={spaceOwner}
-        blacklist={blackListArray}
-        userBlacklisted={userBlacklisted}
-        {...post}
-      />
-    )
+    // Get Replies for Post
+    const repliesForPost = getRepliesForPost(posts, post.id)
+    if (post.mother_post === 0) {
+      return (
+        <FeedItem
+          key={cuid()}
+          type='feed'
+          moderator={spaceOwner}
+          blacklist={blackListArray}
+          userBlacklisted={userBlacklisted}
+          replies={repliesForPost}
+          {...post}
+        />
+      )
+    }
+    return null
   })
 
   return (
@@ -162,12 +161,23 @@ const Space: NextPage = () => {
                       </span>
                     </div>
                     <div className={classNamesLib.spaceHeaderColWrapper}>
-                      <span className={classNamesLib.spaceHeaderColTitle}>
+                      <button
+                        type='button'
+                        onClick={() => {
+                          setOpenUserDialog(true)
+                        }}
+                        className={classNamesLib.spaceHeaderColTitle}
+                      >
                         {nrOfUSers}
-                      </span>
+                      </button>
                       <span className={classNamesLib.spaceHeaderColText}>
                         Followers
                       </span>
+                      <UserDialog
+                        users={userArray}
+                        showDialog={openUserDialog}
+                        onClose={() => setOpenUserDialog(false)}
+                      />
                     </div>
                   </div>
                 </div>

@@ -23,6 +23,11 @@ export const getPostsForUser = (
   username: string
 ): PostType[] => posts.filter((post) => post.username === username)
 
+export const getRepliesForPost = (
+  posts: PostType[],
+  postId: number
+): PostType[] => posts.filter((post) => post.mother_post === postId)
+
 // SPACES
 export const getSpaceIdByName = (
   spaces: SpaceType[],

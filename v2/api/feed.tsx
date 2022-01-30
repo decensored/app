@@ -31,11 +31,11 @@ export const getPostById = async (
     id: postId,
     username,
     message: post.message,
-    author: post.author,
+    author: parseInt(post.author, 10),
     timestamp: post.timestamp,
-    space: parseInt(post.space),
+    space: parseInt(post.space, 10),
     spaceName,
-    mother_post: post.mother_post,
+    mother_post: parseInt(post.mother_post, 10),
   }
   return result
 }
@@ -87,48 +87,22 @@ export const getAllPostsForSpace = async (
   return posts
 }
 
-/*
-  const createSpace = (data) =>
-      new Promise((resolve, reject) => {
-          if (!data.name || !data.description) {
-              reject(new Error('Not all information provided'));
-          }
-   
-          const id = uuidv4();
-          const newSpace = { id, ...data };
-   
-          spaces = { ...spaces, [id]: newSpace };
-   
-          setTimeout(() => resolve(true), 250);
-      });
-   
-  const updateSpace = (id, data) =>
-      new Promise((resolve, reject) => {
-          if (!spaces[id]) {
-              return setTimeout(
-                  () => reject(new Error('Spae not found')),
-                  250
-              );
-          }
-   
-          spaces[id] = { ...spaces[id], ...data };
-   
-          return setTimeout(() => resolve(true), 250);
-      });
-   
-  const deleteSpace = (id) =>
-      new Promise((resolve, reject) => {
-          const { [id]: space, ...rest } = spaces;
-   
-          if (!space) {
-              return setTimeout(
-                  () => reject(new Error('Space not found')),
-                  250
-              );
-          }
-   
-          spaces = { ...rest };
-   
-          return setTimeout(() => resolve(true), 250);
-      });
-  */
+// Replies
+export const createReply = async (
+  contract: any,
+  mother_post: number,
+  message: string
+): Promise<PostType[]> =>
+  // log(`createPostForSpace ${spaceId}`)
+  await executeContractFunction(
+    contract.web3,
+    contract.posts.methods.submit_reply(mother_post, message)
+  )
+
+/* export const getRepliesByPost = async (
+  contract: any,
+  postId: number
+): Promise<number> => {
+  return await contract.posts.methods.replies_by_post(postId).call()
+}
+ */

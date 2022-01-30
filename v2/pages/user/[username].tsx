@@ -7,7 +7,11 @@ import BottomNavigation from 'components/Navigation/BottomNavigation'
 import { BrowserView, MobileView } from 'react-device-detect'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
+import {
+  getPostsForUser,
+  getRepliesForPost,
+  nodeIsUpAndRunning,
+} from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { classNamesLib } from 'components/ClassNames/ClassNames'
 import cuid from 'cuid'
@@ -41,9 +45,15 @@ const Space: NextPage = () => {
     } */
   }, [contract, username, posts, currentUserId])
 
-  const showFeedItems = userPosts.map((post) => (
-    <FeedItem key={cuid()} type='feed' {...post} />
-  ))
+  const showFeedItems = userPosts.map((post) => {
+    const repliesForPost = getRepliesForPost(posts, post.id)
+    if (post.mother_post === 0) {
+      return (
+        <FeedItem key={cuid()} type='feed' replies={repliesForPost} {...post} />
+      )
+    }
+    return null
+  })
 
   return (
     <>

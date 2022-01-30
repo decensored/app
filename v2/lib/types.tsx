@@ -24,7 +24,7 @@ export type SpaceType = {
   img: string
 }
 
-export type BlackListType = {
+export type UserType = {
   userId: number
   username: string
 }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import useStore from 'lib/store'
@@ -7,9 +7,12 @@ import { classNamesLib } from 'components/ClassNames/ClassNames'
 import TimeAgo from 'react-timeago'
 import { addUserToBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
-import PostDialog from 'components/Dialog/PostDialog'
+import ReplyDialog from 'components/Dialog/ReplyDialog'
+import FeedItemReply from 'components/Feed/FeedItemReply'
+import { getRepliesForPost } from 'lib/storeUtils'
 
 interface FeedItemProps {
+  id: number
   author: number
   username: string
   message: string
@@ -20,9 +23,11 @@ interface FeedItemProps {
   moderator?: boolean
   blacklist?: any
   userBlacklisted?: boolean
+  replies?: any
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
+  id,
   author,
   username,
   message,
@@ -33,11 +38,14 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   moderator,
   blacklist,
   userBlacklisted,
+  replies,
 }) => {
-  const [openPostDialog, setOpenPostDialog] = useState(false)
+  const [renderDialog, setRenderDialog] = React.useState(false)
+  const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
+  const [openReplies, setOpenReplies] = React.useState(true)
   const [isLoading, setIsLoading] = React.useState(false)
-  const [contract, userId] = useStore(
-    (state) => [state.contract, state.userId],
+  const [contract, userId, posts] = useStore(
+    (state) => [state.contract, state.userId, state.posts],
     shallow
   )
 
@@ -62,76 +70,152 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       setIsLoading(false)
     }
   }
-
   const showBlackListLabel = !userBlacklisted && author !== userId
 
+  // Create list of Replies
+  let replyItems = []
+  if (replies) {
+    replyItems = replies.map((post: any) => {
+      const repliesForPost = getRepliesForPost(posts, post.id)
+      return (
+        <FeedItemReply
+          key={post.timestamp}
+          type='reply'
+          replies={repliesForPost}
+          moderator={false}
+          {...post}
+        />
+      )
+    })
+  }
+  const repliesExist = replyItems.length > 0
+
+  const thisPost = {
+    id,
+    author,
+    username,
+    message,
+    timestamp,
+    space,
+    spaceName,
+  }
+
   return (
-    <>
-      <div
-        className={`${classNamesLib.feedItemWrapper} ${
-          classNamesLib.feedItemWrapperDark
-        } ${userBlacklisted && `hidden`}`}
-      >
-        <div className={classNamesLib.feedItemInnerTop}>
-          <div className={classNamesLib.feedItemMetaWrapper}>
-            <Link href={`/user/${username}`} passHref>
-              <a
-                href='dummy-href'
-                className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
-              >
-                {username}
-              </a>
-            </Link>
-            <div className={classNamesLib.feedItemMetaTimestamp}>
-              <TimeAgo date={new Date(timestamp * 1000)} />
-            </div>
-          </div>
-          <div
-            className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
-          >
-            {message}
+    <div
+      className={`${classNamesLib.feedItemWrapper} ${
+        classNamesLib.feedItemWrapperDark
+      } ${userBlacklisted && `hidden`}`}
+    >
+      <div className={classNamesLib.feedItemInnerTop}>
+        <div className={classNamesLib.feedItemMetaWrapper}>
+          <Link href={`/user/${username}`} passHref>
+            <a
+              href='dummy-href'
+              className={`${classNamesLib.feedItemMetaName} ${classNamesLib.feedItemMetaNameDark}`}
+            >
+              {username}
+            </a>
+          </Link>
+          <div className={classNamesLib.feedItemMetaTimestamp}>
+            <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
-        <div className={classNamesLib.feedItemInnerBottom}>
-          <div className={classNamesLib.feedItemInnerBottomCol}>
-            {moderator && (
-              <div className='group flex'>
-                {showBlackListLabel && (
-                  <>
-                    <SVGIcon
-                      icon='faShieldAlt'
-                      className={`
+        <div
+          className={`${classNamesLib.feedItemText} ${classNamesLib.feedItemTextDark}`}
+        >
+          {message}
+        </div>
+        <div className='flex pt-3'>
+          {type !== 'replyToPost' && (
+            <>
+              <button
+                type='button'
+                onClick={() => {
+                  setRenderDialog(true)
+                  setOpenReplyDialog(true)
+                }}
+                className='cursor-pointer text-xs text-highlight-500'
+              >
+                Comment
+              </button>
+              {renderDialog && (
+                <ReplyDialog
+                  showDialog={openReplyDialog}
+                  onClose={() => setOpenReplyDialog(false)}
+                  post={thisPost}
+                />
+              )}
+            </>
+          )}
+          {repliesExist && (
+            <>
+              {!openReplies && (
+                <button
+                  type='button'
+                  onClick={() => {
+                    setOpenReplies(true)
+                  }}
+                  className='cursor-pointer text-xs pl-2'
+                >
+                  - Show {replies.length} replie(s)
+                </button>
+              )}
+              {openReplies && (
+                <button
+                  type='button'
+                  onClick={() => {
+                    setOpenReplies(false)
+                  }}
+                  className='cursor-pointer text-xs pl-2'
+                >
+                  - Hide replies
+                </button>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+      {openReplies && <div className='pl-7'> {replyItems}</div>}
+      <div className={classNamesLib.feedItemInnerBottom}>
+        <div className={classNamesLib.feedItemInnerBottomCol}>
+          {moderator && (
+            <div className='group flex'>
+              {showBlackListLabel && (
+                <>
+                  <SVGIcon
+                    icon='faShieldAlt'
+                    className={`
                         ${classNamesLib.feedItemInteractionIcon}
                         ${classNamesLib.feedItemInteractionIconDark}
                         hover:text-red-400 cursor-default
                         ${isLoading && ' animate-pulse text-green-600'}
                       `}
-                    />
-                    <button
-                      type='button'
-                      onClick={() => {
-                        setAddUserToBlacklist()
-                      }}
-                      className={`${classNamesLib.blackListButton}`}
-                    >
-                      Blacklist User
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
-            {type === 'feed' && (
-              <Link href={`/space/${spaceName}`} passHref>
-                <a
-                  href='dummy-href'
-                  className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
-                >
-                  #{spaceName}
-                </a>
-              </Link>
-            )}
-          </div>
-          <div className={classNamesLib.feedItemInnerBottomCol}>
+                  />
+                  <button
+                    type='button'
+                    onClick={() => {
+                      setAddUserToBlacklist()
+                    }}
+                    className={`${classNamesLib.blackListButton}`}
+                  >
+                    Blacklist User
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+          {type === 'feed' && (
+            <Link href={`/space/${spaceName}`} passHref>
+              <a
+                href='dummy-href'
+                className={`${classNamesLib.tag} ${classNamesLib.tagClickable} ${classNamesLib.tagClickableDark}`}
+              >
+                #{spaceName}
+              </a>
+            </Link>
+          )}
+        </div>
+        {/*           <div className={classNamesLib.feedItemInnerBottomCol}>
             <SVGIcon
               icon='faComment'
               className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
@@ -141,14 +225,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               icon='faShare'
               className={`${classNamesLib.feedItemInteractionIcon} ${classNamesLib.feedItemInteractionIconDark}`}
             />
-          </div>
-        </div>
+          </div> */}
       </div>
-      <PostDialog
-        showDialog={openPostDialog}
-        onClose={() => setOpenPostDialog(false)}
-      />
-    </>
+    </div>
   )
 }
 
