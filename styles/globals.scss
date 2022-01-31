@@ -63,7 +63,7 @@ $headerHeight: 60px;
 }
 
 div[data-test-id*="virtuoso-item-list"] > div:first-child {
-  @apply mt-10
+  @apply mt-3 sm:mt-10
 }
 
 .disabled-link > * {

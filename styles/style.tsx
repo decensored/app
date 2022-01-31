@@ -5,7 +5,7 @@ export const style = {
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
   bodyContainer: 'container mx-auto max-w-screen-lg flex sm:gap-x-[2%]',
-  bodyContainerCol1: 'flex-none w-[34px] sm:w-48 pl-3',
+  bodyContainerCol1: 'flex-none w-[34px] hidden sm:block sm:w-48 pl-3',
   bodyContainerCol2: 'flex-auto',
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
@@ -100,9 +100,9 @@ export const style = {
   virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'h-10 bg-black',
-  virtuosoFeedItemWrapper: 'pr-3 mb-5',
+  virtuosoFeedItemWrapper: 'px-3 mb-5',
 
-  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
+  feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 sm:mt-10',
 
   feedItemParent: 'border-none rounded',
   feedItemChild: 'border-l border-gray-300',
