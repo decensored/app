@@ -29,7 +29,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
     formState: { errors },
   } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    signUpUser(contract, data.username).then(() => {
+    signUpUser(contract, data.username, 'token').then(() => {
       setIsSignedUp(true)
       setUserName(data.username)
     })

@@ -26,8 +26,12 @@ export const executeContractFunction = async (
   return web3.eth.sendSignedTransaction(signed.rawTransaction)
 }
 
-export const signUpUser = async (contract: any, username: string) => {
-  log(`signUpUser ${username}`)
+export const signUpUser = async (
+  contract: any,
+  username: string,
+  token: string
+) => {
+  log(`signUpUser ${username} with token ${token}`)
 
   // Create a new web3 account
   const privateKey = await createNewPrivateKey(contract)
@@ -36,7 +40,7 @@ export const signUpUser = async (contract: any, username: string) => {
   try {
     await executeContractFunction(
       contract.web3,
-      contract.accounts.methods.sign_up(username)
+      contract.accounts.methods.sign_up(username, token)
     )
 
     const userId = await getIdByUserName(contract, username)
@@ -49,6 +53,26 @@ export const signUpUser = async (contract: any, username: string) => {
     }
   } catch (error: any) {
     localStorage.removeItem('account_private_key')
+    return {
+      success: false,
+      error: readableError(error),
+    }
+  }
+}
+
+export const setProfilePictureForUser = async (
+  contract: any,
+  profilePicture: string
+) => {
+  try {
+    await executeContractFunction(
+      contract.web3,
+      contract.accounts.methods.set_profile_picture(profilePicture)
+    )
+    return {
+      success: true,
+    }
+  } catch (error: any) {
     return {
       success: false,
       error: readableError(error),
