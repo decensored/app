@@ -56,7 +56,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  ${style.inputLabelCenter}
                   text-center
                 `}
               >
@@ -106,7 +105,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  ${style.inputLabelCenter}
                   text-center
                 `}
               >

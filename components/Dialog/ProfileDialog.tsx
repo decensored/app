@@ -32,7 +32,6 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  ${style.inputLabelCenter}
                   text-center
                 `}
             >
@@ -75,7 +74,6 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               className={`
                 ${style.inputLabel}
                 ${style.inputLabelDark}
-                ${style.inputLabelCenter}
                 text-center
               `}
             >
