@@ -69,7 +69,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
         <form id='RecoverForm' onSubmit={handleSubmit(onSubmit)}>
           <div className={style.inputWrapper}>
             <input
-              className={`${style.input} ${style.inputDark}`}
+              className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
               type='text'
               placeholder='Enter your key'
               {...register('privateKey', {

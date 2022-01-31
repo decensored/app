@@ -81,6 +81,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                   className={`
                     ${style.input}
                     ${style.inputDark}
+                    ${style.inputFocus}
                   `}
                   type='text'
                   {...register('name', { required: true })}
@@ -115,6 +116,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                   className={`
                   ${style.input}
                   ${style.inputDark}
+                  ${style.inputFocus}
               `}
                   {...register('description', { required: true })}
                 />

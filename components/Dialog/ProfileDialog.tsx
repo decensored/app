@@ -43,6 +43,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
                   className={`
                       ${style.input}
                       ${style.inputDark}
+                      ${style.inputFocus}
                       rounded-r-none
                     `}
                   type='text'
@@ -78,9 +79,9 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
             >
               Open decensored on mobile
             </span>
-            <div className='flex justify-center mb-20'>
+            <div className='flex justify-center'>
               <QRCode
-                className='scale-125 origin-top rounded'
+                className='rounded'
                 fgColor='#2d3294'
                 value={`https://v2.decensored.app/signup/${key}`}
               />

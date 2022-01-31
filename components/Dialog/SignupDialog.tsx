@@ -69,7 +69,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
             <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
               <div className={style.inputWrapper}>
                 <input
-                  className={`${style.input} ${style.inputDark}`}
+                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
                   type='text'
                   placeholder='Choose your username'
                   defaultValue={userName}
@@ -107,7 +107,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                 other device you will need your key!
               </p>
               <input
-                className={`${style.input} ${style.inputDark} mt-5 text-xs`}
+                className={`${style.input} ${style.inputDark} ${style.inputFocus} mt-5 text-xs`}
                 type='text'
                 defaultValue={localStorage
                   .getItem('account_private_key')

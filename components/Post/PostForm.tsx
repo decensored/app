@@ -84,10 +84,10 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
               maxLength={280}
               placeholder={`${userName}, your story starts here...`}
               className={`
-                ${style.form}
-                ${style.formTransparent}
-                ${style.formPlaceholder}
-                ${style.formPlaceholderDark}
+                ${style.input}
+                ${style.inputTransparent}
+                ${style.inputPlaceholder}
+                ${style.inputPlaceholderDark}
               `}
               {...register('message', { required: true })}
             />
