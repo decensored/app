@@ -1,6 +1,6 @@
 import type { SpaceType } from 'lib/types'
 import { readableError } from 'lib/helper'
-import { executeContractFunction /* , getIdByUserName */ } from 'api/user'
+import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
   console.log('api/spaces:', msg) // or outcomment
@@ -13,8 +13,8 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   const result: SpaceType = {
     id: space_id,
     name,
-    description: space.description,
-    owner,
+    description: 'Will soon be choosen by the user', // space.description
+    owner: parseInt(owner, 10),
     followers: 0,
     posts: 0,
     img: 'https://www.iota-services.com/wp-content/uploads/2019/05/iota-services.jpg',
@@ -143,6 +143,4 @@ export const userBlackListedForSpace = async (
   contract: any,
   spaceId: number,
   userId: number
-) => {
-  return await contract.spaces.methods.is_blacklisted(spaceId, userId).call()
-}
+) => await contract.spaces.methods.is_blacklisted(spaceId, userId).call()
