@@ -182,7 +182,11 @@ const Space: NextPage = () => {
                 </div>
               </div>
               {isSignedUp && !userIsBlacklisted && (
-                <PostForm spaceId={space.id} />
+                <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
+                  <div className={style.feedItemInner}>
+                    <PostForm spaceId={space.id} isTransparent />
+                  </div>
+                </div>
               )}
               {showFeedItems}
             </div>
