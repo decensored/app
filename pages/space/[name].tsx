@@ -44,7 +44,8 @@ const Space: NextPage = () => {
   const [nrOfPosts, setNrOfPosts] = React.useState(0)
   const [nrOfUSers, setNrOfUsers] = React.useState(0)
   const [userArray, setUserArray] = React.useState<UserType[]>([])
-  const [userIsBlacklisted, setUserIsBlacklisted] = React.useState(false)
+  const [currentUserBlacklisted, setCurrentUserIsBlacklisted] =
+    React.useState(false)
   const [blackListArray, setBlackListArray] = React.useState<UserType[]>([])
 
   /*   setBlackListArray([]) */
@@ -89,31 +90,32 @@ const Space: NextPage = () => {
       )
       if (isUserBlacklisted) {
         newBlacklist.push(user)
-        console.log(`${user.userId} vs. ${currentUserId}`)
         // Check if current user is blacklisted to hide post-form
         if (user.userId === currentUserId) {
-          setUserIsBlacklisted(true)
+          setCurrentUserIsBlacklisted(true)
         }
       }
     })
     setBlackListArray(newBlacklist)
-  }, [contract, name, posts, spaces, currentUserId, userIsBlacklisted])
+  }, [contract, name, posts, spaces, currentUserId, currentUserBlacklisted])
 
   // Create Feediteams and check if user of post is blacklisted
   const showFeedItems = spacePosts.map((post) => {
     if (post.mother_post !== 0) return null // early exit
 
-    const userBlacklisted =
-      blackListArray.filter((user) => user.userId === post.author).length > 0
     // Get Replies for Post
     const repliesForPost = getRepliesForPost(posts, post.id)
+
+    // Check if the author is blacklisted
+    const authorIsBlacklisted =
+      blackListArray.filter((user) => user.userId === post.author).length > 0
 
     return (
       <FeedItem
         key={`post-${post.id}`}
         moderator={spaceOwner}
         blacklist={blackListArray}
-        userBlacklisted={userBlacklisted}
+        authorIsBlacklisted={authorIsBlacklisted}
         replies={repliesForPost}
         {...post}
         type='space'
@@ -181,8 +183,10 @@ const Space: NextPage = () => {
                   </div>
                 </div>
               </div>
-              {isSignedUp && !userIsBlacklisted && (
-                <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
+              {isSignedUp && !currentUserBlacklisted && (
+                <div
+                  className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}
+                >
                   <div className={style.feedItemInner}>
                     <PostForm spaceId={space.id} isTransparent />
                   </div>

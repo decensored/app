@@ -20,7 +20,7 @@ interface FeedItemProps {
   spaceName: string
   moderator?: boolean
   blacklist?: any
-  userBlacklisted?: boolean
+  authorIsBlacklisted?: boolean
   replies?: any
   type: string
   parent?: boolean
@@ -36,7 +36,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   spaceName,
   moderator,
   blacklist,
-  userBlacklisted,
+  authorIsBlacklisted,
   replies,
   type,
   parent,
@@ -49,10 +49,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     (state) => [state.contract, state.userId, state.posts],
     shallow
   )
-  const [isSignedUp] = useStore(
-    (state) => [state.isSignedUp],
-    shallow
-  )
+  const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
@@ -75,15 +72,24 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       setIsLoading(false)
     }
   }
-  const showBlackListLabel = !userBlacklisted && author !== userId
+  const showBlackListLabel = !authorIsBlacklisted && author !== userId
 
-  // Create list of Replies
+  // Create list of Replies and check for blocked users
   let replyItems = []
   if (replies) {
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
       .map((post: any) => {
+        // Get Replies for Post
         const repliesForPost = getRepliesForPost(posts, post.id)
+
+        // check again if author of this post is blacklisted
+        let replyAuthorIsBlacklisted = false
+        if (blacklist) {
+          replyAuthorIsBlacklisted =
+            blacklist.filter((user: any) => user.userId === post.author)
+              .length > 0
+        }
         return (
           <FeedItem
             key={`post-${post.id}`}
@@ -91,6 +97,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             replies={repliesForPost}
             moderator={false}
             parent={false}
+            authorIsBlacklisted={replyAuthorIsBlacklisted}
             {...post}
           />
         )
@@ -108,6 +115,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     spaceName,
   }
 
+  console.log(`${username} is blacklisted ${authorIsBlacklisted}`)
+
   return (
     <div
       className={`
@@ -117,28 +126,41 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         ${!parent && style.feedItemChild}
       `}
     >
-      <div className={`${style.feedItemInnerTop} ${type === 'replyToPost' && 'pr-0'}`}>
+      <div
+        className={`${style.feedItemInnerTop} ${
+          type === 'replyToPost' && 'pr-0'
+        }`}
+      >
         <div className={style.feedItemMetaWrapper}>
           {type === 'replyToPost' && (
             <div>
-              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+              <span
+                className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
+              >
                 {username}
               </span>
               <span className='mx-2'>in</span>
-              <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>
+              <span
+                className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}
+              >
                 {thisPost.spaceName}
               </span>
             </div>
           )}
           {type !== 'replyToPost' && (
-            <Link href={`/user/${username}`} passHref>
-              <a
-                href='dummy-href'
-                className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
-              >
-                {username}
-              </a>
-            </Link>
+            <div className='flex'>
+              <Link href={`/user/${username}`} passHref>
+                <a
+                  href='dummy-href'
+                  className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
+                >
+                  {username}
+                </a>
+              </Link>
+              {authorIsBlacklisted && (
+                <span className='pl-2 pt-1 text-xs text-red-500'>BLOCKED</span>
+              )}
+            </div>
           )}
           <div className={style.feedItemMetaTimestamp}>
             <TimeAgo date={new Date(timestamp * 1000)} />
@@ -174,7 +196,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
           {repliesExist && (
             <>
-
               {!openReplies && (
                 <button
                   type='button'
