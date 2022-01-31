@@ -1,5 +1,5 @@
 import { inBrowser } from 'lib/where'
-import useStore, { STORE_VERSION } from 'lib/store'
+import useStore from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
@@ -13,12 +13,6 @@ const poll = async (): Promise<void> => {
   if (!nodeIsUpAndRunning(contract)) {
     // console.log('polling_spaces: waiting for node to be up and running')
     setTimeout(poll, 100) // quick retry until contract is available
-    return
-  }
-
-  if (state.storeVersion !== STORE_VERSION) {
-    state.cacheFlush()
-    setTimeout(poll, 100) // quick retry
     return
   }
 

@@ -9,16 +9,24 @@ const INTERVAL = 10 * 1000
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
 
-  const contract: any = state?.contract
-  if (!nodeIsUpAndRunning(contract)) {
-    // console.log('polling_posts: waiting for node to be up and running')
-    setTimeout(poll, 100) // quick retry until contract is available
+  if (typeof state.userId === 'string') {
+    // console.log('convert userId to number')
+    state.setUserId(parseInt(state.userId, 10))
+    setTimeout(poll, 100) // quick retry
     return
   }
 
   if (state.storeVersion !== STORE_VERSION) {
+    // console.log('cacheFlush because of different store version')
     state.cacheFlush()
     setTimeout(poll, 100) // quick retry
+    return
+  }
+
+  const contract: any = state?.contract
+  if (!nodeIsUpAndRunning(contract)) {
+    // console.log('polling_posts: waiting for node to be up and running')
+    setTimeout(poll, 100) // quick retry until contract is available
     return
   }
 
@@ -52,6 +60,8 @@ const poll = async (): Promise<void> => {
     if (state.isPolledDataQueued && state.posts.length) {
       const allPostsQueued = newPosts.concat(state.postsQueued)
       state.setPostsQueued(allPostsQueued)
+
+      console.log(typeof state.userId, state.userId, allPostsQueued)
 
       // auto-deque when I'm the author of at least one queued post
       if (
