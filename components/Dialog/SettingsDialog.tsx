@@ -112,7 +112,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
               </span>
               <div className={style.inputWrapper}>
                 <textarea
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
+                  className={`${style.input} ${style.inputDark} ${style.inputFocus} ${style.form}`}
                   value={nodeInfo.contractPostsAddress}
                   {...register('contractAddress', { required: true })}
                  />
