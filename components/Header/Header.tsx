@@ -28,27 +28,6 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={style.headerWrapper}>
-      {/* <QueueControl /> */}
-
-      {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
-        <>
-          <button
-            type='button'
-            onClick={() => setOpenSettingsDialog(true)}
-            className='absolute right-4 -bottom-1 translate-y-full'
-          >
-            <SVGIcon
-              icon='faExclamationTriangle'
-              className='animate-pulse text-red-500'
-            />
-          </button>
-          <SettingsDialog
-            showDialog={openSettingsDialog}
-            onClose={() => setOpenSettingsDialog(false)}
-          />
-        </>
-      )}
-
       <div className={style.headerInner}>
         <div id='logo'>
           <Link href='/' passHref>
@@ -67,7 +46,27 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          <UserPopover />
+          {nodeIsUpAndRunning(contract) && (
+            <UserPopover />
+          )}
+
+          {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
+            <>
+              <button
+                type='button'
+                onClick={() => setOpenSettingsDialog(true)}
+              >
+                <SVGIcon
+                  icon='faExclamationTriangle'
+                  className='animate-pulse text-red-500'
+                />
+              </button>
+              <SettingsDialog
+                showDialog={openSettingsDialog}
+                onClose={() => setOpenSettingsDialog(false)}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
