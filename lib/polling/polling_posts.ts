@@ -1,7 +1,7 @@
 import { inBrowser } from 'lib/where'
 import useStore, { STORE_VERSION } from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
-import type { PostType } from 'lib/types'
+import type { LoadingProgressType, PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
 const INTERVAL = 10 * 1000
@@ -49,19 +49,31 @@ const poll = async (): Promise<void> => {
     //   latestPostIndex - state.latestPostIndexFetched
     // )
 
+    const postsLoaded: LoadingProgressType = {
+      nFinished: 0,
+      max: latestPostIndex - state.latestPostIndexFetched,
+    }
+    state.setPostsLoaded(postsLoaded)
+
     const postsPromises: Promise<PostType>[] = []
     for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
-      const p = getPostById(contract, i)
+      const p = getPostById(contract, i).then((result) => {
+        postsLoaded.nFinished += 1
+        // console.log(postsLoaded.nFinished, 'posts')
+        state.setPostsLoaded(postsLoaded)
+        return result
+      })
       postsPromises.push(p)
     }
     const newPosts = await Promise.all(postsPromises)
+    state.setPostsLoaded({ nFinished: 0, max: 0 })
 
     // store newPosts
     if (state.isPolledDataQueued && state.posts.length) {
       const allPostsQueued = newPosts.concat(state.postsQueued)
       state.setPostsQueued(allPostsQueued)
 
-      console.log(typeof state.userId, state.userId, allPostsQueued)
+      // console.log(typeof state.userId, state.userId, allPostsQueued)
 
       // auto-deque when I'm the author of at least one queued post
       if (

@@ -6,6 +6,7 @@ import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SVGIcon from 'components/Icon/SVGIcon'
 import UserPopover from 'components/Popover/UserPopover'
 // import QueueControl from 'components/QueueControl/QueueControl'
+import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
@@ -45,16 +46,11 @@ const Header: FunctionComponent = () => {
         </Link>
       </div>
       <div id='header_nav_items' className='flex items-center'>
-        {nodeIsUpAndRunning(contract) && (
-          <UserPopover />
-        )}
+        {nodeIsUpAndRunning(contract) && <UserPopover />}
 
         {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
           <>
-            <button
-              type='button'
-              onClick={() => setOpenSettingsDialog(true)}
-            >
+            <button type='button' onClick={() => setOpenSettingsDialog(true)}>
               <SVGIcon
                 icon='faExclamationTriangle'
                 className='animate-pulse text-red-500'
@@ -67,6 +63,7 @@ const Header: FunctionComponent = () => {
           </>
         )}
       </div>
+      <LoadingIndicator />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
-import type { SpaceType } from 'lib/types'
+import type { LoadingProgressType, SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
 
 const INTERVAL = 10 * 1000
@@ -40,12 +40,24 @@ const poll = async (): Promise<void> => {
 
     // console.log('new spaces exist', latestSpaceIndex - state.latestSpaceIndexFetched)
 
+    const spacesLoaded: LoadingProgressType = {
+      nFinished: 0,
+      max: latestSpaceIndex - state.latestSpaceIndexFetched,
+    }
+    state.setSpacesLoaded(spacesLoaded)
+
     const spacesPromises: Promise<SpaceType>[] = []
     for (let i = latestSpaceIndex; i > state.latestSpaceIndexFetched; i -= 1) {
-      const p = getSpaceById(contract, i)
+      const p = getSpaceById(contract, i).then((result) => {
+        spacesLoaded.nFinished += 1
+        // console.log(spacesLoaded.nFinished, 'spaces')
+        state.setSpacesLoaded(spacesLoaded)
+        return result
+      })
       spacesPromises.push(p)
     }
     const newSpaces = await Promise.all(spacesPromises)
+    state.setSpacesLoaded({ nFinished: 0, max: 0 })
 
     // store newSpaces
     if (state.isPolledDataQueued && state.spaces.length) {
