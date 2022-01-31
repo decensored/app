@@ -10,7 +10,7 @@
     "lint-build": "next lint && next build",
     "precommit": "npm run lint-build",
     "validate": "npm run precommit",
-    "prepare": "cd .. && husky install v2/.husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
