@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import 'react-toastify/dist/ReactToastify.css'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'

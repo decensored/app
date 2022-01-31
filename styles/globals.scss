@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../node_modules/react-toastify/dist/ReactToastify';
+@import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
+
 html:not([style*='overflow: hidden']) {
   body {
     overflow-x: hidden;

@@ -12,6 +12,7 @@ export const style = {
   headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
 
   inputWrapper: 'relative',
+  inputGroup: 'flex',
   input: 'form-input px-3 rounded w-full focus:outline-none border border-gray-300 text-gray-900 focus:ring-1 focus:ring-purple-700 h-[40px]',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
 
