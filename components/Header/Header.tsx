@@ -28,46 +28,44 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={style.headerWrapper}>
-      <div className={style.headerInner}>
-        <div id='logo'>
-          <Link href='/' passHref>
-            <div className='flex gap-2 items-center'>
-              <img
-                alt='Decensored Logo'
-                src='/logo/signet.svg'
-                className='h-[30px] -mt-1 xs:hidden'
-              />
-              <img
-                alt='Decensored Logo'
-                src='/logo/logotype_invert.svg'
-                className='h-[20px] hidden xs:block'
-              />
-            </div>
-          </Link>
-        </div>
-        <div id='header_nav_items' className='flex items-center'>
-          {nodeIsUpAndRunning(contract) && (
-            <UserPopover />
-          )}
+      <div id='logo'>
+        <Link href='/' passHref>
+          <div className='flex gap-2 items-center'>
+            <img
+              alt='Decensored Logo'
+              src='/logo/signet.svg'
+              className='h-[30px] -mt-1 xs:hidden'
+            />
+            <img
+              alt='Decensored Logo'
+              src='/logo/logotype_invert.svg'
+              className='h-[20px] hidden xs:block'
+            />
+          </div>
+        </Link>
+      </div>
+      <div id='header_nav_items' className='flex items-center'>
+        {nodeIsUpAndRunning(contract) && (
+          <UserPopover />
+        )}
 
-          {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
-            <>
-              <button
-                type='button'
-                onClick={() => setOpenSettingsDialog(true)}
-              >
-                <SVGIcon
-                  icon='faExclamationTriangle'
-                  className='animate-pulse text-red-500'
-                />
-              </button>
-              <SettingsDialog
-                showDialog={openSettingsDialog}
-                onClose={() => setOpenSettingsDialog(false)}
+        {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
+          <>
+            <button
+              type='button'
+              onClick={() => setOpenSettingsDialog(true)}
+            >
+              <SVGIcon
+                icon='faExclamationTriangle'
+                className='animate-pulse text-red-500'
               />
-            </>
-          )}
-        </div>
+            </button>
+            <SettingsDialog
+              showDialog={openSettingsDialog}
+              onClose={() => setOpenSettingsDialog(false)}
+            />
+          </>
+        )}
       </div>
     </div>
   )

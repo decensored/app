@@ -8,15 +8,15 @@ export const style = {
   bodyContainerCol1: 'flex-none w-[34px] md:w-48 pl-3',
   bodyContainerCol2: 'flex-auto',
 
-  headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
-  headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
+  headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
 
   inputWrapper: 'relative',
   inputGroup: 'flex',
   input: 'px-3 py-[7.3px] rounded w-full border border-gray-300 text-gray-900 focus:outline-none',
   inputFocus: 'focus:ring-1 focus:ring-purple-700',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
-  inputTransparent: '!p-0 bg-transparent border-none outline-none focus:outline-none resize-none',
+  inputTransparent: 'text-gray-900 !p-0 bg-transparent border-none outline-none focus:outline-none',
+  inputTransparentDark: 'dark:text-white',
   inputPlaceholder: 'placeholder:italic placeholder:text-gray-400',
   inputPlaceholderDark: 'placeholder:dark text-darkmode-1500',
 
@@ -24,6 +24,7 @@ export const style = {
   inputLabelDark: 'dark:text-gray-300',
   inputLabelCenter: 'text-center',
 
+  form: 'resize-none',
   formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-white before:rounded-b before:absolute before:inset-0 before:empty before:bg-opacity-20',
   formValidationBefore: '',
   formValidationError: 'before:bg-red-500',
@@ -104,6 +105,12 @@ export const style = {
   virtuosoScroll2IndexInner: 'h-10 bg-black',
   virtuosoFeedItemWrapper: 'px-3 mb-5',
 
+  postFormTextareaWrapper: 'mt-5 relative',
+  postFormMessageCounter: 'absolute right-4 bottom-4 py-1 px-2 text-xs text-gray-400 rounded-full bg-white empty:hidden font-mono leading-none',
+  postFormMessageCounterDark: 'dark:bg-black',
+  postFormFooter: 'mt-5 flex justify-between',
+  postFormFooterLogoWrapper: 'flex items-center mr-5',
+
   feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 md:mt-10',
 
   feedItemParent: 'border-none rounded',
@@ -126,7 +133,7 @@ export const style = {
 
   feedReplyItemWrapper: 'rounded-none',
   feedReplyItemOffset: 'pl-7 children:rounded-none children:children:rounded-none',
-  feedReplyItemBar: 'flex items-center pt-3',
+  feedReplyItemBar: 'flex items-center pt-3 empty:hidden',
   feedReplyItemButton: 'cursor-pointer text-xs text-highlight-500',
   feedReplyItemText: 'cursor-pointer text-xs',
   feedReplyItemSpacer: 'mx-2 text-[10px]',
@@ -143,10 +150,10 @@ export const style = {
   spaceHeaderColTitle: 'text-2xl mt-2 font-bold',
   spaceHeaderColText: 'text-xs font-light',
 
-  tag: 'flex-none uppercase text-xs tracking-wide font-medium px-2 py-1 rounded',
-  tagNotClickable: 'bg-highlight-10 text-highlight-900',
+  tag: 'uppercase text-xs tracking-wide font-medium px-2 py-1 rounded',
+  tagNotClickable: 'cursor-default bg-highlight-10 text-highlight-900',
   tagNotClickableDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
-  tagClickable: 'bg-highlight-10 text-highlight-500 hover:text-highlight-900',
+  tagClickable: 'cursor-pointer bg-highlight-10 text-highlight-500 hover:text-highlight-900',
   tagClickableDark: 'dark:bg-darkmode-1000 dark:text-darkmode-1900 dark:hover:text-highlight-400',
 
   tooltip: 'uppercase text-xs tracking-wide font-medium px-2 py-1 rounded bg-highlight-100 text-highlight-900',

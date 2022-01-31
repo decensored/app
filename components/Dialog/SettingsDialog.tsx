@@ -56,8 +56,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  ${style.inputLabelCenter}
-                  text-center
                 `}
               >
                 EVM-Node
@@ -106,15 +104,13 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  ${style.inputLabelCenter}
-                  text-center
                 `}
               >
                 Contract Address
               </span>
               <div className={style.inputWrapper}>
                 <textarea
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
+                  className={`${style.input} ${style.inputDark} ${style.inputFocus} ${style.form}`}
                   value={nodeInfo.contractsAddress}
                   {...register('contractAddress', { required: true })}
                 />
