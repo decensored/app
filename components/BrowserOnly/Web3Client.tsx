@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react'
-import Web3 from 'web3'
+// import Web3 from 'web3'
 import { toast } from 'react-toastify'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
@@ -42,82 +42,88 @@ const Web3Client: FunctionComponent = () => {
   useEffect(() => {
     if (!inBrowser) return
 
-    // console.log('Web3Client.config', nodeInfo)
+    const makeConnection = async (): Promise<void> => {
+      // console.log('Web3Client.nodeInfo', nodeInfo)
 
-    // make sure we only can access the contracts when all is well
-    setContract({})
+      // make sure we only can access the contracts when all is well
+      setContract({})
 
-    try {
-      web3 = new Web3(nodeInfo.evmNode)
-      // console.log('Web3Client.web3', web3)
-    } catch (e: any) {
-      toast.error(`Web3 error: ${e.message}`, {
-        autoClose: 5000,
-      })
-      return
-    }
-
-    let contractPosts: any
-    try {
-      contractPosts = new web3.eth.Contract(
-        CONTRACT_POSTS_ABI,
-        nodeInfo.contractPostsAddress
-      )
-      // console.log('Web3Client.contractPosts', contractPosts)
-    } catch (e: any) {
-      toast.error(`Posts contract error: ${e.message}`, {
-        autoClose: 5000,
-      })
-      return
-    }
-
-    contractPosts.methods
-      .spaces()
-      .call()
-      .then((contractSpacesAddress: any) => {
-        const contractSpaces = new web3.eth.Contract(
-          CONTRACT_SPACES_ABI,
-          contractSpacesAddress
-        )
-        // console.log('Web3Client.contractSpaces', contractSpaces)
-
-        contractSpaces.methods
-          .accounts()
-          .call()
-          .then(async (contractAccountsAddress: any) => {
-            const contractAccounts = new web3.eth.Contract(
-              CONTRACT_ACCOUNTS_ABI,
-              contractAccountsAddress
-            )
-            // console.log('Web3Client.contractAccounts', contractAccounts)
-
-            const contract = {
-              accounts: contractAccounts,
-              posts: contractPosts,
-              spaces: contractSpaces,
-              web3,
-            }
-
-            setContract(contract)
-            toast('All systems are Go for launch!')
-
-            // Check if privateKey is stored and user exists
-            const privateKey = await localStorage.getItem('account_private_key')
-            if (privateKey && (await isSignedUp(contract))) {
-              setIsSignedUp(true)
-            }
-          })
-          .catch((e: any) => {
-            toast.error(`Accounts contract error: ${e.message}`, {
-              autoClose: 5000,
-            })
-          })
-      })
-      .catch((e: any) => {
-        toast.error(`Spaces contract error\n${e.message}`, {
+      try {
+        const Web3 = (await import('web3')).default // dynamic import
+        web3 = new Web3(nodeInfo.evmNode)
+        // console.log('Web3Client.web3', web3)
+      } catch (e: any) {
+        toast.error(`Web3 error: ${e.message}`, {
           autoClose: 5000,
         })
-      })
+        return
+      }
+
+      let contractPosts: any
+      try {
+        contractPosts = new web3.eth.Contract(
+          CONTRACT_POSTS_ABI,
+          nodeInfo.contractPostsAddress
+        )
+        // console.log('Web3Client.contractPosts', contractPosts)
+      } catch (e: any) {
+        toast.error(`Posts contract error: ${e.message}`, {
+          autoClose: 5000,
+        })
+        return
+      }
+
+      contractPosts.methods
+        .spaces()
+        .call()
+        .then((contractSpacesAddress: any) => {
+          const contractSpaces = new web3.eth.Contract(
+            CONTRACT_SPACES_ABI,
+            contractSpacesAddress
+          )
+          // console.log('Web3Client.contractSpaces', contractSpaces)
+
+          contractSpaces.methods
+            .accounts()
+            .call()
+            .then(async (contractAccountsAddress: any) => {
+              const contractAccounts = new web3.eth.Contract(
+                CONTRACT_ACCOUNTS_ABI,
+                contractAccountsAddress
+              )
+              // console.log('Web3Client.contractAccounts', contractAccounts)
+
+              const contract = {
+                accounts: contractAccounts,
+                posts: contractPosts,
+                spaces: contractSpaces,
+                web3,
+              }
+
+              setContract(contract)
+              toast('All systems are Go for launch!')
+
+              // Check if privateKey is stored and user exists
+              const privateKey = await localStorage.getItem(
+                'account_private_key'
+              )
+              if (privateKey && (await isSignedUp(contract))) {
+                setIsSignedUp(true)
+              }
+            })
+            .catch((e: any) => {
+              toast.error(`Accounts contract error: ${e.message}`, {
+                autoClose: 5000,
+              })
+            })
+        })
+        .catch((e: any) => {
+          toast.error(`Spaces contract error\n${e.message}`, {
+            autoClose: 5000,
+          })
+        })
+    } // end of makeConnection(...)
+    makeConnection() // call async inner function
   }, [nodeInfo, setContract, setIsSignedUp])
 
   return null

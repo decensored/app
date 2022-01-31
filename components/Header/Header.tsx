@@ -11,16 +11,15 @@ import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
 
+const GRACEPERIOD = 1000 // time until showing an error message
+
 const Header: FunctionComponent = () => {
-  const [contract] = useStore(
-    (state) => [state.contract],
-    shallow
-  )
+  const [contract] = useStore((state) => [state.contract], shallow)
 
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
 
   const [gracePeriodDone, setGracePeriodDone] = useState(false)
-  useTimeout(() => setGracePeriodDone(true), 500)
+  useTimeout(() => setGracePeriodDone(true), GRACEPERIOD)
 
   // const setIsSignedUpWithToast = (): void => {
   //   setIsSignedUp(false)

@@ -1,6 +1,6 @@
 {
   "name": "decencored",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +19,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@headlessui/react": "^1.4.3",
-    "eth-crypto": "^2.1.0",
     "framer-motion": "^6.0.0",
     "gun": "^0.2020.1235",
     "lodash": "^4.17.21",
