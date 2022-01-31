@@ -4,8 +4,8 @@ export const style = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
-  bodyContainer: 'container mx-auto max-w-screen-lg flex sm:gap-x-[2%]',
-  bodyContainerCol1: 'flex-none w-[34px] hidden sm:block sm:w-48 pl-3',
+  bodyContainer: 'container mx-auto max-w-screen-lg flex md:gap-x-[2%]',
+  bodyContainerCol1: 'flex-none w-[34px] md:w-48 pl-3',
   bodyContainerCol2: 'flex-auto',
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
@@ -27,7 +27,7 @@ export const style = {
   formValidationTextError: 'text-red-500',
 
   button: 'font-medium px-4 rounded whitespace-nowrap cursor-pointer h-[40px] focus:outline-none',
-  buttonNoXsPadding: 'px-0 sm:px-4',
+  buttonNoXsPadding: 'px-0 md:px-4',
   buttonDecensored: 'bg-highlight-900 hover:bg-purple-800 text-white',
   buttonDecensoredHeader: 'bg-purple-500 hover:bg-purple-700 text-white',
   buttonTransparent: 'bg-transparent text-gray-900 hover:text-purple-900',
@@ -53,7 +53,7 @@ export const style = {
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
-  navigationAsideWrapper: 'sticky top-[80px] sm:top-[100px]',
+  navigationAsideWrapper: 'sticky top-[80px] md:top-[100px]',
   navigationAsideInner: 'flex flex-col justify-between h-screen-sidebar',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
@@ -61,14 +61,14 @@ export const style = {
   navigationAsideButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-white hover:bg-highlight-500 cursor-pointer',
   navigationAsideButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-500',
   navigationAsideButtonActive: 'font-bold text-highlight-900 dark:text-highlight-500',
-  navigationAsideButtonText: 'hidden sm:block',
-  navigationAsideButtonIcon: 'w-[40px] text-lg sm:text-sm',
-  navigationAsideButtonIconInvisible: 'text-lg sm:text-sm opacity-0',
+  navigationAsideButtonText: 'hidden md:block',
+  navigationAsideButtonIcon: 'w-[40px] text-lg md:text-sm',
+  navigationAsideButtonIconInvisible: 'text-lg md:text-sm opacity-0',
   navigationAsideButtonSpacer: 'h-5',
-  navigationAsideBottomInteractionWrapper: 'flex flex-col flex-col-reverse items-center gap-3 sm:justify-between sm:flex-row',
-  navigationAsideInteractionSwitch: 'mt-2 sm:mt-0',
-  navigationAsideSocialButtonWrapper: 'flex flex-col sm:flex-row gap-2',
-  navigationAsideSocialButton: 'text-lg sm:text-xl text-gray-900 hover:text-highlight-900',
+  navigationAsideBottomInteractionWrapper: 'flex flex-col flex-col-reverse items-center gap-3 md:justify-between md:flex-row',
+  navigationAsideInteractionSwitch: 'mt-2 md:mt-0',
+  navigationAsideSocialButtonWrapper: 'flex flex-col md:flex-row gap-2',
+  navigationAsideSocialButton: 'text-lg md:text-xl text-gray-900 hover:text-highlight-900',
   navigationAsideSocialButtonDark: 'dark:text-gray-300 dark:hover:text-white',
 
   navigationBottomWrapperBorder: 'absolute left-0 right-0 bottom-0 h-[10px] bg-highlight-900',
@@ -102,7 +102,7 @@ export const style = {
   virtuosoScroll2IndexInner: 'h-10 bg-black',
   virtuosoFeedItemWrapper: 'px-3 mb-5',
 
-  feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 sm:mt-10',
+  feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 md:mt-10',
 
   feedItemParent: 'border-none rounded',
   feedItemChild: 'border-l border-gray-300',

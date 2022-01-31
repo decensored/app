@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
-import { BrowserView, MobileView } from 'react-device-detect'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import {
@@ -127,9 +126,9 @@ const Space: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <BrowserView className={style.bodyContainerCol1}>
+        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
           <AsideNavigation />
-        </BrowserView>
+        </div>
         <div className={style.bodyContainerCol2}>
           {space && (
             <div className={style.feedWrapper}>
@@ -194,9 +193,9 @@ const Space: NextPage = () => {
           )}
         </div>
       </div>
-      <MobileView>
+      <div className='hide-on-desktop'>
         <BottomNavigation />
-      </MobileView>
+      </div>
     </>
   )
 }

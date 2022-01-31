@@ -36,6 +36,22 @@ html {
   }
 }
 
+.hide-on-mobile {
+  @apply hidden md:block
+}
+
+.hide-on-desktop {
+  @apply block md:hidden
+}
+
+#asideNavigation {
+
+}
+
+#bottomNavigation {
+
+}
+
 $headerHeight: 60px;
 
 .h-header {

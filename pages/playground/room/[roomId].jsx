@@ -6,7 +6,6 @@ import Gun from 'gun/gun' // https://gun.eco https://codesandbox.io/s/react-play
 import 'gun/lib/open' // https://gun.eco https://codesandbox.io/s/react-playground-forked-dceh9?file=/index.js
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
-import { BrowserView, MobileView } from 'react-device-detect'
 import { style } from 'styles/style'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
@@ -56,9 +55,9 @@ const Playground = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <BrowserView className={style.bodyContainerCol1}>
+        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
           <AsideNavigation />
-        </BrowserView>
+        </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             <div
@@ -123,9 +122,9 @@ const Playground = () => {
           </div>
         </div>
       </div>
-      <MobileView>
+      <div className='hide-on-desktop'>
         <BottomNavigation />
-      </MobileView>
+      </div>
     </>
   )
 }

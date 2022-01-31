@@ -5,7 +5,6 @@ import useStore from 'lib/store'
 import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
-import { BrowserView, MobileView } from 'react-device-detect'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { style } from 'styles/style'
@@ -29,9 +28,9 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <BrowserView className={style.bodyContainerCol1}>
+        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
           <AsideNavigation />
-        </BrowserView>
+        </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             {isSignedUp && <SpaceHeader />}
@@ -39,9 +38,9 @@ const Spaces: NextPage = () => {
           </div>
         </div>
       </div>
-      <MobileView>
+      <div className='hide-on-desktop'>
         <BottomNavigation />
-      </MobileView>
+      </div>
     </>
   )
 }
