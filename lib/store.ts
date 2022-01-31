@@ -4,6 +4,10 @@ import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
 
 export const STORE_VERSION = 6
 
+export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
+export const DEFAULT_CONTRACTSADDRESS =
+  '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
+
 const useStore = create(
   persist(
     (set) => ({
@@ -56,9 +60,13 @@ const useStore = create(
       userId: 0,
       setUserId: (userId: number) => set({ userId }),
 
+      defaultNodeInfo: true,
+      setDefaultNodeInfo: (defaultNodeInfo: boolean) =>
+        set({ defaultNodeInfo }),
+
       nodeInfo: {
-        evmNode: 'https://hh.addiota.com',
-        contractsAddress: '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3',
+        evmNode: DEFAULT_EVMNODE,
+        contractsAddress: DEFAULT_CONTRACTSADDRESS,
       } as NodeInfoType,
       setNodeInfo: (nodeInfo: NodeInfoType) => {
         set({ nodeInfo })
@@ -91,6 +99,7 @@ const useStore = create(
         userName: state.userName,
         userId: state.userId,
         privateKey: state.privateKey,
+        defaultNodeInfo: state.defaultNodeInfo,
         nodeInfo: state.nodeInfo,
       }),
     }
