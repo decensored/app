@@ -64,7 +64,7 @@ const useStore = create(
         set({ nodeInfo })
       },
       cacheFlush: () => {
-        console.log(`cacheFlush to storeVersion ${STORE_VERSION}`)
+        // console.log(`cacheFlush to storeVersion ${STORE_VERSION}`)
         set({
           storeVersion: STORE_VERSION,
           posts: [],

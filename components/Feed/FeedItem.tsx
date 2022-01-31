@@ -82,7 +82,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         const repliesForPost = getRepliesForPost(posts, post.id)
         return (
           <FeedItem
-            key={post.timestamp}
+            key={`post-${post.id}`}
             type='reply'
             replies={repliesForPost}
             moderator={false}
@@ -163,7 +163,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  Show {replies.length} replie(s)
+                  {replies.length === 1
+                    ? `Show reply`
+                    : `Show ${replies.length} replies`}
                 </button>
               )}
               {openReplies && (
@@ -174,7 +176,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  Hide replies
+                  {replies.length === 1 ? `Hide reply` : `Hide replies`}
                 </button>
               )}
             </>

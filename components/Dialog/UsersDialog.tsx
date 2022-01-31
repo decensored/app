@@ -16,7 +16,7 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({
 }) => {
   // Create items for users
   const usersinSpace = users.map((user: any) => (
-    <Link key={user.id} href={`/user/${user.username}`} passHref>
+    <Link key={`user-${user.id}`} href={`/user/${user.username}`} passHref>
       <div className='py-3 px-3 cursor-pointer hover:bg-highlight-40'>
         {user.username}
       </div>

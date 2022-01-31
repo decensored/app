@@ -101,25 +101,25 @@ const Space: NextPage = () => {
 
   // Create Feediteams and check if user of post is blacklisted
   const showFeedItems = spacePosts.map((post) => {
+    if (post.mother_post !== 0) return null // early exit
+
     const userBlacklisted =
       blackListArray.filter((user) => user.userId === post.author).length > 0
     // Get Replies for Post
     const repliesForPost = getRepliesForPost(posts, post.id)
-    if (post.mother_post === 0) {
-      return (
-        <FeedItem
-          key={post.timestamp}
-          moderator={spaceOwner}
-          blacklist={blackListArray}
-          userBlacklisted={userBlacklisted}
-          replies={repliesForPost}
-          {...post}
-          type='space'
-          parent
-        />
-      )
-    }
-    return null
+
+    return (
+      <FeedItem
+        key={`post-${post.id}`}
+        moderator={spaceOwner}
+        blacklist={blackListArray}
+        userBlacklisted={userBlacklisted}
+        replies={repliesForPost}
+        {...post}
+        type='space'
+        parent
+      />
+    )
   })
 
   return (
@@ -159,9 +159,7 @@ const Space: NextPage = () => {
                       <span className={style.spaceHeaderColTitle}>
                         {nrOfPosts}
                       </span>
-                      <span className={style.spaceHeaderColText}>
-                        Posts
-                      </span>
+                      <span className={style.spaceHeaderColText}>Posts</span>
                     </div>
                     <div className={style.spaceHeaderColWrapper}>
                       <button

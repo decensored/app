@@ -18,7 +18,7 @@ const Spaces: NextPage = () => {
 
   const createSpaceItems = spaces.map((space) => (
     <SpaceItem
-      key={space.id}
+      key={`space-${space.id}`}
       {...space}
       numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)}
     />

@@ -93,7 +93,7 @@ const Playground = () => {
 
             {items.map((item) => (
               <div
-                key={item.id}
+                key={`item-${item.id}`}
                 className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
               >
                 <div className={style.feedItemInnerTop}>
@@ -114,9 +114,7 @@ const Playground = () => {
                     </div>
                   </div>
                 </div>
-                <div className={style.feedItemInnerBottom}>
-                  {item.text}
-                </div>
+                <div className={style.feedItemInnerBottom}>{item.text}</div>
               </div>
             ))}
           </div>
