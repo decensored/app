@@ -1,6 +1,11 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
+import type {
+  LoadingProgressType,
+  NodeInfoType,
+  PostType,
+  SpaceType,
+} from 'lib/types'
 
 export const STORE_VERSION = 6
 
@@ -24,6 +29,14 @@ const useStore = create(
       // smart contracts
       contract: {}, // { accounts, posts, spaces, web3 },
       setContract: (contract: any) => set({ contract }),
+
+      postsLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
+      setPostsLoaded: (postsLoaded: LoadingProgressType) =>
+        set({ postsLoaded }),
+
+      spacesLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
+      setSpacesLoaded: (spacesLoaded: LoadingProgressType) =>
+        set({ spacesLoaded }),
 
       //
       spaces: [] as SpaceType[],

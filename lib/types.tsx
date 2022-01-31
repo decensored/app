@@ -28,3 +28,8 @@ export type UserType = {
   userId: number
   username: string
 }
+
+export type LoadingProgressType = {
+  nFinished: number
+  max: number
+}
