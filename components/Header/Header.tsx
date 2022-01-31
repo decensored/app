@@ -6,7 +6,6 @@ import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SVGIcon from 'components/Icon/SVGIcon'
 import UserPopover from 'components/Popover/UserPopover'
 // import QueueControl from 'components/QueueControl/QueueControl'
-import SettingsPopover from 'components/Popover/SettingsPopover'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
@@ -68,8 +67,7 @@ const Header: FunctionComponent = () => {
           </Link>
         </div>
         <div id='header_nav_items' className='flex items-center'>
-          {nodeIsUpAndRunning(contract) && <UserPopover />}
-          <SettingsPopover />
+          <UserPopover />
         </div>
       </div>
     </div>

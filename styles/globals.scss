@@ -36,21 +36,51 @@ html {
   }
 }
 
+// mobile and desktop show/hide helper classes
 .hide-on-mobile {
   @apply hidden md:block
 }
 
 .hide-on-desktop {
-  @apply block md:hidden
+  @apply md:hidden
 }
 
-#asideNavigation {
-
+// apple custom top space to first virtuoso wrapper child
+div[data-test-id*="virtuoso-item-list"] > div:first-child {
+  @apply mt-3 md:mt-10
 }
 
-#bottomNavigation {
-
+// remove click events of disabled links in sidebar
+.disabled-link > * {
+  pointer-events: none;
+  opacity: 0.5;
 }
+
+// set higher z-index to portaled dialogs
+#headlessui-portal-root {
+  position: relative;
+  z-index: 1000;
+}
+
+// show undefined tailwind classes on element
+[class*="undefined"] {
+  position: relative;
+
+  &:before {
+    background: rgba(161, 56, 56, 0.726);
+    border-radius: 2px;
+    color: red;
+    content: "undefined tw class";
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+// 100vh is not good enough on mobile devices
+// https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 
 $headerHeight: 60px;
 
@@ -75,41 +105,5 @@ $headerHeight: 60px;
   @media (max-width: 640px) {
     min-height: calc(100vh - 80px); // --vh fallback
     min-height: calc(var(--vh, 1vh) * 100 - 80px);
-  }
-}
-
-div[data-test-id*="virtuoso-item-list"] > div:first-child {
-  @apply mt-3 sm:mt-10
-}
-
-.disabled-link > * {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-// @media (min-width: 480px) {
-//   html .Toastify__toast-container--bottom-center {
-//     bottom: 120px;
-//   }
-// }
-
-#headlessui-portal-root {
-  position: relative;
-  z-index: 1000;
-}
-
-[class*="undefined"] {
-  position: relative;
-
-  &:before {
-    background: rgba(161, 56, 56, 0.726);
-    border-radius: 2px;
-    color: red;
-    content: "undefined tw class";
-    font-size: 10px;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 }

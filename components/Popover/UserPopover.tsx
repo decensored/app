@@ -4,17 +4,21 @@ import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
-import { isMobile } from 'react-device-detect'
 import Link from 'next/link'
+import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import BasePopover from 'components/Popover/BasePopover'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import ProfileDialog from 'components/Dialog/ProfileDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
+import SettingsDialog from 'components/Dialog/SettingsDialog'
 
 const UserPopover: FunctionComponent = () => {
   const [openSignupDialog, setOpenSignupDialog] = useState(false)
   const [openRecoverDialog, setOpenRecoverDialog] = useState(false)
   const [openProfileDialog, setOpenProfileDialog] = useState(false)
+  const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
+
+  const [contract] = useStore((state) => [state.contract], shallow)
 
   const [isSignedUp, setIsSignedUp, userName] = useStore(
     (state) => [state.isSignedUp, state.setIsSignedUp, state.userName],
@@ -25,6 +29,19 @@ const UserPopover: FunctionComponent = () => {
     setIsSignedUp(false)
     localStorage.removeItem('account_private_key')
     toast('Logging out...')
+  }
+
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [
+    state.isDarkmode,
+    state.setIsDarkmode,
+  ])
+
+  const toggleDarkMode = (): void => {
+    if (isDarkmode) {
+      setIsDarkmode(false)
+    } else {
+      setIsDarkmode(true)
+    }
   }
 
   return (
@@ -60,16 +77,18 @@ const UserPopover: FunctionComponent = () => {
                 </button>
               )}
 
-              {isSignedUp && isMobile && (
-                <Link href={`/user/${userName}`} passHref>
-                  <button
-                    type='button'
-                    className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
-                  >
-                    <SVGIcon icon='faUserAstronaut' isFixed />
-                    <span>My Posts</span>
-                  </button>
-                </Link>
+              {isSignedUp && (
+                <span className='hide-on-desktop'>
+                  <Link href={`/user/${userName}`} passHref>
+                    <button
+                      type='button'
+                      className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
+                    >
+                      <SVGIcon icon='faUserAstronaut' isFixed />
+                      <span>My Posts</span>
+                    </button>
+                  </Link>
+                </span>
               )}
 
               {!isSignedUp && (
@@ -79,7 +98,7 @@ const UserPopover: FunctionComponent = () => {
                     onClick={() => setOpenSignupDialog(true)}
                     className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
                   >
-                    <SVGIcon icon='faPlus' />
+                    <SVGIcon icon='faPlus' isFixed />
                     <span>Sign up</span>
                   </button>
                   <button
@@ -92,6 +111,42 @@ const UserPopover: FunctionComponent = () => {
                   </button>
                 </>
               )}
+
+              <button
+                type='button'
+                onClick={() => setOpenSettingsDialog(true)}
+                className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
+              >
+                <SVGIcon icon='faCog' isFixed />
+                <span>Node Settings</span>
+                {!nodeIsUpAndRunning(contract) && (
+                  <SVGIcon
+                    icon='faExclamationTriangle'
+                    className='fixed right-4 animate-pulse text-red-500'
+                  />
+                )}
+              </button>
+
+              <span className='hide-on-desktop'>
+                <button
+                  type='button'
+                  onClick={toggleDarkMode}
+                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark} hide-on-desktop`}
+                >
+                  {isDarkmode && (
+                    <>
+                      <SVGIcon icon='faSun' isFixed />
+                      <span>Lightmode</span>
+                    </>
+                  )}
+                  {!isDarkmode && (
+                    <>
+                      <SVGIcon icon='faMoon' isFixed />
+                      <span>Darkmode</span>
+                    </>
+                  )}
+                </button>
+              </span>
 
               {isSignedUp && (
                 <button
@@ -115,9 +170,15 @@ const UserPopover: FunctionComponent = () => {
         showDialog={openRecoverDialog}
         onClose={() => setOpenRecoverDialog(false)}
       />
-      <ProfileDialog
-        showDialog={openProfileDialog}
-        onClose={() => setOpenProfileDialog(false)}
+      {isSignedUp &&(
+        <ProfileDialog
+          showDialog={openProfileDialog}
+          onClose={() => setOpenProfileDialog(false)}
+        />
+      )}
+      <SettingsDialog
+        showDialog={openSettingsDialog}
+        onClose={() => setOpenSettingsDialog(false)}
       />
     </>
   )
