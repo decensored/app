@@ -2,7 +2,7 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
 
-export const STORE_VERSION = 2
+export const STORE_VERSION = 3
 
 const useStore = create(
   persist(

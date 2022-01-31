@@ -104,7 +104,7 @@ const Web3Client: FunctionComponent = () => {
               }
 
               setContract(contract)
-              toast('All systems are Go for launch!')
+              // toast('All systems are Go for launch!')
 
               // Check if privateKey is stored and user exists
               const privateKey = await localStorage.getItem(
