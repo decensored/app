@@ -43,7 +43,7 @@ const AsideNavigation: FunctionComponent = () => {
     <div className={style.navigationAsideWrapper}>
       <div className={style.navigationAsideInner}>
         <div className={style.navigationAsideInnerTop}>
-          <div className={style.navigationAsideButtonWrapper}>
+          <div className={style.navigationAsideButtonContainer}>
             <Link href='/' passHref>
               <span>
                 <AsideNavigationItem

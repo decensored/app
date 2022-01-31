@@ -13,7 +13,7 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
   name,
   icon,
 }) => (
-  <span
+  <div
     className={`
       ${style.navigationAsideButton}
       ${style.navigationAsideButtonDark}
@@ -26,7 +26,7 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
       isFixed
     />
     <span className={style.navigationAsideButtonText}>{name}</span>
-  </span>
+  </div>
 )
 
 export default AsideNavigationItem
