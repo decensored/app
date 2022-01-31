@@ -32,6 +32,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               className={`
                   ${style.dialogLabel}
                   ${style.dialogLabelDark}
+                  text-center
                 `}
             >
               Your secret account key
@@ -70,14 +71,17 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
           <div>
             <span
               className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
-                `}
+                ${style.dialogLabel}
+                ${style.dialogLabelDark}
+                text-center
+              `}
             >
               Open decensored on mobile
             </span>
-            <div className='flex justify-center'>
+            <div className='flex justify-center mb-20'>
               <QRCode
+                className='scale-125 origin-top rounded'
+                fgColor='#2d3294'
                 value={`https://v2.decensored.app/signup/${key}`}
               />
             </div>

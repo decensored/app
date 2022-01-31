@@ -40,7 +40,7 @@ export const style = {
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',
-  dialogLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
+  dialogLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3',
   dialogLabelDark: 'dark:text-gray-300',
   dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
