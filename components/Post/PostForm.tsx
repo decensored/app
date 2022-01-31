@@ -64,44 +64,28 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
     }
   }
 
-  const buttonClasses = {
-    spacings: 'py-2 px-3',
-    text: 'font-medium',
-    textColor: 'text-white ',
-    style: 'rounded cursor-pointer bg-highlight-900 hover:bg-purple-800',
-  }
-
   return (
-    <div
-      id='input'
-      className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
-    >
-      <div className={style.feedItemInnerTop}>
-        <form id='postForm' onSubmit={handleSubmit(onSubmit)}>
-          <div className='relative'>
-            <TextareaAutosize
-              minRows={3}
-              maxLength={280}
-              placeholder={`${userName}, your story starts here...`}
-              className={`
-                ${style.input}
-                ${style.inputTransparent}
-                ${style.inputPlaceholder}
-                ${style.inputPlaceholderDark}
-              `}
-              {...register('message', { required: true })}
-            />
-            <div
-              id='message-count'
-              className='absolute right-4 bottom-4 py-1 px-2 text-xs text-gray-400
-            rounded-full bg-white dark:bg-black
-            empty:hidden font-mono leading-none'
-            />
-          </div>
-        </form>
-      </div>
-      <div id='spread-bar' className={style.feedItemInnerBottom}>
-        <div className='flex items-center mr-5'>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={style.postFormTextareaWrapper}>
+          <TextareaAutosize
+            minRows={5}
+            maxLength={280}
+            placeholder={`${userName}, spread your oppinion!`}
+            className={`
+              ${style.form}
+              ${style.input}
+              ${style.inputDark}
+              ${style.inputPlaceholder}
+              ${style.inputPlaceholderDark}
+            `}
+            {...register('message', { required: true })}
+          />
+          <div className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`} />
+        </div>
+      </form>
+      <div className={style.postFormFooter}>
+        <div className={style.postFormFooterLogoWrapper}>
           <img
             src='/logo/logotype.svg'
             alt='Decensored Logo'
@@ -121,22 +105,9 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
               )}
             </span>
           </button>
-          <button
-            type='button'
-            id='to-top'
-            className={`
-            hidden
-            ${buttonClasses.spacings}
-            ${buttonClasses.text}
-            ${buttonClasses.textColor}
-            ${buttonClasses.style}
-        `}
-          >
-            Back to top
-          </button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

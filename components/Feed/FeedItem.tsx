@@ -49,6 +49,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     (state) => [state.contract, state.userId, state.posts],
     shallow
   )
+  const [isSignedUp] = useStore(
+    (state) => [state.isSignedUp],
+    shallow
+  )
 
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
@@ -113,16 +117,29 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         ${!parent && style.feedItemChild}
       `}
     >
-      <div className={style.feedItemInnerTop}>
+      <div className={`${style.feedItemInnerTop} ${type === 'replyToPost' && 'pr-0'}`}>
         <div className={style.feedItemMetaWrapper}>
-          <Link href={`/user/${username}`} passHref>
-            <a
-              href='dummy-href'
-              className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
-            >
-              {username}
-            </a>
-          </Link>
+          {type === 'replyToPost' && (
+            <div>
+              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+                {username}
+              </span>
+              <span className='mx-2'>in</span>
+              <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>
+                {thisPost.spaceName}
+              </span>
+            </div>
+          )}
+          {type !== 'replyToPost' && (
+            <Link href={`/user/${username}`} passHref>
+              <a
+                href='dummy-href'
+                className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
+              >
+                {username}
+              </a>
+            </Link>
+          )}
           <div className={style.feedItemMetaTimestamp}>
             <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
@@ -131,7 +148,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           {message}
         </div>
         <div className={style.feedReplyItemBar}>
-          {type !== 'replyToPost' && (
+          {type !== 'replyToPost' && isSignedUp && (
             <>
               <button
                 type='button'
@@ -152,9 +169,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               )}
             </>
           )}
+          {repliesExist && isSignedUp && (
+            <span className={style.feedReplyItemSpacer}>|</span>
+          )}
           {repliesExist && (
             <>
-              <span className={style.feedReplyItemSpacer}>|</span>
+
               {!openReplies && (
                 <button
                   type='button'
