@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react'
-import { Dialog } from '@headlessui/react'
+import React, { Fragment, FunctionComponent } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 import { style } from 'styles/style'
 
 interface DialogProps {
@@ -40,26 +40,38 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   }
 
   return (
-    <Dialog open={showDialog} onClose={onClose}>
-      <div className={style.dialogWrapper}>
-        <Dialog.Overlay className={style.dialogOverlay} />
-        <div
-          className={`${style.dialogInner} ${
-            style.dialogInnerDark
-          } ${setWidth()}`}
+    <Transition show={showDialog} as={Fragment}>
+      <Dialog onClose={onClose}>
+        <Transition.Child
+          as={Fragment}
+          enter='ease-out duration-300'
+          enterFrom='opacity-0 scale-95'
+          enterTo='opacity-100 scale-100'
+          leave='ease-in duration-200'
+          leaveFrom='opacity-100 scale-100'
+          leaveTo='opacity-0 scale-95'
         >
-          {header && (
+          <div className={style.dialogWrapper}>
+
             <div
-              className={`${style.dialogHeader} ${style.dialogHeaderDark}`}
+              className={`${style.dialogInner} ${
+                style.dialogInnerDark
+              } ${setWidth()}`}
             >
-              {header}
+              {header && (
+                <div
+                  className={`${style.dialogHeader} ${style.dialogHeaderDark}`}
+                >
+                  {header}
+                </div>
+              )}
+              <div className={bodyPadding}>{body}</div>
+              {footer && <div className={style.dialogFooter}>{footer}</div>}
             </div>
-          )}
-          <div className={bodyPadding}>{body}</div>
-          {footer && <div className={style.dialogFooter}>{footer}</div>}
-        </div>
-      </div>
-    </Dialog>
+          </div>
+        </Transition.Child>
+      </Dialog>
+    </Transition>
   )
 }
 

@@ -38,7 +38,6 @@ export const style = {
   buttonTransparent: 'bg-transparent text-gray-900 hover:text-purple-900',
   buttonTransparentDark: 'dark:text-gray-500',
 
-  dialogOverlay: 'fixed inset-0 bg-black opacity-70',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
   dialogInner: 'relative bg-white w-full mx-auto shadow-xl mx-3 rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',

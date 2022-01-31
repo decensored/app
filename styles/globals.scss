@@ -39,6 +39,16 @@ html {
   }
 }
 
+div[id*="headlessui-dialog"]:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.3);
+}
+
 // mobile and desktop show/hide helper classes
 .hide-on-mobile {
   @apply hidden md:block
