@@ -12,12 +12,9 @@ interface ProfileProbs {
 }
 
 const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
-  let key = localStorage.getItem('account_private_key')
-    ? localStorage.getItem('account_private_key')
-    : undefined
-
-  if (typeof key !== 'string') {
-    key = 'No key found'
+  const getAccountPrivateKey = ():string => {
+    const key = localStorage.account_private_key || 'No key found'
+    return key
   }
 
   return (
@@ -47,11 +44,11 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
                     `}
                   type='text'
                   id='private-key'
-                  defaultValue={key}
+                  defaultValue={getAccountPrivateKey()}
                   readOnly
                 />
                 <CopyToClipboard
-                  text={key}
+                  text={getAccountPrivateKey()}
                   onCopy={() => toast(`Key copied to clipboard`)}
                 >
                   <button
@@ -81,7 +78,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               <QRCode
                 className='rounded'
                 fgColor='#2d3294'
-                value={`https://v2.decensored.app/signup/${key}`}
+                value={`https://v2.decensored.app/signup/${getAccountPrivateKey()}`}
               />
             </div>
           </div>
