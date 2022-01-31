@@ -14,7 +14,6 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
   onClose,
   post,
 }) => {
-  console.log(post)
   if (post) {
     return (
       <BaseDialog
@@ -23,11 +22,7 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
         body={
           <div>
             <div className='mb-6'>
-              <FeedItem
-                type='replyToPost'
-                parent={false}
-                {...post}
-              />
+              <FeedItem type='replyToPost' parent={false} {...post} />
             </div>
             <PostForm spaceId={post.space} motherPost={post.id} />
           </div>

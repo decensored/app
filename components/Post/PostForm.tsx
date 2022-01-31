@@ -17,7 +17,7 @@ interface FormProps {
 const Form: FunctionComponent<FormProps> = ({
   spaceId,
   motherPost,
-  isTransparent = false
+  isTransparent = false,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
@@ -25,28 +25,12 @@ const Form: FunctionComponent<FormProps> = ({
     contract: state.contract,
   }))
 
-  console.log(motherPost)
-
   // HANDLE FORM SUBMIT
   type FormValues = {
     message: string
   }
 
   const { register, setValue, handleSubmit } = useForm<FormValues>()
-
-  // Send post on CMD + Enter
-  /*   React.useEffect(() => {
-    const listener = (event: { code: string; metaKey: any }) => {
-      if (event.code === 'Enter' && event.metaKey) {
-        alert('Enter key was pressed. Run your function.')
-        onSubmit
-      }
-    }
-    document.addEventListener('keydown', listener)
-    return () => {
-      document.removeEventListener('keydown', listener)
-    }
-  }, []) */
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const { message } = data
@@ -71,7 +55,7 @@ const Form: FunctionComponent<FormProps> = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form id='postForm' onSubmit={handleSubmit(onSubmit)}>
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
             minRows={5}
@@ -88,7 +72,9 @@ const Form: FunctionComponent<FormProps> = ({
             `}
             {...register('message', { required: true })}
           />
-          <div className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`} />
+          <div
+            className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`}
+          />
         </div>
       </form>
       <div className={style.postFormFooter}>

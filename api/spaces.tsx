@@ -13,7 +13,7 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   const result: SpaceType = {
     id: space_id,
     name,
-    description: 'Will soon be choosen by the user', // space.description
+    description: space.description,
     owner,
     followers: 0,
     posts: 0,
@@ -38,7 +38,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
   const result: SpaceType = {
     id: space_id,
     name: space.name,
-    description: 'Will soon be choosen by the user', // space.description
+    description: space.description,
     owner: space.id,
     followers: 0,
     posts: 0,
@@ -76,11 +76,26 @@ export const createSpace = async (
   description: string
 ) => {
   log(`CreateSpace ${name}`)
-
   try {
     await executeContractFunction(
       contract.web3,
-      contract.spaces.methods.create(name) // add description later on
+      contract.spaces.methods.create(name)
+    )
+    return { success: true }
+  } catch (error) {
+    return { success: false, error: readableError(error) }
+  }
+}
+
+export const setSpaceDescription = async (
+  contract: any,
+  spaceId: number,
+  description: string
+) => {
+  try {
+    await executeContractFunction(
+      contract.web3,
+      contract.spaces.methods.set_description(spaceId, description)
     )
     return { success: true }
   } catch (error) {

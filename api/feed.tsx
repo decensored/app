@@ -1,4 +1,4 @@
-import { executeContractFunction, getUserNameById } from 'api/user'
+import { executeContractFunction, getUserById } from 'api/user'
 import type { PostType } from 'lib/types'
 import { getSpaceNameById } from './spaces'
 
@@ -24,12 +24,12 @@ export const getPostById = async (
   // log(`getPostById ${postId}`)
 
   const post = await contract.posts.methods.posts(postId).call()
-  const username = await getUserNameById(contract, post.author)
+  const user = await getUserById(contract, post.author)
   const spaceName = await getSpaceNameById(contract, post.space)
 
   const result: PostType = {
     id: postId,
-    username,
+    username: user.username,
     message: post.message,
     author: parseInt(post.author, 10),
     timestamp: parseInt(post.timestamp, 10),

@@ -35,7 +35,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
     token: string
   }
 
-  const getAccountPrivateKey = ():string => {
+  const getAccountPrivateKey = (): string => {
     const key = localStorage.account_private_key || 'No key found'
     return key
   }
@@ -127,7 +127,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                     required: true,
                     /* pattern: /^[A-Za-z1-9]+$/i, */
                     min: 4,
-                    max: 16,
+                    max: 48,
                   })}
                 />
                 {errors.token && (
@@ -148,12 +148,11 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           )}
           {signUpDone && (
             <div className={style.inputWrapper}>
-              <p className='pt-2'>
-                You successfully signed up on Decensored!
-              </p>
+              <p className='pt-2'>You successfully signed up on Decensored!</p>
               <div className={`${style.alert} ${style.alertDark} my-5`}>
-                <b className='font-bold'>Important:</b> To login again at a later point or on any
-                other device you will need your key! Copy your key and store it in a save place!
+                <b className='font-bold'>Important:</b> To login again at a
+                later point or on any other device you will need your key! Copy
+                your key and store it in a save place!
               </div>
               <div className={style.inputGroup}>
                 <input
@@ -163,9 +162,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   readOnly
                 />
                 <CopyToClipboard
-                    text={getAccountPrivateKey()}
-                    onCopy={() => toast(`Key copied to clipboard`)}
-                  >
+                  text={getAccountPrivateKey()}
+                  onCopy={() => toast(`Key copied to clipboard`)}
+                >
                   <button
                     type='button'
                     className={`
