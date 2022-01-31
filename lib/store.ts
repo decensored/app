@@ -2,9 +2,14 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
 
+export const STORE_VERSION = 2
+
 const useStore = create(
   persist(
     (set) => ({
+      storeVersion: STORE_VERSION,
+      setStoreVersion: (storeVersion: number) => set({ storeVersion }),
+
       isSignedUp: false,
       setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
@@ -56,9 +61,12 @@ const useStore = create(
         contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
       } as NodeInfoType,
       setNodeInfo: (nodeInfo: NodeInfoType) => {
+        set({ nodeInfo })
+      },
+      cacheFlush: () => {
+        console.log(`cacheFlush to storeVersion ${STORE_VERSION}`)
         set({
-          nodeInfo,
-          // delete whatever we had cached...
+          storeVersion: STORE_VERSION,
           posts: [],
           postsQueued: [],
           spaces: [],
@@ -72,6 +80,7 @@ const useStore = create(
       name: 'decensored',
 
       partialize: (state) => ({
+        storeVersion: state.storeVersion,
         isDarkmode: state.isDarkmode,
         posts: state.posts,
         postsQueued: state.postsQueued,
