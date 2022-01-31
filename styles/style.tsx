@@ -104,11 +104,14 @@ export const style = {
 
   feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
 
-  feedItemWrapper: 'bg-white rounded border-l border-gray-300',
+  feedItemParent: 'border-none rounded',
+  feedItemChild: 'border-l border-gray-300',
+
+  feedItemWrapper: 'bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 pt-3',
-  feedItemInnerBottom: 'px-5 py-3 pt-0 rounded-b flex justify-between',
+  feedItemInnerBottom: 'px-5 py-3 rounded-b flex justify-between',
   feedItemInnerBottomCol: 'flex gap-x-3 items-center',
   feedItemMetaWrapper: 'flex justify-between mb-2 items-baseline',
   feedItemMetaTimestamp: 'text-xs text-right text-gray-500',

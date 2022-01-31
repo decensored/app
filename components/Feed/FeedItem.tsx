@@ -109,6 +109,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       className={`
         ${style.feedItemWrapper}
         ${style.feedItemWrapperDark}
+        ${parent && style.feedItemParent}
+        ${!parent && style.feedItemChild}
       `}
     >
       <div className={style.feedItemInnerTop}>
