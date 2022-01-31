@@ -117,6 +117,9 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                     ${style.form}
                     ${style.input}
                     ${style.inputDark}
+                    ${style.inputFocus}
+                    ${style.inputPlaceholder}
+                    ${style.inputPlaceholderDark}
                   `}
                   {...register('contractAddress', { required: true })}
                 />

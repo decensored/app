@@ -14,8 +14,7 @@ const PostDialog: FunctionComponent<PostDialogProps> = ({
   <BaseDialog
     showDialog={showDialog}
     onClose={onClose}
-    bodyPadding='p-0'
-    body={<PostForm spaceId={1} />}
+    body={<PostForm spaceId={1} isTransparent />}
     width='2xl'
   />
 )

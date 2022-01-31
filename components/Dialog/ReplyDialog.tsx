@@ -22,7 +22,7 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
         onClose={onClose}
         body={
           <div>
-            <div className='mb-3'>
+            <div className='mb-6'>
               <FeedItem
                 type='replyToPost'
                 parent={false}

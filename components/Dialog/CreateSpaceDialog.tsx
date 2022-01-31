@@ -114,9 +114,12 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                   maxLength={280}
                   placeholder='Your description..'
                   className={`
+                  ${style.form}
                   ${style.input}
                   ${style.inputDark}
                   ${style.inputFocus}
+                  ${style.inputPlaceholder}
+                  ${style.inputPlaceholderDark}
               `}
                   {...register('description', { required: true })}
                 />

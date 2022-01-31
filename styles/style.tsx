@@ -13,12 +13,12 @@ export const style = {
   inputWrapper: 'relative',
   inputGroup: 'flex',
   input: 'px-3 py-[7.3px] rounded w-full border border-gray-300 text-gray-900 focus:outline-none',
-  inputFocus: 'focus:ring-1 focus:ring-purple-700',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
-  inputTransparent: 'text-gray-900 !p-0 bg-transparent border-none outline-none focus:outline-none',
+  inputTransparent: '!p-0 w-full text-gray-900 bg-transparent border-none outline-none focus:outline-none',
   inputTransparentDark: 'dark:text-white',
   inputPlaceholder: 'placeholder:italic placeholder:text-gray-400',
   inputPlaceholderDark: 'placeholder:dark text-darkmode-1500',
+  inputFocus: 'focus:ring-1 focus:ring-purple-700',
 
   inputLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3',
   inputLabelDark: 'dark:text-gray-300',
@@ -105,7 +105,7 @@ export const style = {
   virtuosoScroll2IndexInner: 'h-10 bg-black',
   virtuosoFeedItemWrapper: 'px-3 mb-5',
 
-  postFormTextareaWrapper: 'mt-5 relative',
+  postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute right-4 bottom-4 py-1 px-2 text-xs text-gray-400 rounded-full bg-white empty:hidden font-mono leading-none',
   postFormMessageCounterDark: 'dark:bg-black',
   postFormFooter: 'mt-5 flex justify-between',

@@ -11,9 +11,14 @@ import TextareaAutosize from 'react-textarea-autosize'
 interface FormProps {
   spaceId: number
   motherPost?: number
+  isTransparent?: boolean
 }
 
-const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
+const Form: FunctionComponent<FormProps> = ({
+  spaceId,
+  motherPost,
+  isTransparent = false
+}) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
     userName: state.userName,
@@ -74,10 +79,12 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost }) => {
             placeholder={`${userName}, spread your oppinion!`}
             className={`
               ${style.form}
-              ${style.input}
-              ${style.inputDark}
               ${style.inputPlaceholder}
               ${style.inputPlaceholderDark}
+              ${!isTransparent && style.input}
+              ${!isTransparent && style.inputDark}
+              ${isTransparent && style.inputTransparent}
+              ${isTransparent && style.inputTransparentDark}
             `}
             {...register('message', { required: true })}
           />

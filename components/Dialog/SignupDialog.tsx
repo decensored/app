@@ -92,7 +92,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   defaultValue={userName}
                   {...register('username', {
                     required: true,
-                    /*                     pattern: /^[A-Za-z1-9]+$/i, */
+                    /* pattern: /^[A-Za-z1-9]+$/i, */
                     min: 4,
                     max: 16,
                   })}
