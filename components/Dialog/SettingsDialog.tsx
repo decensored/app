@@ -38,7 +38,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
     cacheFlush()
     setNodeInfo({
       evmNode: data.evmNode,
-      contractPostsAddress: data.contractAddress,
+      contractsAddress: data.contractAddress,
     })
     onClose()
   }
@@ -115,9 +115,9 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
               <div className={style.inputWrapper}>
                 <textarea
                   className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
-                  value={nodeInfo.contractPostsAddress}
+                  value={nodeInfo.contractsAddress}
                   {...register('contractAddress', { required: true })}
-                 />
+                />
                 {errors.contractAddress && (
                   <div
                     className={`${style.formValidation} ${style.formValidationError}`}

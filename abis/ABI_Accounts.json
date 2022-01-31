@@ -45,8 +45,22 @@
   },
   {
     "inputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
-    "name": "address_by_id",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "accounts",
+    "outputs": [
+      { "internalType": "string", "name": "username", "type": "string" },
+      { "internalType": "string", "name": "public_key", "type": "string" },
+      { "internalType": "string", "name": "profile_picture", "type": "string" },
+      { "internalType": "address", "name": "_address", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "contracts",
+    "outputs": [
+      { "internalType": "contract Contracts", "name": "", "type": "address" }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -68,7 +82,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "rate_control_address",
+        "name": "contracts_address",
         "type": "address"
       }
     ],
@@ -85,24 +99,17 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
-    "name": "public_key_by_id",
-    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "rate_control",
-    "outputs": [
-      { "internalType": "contract RateControl", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "profile_picture", "type": "string" }
+    ],
+    "name": "set_profile_picture",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -118,7 +125,8 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "username", "type": "string" }
+      { "internalType": "string", "name": "username", "type": "string" },
+      { "internalType": "string", "name": "token", "type": "string" }
     ],
     "name": "sign_up",
     "outputs": [],
@@ -132,13 +140,6 @@
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
-    "name": "username_by_id",
-    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
-    "stateMutability": "view",
     "type": "function"
   }
 ]

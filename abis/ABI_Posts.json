@@ -52,9 +52,9 @@
   },
   {
     "inputs": [],
-    "name": "accounts",
+    "name": "contracts",
     "outputs": [
-      { "internalType": "contract Accounts", "name": "", "type": "address" }
+      { "internalType": "contract Contracts", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -101,7 +101,11 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "spaces_address", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "contracts_address",
+        "type": "address"
+      }
     ],
     "name": "initialize",
     "outputs": [],
@@ -150,15 +154,6 @@
   },
   {
     "inputs": [],
-    "name": "rate_control",
-    "outputs": [
-      { "internalType": "contract RateControl", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -171,15 +166,6 @@
     ],
     "name": "replies_by_post",
     "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "spaces",
-    "outputs": [
-      { "internalType": "contract Spaces", "name": "", "type": "address" }
-    ],
     "stateMutability": "view",
     "type": "function"
   },

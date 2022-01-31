@@ -2,7 +2,7 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { NodeInfoType, PostType, SpaceType } from 'lib/types'
 
-export const STORE_VERSION = 4
+export const STORE_VERSION = 5
 
 const useStore = create(
   persist(
@@ -58,7 +58,7 @@ const useStore = create(
 
       nodeInfo: {
         evmNode: 'https://hh.addiota.com',
-        contractPostsAddress: '0x2F7D8C25D00a8b4fad546dB5533D0Aa8e885f230',
+        contractsAddress: '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3',
       } as NodeInfoType,
       setNodeInfo: (nodeInfo: NodeInfoType) => {
         set({ nodeInfo })

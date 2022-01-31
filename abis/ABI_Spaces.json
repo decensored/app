@@ -29,15 +29,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "accounts",
-    "outputs": [
-      { "internalType": "contract Accounts", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       { "internalType": "uint64", "name": "space", "type": "uint64" },
       { "internalType": "uint64", "name": "account", "type": "uint64" }
@@ -45,6 +36,15 @@
     "name": "add_account_to_blacklist",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "contracts",
+    "outputs": [
+      { "internalType": "contract Contracts", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -72,7 +72,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "accounts_address",
+        "name": "contracts_address",
         "type": "address"
       }
     ],
@@ -99,15 +99,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "rate_control",
-    "outputs": [
-      { "internalType": "contract RateControl", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       { "internalType": "uint64", "name": "space", "type": "uint64" },
       { "internalType": "uint64", "name": "account", "type": "uint64" }
@@ -125,12 +116,23 @@
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "uint64", "name": "space_id", "type": "uint64" },
+      { "internalType": "string", "name": "description", "type": "string" }
+    ],
+    "name": "set_description",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
     "name": "spaces",
     "outputs": [
       { "internalType": "uint64", "name": "id", "type": "uint64" },
       { "internalType": "uint64", "name": "owner", "type": "uint64" },
-      { "internalType": "string", "name": "name", "type": "string" }
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "string", "name": "description", "type": "string" }
     ],
     "stateMutability": "view",
     "type": "function"

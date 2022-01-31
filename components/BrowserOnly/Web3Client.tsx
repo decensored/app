@@ -1,15 +1,14 @@
 import { FunctionComponent, useEffect } from 'react'
-// import Web3 from 'web3'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { inBrowser } from 'lib/where'
 import { isSignedUp } from 'api/user'
 
-import CONTRACT_ACCOUNTS_ABI from 'abis/contracts_Accounts_sol_Accounts.json'
-import CONTRACT_POSTS_ABI from 'abis/contracts_Posts_sol_Posts.json'
-import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
-// import CONTRACT_RATECONTROL_ABI from 'abis/contracts_RateControl_sol_RateControl.json'
+import AbiContracts from 'abis/ABI_Contracts.json'
+import AbiAccounts from 'abis/ABI_Accounts.json'
+import AbiPosts from 'abis/ABI_Posts.json'
+import AbiSpaces from 'abis/ABI_Spaces.json'
 
 let web3: any // TODO: move to store.ts
 
@@ -30,27 +29,64 @@ const Web3Client: FunctionComponent = () => {
   const q = new URLSearchParams(window.location.search)
   if (
     q.get('evmNode') &&
-    q.get('contractPostsAddress') &&
+    q.get('contractsAddress') &&
     (q.get('evmNode') !== nodeInfo.evmNode ||
-      q.get('contractPostsAddress') !== nodeInfo.contractPostsAddress)
+      q.get('contractsAddress') !== nodeInfo.contractsAddress)
   ) {
     cacheFlush()
     setNodeInfo({
       evmNode: q.get('evmNode') as string,
-      contractPostsAddress: q.get('contractPostsAddress') as string,
+      contractsAddress: q.get('contractsAddress') as string,
     })
-  }
+  } // else not deeplinking (refactor this to a seperate page! (see qrcode page))
 
   //
   useEffect(() => {
     if (!inBrowser) return
 
     const makeConnection = async (): Promise<void> => {
-      // console.log('Web3Client.nodeInfo', nodeInfo)
+      const { evmNode, contractsAddress } = nodeInfo
+      console.log('Web3Client', evmNode, contractsAddress)
 
-      // make sure we only can access the contracts when all is well
-      setContract({})
+      setContract({}) // make sure we only can access the contracts when all is well
 
+      const Web3 = (await import('web3')).default // dynamic import
+      web3 = new Web3(evmNode)
+      console.log('Web3Client.web3', web3)
+
+      const contracts = new web3.eth.Contract(AbiContracts, contractsAddress)
+      console.log('Web3Client.contracts', contracts)
+
+      const accountsAddress = await contracts.methods.accounts().call()
+      console.log('Web3Client.accountsAddress', accountsAddress)
+      const spacesAddress = await contracts.methods.spaces().call()
+      console.log('Web3Client.spacesAddress', spacesAddress)
+      const postsAddress = await contracts.methods.posts().call()
+      console.log('Web3Client.postsAddress', postsAddress)
+
+      const accounts = new web3.eth.Contract(AbiAccounts, accountsAddress)
+      console.log('Web3Client.accounts', accounts)
+      const spaces = new web3.eth.Contract(AbiSpaces, spacesAddress)
+      console.log('Web3Client.spaces', spaces)
+      const posts = new web3.eth.Contract(AbiPosts, postsAddress)
+      console.log('Web3Client.posts', posts)
+
+      const contract = {
+        accounts,
+        posts,
+        spaces,
+        web3,
+      }
+      console.log('Web3Client.setContract', contract)
+      setContract(contract)
+
+      // Check if privateKey is stored and user exists
+      const privateKey = await localStorage.getItem('account_private_key')
+      const signedUp = privateKey && (await isSignedUp(contract))
+      console.log('Web3Client.signedUp', signedUp)
+      setIsSignedUp(signedUp)
+
+      /*
       try {
         const Web3 = (await import('web3')).default // dynamic import
         web3 = new Web3(nodeInfo.evmNode)
@@ -125,6 +161,7 @@ const Web3Client: FunctionComponent = () => {
             autoClose: 5000,
           })
         })
+*/
     } // end of makeConnection(...)
     makeConnection() // call async inner function
   }, [nodeInfo, setContract, setIsSignedUp])
