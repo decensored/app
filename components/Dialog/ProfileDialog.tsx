@@ -16,9 +16,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
     ? localStorage.getItem('account_private_key')
     : undefined
 
-  if (typeof key === 'string') {
-    key = key.toString()
-  } else {
+  if (typeof key !== 'string') {
     key = 'No key found'
   }
 
