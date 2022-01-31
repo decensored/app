@@ -53,8 +53,8 @@ export const style = {
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
 
-  navigationAsideWrapper: 'sticky top-[80px] md:top-[100px]',
-  navigationAsideInner: 'flex flex-col justify-between h-screen-sidebar',
+  navigationAsideWrapper: 'flex pt-10 sticky top-[60px]',
+  navigationAsideInner: 'flex flex-col justify-between grow h-screen-sidebar',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
   navigationAsideButtonWrapper: 'flex flex-col gap-y-1',
