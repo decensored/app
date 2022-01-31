@@ -55,12 +55,12 @@ const Form: FunctionComponent<FormProps> = ({
 
   return (
     <>
-      <form id='postForm' onSubmit={handleSubmit(onSubmit)}>
+      <form id={`postForm-${motherPost}`} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
             minRows={5}
             maxLength={280}
-            placeholder={`${userName}, spread your oppinion!`}
+            placeholder={`${userName}, spread your opinion!`}
             className={`
               ${style.form}
               ${style.inputPlaceholder}
@@ -88,7 +88,7 @@ const Form: FunctionComponent<FormProps> = ({
         <div>
           <button
             type='submit'
-            form='postForm'
+            form={`postForm-${motherPost}`}
             className={`${style.button} ${style.buttonDecensored}`}
           >
             <span className='whitespace-nowrap'>
