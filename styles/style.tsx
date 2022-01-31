@@ -4,11 +4,11 @@ export const style = {
   body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
-  bodyContainer: 'container mx-auto max-w-screen-lg px-3 flex pt-5 sm:pt-10 sm:gap-x-[2%] sm:flex-row-reverse',
-  bodyContainerCol1: 'flex-none w-[34px] sm:w-48',
-  bodyContainerCol2: 'flex-auto px-3 overflow-hidden',
+  bodyContainer: 'container mx-auto max-w-screen-lg flex sm:gap-x-[2%]',
+  bodyContainerCol1: 'flex-none w-[34px] sm:w-48 pl-3',
+  bodyContainerCol2: 'flex-auto',
 
-  headerWrapper: 'sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
+  headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
   headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
 
   inputWrapper: 'relative',
@@ -97,13 +97,17 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
-  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px] children:border-none',
-  feedWrapperVirtuoso: 'flex flex-col last:mb-[20px] last:sm:mb-[20px]',
+  virtuosoWrapper: '',
+  virtuosoScroll2IndexWrapper: 'h-10',
+  virtuosoScroll2IndexInner: 'h-10 bg-black',
+  virtuosoFeedItemWrapper: 'pr-3 mb-5',
+
+  feedWrapper: 'flex flex-col gap-y-5 mb-[80px] sm:mb-[120px]',
 
   feedItemWrapper: 'bg-white rounded border-l border-gray-300',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
-  feedItemInnerTop: 'rounded-t p-5 pt-3 border-black',
+  feedItemInnerTop: 'rounded-t p-5 pt-3',
   feedItemInnerBottom: 'px-5 py-3 pt-0 rounded-b flex justify-between',
   feedItemInnerBottomCol: 'flex gap-x-3 items-center',
   feedItemMetaWrapper: 'flex justify-between mb-2 items-baseline',
@@ -116,7 +120,7 @@ export const style = {
   feedItemInteractionIconDark: 'dark:text-darkmode-1700 dark:hover:text-highlight-400',
 
   feedReplyItemWrapper: 'rounded-none',
-  feedReplyItemOffset: 'pl-7 children:rounded-none',
+  feedReplyItemOffset: 'pl-7 children:rounded-none children:children:rounded-none',
   feedReplyItemBar: 'flex items-center pt-3',
   feedReplyItemButton: 'cursor-pointer text-xs text-highlight-500',
   feedReplyItemText: 'cursor-pointer text-xs',

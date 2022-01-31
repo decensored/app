@@ -108,9 +108,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     <div
       className={`
         ${style.feedItemWrapper}
-        ${style.feedItemWrapperDark} 
-        ${userBlacklisted && `hidden`}
-        ${parent} && ${style.feedWrapperVirtuoso}
+        ${style.feedItemWrapperDark}
       `}
     >
       <div className={style.feedItemInnerTop}>

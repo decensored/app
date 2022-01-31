@@ -54,15 +54,18 @@ const Feed: FunctionComponent = () => {
         </button>
       )}
 
-      <div id='posts'>
-        {oldskool ? (
-          showFeedItems
-        ) : (
-          <Virtuoso
-            style={{ height: '100vh' }}
-            data={postsWithoutMother}
-            totalCount={postsWithoutMother.length}
-            itemContent={(_, post) => (
+      {oldskool ? (
+        showFeedItems
+      ) : (
+        <Virtuoso
+          data={postsWithoutMother}
+          totalCount={postsWithoutMother.length}
+          className={`
+            ${style.virtuosoWrapper}
+            h-screen-virtuoso
+          `}
+          itemContent={(_, post) => (
+            <div className={style.virtuosoFeedItemWrapper}>
               <FeedItem
                 key={`post-${post.id}`}
                 moderator={false}
@@ -71,10 +74,10 @@ const Feed: FunctionComponent = () => {
                 parent
                 {...post}
               />
-            )}
-          />
-        )}
-      </div>
+            </div>
+          )}
+        />
+      )}
     </>
   )
 }

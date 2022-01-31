@@ -11,12 +11,12 @@ const Home: NextPage = () => (
   <>
     <Header />
     <div className={style.bodyContainer}>
-      <div className={style.bodyContainerCol2}>
-        <Feed />
-      </div>
       <BrowserView className={style.bodyContainerCol1}>
         <AsideNavigation />
       </BrowserView>
+      <div className={style.bodyContainerCol2}>
+        <Feed />
+      </div>
     </div>
     <MobileView>
       <BottomNavigation />

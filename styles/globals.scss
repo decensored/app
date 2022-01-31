@@ -36,6 +36,17 @@ html {
   }
 }
 
+$headerHeight: 60px;
+
+.h-header {
+  height: $headerHeight;
+}
+
+.h-screen-virtuoso {
+  min-height: calc(100vh - $headerHeight); // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100 - $headerHeight);
+}
+
 .h-screen-body {
   min-height: 100vh; // --vh fallback
   min-height: calc(var(--vh, 1vh) * 100);
@@ -51,11 +62,14 @@ html {
   }
 }
 
+div[data-test-id*="virtuoso-item-list"] > div:first-child {
+  @apply mt-10
+}
+
 .disabled-link > * {
   pointer-events: none;
   opacity: 0.5;
 }
-
 
 // @media (min-width: 480px) {
 //   html .Toastify__toast-container--bottom-center {
@@ -66,4 +80,20 @@ html {
 #headlessui-portal-root {
   position: relative;
   z-index: 1000;
+}
+
+[class*="undefined"] {
+  position: relative;
+
+  &:before {
+    background: rgba(161, 56, 56, 0.726);
+    border-radius: 2px;
+    color: red;
+    content: "undefined tw class";
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

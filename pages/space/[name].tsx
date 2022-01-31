@@ -127,6 +127,9 @@ const Space: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
+        <BrowserView className={style.bodyContainerCol1}>
+          <AsideNavigation />
+        </BrowserView>
         <div className={style.bodyContainerCol2}>
           {space && (
             <div className={style.feedWrapper}>
@@ -190,9 +193,6 @@ const Space: NextPage = () => {
             </div>
           )}
         </div>
-        <BrowserView className={style.bodyContainerCol1}>
-          <AsideNavigation />
-        </BrowserView>
       </div>
       <MobileView>
         <BottomNavigation />

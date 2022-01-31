@@ -29,15 +29,15 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
+        <BrowserView className={style.bodyContainerCol1}>
+          <AsideNavigation />
+        </BrowserView>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             {isSignedUp && <SpaceHeader />}
             {createSpaceItems}
           </div>
         </div>
-        <BrowserView className={style.bodyContainerCol1}>
-          <AsideNavigation />
-        </BrowserView>
       </div>
       <MobileView>
         <BottomNavigation />
