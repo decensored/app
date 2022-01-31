@@ -3,6 +3,8 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 import BaseDialog from './BaseDialog'
 
@@ -32,6 +34,12 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
     username: string
     token: string
   }
+
+  const getAccountPrivateKey = ():string => {
+    const key = localStorage.account_private_key || 'No key found'
+    return key
+  }
+
   const {
     register,
     handleSubmit,
@@ -63,7 +71,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
     <BaseDialog
       showDialog={showDialog}
       onClose={onClose}
-      header='Signup'
+      header={`${!signUpDone ? 'Signup' : 'Congratulation 🎉'}`}
       body={
         <>
           {!signUpDone && (
@@ -139,25 +147,36 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           )}
           {signUpDone && (
             <div className={style.inputWrapper}>
-              <p className='text-l font-semibold'>Congratulation 🎉</p>
               <p className='text-sm pt-2'>
                 You successfully signed up on Decensored!
               </p>
-              <p className='text-sm pt-2'>
-                <b>Important:</b> To login again at a later point or on any
-                other device you will need your key!
-              </p>
-              <input
-                className={`${style.input} ${style.inputDark} ${style.inputFocus} mt-5 text-xs`}
-                type='text'
-                defaultValue={localStorage
-                  .getItem('account_private_key')
-                  ?.toString()}
-                disabled
-              />
-              <p className='text-sm pt-2'>
-                Copy your key and store it in a save place!
-              </p>
+              <div className={`${style.alert} ${style.alertDark} my-5`}>
+                <b className='font-bold'>Important:</b> To login again at a later point or on any
+                other device you will need your key! Copy your key and store it in a save place!
+              </div>
+              <div className={style.inputGroup}>
+                <input
+                  className={`${style.input} ${style.inputDark} ${style.inputFocus} rounded-r-none`}
+                  type='text'
+                  defaultValue={getAccountPrivateKey()}
+                  readOnly
+                />
+                <CopyToClipboard
+                    text={getAccountPrivateKey()}
+                    onCopy={() => toast(`Key copied to clipboard`)}
+                  >
+                  <button
+                    type='button'
+                    className={`
+                      ${style.button}
+                      ${style.buttonDecensored}
+                      rounded-l-none
+                    `}
+                  >
+                    <SVGIcon icon='faClipboard' isFixed />
+                  </button>
+                </CopyToClipboard>
+              </div>
             </div>
           )}
         </>

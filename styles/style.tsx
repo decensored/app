@@ -164,5 +164,10 @@ export const style = {
   switchInner: 'rounded-full text-gray-900 w-[19px] h-[19px] flex justify-center items-center',
   switchInnerDark: 'dark:text-white',
 
+  alert: 'border px-4 py-3 rounded border-highlight-900 bg-highlight-100 text-highlight-900',
+  alertDark: 'dark:border-highlight-400 dark:bg-darkmode-1000 dark:text-highlight-400',
+  alertError: 'border-red-400 text-red-700 bg-red-100',
+  alertSuccess: '',
+
   loadingWrapper: 'fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-slate-100 flex flex-col items-center justify-center'
 }
