@@ -8,8 +8,7 @@ export const style = {
   bodyContainerCol1: 'flex-none w-[34px] md:w-48 pl-3',
   bodyContainerCol2: 'flex-auto',
 
-  headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full flex flex-col items-start z-10',
-  headerInner: 'flex w-full gap-y-5 p-4 justify-between items-center',
+  headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
 
   inputWrapper: 'relative',
   inputGroup: 'flex',
