@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
+import TextareaAutosize from 'react-textarea-autosize'
 import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 
@@ -109,9 +110,14 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 Contract Address
               </span>
               <div className={style.inputWrapper}>
-                <textarea
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus} ${style.form}`}
+                <TextareaAutosize
+                  minRows={2}
                   value={nodeInfo.contractsAddress}
+                  className={`
+                    ${style.form}
+                    ${style.input}
+                    ${style.inputDark}
+                  `}
                   {...register('contractAddress', { required: true })}
                 />
                 {errors.contractAddress && (
