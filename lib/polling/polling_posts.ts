@@ -1,20 +1,28 @@
 import { inBrowser } from 'lib/where'
-import useStore from 'lib/store'
+import useStore, { STORE_VERSION } from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
 const INTERVAL = 10 * 1000
 
-/* export */ const poll = async (): Promise<void> => {
-  // console.log('polling_posts')
+const poll = async (): Promise<void> => {
   const state = useStore.getState()
 
   const contract: any = state?.contract
   if (!nodeIsUpAndRunning(contract)) {
+    // console.log('polling_posts: waiting for node to be up and running')
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
+
+  if (state.storeVersion !== STORE_VERSION) {
+    state.cacheFlush()
+    setTimeout(poll, 100) // quick retry
+    return
+  }
+
+  // console.log('polling_posts: check latest index')
 
   const latestPostIndex = await getLatestPostIndex(state.contract)
   // console.log('no. posts', state.latestPostIndexFetched, '->', latestPostIndex)

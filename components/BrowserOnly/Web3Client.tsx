@@ -14,15 +14,17 @@ import CONTRACT_SPACES_ABI from 'abis/contracts_Spaces_sol_Spaces.json'
 let web3: any // TODO: move to store.ts
 
 const Web3Client: FunctionComponent = () => {
-  const [nodeInfo, setNodeInfo, setContract, setIsSignedUp] = useStore(
-    (state) => [
-      state.nodeInfo,
-      state.setNodeInfo,
-      state.setContract,
-      state.setIsSignedUp,
-    ],
-    shallow
-  )
+  const [nodeInfo, setNodeInfo, cacheFlush, setContract, setIsSignedUp] =
+    useStore(
+      (state) => [
+        state.nodeInfo,
+        state.setNodeInfo,
+        state.cacheFlush,
+        state.setContract,
+        state.setIsSignedUp,
+      ],
+      shallow
+    )
 
   // support for deeplink
   const q = new URLSearchParams(window.location.search)
@@ -32,6 +34,7 @@ const Web3Client: FunctionComponent = () => {
     (q.get('evmNode') !== nodeInfo.evmNode ||
       q.get('contractPostsAddress') !== nodeInfo.contractPostsAddress)
   ) {
+    cacheFlush()
     setNodeInfo({
       evmNode: q.get('evmNode') as string,
       contractPostsAddress: q.get('contractPostsAddress') as string,

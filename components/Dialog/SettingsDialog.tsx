@@ -15,14 +15,11 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
   showDialog,
   onClose,
 }) => {
-  const {
-    contract,
-    nodeInfo,
-    setNodeInfo,
-  } = useStore((state) => ({
+  const { contract, nodeInfo, setNodeInfo, cacheFlush } = useStore((state) => ({
     contract: state.contract,
     nodeInfo: state.nodeInfo,
     setNodeInfo: state.setNodeInfo,
+    cacheFlush: state.cacheFlush,
   }))
 
   // HANDLE FORM SUBMIT
@@ -38,6 +35,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
   } = useForm<FormValues>()
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    cacheFlush()
     setNodeInfo({
       evmNode: data.evmNode,
       contractPostsAddress: data.contractAddress,
