@@ -58,7 +58,7 @@ const Form: FunctionComponent<FormProps> = ({
       <form id={`postForm-${motherPost}`} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
-            minRows={5}
+            minRows={3}
             maxLength={280}
             placeholder={`${userName}, spread your opinion!`}
             className={`

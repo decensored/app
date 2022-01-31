@@ -140,7 +140,7 @@ const Space: NextPage = () => {
                     <>
                       <SVGIcon
                         icon='faCog'
-                        className='fixed top-0 right-0 text-white cursor-pointer'
+                        className='top-0 left-0 text-white cursor-pointer'
                         onClick={() => setOpenSpaceSettingsDialog(true)}
                       />
                       <SpaceSettingsDialog
@@ -153,48 +153,32 @@ const Space: NextPage = () => {
                       />
                     </>
                   )}
-                  <div className='flex items-center'>
-                    <div className='w-3/4'>
-                      <div className='flex flex-col'>
-                        <span className='text-2xl text-white font-semibold uppercase italic'>
-                          #{name}
-                        </span>
-                        <span className='text-white text-sm font-light pt-3'>
-                          {space.description}
-                        </span>
-                      </div>
+                  <div className={style.spaceHeaderTitle}>#{name}</div>
+                  <div className={style.spaceHeaderColsWrapper}>
+                    <div className={style.spaceHeaderColWrapper}>
+                      <span className={style.spaceHeaderColTitle}>
+                        {nrOfPosts}
+                      </span>
+                      <span className={style.spaceHeaderColText}>Posts</span>
                     </div>
-                    <div className='w-1/4 pb-5'>
-                      {' '}
-                      <div className={style.spaceHeaderColsWrapper}>
-                        <div className={style.spaceHeaderColWrapper}>
-                          <span className={style.spaceHeaderColTitle}>
-                            {nrOfPosts}
-                          </span>
-                          <span className={style.spaceHeaderColText}>
-                            Posts
-                          </span>
-                        </div>
-                        <div className={style.spaceHeaderColWrapper}>
-                          <button
-                            type='button'
-                            onClick={() => {
-                              setOpenUserDialog(true)
-                            }}
-                            className={style.spaceHeaderColTitle}
-                          >
-                            {nrOfUSers}
-                          </button>
-                          <span className={style.spaceHeaderColText}>
-                            Followers
-                          </span>
-                          <UserDialog
-                            users={userArray}
-                            showDialog={openUserDialog}
-                            onClose={() => setOpenUserDialog(false)}
-                          />
-                        </div>
-                      </div>
+                    <div className={style.spaceHeaderColWrapper}>
+                      <button
+                        type='button'
+                        onClick={() => {
+                          setOpenUserDialog(true)
+                        }}
+                        className={style.spaceHeaderColTitle}
+                      >
+                        {nrOfUSers}
+                      </button>
+                      <span className={style.spaceHeaderColText}>
+                        Followers
+                      </span>
+                      <UserDialog
+                        users={userArray}
+                        showDialog={openUserDialog}
+                        onClose={() => setOpenUserDialog(false)}
+                      />
                     </div>
                   </div>
                 </div>

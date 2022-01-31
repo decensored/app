@@ -13,7 +13,10 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   const result: SpaceType = {
     id: space_id,
     name,
-    description: 'Will soon be choosen by the user', // space.description
+    description:
+      space.description.length > 0
+        ? space.description
+        : 'No Description provided',
     owner: parseInt(owner, 10),
     followers: 0,
     posts: 0,
@@ -38,7 +41,10 @@ export const getSpaceByName = async (contract: any, name: string) => {
   const result: SpaceType = {
     id: space_id,
     name: space.name,
-    description: space.description,
+    description:
+      space.description.length > 0
+        ? space.description
+        : 'No Description provided',
     owner: space.id,
     followers: 0,
     posts: 0,
@@ -81,6 +87,10 @@ export const createSpace = async (
       contract.web3,
       contract.spaces.methods.create(name)
     )
+    // I guess this is not the ideal way to do this
+    await getSpaceByName(contract, name).then(async (space) => {
+      await setSpaceDescription(contract, space.id, description)
+    })
     return { success: true }
   } catch (error) {
     return { success: false, error: readableError(error) }
@@ -92,6 +102,7 @@ export const setSpaceDescription = async (
   spaceId: number,
   description: string
 ) => {
+  console.log(`Settings ${description} for Space ${spaceId}`)
   try {
     await executeContractFunction(
       contract.web3,

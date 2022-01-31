@@ -6,12 +6,14 @@ import useStore from 'lib/store'
 
 interface SpaceItemProps {
   name: string
+  description: string
   owner: number
   numberOfPostsInSpace: number
 }
 
 const SpaceItem: FunctionComponent<SpaceItemProps> = ({
   name,
+  description,
   owner,
   numberOfPostsInSpace,
 }) => {
@@ -56,12 +58,8 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
               </span>
             </div>
           </div>
-          <div
-            className={`${style.feedItemText} ${style.feedItemTextDark}`}
-          >
-            IOTA is a scalable, decentralized, feeless, modular, open-source
-            distributed ledger protocol that goes beyond blockchain through its
-            core invention of the blockless Tangle.
+          <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
+            {description}
           </div>
         </div>
       </div>
