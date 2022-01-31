@@ -4,6 +4,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import QRCode from 'react-qr-code'
 import { toast } from 'react-toastify'
+import { BrowserView } from 'react-device-detect'
 import BaseDialog from './BaseDialog'
 
 interface ProfileProbs {
@@ -65,23 +66,26 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               </div>
             </div>
           </div>
-          <div>
-            <span
-              className={`
-                ${style.inputLabel}
-                ${style.inputLabelDark}
-              `}
-            >
-              Open decensored on mobile
-            </span>
-            <div className='flex justify-center'>
-              <QRCode
-                className='rounded'
-                fgColor='#2d3294'
-                value={`https://v2.decensored.app/signup/${getAccountPrivateKey()}`}
-              />
+          <BrowserView>
+            <div>
+              <div className='flex justify-center mb-3'>
+                <QRCode
+                  className='rounded'
+                  fgColor='#2d3294'
+                  value={`https://v2.decensored.app/signup/${getAccountPrivateKey()}`}
+                />
+              </div>
+              <span
+                className={`
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
+                  ${style.inputLabelCenter}
+                `}
+              >
+                Switch to mobile
+              </span>
             </div>
-          </div>
+          </BrowserView>
         </div>
       }
       footer={

@@ -112,9 +112,10 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                 )}
                 <span
                   className={`
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                mt-5`}
+                    ${style.inputLabel}
+                    ${style.inputLabelDark}
+                    mt-5
+                  `}
                 >
                   Space Token
                 </span>
@@ -124,7 +125,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   placeholder='Paste in your SpaceKey'
                   {...register('token', {
                     required: true,
-                    /*                     pattern: /^[A-Za-z1-9]+$/i, */
+                    /* pattern: /^[A-Za-z1-9]+$/i, */
                     min: 4,
                     max: 16,
                   })}
@@ -147,7 +148,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           )}
           {signUpDone && (
             <div className={style.inputWrapper}>
-              <p className='text-sm pt-2'>
+              <p className='pt-2'>
                 You successfully signed up on Decensored!
               </p>
               <div className={`${style.alert} ${style.alertDark} my-5`}>
