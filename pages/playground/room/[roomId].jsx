@@ -70,7 +70,7 @@ const Playground = () => {
                     type='text'
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    className={`${style.input} ${style.inputDark}`}
+                    className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
                   />
                   <button
                     type='button'

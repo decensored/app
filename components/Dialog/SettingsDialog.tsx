@@ -65,6 +65,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                   className={`
                     ${style.input}
                     ${style.inputDark}
+                    ${style.inputFocus}
                   `}
                   type='text'
                   defaultValue={nodeInfo.evmNode}
@@ -98,25 +99,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 )}
               </div>
             </div>
-            {/* <div className=''>
-                  <span
-                    className={`
-                      ${style.dialogLabel}
-                      ${style.dialogLabelDark}
-                    `}
-                  >
-                    Chain-ID
-                  </span>
-                  <input
-                    className={`${style.input} ${style.inputDark}`}
-                    type='text'
-                    defaultValue={chainId}
-                    {...register('chainId', { required: true })}
-                  />
-                  {errors.chainId && (
-                    <span className='text-red-500 text-sm'>Required Field</span>
-                  )}
-                </div> */}
             <div className='col-span-3'>
               <span
                 className={`
@@ -127,12 +109,11 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 Contract Address
               </span>
               <div className={style.inputWrapper}>
-                <input
-                  className={`${style.input} ${style.inputDark}`}
-                  type='text'
-                  defaultValue={nodeInfo.contractPostsAddress}
+                <textarea
+                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
+                  value={nodeInfo.contractPostsAddress}
                   {...register('contractAddress', { required: true })}
-                />
+                 />
                 {errors.contractAddress && (
                   <div
                     className={`${style.formValidation} ${style.formValidationError}`}
