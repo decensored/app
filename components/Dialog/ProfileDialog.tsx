@@ -32,7 +32,6 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  text-center
                 `}
             >
               Your secret account key
@@ -74,7 +73,6 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               className={`
                 ${style.inputLabel}
                 ${style.inputLabelDark}
-                text-center
               `}
             >
               Open decensored on mobile
