@@ -151,9 +151,7 @@ const Space: NextPage = () => {
                       />
                     </>
                   )}
-                  <div className={style.spaceHeaderTitle}>
-                    {space.name ? `#${space.name}` : '#undefined'}
-                  </div>
+                  <div className={style.spaceHeaderTitle}>#{name}</div>
                   <div className={style.spaceHeaderColsWrapper}>
                     <div className={style.spaceHeaderColWrapper}>
                       <span className={style.spaceHeaderColTitle}>
