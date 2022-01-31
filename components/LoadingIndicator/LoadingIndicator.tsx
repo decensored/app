@@ -11,7 +11,7 @@ const LoadingIndicator: FunctionComponent = () => {
   const nFinished = postsLoaded.nFinished + spacesLoaded.nFinished
   const max = postsLoaded.max + spacesLoaded.max
 
-  if (nFinished === max || max === 0) return null
+  if (nFinished === 0 || nFinished === max || max === 0) return null
 
   const percentage = (100 * nFinished) / max
   // console.log(nFinished, max, percentage)

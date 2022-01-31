@@ -7,7 +7,7 @@ import type {
   SpaceType,
 } from 'lib/types'
 
-export const STORE_VERSION = 6
+export const STORE_VERSION = 7
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
 export const DEFAULT_CONTRACTSADDRESS =
