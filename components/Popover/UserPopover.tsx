@@ -91,7 +91,7 @@ const UserPopover: FunctionComponent = () => {
                 </span>
               )}
 
-              {!isSignedUp && (
+              {!isSignedUp && nodeIsUpAndRunning(contract) && (
                 <>
                   <button
                     type='button'

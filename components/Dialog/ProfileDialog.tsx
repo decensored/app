@@ -26,15 +26,15 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
       onClose={onClose}
       header='Profile'
       body={
-        <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-          <div className='col-span-3'>
+        <div className='grid gap-y-8'>
+          <div>
             <span
               className={`
                   ${style.dialogLabel}
                   ${style.dialogLabelDark}
                 `}
             >
-              Your key
+              Your secret account key
             </span>
             <div className={style.inputWrapper}>
               <div className={style.inputGroup}>
@@ -66,10 +66,21 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
                 </CopyToClipboard>
               </div>
             </div>
-            <QRCode
-              value={`https://v2.decensored.app/signup/${key}`}
-              className='mx-auto ml-5 mt-10'
-            />
+          </div>
+          <div>
+            <span
+              className={`
+                  ${style.dialogLabel}
+                  ${style.dialogLabelDark}
+                `}
+            >
+              Open decensored on mobile
+            </span>
+            <div className='flex justify-center'>
+              <QRCode
+                value={`https://v2.decensored.app/signup/${key}`}
+              />
+            </div>
           </div>
         </div>
       }
