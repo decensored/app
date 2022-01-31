@@ -71,8 +71,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
                 `}
               >
                 Name
@@ -93,8 +93,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
                 `}
               >
                 Blacklisted User{' '}

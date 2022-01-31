@@ -54,8 +54,10 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
+                  ${style.inputLabelCenter}
+                  text-center
                 `}
               >
                 EVM-Node
@@ -102,8 +104,10 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
+                  ${style.inputLabelCenter}
+                  text-center
                 `}
               >
                 Contract Address

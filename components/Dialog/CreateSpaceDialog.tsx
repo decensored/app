@@ -70,8 +70,8 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
             <div className='col-span-3'>
               <span
                 className={`
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
                 `}
               >
                 Create Space
@@ -102,8 +102,8 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
               </div>
               <span
                 className={`pt-5
-                  ${style.dialogLabel}
-                  ${style.dialogLabelDark}
+                  ${style.inputLabel}
+                  ${style.inputLabelDark}
                 `}
               >
                 Description
