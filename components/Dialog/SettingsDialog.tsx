@@ -56,7 +56,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  text-center
                 `}
               >
                 EVM-Node
@@ -105,7 +104,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
-                  text-center
                 `}
               >
                 Contract Address
