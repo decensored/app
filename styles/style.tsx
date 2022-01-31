@@ -13,12 +13,16 @@ export const style = {
 
   inputWrapper: 'relative',
   inputGroup: 'flex',
-  input: 'px-3 py-2 rounded w-full border border-gray-300 text-gray-900 focus:outline-none',
+  input: 'px-3 py-[7.3px] rounded w-full border border-gray-300 text-gray-900 focus:outline-none',
   inputFocus: 'focus:ring-1 focus:ring-purple-700',
   inputDark: 'dark:bg-darkmode-100 dark:border-hidden dark:text-white',
   inputTransparent: '!p-0 bg-transparent border-none outline-none focus:outline-none resize-none',
   inputPlaceholder: 'placeholder:italic placeholder:text-gray-400',
   inputPlaceholderDark: 'placeholder:dark text-darkmode-1500',
+
+  inputLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3',
+  inputLabelDark: 'dark:text-gray-300',
+  inputLabelCenter: 'text-center',
 
   formValidation: 'px-[9px] py-1 flex items-center absolute left-[3px] right-[3px] rounded-b bg-white before:rounded-b before:absolute before:inset-0 before:empty before:bg-opacity-20',
   formValidationBefore: '',
@@ -39,8 +43,6 @@ export const style = {
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
   dialogHeader: 'text-xl text-bold text-center px-8 py-4',
   dialogHeaderDark: 'dark:text-gray-300',
-  dialogLabel: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3',
-  dialogLabelDark: 'dark:text-gray-300',
   dialogBody: 'p-8',
   dialogFooter: 'flex gap-y-10 justify-between px-8 py-4',
 
