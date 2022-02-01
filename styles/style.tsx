@@ -56,6 +56,7 @@ export const style = {
   popoverBody: 'p-2 flex flex-col gap-y-1',
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
+  popoverSocialButtonWrapper: 'hide-on-desktop flex justify-center gap-x-5 my-3',
 
   navigationAsideWrapper: 'flex pt-10 sticky top-[60px]',
   navigationAsideInner: 'flex flex-col justify-between grow h-screen-sidebar',

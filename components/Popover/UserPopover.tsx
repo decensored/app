@@ -156,6 +156,51 @@ const UserPopover: FunctionComponent = () => {
                   Logout
                 </button>
               )}
+
+              <div className={style.popoverSocialButtonWrapper}>
+                <Link href='https://twitter.com/decensored_app' passHref>
+                  <a
+                    href='dummy-href'
+                    target='_blank'
+                    title='twitter'
+                    rel='noreferrer'
+                    className={`
+                      ${style.navigationAsideSocialButton}
+                      ${style.navigationAsideSocialButtonDark}
+                    `}
+                  >
+                    <SVGIcon icon='faTwitter' isFixed />
+                  </a>
+                </Link>
+                <Link href='https://discord.gg/gKvXUu4X' passHref>
+                  <a
+                    href='dummy-href'
+                    target='_blank'
+                    title='discord'
+                    rel='noreferrer'
+                    className={`
+                      ${style.navigationAsideSocialButton}
+                      ${style.navigationAsideSocialButtonDark}
+                    `}
+                  >
+                    <SVGIcon icon='faDiscord' isFixed />
+                  </a>
+                </Link>
+                <Link href='https://github.com/decensored/app' passHref>
+                  <a
+                    href='dummy-href'
+                    target='_blank'
+                    title='github'
+                    rel='noreferrer'
+                    className={`
+                      ${style.navigationAsideSocialButton}
+                      ${style.navigationAsideSocialButtonDark}
+                    `}
+                  >
+                    <SVGIcon icon='faGithub' isFixed />
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         }
@@ -168,7 +213,7 @@ const UserPopover: FunctionComponent = () => {
         showDialog={openRecoverDialog}
         onClose={() => setOpenRecoverDialog(false)}
       />
-      {isSignedUp &&(
+      {isSignedUp && (
         <ProfileDialog
           showDialog={openProfileDialog}
           onClose={() => setOpenProfileDialog(false)}
