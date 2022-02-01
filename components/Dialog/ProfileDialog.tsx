@@ -5,6 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import QRCode from 'react-qr-code'
 import { toast } from 'react-toastify'
 import { BrowserView } from 'react-device-detect'
+import { inBrowser } from 'lib/where'
 import BaseDialog from './BaseDialog'
 
 interface ProfileProbs {
@@ -13,10 +14,15 @@ interface ProfileProbs {
 }
 
 const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
-  const getAccountPrivateKey = ():string => {
+  const getAccountPrivateKey = (): string => {
     const key = localStorage.account_private_key || 'No key found'
     return key
   }
+
+  const qrcode = `${
+    inBrowser ? window.origin : ''
+  }/signup/${getAccountPrivateKey()}`
+  console.log(qrcode)
 
   return (
     <BaseDialog
@@ -70,11 +76,8 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
           <BrowserView>
             <div>
               <div className='flex justify-center mb-3'>
-                <QRCode
-                  className='rounded'
-                  fgColor='#2d3294'
-                  value={`https://v2.decensored.app/signup/${getAccountPrivateKey()}`}
-                />
+                {/* fgColor='#2d3294' */}
+                <QRCode className='rounded' value={qrcode} />
               </div>
               <span
                 className={`
@@ -83,7 +86,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
                   ${style.inputLabelCenter}
                 `}
               >
-                Switch to mobile
+                Scan on mobile
               </span>
             </div>
           </BrowserView>
