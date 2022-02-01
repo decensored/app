@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
+// import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -6,10 +7,10 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
-import PostDialog from 'components/Dialog/PostDialog'
+// import PostDialog from 'components/Dialog/PostDialog' // Hidden Post Buttton
 
 const AsideNavigation: FunctionComponent = () => {
-  const [openPostDialog, setOpenPostDialog] = useState(false)
+  // const [openPostDialog, setOpenPostDialog] = useState(false) // Hidden Post Buttton
   const router = useRouter()
   const { pathname } = router
 
@@ -104,7 +105,8 @@ const AsideNavigation: FunctionComponent = () => {
                   </Link>
                 </Tooltip>
 
-                <div className={style.navigationAsideButtonSpacer} />
+                {/* Hidden Post Buttton */}
+                {/* <div className={style.navigationAsideButtonSpacer} />
                 <button
                   type='submit'
                   className={`
@@ -123,7 +125,7 @@ const AsideNavigation: FunctionComponent = () => {
                 <PostDialog
                   showDialog={openPostDialog}
                   onClose={() => setOpenPostDialog(false)}
-                />
+                /> */}
               </>
             )}
           </div>
