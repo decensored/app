@@ -6,7 +6,7 @@ export const style = {
 
   bodyContainer: 'container mx-auto max-w-screen-lg flex md:gap-x-[2%]',
   bodyContainerCol1: 'flex-none w-[34px] md:w-48 pl-3',
-  bodyContainerCol2: 'flex-auto',
+  bodyContainerCol2: 'flex-auto relative',
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
 
@@ -111,6 +111,10 @@ export const style = {
   postFormMessageCounterDark: 'dark:bg-black',
   postFormFooter: 'mt-5 flex justify-between',
   postFormFooterLogoWrapper: 'flex items-center mr-5',
+
+  dequeuePostsAndSpacesWrapper: 'absolute left-3 top-0 right-6 flex justify-center z-10 transition-transform translate-y-0 empty:-translate-y-full',
+  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded-b cusor-pointer',
+  dequeuePostsAndSpacesButtonDark: 'dark:bg-highlight-500 dark:text-white',
 
   feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 md:mt-10',
 
