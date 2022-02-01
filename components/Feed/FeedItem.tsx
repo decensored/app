@@ -24,6 +24,7 @@ interface FeedItemProps {
   replies?: any
   type: string
   parent?: boolean
+  depth?: number
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
@@ -40,10 +41,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   replies,
   type,
   parent,
+  depth = 0,
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
-  const [openReplies, setOpenReplies] = React.useState(true)
+  const [openReplies, setOpenReplies] = React.useState(depth <= 0)
   const [isLoading, setIsLoading] = React.useState(false)
   const [contract, userId, posts] = useStore(
     (state) => [state.contract, state.userId, state.posts],
@@ -97,6 +99,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             replies={repliesForPost}
             moderator={false}
             parent={false}
+            depth={depth + 1}
             authorIsBlacklisted={replyAuthorIsBlacklisted}
             {...post}
           />
