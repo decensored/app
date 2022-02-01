@@ -1,7 +1,7 @@
 import { readableError } from 'lib/helper'
 
 const log = (msg: string): void => {
-  console.log('api/accounts:', msg) // or outcomment
+  // console.log('api/accounts:', msg) // or outcomment
 }
 
 export const executeContractFunction = async (
@@ -73,16 +73,15 @@ export const recoverUser = async (contract: any, privateKey: string) => {
       error: '',
     }
     return result
-  } else {
-    localStorage.removeItem('account_private_key')
-    const result = {
-      success: false,
-      error: 'Couldnt find a user with that key',
-      username: '',
-      userId: 0,
-    }
-    return result
   }
+  localStorage.removeItem('account_private_key')
+  const result = {
+    success: false,
+    error: 'Couldnt find a user with that key',
+    username: '',
+    userId: 0,
+  }
+  return result
 }
 
 export const setProfilePictureForUser = async (
@@ -133,9 +132,8 @@ export const getAddress = async (contract: any) => {
   return contract.web3.eth.accounts.privateKeyToAccount(private_key).address
 }
 
-export const getUserById = async (contract: any, userId: number) => {
-  return contract.accounts.methods.accounts(userId).call()
-}
+export const getUserById = async (contract: any, userId: number) =>
+  contract.accounts.methods.accounts(userId).call()
 
 export const getIdByUserName = async (contract: any, username: string) => {
   await contract.accounts.methods.id_by_username(username.toLowerCase()).call()
