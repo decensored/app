@@ -3,7 +3,7 @@ import type { PostType } from 'lib/types'
 import { getSpaceNameById } from './spaces'
 
 const log = (msg: string): void => {
-  console.log('api/feed:', msg) // or outcomment
+  // console.log('api/feed:', msg) // or outcomment
 }
 
 export const createPost = async (
