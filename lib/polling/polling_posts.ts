@@ -3,12 +3,14 @@ import useStore, { STORE_VERSION } from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { LoadingProgressType, PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
+import { limitArray } from './pollingUtils'
 
 const INTERVAL = 4001 // (first prime over 4000) // 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
 
+  // TODO: this should be done somewhere else (in lib/store.ts?)
   if (typeof state.userId === 'string') {
     // console.log('convert userId to number')
     state.setUserId(parseInt(state.userId, 10))
@@ -16,6 +18,7 @@ const poll = async (): Promise<void> => {
     return
   }
 
+  // TODO: this should be done somewhere else (in lib/store.ts?)
   if (state.storeVersion !== STORE_VERSION) {
     // console.log('cacheFlush because of different store version')
     state.cacheFlush()
@@ -29,6 +32,13 @@ const poll = async (): Promise<void> => {
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
+
+  // start of actual functional code.
+
+  // TODO: the rest should be refactored into reusable code
+
+  limitArray(state.posts, state.setPosts, 'posts')
+  limitArray(state.postsQueued, state.setPostsQueued, 'postsQueued')
 
   // console.log('polling_posts: check latest index')
 
@@ -85,7 +95,9 @@ const poll = async (): Promise<void> => {
       const allPosts = newPosts.concat(state.posts)
       state.setPosts(allPosts)
     }
-  }
+  } // end of latestPostIndex > state.latestPostIndexFetched
+
+  // end of actual functional code
 
   setTimeout(poll, INTERVAL)
 } // end of poll()
