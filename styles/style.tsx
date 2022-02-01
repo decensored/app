@@ -119,7 +119,7 @@ export const style = {
   dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded cusor-pointer',
   dequeuePostsAndSpacesButtonDark: 'dark:bg-highlight-500 dark:text-white',
 
-  feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 md:mt-10',
+  feedWrapper: 'feed-wrapper flex flex-col gap-y-5 px-3 mt-3 md:mt-10 children-last:mb-20',
 
   feedItemParent: 'border-none rounded',
   feedItemChild: 'border-l border-gray-300',
