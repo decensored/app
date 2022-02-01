@@ -10,6 +10,8 @@ export const style = {
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
 
+  loadingIndicator: 'fixed left-1/2 -translate-x-2/4 top-[15px] rounded-full px-3 py-1 bg-highlight-500 text-white text-sm shadow-lg pointer-events-none',
+
   inputWrapper: 'relative',
   inputGroup: 'flex',
   input: 'px-3 py-[7.3px] w-full outline-none focus:outline-none',
