@@ -5,14 +5,6 @@
 @import '../node_modules/react-toastify/dist/ReactToastify';
 @import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
 
-html:before {
-  @apply fixed inset-0 flex items-center justify-center bg-darkmode-500 text-highlight-500 z-50 text-4xl pointer-events-none text-center px-6
-}
-
-html:before {
-  content: "Good Things Take Time!";
-}
-
 html:not([style*='overflow: hidden']) {
   body {
     overflow-x: hidden;
