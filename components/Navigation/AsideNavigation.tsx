@@ -131,9 +131,7 @@ const AsideNavigation: FunctionComponent = () => {
           </div>
         </div>
         <div className={style.navigationAsideInnerBottom}>
-          <div
-            className={style.navigationAsideBottomInteractionWrapper}
-          >
+          <div className={style.navigationAsideBottomInteractionWrapper}>
             <div>
               <button
                 type='button'
@@ -149,14 +147,14 @@ const AsideNavigation: FunctionComponent = () => {
                   <div
                     className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
-                    <SVGIcon icon='faMoon' isFixed/>
+                    <SVGIcon icon='faMoon' isFixed />
                   </div>
                 )}
                 {!isDarkmode && (
                   <div
                     className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
-                    <SVGIcon icon='faSun' isFixed/>
+                    <SVGIcon icon='faSun' isFixed />
                   </div>
                 )}
               </button>
@@ -173,10 +171,10 @@ const AsideNavigation: FunctionComponent = () => {
                     ${style.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <SVGIcon icon='faTwitter' isFixed/>
+                  <SVGIcon icon='faTwitter' isFixed />
                 </a>
               </Link>
-              <Link href='https://discord.gg/gKvXUu4X' passHref>
+              <Link href='https://discord.gg/DwYpWghnrW' passHref>
                 <a
                   href='dummy-href'
                   target='_blank'
@@ -187,7 +185,7 @@ const AsideNavigation: FunctionComponent = () => {
                     ${style.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <SVGIcon icon='faDiscord' isFixed/>
+                  <SVGIcon icon='faDiscord' isFixed />
                 </a>
               </Link>
               <Link href='https://github.com/decensored/app' passHref>
@@ -201,7 +199,7 @@ const AsideNavigation: FunctionComponent = () => {
                     ${style.navigationAsideSocialButtonDark}
                   `}
                 >
-                  <SVGIcon icon='faGithub' isFixed/>
+                  <SVGIcon icon='faGithub' isFixed />
                 </a>
               </Link>
             </div>
