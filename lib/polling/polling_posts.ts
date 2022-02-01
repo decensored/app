@@ -54,10 +54,9 @@ const poll = async (): Promise<void> => {
     // Set new index & prepend new posts
     state.setLatestPostIndexFeched(latestPostIndex)
 
-    // console.log(
-    //   'new posts exist',
-    //   latestPostIndex - state.latestPostIndexFetched
-    // )
+    console.log(
+      `Loading ${latestPostIndex - state.latestPostIndexFetched} posts`
+    )
 
     const postsLoaded: LoadingProgressType = {
       nFinished: 0,

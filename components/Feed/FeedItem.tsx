@@ -115,7 +115,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     spaceName,
   }
 
-  console.log(`${username} is blacklisted ${authorIsBlacklisted}`)
+  // console.log(`${username} is blacklisted ${authorIsBlacklisted}`)
 
   return (
     <div
