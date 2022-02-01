@@ -49,7 +49,8 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
                   ${style.tagNotClickableDark}
                 `}
               >
-                <b>{numberOfPostsInSpace}</b> Posts
+                {numberOfPostsInSpace}
+                {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
               </span>
             </div>
           </div>

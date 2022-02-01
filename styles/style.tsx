@@ -10,6 +10,8 @@ export const style = {
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
 
+  loadingIndicator: 'fixed left-1/2 -translate-x-2/4 top-[15px] rounded-full px-3 py-1 bg-highlight-500 text-white text-sm shadow-lg pointer-events-none',
+
   inputWrapper: 'relative',
   inputGroup: 'flex',
   input: 'px-3 py-[7.3px] w-full outline-none focus:outline-none',
@@ -116,7 +118,7 @@ export const style = {
   postFormFooterLogoWrapper: 'flex items-center mr-5',
 
   dequeuePostsAndSpacesWrapper: 'absolute left-3 top-[6px] right-6 flex justify-center z-10 transition-transform translate-y-0 empty:-translate-y-full',
-  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded cusor-pointer',
+  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded-full cusor-pointer',
   dequeuePostsAndSpacesButtonDark: 'dark:bg-highlight-500 dark:text-white',
 
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 px-3 mt-3 md:mt-10 children-last:mb-20',
