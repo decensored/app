@@ -83,6 +83,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                     ${style.inputDefault}
                     ${style.inputDefaultDark}
                     ${style.inputFocus}
+                    lowercase
                   `}
                   type='text'
                   {...register('name', { required: true })}
