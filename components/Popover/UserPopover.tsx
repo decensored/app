@@ -6,6 +6,7 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Link from 'next/link'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
+import SocialIcons from 'components/Navigation/SocialIcons'
 import BasePopover from 'components/Popover/BasePopover'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import ProfileDialog from 'components/Dialog/ProfileDialog'
@@ -156,51 +157,7 @@ const UserPopover: FunctionComponent = () => {
                   Logout
                 </button>
               )}
-
-              <div className={style.popoverSocialButtonWrapper}>
-                <Link href='https://twitter.com/decensored_app' passHref>
-                  <a
-                    href='dummy-href'
-                    target='_blank'
-                    title='twitter'
-                    rel='noreferrer'
-                    className={`
-                      ${style.navigationAsideSocialButton}
-                      ${style.navigationAsideSocialButtonDark}
-                    `}
-                  >
-                    <SVGIcon icon='faTwitter' isFixed />
-                  </a>
-                </Link>
-                <Link href='https://discord.gg/gKvXUu4X' passHref>
-                  <a
-                    href='dummy-href'
-                    target='_blank'
-                    title='discord'
-                    rel='noreferrer'
-                    className={`
-                      ${style.navigationAsideSocialButton}
-                      ${style.navigationAsideSocialButtonDark}
-                    `}
-                  >
-                    <SVGIcon icon='faDiscord' isFixed />
-                  </a>
-                </Link>
-                <Link href='https://github.com/decensored/app' passHref>
-                  <a
-                    href='dummy-href'
-                    target='_blank'
-                    title='github'
-                    rel='noreferrer'
-                    className={`
-                      ${style.navigationAsideSocialButton}
-                      ${style.navigationAsideSocialButtonDark}
-                    `}
-                  >
-                    <SVGIcon icon='faGithub' isFixed />
-                  </a>
-                </Link>
-              </div>
+              <SocialIcons classNames={style.popoverSocialButtonWrapper} />
             </div>
           </div>
         }
