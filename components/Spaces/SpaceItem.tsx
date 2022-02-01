@@ -28,11 +28,11 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
             <span
               className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
             >
-              <div className='flex'>
+              <div className='flex items-center gap-x-3'>
                 {name}
                 {owner === userId && (
                   <span
-                    className={`${style.tag} ${style.tagClickable} cursor-default ml-3`}
+                    className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}
                   >
                     Owner
                   </span>
@@ -49,12 +49,13 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
               />
               <span
                 className={`
-              ${style.tag}
-              ${style.tagNotClickable}
-              ${style.tagNotClickableDark}
-            `}
+                  ${style.tag}
+                  ${style.tagNotClickable}
+                  ${style.tagNotClickableDark}
+                `}
               >
-                {numberOfPostsInSpace}
+                {numberOfPostsInSpace}{' '}
+                {numberOfPostsInSpace === 1 ? 'Post' : 'Posts'}
               </span>
             </div>
           </div>
