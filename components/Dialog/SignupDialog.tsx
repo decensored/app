@@ -77,6 +77,19 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           {!signUpDone && (
             <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
               <div className={style.inputWrapper}>
+                <div className={`${style.alert} ${style.alertDark} mb-5`}>
+                  <b className='font-bold'>No invite token?</b> Reach out to us
+                  on{' '}
+                  <a
+                    className='underline decoration-2 underline-offset-2	'
+                    href='https://discord.gg/DwYpWghnrW'
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    Discord
+                  </a>{' '}
+                  to get one!
+                </div>
                 <span
                   className={`
                   ${style.inputLabel}
@@ -97,7 +110,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   defaultValue={userName}
                   {...register('username', {
                     required: true,
-                    /* pattern: /^[A-Za-z1-9]+$/i, */
+                    pattern: /^[a-z1-9]+$/i,
                     min: 4,
                     max: 16,
                   })}
@@ -110,7 +123,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                       className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       {errors.username?.type === 'required' &&
-                        'Cant be empty! chars: azAZ'}
+                        'Choose your username!'}
                       {errors.username.message}
                     </span>
                   </div>
@@ -132,10 +145,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                     ${style.inputFocus}
                   `}
                   type='text'
-                  placeholder='Paste in your Token'
+                  placeholder='Paste in your Invite Token'
                   {...register('token', {
                     required: true,
-                    /* pattern: /^[A-Za-z1-9]+$/i, */
                     min: 4,
                     max: 48,
                   })}
@@ -148,7 +160,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                       className={`${style.formValidationText} ${style.formValidationTextError}`}
                     >
                       {errors.token?.type === 'required' &&
-                        'Cant be empty! chars: azAZ'}
+                        'Please provide your token'}
                       {errors.token.message}
                     </span>
                   </div>
