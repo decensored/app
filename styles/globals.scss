@@ -41,7 +41,7 @@ html {
 
 // apple custom top space to first virtuoso wrapper child
 div[id*="headlessui-dialog"]:not([id*="overlay"]) {
-  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-30
+  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-50
 }
 
 // mobile and desktop show/hide helper classes
