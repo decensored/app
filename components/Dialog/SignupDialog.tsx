@@ -122,7 +122,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                     mt-5
                   `}
                 >
-                  Space Token
+                  Invite Token
                 </span>
                 <input
                   className={`
@@ -132,7 +132,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                     ${style.inputFocus}
                   `}
                   type='text'
-                  placeholder='Paste in your SpaceKey'
+                  placeholder='Paste in your Token'
                   {...register('token', {
                     required: true,
                     /* pattern: /^[A-Za-z1-9]+$/i, */
