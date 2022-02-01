@@ -54,7 +54,7 @@ const Feed: FunctionComponent = () => {
           <button
             type='button'
             onClick={handleDequeuePosts}
-            className={`${style.dequeuePostsAndSpacesButton} ${style.dequeuePostsAndSpacesButtonDark}`}
+            className={style.dequeuePostsAndSpacesButton}
           >
             {postsQueued.length === 1 && 'Click to see a new post'}
             {postsQueued.length > 1 &&
