@@ -82,7 +82,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   on{' '}
                   <a
                     className='underline decoration-2 underline-offset-2	'
-                    href='https://discord.gg/DwYpWghnrW'
+                    href='https://t.co/pxUEdb5sHp'
                     rel='noreferrer'
                     target='_blank'
                   >
