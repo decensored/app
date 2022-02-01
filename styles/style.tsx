@@ -118,7 +118,7 @@ export const style = {
   postFormFooterLogoWrapper: 'flex items-center mr-5',
 
   dequeuePostsAndSpacesWrapper: 'absolute left-3 top-[6px] right-6 flex justify-center z-10 transition-transform translate-y-0 empty:-translate-y-full',
-  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded cusor-pointer',
+  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded-full cusor-pointer',
   dequeuePostsAndSpacesButtonDark: 'dark:bg-highlight-500 dark:text-white',
 
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 px-3 mt-3 md:mt-10 children-last:mb-20',
