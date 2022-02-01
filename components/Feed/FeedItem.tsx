@@ -205,8 +205,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   className={style.feedReplyItemText}
                 >
                   {replies.length === 1
-                    ? `Show reply`
-                    : `Show ${replies.length} replies`}
+                    ? `Show Reply`
+                    : `Show ${replies.length} Replies`}
                 </button>
               )}
               {openReplies && (
@@ -217,7 +217,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1 ? `Hide reply` : `Hide replies`}
+                  {replies.length === 1 ? `Hide Reply` : `Hide Replies`}
                 </button>
               )}
             </>
