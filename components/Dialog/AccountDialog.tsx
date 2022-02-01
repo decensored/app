@@ -8,12 +8,15 @@ import { BrowserView } from 'react-device-detect'
 import { inBrowser } from 'lib/where'
 import BaseDialog from './BaseDialog'
 
-interface ProfileProbs {
+interface AccountDialogProbs {
   showDialog: boolean
   onClose: () => void
 }
 
-const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
+const AccountDialog: FunctionComponent<AccountDialogProbs> = ({
+  showDialog,
+  onClose,
+}) => {
   const getAccountPrivateKey = (): string => {
     const key = localStorage.account_private_key || 'No key found'
     return key
@@ -28,7 +31,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
     <BaseDialog
       showDialog={showDialog}
       onClose={onClose}
-      header='Profile'
+      header='Account'
       body={
         <div className='grid gap-y-8'>
           <div>
@@ -110,4 +113,4 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
   )
 }
 
-export default Profile
+export default AccountDialog

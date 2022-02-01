@@ -9,14 +9,14 @@ import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SocialIcons from 'components/Navigation/SocialIcons'
 import BasePopover from 'components/Popover/BasePopover'
 import SignupDialog from 'components/Dialog/SignupDialog'
-import ProfileDialog from 'components/Dialog/ProfileDialog'
+import AccountDialog from 'components/Dialog/AccountDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 
 const UserPopover: FunctionComponent = () => {
   const [openSignupDialog, setOpenSignupDialog] = useState(false)
   const [openRecoverDialog, setOpenRecoverDialog] = useState(false)
-  const [openProfileDialog, setOpenProfileDialog] = useState(false)
+  const [openAccountDialog, setOpenAccountDialog] = useState(false)
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
 
   const [contract] = useStore((state) => [state.contract], shallow)
@@ -71,10 +71,10 @@ const UserPopover: FunctionComponent = () => {
                 <button
                   type='button'
                   className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
-                  onClick={() => setOpenProfileDialog(true)}
+                  onClick={() => setOpenAccountDialog(true)}
                 >
-                  <SVGIcon icon='faUser' isFixed />
-                  <span>Profile</span>
+                  <SVGIcon icon='faIdCardAlt' isFixed />
+                  <span>Account</span>
                 </button>
               )}
 
@@ -171,9 +171,9 @@ const UserPopover: FunctionComponent = () => {
         onClose={() => setOpenRecoverDialog(false)}
       />
       {isSignedUp && (
-        <ProfileDialog
-          showDialog={openProfileDialog}
-          onClose={() => setOpenProfileDialog(false)}
+        <AccountDialog
+          showDialog={openAccountDialog}
+          onClose={() => setOpenAccountDialog(false)}
         />
       )}
       <SettingsDialog
