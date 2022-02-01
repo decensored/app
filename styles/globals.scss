@@ -15,12 +15,12 @@ html:not([style*='overflow: hidden']) {
 html {
   &.dark {
     .toggleDarkMode {
-      @apply justify-end
+      @apply justify-end;
     }
   }
   &.light {
     .toggleDarkMode {
-      @apply justify-start
+      @apply justify-start;
     }
   }
 }
@@ -40,32 +40,32 @@ html {
 }
 
 // apple custom top space to first virtuoso wrapper child
-div[id*="headlessui-dialog"]:not([id*="overlay"]) {
-  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-50
+div[id*='headlessui-dialog']:not([id*='overlay']) {
+  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-50;
 }
 
 // mobile and desktop show/hide helper classes
 .hide-on-mobile {
-  @apply hidden md:block
+  @apply hidden md:block;
 }
 
 .hide-on-desktop {
-  @apply md:hidden
+  @apply md:hidden;
 }
 
 // add custom space to first and last virtuoso wrapper child
-div[data-test-id*="virtuoso-item-list"] > div {
+div[data-test-id*='virtuoso-item-list'] > div {
   &:first-child {
-    @apply mt-3 md:mt-10
+    @apply mt-3 md:mt-10;
   }
   &:last-child {
-    @apply mb-3 md:mb-10
+    @apply mb-20 md:mb-10;
   }
 }
 
 // remove click events of disabled links in sidebar
 .disabled-link > * {
-  @apply pointer-events-none opacity-50
+  @apply pointer-events-none opacity-50;
 }
 
 // set higher z-index to portaled dialogs
@@ -75,14 +75,14 @@ div[data-test-id*="virtuoso-item-list"] > div {
 }
 
 // show undefined tailwind classes on element
-[class*="undefined"] {
+[class*='undefined'] {
   position: relative;
 
   &:before {
     background: rgba(161, 56, 56, 0.726);
     border-radius: 2px;
     color: red;
-    content: "undefined tw class";
+    content: 'undefined tw class';
     font-size: 10px;
     padding: 2px 5px;
     position: absolute;

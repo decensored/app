@@ -52,7 +52,10 @@ const Feed: FunctionComponent = () => {
         )}
       </div>
 
-      <div id='posts'>
+      <div
+        id='posts'
+        className={`${style.postsWrapper} ${style.postsWrapperDark}`}
+      >
         {oldskool ? (
           showFeedItems
         ) : (

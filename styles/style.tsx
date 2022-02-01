@@ -101,6 +101,8 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
+  postsWrapper: 'md:before:empty before:absolute before:top-0 before:-right-[1px] before:bottom-0 before:w-[12px] before:bg-black before:z-10 before:bg-slate-100',
+  postsWrapperDark: 'dark:before:bg-darkmode-100',
   virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'h-10 bg-black',
@@ -146,6 +148,11 @@ export const style = {
   blackListTagWrapper: 'flex gap-x-1 items-center uppercase bg-highlight-100 text-gray-600 text-xs tracking-wide px-2 py-1 rounded-md',
   blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',
   blackListButton: 'hidden cursor-pointer group-hover:block text-xs bg-red-400 text-white px-2 ml-2 rounded-md',
+
+  startSpaceWrapper: 'flex flex-col justify-center items-center text-center',
+  startSpaceTitle: 'text-3xl mb-1 text-gray-900',
+  startSpaceTitleDark: 'dark:text-gray-300',
+  startSpaceSubline: 'text-md mb-4',
 
   spaceHeaderWrapper: 'bg-gradient rounded px-5 py-7 text-white',
   spaceHeaderInner: 'flex flex-col sm:flex-row sm:items-center text-white',
