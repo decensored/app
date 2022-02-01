@@ -6,7 +6,7 @@ export const style = {
 
   bodyContainer: 'container flex max-w-screen-lg md:gap-x-[2%] mx-auto',
   bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px]',
-  bodyContainerCol2: 'relative flex-auto',
+  bodyContainerCol2: 'relative flex-auto max-w-full',
 
   headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-10',
   loadingIndicator: '-translate-x-2/4 bg-highlight-500 fixed left-1/2 pointer-events-none px-3 py-1 rounded-full shadow-lg text-sm text-white top-[15px]',
