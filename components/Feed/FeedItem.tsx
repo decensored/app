@@ -43,7 +43,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
-  const [openReplies, setOpenReplies] = React.useState(false)
+  const [openReplies, setOpenReplies] = React.useState(true)
   const [isLoading, setIsLoading] = React.useState(false)
   const [contract, userId, posts] = useStore(
     (state) => [state.contract, state.userId, state.posts],
@@ -114,8 +114,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     space,
     spaceName,
   }
-
-  console.log(`${username} is blacklisted ${authorIsBlacklisted}`)
 
   return (
     <div
