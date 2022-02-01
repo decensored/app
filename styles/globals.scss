@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../node_modules/react-toastify/dist/ReactToastify';
+@import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
+
+html:not([style*='overflow: hidden']) {
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+
+html {
+  &.dark {
+    .toggleDarkMode {
+      @apply justify-end
+    }
+  }
+  &.light {
+    .toggleDarkMode {
+      @apply justify-start
+    }
+  }
+}
+
+html {
+  .bg-gradient,
+  &.dark .dark\:bg-gradient {
+    background-color: #3833a4;
+    background: rgb(57, 56, 161);
+    background: linear-gradient(
+      45deg,
+      rgba(57, 56, 161, 1) 0%,
+      rgba(57, 56, 161, 1) 35%,
+      rgba(89, 56, 161, 1) 100%
+    );
+  }
+}
+
+// apple custom top space to first virtuoso wrapper child
+div[id*="headlessui-dialog"]:not([id*="overlay"]) {
+  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-30
+}
+
+// mobile and desktop show/hide helper classes
+.hide-on-mobile {
+  @apply hidden md:block
+}
+
+.hide-on-desktop {
+  @apply md:hidden
+}
+
+// add custom space to first and last virtuoso wrapper child
+div[data-test-id*="virtuoso-item-list"] > div {
+  &:first-child {
+    @apply mt-3 md:mt-10
+  }
+  &:last-child {
+    @apply mb-3 md:mb-10
+  }
+}
+
+// remove click events of disabled links in sidebar
+.disabled-link > * {
+  @apply pointer-events-none opacity-50
+}
+
+// set higher z-index to portaled dialogs
+#headlessui-portal-root {
+  position: relative;
+  z-index: 1000;
+}
+
+// show undefined tailwind classes on element
+[class*="undefined"] {
+  position: relative;
+
+  &:before {
+    background: rgba(161, 56, 56, 0.726);
+    border-radius: 2px;
+    color: red;
+    content: "undefined tw class";
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+// 100vh is not good enough on mobile devices
+// https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+
+$headerHeight: 60px;
+
+.h-header {
+  height: $headerHeight;
+}
+
+.h-screen-virtuoso {
+  min-height: calc(100vh - $headerHeight); // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100 - $headerHeight);
+}
+
+.h-screen-body {
+  min-height: 100vh; // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.h-screen-sidebar {
+  min-height: calc(100vh - 100px); // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100 - 100px);
+
+  @media (max-width: 640px) {
+    min-height: calc(100vh - 80px); // --vh fallback
+    min-height: calc(var(--vh, 1vh) * 100 - 80px);
+  }
+}
