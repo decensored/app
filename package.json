@@ -60,6 +60,7 @@
     "husky": "^7.0.4",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.4",
     "tailwindcss": "^3.0.15",
     "tailwindcss-children": "^2.1.0",
     "tailwindcss-pseudo-elements": "^2.0.0",
