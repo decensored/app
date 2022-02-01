@@ -63,7 +63,7 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 }
 
 // add custom space to first and last virtuoso wrapper child
-div[data-test-id*='virtuoso-item-list'] {
+div[data-test-id*='virtuoso-item-list'] > div {
   &:first-child {
     @apply mt-3 md:mt-10;
   }
