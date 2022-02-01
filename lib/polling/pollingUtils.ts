@@ -1,7 +1,7 @@
 import type { PostType, SpaceType } from 'lib/types'
 
 export const pollingConfig = {
-  // batchSize: 10, // load this many in parallel from the smartcontract
+  batchSize: 2, // load this many in parallel from the smartcontract
   highWater: 1250, // when we have at least this...
   lowWater: 1000, // ..reduce to this amount
 }
