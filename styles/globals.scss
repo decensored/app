@@ -39,6 +39,15 @@ html {
   }
 }
 
+body > {
+  [id*='headlessui-popover-panel'] {
+    z-index: 1000;
+  }
+  [id*='headlessui-portal-root'] {
+    z-index: 1500;
+  }
+}
+
 // apple custom top space to first virtuoso wrapper child
 div[id*='headlessui-dialog']:not([id*='overlay']) {
   @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-50;

@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { Popover } from '@headlessui/react'
 import { usePopper } from 'react-popper'
 
@@ -9,22 +10,25 @@ interface PopoverProps {
 
 const BasePopover: FunctionComponent<PopoverProps> = ({
   popoverButton,
-  popoverPanel
+  popoverPanel,
 }) => {
-  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  )
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom-end',
     modifiers: [
       {
         name: 'offset',
         options: {
-          offset: [0, 5]
-        }
-      }
-    ]
+          offset: [0, 5],
+        },
+      },
+    ],
   })
-  return(
+  return (
     <Popover>
       <Popover.Button
         ref={setReferenceElement}
@@ -33,9 +37,16 @@ const BasePopover: FunctionComponent<PopoverProps> = ({
         {popoverButton}
       </Popover.Button>
 
-      <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
-        {popoverPanel}
-      </Popover.Panel>
+      {ReactDOM.createPortal(
+        <Popover.Panel
+          ref={setPopperElement}
+          style={styles.popper}
+          {...attributes.popper}
+        >
+          {popoverPanel}
+        </Popover.Panel>,
+        document.body
+      )}
     </Popover>
   )
 }
