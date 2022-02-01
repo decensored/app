@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
+// import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SVGIcon from 'components/Icon/SVGIcon'
@@ -6,10 +7,11 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
-import PostDialog from 'components/Dialog/PostDialog'
+import SocialIcons from 'components/Navigation/SocialIcons'
+// import PostDialog from 'components/Dialog/PostDialog' // Hidden Post Buttton
 
 const AsideNavigation: FunctionComponent = () => {
-  const [openPostDialog, setOpenPostDialog] = useState(false)
+  // const [openPostDialog, setOpenPostDialog] = useState(false) // Hidden Post Buttton
   const router = useRouter()
   const { pathname } = router
 
@@ -104,7 +106,8 @@ const AsideNavigation: FunctionComponent = () => {
                   </Link>
                 </Tooltip>
 
-                <div className={style.navigationAsideButtonSpacer} />
+                {/* Hidden Post Buttton */}
+                {/* <div className={style.navigationAsideButtonSpacer} />
                 <button
                   type='submit'
                   className={`
@@ -123,15 +126,13 @@ const AsideNavigation: FunctionComponent = () => {
                 <PostDialog
                   showDialog={openPostDialog}
                   onClose={() => setOpenPostDialog(false)}
-                />
+                /> */}
               </>
             )}
           </div>
         </div>
         <div className={style.navigationAsideInnerBottom}>
-          <div
-            className={style.navigationAsideBottomInteractionWrapper}
-          >
+          <div className={style.navigationAsideBottomInteractionWrapper}>
             <div>
               <button
                 type='button'
@@ -147,62 +148,21 @@ const AsideNavigation: FunctionComponent = () => {
                   <div
                     className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
-                    <SVGIcon icon='faMoon' isFixed/>
+                    <SVGIcon icon='faMoon' isFixed />
                   </div>
                 )}
                 {!isDarkmode && (
                   <div
                     className={`${style.switchInner} ${style.switchInnerDark}`}
                   >
-                    <SVGIcon icon='faSun' isFixed/>
+                    <SVGIcon icon='faSun' isFixed />
                   </div>
                 )}
               </button>
             </div>
-            <div className={style.navigationAsideSocialButtonWrapper}>
-              <Link href='https://twitter.com/decensored_app' passHref>
-                <a
-                  href='dummy-href'
-                  target='_blank'
-                  title='twitter'
-                  rel='noreferrer'
-                  className={`
-                    ${style.navigationAsideSocialButton}
-                    ${style.navigationAsideSocialButtonDark}
-                  `}
-                >
-                  <SVGIcon icon='faTwitter' isFixed/>
-                </a>
-              </Link>
-              <Link href='https://discord.gg/gKvXUu4X' passHref>
-                <a
-                  href='dummy-href'
-                  target='_blank'
-                  title='discord'
-                  rel='noreferrer'
-                  className={`
-                    ${style.navigationAsideSocialButton}
-                    ${style.navigationAsideSocialButtonDark}
-                  `}
-                >
-                  <SVGIcon icon='faDiscord' isFixed/>
-                </a>
-              </Link>
-              <Link href='https://github.com/decensored/app' passHref>
-                <a
-                  href='dummy-href'
-                  target='_blank'
-                  title='github'
-                  rel='noreferrer'
-                  className={`
-                    ${style.navigationAsideSocialButton}
-                    ${style.navigationAsideSocialButtonDark}
-                  `}
-                >
-                  <SVGIcon icon='faGithub' isFixed/>
-                </a>
-              </Link>
-            </div>
+            <SocialIcons
+              classNames={style.navigationAsideSocialButtonWrapper}
+            />
           </div>
         </div>
       </div>
