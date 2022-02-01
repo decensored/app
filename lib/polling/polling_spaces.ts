@@ -4,7 +4,7 @@ import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { LoadingProgressType, SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
 
-const INTERVAL = 10 * 1000
+const INTERVAL = 5003 // (first prime over 5000) // 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()

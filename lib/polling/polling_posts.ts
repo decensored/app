@@ -4,7 +4,7 @@ import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { LoadingProgressType, PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 
-const INTERVAL = 10 * 1000
+const INTERVAL = 4001 // (first prime over 4000) // 10 * 1000
 
 const poll = async (): Promise<void> => {
   const state = useStore.getState()
