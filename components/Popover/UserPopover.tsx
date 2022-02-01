@@ -127,26 +127,24 @@ const UserPopover: FunctionComponent = () => {
                 )}
               </button>
 
-              <span className='hide-on-desktop'>
-                <button
-                  type='button'
-                  onClick={toggleDarkMode}
-                  className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark} hide-on-desktop`}
-                >
-                  {isDarkmode && (
-                    <>
-                      <SVGIcon icon='faSun' isFixed />
-                      <span>Lightmode</span>
-                    </>
-                  )}
-                  {!isDarkmode && (
-                    <>
-                      <SVGIcon icon='faMoon' isFixed />
-                      <span>Darkmode</span>
-                    </>
-                  )}
-                </button>
-              </span>
+              <button
+                type='button'
+                onClick={toggleDarkMode}
+                className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark} hide-on-desktop`}
+              >
+                {isDarkmode && (
+                  <>
+                    <SVGIcon icon='faSun' isFixed />
+                    <span>Lightmode</span>
+                  </>
+                )}
+                {!isDarkmode && (
+                  <>
+                    <SVGIcon icon='faMoon' isFixed />
+                    <span>Darkmode</span>
+                  </>
+                )}
+              </button>
 
               {isSignedUp && (
                 <button
