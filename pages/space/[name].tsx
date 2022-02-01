@@ -135,7 +135,6 @@ const Space: NextPage = () => {
           {space && (
             <div className={style.feedWrapper}>
               <div className={style.spaceHeaderWrapper}>
-                <div className={style.spaceHeaderInner}>
                   {spaceOwner && (
                     <>
                       <SVGIcon
@@ -153,47 +152,44 @@ const Space: NextPage = () => {
                       />
                     </>
                   )}
-                  <div className='flex items-center'>
-                    <div className='w-3/4'>
-                      <div className='flex flex-col'>
-                        <span className='text-2xl text-white font-semibold uppercase italic'>
-                          #{name}
+                <div className={style.spaceHeaderInner}>
+                  <div className={style.spaceHeaderInnerCol1}>
+                      <div className={style.spaceHeaderTitle}>
+                        #{name}
+                      </div>
+                      <div className={style.spaceHeaderDescription}>
+                        {space.description}
+                      </div>
+                  </div>
+                  <div className={style.spaceHeaderInnerCol2}>
+                    {' '}
+                    <div className={style.spaceHeaderDataWrapper}>
+                      <div className={style.spaceHeaderDataCol}>
+                        <span className={style.spaceHeaderDataTitle}>
+                          {nrOfPosts}
                         </span>
-                        <span className='text-white text-sm font-light pt-3'>
-                          {space.description}
+                        <span className={style.spaceHeaderDataText}>
+                          Posts
                         </span>
                       </div>
-                    </div>
-                    <div className='w-1/4 pb-5'>
-                      {' '}
-                      <div className={style.spaceHeaderColsWrapper}>
-                        <div className={style.spaceHeaderColWrapper}>
-                          <span className={style.spaceHeaderColTitle}>
-                            {nrOfPosts}
-                          </span>
-                          <span className={style.spaceHeaderColText}>
-                            Posts
-                          </span>
-                        </div>
-                        <div className={style.spaceHeaderColWrapper}>
-                          <button
-                            type='button'
-                            onClick={() => {
-                              setOpenUserDialog(true)
-                            }}
-                            className={style.spaceHeaderColTitle}
-                          >
-                            {nrOfUSers}
-                          </button>
-                          <span className={style.spaceHeaderColText}>
-                            Followers
-                          </span>
-                          <UserDialog
-                            users={userArray}
-                            showDialog={openUserDialog}
-                            onClose={() => setOpenUserDialog(false)}
-                          />
-                        </div>
+                      <div className={style.spaceHeaderDataCol}>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            setOpenUserDialog(true)
+                          }}
+                          className={style.spaceHeaderDataTitle}
+                        >
+                          {nrOfUSers}
+                        </button>
+                        <span className={style.spaceHeaderDataText}>
+                          Followers
+                        </span>
+                        <UserDialog
+                          users={userArray}
+                          showDialog={openUserDialog}
+                          onClose={() => setOpenUserDialog(false)}
+                        />
                       </div>
                     </div>
                   </div>

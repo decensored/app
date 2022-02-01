@@ -59,15 +59,16 @@ const Form: FunctionComponent<FormProps> = ({
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
             autoFocus
-            minRows={3}
+            minRows={2}
             maxLength={280}
             placeholder={`${userName}, spread your opinion!`}
             className={`
               ${style.form}
+              ${style.input}
               ${style.inputPlaceholder}
               ${style.inputPlaceholderDark}
-              ${!isTransparent && style.input}
-              ${!isTransparent && style.inputDark}
+              ${!isTransparent && style.inputDefault}
+              ${!isTransparent && style.inputDefaultDark}
               ${isTransparent && style.inputTransparent}
               ${isTransparent && style.inputTransparentDark}
             `}

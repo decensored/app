@@ -86,7 +86,12 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   Username
                 </span>
                 <input
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
+                  className={`
+                    ${style.input}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
+                    ${style.inputFocus}
+                  `}
                   type='text'
                   placeholder='Choose your username'
                   defaultValue={userName}
@@ -120,7 +125,12 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   Space Token
                 </span>
                 <input
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus}`}
+                  className={`
+                    ${style.input}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
+                    ${style.inputFocus}
+                  `}
                   type='text'
                   placeholder='Paste in your SpaceKey'
                   {...register('token', {
@@ -156,7 +166,13 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
               </div>
               <div className={style.inputGroup}>
                 <input
-                  className={`${style.input} ${style.inputDark} ${style.inputFocus} rounded-r-none`}
+                  className={`
+                    ${style.input}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
+                    ${style.inputFocus}
+                    rounded-r-none
+                  `}
                   type='text'
                   defaultValue={getAccountPrivateKey()}
                   readOnly

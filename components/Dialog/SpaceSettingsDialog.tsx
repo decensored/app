@@ -81,7 +81,8 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
                 <input
                   className={`
                     ${style.input}
-                    ${style.inputDark}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
                     ${style.inputFocus}
                   `}
                   type='text'

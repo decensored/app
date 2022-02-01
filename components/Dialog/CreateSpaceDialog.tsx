@@ -80,7 +80,8 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                 <input
                   className={`
                     ${style.input}
-                    ${style.inputDark}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
                     ${style.inputFocus}
                   `}
                   type='text'
@@ -110,13 +111,14 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
               </span>
               <div className={style.inputWrapper}>
                 <TextareaAutosize
-                  minRows={3}
+                  minRows={2}
                   maxLength={280}
                   placeholder='Your description..'
                   className={`
                   ${style.form}
                   ${style.input}
-                  ${style.inputDark}
+                  ${style.inputDefault}
+                  ${style.inputDefaultDark}
                   ${style.inputFocus}
                   ${style.inputPlaceholder}
                   ${style.inputPlaceholderDark}

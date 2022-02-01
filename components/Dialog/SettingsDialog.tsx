@@ -65,7 +65,8 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                 <input
                   className={`
                     ${style.input}
-                    ${style.inputDark}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
                     ${style.inputFocus}
                   `}
                   type='text'
@@ -116,7 +117,8 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                   className={`
                     ${style.form}
                     ${style.input}
-                    ${style.inputDark}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
                     ${style.inputFocus}
                     ${style.inputPlaceholder}
                     ${style.inputPlaceholderDark}

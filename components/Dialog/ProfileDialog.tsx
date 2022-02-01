@@ -38,11 +38,12 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
               <div className={style.inputGroup}>
                 <input
                   className={`
-                      ${style.input}
-                      ${style.inputDark}
-                      ${style.inputFocus}
-                      rounded-r-none
-                    `}
+                    ${style.input}
+                    ${style.inputDefault}
+                    ${style.inputDefaultDark}
+                    ${style.inputFocus}
+                    rounded-r-none
+                  `}
                   type='text'
                   id='private-key'
                   defaultValue={getAccountPrivateKey()}

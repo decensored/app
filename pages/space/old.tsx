@@ -19,7 +19,6 @@ import PostForm from 'components/Post/PostForm'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
-import UserDialog from 'components/Dialog/UserDialog'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -37,13 +36,12 @@ const Space: NextPage = () => {
   )
 
   const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
-  const [openUserDialog, setOpenUserDialog] = useState(false)
   const [spaceOwner, setSpaceOwner] = React.useState(false)
   const [space, setSpace] = React.useState<SpaceType>()
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
-  const [nrOfPosts, setNrOfPosts] = React.useState(0)
-  const [nrOfUSers, setNrOfUsers] = React.useState(0)
-  const [userArray, setUserArray] = React.useState<UserType[]>([])
+  // const [nrOfPosts, setNrOfPosts] = React.useState(0)
+  // const [nrOfUSers, setNrOfUsers] = React.useState(0)
+  // const [userArray, setUserArray] = React.useState<UserType[]>([])
   const [currentUserBlacklisted, setCurrentUserIsBlacklisted] =
     React.useState(false)
   const [blackListArray, setBlackListArray] = React.useState<UserType[]>([])
@@ -61,7 +59,7 @@ const Space: NextPage = () => {
     // Get Posts for Space
     const postsForSpace = getPostsInSpace(posts, currentSpace)
     setSpacePosts(postsForSpace)
-    setNrOfPosts(postsForSpace.length)
+    // setNrOfPosts(postsForSpace.length)
 
     // Check if current user is the owner so he can perform actions
     if (currentUserId === currentSpace.owner) {
@@ -77,8 +75,8 @@ const Space: NextPage = () => {
         ])
       ).values(),
     ]
-    setNrOfUsers(uniqueUsers.length)
-    setUserArray(uniqueUsers)
+    // setNrOfUsers(uniqueUsers.length)
+    // setUserArray(uniqueUsers)
 
     // Create an array of blacklisted users for the moderator
     const newBlacklist: { userId: number; username: string }[] = []
@@ -153,34 +151,6 @@ const Space: NextPage = () => {
                       />
                     </>
                   )}
-                  <div className={style.spaceHeaderTitle}>#{name}</div>
-                  <div className={style.spaceHeaderColsWrapper}>
-                    <div className={style.spaceHeaderColWrapper}>
-                      <span className={style.spaceHeaderColTitle}>
-                        {nrOfPosts}
-                      </span>
-                      <span className={style.spaceHeaderColText}>Posts</span>
-                    </div>
-                    <div className={style.spaceHeaderColWrapper}>
-                      <button
-                        type='button'
-                        onClick={() => {
-                          setOpenUserDialog(true)
-                        }}
-                        className={style.spaceHeaderColTitle}
-                      >
-                        {nrOfUSers}
-                      </button>
-                      <span className={style.spaceHeaderColText}>
-                        Followers
-                      </span>
-                      <UserDialog
-                        users={userArray}
-                        showDialog={openUserDialog}
-                        onClose={() => setOpenUserDialog(false)}
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
               {isSignedUp && !currentUserBlacklisted && (
