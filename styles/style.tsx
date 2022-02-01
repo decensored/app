@@ -158,6 +158,10 @@ export const style = {
   spaceHeaderDataTitle: 'text-4xl font-bold',
   spaceHeaderDataText: 'text-xs font-light',
 
+  userHeaderWrapper: 'bg-gradient rounded px-5 py-7 text-white',
+  userHeaderInner: 'text-white text-center',
+  userHeaderTitle: 'text-xl sm:text-2xl font-semibold uppercase',
+
   tag: 'uppercase text-xs tracking-wide font-medium px-2 py-1 rounded',
   tagNotClickable: 'cursor-default bg-highlight-10 text-highlight-900',
   tagNotClickableDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',

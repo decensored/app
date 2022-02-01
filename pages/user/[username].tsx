@@ -61,37 +61,11 @@ const Space: NextPage = () => {
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
-            <div className={style.spaceHeaderWrapper}>
-              <div className={style.spaceHeaderInner}>
-                <div className={style.spaceHeaderTitle}>
+            <div className={style.userHeaderWrapper}>
+              <div className={style.userHeaderInner}>
+                <div className={style.userHeaderTitle}>
                   {username ? `#${username}` : '#undefined'}
                 </div>
-                {/*                 <div className={style.spaceHeaderColsWrapper}>
-                  <div className={style.spaceHeaderColWrapper}>
-                    <span className={style.spaceHeaderColTitle}>
-                      {space.posts}
-                    </span>
-                    <span className={style.spaceHeaderColText}>
-                      Posts
-                    </span>
-                  </div>
-                  <div className={style.spaceHeaderColWrapper}>
-                    <span className={style.spaceHeaderColTitle}>
-                      {space.followers}
-                    </span>
-                    <span className={style.spaceHeaderColText}>
-                      Followers
-                    </span>
-                  </div>
-                  <div className={style.spaceHeaderColWrapper}>
-                    <span className={style.spaceHeaderColTitle}>
-                      {space.whatever}
-                    </span>
-                    <span className={style.spaceHeaderColText}>
-                      Whatever
-                    </span>
-                  </div>
-                </div> */}
               </div>
             </div>
             {showFeedItems}
