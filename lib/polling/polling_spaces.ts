@@ -3,6 +3,7 @@ import useStore from 'lib/store'
 import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { LoadingProgressType, SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
+import { limitArray } from './pollingUtils'
 
 const INTERVAL = 5003 // (first prime over 5000) // 10 * 1000
 
@@ -15,6 +16,9 @@ const poll = async (): Promise<void> => {
     setTimeout(poll, 100) // quick retry until contract is available
     return
   }
+
+  limitArray(state.spaces, state.setSpaces, 'spaces')
+  limitArray(state.spacesQueued, state.setSpacesQueued, 'spacesQueued')
 
   // console.log('polling_spaces: check latest index')
 

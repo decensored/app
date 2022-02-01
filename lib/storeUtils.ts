@@ -52,6 +52,8 @@ export const dequeuePostsAndSpaces = (): void => {
 
   const state = useStore.getState()
 
+  // TODO: if (queued and existing items have a gap between them) { remove existing items }
+
   state.setPosts(state.postsQueued.concat(state.posts))
   state.setPostsQueued([])
 

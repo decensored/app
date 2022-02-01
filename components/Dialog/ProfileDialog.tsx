@@ -22,7 +22,7 @@ const Profile: FunctionComponent<ProfileProbs> = ({ showDialog, onClose }) => {
   const qrcode = `${
     inBrowser ? window.origin : ''
   }/signup/${getAccountPrivateKey()}`
-  console.log(qrcode)
+  // console.log(qrcode)
 
   return (
     <BaseDialog
