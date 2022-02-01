@@ -14,6 +14,7 @@ const PostDialog: FunctionComponent<PostDialogProps> = ({
   <BaseDialog
     showDialog={showDialog}
     onClose={onClose}
+    clickOutside
     body={<PostForm spaceId={1} isTransparent />}
     width='2xl'
   />

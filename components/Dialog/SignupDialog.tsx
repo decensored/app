@@ -148,7 +148,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
           )}
           {signUpDone && (
             <div className={style.inputWrapper}>
-              <p className='pt-2'>You successfully signed up on Decensored!</p>
+              <p>You successfully signed up on Decensored!</p>
               <div className={`${style.alert} ${style.alertDark} my-5`}>
                 <b className='font-bold'>Important:</b> To login again at a
                 later point or on any other device you will need your key! Copy

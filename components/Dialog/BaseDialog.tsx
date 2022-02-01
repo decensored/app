@@ -9,6 +9,7 @@ interface DialogProps {
   footer?: JSX.Element
   width?: string
   onClose: () => void
+  clickOutside?: boolean
   showDialog: boolean
 }
 
@@ -19,6 +20,7 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   footer = null,
   width = 'sm',
   onClose,
+  clickOutside = false,
   showDialog,
 }) => {
   const widthLookup: { [unit: string]: string } = {
@@ -52,7 +54,9 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
           leaveTo='opacity-0 scale-95'
         >
           <div className={style.dialogWrapper}>
-
+            {clickOutside && (
+              <Dialog.Overlay className={style.dialogClickOutsideOverlay} />
+            )}
             <div
               className={`${style.dialogInner} ${
                 style.dialogInnerDark

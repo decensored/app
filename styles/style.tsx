@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* prettier-ignore */
 export const style = {
-  body: 'font-sans bg-slate-100 text-gray-900',
+  body: 'font-sans bg-slate-100 text-gray-900 transition-colors',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
   bodyContainer: 'container mx-auto max-w-screen-lg flex md:gap-x-[2%]',
@@ -38,6 +38,7 @@ export const style = {
   buttonTransparent: 'bg-transparent text-gray-900 hover:text-purple-900',
   buttonTransparentDark: 'dark:text-gray-500',
 
+  dialogClickOutsideOverlay: 'fixed inset-0',
   dialogWrapper: 'flex fixed top-20 w-full mx-auto items-center justify-center',
   dialogInner: 'relative bg-white w-full mx-auto shadow-xl mx-3 rounded bg-white divide-y divide-solid divide-gray-200',
   dialogInnerDark: 'dark:bg-darkmode-600 dark:divide-darkmode-1000',
@@ -115,7 +116,7 @@ export const style = {
   feedItemParent: 'border-none rounded',
   feedItemChild: 'border-l border-gray-300',
 
-  feedItemWrapper: 'bg-white',
+  feedItemWrapper: 'bg-white transition-colors',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 pt-3',

@@ -19,6 +19,7 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
       <BaseDialog
         showDialog={showDialog}
         onClose={onClose}
+        clickOutside
         body={
           <div>
             <div className='mb-6'>
