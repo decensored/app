@@ -57,11 +57,11 @@ const Web3Client: FunctionComponent = () => {
       if (defaultNodeInfo) {
         evmNode = DEFAULT_EVMNODE
         contractsAddress = DEFAULT_CONTRACTSADDRESS
-        console.log('Web3Client default nodeInfo', evmNode, contractsAddress)
+        // console.log('Web3Client default nodeInfo', evmNode, contractsAddress)
       } else {
         evmNode = nodeInfo.evmNode
         contractsAddress = nodeInfo.contractsAddress
-        console.log('Web3Client custom nodeInfo', evmNode, contractsAddress)
+        // console.log('Web3Client custom nodeInfo', evmNode, contractsAddress)
       }
 
       setContract({}) // make sure we only can access the contracts when all is well

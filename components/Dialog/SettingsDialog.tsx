@@ -113,7 +113,6 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
               <div className={style.inputWrapper}>
                 <TextareaAutosize
                   minRows={2}
-                  value={nodeInfo.contractsAddress}
                   className={`
                     ${style.form}
                     ${style.input}
@@ -124,7 +123,9 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                     ${style.inputPlaceholderDark}
                   `}
                   {...register('contractAddress', { required: true })}
-                />
+                >
+                  {nodeInfo.contractsAddress}
+                </TextareaAutosize>
                 {errors.contractAddress && (
                   <div
                     className={`${style.formValidation} ${style.formValidationError}`}

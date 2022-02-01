@@ -7,22 +7,21 @@ const SpaceHeader: FunctionComponent = () => {
 
   return (
     <>
-      <div
-        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} p-5`}
-      >
+      <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}>
         <div className={style.feedItemInner}>
-          <div className='flex flex-col justify-center items-center'>
-            <p className='text-3xl mb-1 text-gray-900 dark:text-gray-300'>
-              Start a new space
+          <div className={style.startSpaceWrapper}>
+            <p
+              className={`${style.startSpaceTitle} ${style.startSpaceTitleDark}`}
+            >
+              Start New Space
             </p>
-            <p className='text-md mb-4'>Build your own network</p>
+            <p className={style.startSpaceSubline}>Build your own Galaxy</p>
             <button
               type='button'
               onClick={() => setOpenCreateSpaceDialog(true)}
-              className='bg-highlight-900 hover:bg-purple-800 text-white
-        font-medium py-2 px-3 rounded cursor-pointer'
+              className={`${style.button} ${style.buttonDecensored}`}
             >
-              Create space
+              Create Space
             </button>
           </div>
         </div>

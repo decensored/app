@@ -38,23 +38,24 @@ const Feed: FunctionComponent = () => {
 
   return (
     <>
-      {postsQueued.length > 0 && (
-        <button
-          type='button'
-          onClick={dequeuePostsAndSpaces}
-          className={`
-            ${style.buttonTransparent}
-            ${style.buttonTransparentDark}
-            w-full text-center underline hover:no-underline pb-5
-          `}
-        >
-          {postsQueued.length === 1 && 'Click to see a new post'}
-          {postsQueued.length > 1 &&
-            `Click to see ${postsQueued.length} new posts`}
-        </button>
-      )}
+      <div className={style.dequeuePostsAndSpacesWrapper}>
+        {postsQueued.length > 0 && (
+          <button
+            type='button'
+            onClick={dequeuePostsAndSpaces}
+            className={`${style.dequeuePostsAndSpacesButton} ${style.dequeuePostsAndSpacesButtonDark}`}
+          >
+            {postsQueued.length === 1 && 'Click to see a new post'}
+            {postsQueued.length > 1 &&
+              `Click to see ${postsQueued.length} new posts`}
+          </button>
+        )}
+      </div>
 
-     <div id='posts'>
+      <div
+        id='posts'
+        className={`${style.postsWrapper} ${style.postsWrapperDark}`}
+      >
         {oldskool ? (
           showFeedItems
         ) : (

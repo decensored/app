@@ -25,7 +25,11 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({
             <div className='mb-6'>
               <FeedItem type='replyToPost' parent={false} {...post} />
             </div>
-            <PostForm spaceId={post.space} motherPost={post.id} />
+            <PostForm
+              spaceId={post.space}
+              motherPost={post.id}
+              onSpread={onClose}
+            />
           </div>
         }
         width='2xl'

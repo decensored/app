@@ -12,12 +12,14 @@ interface FormProps {
   spaceId: number
   motherPost?: number
   isTransparent?: boolean
+  onSpread?: () => void
 }
 
 const Form: FunctionComponent<FormProps> = ({
   spaceId,
   motherPost,
   isTransparent = false,
+  onSpread,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
@@ -51,6 +53,8 @@ const Form: FunctionComponent<FormProps> = ({
       await createReply(contract, motherPost, message)
       setIsLoading(false)
     }
+
+    if (onSpread) onSpread()
   }
 
   return (
