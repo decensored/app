@@ -29,6 +29,8 @@ export const style = {
   inputLabel: 'block font-bold mb-3 text-gray-700 text-xs tracking-wide uppercase',
   inputLabelDark: 'dark:text-gray-300',
   inputLabelCenter: 'text-center',
+  inputLabelMarginTop: 'mt-5',
+  inputLabelErrorMarginTop: 'mt-10',
 
   form: 'resize-none min-h-[75px]',
   formValidation: 'absolute before:absolute before:bg-opacity-20 before:empty before:inset-0 before:rounded-b bg-white flex items-center left-[3px] px-[9px] py-1 right-[3px] rounded-b',

@@ -53,7 +53,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
       setSignUpDone(true)
       /*     onClose() */
     } else {
-      setError('username', { type: 'manual', message: `${result.error}` }, { shouldFocus: true })
+      setError('token', { type: 'manual', message: `Seems like this token is invalid!` }, { shouldFocus: true })
       setIsLoading(false)
       //  throw new Error(JSON.stringify(result))
     }
@@ -101,16 +101,18 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                   defaultValue={userName}
                   {...register('username', {
                     required: true,
-                    pattern: /^[a-z1-9]+$/i,
-                    min: 4,
-                    max: 16,
+                    pattern: /^[a-zA-Z0-9]+$/i,
+                    minLength: 4,
+                    maxLength: 15,
                   })}
                 />
                 {errors.username && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                  <div className={`${style.formValidation} ${style.formValidationError} mb-10`}>
                     <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
                       {errors.username?.type === 'required' && 'Choose your username!'}
-                      {errors.username.message}
+                      {errors.username?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
+                      {(errors.username?.type === 'minLength' || errors.username?.type === 'maxLength') &&
+                        'Username must be between 4-15 chars!'}
                     </span>
                   </div>
                 )}
@@ -118,7 +120,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                   className={`
                     ${style.inputLabel}
                     ${style.inputLabelDark}
-                    mt-5
+                    ${errors.username ? `${style.inputLabelErrorMarginTop}` : `${style.inputLabelMarginTop}`}
                   `}
                 >
                   Invite Token

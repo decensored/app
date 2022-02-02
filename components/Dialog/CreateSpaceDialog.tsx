@@ -79,22 +79,30 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
                     lowercase
                   `}
                   type='text'
-                  {...register('name', { required: true })}
+                  {...register('name', {
+                    required: true,
+                    pattern: /^[a-z0-9_]+$/i,
+                    minLength: 4,
+                    maxLength: 15,
+                  })}
                 />
                 {errors.name && (
                   <div className={`${style.formValidation} ${style.formValidationError}`}>
                     <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      {errors.name?.type === 'required' && 'Cant be empty! chars: azAZ'}
-                      {errors.name.message}
+                      {errors.name?.type === 'required' && 'Choose the name of your space!'}
+                      {errors.name?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
+                      {(errors.name?.type === 'minLength' || errors.name?.type === 'maxLength') &&
+                        'Spacename must be between 4-15 chars!'}
                     </span>
                   </div>
                 )}
               </div>
               <span
-                className={`pt-5
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                `}
+                className={`
+                    ${style.inputLabel}
+                    ${style.inputLabelDark}
+                    ${errors.name ? `${style.inputLabelErrorMarginTop}` : `${style.inputLabelMarginTop}`}
+                  `}
               >
                 Description
               </span>
@@ -114,11 +122,10 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
               `}
                   {...register('description', { required: true })}
                 />
-                {errors.name && (
+                {errors.description && (
                   <div className={`${style.formValidation} ${style.formValidationError}`}>
                     <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      {errors.name?.type === 'required' && 'Cant be empty! chars: azAZ'}
-                      {errors.name.message}
+                      {errors.description?.type === 'required' && 'Please fill out the description'}
                     </span>
                   </div>
                 )}
