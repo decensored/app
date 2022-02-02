@@ -12,6 +12,7 @@ export type PostType = {
   space: number
   spaceName: string
   mother_post: number
+  deleted: boolean
 }
 
 export type SpaceType = {

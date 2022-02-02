@@ -1,14 +1,33 @@
 import { executeContractFunction, getUserById } from 'api/user'
+import { readableError } from 'lib/helper'
 import type { PostType } from 'lib/types'
 import { getSpaceNameById } from './spaces'
 
 const log = (msg: string): void => {
   // console.log('api/feed:', msg) // or outcomment
 }
-
+/* 
 export const createPost = async (contract: any, spaceId: number, message: string): Promise<PostType[]> =>
   // log(`createPostForSpace ${spaceId}`)
   await executeContractFunction(contract.web3, contract.posts.methods.submit_post(spaceId, message))
+ */
+export const createPost = async (contract: any, spaceId: number, message: string) => {
+  try {
+    await executeContractFunction(contract.web3, contract.posts.methods.submit_post(spaceId, message))
+    return { success: true }
+  } catch (error) {
+    return { success: false, error: readableError(error) }
+  }
+}
+
+export const deletePostOfUser = async (contract: any, postId: number) => {
+  try {
+    await executeContractFunction(contract.web3, contract.posts.methods.delete_post(postId))
+    return { success: true }
+  } catch (error) {
+    return { success: false, error: readableError(error) }
+  }
+}
 
 export const getPostById = async (contract: any, postId: number): Promise<PostType> => {
   // log(`getPostById ${postId}`)
@@ -26,6 +45,7 @@ export const getPostById = async (contract: any, postId: number): Promise<PostTy
     space: parseInt(post.space, 10),
     spaceName,
     mother_post: parseInt(post.mother_post, 10),
+    deleted: post.deleted,
   }
   // console.log(result)
   return result

@@ -6,6 +6,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import TimeAgo from 'react-timeago'
 import { addUserToBlacklist } from 'api/spaces'
+import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
 import { getRepliesForPost } from 'lib/storeUtils'
@@ -25,6 +26,7 @@ interface FeedItemProps {
   type: string
   parent?: boolean
   depth?: number
+  deleted: boolean
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
@@ -42,14 +44,19 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   type,
   parent,
   depth = 0,
+  deleted,
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
   const [openReplies, setOpenReplies] = React.useState(depth <= 0)
   const [isLoading, setIsLoading] = React.useState(false)
-  const [contract, userId, posts] = useStore((state) => [state.contract, state.userId, state.posts], shallow)
+  const [contract, userId, posts, setPosts] = useStore(
+    (state) => [state.contract, state.userId, state.posts, state.setPosts],
+    shallow
+  )
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
+  // Blacklist
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
     const result = await addUserToBlacklist(contract, space, author)
@@ -72,6 +79,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     }
   }
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
+  const isAuthor = author === userId
 
   // Create list of Replies and check for blocked users
   let replyItems = []
@@ -113,6 +121,23 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     spaceName,
   }
 
+  // Post Deletion
+  const deletePost = async (): Promise<void> => {
+    const result = await deletePostOfUser(contract, id)
+    if (result.success) {
+      const updatedPosts = posts.map((post) => (post.id === id ? { ...post, message: '', deleted: true } : post))
+      setPosts(updatedPosts)
+      toast.success(`Your post has been deleted!`, {
+        autoClose: 3000,
+      })
+    } else {
+      toast.error(`${result.error}`, {
+        autoClose: 3000,
+      })
+    }
+  }
+  const checkedMessage = deleted ? 'The user has removed this post!' : message
+
   return (
     <div
       className={`
@@ -147,7 +172,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
-        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{message}</div>
+        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{checkedMessage}</div>
         <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && isSignedUp && (
             <>
@@ -191,6 +216,20 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   {replies.length === 1 ? `Hide Reply` : `Hide Replies`}
                 </button>
               )}
+            </>
+          )}
+          {isAuthor && !deleted && (
+            <>
+              <span className={style.feedReplyItemSpacer}>|</span>
+              <button
+                type='button'
+                onClick={() => {
+                  deletePost()
+                }}
+                className={style.feedReplyItemText}
+              >
+                Delete Post
+              </button>
             </>
           )}
           {moderator && (
