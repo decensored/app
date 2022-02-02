@@ -11,18 +11,10 @@ interface RecoverDialogProps {
   onClose: () => void
 }
 
-const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
-  showDialog,
-  onClose,
-}) => {
+const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onClose }) => {
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const {
-    setIsSignedUp,
-    setUserName,
-    setUserId,
-    contract,
-  } = useStore((state) => ({
+  const { setIsSignedUp, setUserName, setUserId, contract } = useStore((state) => ({
     isSignedUp: state.isSignedUp,
     setIsSignedUp: state.setIsSignedUp,
     userName: state.userName,
@@ -51,11 +43,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
       setIsLoading(false)
       onClose()
     } else {
-      setError(
-        'privateKey',
-        { type: 'manual', message: `${result.error}` },
-        { shouldFocus: true }
-      )
+      setError('privateKey', { type: 'manual', message: `${result.error}` }, { shouldFocus: true })
       setIsLoading(false)
     }
   }
@@ -84,16 +72,10 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
               })}
             />
             {errors.privateKey && (
-              <div
-                className={`${style.formValidation} ${style.formValidationError}`}
-              >
-                <span
-                  className={`${style.formValidationText} ${style.formValidationTextError}`}
-                >
-                  {errors.privateKey?.type === 'required' &&
-                    'Field cant be empty'}
-                  {errors.privateKey?.type === 'minLength' &&
-                    'Key must have 66 chars and begin with 0x'}
+              <div className={`${style.formValidation} ${style.formValidationError}`}>
+                <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                  {errors.privateKey?.type === 'required' && 'Field cant be empty'}
+                  {errors.privateKey?.type === 'minLength' && 'Key must have 66 chars and begin with 0x'}
                   {errors.privateKey?.message}
                 </span>
               </div>
@@ -115,19 +97,9 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({
           >
             Cancel
           </button>
-          <button
-            type='submit'
-            form='RecoverForm'
-            className={`${style.button} ${style.buttonDecensored} basis-full`}
-          >
+          <button type='submit' form='RecoverForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
             <span className='whitespace-nowrap'>
-              Recover{' '}
-              {isLoading && (
-                <SVGIcon
-                  icon='faSpinner'
-                  className='ml-2 animate-spin'
-                />
-              )}
+              Recover {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </>

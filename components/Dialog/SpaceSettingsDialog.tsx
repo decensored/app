@@ -23,10 +23,9 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
   showDialog,
   onClose,
 }) => {
-  const { contract } =
-    useStore((state) => ({
-      contract: state.contract,
-    }))
+  const { contract } = useStore((state) => ({
+    contract: state.contract,
+  }))
 
   // Remove user from blacklist on SC and change array
   const setRemoveUserFromBlacklist = async (userId: number): Promise<void> => {
@@ -35,9 +34,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
       toast.success(`User has access again!`, {
         autoClose: 3000,
       })
-      const newBlackList = blacklistedUsers.filter(
-        (user: any) => user.userId !== userId
-      )
+      const newBlackList = blacklistedUsers.filter((user: any) => user.userId !== userId)
       setBlacklist(newBlackList)
     } else {
       toast.error(`${result.error}`, {
@@ -52,7 +49,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
       <span className={`${style.blackListItem}`}>{user.username}</span>
       <SVGIcon
         icon='faTimes'
-        className='cursor-pointer text-l text-red-500 hidden group-hover:block'
+        className='text-l hidden cursor-pointer text-red-500 group-hover:block'
         onClick={() => {
           setRemoveUserFromBlacklist(user.userId)
         }}
@@ -98,16 +95,13 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
                   ${style.inputLabelDark}
                 `}
               >
-                Blacklisted User{' '}
-                {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
+                Blacklisted User {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
               </span>
               <div className={style.inputWrapper}>
                 <div className='my-2'>
                   <div className='flex flex-wrap gap-x-2 gap-y-2'>
                     {usersOnBlacklist.length > 0 && usersOnBlacklist}
-                    {usersOnBlacklist.length === 0 && (
-                      <p>No users on the blacklist</p>
-                    )}
+                    {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
                   </div>
                 </div>
               </div>

@@ -6,21 +6,11 @@ const log = (msg: string): void => {
   // console.log('api/feed:', msg) // or outcomment
 }
 
-export const createPost = async (
-  contract: any,
-  spaceId: number,
-  message: string
-): Promise<PostType[]> =>
+export const createPost = async (contract: any, spaceId: number, message: string): Promise<PostType[]> =>
   // log(`createPostForSpace ${spaceId}`)
-  await executeContractFunction(
-    contract.web3,
-    contract.posts.methods.submit_post(spaceId, message)
-  )
+  await executeContractFunction(contract.web3, contract.posts.methods.submit_post(spaceId, message))
 
-export const getPostById = async (
-  contract: any,
-  postId: number
-): Promise<PostType> => {
+export const getPostById = async (contract: any, postId: number): Promise<PostType> => {
   // log(`getPostById ${postId}`)
 
   const post = await contract.posts.methods.posts(postId).call()
@@ -49,10 +39,7 @@ export const getPostById = async (
 } */
 
 export const getLatestPostIndex = async (contract: any): Promise<number> => {
-  const index = await contract.posts.methods
-    .get_amount_of_posts()
-    .call()
-    .then(parseInt)
+  const index = await contract.posts.methods.get_amount_of_posts().call().then(parseInt)
   return index
 }
 
@@ -69,10 +56,7 @@ export const getAllPosts = async (contract: any): Promise<PostType[]> => {
   return posts
 }
 
-export const getAllPostsForSpace = async (
-  contract: any,
-  spaceId: number
-): Promise<PostType[]> => {
+export const getAllPostsForSpace = async (contract: any, spaceId: number): Promise<PostType[]> => {
   // log(`getAllPostsForSpace ${spaceId} (deprecated)`)
 
   const index = await getLatestPostIndex(contract)
@@ -89,16 +73,9 @@ export const getAllPostsForSpace = async (
 }
 
 // Replies
-export const createReply = async (
-  contract: any,
-  mother_post: number,
-  message: string
-): Promise<PostType[]> =>
+export const createReply = async (contract: any, mother_post: number, message: string): Promise<PostType[]> =>
   // log(`createPostForSpace ${spaceId}`)
-  await executeContractFunction(
-    contract.web3,
-    contract.posts.methods.submit_reply(mother_post, message)
-  )
+  await executeContractFunction(contract.web3, contract.posts.methods.submit_reply(mother_post, message))
 
 /* export const getRepliesByPost = async (
   contract: any,

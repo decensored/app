@@ -19,10 +19,7 @@ const BottomNavigation: FunctionComponent = () => {
   if (pathname === '/') tabIndex = 0
   else if (pathname.startsWith('/spaces')) tabIndex = 1
 
-  const [isSignedUp] = useStore((state) => [
-    state.isSignedUp,
-    state.userName,
-  ])
+  const [isSignedUp] = useStore((state) => [state.isSignedUp, state.userName])
 
   return (
     <div
@@ -37,11 +34,7 @@ const BottomNavigation: FunctionComponent = () => {
           <span
             className={`
               ${style.navigationBottomItem}
-              ${
-                tabIndex === 0
-                  ? style.navigationBottomItemColorActive
-                  : style.navigationBottomItemColor
-              }
+              ${tabIndex === 0 ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
             <SVGIcon icon='faSatelliteDish' />
@@ -61,49 +54,46 @@ const BottomNavigation: FunctionComponent = () => {
 
         {isSignedUp && !postButtonIsHidden && (
           <>
-          <div className={style.navigationBottomPostButtonWrapper}>
-            <div
-              className={`
+            <div className={style.navigationBottomPostButtonWrapper}>
+              <div
+                className={`
                 ${style.navigationBottomPostButtonPseudo}
                 ${style.navigationBottomPostButtonBefore}
                 ${style.navigationBottomPostButtonBeforeDark}
               `}
-            >
-              <div
-                className={`
+              >
+                <div
+                  className={`
                   ${style.navigationBottomPostButtonPseudoInner}
                   ${style.navigationBottomPostButtonBeforeInner}
                   ${style.navigationBottomPostButtonBeforeInnerDark}
                 `}
-              />
-            </div>
-            <button
-              type='button'
-              className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
-              onClick={() => setOpenPostDialog(true)}
-            >
-              <SVGIcon icon='faPlus' />
-            </button>
-            <div
-              className={`
+                />
+              </div>
+              <button
+                type='button'
+                className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
+                onClick={() => setOpenPostDialog(true)}
+              >
+                <SVGIcon icon='faPlus' />
+              </button>
+              <div
+                className={`
                 ${style.navigationBottomPostButtonPseudo}
                 ${style.navigationBottomPostButtonAfter}
                 ${style.navigationBottomPostButtonAfterDark}
               `}
-            >
-              <div
-                className={`
+              >
+                <div
+                  className={`
                   ${style.navigationBottomPostButtonPseudoInner}
                   ${style.navigationBottomPostButtonAfterInner}
                   ${style.navigationBottomPostButtonAfterInnerDark}
                 `}
-              />
+                />
+              </div>
             </div>
-          </div>
-            <PostDialog
-              showDialog={openPostDialog}
-              onClose={() => setOpenPostDialog(false)}
-            />
+            <PostDialog showDialog={openPostDialog} onClose={() => setOpenPostDialog(false)} />
           </>
         )}
 
@@ -111,11 +101,7 @@ const BottomNavigation: FunctionComponent = () => {
           <span
             className={`
               ${style.navigationBottomItem}
-              ${
-                tabIndex === 1
-                  ? style.navigationBottomItemColorActive
-                  : style.navigationBottomItemColor
-              }
+              ${tabIndex === 1 ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
             <SVGIcon icon='faSatellite' />

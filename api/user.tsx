@@ -4,15 +4,11 @@ const log = (msg: string): void => {
   // console.log('api/accounts:', msg) // or outcomment
 }
 
-export const executeContractFunction = async (
-  web3: any,
-  function_call: any
-) => {
+export const executeContractFunction = async (web3: any, function_call: any) => {
   const privateKey = await getPrivateKey()
   // console.log('executeContractFunction.privateKey', privateKey)
 
-  const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey)
-    .address
+  const accountAddress = await web3.eth.accounts.privateKeyToAccount(privateKey).address
   // console.log('executeContractFunction.accountAddress', accountAddress)
 
   const options = {
@@ -26,11 +22,7 @@ export const executeContractFunction = async (
   return web3.eth.sendSignedTransaction(signed.rawTransaction)
 }
 
-export const signUpUser = async (
-  contract: any,
-  username: string,
-  token: string
-) => {
+export const signUpUser = async (contract: any, username: string, token: string) => {
   log(`signUpUser ${username} with token ${token}`)
 
   // Create a new web3 account
@@ -38,10 +30,7 @@ export const signUpUser = async (
   console.log(`New account with privateKey ${privateKey} generated`)
 
   try {
-    await executeContractFunction(
-      contract.web3,
-      contract.accounts.methods.sign_up(username, token)
-    )
+    await executeContractFunction(contract.web3, contract.accounts.methods.sign_up(username, token))
     const userId = await getIdByAddress(contract)
     const signedUp = await isSignedUp(contract)
     return {
@@ -84,15 +73,9 @@ export const recoverUser = async (contract: any, privateKey: string) => {
   return result
 }
 
-export const setProfilePictureForUser = async (
-  contract: any,
-  profilePicture: string
-) => {
+export const setProfilePictureForUser = async (contract: any, profilePicture: string) => {
   try {
-    await executeContractFunction(
-      contract.web3,
-      contract.accounts.methods.set_profile_picture(profilePicture)
-    )
+    await executeContractFunction(contract.web3, contract.accounts.methods.set_profile_picture(profilePicture))
     return {
       success: true,
     }
@@ -132,8 +115,7 @@ export const getAddress = async (contract: any) => {
   return contract.web3.eth.accounts.privateKeyToAccount(private_key).address
 }
 
-export const getUserById = async (contract: any, userId: number) =>
-  contract.accounts.methods.accounts(userId).call()
+export const getUserById = async (contract: any, userId: number) => contract.accounts.methods.accounts(userId).call()
 
 export const getIdByUserName = async (contract: any, username: string) => {
   await contract.accounts.methods.id_by_username(username.toLowerCase()).call()

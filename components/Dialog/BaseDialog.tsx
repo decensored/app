@@ -24,10 +24,10 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   showDialog,
 }) => {
   const widthLookup: { [unit: string]: string } = {
-    'sm': 'max-w-sm',
-    'md': 'max-w-md',
-    'lg': 'max-w-lg',
-    'xl': 'max-w-xl',
+    sm: 'max-w-sm',
+    md: 'max-w-md',
+    lg: 'max-w-lg',
+    xl: 'max-w-xl',
     '2xl': 'max-w-2xl',
     '3xl': 'max-w-3xl',
     '4xl': 'max-w-4xl',
@@ -54,21 +54,9 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
           leaveTo='opacity-0 scale-95'
         >
           <div className={style.dialogWrapper}>
-            {clickOutside && (
-              <Dialog.Overlay className={style.dialogClickOutsideOverlay} />
-            )}
-            <div
-              className={`${style.dialogInner} ${
-                style.dialogInnerDark
-              } ${setWidth()}`}
-            >
-              {header && (
-                <div
-                  className={`${style.dialogHeader} ${style.dialogHeaderDark}`}
-                >
-                  {header}
-                </div>
-              )}
+            {clickOutside && <Dialog.Overlay className={style.dialogClickOutsideOverlay} />}
+            <div className={`${style.dialogInner} ${style.dialogInnerDark} ${setWidth()}`}>
+              {header && <div className={`${style.dialogHeader} ${style.dialogHeaderDark}`}>{header}</div>}
               <div className={bodyPadding}>{body}</div>
               {footer && <div className={style.dialogFooter}>{footer}</div>}
             </div>

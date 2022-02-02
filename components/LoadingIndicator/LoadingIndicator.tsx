@@ -4,10 +4,7 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 
 const LoadingIndicator: FunctionComponent = () => {
-  const [postsLoaded, spacesLoaded] = useStore(
-    (state) => [state.postsLoaded, state.spacesLoaded],
-    shallow
-  )
+  const [postsLoaded, spacesLoaded] = useStore((state) => [state.postsLoaded, state.spacesLoaded], shallow)
 
   const nFinished = postsLoaded.nFinished + spacesLoaded.nFinished
   const max = postsLoaded.max + spacesLoaded.max

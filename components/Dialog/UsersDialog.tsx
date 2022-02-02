@@ -9,18 +9,24 @@ interface UserDialogProbs {
   users: any
 }
 
-const UserDialog: FunctionComponent<UserDialogProbs> = ({
-  showDialog,
-  onClose,
-  users,
-}) => {
+const UserDialog: FunctionComponent<UserDialogProbs> = ({ showDialog, onClose, users }) => {
   // Create items for users
   const usersinSpace = users.map((user: any) => (
-    <Link key={`user-${user.id}`} href={`/user/${user.username}`} passHref>
-      <div className='py-3 px-3 cursor-pointer hover:bg-highlight-40'>
-        {user.username}
-      </div>
-    </Link>
+    <div className={`${style.itemListItem} ${style.itemListItemDark}`}>
+      {user.username}
+      <Link key={`user-${user.id}`} href={`/user/${user.username}`} passHref>
+        <span
+          className={`
+          ${style.tag}
+          ${style.tagClickable}
+          ${style.tagClickableDark}
+          ${style.itemListItemHoverElement}
+          `}
+        >
+          <span className='hidden sm:inline'>Open </span>Profile
+        </span>
+      </Link>
+    </div>
   ))
 
   return (
@@ -30,7 +36,7 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({
       header='Space Users'
       body={
         <form id='spaceSettingsForm'>
-          <div className='divide-y divide-double'>{usersinSpace}</div>
+          <div className={`${style.itemList} ${style.itemListDark}`}>{usersinSpace}</div>
         </form>
       }
       footer={

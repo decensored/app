@@ -15,12 +15,7 @@ interface FormProps {
   onSpread?: () => void
 }
 
-const Form: FunctionComponent<FormProps> = ({
-  spaceId,
-  motherPost,
-  isTransparent = false,
-  onSpread,
-}) => {
+const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost, isTransparent = false, onSpread }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
     userName: state.userName,
@@ -78,30 +73,17 @@ const Form: FunctionComponent<FormProps> = ({
             `}
             {...register('message', { required: true })}
           />
-          <div
-            className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`}
-          />
+          <div className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`} />
         </div>
       </form>
       <div className={style.postFormFooter}>
         <div className={style.postFormFooterLogoWrapper}>
-          <img
-            src='/logo/logotype.svg'
-            alt='Decensored Logo'
-            className='max-h-[20px]'
-          />
+          <img src='/logo/logotype.svg' alt='Decensored Logo' className='max-h-[20px]' />
         </div>
         <div>
-          <button
-            type='submit'
-            form={`postForm-${motherPost}`}
-            className={`${style.button} ${style.buttonDecensored}`}
-          >
+          <button type='submit' form={`postForm-${motherPost}`} className={`${style.button} ${style.buttonDecensored}`}>
             <span className='whitespace-nowrap'>
-              Spread it{' '}
-              {isLoading && (
-                <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />
-              )}
+              Spread it {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </div>
