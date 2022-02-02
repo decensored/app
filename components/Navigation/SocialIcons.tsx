@@ -25,7 +25,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({
         <SVGIcon icon='faTwitter' isFixed />
       </a>
     </Link>
-    <Link href='https://discord.gg/gKvXUu4X' passHref>
+    <Link href='https://t.co/pxUEdb5sHp' passHref>
       <a
         href='dummy-href'
         target='_blank'

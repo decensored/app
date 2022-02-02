@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
+import { style } from 'styles/style'
 
 const LoadingIndicator: FunctionComponent = () => {
   const [postsLoaded, spacesLoaded] = useStore(
@@ -18,7 +19,7 @@ const LoadingIndicator: FunctionComponent = () => {
   const s = `Loaded ${percentage.toFixed(1)}%`
   // console.log(s)
 
-  return <span>{s}</span>
+  return <div className={style.loadingIndicator}>{s}</div>
 }
 
 export default LoadingIndicator
