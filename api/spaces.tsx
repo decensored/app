@@ -66,11 +66,7 @@ export const getAllSpaces = async (contract: any) => {
 export const createSpace = async (contract: any, name: string, description: string) => {
   log(`CreateSpace ${name}`)
   try {
-    await executeContractFunction(contract.web3, contract.spaces.methods.create(name))
-    // I guess this is not the ideal way to do this
-    await getSpaceByName(contract, name).then(async (space) => {
-      await setSpaceDescription(contract, space.id, description)
-    })
+    await executeContractFunction(contract.web3, contract.spaces.methods.create(name, description))
     return { success: true }
   } catch (error) {
     return { success: false, error: readableError(error) }

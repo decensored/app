@@ -93,6 +93,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
                       {errors.name?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
                       {(errors.name?.type === 'minLength' || errors.name?.type === 'maxLength') &&
                         'Spacename must be between 4-15 chars!'}
+                      {errors.name.message}
                     </span>
                   </div>
                 )}
