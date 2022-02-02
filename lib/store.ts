@@ -1,17 +1,11 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import type {
-  LoadingProgressType,
-  NodeInfoType,
-  PostType,
-  SpaceType,
-} from 'lib/types'
+import type { LoadingProgressType, NodeInfoType, PostType, SpaceType } from 'lib/types'
 
 export const STORE_VERSION = 8
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
-export const DEFAULT_CONTRACTSADDRESS =
-  '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
+export const DEFAULT_CONTRACTSADDRESS = '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
 
 const useStore = create(
   persist(
@@ -23,20 +17,17 @@ const useStore = create(
       setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
       isPolledDataQueued: true,
-      setIsPolledDataQueued: (isPolledDataQueued: boolean) =>
-        set({ isPolledDataQueued }),
+      setIsPolledDataQueued: (isPolledDataQueued: boolean) => set({ isPolledDataQueued }),
 
       // smart contracts
       contract: {}, // { accounts, posts, spaces, web3 },
       setContract: (contract: any) => set({ contract }),
 
       postsLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
-      setPostsLoaded: (postsLoaded: LoadingProgressType) =>
-        set({ postsLoaded }),
+      setPostsLoaded: (postsLoaded: LoadingProgressType) => set({ postsLoaded }),
 
       spacesLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
-      setSpacesLoaded: (spacesLoaded: LoadingProgressType) =>
-        set({ spacesLoaded }),
+      setSpacesLoaded: (spacesLoaded: LoadingProgressType) => set({ spacesLoaded }),
 
       //
       spaces: [] as SpaceType[],
@@ -46,8 +37,7 @@ const useStore = create(
       setSpacesQueued: (spacesQueued: SpaceType[]) => set({ spacesQueued }),
 
       latestSpaceIndexFetched: 0,
-      setLatestSpaceIndexFetched: (latestSpaceIndexFetched: number) =>
-        set({ latestSpaceIndexFetched }),
+      setLatestSpaceIndexFetched: (latestSpaceIndexFetched: number) => set({ latestSpaceIndexFetched }),
 
       //
       posts: [] as PostType[],
@@ -57,8 +47,7 @@ const useStore = create(
       setPostsQueued: (postsQueued: PostType[]) => set({ postsQueued }),
 
       latestPostIndexFetched: 0,
-      setLatestPostIndexFeched: (latestPostIndexFetched: number) =>
-        set({ latestPostIndexFetched }),
+      setLatestPostIndexFeched: (latestPostIndexFetched: number) => set({ latestPostIndexFetched }),
 
       //
       isDarkmode: false,
@@ -74,8 +63,7 @@ const useStore = create(
       setUserId: (userId: number) => set({ userId }),
 
       defaultNodeInfo: true,
-      setDefaultNodeInfo: (defaultNodeInfo: boolean) =>
-        set({ defaultNodeInfo }),
+      setDefaultNodeInfo: (defaultNodeInfo: boolean) => set({ defaultNodeInfo }),
 
       nodeInfo: {
         evmNode: DEFAULT_EVMNODE,

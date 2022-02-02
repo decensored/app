@@ -10,11 +10,7 @@ const SpaceHeader: FunctionComponent = () => {
       <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}>
         <div className={style.feedItemInner}>
           <div className={style.startSpaceWrapper}>
-            <p
-              className={`${style.startSpaceTitle} ${style.startSpaceTitleDark}`}
-            >
-              Start New Space
-            </p>
+            <p className={`${style.startSpaceTitle} ${style.startSpaceTitleDark}`}>Start New Space</p>
             <p className={style.startSpaceSubline}>Build your own Galaxy</p>
             <button
               type='button'
@@ -26,10 +22,7 @@ const SpaceHeader: FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <CreateSpaceDialog
-        showDialog={openCreateSpaceDialog}
-        onClose={() => setOpenCreateSpaceDialog(false)}
-      />
+      <CreateSpaceDialog showDialog={openCreateSpaceDialog} onClose={() => setOpenCreateSpaceDialog(false)} />
     </>
   )
 }

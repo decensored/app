@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
-import { Virtuoso } from 'react-virtuoso'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import { Virtuoso, VirtuosoHandle } from 'react-virtuoso'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
@@ -36,14 +36,25 @@ const Feed: FunctionComponent = () => {
 
   const oldskool = false
 
+  const virtuoso = useRef<VirtuosoHandle>(null)
+
+  const handleDequeuePosts = () => {
+    dequeuePostsAndSpaces()
+    if (!virtuoso?.current) return
+    virtuoso.current.scrollToIndex({
+      index: 0,
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <>
       <div className={style.dequeuePostsAndSpacesWrapper}>
         {postsQueued.length > 0 && (
           <button
             type='button'
-            onClick={dequeuePostsAndSpaces}
-            className={`${style.dequeuePostsAndSpacesButton} ${style.dequeuePostsAndSpacesButtonDark}`}
+            onClick={handleDequeuePosts}
+            className={style.dequeuePostsAndSpacesButton}
           >
             {postsQueued.length === 1 && 'Click to see a new post'}
             {postsQueued.length > 1 &&
@@ -62,6 +73,7 @@ const Feed: FunctionComponent = () => {
           <Virtuoso
             data={postsWithoutMother}
             totalCount={postsWithoutMother.length}
+            ref={virtuoso}
             className={`
               ${style.virtuosoWrapper}
               h-screen-virtuoso

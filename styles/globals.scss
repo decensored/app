@@ -30,12 +30,7 @@ html {
   &.dark .dark\:bg-gradient {
     background-color: #3833a4;
     background: rgb(57, 56, 161);
-    background: linear-gradient(
-      45deg,
-      rgba(57, 56, 161, 1) 0%,
-      rgba(57, 56, 161, 1) 35%,
-      rgba(89, 56, 161, 1) 100%
-    );
+    background: linear-gradient(45deg, rgba(57, 56, 161, 1) 0%, rgba(57, 56, 161, 1) 35%, rgba(89, 56, 161, 1) 100%);
   }
 }
 
@@ -50,7 +45,7 @@ body > {
 
 // apple custom top space to first virtuoso wrapper child
 div[id*='headlessui-dialog']:not([id*='overlay']) {
-  @apply before:empty before:fixed before:inset-0 before:bg-black before:bg-opacity-50;
+  @apply before:fixed before:inset-0 before:bg-black before:bg-opacity-50 before:empty;
 }
 
 // mobile and desktop show/hide helper classes
@@ -134,4 +129,9 @@ $headerHeight: 60px;
     min-height: calc(100vh - 80px); // --vh fallback
     min-height: calc(var(--vh, 1vh) * 100 - 80px);
   }
+}
+
+.max-h-dialog {
+  max-height: calc(100vh - 80px); // --vh fallback
+  max-height: calc(var(--vh, 1vh) * 100 - 80px);
 }
