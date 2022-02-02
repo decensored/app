@@ -12,9 +12,9 @@ interface UserDialogProbs {
 const UserDialog: FunctionComponent<UserDialogProbs> = ({ showDialog, onClose, users }) => {
   // Create items for users
   const usersinSpace = users.map((user: any) => (
-    <div className={`${style.itemListItem} ${style.itemListItemDark}`}>
+    <div key={`user-${user.id}`} className={`${style.itemListItem} ${style.itemListItemDark}`}>
       {user.username}
-      <Link key={`user-${user.id}`} href={`/user/${user.username}`} passHref>
+      <Link href={`/user/${user.username}`} passHref>
         <span
           className={`
           ${style.tag}
