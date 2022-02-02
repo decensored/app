@@ -119,6 +119,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     timestamp,
     space,
     spaceName,
+    deleted,
   }
 
   // Post Deletion
