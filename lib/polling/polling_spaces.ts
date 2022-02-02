@@ -39,7 +39,7 @@ const poll = async (): Promise<void> => {
     // Set new index & prepend new posts
     state.setLatestSpaceIndexFetched(latestSpaceIndex)
 
-    // console.log('new spaces exist', latestSpaceIndex - state.latestSpaceIndexFetched)
+    // console.log(`Loading ${latestSpaceIndex - state.latestSpaceIndexFetched} spaces`)
 
     const spacesLoaded: LoadingProgressType = {
       nFinished: 0,
