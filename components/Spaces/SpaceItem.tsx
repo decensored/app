@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
-import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import useStore from 'lib/store'
 
@@ -28,11 +27,11 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
             <span
               className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
             >
-              <div className='flex'>
+              <div className='flex items-center gap-x-3'>
                 {name}
                 {owner === userId && (
                   <span
-                    className={`${style.tag} ${style.tagClickable} cursor-default ml-3`}
+                    className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}
                   >
                     Owner
                   </span>
@@ -43,18 +42,15 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({
               className='members flex justify-end items-center
          gap-x-2 pointer-events-none'
             >
-              <SVGIcon
-                icon='faUserAstronaut'
-                className='text-md text-gray-900 dark:text-gray-300'
-              />
               <span
                 className={`
-              ${style.tag}
-              ${style.tagNotClickable}
-              ${style.tagNotClickableDark}
-            `}
+                  ${style.tag}
+                  ${style.tagNotClickable}
+                  ${style.tagNotClickableDark}
+                `}
               >
                 {numberOfPostsInSpace}
+                {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
               </span>
             </div>
           </div>

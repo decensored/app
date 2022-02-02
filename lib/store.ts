@@ -7,11 +7,11 @@ import type {
   SpaceType,
 } from 'lib/types'
 
-export const STORE_VERSION = 7
+export const STORE_VERSION = 8
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
 export const DEFAULT_CONTRACTSADDRESS =
-  '0xF3b10c562e78dBc3cbE4F5211EA45C55cFb11750'
+  '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
 
 const useStore = create(
   persist(

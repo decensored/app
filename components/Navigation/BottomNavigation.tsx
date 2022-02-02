@@ -12,6 +12,9 @@ const BottomNavigation: FunctionComponent = () => {
   const router = useRouter()
   const { pathname } = router
 
+  // Hidden Post Buttton
+  const postButtonIsHidden = true
+
   let tabIndex = -1
   if (pathname === '/') tabIndex = 0
   else if (pathname.startsWith('/spaces')) tabIndex = 1
@@ -56,7 +59,7 @@ const BottomNavigation: FunctionComponent = () => {
           </span>
         </Link>
 
-        {isSignedUp && (
+        {isSignedUp && !postButtonIsHidden && (
           <>
           <div className={style.navigationBottomPostButtonWrapper}>
             <div

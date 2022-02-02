@@ -18,8 +18,8 @@ const gun = Gun({
         'https://notabug.io/gun',
         // 'http://localhost:3001/gun',
         // 'http://localhost:8765/gun',
-        // `${location.origin}/gun`,
-        // `${location.origin}/api/gun`,
+        // `${window.origin}/gun`,
+        // `${window.origin}/api/gun`,
       ]
     : [],
 })

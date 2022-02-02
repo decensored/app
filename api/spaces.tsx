@@ -3,7 +3,7 @@ import { readableError } from 'lib/helper'
 import { executeContractFunction } from 'api/user'
 
 const log = (msg: string): void => {
-  console.log('api/spaces:', msg) // or outcomment
+  // console.log('api/spaces:', msg) // or outcomment
 }
 
 export const getSpaceById = async (contract: any, space_id: number) => {

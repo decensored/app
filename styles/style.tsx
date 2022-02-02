@@ -1,14 +1,16 @@
 /* eslint-disable max-len */
 /* prettier-ignore */
 export const style = {
-  body: 'font-sans bg-slate-100 text-gray-900 transition-colors',
+  body: 'font-sans bg-slate-100 text-gray-900',
   bodyDark: 'dark:bg-darkmode-100 dark:text-gray-400',
 
   bodyContainer: 'container mx-auto max-w-screen-lg flex md:gap-x-[2%]',
   bodyContainerCol1: 'flex-none w-[34px] md:w-48 pl-3',
-  bodyContainerCol2: 'flex-auto',
+  bodyContainerCol2: 'flex-auto relative',
 
   headerWrapper: 'h-header sticky top-0 left-0 right-0 bg-gradient w-full px-3 flex justify-between items-center z-10',
+
+  loadingIndicator: 'fixed left-1/2 -translate-x-2/4 top-[15px] rounded-full px-3 py-1 bg-highlight-500 text-white text-sm shadow-lg pointer-events-none',
 
   inputWrapper: 'relative',
   inputGroup: 'flex',
@@ -56,6 +58,7 @@ export const style = {
   popoverBody: 'p-2 flex flex-col gap-y-1',
   popoverBodyButton: 'rounded flex items-center gap-x-3 text-left p-2 text-sm text-gray-900 hover:text-highlight-900 hover:bg-highlight-10',
   popoverBodyButtonDark: 'dark:text-gray-300 dark:hover:text-white dark:hover:bg-highlight-900',
+  popoverSocialButtonWrapper: 'hide-on-desktop flex justify-center gap-x-5 my-3',
 
   navigationAsideWrapper: 'flex pt-10 sticky top-[60px]',
   navigationAsideInner: 'flex flex-col justify-between grow h-screen-sidebar',
@@ -101,6 +104,8 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
+  postsWrapper: 'md:before:empty before:absolute before:top-0 before:-right-[1px] before:bottom-0 before:w-[12px] before:bg-black before:z-10 before:bg-slate-100',
+  postsWrapperDark: 'dark:before:bg-darkmode-100',
   virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'h-10 bg-black',
@@ -112,12 +117,16 @@ export const style = {
   postFormFooter: 'mt-5 flex justify-between',
   postFormFooterLogoWrapper: 'flex items-center mr-5',
 
-  feedWrapper: 'flex flex-col gap-y-5 px-3 mt-3 md:mt-10',
+  dequeuePostsAndSpacesWrapper: 'absolute left-3 top-[6px] right-6 flex justify-center z-10 transition-transform translate-y-0 empty:-translate-y-full',
+  dequeuePostsAndSpacesButton: 'px-3 py-1 bg-white text-gray-900 text-sm shadow-lg rounded-full cusor-pointer',
+  dequeuePostsAndSpacesButtonDark: 'dark:bg-highlight-500 dark:text-white',
+
+  feedWrapper: 'feed-wrapper flex flex-col gap-y-5 px-3 mt-3 md:mt-10 children-last:mb-20',
 
   feedItemParent: 'border-none rounded',
   feedItemChild: 'border-l border-gray-300',
 
-  feedItemWrapper: 'bg-white transition-colors',
+  feedItemWrapper: 'bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:divide-darkmode-200 dark:border-darkmode-1900',
   feedItemInner: 'rounded p-5',
   feedItemInnerTop: 'rounded-t p-5 pt-3',
@@ -143,6 +152,11 @@ export const style = {
   blackListItem: 'flex-none uppercase bg-decensored-100 text-gray-600 text-xs tracking-wide font-semibold px-2 py-1 rounded-md pointer-events-none',
   blackListButton: 'hidden cursor-pointer group-hover:block text-xs bg-red-400 text-white px-2 ml-2 rounded-md',
 
+  startSpaceWrapper: 'flex flex-col justify-center items-center text-center',
+  startSpaceTitle: 'text-3xl mb-1 text-gray-900',
+  startSpaceTitleDark: 'dark:text-gray-300',
+  startSpaceSubline: 'text-md mb-4',
+
   spaceHeaderWrapper: 'bg-gradient rounded px-5 py-7 text-white',
   spaceHeaderInner: 'flex flex-col sm:flex-row sm:items-center text-white',
   spaceHeaderInnerCol1: 'w-full sm:w-3/4',
@@ -153,6 +167,10 @@ export const style = {
   spaceHeaderDataCol: 'flex flex-col',
   spaceHeaderDataTitle: 'text-4xl font-bold',
   spaceHeaderDataText: 'text-xs font-light',
+
+  userHeaderWrapper: 'bg-gradient rounded px-5 py-7 text-white',
+  userHeaderInner: 'text-white text-center',
+  userHeaderTitle: 'text-xl sm:text-2xl font-semibold uppercase',
 
   tag: 'uppercase text-xs tracking-wide font-medium px-2 py-1 rounded',
   tagNotClickable: 'cursor-default bg-highlight-10 text-highlight-900',
