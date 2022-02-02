@@ -3,12 +3,7 @@ import useStore from 'lib/store'
 import { dequeuePostsAndSpaces } from 'lib/storeUtils'
 
 const QueueControl: FunctionComponent = () => {
-  const {
-    isPolledDataQueued,
-    setIsPolledDataQueued,
-    postsQueued,
-    spacesQueued,
-  } = useStore((state) => ({
+  const { isPolledDataQueued, setIsPolledDataQueued, postsQueued, spacesQueued } = useStore((state) => ({
     isPolledDataQueued: state.isPolledDataQueued,
     setIsPolledDataQueued: state.setIsPolledDataQueued,
     postsQueued: state.postsQueued,
@@ -17,8 +12,7 @@ const QueueControl: FunctionComponent = () => {
 
   return (
     <span className='absolute'>
-      queued posts: {postsQueued.length},&nbsp; queued spaces:{' '}
-      {spacesQueued.length}&nbsp;
+      queued posts: {postsQueued.length},&nbsp; queued spaces: {spacesQueued.length}&nbsp;
       <button
         type='button'
         onClick={() => {

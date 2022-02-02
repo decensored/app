@@ -12,10 +12,7 @@ interface SettingsDialogProps {
   onClose: () => void
 }
 
-const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
-  showDialog,
-  onClose,
-}) => {
+const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, onClose }) => {
   const { contract, nodeInfo, setNodeInfo, cacheFlush } = useStore((state) => ({
     contract: state.contract,
     nodeInfo: state.nodeInfo,
@@ -74,27 +71,19 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                   {...register('evmNode', { required: true })}
                 />
                 {errors.evmNode && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
                       Required Field
                     </span>
                   </div>
                 )}
                 {!nodeIsUpAndRunning(contract) && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
                     <SVGIcon
                       icon='faExclamationTriangle'
                       className={`${style.formValidationText} ${style.formValidationTextError} mr-3`}
                     />
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
                       Connection failed!
                     </span>
                   </div>
@@ -127,12 +116,8 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
                   {nodeInfo.contractsAddress}
                 </TextareaAutosize>
                 {errors.contractAddress && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
                       Required Field
                     </span>
                   </div>
@@ -156,11 +141,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({
           >
             Cancel
           </button>
-          <button
-            type='submit'
-            form='settingsForm'
-            className={`${style.button} ${style.buttonDecensored} basis-full`}
-          >
+          <button type='submit' form='settingsForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
             Confirm
           </button>
         </>

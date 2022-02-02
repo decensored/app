@@ -15,12 +15,8 @@ const Recover: FunctionComponent<RecoverProps> = () => {
   return (
     <div className='mt-2 min-h-[40px]'>
       <div className='flex gap-3'>
-        <div className='grow shrink'>
-          <input
-            className={style.input}
-            type='text'
-            placeholder='Paste in your key'
-          />
+        <div className='shrink grow'>
+          <input className={style.input} type='text' placeholder='Paste in your key' />
         </div>
         <button
           type='button'

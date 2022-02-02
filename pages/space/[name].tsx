@@ -6,13 +6,7 @@ import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import {
-  getPostsInSpace,
-  getRepliesForPost,
-  getSpaceById,
-  getSpaceIdByName,
-  nodeIsUpAndRunning,
-} from 'lib/storeUtils'
+import { getPostsInSpace, getRepliesForPost, getSpaceById, getSpaceIdByName, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
 import PostForm from 'components/Post/PostForm'
@@ -26,15 +20,13 @@ const Space: NextPage = () => {
   const { name } = router.query
 
   // State Management
-  const { spaces, posts, isSignedUp, currentUserId, contract } = useStore(
-    (state) => ({
-      spaces: state.spaces,
-      posts: state.posts,
-      isSignedUp: state.isSignedUp,
-      currentUserId: state.userId,
-      contract: state.contract,
-    })
-  )
+  const { spaces, posts, isSignedUp, currentUserId, contract } = useStore((state) => ({
+    spaces: state.spaces,
+    posts: state.posts,
+    isSignedUp: state.isSignedUp,
+    currentUserId: state.userId,
+    contract: state.contract,
+  }))
 
   const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
   const [openUserDialog, setOpenUserDialog] = useState(false)
@@ -44,8 +36,7 @@ const Space: NextPage = () => {
   const [nrOfPosts, setNrOfPosts] = React.useState(0)
   const [nrOfUSers, setNrOfUsers] = React.useState(0)
   const [userArray, setUserArray] = React.useState<UserType[]>([])
-  const [currentUserBlacklisted, setCurrentUserIsBlacklisted] =
-    React.useState(false)
+  const [currentUserBlacklisted, setCurrentUserIsBlacklisted] = React.useState(false)
   const [blackListArray, setBlackListArray] = React.useState<UserType[]>([])
 
   /*   setBlackListArray([]) */
@@ -71,10 +62,7 @@ const Space: NextPage = () => {
     // Get unqique users with post in space
     const uniqueUsers = [
       ...new Map(
-        postsForSpace.map((post) => [
-          post.username,
-          { userId: post.author, username: post.username },
-        ])
+        postsForSpace.map((post) => [post.username, { userId: post.author, username: post.username }])
       ).values(),
     ]
     setNrOfUsers(uniqueUsers.length)
@@ -83,11 +71,7 @@ const Space: NextPage = () => {
     // Create an array of blacklisted users for the moderator
     const newBlacklist: { userId: number; username: string }[] = []
     uniqueUsers.forEach(async (user) => {
-      const isUserBlacklisted = await userBlackListedForSpace(
-        contract,
-        spaceId,
-        user.userId
-      )
+      const isUserBlacklisted = await userBlackListedForSpace(contract, spaceId, user.userId)
       if (isUserBlacklisted) {
         newBlacklist.push(user)
         // Check if current user is blacklisted to hide post-form
@@ -107,8 +91,7 @@ const Space: NextPage = () => {
     const repliesForPost = getRepliesForPost(posts, post.id)
 
     // Check if the author is blacklisted
-    const authorIsBlacklisted =
-      blackListArray.filter((user) => user.userId === post.author).length > 0
+    const authorIsBlacklisted = blackListArray.filter((user) => user.userId === post.author).length > 0
 
     return (
       <FeedItem
@@ -135,42 +118,34 @@ const Space: NextPage = () => {
           {space && (
             <div className={style.feedWrapper}>
               <div className={style.spaceHeaderWrapper}>
-                  {spaceOwner && (
-                    <>
-                      <SVGIcon
-                        icon='faCog'
-                        className='fixed top-0 right-0 text-white cursor-pointer'
-                        onClick={() => setOpenSpaceSettingsDialog(true)}
-                      />
-                      <SpaceSettingsDialog
-                        space={space.id}
-                        name={space.name}
-                        blacklistedUsers={blackListArray}
-                        setBlacklist={setBlackListArray}
-                        showDialog={openSpaceSettingsDialog}
-                        onClose={() => setOpenSpaceSettingsDialog(false)}
-                      />
-                    </>
-                  )}
+                {spaceOwner && (
+                  <>
+                    <SVGIcon
+                      icon='faCog'
+                      className='fixed top-0 right-0 cursor-pointer text-white'
+                      onClick={() => setOpenSpaceSettingsDialog(true)}
+                    />
+                    <SpaceSettingsDialog
+                      space={space.id}
+                      name={space.name}
+                      blacklistedUsers={blackListArray}
+                      setBlacklist={setBlackListArray}
+                      showDialog={openSpaceSettingsDialog}
+                      onClose={() => setOpenSpaceSettingsDialog(false)}
+                    />
+                  </>
+                )}
                 <div className={style.spaceHeaderInner}>
                   <div className={style.spaceHeaderInnerCol1}>
-                      <div className={style.spaceHeaderTitle}>
-                        #{name}
-                      </div>
-                      <div className={style.spaceHeaderDescription}>
-                        {space.description}
-                      </div>
+                    <div className={style.spaceHeaderTitle}>#{name}</div>
+                    <div className={style.spaceHeaderDescription}>{space.description}</div>
                   </div>
                   <div className={style.spaceHeaderInnerCol2}>
                     {' '}
                     <div className={style.spaceHeaderDataWrapper}>
                       <div className={style.spaceHeaderDataCol}>
-                        <span className={style.spaceHeaderDataTitle}>
-                          {nrOfPosts}
-                        </span>
-                        <span className={style.spaceHeaderDataText}>
-                          Posts
-                        </span>
+                        <span className={style.spaceHeaderDataTitle}>{nrOfPosts}</span>
+                        <span className={style.spaceHeaderDataText}>Posts</span>
                       </div>
                       <div className={style.spaceHeaderDataCol}>
                         <button
@@ -182,9 +157,7 @@ const Space: NextPage = () => {
                         >
                           {nrOfUSers}
                         </button>
-                        <span className={style.spaceHeaderDataText}>
-                          Followers
-                        </span>
+                        <span className={style.spaceHeaderDataText}>Followers</span>
                         <UserDialog
                           users={userArray}
                           showDialog={openUserDialog}
@@ -196,9 +169,7 @@ const Space: NextPage = () => {
                 </div>
               </div>
               {isSignedUp && !currentUserBlacklisted && (
-                <div
-                  className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}
-                >
+                <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
                   <div className={style.feedItemInner}>
                     <PostForm spaceId={space.id} isTransparent />
                   </div>

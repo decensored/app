@@ -7,10 +7,7 @@ interface PostDialogProps {
   onClose: () => void
 }
 
-const PostDialog: FunctionComponent<PostDialogProps> = ({
-  showDialog,
-  onClose,
-}) => (
+const PostDialog: FunctionComponent<PostDialogProps> = ({ showDialog, onClose }) => (
   <BaseDialog
     showDialog={showDialog}
     onClose={onClose}

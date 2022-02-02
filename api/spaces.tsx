@@ -13,10 +13,7 @@ export const getSpaceById = async (contract: any, space_id: number) => {
   const result: SpaceType = {
     id: space_id,
     name,
-    description:
-      space.description.length > 0
-        ? space.description
-        : 'No Description provided',
+    description: space.description.length > 0 ? space.description : 'No Description provided',
     owner: parseInt(owner, 10),
     followers: 0,
     posts: 0,
@@ -29,22 +26,15 @@ export const getSpaceNameById = async (contract: any, spaceId: number) =>
   (await contract.spaces.methods.spaces(spaceId).call()).name
 
 export const getSpaceByName = async (contract: any, name: string) => {
-  log(
-    `getSpaceByName ${name} (deprecated, use version from lib/storeUtils instead)`
-  )
+  log(`getSpaceByName ${name} (deprecated, use version from lib/storeUtils instead)`)
 
-  const space_id = parseInt(
-    await contract.spaces.methods.id_by_name(name).call()
-  )
+  const space_id = parseInt(await contract.spaces.methods.id_by_name(name).call())
   const space = await getSpaceById(contract, space_id)
 
   const result: SpaceType = {
     id: space_id,
     name: space.name,
-    description:
-      space.description.length > 0
-        ? space.description
-        : 'No Description provided',
+    description: space.description.length > 0 ? space.description : 'No Description provided',
     owner: space.id,
     followers: 0,
     posts: 0,
@@ -56,10 +46,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 export const getLatestSpaceIndex = async (contract: any) => {
   log('getLatestSpaceIndex (deprecated)')
 
-  const index = await contract.spaces.methods
-    .get_latest_space_index()
-    .call()
-    .then(parseInt)
+  const index = await contract.spaces.methods.get_latest_space_index().call().then(parseInt)
   return index
 }
 
@@ -76,17 +63,10 @@ export const getAllSpaces = async (contract: any) => {
   return spaces
 }
 
-export const createSpace = async (
-  contract: any,
-  name: string,
-  description: string
-) => {
+export const createSpace = async (contract: any, name: string, description: string) => {
   log(`CreateSpace ${name}`)
   try {
-    await executeContractFunction(
-      contract.web3,
-      contract.spaces.methods.create(name)
-    )
+    await executeContractFunction(contract.web3, contract.spaces.methods.create(name))
     // I guess this is not the ideal way to do this
     await getSpaceByName(contract, name).then(async (space) => {
       await setSpaceDescription(contract, space.id, description)
@@ -97,33 +77,19 @@ export const createSpace = async (
   }
 }
 
-export const setSpaceDescription = async (
-  contract: any,
-  spaceId: number,
-  description: string
-) => {
+export const setSpaceDescription = async (contract: any, spaceId: number, description: string) => {
   console.log(`Settings ${description} for Space ${spaceId}`)
   try {
-    await executeContractFunction(
-      contract.web3,
-      contract.spaces.methods.set_description(spaceId, description)
-    )
+    await executeContractFunction(contract.web3, contract.spaces.methods.set_description(spaceId, description))
     return { success: true }
   } catch (error) {
     return { success: false, error: readableError(error) }
   }
 }
 
-export const addUserToBlacklist = async (
-  contract: any,
-  spaceId: number,
-  authorId: number
-) => {
+export const addUserToBlacklist = async (contract: any, spaceId: number, authorId: number) => {
   try {
-    await executeContractFunction(
-      contract.web3,
-      contract.spaces.methods.add_account_to_blacklist(spaceId, authorId)
-    )
+    await executeContractFunction(contract.web3, contract.spaces.methods.add_account_to_blacklist(spaceId, authorId))
     const check = await userBlackListedForSpace(contract, spaceId, authorId)
     console.log(`User ${authorId} blacklisted for ${spaceId} is ${check}`)
     return { success: true }
@@ -132,11 +98,7 @@ export const addUserToBlacklist = async (
   }
 }
 
-export const removeUserFromBlacklist = async (
-  contract: any,
-  spaceId: number,
-  authorId: number
-) => {
+export const removeUserFromBlacklist = async (contract: any, spaceId: number, authorId: number) => {
   try {
     await executeContractFunction(
       contract.web3,
@@ -150,8 +112,5 @@ export const removeUserFromBlacklist = async (
   }
 }
 
-export const userBlackListedForSpace = async (
-  contract: any,
-  spaceId: number,
-  userId: number
-) => await contract.spaces.methods.is_blacklisted(spaceId, userId).call()
+export const userBlackListedForSpace = async (contract: any, spaceId: number, userId: number) =>
+  await contract.spaces.methods.is_blacklisted(spaceId, userId).call()

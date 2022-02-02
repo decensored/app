@@ -54,9 +54,7 @@ const poll = async (): Promise<void> => {
     // Set new index & prepend new posts
     state.setLatestPostIndexFeched(latestPostIndex)
 
-    console.log(
-      `Loading ${latestPostIndex - state.latestPostIndexFetched} posts`
-    )
+    console.log(`Loading ${latestPostIndex - state.latestPostIndexFetched} posts`)
 
     const postsLoaded: LoadingProgressType = {
       nFinished: 0,
@@ -85,9 +83,7 @@ const poll = async (): Promise<void> => {
       // console.log(typeof state.userId, state.userId, allPostsQueued)
 
       // auto-deque when I'm the author of at least one queued post
-      if (
-        allPostsQueued.findIndex((post) => post.author === state.userId) >= 0
-      ) {
+      if (allPostsQueued.findIndex((post) => post.author === state.userId) >= 0) {
         dequeuePostsAndSpaces()
       }
     } else {

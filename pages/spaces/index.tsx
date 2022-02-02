@@ -11,17 +11,10 @@ import { style } from 'styles/style'
 import { getNumberOfPostsInSpace } from 'lib/storeUtils'
 
 const Spaces: NextPage = () => {
-  const [isSignedUp, spaces, posts] = useStore(
-    (state) => [state.isSignedUp, state.spaces, state.posts],
-    shallow
-  )
+  const [isSignedUp, spaces, posts] = useStore((state) => [state.isSignedUp, state.spaces, state.posts], shallow)
 
   const createSpaceItems = spaces.map((space) => (
-    <SpaceItem
-      key={`space-${space.id}`}
-      {...space}
-      numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)}
-    />
+    <SpaceItem key={`space-${space.id}`} {...space} numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)} />
   ))
 
   return (

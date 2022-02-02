@@ -27,12 +27,9 @@ const VersionCheck: FunctionComponent = () => {
   if (!versionInfoGiven && apiVersion && apiVersion !== packageJson.version) {
     versionInfoGiven = true
 
-    toast.info(
-      `You are running version ${packageJson.version}. Refresh this window for version ${apiVersion}`,
-      {
-        autoClose: 5000,
-      }
-    )
+    toast.info(`You are running version ${packageJson.version}. Refresh this window for version ${apiVersion}`, {
+      autoClose: 5000,
+    })
   }
 
   //

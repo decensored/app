@@ -8,15 +8,9 @@ interface PopoverProps {
   popoverPanel: JSX.Element
 }
 
-const BasePopover: FunctionComponent<PopoverProps> = ({
-  popoverButton,
-  popoverPanel,
-}) => {
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-    null
-  )
+const BasePopover: FunctionComponent<PopoverProps> = ({ popoverButton, popoverPanel }) => {
+  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom-end',
     modifiers: [
@@ -30,19 +24,12 @@ const BasePopover: FunctionComponent<PopoverProps> = ({
   })
   return (
     <Popover>
-      <Popover.Button
-        ref={setReferenceElement}
-        className='outline-none focus:outline-none focus:ring-0'
-      >
+      <Popover.Button ref={setReferenceElement} className='outline-none focus:outline-none focus:ring-0'>
         {popoverButton}
       </Popover.Button>
 
       {ReactDOM.createPortal(
-        <Popover.Panel
-          ref={setPopperElement}
-          style={styles.popper}
-          {...attributes.popper}
-        >
+        <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
           {popoverPanel}
         </Popover.Panel>,
         document.body

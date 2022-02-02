@@ -13,10 +13,7 @@ interface CreateSpaceDialogProps {
   onClose: () => void
 }
 
-const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
-  showDialog,
-  onClose,
-}) => {
+const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDialog, onClose }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const {
     contract,
@@ -50,11 +47,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
       router.push(`/space/${data.name}`)
       onClose()
     } else {
-      setError(
-        'name',
-        { type: 'manual', message: `${result.error}` },
-        { shouldFocus: true }
-      )
+      setError('name', { type: 'manual', message: `${result.error}` }, { shouldFocus: true })
       setIsLoading(false)
     }
   }
@@ -89,14 +82,9 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                   {...register('name', { required: true })}
                 />
                 {errors.name && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
-                      {errors.name?.type === 'required' &&
-                        'Cant be empty! chars: azAZ'}
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                      {errors.name?.type === 'required' && 'Cant be empty! chars: azAZ'}
                       {errors.name.message}
                     </span>
                   </div>
@@ -127,14 +115,9 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
                   {...register('description', { required: true })}
                 />
                 {errors.name && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
-                      {errors.name?.type === 'required' &&
-                        'Cant be empty! chars: azAZ'}
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                      {errors.name?.type === 'required' && 'Cant be empty! chars: azAZ'}
                       {errors.name.message}
                     </span>
                   </div>
@@ -164,10 +147,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({
             className={`${style.button} ${style.buttonDecensored} basis-full`}
           >
             <span className='whitespace-nowrap'>
-              Create{' '}
-              {isLoading && (
-                <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />
-              )}
+              Create {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </>

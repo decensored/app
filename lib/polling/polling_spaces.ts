@@ -22,10 +22,7 @@ const poll = async (): Promise<void> => {
 
   // console.log('polling_spaces: check latest index')
 
-  const latestSpaceIndex = parseInt(
-    await contract.spaces.methods.get_latest_space_index().call(),
-    10
-  )
+  const latestSpaceIndex = parseInt(await contract.spaces.methods.get_latest_space_index().call(), 10)
   // console.log(
   //   'no. spaces',
   //   state.latestSpaceIndexFetched,
@@ -69,9 +66,7 @@ const poll = async (): Promise<void> => {
       state.setSpacesQueued(allSpacesQueued)
 
       // auto-deque when I'm the author of at least one queued post
-      if (
-        allSpacesQueued.findIndex((space) => space.owner === state.userId) >= 0
-      ) {
+      if (allSpacesQueued.findIndex((space) => space.owner === state.userId) >= 0) {
         dequeuePostsAndSpaces()
       }
     } else {

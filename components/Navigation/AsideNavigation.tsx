@@ -23,15 +23,9 @@ const AsideNavigation: FunctionComponent = () => {
   else if (pathname.startsWith('/likes/')) tabIndex = 4
   else if (pathname.startsWith('/user/')) tabIndex = 5
 
-  const [isSignedUp, userName] = useStore((state) => [
-    state.isSignedUp,
-    state.userName,
-  ])
+  const [isSignedUp, userName] = useStore((state) => [state.isSignedUp, state.userName])
 
-  const [isDarkmode, setIsDarkmode] = useStore((state) => [
-    state.isDarkmode,
-    state.setIsDarkmode,
-  ])
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
 
   const toggleDarkMode = (): void => {
     if (isDarkmode) {
@@ -48,60 +42,34 @@ const AsideNavigation: FunctionComponent = () => {
           <div className={style.navigationAsideButtonContainer}>
             <Link href='/' passHref>
               <span>
-                <AsideNavigationItem
-                  isActive={tabIndex === 0}
-                  icon='faSatelliteDish'
-                  name='Feed'
-                />
+                <AsideNavigationItem isActive={tabIndex === 0} icon='faSatelliteDish' name='Feed' />
               </span>
             </Link>
             <Link href='/spaces' passHref>
               <span>
-                <AsideNavigationItem
-                  isActive={tabIndex === 1}
-                  icon='faSatellite'
-                  name='Spaces'
-                />
+                <AsideNavigationItem isActive={tabIndex === 1} icon='faSatellite' name='Spaces' />
               </span>
             </Link>
             {isSignedUp && (
               <>
                 <Link href={`/user/${userName}`} passHref>
                   <span>
-                    <AsideNavigationItem
-                      isActive={tabIndex === 5}
-                      icon='faUserAstronaut'
-                      name='My Posts'
-                    />
+                    <AsideNavigationItem isActive={tabIndex === 5} icon='faUserAstronaut' name='My Posts' />
                   </span>
                 </Link>
 
-                <Tooltip
-                  classNames='disabled-link'
-                  text='Good things take time'
-                >
+                <Tooltip classNames='disabled-link' text='Good things take time'>
                   <Link href='/' passHref>
                     <span>
-                      <AsideNavigationItem
-                        isActive={tabIndex === 3}
-                        icon='faBookmark'
-                        name='Bookmarks'
-                      />
+                      <AsideNavigationItem isActive={tabIndex === 3} icon='faBookmark' name='Bookmarks' />
                     </span>
                   </Link>
                 </Tooltip>
 
-                <Tooltip
-                  classNames='disabled-link'
-                  text='Good things take time'
-                >
+                <Tooltip classNames='disabled-link' text='Good things take time'>
                   <Link href='/' passHref>
                     <span>
-                      <AsideNavigationItem
-                        isActive={tabIndex === 4}
-                        icon='faHeart'
-                        name='Likes'
-                      />
+                      <AsideNavigationItem isActive={tabIndex === 4} icon='faHeart' name='Likes' />
                     </span>
                   </Link>
                 </Tooltip>
@@ -145,24 +113,18 @@ const AsideNavigation: FunctionComponent = () => {
                 `}
               >
                 {isDarkmode && (
-                  <div
-                    className={`${style.switchInner} ${style.switchInnerDark}`}
-                  >
+                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faMoon' isFixed />
                   </div>
                 )}
                 {!isDarkmode && (
-                  <div
-                    className={`${style.switchInner} ${style.switchInnerDark}`}
-                  >
+                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faSun' isFixed />
                   </div>
                 )}
               </button>
             </div>
-            <SocialIcons
-              classNames={style.navigationAsideSocialButtonWrapper}
-            />
+            <SocialIcons classNames={style.navigationAsideSocialButtonWrapper} />
           </div>
         </div>
       </div>

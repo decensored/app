@@ -31,17 +31,9 @@ const Header: FunctionComponent = () => {
     <div className={style.headerWrapper}>
       <div id='logo'>
         <Link href='/' passHref>
-          <div className='flex gap-2 items-center'>
-            <img
-              alt='Decensored Logo'
-              src='/logo/signet.svg'
-              className='h-[30px] -mt-1 xs:hidden'
-            />
-            <img
-              alt='Decensored Logo'
-              src='/logo/logotype_invert.svg'
-              className='h-[20px] hidden xs:block'
-            />
+          <div className='flex items-center gap-2'>
+            <img alt='Decensored Logo' src='/logo/signet.svg' className='-mt-1 h-[30px] xs:hidden' />
+            <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='hidden h-[20px] xs:block' />
           </div>
         </Link>
       </div>
@@ -51,15 +43,9 @@ const Header: FunctionComponent = () => {
         {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
           <>
             <button type='button' onClick={() => setOpenSettingsDialog(true)}>
-              <SVGIcon
-                icon='faExclamationTriangle'
-                className='animate-pulse text-red-500'
-              />
+              <SVGIcon icon='faExclamationTriangle' className='animate-pulse text-red-500' />
             </button>
-            <SettingsDialog
-              showDialog={openSettingsDialog}
-              onClose={() => setOpenSettingsDialog(false)}
-            />
+            <SettingsDialog showDialog={openSettingsDialog} onClose={() => setOpenSettingsDialog(false)} />
           </>
         )}
       </div>

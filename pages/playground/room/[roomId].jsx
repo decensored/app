@@ -60,9 +60,7 @@ const Playground = () => {
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
-            <div
-              className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
-            >
+            <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}>
               <div className={style.feedItemInner}>
                 {roomId}
                 <div className='flex gap-x-3'>
@@ -81,11 +79,7 @@ const Playground = () => {
                     type='button'
                     onClick={() => {
                       const randomId = `id_${Date.now()}`
-                      gun
-                        .get(NAMESPACE)
-                        .get(roomId)
-                        .get(randomId)
-                        .put({ text: inputText, id: randomId })
+                      gun.get(NAMESPACE).get(roomId).get(randomId).put({ text: inputText, id: randomId })
                       setInputText('')
                     }}
                     className={`${style.button} ${style.buttonDecensored}`}
@@ -97,15 +91,10 @@ const Playground = () => {
             </div>
 
             {items.map((item) => (
-              <div
-                key={`item-${item.id}`}
-                className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}
-              >
+              <div key={`item-${item.id}`} className={`${style.feedItemWrapper} ${style.feedItemWrapperDark}`}>
                 <div className={style.feedItemInnerTop}>
                   <div className={style.feedItemMetaWrapper}>
-                    <div
-                      className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
-                    >
+                    <div className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
                       <button
                         type='button'
                         onClick={() => {

@@ -6,11 +6,7 @@ export const pollingConfig = {
   lowWater: 1000, // ..reduce to this amount
 }
 
-export const limitArray = (
-  array: PostType[] | SpaceType[],
-  set: (value: any) => void,
-  name = ''
-): void => {
+export const limitArray = (array: PostType[] | SpaceType[], set: (value: any) => void, name = ''): void => {
   // console.log(`limitArray ${name} ${array.length}`)
 
   if (array.length < pollingConfig.highWater) return // early exit
