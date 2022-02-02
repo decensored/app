@@ -1,4 +1,4 @@
-import type { PostType, SpaceType } from 'lib/types'
+import type { LoadingProgressType, PostType, SpaceType } from 'lib/types'
 import useStore from 'lib/store'
 
 // CONTRACTS
@@ -35,13 +35,28 @@ export const dequeuePostsAndSpaces = (): void => {
 
   const state = useStore.getState()
 
-  // TODO: if (queued and existing items have a gap between them) { remove existing items }
+  if (state.postsQueued.length) {
+    state.setPosts(state.postsQueued.concat(state.posts).sort((a, b) => b.timestamp - a.timestamp))
+    state.setPostsQueued([])
+  }
 
-  state.setPosts(state.postsQueued.concat(state.posts))
-  state.setPostsQueued([])
+  if (state.spacesQueued.length) {
+    state.setSpaces(state.spacesQueued.concat(state.spaces).sort((a, b) => b.id - a.id))
+    state.setSpacesQueued([])
+  }
+}
 
-  state.setSpaces(state.spacesQueued.concat(state.spaces))
-  state.setSpacesQueued([])
+// LOADING...
+export const arePostsOrSpacesLoading = (
+  postsLoaded: LoadingProgressType,
+  spacesLoaded: LoadingProgressType
+): boolean => {
+  // console.log('arePostsOrSpacesLoading')
+
+  const nFinished = postsLoaded.nFinished + spacesLoaded.nFinished
+  const max = postsLoaded.max + spacesLoaded.max
+
+  return !(nFinished === max || max === 0)
 }
 
 //
