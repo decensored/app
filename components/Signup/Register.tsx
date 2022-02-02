@@ -9,15 +9,13 @@ interface RegisterProps {
 }
 
 const Register: FunctionComponent<RegisterProps> = () => {
-  const { setIsSignedUp, userName, setUserName, contract } = useStore(
-    (state) => ({
-      isSignedUp: state.isSignedUp,
-      setIsSignedUp: state.setIsSignedUp,
-      userName: state.userName,
-      setUserName: state.setUserName,
-      contract: state.contract,
-    })
-  )
+  const { setIsSignedUp, userName, setUserName, contract } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
+    setIsSignedUp: state.setIsSignedUp,
+    userName: state.userName,
+    setUserName: state.setUserName,
+    contract: state.contract,
+  }))
 
   // HANDLE FORM SUBMIT
   type FormValues = {
@@ -39,7 +37,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
     <section>
       <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
         <div className='flex gap-3'>
-          <div className='grow shrink'>
+          <div className='shrink grow'>
             <input
               className={style.input}
               type='text'
@@ -52,11 +50,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                 max: 16,
               })}
             />
-            {errors.username && (
-              <span className='text-red-500 text-sm'>
-                min:4 max:16 only:AZaz
-              </span>
-            )}
+            {errors.username && <span className='text-sm text-red-500'>min:4 max:16 only:AZaz</span>}
           </div>
           <button
             type='submit'

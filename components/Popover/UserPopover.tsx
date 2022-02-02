@@ -32,10 +32,7 @@ const UserPopover: FunctionComponent = () => {
     toast('Logging out...')
   }
 
-  const [isDarkmode, setIsDarkmode] = useStore((state) => [
-    state.isDarkmode,
-    state.setIsDarkmode,
-  ])
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
 
   const toggleDarkMode = (): void => {
     if (isDarkmode) {
@@ -49,15 +46,13 @@ const UserPopover: FunctionComponent = () => {
     <>
       <BasePopover
         popoverButton={
-          <span className='cursor-pointer ml-5 text-white text-lg'>
+          <span className='ml-5 cursor-pointer text-lg text-white'>
             {isSignedUp && <SVGIcon icon='faUser' />}
             {!isSignedUp && <SVGIcon icon='faUserPlus' />}
           </span>
         }
         popoverPanel={
-          <div
-            className={`${style.popoverWrapper} ${style.popoverWrapperDark}`}
-          >
+          <div className={`${style.popoverWrapper} ${style.popoverWrapperDark}`}>
             {isSignedUp && (
               <div className={`${style.popoverHeader}`}>
                 <div className={`${style.popoverHeaderLabel}`}>
@@ -81,10 +76,7 @@ const UserPopover: FunctionComponent = () => {
               {isSignedUp && (
                 <span className='hide-on-desktop'>
                   <Link href={`/user/${userName}`} passHref>
-                    <button
-                      type='button'
-                      className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
-                    >
+                    <button type='button' className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}>
                       <SVGIcon icon='faUserAstronaut' isFixed />
                       <span>My Posts</span>
                     </button>
@@ -121,10 +113,7 @@ const UserPopover: FunctionComponent = () => {
                 <SVGIcon icon='faCog' isFixed />
                 <span>Node Settings</span>
                 {!nodeIsUpAndRunning(contract) && (
-                  <SVGIcon
-                    icon='faExclamationTriangle'
-                    className='fixed right-4 animate-pulse text-red-500'
-                  />
+                  <SVGIcon icon='faExclamationTriangle' className='fixed right-4 animate-pulse text-red-500' />
                 )}
               </button>
 
@@ -162,24 +151,10 @@ const UserPopover: FunctionComponent = () => {
           </div>
         }
       />
-      <SignupDialog
-        showDialog={openSignupDialog}
-        onClose={() => setOpenSignupDialog(false)}
-      />
-      <RecoverDialog
-        showDialog={openRecoverDialog}
-        onClose={() => setOpenRecoverDialog(false)}
-      />
-      {isSignedUp && (
-        <AccountDialog
-          showDialog={openAccountDialog}
-          onClose={() => setOpenAccountDialog(false)}
-        />
-      )}
-      <SettingsDialog
-        showDialog={openSettingsDialog}
-        onClose={() => setOpenSettingsDialog(false)}
-      />
+      <SignupDialog showDialog={openSignupDialog} onClose={() => setOpenSignupDialog(false)} />
+      <RecoverDialog showDialog={openRecoverDialog} onClose={() => setOpenRecoverDialog(false)} />
+      {isSignedUp && <AccountDialog showDialog={openAccountDialog} onClose={() => setOpenAccountDialog(false)} />}
+      <SettingsDialog showDialog={openSettingsDialog} onClose={() => setOpenSettingsDialog(false)} />
     </>
   )
 }

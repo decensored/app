@@ -11,14 +11,7 @@ import AbiPosts from 'abis/ABI_Posts.json'
 import AbiSpaces from 'abis/ABI_Spaces.json'
 
 const Web3Client: FunctionComponent = () => {
-  const [
-    defaultNodeInfo,
-    nodeInfo,
-    setNodeInfo,
-    cacheFlush,
-    setContract,
-    setIsSignedUp,
-  ] = useStore(
+  const [defaultNodeInfo, nodeInfo, setNodeInfo, cacheFlush, setContract, setIsSignedUp] = useStore(
     (state) => [
       state.defaultNodeInfo,
       state.nodeInfo,
@@ -35,8 +28,7 @@ const Web3Client: FunctionComponent = () => {
   if (
     q.get('evmNode') &&
     q.get('contractsAddress') &&
-    (q.get('evmNode') !== nodeInfo.evmNode ||
-      q.get('contractsAddress') !== nodeInfo.contractsAddress)
+    (q.get('evmNode') !== nodeInfo.evmNode || q.get('contractsAddress') !== nodeInfo.contractsAddress)
   ) {
     cacheFlush()
     setNodeInfo({
@@ -72,10 +64,7 @@ const Web3Client: FunctionComponent = () => {
         const web3 = new Web3(evmNode)
         // console.log('Web3Client.web3', web3)
 
-        const contracts = new web3.eth.Contract(
-          AbiContracts as any,
-          contractsAddress
-        )
+        const contracts = new web3.eth.Contract(AbiContracts as any, contractsAddress)
         // console.log('Web3Client.contracts', contracts)
 
         const accountsAddress = await contracts.methods.accounts().call()
@@ -85,10 +74,7 @@ const Web3Client: FunctionComponent = () => {
         const postsAddress = await contracts.methods.posts().call()
         // console.log('Web3Client.postsAddress', postsAddress)
 
-        const accounts = new web3.eth.Contract(
-          AbiAccounts as any,
-          accountsAddress
-        )
+        const accounts = new web3.eth.Contract(AbiAccounts as any, accountsAddress)
         // console.log('Web3Client.accounts', accounts)
         const spaces = new web3.eth.Contract(AbiSpaces as any, spacesAddress)
         // console.log('Web3Client.spaces', spaces)

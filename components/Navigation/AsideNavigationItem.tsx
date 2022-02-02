@@ -8,11 +8,7 @@ interface AsideNavigationItemProps {
   name: string
 }
 
-const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
-  isActive,
-  name,
-  icon,
-}) => (
+const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({ isActive, name, icon }) => (
   <div
     className={`
       ${style.navigationAsideButton}
@@ -20,11 +16,7 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({
       ${isActive ? style.navigationAsideButtonActive : ''}
     `}
   >
-    <SVGIcon
-      icon={icon}
-      className={style.navigationAsideButtonIcon}
-      isFixed
-    />
+    <SVGIcon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
     <span className={style.navigationAsideButtonText}>{name}</span>
   </div>
 )

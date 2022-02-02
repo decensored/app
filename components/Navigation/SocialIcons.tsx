@@ -7,9 +7,7 @@ interface SocialIconsItemProps {
   classNames: string
 }
 
-const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({
-  classNames,
-}) => (
+const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }) => (
   <div className={classNames}>
     <Link href='https://twitter.com/decensored_app' passHref>
       <a

@@ -13,21 +13,17 @@ interface SignupDialogProps {
   onClose: () => void
 }
 
-const SignupDialog: FunctionComponent<SignupDialogProps> = ({
-  showDialog,
-  onClose,
-}) => {
+const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClose }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [signUpDone, setSignUpDone] = React.useState(false)
-  const { setIsSignedUp, userName, setUserName, setUserId, contract } =
-    useStore((state) => ({
-      isSignedUp: state.isSignedUp,
-      setIsSignedUp: state.setIsSignedUp,
-      userName: state.userName,
-      setUserName: state.setUserName,
-      setUserId: state.setUserId,
-      contract: state.contract,
-    }))
+  const { setIsSignedUp, userName, setUserName, setUserId, contract } = useStore((state) => ({
+    isSignedUp: state.isSignedUp,
+    setIsSignedUp: state.setIsSignedUp,
+    userName: state.userName,
+    setUserName: state.setUserName,
+    setUserId: state.setUserId,
+    contract: state.contract,
+  }))
 
   // HANDLE FORM SUBMIT
   type FormValues = {
@@ -57,11 +53,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
       setSignUpDone(true)
       /*     onClose() */
     } else {
-      setError(
-        'username',
-        { type: 'manual', message: `${result.error}` },
-        { shouldFocus: true }
-      )
+      setError('username', { type: 'manual', message: `${result.error}` }, { shouldFocus: true })
       setIsLoading(false)
       //  throw new Error(JSON.stringify(result))
     }
@@ -78,8 +70,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
             <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
               <div className={style.inputWrapper}>
                 <div className={`${style.alert} ${style.alertDark} mb-5`}>
-                  <b className='font-bold'>No invite token?</b> Reach out to us
-                  on{' '}
+                  <b className='font-bold'>No invite token?</b> Reach out to us on{' '}
                   <a
                     className='underline decoration-2 underline-offset-2	'
                     href='https://t.co/pxUEdb5sHp'
@@ -116,14 +107,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   })}
                 />
                 {errors.username && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
-                      {errors.username?.type === 'required' &&
-                        'Choose your username!'}
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                      {errors.username?.type === 'required' && 'Choose your username!'}
                       {errors.username.message}
                     </span>
                   </div>
@@ -153,14 +139,9 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   })}
                 />
                 {errors.token && (
-                  <div
-                    className={`${style.formValidation} ${style.formValidationError}`}
-                  >
-                    <span
-                      className={`${style.formValidationText} ${style.formValidationTextError}`}
-                    >
-                      {errors.token?.type === 'required' &&
-                        'Please provide your token'}
+                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                      {errors.token?.type === 'required' && 'Please provide your token'}
                       {errors.token.message}
                     </span>
                   </div>
@@ -172,9 +153,8 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
             <div className={style.inputWrapper}>
               <p>You successfully signed up on Decensored!</p>
               <div className={`${style.alert} ${style.alertDark} my-5`}>
-                <b className='font-bold'>Important:</b> To login again at a
-                later point or on any other device you will need your key! Copy
-                your key and store it in a save place!
+                <b className='font-bold'>Important:</b> To login again at a later point or on any other device you will
+                need your key! Copy your key and store it in a save place!
               </div>
               <div className={style.inputGroup}>
                 <input
@@ -189,10 +169,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
                   defaultValue={getAccountPrivateKey()}
                   readOnly
                 />
-                <CopyToClipboard
-                  text={getAccountPrivateKey()}
-                  onCopy={() => toast(`Key copied to clipboard`)}
-                >
+                <CopyToClipboard text={getAccountPrivateKey()} onCopy={() => toast(`Key copied to clipboard`)}>
                   <button
                     type='button'
                     className={`
@@ -231,10 +208,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({
               className={`${style.button} ${style.buttonDecensored} basis-full`}
             >
               <span className='whitespace-nowrap'>
-                Sign-up{' '}
-                {isLoading && (
-                  <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />
-                )}
+                Sign-up {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
               </span>
             </button>
           )}

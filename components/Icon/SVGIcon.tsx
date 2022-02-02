@@ -27,11 +27,7 @@ import {
   faUserAstronaut,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  faDiscord,
-  faGithub,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons'
+import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 interface SVGIconProps {
@@ -72,26 +68,14 @@ const iconLookup: { [unit: string]: IconProp } = {
   faTwitter: faTwitter,
 }
 
-const SVGIcon: FunctionComponent<SVGIconProps> = ({
-  icon,
-  className,
-  isFixed = false,
-  onClick,
-}) => {
+const SVGIcon: FunctionComponent<SVGIconProps> = ({ icon, className, isFixed = false, onClick }) => {
   const setIcon = (): IconProp => {
     const getIcon = iconLookup[icon]
     if (!getIcon) console.warn(`${icon} undefined`)
     return getIcon
   }
 
-  return (
-    <FontAwesomeIcon
-      fixedWidth={isFixed}
-      icon={setIcon()}
-      className={className}
-      onClick={onClick}
-    />
-  )
+  return <FontAwesomeIcon fixedWidth={isFixed} icon={setIcon()} className={className} onClick={onClick} />
 }
 
 export default SVGIcon

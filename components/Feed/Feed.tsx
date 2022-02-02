@@ -3,11 +3,7 @@ import { Virtuoso, VirtuosoHandle } from 'react-virtuoso'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
-import {
-  dequeuePostsAndSpaces,
-  getPostsWithoutMother,
-  getRepliesForPost,
-} from 'lib/storeUtils'
+import { dequeuePostsAndSpaces, getPostsWithoutMother, getRepliesForPost } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
@@ -51,22 +47,14 @@ const Feed: FunctionComponent = () => {
     <>
       <div className={style.dequeuePostsAndSpacesWrapper}>
         {postsQueued.length > 0 && (
-          <button
-            type='button'
-            onClick={handleDequeuePosts}
-            className={style.dequeuePostsAndSpacesButton}
-          >
+          <button type='button' onClick={handleDequeuePosts} className={style.dequeuePostsAndSpacesButton}>
             {postsQueued.length === 1 && 'Click to see a new post'}
-            {postsQueued.length > 1 &&
-              `Click to see ${postsQueued.length} new posts`}
+            {postsQueued.length > 1 && `Click to see ${postsQueued.length} new posts`}
           </button>
         )}
       </div>
 
-      <div
-        id='posts'
-        className={`${style.postsWrapper} ${style.postsWrapperDark}`}
-      >
+      <div id='posts' className={`${style.postsWrapper} ${style.postsWrapperDark}`}>
         {oldskool ? (
           showFeedItems
         ) : (

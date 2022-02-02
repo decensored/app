@@ -47,10 +47,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
   const [openReplies, setOpenReplies] = React.useState(depth <= 0)
   const [isLoading, setIsLoading] = React.useState(false)
-  const [contract, userId, posts] = useStore(
-    (state) => [state.contract, state.userId, state.posts],
-    shallow
-  )
+  const [contract, userId, posts] = useStore((state) => [state.contract, state.userId, state.posts], shallow)
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
   const setAddUserToBlacklist = async (): Promise<void> => {
@@ -88,9 +85,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         // check again if author of this post is blacklisted
         let replyAuthorIsBlacklisted = false
         if (blacklist) {
-          replyAuthorIsBlacklisted =
-            blacklist.filter((user: any) => user.userId === post.author)
-              .length > 0
+          replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === post.author).length > 0
         }
         return (
           <FeedItem
@@ -127,23 +122,13 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         ${!parent && style.feedItemChild}
       `}
     >
-      <div
-        className={`${style.feedItemInnerTop} ${
-          type === 'replyToPost' && 'pr-0'
-        }`}
-      >
+      <div className={`${style.feedItemInnerTop} ${type === 'replyToPost' && 'pr-0'}`}>
         <div className={style.feedItemMetaWrapper}>
           {type === 'replyToPost' && (
             <div>
-              <span
-                className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
-              >
-                {username}
-              </span>
+              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>{username}</span>
               <span className='mx-2'>in</span>
-              <span
-                className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}
-              >
+              <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>
                 {thisPost.spaceName}
               </span>
             </div>
@@ -151,25 +136,18 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           {type !== 'replyToPost' && (
             <div className='flex'>
               <Link href={`/user/${username}`} passHref>
-                <a
-                  href='dummy-href'
-                  className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}
-                >
+                <a href='dummy-href' className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
                   {username}
                 </a>
               </Link>
-              {authorIsBlacklisted && (
-                <span className='pl-2 pt-1 text-xs text-red-500'>BLOCKED</span>
-              )}
+              {authorIsBlacklisted && <span className='pl-2 pt-1 text-xs text-red-500'>BLOCKED</span>}
             </div>
           )}
           <div className={style.feedItemMetaTimestamp}>
             <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
-        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
-          {message}
-        </div>
+        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{message}</div>
         <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && isSignedUp && (
             <>
@@ -184,17 +162,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 Comment
               </button>
               {renderDialog && (
-                <ReplyDialog
-                  showDialog={openReplyDialog}
-                  onClose={() => setOpenReplyDialog(false)}
-                  post={thisPost}
-                />
+                <ReplyDialog showDialog={openReplyDialog} onClose={() => setOpenReplyDialog(false)} post={thisPost} />
               )}
             </>
           )}
-          {repliesExist && isSignedUp && (
-            <span className={style.feedReplyItemSpacer}>|</span>
-          )}
+          {repliesExist && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
           {repliesExist && (
             <>
               {!openReplies && (
@@ -205,9 +177,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1
-                    ? `Show Reply`
-                    : `Show ${replies.length} Replies`}
+                  {replies.length === 1 ? `Show Reply` : `Show ${replies.length} Replies`}
                 </button>
               )}
               {openReplies && (
@@ -224,7 +194,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             </>
           )}
           {moderator && (
-            <div className='group flex ml-3'>
+            <div className='group ml-3 flex'>
               {showBlackListLabel && (
                 <>
                   <SVGIcon
@@ -232,7 +202,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                     className={`
                         ${style.feedItemInteractionIcon}
                         ${style.feedItemInteractionIconDark}
-                        hover:text-red-400 cursor-default
+                        cursor-default hover:text-red-400
                         ${isLoading && ' animate-pulse text-green-600'}
                       `}
                   />
@@ -251,18 +221,13 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
         </div>
       </div>
-      {openReplies && (
-        <div className={style.feedReplyItemOffset}>{replyItems}</div>
-      )}
+      {openReplies && <div className={style.feedReplyItemOffset}>{replyItems}</div>}
       {parent && (
         <div className={style.feedItemInnerBottom}>
           <div className={style.feedItemInnerBottomCol}>
             {type === 'feed' && (
               <Link href={`/space/${spaceName}`} passHref>
-                <a
-                  href='dummy-href'
-                  className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}
-                >
+                <a href='dummy-href' className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}>
                   #{spaceName}
                 </a>
               </Link>

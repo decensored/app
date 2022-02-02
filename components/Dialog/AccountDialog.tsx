@@ -13,18 +13,13 @@ interface AccountDialogProbs {
   onClose: () => void
 }
 
-const AccountDialog: FunctionComponent<AccountDialogProbs> = ({
-  showDialog,
-  onClose,
-}) => {
+const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onClose }) => {
   const getAccountPrivateKey = (): string => {
     const key = localStorage.account_private_key || 'No key found'
     return key
   }
 
-  const qrcode = `${
-    inBrowser ? window.origin : ''
-  }/signup/${getAccountPrivateKey()}`
+  const qrcode = `${inBrowser ? window.origin : ''}/signup/${getAccountPrivateKey()}`
   // console.log(qrcode)
 
   return (
@@ -58,10 +53,7 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({
                   defaultValue={getAccountPrivateKey()}
                   readOnly
                 />
-                <CopyToClipboard
-                  text={getAccountPrivateKey()}
-                  onCopy={() => toast(`Key copied to clipboard`)}
-                >
+                <CopyToClipboard text={getAccountPrivateKey()} onCopy={() => toast(`Key copied to clipboard`)}>
                   <button
                     type='button'
                     className={`
@@ -78,7 +70,7 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({
           </div>
           <BrowserView>
             <div>
-              <div className='flex justify-center mb-3'>
+              <div className='mb-3 flex justify-center'>
                 {/* fgColor='#2d3294' */}
                 <QRCode className='rounded' value={qrcode} />
               </div>

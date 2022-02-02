@@ -18,22 +18,14 @@ const SignupForm: FunctionComponent<SignupFormProps> = ({ type }) => {
   }
 
   return (
-    <div id='screen_sign_up' className='w-full mt-5 mb-10'>
-      <div id='screen_signup_inner' className='container mx-auto px-3 max-w-md'>
-        <div className='flex justify-center mb-6'>
-          <img
-            src='/logo/logotype_invert.svg'
-            alt='Decensored Logo'
-            className='max-h-[40px] max-w-[90%]'
-          />
+    <div id='screen_sign_up' className='mt-5 mb-10 w-full'>
+      <div id='screen_signup_inner' className='container mx-auto max-w-md px-3'>
+        <div className='mb-6 flex justify-center'>
+          <img src='/logo/logotype_invert.svg' alt='Decensored Logo' className='max-h-[40px] max-w-[90%]' />
         </div>
         <div className='min-h-[40px]'>
-          {theType === 'signup' && (
-            <Register /* type={theType} */ handleClick={toggleForm} />
-          )}
-          {theType === 'recover' && (
-            <Recover /* type={theType} */ handleClick={toggleForm} />
-          )}
+          {theType === 'signup' && <Register /* type={theType} */ handleClick={toggleForm} />}
+          {theType === 'recover' && <Recover /* type={theType} */ handleClick={toggleForm} />}
         </div>
       </div>
     </div>
