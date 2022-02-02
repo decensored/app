@@ -48,10 +48,10 @@ export const style = {
   dialogWrapper: 'w-full top-10 mx-auto justify-center items-center flex fixed',
   dialogInner: 'bg-white bg-white divide-gray-200 divide-solid divide-y flex flex-col max-h-dialog mx-3 mx-auto relative rounded shadow-xl w-full',
   dialogInnerDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
-  dialogHeader: 'p-2 sm:px-8 py-4 text-bold text-center text-xl',
+  dialogHeader: 'text-xl text-center text-bold sm:px-8 py-4 p-4',
   dialogHeaderDark: 'dark:text-gray-300',
-  dialogBody: 'overflow-y-auto p-2 sm:p-8 shrink',
-  dialogFooter: 'py-4 px-2 sm:px-8 justify-between gap-y-10 flex',
+  dialogBody: 'overflow-y-auto px-4 py-4 shrink sm:px-8 sm:py-8',
+  dialogFooter: 'sm:px-8 py-4 px-4 justify-between gap-y-10 flex',
 
   popoverWrapper: 'bg-white divide-gray-200 divide-solid divide-y rounded shadow-xl w-52',
   popoverWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
