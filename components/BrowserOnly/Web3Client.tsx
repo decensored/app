@@ -42,6 +42,7 @@ const Web3Client: FunctionComponent = () => {
     if (!inBrowser) return
 
     const makeConnection = async (): Promise<void> => {
+      // console.time('Web3Client makeConnection')
       // console.log('Web3Client.defaultNodeInfo', defaultNodeInfo)
 
       let evmNode
@@ -100,6 +101,8 @@ const Web3Client: FunctionComponent = () => {
           autoClose: 5000,
         })
       }
+
+      // console.timeEnd('Web3Client makeConnection')
     } // end of makeConnection(...)
     makeConnection() // call async inner function
   }, [defaultNodeInfo, nodeInfo, setContract, setIsSignedUp])

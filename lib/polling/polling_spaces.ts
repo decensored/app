@@ -39,7 +39,7 @@ const poll = async (): Promise<void> => {
     // Set new index & prepend new posts
     state.setLatestSpaceIndexFetched(latestSpaceIndex)
 
-    // console.log('new spaces exist', latestSpaceIndex - state.latestSpaceIndexFetched)
+    console.log(`Loading ${latestSpaceIndex - state.latestSpaceIndexFetched} spaces`)
 
     const spacesLoaded: LoadingProgressType = {
       nFinished: 0,
@@ -47,6 +47,7 @@ const poll = async (): Promise<void> => {
     }
     state.setSpacesLoaded(spacesLoaded)
 
+    console.time('Loading Spaces')
     const spacesPromises: Promise<SpaceType>[] = []
     for (let i = latestSpaceIndex; i > state.latestSpaceIndexFetched; i -= 1) {
       const p = getSpaceById(contract, i).then((result) => {
@@ -58,6 +59,8 @@ const poll = async (): Promise<void> => {
       spacesPromises.push(p)
     }
     const newSpaces = await Promise.all(spacesPromises)
+    console.timeEnd('Loading Spaces')
+
     state.setSpacesLoaded({ nFinished: 0, max: 0 })
 
     // store newSpaces
