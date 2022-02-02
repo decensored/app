@@ -45,13 +45,13 @@ export const style = {
   buttonTransparentDark: 'dark:text-gray-500',
 
   dialogClickOutsideOverlay: 'inset-0 fixed',
-  dialogWrapper: 'fixed flex items-center justify-center mx-auto top-20 w-full',
-  dialogInner: 'bg-white bg-white divide-gray-200 divide-solid divide-y mx-3 mx-auto relative rounded shadow-xl w-full',
+  dialogWrapper: 'w-full top-10 mx-auto justify-center items-center flex fixed',
+  dialogInner: 'bg-white bg-white divide-gray-200 divide-solid divide-y flex flex-col max-h-dialog mx-3 mx-auto relative rounded shadow-xl w-full',
   dialogInnerDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
-  dialogHeader: 'px-8 py-4 text-bold text-center text-xl',
+  dialogHeader: 'p-2 sm:px-8 py-4 text-bold text-center text-xl',
   dialogHeaderDark: 'dark:text-gray-300',
-  dialogBody: 'p-8',
-  dialogFooter: 'py-4 px-8 justify-between gap-y-10 flex',
+  dialogBody: 'overflow-y-auto p-2 sm:p-8 shrink',
+  dialogFooter: 'py-4 px-2 sm:px-8 justify-between gap-y-10 flex',
 
   popoverWrapper: 'bg-white divide-gray-200 divide-solid divide-y rounded shadow-xl w-52',
   popoverWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
@@ -120,7 +120,6 @@ export const style = {
   postFormFooter: 'flex justify-between mt-5',
   postFormFooterLogoWrapper: 'mr-5 items-center flex',
 
-
   feedWrapper: 'children-last:mb-20 feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',
@@ -170,6 +169,12 @@ export const style = {
   userHeaderWrapper: 'bg-gradient px-5 py-7 rounded text-white',
   userHeaderInner: 'text-center text-white',
   userHeaderTitle: 'font-semibold sm:text-2xl text-xl uppercase',
+
+  itemList: 'divide-y divide-double divide:gray-200',
+  itemListDark: 'dark:divide-darkmode-1000',
+  itemListItem: 'py-3 px-3 group relative',
+  itemListItemDark: '',
+  itemListItemHoverElement: 'absolute right-3 top-1/2 -translate-y-1/2 invisible group-hover:visible',
 
   tag: 'font-medium px-2 py-1 rounded text-xs tracking-wide uppercase',
   tagNotClickable: 'bg-highlight-10 cursor-default text-highlight-900',
