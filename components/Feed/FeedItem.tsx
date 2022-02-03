@@ -24,7 +24,7 @@ interface FeedItemProps {
   blacklist?: any
   authorIsBlacklisted?: boolean
   replies?: any
-  nRepliesRecursive?: number
+  nRepliesRecursive?: { total: number; unread: number }
   type: string
   parent?: boolean
   depth?: number
@@ -83,7 +83,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   }
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
   const isAuthor = author === userId
-  const replyCount = nRepliesRecursive || replies?.length
+  const replyCount = nRepliesRecursive?.total || replies?.length
+  const replyCountUnread = nRepliesRecursive?.unread || 0
 
   // Create list of Replies and check for blocked users
   let replyItems = []
@@ -209,7 +210,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}
+                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`} {`(${replyCountUnread} unread)`}
                 </button>
               )}
 
@@ -221,7 +222,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}
+                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`} {`(${replyCountUnread} unread)`}
                 </button>
               )}
             </>

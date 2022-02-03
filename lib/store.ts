@@ -49,6 +49,12 @@ const useStore = create(
       latestPostIndexFetched: 0,
       setLatestPostIndexFeched: (latestPostIndexFetched: number) => set({ latestPostIndexFetched }),
 
+      // postSeen: { [key: number]: boolean | undefined }, // TODO: clear with cache flushing
+      // setPostSeen: (postId: number, seen: boolean) => {
+      //   postSeen[postId] = seen
+      //   set({ postSeen } )
+      // }),
+
       //
       isDarkmode: false,
       setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
