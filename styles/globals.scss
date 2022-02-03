@@ -68,8 +68,11 @@ div[data-test-id*='virtuoso-item-list'] > div {
 }
 
 // custom feed css
-.virtuoso-feed-item-wrapper > .feed-item-wrapper > .feed-reply-item-wrapper {
-  @apply pb-5;
+.feed-wrapper,
+.virtuoso-feed-item-wrapper {
+  > .feed-item-wrapper > .feed-reply-item-wrapper {
+    @apply pb-5;
+  }
 }
 
 // add custom space to last feed wrapper child
@@ -88,31 +91,6 @@ div[data-test-id*='virtuoso-item-list'] > div {
 #headlessui-portal-root {
   position: relative;
   z-index: 1000;
-}
-
-// show classNames errors
-[class*='undefined'],
-[class*='false'] {
-  position: relative;
-
-  &:before {
-    background: rgba(161, 56, 56, 0.726);
-    border-radius: 2px;
-    color: red;
-    font-size: 10px;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-}
-
-[class*='undefined']:before {
-  content: 'undefined';
-}
-
-[class*='false']:before {
-  content: 'false';
 }
 
 // 100vh is not good enough on mobile devices
@@ -147,4 +125,29 @@ $headerHeight: 60px;
 .max-h-dialog {
   max-height: calc(100vh - 80px); // --vh fallback
   max-height: calc(var(--vh, 1vh) * 100 - 80px);
+}
+
+// show classNames errors
+[class*='undefined'],
+[class*='false'] {
+  position: relative;
+
+  &:before {
+    background: rgba(161, 56, 56, 0.726);
+    border-radius: 2px;
+    color: red;
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+[class*='undefined']:before {
+  content: 'undefined';
+}
+
+[class*='false']:before {
+  content: 'false';
 }

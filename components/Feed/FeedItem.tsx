@@ -10,6 +10,7 @@ import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
 import { getRepliesForPost } from 'lib/storeUtils'
+import Tag from 'components/Tags/Tag'
 
 interface FeedItemProps {
   id: number
@@ -160,9 +161,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               <>
                 <span>in</span>
                 <Link href={`/space/${thisPost.spaceName}`} passHref>
-                  <span className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}>
-                    {thisPost.spaceName}
-                  </span>
+                  <Tag clickable>{thisPost.spaceName}</Tag>
                 </Link>
               </>
             )}

@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { style } from 'styles/style'
 import useStore from 'lib/store'
+import Tag from 'components/Tags/Tag'
 
 interface SpaceItemProps {
   name: string
@@ -20,25 +21,19 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
             <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
               <div className='flex items-center gap-x-3'>
                 {name}
-                {owner === userId && (
-                  <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>Owner</span>
-                )}
+                {owner === userId && <Tag>Owner</Tag>}
               </div>
             </span>
             <div
               className='members pointer-events-none flex items-center
          justify-end gap-x-2'
             >
-              <span
-                className={`
-                  ${style.tag}
-                  ${style.tagNotClickable}
-                  ${style.tagNotClickableDark}
-                `}
-              >
-                {numberOfPostsInSpace}
-                {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
-              </span>
+              <Tag clickable>
+                <>
+                  {numberOfPostsInSpace}
+                  {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
+                </>
+              </Tag>
             </div>
           </div>
           <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{description}</div>

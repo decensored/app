@@ -180,10 +180,8 @@ export const style = {
   itemListItemHoverElement: 'absolute right-3 top-1/2 -translate-y-1/2 invisible group-hover:visible',
 
   tag: 'font-medium px-2 py-1 rounded text-xs tracking-wide uppercase',
-  tagNotClickable: 'bg-highlight-10 cursor-default text-highlight-900',
-  tagNotClickableDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
-  tagClickable: 'bg-highlight-10 cursor-pointer hover:text-highlight-900 text-highlight-500',
-  tagClickableDark: 'dark:bg-darkmode-1000 dark:hover:text-highlight-400 dark:text-darkmode-1900',
+  tagDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
+  tagClickable: 'children:opacity-50 hover:children:opacity-100 text-opacity-50 cursor-pointer',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tooltipDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',

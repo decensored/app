@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { style } from 'styles/style'
 import Link from 'next/link'
+import Tag from 'components/Tags/Tag'
 
 interface UserDialogProbs {
   showDialog: boolean
@@ -15,16 +16,11 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({ showDialog, onClose, u
     <div key={`user-${user.id}`} className={`${style.itemListItem} ${style.itemListItemDark}`}>
       {user.username}
       <Link href={`/user/${user.username}`} passHref>
-        <span
-          className={`
-          ${style.tag}
-          ${style.tagClickable}
-          ${style.tagClickableDark}
-          ${style.itemListItemHoverElement}
-          `}
-        >
-          <span className='hidden sm:inline'>Open </span>Profile
-        </span>
+        <Tag clickable classNames={style.itemListItemHoverElement}>
+          <span>
+            <span className='hidden sm:inline'>Open </span>Profile
+          </span>
+        </Tag>
       </Link>
     </div>
   ))
