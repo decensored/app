@@ -67,6 +67,11 @@ div[data-test-id*='virtuoso-item-list'] > div {
   }
 }
 
+// custom feed css
+.virtuoso-feed-item-wrapper > .feed-item-wrapper > .feed-reply-item-wrapper {
+  @apply pb-5;
+}
+
 // add custom space to last feed wrapper child
 .feed-wrapper > div {
   &:last-child {

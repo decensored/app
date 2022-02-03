@@ -114,7 +114,7 @@ export const style = {
   virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'bg-black h-10',
-  virtuosoFeedItemWrapper: 'mb-5 px-3',
+  virtuosoFeedItemWrapper: 'virtuoso-feed-item-wrapper mb-5 px-3',
 
   postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute bg-white bottom-4 empty:hidden font-mono leading-none px-2 py-1 right-4 rounded-full text-gray-400 text-xs',
@@ -126,7 +126,7 @@ export const style = {
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',
 
-  feedItemWrapper: 'bg-white',
+  feedItemWrapper: 'feed-item-wrapper bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:border-darkmode-1900 dark:divide-darkmode-200',
   feedItemInner: 'p-5 rounded',
   feedItemInnerTop: 'p-5 pt-3 rounded-t',
@@ -143,8 +143,7 @@ export const style = {
   feedItemInteractionIcon: 'cursor-pointer hover:text-highlight-500 text-highlight-40',
   feedItemInteractionIconDark: 'dark:hover:text-highlight-400 dark:text-darkmode-1700',
 
-  feedReplyItemWrapper: 'rounded-none',
-  feedReplyItemOffset: 'children:children:rounded-none children:rounded-none pl-7',
+  feedReplyItemWrapper: 'children:children:rounded-none children:rounded-none empty:hidden feed-reply-item-wrapper pl-7',
   feedReplyItemBar: 'empty:hidden flex items-center pt-3',
   feedReplyItemButton: 'cursor-pointer text-highlight-500 text-xs',
   feedReplyItemText: 'text-xs cursor-pointer',
