@@ -17,7 +17,7 @@ export const getPostsForUser = (posts: PostType[], username: string): PostType[]
 export const getRepliesForPost = (posts: PostType[], postId: number): PostType[] =>
   posts.filter((post) => post.mother_post === postId)
 
-export const getPostsWithoutMother = (posts: PostType[]): PostType[] => posts.filter((post) => post.mother_post === 0)
+export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter((post) => post.mother_post === 0)
 
 // SPACES
 export const getSpaceIdByName = (spaces: SpaceType[], spaceName: string): number =>
