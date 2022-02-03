@@ -13,11 +13,13 @@ interface SettingsDialogProps {
 }
 
 const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, onClose }) => {
-  const { contract, nodeInfo, setNodeInfo, cacheFlush } = useStore((state) => ({
+  const { contract, nodeInfo, defaultNodeInfo, setNodeInfo, cacheFlush, setDefaultNodeInfo } = useStore((state) => ({
     contract: state.contract,
     nodeInfo: state.nodeInfo,
+    defaultNodeInfo: state.defaultNodeInfo,
     setNodeInfo: state.setNodeInfo,
     cacheFlush: state.cacheFlush,
+    setDefaultNodeInfo: state.setDefaultNodeInfo,
   }))
 
   // HANDLE FORM SUBMIT
@@ -49,60 +51,78 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
       body={
         <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
           <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-            <div className='col-span-3'>
-              <span
-                className={`
+            <button
+              type='button'
+              className={`
+            ${style.button}
+            ${style.buttonTransparent}
+            ${style.buttonTransparentDark}
+            basis-full
+          `}
+              onClick={() => setDefaultNodeInfo(!defaultNodeInfo)}
+            >
+              {defaultNodeInfo ? 'Switch to custom node settings' : 'Switch to default node settings'}
+            </button>
+
+            {!defaultNodeInfo && (
+              <>
+                <div className='col-span-3'>
+                  <span
+                    className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
                 `}
-              >
-                EVM-Node
-              </span>
-              <div className={style.inputWrapper}>
-                <input
-                  className={`
+                  >
+                    EVM-Node
+                  </span>
+
+                  <div className={style.inputWrapper}>
+                    <input
+                      className={`
                     ${style.input}
                     ${style.inputDefault}
                     ${style.inputDefaultDark}
                     ${style.inputFocus}
                   `}
-                  type='text'
-                  defaultValue={nodeInfo.evmNode}
-                  {...register('evmNode', { required: true })}
-                />
-                {errors.evmNode && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      Required Field
-                    </span>
-                  </div>
-                )}
-                {!nodeIsUpAndRunning(contract) && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <SVGIcon
-                      icon='faExclamationTriangle'
-                      className={`${style.formValidationText} ${style.formValidationTextError} mr-3`}
+                      type='text'
+                      defaultValue={nodeInfo.evmNode}
+                      {...register('evmNode', { required: true })}
                     />
-                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      Connection failed!
-                    </span>
+                    {errors.evmNode && (
+                      <div className={`${style.formValidation} ${style.formValidationError}`}>
+                        <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                          Required Field
+                        </span>
+                      </div>
+                    )}
+
+                    {!nodeIsUpAndRunning(contract) && (
+                      <div className={`${style.formValidation} ${style.formValidationError}`}>
+                        <SVGIcon
+                          icon='faExclamationTriangle'
+                          className={`${style.formValidationText} ${style.formValidationTextError} mr-3`}
+                        />
+                        <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                          Connection failed!
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
-            <div className='col-span-3'>
-              <span
-                className={`
+                </div>
+
+                <div className='col-span-3'>
+                  <span
+                    className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
                 `}
-              >
-                Contract Address
-              </span>
-              <div className={style.inputWrapper}>
-                <TextareaAutosize
-                  minRows={2}
-                  className={`
+                  >
+                    Contract Address
+                  </span>
+                  <div className={style.inputWrapper}>
+                    <TextareaAutosize
+                      minRows={2}
+                      className={`
                     ${style.form}
                     ${style.input}
                     ${style.inputDefault}
@@ -111,19 +131,21 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
                     ${style.inputPlaceholder}
                     ${style.inputPlaceholderDark}
                   `}
-                  {...register('contractAddress', { required: true })}
-                >
-                  {nodeInfo.contractsAddress}
-                </TextareaAutosize>
-                {errors.contractAddress && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      Required Field
-                    </span>
+                      {...register('contractAddress', { required: true })}
+                    >
+                      {nodeInfo.contractsAddress}
+                    </TextareaAutosize>
+                    {errors.contractAddress && (
+                      <div className={`${style.formValidation} ${style.formValidationError}`}>
+                        <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                          Required Field
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </form>
       }
@@ -141,6 +163,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
           >
             Cancel
           </button>
+
           <button type='submit' form='settingsForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
             Confirm
           </button>
