@@ -149,10 +149,6 @@ export const style = {
   feedReplyItemText: 'text-xs cursor-pointer',
   feedReplyItemSpacer: 'text-[10px] mx-2',
 
-  blackListTagWrapper: 'bg-highlight-100 flex gap-x-1 items-center px-2 py-1 rounded-md text-gray-600 text-xs tracking-wide uppercase',
-  blackListItem: 'bg-decensored-100 flex-none font-semibold pointer-events-none px-2 py-1 rounded-md text-gray-600 text-xs tracking-wide uppercase',
-  blackListButton: 'bg-red-400 cursor-pointer group-hover:block hidden ml-2 px-2 rounded-md text-white text-xs',
-
   startSpaceWrapper: 'flex flex-col items-center justify-center text-center',
   startSpaceTitle: 'mb-1 text-3xl text-gray-900',
   startSpaceTitleDark: 'dark:text-gray-300',
@@ -175,13 +171,17 @@ export const style = {
 
   itemList: 'divide-y divide-double divide:gray-200',
   itemListDark: 'dark:divide-darkmode-1000',
+  itemListBoxed: 'max-h-56 overflow-y-auto',
   itemListItem: 'py-3 px-3 group relative',
   itemListItemDark: '',
   itemListItemHoverElement: 'absolute right-3 top-1/2 -translate-y-1/2 invisible group-hover:visible',
 
+  blackListButton: 'bg-red-400 cursor-pointer group-hover:block hidden ml-2 px-2 rounded-md text-white text-xs',
+
   tag: 'bg-highlight-10 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tagDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
   tagClickable: 'children:opacity-50 cursor-pointer hover:children:opacity-100 text-opacity-50',
+  tagListWrapper: 'flex flex-wrap gap-3',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tooltipDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',

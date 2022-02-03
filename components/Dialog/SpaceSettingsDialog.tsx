@@ -5,6 +5,7 @@ import BaseDialog from 'components/Dialog/BaseDialog'
 import { removeUserFromBlacklist } from 'api/spaces'
 import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
+import Tag from 'components/Tags/Tag'
 
 interface SpaceSettingsDialogProbs {
   space: number
@@ -45,16 +46,17 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
 
   // Create objects for blacklisted users
   const usersOnBlacklist = blacklistedUsers.map((user: any) => (
-    <div className={`${style.blackListTagWrapper} group`}>
-      <span className={`${style.blackListItem}`}>{user.username}</span>
-      <SVGIcon
-        icon='faTimes'
-        className='text-l hidden cursor-pointer text-red-500 group-hover:block'
+    <Tag>
+      {user.username}
+      <button
+        type='button'
         onClick={() => {
           setRemoveUserFromBlacklist(user.userId)
         }}
-      />
-    </div>
+      >
+        <SVGIcon icon='faTimes' className='ml-2 text-red-500' />
+      </button>
+    </Tag>
   ))
 
   return (
@@ -97,13 +99,9 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
               >
                 Blacklisted User {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
               </span>
-              <div className={style.inputWrapper}>
-                <div className='my-2'>
-                  <div className='flex flex-wrap gap-x-2 gap-y-2'>
-                    {usersOnBlacklist.length > 0 && usersOnBlacklist}
-                    {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
-                  </div>
-                </div>
+              <div className={style.tagListWrapper}>
+                {usersOnBlacklist.length > 0 && usersOnBlacklist}
+                {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
               </div>
             </div>
           </div>
