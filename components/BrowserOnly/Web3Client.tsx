@@ -11,33 +11,11 @@ import AbiPosts from 'abis/ABI_Posts.json'
 import AbiSpaces from 'abis/ABI_Spaces.json'
 
 const Web3Client: FunctionComponent = () => {
-  const [defaultNodeInfo, nodeInfo, setNodeInfo, cacheFlush, setContract, setIsSignedUp] = useStore(
-    (state) => [
-      state.defaultNodeInfo,
-      state.nodeInfo,
-      state.setNodeInfo,
-      state.cacheFlush,
-      state.setContract,
-      state.setIsSignedUp,
-    ],
+  const [defaultNodeInfo, nodeInfo, setContract, setIsSignedUp] = useStore(
+    (state) => [state.defaultNodeInfo, state.nodeInfo, state.setContract, state.setIsSignedUp],
     shallow
   )
 
-  // support for deeplink
-  const q = new URLSearchParams(window.location.search)
-  if (
-    q.get('evmNode') &&
-    q.get('contractsAddress') &&
-    (q.get('evmNode') !== nodeInfo.evmNode || q.get('contractsAddress') !== nodeInfo.contractsAddress)
-  ) {
-    cacheFlush()
-    setNodeInfo({
-      evmNode: q.get('evmNode') as string,
-      contractsAddress: q.get('contractsAddress') as string,
-    })
-  } // else not deeplinking (refactor this to a seperate page! (see qrcode page))
-
-  //
   useEffect(() => {
     if (!inBrowser) return
 
