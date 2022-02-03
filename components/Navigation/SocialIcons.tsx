@@ -11,7 +11,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
   <div className={classNames}>
     <Link href='https://twitter.com/decensored_app' passHref>
       <a
-        href='dummy-href'
+        href='passed'
         target='_blank'
         title='twitter'
         rel='noreferrer'
@@ -25,7 +25,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
     </Link>
     <Link href='https://t.co/pxUEdb5sHp' passHref>
       <a
-        href='dummy-href'
+        href='passed'
         target='_blank'
         title='discord'
         rel='noreferrer'
@@ -39,7 +39,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
     </Link>
     <Link href='https://github.com/decensored/app' passHref>
       <a
-        href='dummy-href'
+        href='passed'
         target='_blank'
         title='github'
         rel='noreferrer'

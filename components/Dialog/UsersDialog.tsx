@@ -16,11 +16,13 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({ showDialog, onClose, u
     <div key={`user-${user.id}`} className={`${style.itemListItem} ${style.itemListItemDark}`}>
       {user.username}
       <Link href={`/user/${user.username}`} passHref>
-        <Tag clickable classNames={style.itemListItemHoverElement}>
-          <span>
-            <span className='hidden sm:inline'>Open </span>Profile
-          </span>
-        </Tag>
+        <a href='passed'>
+          <Tag clickable classNames={style.itemListItemHoverElement}>
+            <span>
+              <span className='hidden sm:inline'>Open </span>Profile
+            </span>
+          </Tag>
+        </a>
       </Link>
     </div>
   ))

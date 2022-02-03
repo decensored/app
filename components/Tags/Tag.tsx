@@ -7,13 +7,13 @@ interface TagProps {
   children: string | JSX.Element[] | JSX.Element
 }
 
-const Tag: FunctionComponent<TagProps> = ({ children, classNames = '', clickable = false }) => (
+const Tag: FunctionComponent<TagProps> = ({ children, classNames, clickable }) => (
   <span
     className={`
     ${style.tag}
     ${style.tagDark}
     ${clickable ? `${style.tagClickable}` : ''}
-    ${classNames}
+    ${classNames ? `${classNames}` : ''}
   `}
   >
     <span>{children}</span>

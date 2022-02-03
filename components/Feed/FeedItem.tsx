@@ -161,7 +161,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               <>
                 <span>in</span>
                 <Link href={`/space/${thisPost.spaceName}`} passHref>
-                  <Tag clickable>{thisPost.spaceName}</Tag>
+                  <a href='passed'>
+                    <Tag clickable>{thisPost.spaceName}</Tag>
+                  </a>
                 </Link>
               </>
             )}

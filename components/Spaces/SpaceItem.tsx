@@ -28,7 +28,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
               className='members pointer-events-none flex items-center
          justify-end gap-x-2'
             >
-              <Tag clickable>
+              <Tag>
                 <>
                   {numberOfPostsInSpace}
                   {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
