@@ -158,7 +158,7 @@ export const style = {
   startSpaceTitleDark: 'dark:text-gray-300',
   startSpaceSubline: 'mb-4 text-md',
 
-  spaceHeaderWrapper: 'bg-gradient px-5 py-7 rounded text-white',
+  spaceHeaderWrapper: 'bg-gradient px-5 py-7 relative rounded text-white',
   spaceHeaderInner: 'text-white sm:items-center sm:flex-row flex-col flex',
   spaceHeaderInnerCol1: 'sm:w-3/4 w-full',
   spaceHeaderInnerCol2: 'mt-3 sm:mt-0 sm:w-1/4 w-full',

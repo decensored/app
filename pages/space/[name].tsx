@@ -122,7 +122,7 @@ const Space: NextPage = () => {
                   <>
                     <SVGIcon
                       icon='faCog'
-                      className='fixed top-0 right-0 cursor-pointer text-white'
+                      className='absolute top-3 right-3 cursor-pointer text-white'
                       onClick={() => setOpenSpaceSettingsDialog(true)}
                     />
                     <SpaceSettingsDialog
