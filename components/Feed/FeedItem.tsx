@@ -137,7 +137,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       })
     }
   }
-  const checkedMessage = deleted ? 'The user has removed this post!' : message
+  const checkedMessage = /* deleted */ !message ? 'The user has removed this post!' : message
 
   return (
     <div
