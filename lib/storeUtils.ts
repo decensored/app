@@ -14,10 +14,14 @@ export const getPostsInSpace = (posts: PostType[], space: SpaceType): PostType[]
 export const getPostsForUser = (posts: PostType[], username: string): PostType[] =>
   posts.filter((post) => post.username === username)
 
+export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter((post) => post.mother_post === 0)
+
 export const getRepliesForPost = (posts: PostType[], postId: number): PostType[] =>
   posts.filter((post) => post.mother_post === postId)
 
-export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter((post) => post.mother_post === 0)
+// TODO: recurse
+export const getRepliesForPostRecursive = (posts: PostType[], postId: number): PostType[] =>
+  getRepliesForPost(posts, postId)
 
 // SPACES
 export const getSpaceIdByName = (spaces: SpaceType[], spaceName: string): number =>

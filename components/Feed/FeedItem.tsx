@@ -9,7 +9,7 @@ import { addUserToBlacklist } from 'api/spaces'
 import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
-import { getRepliesForPost } from 'lib/storeUtils'
+import { getRepliesForPost, getRepliesForPostRecursive } from 'lib/storeUtils'
 import Tag from 'components/Tags/Tag'
 
 interface FeedItemProps {
@@ -24,6 +24,7 @@ interface FeedItemProps {
   blacklist?: any
   authorIsBlacklisted?: boolean
   replies?: any
+  nRepliesRecursive?: number
   type: string
   parent?: boolean
   depth?: number
@@ -42,6 +43,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   blacklist,
   authorIsBlacklisted,
   replies,
+  nRepliesRecursive,
   type,
   parent,
   depth = 0,
@@ -81,6 +83,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   }
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
   const isAuthor = author === userId
+  const replyCount = nRepliesRecursive || replies?.length
 
   // Create list of Replies and check for blocked users
   let replyItems = []
@@ -88,11 +91,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
       .map((post: any) => {
-        // Get Replies for Post
-        const repliesForPost = getRepliesForPost(posts, post.id)
-
-        // check again if author of this post is blacklisted
-        let replyAuthorIsBlacklisted = false
+        let replyAuthorIsBlacklisted = false // check again if author of this post is blacklisted
         if (blacklist) {
           replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === post.author).length > 0
         }
@@ -100,7 +99,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <FeedItem
             key={`post-${post.id}`}
             type='reply'
-            replies={repliesForPost}
+            replies={getRepliesForPost(posts, post.id)}
+            nRepliesRecursive={getRepliesForPostRecursive(posts, post.id).length}
             moderator={false}
             parent={false}
             depth={depth + 1}
@@ -110,7 +110,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         )
       })
   }
-  const repliesExist = replyItems.length > 0
 
   const thisPost = {
     id,
@@ -169,13 +168,16 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             )}
             {authorIsBlacklisted && <span className='text-xs uppercase text-red-500'>blocked</span>}
           </div>
+
           <div className={style.feedItemMetaCol2}>
             <div className={style.feedItemMetaTimestamp}>
               <TimeAgo date={new Date(timestamp * 1000)} />
             </div>
           </div>
         </div>
+
         <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{checkedMessage}</div>
+
         <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && isSignedUp && (
             <>
@@ -194,8 +196,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               )}
             </>
           )}
-          {repliesExist && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
-          {repliesExist && (
+
+          {replyCount > 0 && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
+
+          {replyCount > 0 && (
             <>
               {!openReplies && (
                 <button
@@ -205,9 +209,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1 ? `Show Reply` : `Show ${replies.length} Replies`}
+                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}
                 </button>
               )}
+
               {openReplies && (
                 <button
                   type='button'
@@ -216,11 +221,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1 ? `Hide Reply` : `Hide Replies`}
+                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}
                 </button>
               )}
             </>
           )}
+
           {isAuthor && !deleted && (
             <>
               <span className={style.feedReplyItemSpacer}>|</span>
@@ -235,6 +241,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               </button>
             </>
           )}
+
           {moderator && (
             <div className='group ml-3 flex'>
               {showBlackListLabel && (
