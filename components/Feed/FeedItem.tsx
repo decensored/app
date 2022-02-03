@@ -144,33 +144,34 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       className={`
         ${style.feedItemWrapper}
         ${style.feedItemWrapperDark}
-        ${parent && style.feedItemParent}
-        ${!parent && style.feedItemChild}
+        ${parent ? `${style.feedItemParent}` : `${style.feedItemChild}`}
       `}
     >
-      <div className={`${style.feedItemInnerTop} ${type === 'replyToPost' && 'pr-0'}`}>
+      <div
+        className={`
+        ${style.feedItemInnerTop}
+        ${type === 'replyToPost' ? 'pr-0' : ''}
+      `}
+      >
         <div className={style.feedItemMetaWrapper}>
-          {type === 'replyToPost' && (
-            <div>
-              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>{username}</span>
-              <span className='mx-2'>in</span>
-              <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>
-                {thisPost.spaceName}
-              </span>
+          <div className={style.feedItemMetaCol1}>
+            <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>{username}</span>
+            {parent && type === 'feed' && (
+              <>
+                <span>in</span>
+                <Link href={`/space/${thisPost.spaceName}`} passHref>
+                  <span className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}>
+                    {thisPost.spaceName}
+                  </span>
+                </Link>
+              </>
+            )}
+            {authorIsBlacklisted && <span className='text-xs uppercase text-red-500'>blocked</span>}
+          </div>
+          <div className={style.feedItemMetaCol2}>
+            <div className={style.feedItemMetaTimestamp}>
+              <TimeAgo date={new Date(timestamp * 1000)} />
             </div>
-          )}
-          {type !== 'replyToPost' && (
-            <div className='flex'>
-              <Link href={`/user/${username}`} passHref>
-                <a href='dummy-href' className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
-                  {username}
-                </a>
-              </Link>
-              {authorIsBlacklisted && <span className='pl-2 pt-1 text-xs text-red-500'>BLOCKED</span>}
-            </div>
-          )}
-          <div className={style.feedItemMetaTimestamp}>
-            <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
         <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{checkedMessage}</div>
@@ -262,19 +263,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
         </div>
       </div>
       {openReplies && <div className={style.feedReplyItemOffset}>{replyItems}</div>}
-      {parent && (
-        <div className={style.feedItemInnerBottom}>
-          <div className={style.feedItemInnerBottomCol}>
-            {type === 'feed' && (
-              <Link href={`/space/${spaceName}`} passHref>
-                <a href='dummy-href' className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}>
-                  #{spaceName}
-                </a>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   )
 }

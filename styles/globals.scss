@@ -85,21 +85,29 @@ div[data-test-id*='virtuoso-item-list'] > div {
   z-index: 1000;
 }
 
-// show undefined tailwind classes on element
-[class*='undefined'] {
+// show classNames errors
+[class*='undefined'],
+[class*='false'] {
   position: relative;
 
   &:before {
     background: rgba(161, 56, 56, 0.726);
     border-radius: 2px;
     color: red;
-    content: 'undefined tw class';
     font-size: 10px;
     padding: 2px 5px;
     position: absolute;
     right: 0;
     top: 0;
   }
+}
+
+[class*='undefined']:before {
+  content: 'undefined';
+}
+
+[class*='false']:before {
+  content: 'false';
 }
 
 // 100vh is not good enough on mobile devices
