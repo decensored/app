@@ -18,6 +18,10 @@ cd decensored/app
 npm install
 ```
 
+Descencored in a Docker container? We've got you covered.
+Use the VSCode "Remote containers" extension that will setup a working development enironment for you.
+From the terminal inside of VSCode you will see a prompt with `node ➜ /workspaces/app`... here you can do `npm run dev`
+
 ## Development
 
 First, run the development server:
