@@ -179,9 +179,9 @@ export const style = {
   itemListItemDark: '',
   itemListItemHoverElement: 'absolute right-3 top-1/2 -translate-y-1/2 invisible group-hover:visible',
 
-  tag: 'font-medium px-2 py-1 rounded text-xs tracking-wide uppercase',
-  tagDark: 'dark:bg-darkmode-1000 dark:text-highlight-400',
-  tagClickable: 'children:opacity-50 hover:children:opacity-100 text-opacity-50 cursor-pointer',
+  tag: 'bg-highlight-10 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
+  tagDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
+  tagClickable: 'children:opacity-50 cursor-pointer hover:children:opacity-100 text-opacity-50',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tooltipDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
