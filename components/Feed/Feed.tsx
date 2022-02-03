@@ -6,8 +6,8 @@ import { style } from 'styles/style'
 import {
   arePostsOrSpacesLoading,
   dequeuePostsAndSpaces,
+  getNumberOfRepliesForPostRecursive,
   getRepliesForPost,
-  getRepliesForPostRecursive,
   getRootLevelPosts,
 } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
@@ -60,7 +60,7 @@ const Feed: FunctionComponent = () => {
                 key={`post-${post.id}`}
                 moderator={false}
                 replies={getRepliesForPost(posts, post.id)}
-                nRepliesRecursive={getRepliesForPostRecursive(posts, post.id).length}
+                nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
                 type='feed'
                 parent
                 {...post}

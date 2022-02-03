@@ -19,9 +19,15 @@ export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter
 export const getRepliesForPost = (posts: PostType[], postId: number): PostType[] =>
   posts.filter((post) => post.mother_post === postId)
 
-// TODO: recurse
-export const getRepliesForPostRecursive = (posts: PostType[], postId: number): PostType[] =>
-  getRepliesForPost(posts, postId)
+export const getNumberOfRepliesForPostRecursive = (posts: PostType[], postId: number, count = 0): number => {
+  let cnt = count
+
+  getRepliesForPost(posts, postId).forEach((reply) => {
+    cnt = getNumberOfRepliesForPostRecursive(posts, reply.id, cnt) + 1
+  })
+
+  return cnt
+}
 
 // SPACES
 export const getSpaceIdByName = (spaces: SpaceType[], spaceName: string): number =>

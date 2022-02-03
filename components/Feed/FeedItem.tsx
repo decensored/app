@@ -9,7 +9,7 @@ import { addUserToBlacklist } from 'api/spaces'
 import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
-import { getRepliesForPost, getRepliesForPostRecursive } from 'lib/storeUtils'
+import { getNumberOfRepliesForPostRecursive, getRepliesForPost } from 'lib/storeUtils'
 import Tag from 'components/Tags/Tag'
 
 interface FeedItemProps {
@@ -100,7 +100,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             key={`post-${post.id}`}
             type='reply'
             replies={getRepliesForPost(posts, post.id)}
-            nRepliesRecursive={getRepliesForPostRecursive(posts, post.id).length}
+            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
             moderator={false}
             parent={false}
             depth={depth + 1}
