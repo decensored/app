@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { style } from 'styles/style'
 import useStore from 'lib/store'
 import Tag from 'components/Tags/Tag'
@@ -15,7 +16,10 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
   const [userId] = useStore((state) => [state.userId])
   return (
     <Link href={`/space/${name}`} passHref>
-      <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}>
+      <motion.div
+        layoutId={`spaceitem-${name}`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}
+      >
         <div className={style.feedItemInnerTop}>
           <div className={style.feedItemMetaWrapper}>
             <div className={style.feedItemMetaCol1}>
@@ -35,7 +39,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
           </div>
           <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{description}</div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   )
 }
