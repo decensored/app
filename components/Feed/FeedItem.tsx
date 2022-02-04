@@ -161,7 +161,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       >
         <div className={style.feedItemMetaWrapper}>
           <div className={style.feedItemMetaCol1}>
-            <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>{username}</span>
+            <Link href={`/user/${username}`} passHref>
+              <a href='passed' className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+                {username}
+              </a>
+            </Link>
             {parent && type === 'feed' && (
               <>
                 <span>in</span>
