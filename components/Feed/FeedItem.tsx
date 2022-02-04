@@ -65,8 +65,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
   if (!read && posts.length && type !== 'replyToPost') {
-    console.log('read', type, post)
-
     /* eslint no-param-reassign: "off" */
     post.read = true
     setPosts(posts)
