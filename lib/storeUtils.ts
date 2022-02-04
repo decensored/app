@@ -1,6 +1,10 @@
 import type { LoadingProgressType, PostType, SpaceType } from 'lib/types'
 import useStore from 'lib/store'
-import { orderBy } from 'lodash'
+import orderBy from 'lodash/orderBy'
+import sortBy from 'lodash/sortBy'
+
+export const sortByTimestamp = <T>(collection: T[]): T[] => sortBy(collection, ['timestamp'])
+export const sortById = <T>(collection: T[]): T[] => sortBy(collection, ['id'])
 
 // CONTRACTS
 export const nodeIsUpAndRunning = (contract: Record<string, unknown>): boolean => !!contract?.accounts
@@ -80,12 +84,12 @@ export const dequeuePostsAndSpaces = (): void => {
   const state = useStore.getState()
 
   if (state.postsQueued.length) {
-    state.setPosts(state.postsQueued.concat(state.posts).sort((a, b) => b.timestamp - a.timestamp))
+    state.setPosts(sortByTimestamp(state.postsQueued.concat(state.posts)))
     state.setPostsQueued([])
   }
 
   if (state.spacesQueued.length) {
-    state.setSpaces(state.spacesQueued.concat(state.spaces).sort((a, b) => b.id - a.id))
+    state.setSpaces(sortById(state.spacesQueued.concat(state.spaces)))
     state.setSpacesQueued([])
   }
 }
