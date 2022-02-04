@@ -4,7 +4,7 @@ export const style = {
   body: 'bg-slate-100 font-sans text-gray-900',
   bodyDark: 'dark:text-gray-400 dark:bg-darkmode-100',
 
-  bodyContainer: 'container flex max-w-screen-lg md:gap-x-[2%] mx-auto',
+  bodyContainer: 'container flex max-w-screen-lg md:gap-x-[5%] mx-auto',
   bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px]',
   bodyContainerCol2: 'relative flex-auto max-w-full',
 

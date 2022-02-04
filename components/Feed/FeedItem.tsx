@@ -178,10 +178,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <div className={style.feedItemMetaCol2}>
             <div className={style.feedItemMetaTimestamp}>
               <BrowserView>
-                <ReactTimeAgo date={new Date(timestamp * 1000)} locale='en-US' />
+                <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' />
               </BrowserView>
               <MobileView>
-                <ReactTimeAgo date={new Date(timestamp * 1000)} locale='en-US' timeStyle='twitter' />
+                <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' timeStyle='twitter' />
               </MobileView>
             </div>
           </div>
