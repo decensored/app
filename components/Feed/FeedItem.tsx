@@ -53,6 +53,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   parent,
   depth = 0,
   deleted,
+  // read,
 }) => {
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
@@ -63,6 +64,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     shallow
   )
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
+
+  // console.log(`post ${id} by ${username} (${message}) was ${read ? 'read' : 'not read before'}`)
 
   // Blacklist
   const setAddUserToBlacklist = async (): Promise<void> => {

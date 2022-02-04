@@ -32,7 +32,7 @@ export const getNumberOfRepliesForPostRecursive = (
   getRepliesForPost(posts, postId).forEach((reply) => {
     cnt = getNumberOfRepliesForPostRecursive(posts, reply.id, cnt)
     cnt.total += 1
-    // cnt.unread += postSeen[reply.id] ? 1 : 0
+    cnt.unread += reply.read ? 1 : 0
   })
 
   return cnt

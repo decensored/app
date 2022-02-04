@@ -46,6 +46,7 @@ export const getPostById = async (contract: any, postId: number): Promise<PostTy
     spaceName,
     mother_post: parseInt(post.mother_post, 10),
     deleted: post.deleted,
+    read: false,
   }
   // console.log(result)
   return result
