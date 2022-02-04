@@ -4,13 +4,18 @@ import Link from 'next/link'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
-import TimeAgo from 'react-timeago'
+import { BrowserView, MobileView } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
 import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
 import { getNumberOfRepliesForPostRecursive, getRepliesForPost } from 'lib/storeUtils'
 import Tag from 'components/Tags/Tag'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+import ReactTimeAgo from 'react-time-ago'
+
+TimeAgo.addDefaultLocale(en)
 
 interface FeedItemProps {
   id: number
@@ -172,7 +177,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
           <div className={style.feedItemMetaCol2}>
             <div className={style.feedItemMetaTimestamp}>
-              <TimeAgo date={new Date(timestamp * 1000)} />
+              <BrowserView>
+                <ReactTimeAgo date={new Date(timestamp * 1000)} locale='en-US' />
+              </BrowserView>
+              <MobileView>
+                <ReactTimeAgo date={new Date(timestamp * 1000)} locale='en-US' timeStyle='twitter' />
+              </MobileView>
             </div>
           </div>
         </div>
