@@ -5,6 +5,9 @@ import useStore from 'lib/store'
 export const nodeIsUpAndRunning = (contract: Record<string, unknown>): boolean => !!contract?.accounts
 
 // POSTS
+export const getPostById = (posts: PostType[], postId: number): PostType =>
+  posts.find((post) => post.id === postId) || ({} as PostType)
+
 export const getNumberOfPostsInSpace = (posts: PostType[], space: SpaceType): number =>
   posts.reduce((acc, post) => (post.space === space.id ? acc + 1 : acc), 0)
 
