@@ -124,6 +124,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       })
   }
 
+  // or can we now simply use 'post'
   const thisPost = {
     id,
     author,
