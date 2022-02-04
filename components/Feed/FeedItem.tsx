@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import Link from 'next/link'
+import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
@@ -18,32 +19,19 @@ import ReactTimeAgo from 'react-time-ago'
 TimeAgo.addDefaultLocale(en)
 
 interface FeedItemProps {
-  id: number
-  author: number
-  username: string
-  message: string
-  timestamp: number
-  space: number
-  spaceName: string
+  post: PostType
   moderator?: boolean
   blacklist?: any
   authorIsBlacklisted?: boolean
-  replies?: any
-  nRepliesRecursive?: { total: number; unread: number }
+  replies?: any // or PostType[]
+  nRepliesRecursive?: { total: number; read: number }
   type: string
   parent?: boolean
   depth?: number
-  deleted: boolean
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
-  id,
-  author,
-  username,
-  message,
-  timestamp,
-  space,
-  spaceName,
+  post,
   moderator,
   blacklist,
   authorIsBlacklisted,
@@ -52,9 +40,20 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   type,
   parent,
   depth = 0,
-  deleted,
-  // read,
 }) => {
+  const {
+    id,
+    author,
+    username,
+    message,
+    timestamp,
+    space,
+    spaceName,
+    // mother_post,
+    deleted,
+    read,
+  } = post
+
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
   const [openReplies, setOpenReplies] = React.useState(depth <= 0)
@@ -65,7 +64,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   )
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
-  // console.log(`post ${id} by ${username} (${message}) was ${read ? 'read' : 'not read before'}`)
+  if (!read && posts.length) {
+    /* eslint no-param-reassign: "off" */
+    post.read = true
+    setPosts(posts)
+    // console.log(`post ${id} by ${username} (${message}) is now read`)
+  }
 
   // Blacklist
   const setAddUserToBlacklist = async (): Promise<void> => {
@@ -92,29 +96,29 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
   const isAuthor = author === userId
   const replyCount = nRepliesRecursive?.total || replies?.length
-  const replyCountUnread = nRepliesRecursive?.unread || 0
+  const replyCountRead = nRepliesRecursive?.read || 0
 
   // Create list of Replies and check for blocked users
   let replyItems = []
   if (replies) {
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
-      .map((post: any) => {
-        let replyAuthorIsBlacklisted = false // check again if author of this post is blacklisted
+      .map((reply: any) => {
+        let replyAuthorIsBlacklisted = false // check again if author of this reply is blacklisted
         if (blacklist) {
-          replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === post.author).length > 0
+          replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === reply.author).length > 0
         }
         return (
           <FeedItem
-            key={`post-${post.id}`}
+            key={`reply-${reply.id}`}
             type='reply'
-            replies={getRepliesForPost(posts, post.id)}
-            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
+            replies={getRepliesForPost(posts, reply.id)}
+            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, reply.id)}
             moderator={false}
             parent={false}
             depth={depth + 1}
             authorIsBlacklisted={replyAuthorIsBlacklisted}
-            {...post}
+            post={reply}
           />
         )
       })
@@ -135,7 +139,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   const deletePost = async (): Promise<void> => {
     const result = await deletePostOfUser(contract, id)
     if (result.success) {
-      const updatedPosts = posts.map((post) => (post.id === id ? { ...post, message: '', deleted: true } : post))
+      const updatedPosts = posts.map((deletedPost) =>
+        deletedPost.id === id ? { ...deletedPost, message: '', deleted: true } : deletedPost
+      )
       setPosts(updatedPosts)
       toast.success(`Your post has been deleted!`, {
         autoClose: 3000,
@@ -227,7 +233,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`} {`(${replyCountUnread} unread)`}
+                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}{' '}
+                  {`(${replyCount - replyCountRead} unread)`}
                 </button>
               )}
 
@@ -239,7 +246,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`} {`(${replyCountUnread} unread)`}
+                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}{' '}
+                  {`(${replyCount - replyCountRead} unread)`}
                 </button>
               )}
             </>

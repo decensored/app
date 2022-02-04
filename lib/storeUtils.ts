@@ -19,12 +19,12 @@ export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter
 export const getRepliesForPost = (posts: PostType[], postId: number): PostType[] =>
   posts.filter((post) => post.mother_post === postId)
 
-// This is slightly overcomplicated to avoid running once for 'total' and once for 'unread'
+// This is slightly overcomplicated to avoid running once for 'total' and once for 'read'
 export const getNumberOfRepliesForPostRecursive = (
   posts: PostType[],
   postId: number,
-  count = { total: 0, unread: 0 }
-): { total: number; unread: number } => {
+  count = { total: 0, read: 0 }
+): { total: number; read: number } => {
   // const { postSeen } = useStore.getState()
 
   let cnt = count
@@ -32,7 +32,7 @@ export const getNumberOfRepliesForPostRecursive = (
   getRepliesForPost(posts, postId).forEach((reply) => {
     cnt = getNumberOfRepliesForPostRecursive(posts, reply.id, cnt)
     cnt.total += 1
-    cnt.unread += reply.read ? 1 : 0
+    cnt.read += reply.read ? 1 : 0
   })
 
   return cnt

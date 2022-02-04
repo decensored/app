@@ -37,7 +37,9 @@ const Space: NextPage = () => {
   const showFeedItems = userPosts.map((post) => {
     if (post.mother_post !== 0) return null // early exit
 
-    return <FeedItem key={`post-${post.id}`} type='feed' parent replies={getRepliesForPost(posts, post.id)} {...post} />
+    return (
+      <FeedItem key={`post-${post.id}`} type='feed' parent replies={getRepliesForPost(posts, post.id)} post={post} />
+    )
   })
 
   return (

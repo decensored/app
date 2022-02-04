@@ -63,7 +63,7 @@ const Feed: FunctionComponent = () => {
                 nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
                 type='feed'
                 parent
-                {...post}
+                post={post}
               />
             </div>
           )}

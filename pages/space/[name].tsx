@@ -100,7 +100,7 @@ const Space: NextPage = () => {
         blacklist={blackListArray}
         authorIsBlacklisted={authorIsBlacklisted}
         replies={repliesForPost}
-        {...post}
+        post={post}
         type='space'
         parent
       />
