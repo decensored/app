@@ -64,7 +64,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
                 ${style.inputFocus}
               `}
               type='text'
-              placeholder='Enter your key'
+              placeholder='Paste in your key'
               {...register('privateKey', {
                 required: true,
                 minLength: 66,

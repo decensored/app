@@ -70,15 +70,10 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
             <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
               <div className={style.inputWrapper}>
                 <div className={`${style.alert} ${style.alertDark} mb-5`}>
-                  <b className='font-bold'>No invite token?</b> Reach out to us on{' '}
-                  <a
-                    className='underline decoration-2 underline-offset-2	'
-                    href='https://t.co/pxUEdb5sHp'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
+                  <b className='font-bold'>No invite token?</b> Reach out to us on
+                  <a className={`${style.link} mx-1`} href='https://t.co/pxUEdb5sHp' rel='noreferrer' target='_blank'>
                     Discord
-                  </a>{' '}
+                  </a>
                   to get one!
                 </div>
                 <span

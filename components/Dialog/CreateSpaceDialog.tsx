@@ -59,79 +59,75 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
       header='Create Space'
       body={
         <form id='createSpaceForm' onSubmit={handleSubmit(onSubmit)}>
-          <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-            <div className='col-span-3'>
-              <span
-                className={`
+          <div className={style.inputWrapper}>
+            <span
+              className={`
+                ${style.inputLabel}
+                ${style.inputLabelDark}
+              `}
+            >
+              Create Space
+            </span>
+            <input
+              className={`
+                ${style.input}
+                ${style.inputDefault}
+                ${style.inputDefaultDark}
+                ${style.inputFocus}
+                lowercase
+              `}
+              type='text'
+              {...register('name', {
+                required: true,
+                pattern: /^[a-z0-9_]+$/i,
+                minLength: 4,
+                maxLength: 15,
+              })}
+            />
+            {errors.name && (
+              <div className={`${style.formValidation} ${style.formValidationError}`}>
+                <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                  {errors.name?.type === 'required' && 'Choose the name of your space!'}
+                  {errors.name?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
+                  {(errors.name?.type === 'minLength' || errors.name?.type === 'maxLength') &&
+                    'Spacename must be between 4-15 chars!'}
+                  {errors.name.message}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className={style.inputWrapper}>
+            <span
+              className={`
                   ${style.inputLabel}
                   ${style.inputLabelDark}
+                  ${errors.name ? `${style.inputLabelErrorMarginTop}` : `${style.inputLabelMarginTop}`}
                 `}
-              >
-                Create Space
-              </span>
-              <div className={style.inputWrapper}>
-                <input
-                  className={`
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDark}
-                    ${style.inputFocus}
-                    lowercase
-                  `}
-                  type='text'
-                  {...register('name', {
-                    required: true,
-                    pattern: /^[a-z0-9_]+$/i,
-                    minLength: 4,
-                    maxLength: 15,
-                  })}
-                />
-                {errors.name && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      {errors.name?.type === 'required' && 'Choose the name of your space!'}
-                      {errors.name?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
-                      {(errors.name?.type === 'minLength' || errors.name?.type === 'maxLength') &&
-                        'Spacename must be between 4-15 chars!'}
-                      {errors.name.message}
-                    </span>
-                  </div>
-                )}
+            >
+              Description
+            </span>
+            <TextareaAutosize
+              minRows={2}
+              maxLength={280}
+              placeholder='Your description..'
+              className={`
+              ${style.form}
+              ${style.input}
+              ${style.inputDefault}
+              ${style.inputDefaultDark}
+              ${style.inputFocus}
+              ${style.inputPlaceholder}
+              ${style.inputPlaceholderDark}
+          `}
+              {...register('description', { required: true })}
+            />
+            {errors.description && (
+              <div className={`${style.formValidation} ${style.formValidationError}`}>
+                <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
+                  {errors.description?.type === 'required' && 'Please fill out the description'}
+                </span>
               </div>
-              <span
-                className={`
-                    ${style.inputLabel}
-                    ${style.inputLabelDark}
-                    ${errors.name ? `${style.inputLabelErrorMarginTop}` : `${style.inputLabelMarginTop}`}
-                  `}
-              >
-                Description
-              </span>
-              <div className={style.inputWrapper}>
-                <TextareaAutosize
-                  minRows={2}
-                  maxLength={280}
-                  placeholder='Your description..'
-                  className={`
-                  ${style.form}
-                  ${style.input}
-                  ${style.inputDefault}
-                  ${style.inputDefaultDark}
-                  ${style.inputFocus}
-                  ${style.inputPlaceholder}
-                  ${style.inputPlaceholderDark}
-              `}
-                  {...register('description', { required: true })}
-                />
-                {errors.description && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
-                      {errors.description?.type === 'required' && 'Please fill out the description'}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
           </div>
         </form>
       }

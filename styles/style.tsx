@@ -15,7 +15,7 @@ export const style = {
   dequeuePostsAndSpacesWrapper: 'absolute empty:-translate-y-full flex justify-center left-3 right-6 top-[6px] transition-transform translate-y-0 z-10',
   dequeuePostsAndSpacesButton: 'bg-highlight-500 cusor-pointer px-3 py-1 rounded-full shadow-lg text-sm text-white',
 
-  inputWrapper: 'relative',
+  inputWrapper: 'relative mb-5 last:mb-0',
   inputGroup: 'flex',
   input: 'focus:outline-none outline-none px-3 py-[7.3px] w-full',
   inputDefault: 'border border-gray-300 rounded text-gray-900',
@@ -40,11 +40,14 @@ export const style = {
   formValidationTextError: 'text-red-500',
 
   button: 'cursor-pointer focus:outline-none font-medium h-[40px] px-4 rounded whitespace-nowrap',
+  buttonInlineLink: 'contents',
   buttonNoXsPadding: 'md:px-4 px-0',
   buttonDecensored: 'text-white hover:bg-purple-800 bg-highlight-900',
   buttonDecensoredHeader: 'text-white hover:bg-purple-700 bg-purple-500',
   buttonTransparent: 'bg-transparent hover:text-purple-900 text-gray-900',
   buttonTransparentDark: 'dark:text-gray-500',
+
+  link: 'underline hover:no-underline',
 
   dialogClickOutsideOverlay: 'inset-0 fixed',
   dialogWrapper: 'w-full top-10 mx-auto justify-center items-center flex fixed',

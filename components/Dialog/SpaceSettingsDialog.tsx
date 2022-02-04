@@ -66,43 +66,39 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
       header='Space Settings'
       body={
         <form id='spaceSettingsForm'>
-          <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-            <div className='col-span-3'>
-              <span
-                className={`
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                `}
-              >
-                Name
-              </span>
-              <div className={style.inputWrapper}>
-                <input
-                  className={`
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDark}
-                    ${style.inputFocus}
-                  `}
-                  type='text'
-                  disabled
-                  defaultValue={name}
-                />
-              </div>
-            </div>
-            <div className='col-span-3'>
-              <span
-                className={`
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                `}
-              >
-                Blacklisted User {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
-              </span>
-              <div className={style.tagListWrapper}>
-                {usersOnBlacklist.length > 0 && usersOnBlacklist}
-                {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
-              </div>
+          <div className={style.inputWrapper}>
+            <span
+              className={`
+                ${style.inputLabel}
+                ${style.inputLabelDark}
+              `}
+            >
+              Name
+            </span>
+            <input
+              className={`
+                ${style.input}
+                ${style.inputDefault}
+                ${style.inputDefaultDark}
+                ${style.inputFocus}
+              `}
+              type='text'
+              disabled
+              defaultValue={name}
+            />
+          </div>
+          <div className={style.inputWrapper}>
+            <span
+              className={`
+                ${style.inputLabel}
+                ${style.inputLabelDark}
+              `}
+            >
+              Blacklisted User {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
+            </span>
+            <div className={style.tagListWrapper}>
+              {usersOnBlacklist.length > 0 && usersOnBlacklist}
+              {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
             </div>
           </div>
         </form>
