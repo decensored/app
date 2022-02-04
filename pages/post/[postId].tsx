@@ -12,11 +12,11 @@ import BottomNavigation from '../../components/Navigation/BottomNavigation'
 const PostPage: NextPage = () => {
   const router = useRouter()
   const posts = useStore((state) => state.posts)
-  //   console.log('posts', posts)
+  // console.log('posts', posts)
 
   if (!router.query.postId) return null
   const postId = parseInt(router.query.postId as string, 10)
-  //   console.log('postId', postId)
+  // console.log('postId', postId)
 
   const post = getPostById(posts, postId)
   // console.log('post', post)
@@ -31,7 +31,7 @@ const PostPage: NextPage = () => {
         </div>
 
         <div className={style.bodyContainerCol2}>
-          {post ? (
+          {post?.id ? (
             <FeedItem
               key={`post-${post.id}`}
               moderator={false}
