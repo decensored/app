@@ -18,16 +18,13 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
       <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}>
         <div className={style.feedItemInnerTop}>
           <div className={style.feedItemMetaWrapper}>
-            <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
-              <div className='flex items-center gap-x-3'>
-                {name}
-                {owner === userId && <Tag>Owner</Tag>}
-              </div>
-            </span>
-            <div
-              className='members pointer-events-none flex items-center
-         justify-end gap-x-2'
-            >
+            <div className={style.feedItemMetaCol1}>
+              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+                <span>{name}</span>
+              </span>
+              {owner === userId && <Tag>Owner</Tag>}
+            </div>
+            <div className={style.feedItemMetaCol2}>
               <Tag>
                 <>
                   {numberOfPostsInSpace}
