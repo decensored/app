@@ -8,13 +8,15 @@ import BottomNavigation from 'components/Navigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 import { style } from 'styles/style'
-import { getNumberOfPostsInSpace } from 'lib/storeUtils'
+import { sortSpaces } from 'lib/storeUtils'
 
 const Spaces: NextPage = () => {
   const [isSignedUp, spaces, posts] = useStore((state) => [state.isSignedUp, state.spaces, state.posts], shallow)
 
-  const createSpaceItems = spaces.map((space) => (
-    <SpaceItem key={`space-${space.id}`} {...space} numberOfPostsInSpace={getNumberOfPostsInSpace(posts, space)} />
+  // sort spaces
+  const [sortType, setSortType] = React.useState('numberOfPostsInSpace')
+  const createSpaceItems = sortSpaces(spaces, posts, sortType).map((space) => (
+    <SpaceItem key={`space-${space.id}`} {...space} />
   ))
 
   return (
@@ -27,6 +29,21 @@ const Spaces: NextPage = () => {
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             {isSignedUp && <SpaceHeader />}
+            <select
+              className={`
+                ${style.input}
+                ${style.inputDefault}
+                ${style.inputDefaultDark}
+                ${style.inputFocus}
+              `}
+              onChange={(e) => setSortType(e.target.value)}
+            >
+              <option value='numberOfPostsInSpace|desc'>Most active</option>
+              <option value='latestPostIndexInSpace|desc'>Latest Activity</option>
+              <option value='id|desc'>Newest Space</option>
+              {/*             <option value='name|asc'>Name A-Z</option>
+              <option value='name|desc'>Name Z-A</option> */}
+            </select>
             {createSpaceItems}
           </div>
         </div>

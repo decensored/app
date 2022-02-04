@@ -1,5 +1,6 @@
 import type { LoadingProgressType, PostType, SpaceType } from 'lib/types'
 import useStore from 'lib/store'
+import { orderBy } from 'lodash'
 
 // CONTRACTS
 export const nodeIsUpAndRunning = (contract: Record<string, unknown>): boolean => !!contract?.accounts
@@ -13,6 +14,14 @@ export const getNumberOfPostsInSpace = (posts: PostType[], space: SpaceType): nu
 
 export const getPostsInSpace = (posts: PostType[], space: SpaceType): PostType[] =>
   posts.filter((post) => post.space === space.id)
+
+export const getLatestPostIndexInSpace = (posts: PostType[], space: SpaceType): number => {
+  const postsInSpace = getPostsInSpace(posts, space)
+  if (postsInSpace.length > 0) {
+    return postsInSpace.reduce((max, obj) => (max.id > obj.id ? max : obj)).id
+  }
+  return 0
+}
 
 export const getPostsForUser = (posts: PostType[], username: string): PostType[] =>
   posts.filter((post) => post.username === username)
@@ -50,6 +59,19 @@ export const getSpaceById = (spaces: SpaceType[], spaceId: number): SpaceType =>
 
 export const getSpaceByName = (spaces: SpaceType[], spaceName: string): SpaceType =>
   spaces.find((space) => space.name === spaceName) || ({} as SpaceType)
+
+export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: string): any[] => {
+  const split = sortType.split('|')
+  const key = split[0]
+  // const order = split[1] working on passing asc / desc to use for sorting
+  const preparedSpaces = spaces.map((space) => ({
+    ...space,
+    numberOfPostsInSpace: getNumberOfPostsInSpace(posts, space),
+    latestPostIndexInSpace: getLatestPostIndexInSpace(posts, space),
+  }))
+  const sortedSpaces = orderBy(Object.values(preparedSpaces), [key], ['desc'])
+  return sortedSpaces
+}
 
 // QUEUE
 export const dequeuePostsAndSpaces = (): void => {
