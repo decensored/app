@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
@@ -7,6 +7,8 @@ import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpacesHeader from 'components/Spaces/SpacesHeader'
+import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
+import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
@@ -16,6 +18,7 @@ const Spaces: NextPage = () => {
   const [sortType, setSortType] = React.useState('numberOfPostsInSpace')
   const [searchTerm, setSearchTerm] = React.useState('')
   const [spaceResults, setSpaceResults] = React.useState([] as SpaceType[])
+  const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
 
   const uniqueUsers = [
     ...new Map(posts.map((post) => [post.username, { userId: post.author, username: post.username }])).values(),
@@ -45,7 +48,23 @@ const Spaces: NextPage = () => {
             {isSignedUp && (
               <SpacesHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} nrOfUsers={uniqueUsers.length} />
             )}
-            <div className='flex'>
+            <div className={style.feedItemInteractionBar}>
+              {isSignedUp && (
+                <>
+                  <button
+                    type='button'
+                    onClick={() => setOpenCreateSpaceDialog(true)}
+                    className={`${style.button} ${style.buttonDecensored}`}
+                  >
+                    <SVGIcon icon='faPlus' isFixed />
+                    <span className='hide-on-mobile'>Create Space</span>
+                  </button>
+                  <CreateSpaceDialog
+                    showDialog={openCreateSpaceDialog}
+                    onClose={() => setOpenCreateSpaceDialog(false)}
+                  />
+                </>
+              )}
               <input
                 value={searchTerm}
                 onChange={handleChange}

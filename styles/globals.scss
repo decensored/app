@@ -94,12 +94,22 @@ div[data-test-id*='virtuoso-item-list'] > div {
 }
 
 .header-image {
+  position: relative;
   background-size: cover;
   background-position-x: right;
   background-position-y: top;
 
   &.variant-spaces {
     background-image: url('/header/spaces.svg');
+  }
+  @media (max-width: 640px) {
+    > div {
+      @apply relative z-10;
+    }
+
+    &:before {
+      @apply absolute inset-0 z-0 bg-black opacity-20 empty;
+    }
   }
 }
 

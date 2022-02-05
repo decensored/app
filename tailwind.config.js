@@ -95,6 +95,7 @@ module.exports = {
   plugins: [
     require('tailwindcss-pseudo-elements'),
     require('tailwindcss-children'),
+    require('tailwindcss-textshadow'),
     plugin(({ addUtilities }) => {
       const newUtilities = {
         '.empty': {
