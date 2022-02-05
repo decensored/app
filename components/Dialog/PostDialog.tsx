@@ -12,7 +12,7 @@ const PostDialog: FunctionComponent<PostDialogProps> = ({ showDialog, onClose })
     showDialog={showDialog}
     onClose={onClose}
     clickOutside
-    body={<PostForm spaceId={1} isTransparent />}
+    body={<PostForm spaceId={1} isTransparent autoFocus />}
     width='2xl'
   />
 )
