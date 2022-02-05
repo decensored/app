@@ -9,6 +9,8 @@ export const style = {
   bodyContainerCol2: 'relative flex-auto max-w-full',
 
   headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-40',
+  headerLogo: 'flex gap-x-2 items-center',
+  headerBack: 'flex justify-center items-center h-[30px] text-white w-[30px]',
   loadingIndicator: '-translate-x-2/4 bg-highlight-500 fixed left-1/2 pointer-events-none px-3 py-1 rounded-full shadow-lg text-sm text-white top-[15px]',
   loadingWrapper: 'bg-slate-100 bottom-0 fixed flex flex-col h-screen items-center justify-center left-0 overflow-hidden right-0 top-0 w-full z-50',
 

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
@@ -21,6 +21,11 @@ const Header: FunctionComponent = () => {
   const [gracePeriodDone, setGracePeriodDone] = useState(false)
   useTimeout(() => setGracePeriodDone(true), GRACEPERIOD)
 
+  const router = useRouter()
+  const { pathname } = router
+  let tabIndex = -1
+  if (pathname === '/') tabIndex = 0
+
   // const setIsSignedUpWithToast = (): void => {
   //   setIsSignedUp(false)
   //   // https://fkhadra.github.io/react-toastify/introduction/
@@ -29,13 +34,16 @@ const Header: FunctionComponent = () => {
 
   return (
     <div className={style.headerWrapper}>
-      <div id='logo'>
-        <Link href='/' passHref>
-          <div className='flex items-center gap-2'>
-            <img alt='Decensored Logo' src='/logo/signet.svg' className='-mt-1 h-[30px] xs:hidden' />
-            <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='hidden h-[20px] xs:block' />
-          </div>
-        </Link>
+      <div className={style.headerLogo}>
+        <div className={style.headerBack}>
+          {tabIndex !== 0 && (
+            <button type='button' onClick={() => router.back()}>
+              <SVGIcon icon='faArrowLeft' />
+            </button>
+          )}
+          {tabIndex === 0 && <img alt='Decensored Logo' src='/logo/signet.svg' />}
+        </div>
+        <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='h-[20px]' />
       </div>
       <div id='header_nav_items' className='flex items-center'>
         {nodeIsUpAndRunning(contract) && <UserPopover />}

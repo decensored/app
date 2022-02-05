@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  faArrowLeft,
   faBookmark,
   faCheck,
   faCircle,
@@ -38,6 +39,7 @@ interface SVGIconProps {
 }
 
 const iconLookup: { [unit: string]: IconProp } = {
+  faArrowLeft: faArrowLeft,
   faBookmark: faBookmark,
   faCheck: faCheck,
   faCircle: faCircle,
