@@ -101,7 +101,7 @@ const AsideNavigation: FunctionComponent = () => {
                   `}
                   onClick={() => setOpenPostDialog(true)}
                 >
-                  <SVGIcon icon='faPlus' isFixed/>
+                  <SVGIcon icon='faRocket' isFixed/>
                   <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
                     New Post
                   </span>

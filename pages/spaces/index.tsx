@@ -56,7 +56,7 @@ const Spaces: NextPage = () => {
                     onClick={() => setOpenCreateSpaceDialog(true)}
                     className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
                   >
-                    <SVGIcon icon='faRocket' isFixed />
+                    <SVGIcon icon='faPlus' isFixed />
                     <span className='hide-on-mobile'>Create</span>
                   </button>
                   <CreateSpaceDialog
@@ -96,7 +96,7 @@ const Spaces: NextPage = () => {
                     value={searchTerm}
                     onChange={handleChange}
                     type='text'
-                    placeholder='Find a space'
+                    placeholder='Find Space'
                     className={`
                       ${style.input}
                       ${style.inputDefault}

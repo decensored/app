@@ -75,7 +75,7 @@ const BottomNavigation: FunctionComponent = () => {
                 className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
                 onClick={() => setOpenPostDialog(true)}
               >
-                <SVGIcon icon='faPlus' />
+                <SVGIcon icon='faRocket' />
               </button>
               <div
                 className={`
