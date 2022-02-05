@@ -30,6 +30,8 @@ const useStore = create(
       setSpacesLoaded: (spacesLoaded: LoadingProgressType) => set({ spacesLoaded }),
 
       // ACCOUNTS
+      latestAccountIndexFetched: 0,
+      setLatestAccountIndexFetched: (latestAccountIndexFetched: number) => set({ latestAccountIndexFetched }),
 
       // SPACES
       spaces: [] as SpaceType[],
@@ -86,6 +88,7 @@ const useStore = create(
           spacesQueued: [],
           latestPostIndexFetched: 0,
           latestSpaceIndexFetched: 0,
+          latestAccountIndexFetched: 0,
         })
       },
     }),
@@ -104,6 +107,8 @@ const useStore = create(
         spacesQueued: state.spacesQueued,
         latestSpaceIndexFetched: state.latestSpaceIndexFetched,
         spacesSortType: state.spacesSortType,
+
+        latestAccountIndexFetched: state.latestAccountIndexFetched,
 
         userName: state.userName,
         userId: state.userId,
