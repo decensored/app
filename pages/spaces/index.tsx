@@ -17,6 +17,10 @@ const Spaces: NextPage = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [spaceResults, setSpaceResults] = React.useState([] as SpaceType[])
 
+  const uniqueUsers = [
+    ...new Map(posts.map((post) => [post.username, { userId: post.author, username: post.username }])).values(),
+  ]
+
   const handleChange = (event: any) => {
     setSearchTerm(event.target.value)
   }
@@ -38,7 +42,9 @@ const Spaces: NextPage = () => {
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
-            {isSignedUp && <SpaceHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} />}
+            {isSignedUp && (
+              <SpaceHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} nrOfUsers={uniqueUsers.length} />
+            )}
             <div className='flex'>
               <input
                 value={searchTerm}

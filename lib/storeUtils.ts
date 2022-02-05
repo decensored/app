@@ -77,6 +77,13 @@ export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: str
   return sortedSpaces
 }
 
+// HASHTAGS
+export const getPostsWithHashtag = (posts: PostType[], hashtag: string): PostType[] =>
+  posts.filter((post) => post.message.includes(`#${hashtag}`))
+
+/* export const getParentPostForHashtag = (posts: PostType[], postId: number): PostType[] =>
+  posts.filter((post) => post.message.includes(`#${hashtag}`)) */
+
 // QUEUE
 export const dequeuePostsAndSpaces = (): void => {
   // console.log('dequeuePostsAndSpaces')

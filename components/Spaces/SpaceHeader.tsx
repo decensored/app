@@ -5,9 +5,10 @@ import { style } from 'styles/style'
 interface SpaceHeaderProbs {
   nrOfPosts: number
   nrOfSpaces: number
+  nrOfUsers: number
 }
 
-const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({ nrOfPosts, nrOfSpaces }) => {
+const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({ nrOfPosts, nrOfSpaces, nrOfUsers }) => {
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
 
   return (
@@ -25,7 +26,7 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({ nrOfPosts, nrOfSpace
               Create Space
             </button>
           </div>
-          Posts: {nrOfPosts} - Spaces: {nrOfSpaces}
+          Posts: {nrOfPosts} - Spaces: {nrOfSpaces} - User: {nrOfUsers}
         </div>
       </div>
       <CreateSpaceDialog showDialog={openCreateSpaceDialog} onClose={() => setOpenCreateSpaceDialog(false)} />
