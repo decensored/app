@@ -10,6 +10,7 @@ import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
+import Link from 'next/link'
 
 const GRACEPERIOD = 1000 // time until showing an error message
 
@@ -43,7 +44,9 @@ const Header: FunctionComponent = () => {
           )}
           {tabIndex === 0 && <img alt='Decensored Logo' src='/logo/signet.svg' />}
         </div>
-        <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='h-[20px]' />
+        <Link href='/' passHref>
+          <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='h-[20px] cursor-pointer' />
+        </Link>
       </div>
       <div id='header_nav_items' className='flex items-center'>
         {nodeIsUpAndRunning(contract) && <UserPopover />}
