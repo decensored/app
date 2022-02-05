@@ -33,7 +33,7 @@ const Spaces: NextPage = () => {
   // Search or sort spaces
   React.useEffect(() => {
     const result = sortSpaces(spaces, posts, spacesSortType).filter((space) =>
-      space.name.toLowerCase().includes(searchTerm)
+      space.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setSpaceResults(result)
   }, [searchTerm, spacesSortType, spaces, posts])
