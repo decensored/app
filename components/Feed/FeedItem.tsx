@@ -15,6 +15,10 @@ import Tag from 'components/Tags/Tag'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import ReactTimeAgo from 'react-time-ago'
+import { Linkify, LinkifyCore } from 'react-easy-linkify'
+
+LinkifyCore.PluginManager.enableHashtag()
+LinkifyCore.PluginManager.enableMention()
 
 TimeAgo.addDefaultLocale(en)
 
@@ -201,7 +205,30 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           </div>
         </div>
 
-        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{checkedMessage}</div>
+        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
+          <Linkify
+            options={{
+              formatHref: {
+                hashtag: (href) => `/tag/${href.substring(1)}`,
+                mention: (href) => `/user/${href.substring(1)}`,
+              },
+              linkWrapper: {
+                hashtag: (props) => (
+                  <span className='text-highlight-900 hover:bg-orange-200'>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
+                mention: (props) => (
+                  <span className='text-orange-400 hover:bg-gray-200'>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
+              },
+            }}
+          >
+            {checkedMessage}
+          </Linkify>
+        </div>
 
         <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && isSignedUp && (
