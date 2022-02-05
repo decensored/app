@@ -80,8 +80,30 @@ export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: str
 export const getPostsWithHashtag = (posts: PostType[], hashtag: string): PostType[] =>
   posts.filter((post) => post.message.includes(`#${hashtag}`))
 
-/* export const getParentPostForHashtag = (posts: PostType[], postId: number): PostType[] =>
-  posts.filter((post) => post.message.includes(`#${hashtag}`)) */
+export const getTrendingHashtags = (posts: PostType[], hours: number, min: number): any => {
+  const tags: string[] = []
+  posts
+    .filter((post) => post.message.includes(`#`) && post.timestamp * 1000 >= +new Date() - hours * 3600 * 1000)
+    .forEach((post) => {
+      console.log(`${post.timestamp} >= ${+new Date() - 1 * 3600}`)
+      post.message
+        .split(' ')
+        .filter((part: string) => part.startsWith('#'))
+        .map((tag) => tags.push(tag.replace('#', '')))
+    })
+
+  const count = {} as any
+  tags.forEach((tag) => {
+    count[tag] = count[tag] ? count[tag] + 1 : 1
+  })
+
+  const trendingsTags = Object.keys(count)
+    .map((tag) => ({ tag, count: count[tag] }))
+    .filter((tag) => tag.count >= min)
+    .sort((a: any, b: any) => b.count - a.count)
+
+  return trendingsTags
+}
 
 // QUEUE
 export const dequeuePostsAndSpaces = (): void => {

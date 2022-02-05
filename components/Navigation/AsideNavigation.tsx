@@ -8,6 +8,8 @@ import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import SocialIcons from 'components/Navigation/SocialIcons'
+import { getTrendingHashtags } from 'lib/storeUtils'
+import Tag from 'components/Tags/Tag'
 // import PostDialog from 'components/Dialog/PostDialog' // Hidden Post Buttton
 
 const AsideNavigation: FunctionComponent = () => {
@@ -23,8 +25,7 @@ const AsideNavigation: FunctionComponent = () => {
   else if (pathname.startsWith('/likes/')) tabIndex = 4
   else if (pathname.startsWith('/user/')) tabIndex = 5
 
-  const [isSignedUp, userName] = useStore((state) => [state.isSignedUp, state.userName])
-
+  const [isSignedUp, userName, posts] = useStore((state) => [state.isSignedUp, state.userName, state.posts])
   const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
 
   const toggleDarkMode = (): void => {
@@ -34,6 +35,18 @@ const AsideNavigation: FunctionComponent = () => {
       setIsDarkmode(true)
     }
   }
+
+  // Get trending hashtags
+  const hashtags = getTrendingHashtags(posts, 12, 1)
+  const trendingTags = hashtags.map((tag: any) => (
+    <Link href={`/tag/${tag.tag}`} passHref>
+      <a href='passed'>
+        <Tag clickable>
+          {tag.tag} [{tag.count}]
+        </Tag>
+      </a>
+    </Link>
+  ))
 
   return (
     <div className={style.navigationAsideWrapper}>
@@ -73,6 +86,9 @@ const AsideNavigation: FunctionComponent = () => {
                     </span>
                   </Link>
                 </Tooltip>
+
+                <span className='pt-5'>Trending</span>
+                {trendingTags}
 
                 {/* Hidden Post Buttton */}
                 {/* <div className={style.navigationAsideButtonSpacer} />
