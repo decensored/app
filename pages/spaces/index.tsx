@@ -54,9 +54,9 @@ const Spaces: NextPage = () => {
                   <button
                     type='button'
                     onClick={() => setOpenCreateSpaceDialog(true)}
-                    className={`${style.button} ${style.buttonDecensored}`}
+                    className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
                   >
-                    <SVGIcon icon='faPlus' isFixed />
+                    <SVGIcon icon='faRocket' isFixed />
                     <span className='hide-on-mobile'>Create</span>
                   </button>
                   <CreateSpaceDialog

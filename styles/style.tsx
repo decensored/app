@@ -50,6 +50,8 @@ export const style = {
   button: 'flex items-center justify-center gap-x-2 cursor-pointer focus:outline-none font-medium h-[40px] px-4 rounded whitespace-nowrap',
   buttonFull: 'basis-full w-full',
   buttonInlineLink: 'contents',
+  buttonIconOnly: 'w-[40px]',
+  buttonIconOnlyMobile: 'w-[40px] sm:w-auto',
   buttonNoXsPadding: 'md:px-4 px-0',
   buttonDecensored: 'text-white hover:bg-purple-800 bg-highlight-900',
   buttonDecensoredInvert: 'text-white hover:bg-highlight-900 bg-purple-800',
