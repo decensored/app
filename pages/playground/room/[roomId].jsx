@@ -10,12 +10,16 @@ import { style } from 'styles/style'
 import Header from 'components/Header/Header'
 import { inBrowser } from 'lib/where'
 
+// https://github.com/irislib/iris-lib
+
 const gun = Gun({
   peers: inBrowser
     ? [
         'https://bullchat.syon.ca/gun',
         'https://gunjs.herokuapp.com/gun',
         'https://notabug.io/gun',
+        'https://gun-manhattan.herokuapp.com/gun',
+        'https://gun-us.herokuapp.com/gun',
         // 'http://localhost:3001/gun',
         // 'http://localhost:8765/gun',
         // `${window.origin}/gun`,

@@ -2,7 +2,7 @@
 
 import { inBrowser } from 'lib/where'
 import useStore, { STORE_VERSION } from 'lib/store'
-import { dequeuePostsAndSpaces, nodeIsUpAndRunning, sortByTimestamp } from 'lib/storeUtils'
+import { dequeuePostsAndSpaces, nodeIsUpAndRunning, orderByTimestamp } from 'lib/storeUtils'
 import type { LoadingProgressType, PostType } from 'lib/types'
 import { getLatestPostIndex, getPostById } from 'api/feed'
 import { limitArray, pollingConfig } from './pollingUtils'
@@ -15,7 +15,7 @@ const updateStateWithNewPosts = (newPosts: PostType[]) => {
   const state = useStore.getState()
 
   if (state.isPolledDataQueued && state.posts.length) {
-    state.setPostsQueued(sortByTimestamp(newPosts.concat(state.postsQueued)))
+    state.setPostsQueued(orderByTimestamp(newPosts.concat(state.postsQueued)))
 
     // auto-deque when I'm the author of at least one queued post
     const newState = useStore.getState()
@@ -26,7 +26,7 @@ const updateStateWithNewPosts = (newPosts: PostType[]) => {
     // console.log(
     //   `isPolledDataQueued=${state.isPolledDataQueued}, nPosts=${state.posts.length}, nNewPosts=${newPosts.length}`
     // )
-    state.setPosts(sortByTimestamp(newPosts.concat(state.posts)))
+    state.setPosts(orderByTimestamp(newPosts.concat(state.posts)))
   }
 } // end of updateStateWithNewPosts
 
