@@ -61,6 +61,11 @@ export const style = {
   buttonTransparentDark: 'dark:text-gray-500',
 
   link: 'underline hover:no-underline',
+  Linkify: 'rounded',
+  LinkifyHashtag: 'hover:bg-yellow-200 text-highlight-900 hover:text-darkmode-100',
+  LinkifyHashtagDark: 'dark:text-highlight-400 dark:hover:bg-yellow-500 dark:hover:text-darkmode-500',
+  LinkifyMention: 'rounded text-orange-400 hover:bg-orange-400 hover:text-darkmode-1000',
+  LinkifyMentionDark: 'dark:hover:text-darkmode-500',
 
   dialogClickOutsideOverlay: 'inset-0 fixed',
   dialogWrapper: 'w-full top-10 mx-auto justify-center items-center flex fixed',
