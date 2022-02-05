@@ -2,7 +2,7 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { LoadingProgressType, NodeInfoType, PostType, SpaceType } from 'lib/types'
 
-export const STORE_VERSION = 9
+export const STORE_VERSION = 10
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
 export const DEFAULT_CONTRACTSADDRESS = '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
