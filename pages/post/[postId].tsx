@@ -32,15 +32,17 @@ const PostPage: NextPage = () => {
 
         <div className={style.bodyContainerCol2}>
           {post?.id ? (
-            <FeedItem
-              key={`post-${post.id}`}
-              moderator={false}
-              replies={getRepliesForPost(posts, post.id)}
-              nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
-              type='feed'
-              parent
-              post={post}
-            />
+            <div className={style.feedWrapper}>
+              <FeedItem
+                key={`post-${post.id}`}
+                moderator={false}
+                replies={getRepliesForPost(posts, post.id)}
+                nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
+                type='feed'
+                parent
+                post={post}
+              />
+            </div>
           ) : (
             `Post ${postId} not found`
           )}
