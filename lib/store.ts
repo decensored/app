@@ -6,6 +6,7 @@ export const STORE_VERSION = 11
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
 export const DEFAULT_CONTRACTSADDRESS = '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
+// main:  0x3421b655B1Be5Cd7F2466c4A9139a416b2148fe0
 
 const useStore = create(
   persist(
