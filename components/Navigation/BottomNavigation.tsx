@@ -1,25 +1,16 @@
-import React, { FunctionComponent, useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import SVGIcon from 'components/Icon/SVGIcon'
-import useStore from 'lib/store'
 import { style } from 'styles/style'
-import PostDialog from 'components/Dialog/PostDialog'
+import BottomButtonCreatePost from './BottomButtonCreatePost'
 
-const BottomNavigation: FunctionComponent = () => {
-  const [openPostDialog, setOpenPostDialog] = useState(false)
-  const router = useRouter()
-  const { pathname } = router
+const BottomNavigation = () => {
+  const { pathname } = useRouter()
 
-  // Hidden Post Buttton
-  const postButtonIsHidden = true
-
-  let tabIndex = -1
-  if (pathname === '/') tabIndex = 0
-  else if (pathname.startsWith('/spaces')) tabIndex = 1
-
-  const [isSignedUp] = useStore((state) => [state.isSignedUp, state.userName])
+  const isRoot = pathname === '/'
+  const isSpaces = pathname.startsWith('/spaces')
 
   return (
     <div
@@ -34,12 +25,12 @@ const BottomNavigation: FunctionComponent = () => {
           <span
             className={`
               ${style.navigationBottomItem}
-              ${tabIndex === 0 ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
+              ${isRoot ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
             <SVGIcon icon='faSatelliteDish' />
             <span className={style.navigationBottomItemText}>Feed</span>
-            {tabIndex === 0 && (
+            {isRoot && (
               <motion.span
                 className={`
                   ${style.navigationBottomMotionSpan}
@@ -52,61 +43,18 @@ const BottomNavigation: FunctionComponent = () => {
           </span>
         </Link>
 
-        {isSignedUp && !postButtonIsHidden && (
-          <>
-            <div className={style.navigationBottomPostButtonWrapper}>
-              <div
-                className={`
-                ${style.navigationBottomPostButtonPseudo}
-                ${style.navigationBottomPostButtonBefore}
-                ${style.navigationBottomPostButtonBeforeDark}
-              `}
-              >
-                <div
-                  className={`
-                  ${style.navigationBottomPostButtonPseudoInner}
-                  ${style.navigationBottomPostButtonBeforeInner}
-                  ${style.navigationBottomPostButtonBeforeInnerDark}
-                `}
-                />
-              </div>
-              <button
-                type='button'
-                className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
-                onClick={() => setOpenPostDialog(true)}
-              >
-                <SVGIcon icon='faRocket' />
-              </button>
-              <div
-                className={`
-                ${style.navigationBottomPostButtonPseudo}
-                ${style.navigationBottomPostButtonAfter}
-                ${style.navigationBottomPostButtonAfterDark}
-              `}
-              >
-                <div
-                  className={`
-                  ${style.navigationBottomPostButtonPseudoInner}
-                  ${style.navigationBottomPostButtonAfterInner}
-                  ${style.navigationBottomPostButtonAfterInnerDark}
-                `}
-                />
-              </div>
-            </div>
-            <PostDialog showDialog={openPostDialog} onClose={() => setOpenPostDialog(false)} />
-          </>
-        )}
+        <BottomButtonCreatePost />
 
         <Link href='/spaces' passHref>
           <span
             className={`
               ${style.navigationBottomItem}
-              ${tabIndex === 1 ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
+              ${isSpaces ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
             <SVGIcon icon='faSatellite' />
             <span className={style.navigationBottomItemText}>Spaces</span>
-            {tabIndex === 1 && (
+            {isSpaces && (
               <motion.span
                 className={`
                   ${style.navigationBottomMotionSpan}
