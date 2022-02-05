@@ -12,7 +12,7 @@ const SpacesHeader: FunctionComponent<SpacesHeaderProbs> = ({ nrOfPosts, nrOfSpa
     <div className={style.spaceHeaderInner}>
       <div className={style.spaceHeaderInnerCol1}>
         <div className={style.spaceHeaderTitle}>The Universe is infinite</div>
-        <div className={style.spaceHeaderDescription}>and so are your Possibilies</div>
+        <div className={style.spaceHeaderDescription}>And so are your Possibilities!</div>
       </div>
       <div className={style.spaceHeaderInnerCol2}>
         <div className={style.spaceHeaderDataWrapper}>
