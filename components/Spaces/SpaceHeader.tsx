@@ -41,7 +41,7 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
           <SpaceSettingsDialog
             space={space.id}
             name={space.name}
-            description={space.description}
+            // description={space.description}
             blacklistedUsers={blackListArray}
             setBlacklist={setBlackListArray}
             showDialog={openSpaceSettingsDialog}
