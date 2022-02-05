@@ -215,7 +215,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               },
               linkWrapper: {
                 hashtag: (props) => (
-                  <span className='text-highlight-900 hover:bg-orange-200'>
+                  <span className='text-highlight-900 hover:bg-orange-200 dark:text-highlight-400'>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),
