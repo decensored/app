@@ -191,7 +191,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
             onClick={() => onClose()}
           >
@@ -202,7 +202,11 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
             <button
               type='submit'
               form='registerForm'
-              className={`${style.button} ${style.buttonDecensored} basis-full`}
+              className={`
+                ${style.button}
+                ${style.buttonDecensored}
+                ${style.buttonFull}
+              `}
             >
               <span className='whitespace-nowrap'>
                 Sign-up {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}

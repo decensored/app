@@ -151,14 +151,22 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
             ${style.button}
             ${style.buttonTransparent}
             ${style.buttonTransparentDark}
-            basis-full
+            ${style.buttonFull}
           `}
             onClick={() => onClose()}
           >
             Cancel
           </button>
 
-          <button type='submit' form='settingsForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
+          <button
+            type='submit'
+            form='settingsForm'
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
+          >
             Confirm
           </button>
         </>

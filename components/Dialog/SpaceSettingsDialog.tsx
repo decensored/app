@@ -111,7 +111,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
             onClick={() => onClose()}
           >
@@ -120,7 +120,11 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
           <button
             type='submit'
             form='spaceSettingsForm'
-            className={`${style.button} ${style.buttonDecensored} basis-full`}
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
             onClick={() => onClose()}
           >
             Save

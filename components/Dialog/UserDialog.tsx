@@ -44,7 +44,7 @@ const UserDialog: FunctionComponent<UserDialogProbs> = ({ showDialog, onClose, u
             ${style.button}
             ${style.buttonTransparent}
             ${style.buttonTransparentDark}
-            basis-full
+            ${style.buttonFull}
           `}
           onClick={() => onClose()}
         >

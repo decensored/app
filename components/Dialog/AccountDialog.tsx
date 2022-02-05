@@ -92,7 +92,7 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
           onClick={() => onClose()}
         >

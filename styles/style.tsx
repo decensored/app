@@ -8,7 +8,7 @@ export const style = {
   bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px]',
   bodyContainerCol2: 'relative flex-auto max-w-full',
 
-  headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-10',
+  headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-40',
   loadingIndicator: '-translate-x-2/4 bg-highlight-500 fixed left-1/2 pointer-events-none px-3 py-1 rounded-full shadow-lg text-sm text-white top-[15px]',
   loadingWrapper: 'bg-slate-100 bottom-0 fixed flex flex-col h-screen items-center justify-center left-0 overflow-hidden right-0 top-0 w-full z-50',
 
@@ -18,7 +18,7 @@ export const style = {
   inputWrapper: 'relative mb-5 last:mb-0',
   inputGroup: 'flex',
   input: 'focus:outline-none outline-none px-3 py-[7.3px] w-full',
-  inputDefault: 'border border-gray-300 rounded text-gray-900',
+  inputDefault: 'border border-gray-300 rounded bg-white text-gray-900',
   inputDefaultDark: 'dark:text-white dark:border-hidden dark:bg-darkmode-100',
   inputTransparent: '!p-0 bg-transparent text-gray-900',
   inputTransparentDark: 'dark:text-white',
@@ -32,6 +32,10 @@ export const style = {
   inputLabelMarginTop: 'mt-5',
   inputLabelErrorMarginTop: 'mt-10',
 
+  selectWrapper: 'relative',
+  selectArrow: 'pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700',
+  select: 'block appearance-none pr-8 rounded',
+
   form: 'resize-none min-h-[75px]',
   formValidation: 'absolute before:absolute before:bg-opacity-20 before:empty before:inset-0 before:rounded-b bg-white flex items-center left-[3px] px-[9px] py-1 right-[3px] rounded-b',
   formValidationBefore: '',
@@ -39,7 +43,8 @@ export const style = {
   formValidationText: 'text-xs',
   formValidationTextError: 'text-red-500',
 
-  button: 'flex items-center gap-x-2 cursor-pointer focus:outline-none font-medium h-[40px] px-4 rounded whitespace-nowrap',
+  button: 'flex items-center justify-center gap-x-2 cursor-pointer focus:outline-none font-medium h-[40px] px-4 rounded whitespace-nowrap',
+  buttonFull: 'basis-full',
   buttonInlineLink: 'contents',
   buttonNoXsPadding: 'md:px-4 px-0',
   buttonDecensored: 'text-white hover:bg-purple-800 bg-highlight-900',
@@ -167,7 +172,7 @@ export const style = {
   spaceHeaderButton: 'mt-5 mb-5 sm:mb-0',
   spaceHeaderDataWrapper: 'flex justify-evenly mx-auto text-center text-white w-full',
   spaceHeaderDataCol: 'flex-col flex',
-  spaceHeaderDataTitle: 'font-bold text-2xl sm:text-5xl',
+  spaceHeaderDataTitle: 'font-bold text-2xl sm:text-4xl',
   spaceHeaderDataText: 'font-light text-xs sm:mt-2',
 
   userHeaderWrapper: 'bg-gradient px-5 py-7 rounded text-white',

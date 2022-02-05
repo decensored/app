@@ -91,13 +91,21 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
                 ${style.button}
                 ${style.buttonTransparent}
                 ${style.buttonTransparentDark}
-                basis-full
+                ${style.buttonFull}
               `}
             onClick={() => onClose()}
           >
             Cancel
           </button>
-          <button type='submit' form='RecoverForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
+          <button
+            type='submit'
+            form='RecoverForm'
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
+          >
             <span className='whitespace-nowrap'>
               Recover {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>

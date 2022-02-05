@@ -139,7 +139,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
             onClick={() => onClose()}
           >
@@ -148,7 +148,11 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
           <button
             type='submit'
             form='createSpaceForm'
-            className={`${style.button} ${style.buttonDecensored} basis-full`}
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
           >
             <span className='whitespace-nowrap'>
               Create {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}

@@ -17,12 +17,12 @@ const SpacesHeader: FunctionComponent<SpacesHeaderProbs> = ({ nrOfPosts, nrOfSpa
       <div className={style.spaceHeaderInnerCol2}>
         <div className={style.spaceHeaderDataWrapper}>
           <div className={style.spaceHeaderDataCol}>
-            <span className={style.spaceHeaderDataTitle}>{nrOfPosts}</span>
-            <span className={style.spaceHeaderDataText}>Posts</span>
-          </div>
-          <div className={style.spaceHeaderDataCol}>
             <span className={style.spaceHeaderDataTitle}>{nrOfSpaces}</span>
             <span className={style.spaceHeaderDataText}>Spaces</span>
+          </div>
+          <div className={style.spaceHeaderDataCol}>
+            <span className={style.spaceHeaderDataTitle}>{nrOfPosts}</span>
+            <span className={style.spaceHeaderDataText}>Posts</span>
           </div>
           <div className={style.spaceHeaderDataCol}>
             <span className={style.spaceHeaderDataTitle}>{nrOfUsers}</span>
