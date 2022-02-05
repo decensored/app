@@ -20,6 +20,7 @@ export const style = {
   input: 'focus:outline-none outline-none px-3 py-[7.3px] w-full',
   inputDefault: 'border border-gray-300 rounded bg-white text-gray-900',
   inputDefaultDark: 'dark:text-white dark:border-hidden dark:bg-darkmode-100',
+  inputDefaultDarkBordered: 'dark:text-white dark:border-darkmode-1400 dark:bg-darkmode-100',
   inputTransparent: '!p-0 bg-transparent text-gray-900',
   inputTransparentDark: 'dark:text-white',
   inputPlaceholder: 'placeholder:text-gray-400 placeholder:italic',
@@ -34,6 +35,7 @@ export const style = {
 
   selectWrapper: 'relative',
   selectArrow: 'pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700',
+  selectArrowDark: 'dark:text-white',
   select: 'block appearance-none pr-8 rounded',
 
   form: 'resize-none min-h-[75px]',

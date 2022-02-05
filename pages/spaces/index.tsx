@@ -65,14 +65,13 @@ const Spaces: NextPage = () => {
                   />
                 </>
               )}
-              <div className={style.selectWrapper}>
+              <div className={`${style.selectWrapper} min-w-[180px]`}>
                 <select
                   className={`
                   ${style.select}
                   ${style.input}
                   ${style.inputDefault}
-                  ${style.inputDefaultDark}
-                  w-[180px]
+                  ${style.inputDefaultDarkBordered}
                 `}
                   onChange={(e) => setSortType(e.target.value)}
                 >
@@ -82,7 +81,7 @@ const Spaces: NextPage = () => {
                   {/*             <option value='name|asc'>Name A-Z</option>
                 <option value='name|desc'>Name Z-A</option> */}
                 </select>
-                <div className={style.selectArrow}>
+                <div className={`${style.selectArrow} ${style.selectArrowDark}`}>
                   <svg className='h-4 w-4 fill-current' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
                     <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
                   </svg>
@@ -97,7 +96,7 @@ const Spaces: NextPage = () => {
                   className={`
                     ${style.input}
                     ${style.inputDefault}
-                    ${style.inputDefaultDark}
+                    ${style.inputDefaultDarkBordered}
                     ${style.inputFocus}
                   `}
                 />
