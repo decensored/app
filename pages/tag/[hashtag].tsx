@@ -15,8 +15,7 @@ const Space: NextPage = () => {
   const { hashtag } = router.query
 
   // State Management
-  const { spaces, posts, contract } = useStore((state) => ({
-    spaces: state.spaces,
+  const { posts, contract } = useStore((state) => ({
     posts: state.posts,
     isSignedUp: state.isSignedUp,
     contract: state.contract,
@@ -24,23 +23,17 @@ const Space: NextPage = () => {
 
   const [postsWithHashtag, setPostsWithHashtag] = React.useState<PostType[]>([])
 
-  /*   setBlackListArray([]) */
-
   React.useEffect(() => {
-    if (!nodeIsUpAndRunning(contract) || !hashtag || !spaces.length) return
+    if (!nodeIsUpAndRunning(contract) || !hashtag) return
 
-    // Get Posts for Space
+    // Get Posts for Hashtag
     const filteresPosts = getPostsWithHashtag(posts, hashtag.toString())
     setPostsWithHashtag(filteresPosts)
-  }, [contract, hashtag, posts, spaces.length])
+  }, [contract, hashtag, posts])
 
-  // Create Feediteams and check if user of post is blacklisted
   const showFeedItems = postsWithHashtag.map((post) => {
-    /*     if (post.mother_post !== 0) return null // early exit */
-
     // Get Replies for Post
     const repliesForPost = getRepliesForPost(posts, post.id)
-
     return <FeedItem key={`post-${post.id}`} replies={repliesForPost} post={post} type='feed' parent />
   })
 
