@@ -3,18 +3,16 @@ import { style } from 'styles/style'
 
 interface TagProps {
   clickable?: boolean
-  hover?: boolean
   classNames?: string
   children: string | JSX.Element[] | JSX.Element
 }
 
-const Tag: FunctionComponent<TagProps> = ({ children, classNames, clickable, hover }) => (
+const Tag: FunctionComponent<TagProps> = ({ children, classNames, clickable }) => (
   <span
     className={`
     ${style.tag}
     ${style.tagDark}
     ${clickable ? `${style.tagClickable}` : ''}
-    ${hover ? `${style.tagHover}` : ''}
     ${classNames ? `${classNames}` : ''}
   `}
   >

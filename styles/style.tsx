@@ -142,7 +142,7 @@ export const style = {
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',
 
-  feedItemWrapper: 'feed-item-wrapper bg-white',
+  feedItemWrapper: 'feed-item-wrapper bg-white shadow-sm',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:border-darkmode-1900 dark:divide-darkmode-200',
   feedItemInner: 'p-5 rounded',
   feedItemInnerTop: 'p-5 pt-3 rounded-t',
@@ -171,7 +171,7 @@ export const style = {
   startSpaceTitleDark: 'dark:text-gray-300',
   startSpaceSubline: 'mb-4 text-md',
 
-  spaceHeaderWrapper: 'px-5 py-7 sm:pl-7 relative rounded text-white text-shadow-sm',
+  spaceHeaderWrapper: 'px-5 py-7 sm:pl-7 relative rounded text-white text-shadow-sm shadow-sm',
   spaceHeaderInner: 'text-white sm:items-center sm:flex-row flex-col flex',
   spaceHeaderInnerCol1: 'sm:w-2/4 w-full text-center sm:text-left',
   spaceHeaderInnerCol2: 'mt-3 sm:mt-0 sm:w-2/4 w-full',
@@ -198,8 +198,7 @@ export const style = {
 
   tag: 'bg-highlight-10 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tagDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
-  tagClickable: 'cursor-pointer',
-  tagHover: 'hover:bg-highlight-100 dark:hover:bg-gray-200',
+  tagClickable: 'cursor-pointer dark:hover:bg-highlight-400 dark:hover:text-darkmode-1000 hover:bg-highlight-50',
   tagListWrapper: 'flex flex-wrap gap-3',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',

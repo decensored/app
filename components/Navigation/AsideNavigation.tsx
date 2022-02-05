@@ -41,7 +41,7 @@ const AsideNavigation: FunctionComponent = () => {
   const trendingTags = hashtags.map((tag: any) => (
     <Link href={`/tag/${tag.tag}`} passHref>
       <a href='passed'>
-        <Tag clickable hover>
+        <Tag clickable>
           {tag.tag} [{tag.count}]
         </Tag>
       </a>
