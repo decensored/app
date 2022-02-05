@@ -1,12 +1,15 @@
+import { runPoller } from './pollingUtils'
+
 // import { getLatestAccountIndex } from 'api/user'
 
-// const INTERVAL = 4001 // (first prime over 4000) // 10 * 1000
+const INTERVAL = 9973 // highest prime below 10000
 
-// const pollAccounts = async (state: any) => {
-//   const latestPostIndex = await getLatestAccountIndex(state.contract)
-//   if (latestPostIndex === state.latestPostIndexFetched) return
-//   state.setLatestAccountIndexFeched(latestPostIndex)
-// }
-// poller(pollAcounts, INTERVAL)
+const pollAccounts = async (state: any): Promise<void> => {
+  //   console.log('pollAccounts')
+  //
+  //   const latestPostIndex = await getLatestAccountIndex(state.contract)
+  //   if (latestPostIndex === state.latestPostIndexFetched) return
+  //   state.setLatestAccountIndexFeched(latestPostIndex)
+}
 
-export {} // silence the linter
+runPoller(pollAccounts, INTERVAL)

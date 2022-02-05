@@ -8,6 +8,7 @@ import Web3Client from 'components/BrowserOnly/Web3Client'
 import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
 import CalculateViewportHeight from 'components/Viewport/CalculateViewportHeight'
 import { inBrowser } from 'lib/where'
+import 'lib/polling/polling_accounts'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
 
