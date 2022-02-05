@@ -6,7 +6,7 @@ import Header from 'components/Header/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
-import SpaceHeader from 'components/Spaces/SpaceHeader'
+import SpacesHeader from 'components/Spaces/SpacesHeader'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
@@ -43,7 +43,7 @@ const Spaces: NextPage = () => {
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             {isSignedUp && (
-              <SpaceHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} nrOfUsers={uniqueUsers.length} />
+              <SpacesHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} nrOfUsers={uniqueUsers.length} />
             )}
             <div className='flex'>
               <input
