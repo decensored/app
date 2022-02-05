@@ -38,7 +38,7 @@ const Spaces: NextPage = () => {
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
-            {isSignedUp && <SpaceHeader />}
+            {isSignedUp && <SpaceHeader nrOfPosts={posts.length} nrOfSpaces={spaces.length} />}
             <div className='flex'>
               <input
                 value={searchTerm}

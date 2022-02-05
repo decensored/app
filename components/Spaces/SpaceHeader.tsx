@@ -2,7 +2,12 @@ import React, { FunctionComponent, useState } from 'react'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
 import { style } from 'styles/style'
 
-const SpaceHeader: FunctionComponent = () => {
+interface SpaceHeaderProbs {
+  nrOfPosts: number
+  nrOfSpaces: number
+}
+
+const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({ nrOfPosts, nrOfSpaces }) => {
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
 
   return (
@@ -20,6 +25,7 @@ const SpaceHeader: FunctionComponent = () => {
               Create Space
             </button>
           </div>
+          Posts: {nrOfPosts} - Spaces: {nrOfSpaces}
         </div>
       </div>
       <CreateSpaceDialog showDialog={openCreateSpaceDialog} onClose={() => setOpenCreateSpaceDialog(false)} />
