@@ -6,7 +6,7 @@ const SpacesHeader: FunctionComponent = () => {
   const [latestSpaceIndexFetched, latestPostIndexFetched, posts] = useStore((state) => [
     state.latestSpaceIndexFetched,
     state.latestPostIndexFetched,
-    state.posts,
+    state.posts, // this should later use state.latestAccountIndexFetched once we start polling accounts
   ])
 
   const [uniqueUsers, setUniqueUsers] = useState([])
