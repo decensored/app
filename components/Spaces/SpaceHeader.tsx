@@ -30,7 +30,7 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
   const [openUserDialog, setOpenUserDialog] = useState(false)
 
   return (
-    <div className={style.spaceHeaderWrapper}>
+    <div className={`${style.spaceHeaderWrapper} bg-gradient`}>
       {spaceOwner && (
         <>
           <SVGIcon

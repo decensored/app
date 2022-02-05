@@ -12,7 +12,7 @@ const SpacesHeader: FunctionComponent<SpacesHeaderProbs> = ({ nrOfPosts, nrOfSpa
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
 
   return (
-    <div className={style.spaceHeaderWrapper}>
+    <div className={`${style.spaceHeaderWrapper} header-image variant-spaces`}>
       <div className={style.spaceHeaderInner}>
         <div className={style.spaceHeaderInnerCol1}>
           <div className={style.spaceHeaderTitle}>The Universe is infinite</div>
@@ -20,7 +20,7 @@ const SpacesHeader: FunctionComponent<SpacesHeaderProbs> = ({ nrOfPosts, nrOfSpa
           <button
             type='button'
             onClick={() => setOpenCreateSpaceDialog(true)}
-            className={`${style.button} ${style.buttonDecensored}`}
+            className={`${style.button} ${style.buttonDecensoredInvert} ${style.spaceHeaderButton}`}
           >
             Create Space
           </button>

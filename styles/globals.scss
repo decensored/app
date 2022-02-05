@@ -93,6 +93,16 @@ div[data-test-id*='virtuoso-item-list'] > div {
   z-index: 1000;
 }
 
+.header-image {
+  background-size: cover;
+  background-position-x: right;
+  background-position-y: top;
+
+  &.variant-spaces {
+    background-image: url('/header/spaces.svg');
+  }
+}
+
 // 100vh is not good enough on mobile devices
 // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 
