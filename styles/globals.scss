@@ -50,6 +50,10 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 
 // mobile and desktop show/hide helper classes
 .hide-on-mobile {
+  @apply hidden sm:block;
+}
+
+.hide-on-handheld {
   @apply hidden md:block;
 }
 
@@ -65,6 +69,11 @@ div[data-test-id*='virtuoso-item-list'] > div {
   &:last-child {
     @apply mb-20 md:mb-10;
   }
+}
+
+// input-icon-addon
+.input-icon-addon + input {
+  @apply pl-10;
 }
 
 // custom feed css

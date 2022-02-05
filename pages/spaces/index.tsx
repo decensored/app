@@ -40,7 +40,7 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
+        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
@@ -65,7 +65,7 @@ const Spaces: NextPage = () => {
                   />
                 </>
               )}
-              <div className={`${style.selectWrapper} min-w-[180px]`}>
+              <div className={`${style.selectWrapper} min-w-[165px]`}>
                 <select
                   className={`
                   ${style.select}
@@ -88,18 +88,23 @@ const Spaces: NextPage = () => {
                 </div>
               </div>
               <div className='basis-full'>
-                <input
-                  value={searchTerm}
-                  onChange={handleChange}
-                  type='text'
-                  placeholder='Find a space'
-                  className={`
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDarkBordered}
-                    ${style.inputFocus}
-                  `}
-                />
+                <div className={style.inputWrapper}>
+                  <span className={style.inputIconAddon}>
+                    <SVGIcon icon='faSearch' isFixed />
+                  </span>
+                  <input
+                    value={searchTerm}
+                    onChange={handleChange}
+                    type='text'
+                    placeholder='Find a space'
+                    className={`
+                      ${style.input}
+                      ${style.inputDefault}
+                      ${style.inputDefaultDarkBordered}
+                      ${style.inputFocus}
+                    `}
+                  />
+                </div>
               </div>
             </div>
             {createSpaceItems}

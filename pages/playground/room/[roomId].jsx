@@ -59,7 +59,7 @@ const Playground = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
+        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>

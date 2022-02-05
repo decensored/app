@@ -19,6 +19,7 @@ export const style = {
 
   inputWrapper: 'relative mb-5 last:mb-0',
   inputGroup: 'flex',
+  inputIconAddon: 'absolute input-icon-addon left-[10px] pointer-events-none top-[7px]',
   input: 'focus:outline-none outline-none px-3 py-[7.3px] w-full',
   inputDefault: 'border border-gray-300 rounded bg-white text-gray-900',
   inputDefaultDark: 'dark:text-white dark:border-hidden dark:bg-darkmode-100',
@@ -52,6 +53,7 @@ export const style = {
   buttonInlineLink: 'contents',
   buttonIconOnly: 'w-[40px]',
   buttonIconOnlyMobile: 'w-[40px] sm:w-auto',
+  buttonIconOnlyHandheld: 'w-[40px] md:w-auto',
   buttonNoXsPadding: 'md:px-4 px-0',
   buttonDecensored: 'text-white hover:bg-purple-800 bg-highlight-900',
   buttonDecensoredInvert: 'text-white hover:bg-highlight-900 bg-purple-800',
@@ -136,7 +138,7 @@ export const style = {
   postFormFooter: 'flex justify-between mt-5',
   postFormFooterLogoWrapper: 'mr-5 items-center flex',
 
-  feedWrapper: 'children-last:mb-20 feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
+  feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',
 
