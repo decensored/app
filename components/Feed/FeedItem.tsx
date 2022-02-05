@@ -101,6 +101,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   const isAuthor = author === userId
   const replyCount = nRepliesRecursive?.total || replies?.length
   const replyCountRead = nRepliesRecursive?.read || 0
+  const unReadReplies = replyCount - replyCountRead
 
   // Create list of Replies and check for blocked users
   let replyItems = []
@@ -262,7 +263,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   className={style.feedReplyItemText}
                 >
                   {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}{' '}
-                  {`(${replyCount - replyCountRead} unread)`}
+                  {unReadReplies > 0 && `(${unReadReplies} new)`}
                 </button>
               )}
 
@@ -275,7 +276,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   className={style.feedReplyItemText}
                 >
                   {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}{' '}
-                  {`(${replyCount - replyCountRead} unread)`}
+                  {unReadReplies > 0 && `(${unReadReplies} new)`}
                 </button>
               )}
             </>

@@ -32,7 +32,6 @@ const Space: NextPage = () => {
   }, [contract, hashtag, posts])
 
   const showFeedItems = postsWithHashtag.map((post) => {
-    // Get Replies for Post
     const repliesForPost = getRepliesForPost(posts, post.id)
     return <FeedItem key={`post-${post.id}`} replies={repliesForPost} post={post} type='feed' parent />
   })
@@ -47,19 +46,9 @@ const Space: NextPage = () => {
         <div className={style.bodyContainerCol2}>
           {hashtag && (
             <div className={style.feedWrapper}>
-              <div className={style.spaceHeaderWrapper}>
-                <div className={style.spaceHeaderInner}>
-                  <div className={style.spaceHeaderInnerCol1}>
-                    <div className={style.spaceHeaderTitle}>#{hashtag}</div>
-                  </div>
-                  <div className={style.spaceHeaderInnerCol2}>
-                    <div className={style.spaceHeaderDataWrapper}>
-                      <div className={style.spaceHeaderDataCol}>
-                        <span className={style.spaceHeaderDataTitle}>{postsWithHashtag.length}</span>
-                        <span className={style.spaceHeaderDataText}>Posts</span>
-                      </div>
-                    </div>
-                  </div>
+              <div className={style.userHeaderWrapper}>
+                <div className={style.userHeaderInner}>
+                  <div className={style.userHeaderTitle}>{hashtag ? `#${hashtag}` : '#undefined'}</div>
                 </div>
               </div>
               {showFeedItems}

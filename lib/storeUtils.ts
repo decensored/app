@@ -85,7 +85,6 @@ export const getTrendingHashtags = (posts: PostType[], hours: number, min: numbe
   posts
     .filter((post) => post.message.includes(`#`) && post.timestamp * 1000 >= +new Date() - hours * 3600 * 1000)
     .forEach((post) => {
-      // console.log(`${post.timestamp} >= ${+new Date() - 1 * 3600}`)
       post.message
         .split(' ')
         .filter((part: string) => part.startsWith('#'))

@@ -198,7 +198,7 @@ export const style = {
 
   tag: 'bg-highlight-10 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tagDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
-  tagClickable: 'children:opacity-50 cursor-pointer hover:children:opacity-100 text-opacity-50',
+  tagClickable: 'children:opacity-80 cursor-pointer hover:children:opacity-100 text-opacity-50',
   tagListWrapper: 'flex flex-wrap gap-3',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
