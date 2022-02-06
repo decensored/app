@@ -34,6 +34,14 @@ export const getRootLevelPosts = (posts: PostType[]): PostType[] => posts.filter
 export const getRepliesForPost = (posts: PostType[], postId: number): PostType[] =>
   posts.filter((post) => post.mother_post === postId)
 
+export const getLevel1PostForReply = (posts: PostType[], motherPost: number): PostType[] => {
+  const thisPost = posts.filter((post) => post.id === motherPost)
+  if (thisPost[0].mother_post === 0) {
+    return thisPost
+  }
+  return getLevel1PostForReply(posts, thisPost[0].mother_post)
+}
+
 // This is slightly overcomplicated to avoid running once for 'total' and once for 'read'
 export const getNumberOfRepliesForPostRecursive = (
   posts: PostType[],

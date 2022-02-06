@@ -10,7 +10,7 @@ const pollSpaces = async (state: any): Promise<void> => {
   limitArray(state.spacesQueued, state.setSpacesQueued, 'spacesQueued')
 
   const contract: any = state?.contract
-  const latestSpaceIndex = parseInt(await contract.spaces.methods.get_latest_space_index().call(), 10)
+  const latestSpaceIndex = parseInt(await contract.spaces.methods.get_amount_of_spaces().call(), 10)
 
   if (latestSpaceIndex < state.latestSpaceIndexFetched) {
     // console.log('reset spaces')

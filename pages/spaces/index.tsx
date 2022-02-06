@@ -45,7 +45,7 @@ const Spaces: NextPage = () => {
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
-            {isSignedUp && <SpacesHeader />}
+            <SpacesHeader />
             <div className={`${style.feedItemInteractionBar}`}>
               {isSignedUp && (
                 <>

@@ -29,7 +29,7 @@ const Recover: NextPage = () => {
         if (result.success) {
           setIsSignedUp(true)
           setUserName(result.username)
-          setUserId(result.userId)
+          setUserId(parseInt(result.userId, 10))
           setCurrentState('Hurrraaay!!')
           setCurrentExtra('You will be redirected soon..')
           setIsLoading(false)

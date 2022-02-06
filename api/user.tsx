@@ -23,7 +23,7 @@ export const executeContractFunction = async (web3: any, function_call: any) => 
 }
 
 export const getLatestAccountIndex = async (contract: any): Promise<number> => {
-  const index = await contract.accounts.methods.get_amount_of_accounts().call().then(parseInt)
+  const index = await contract.accounts.methods.amount_of_accounts().call().then(parseInt)
   return index
 }
 

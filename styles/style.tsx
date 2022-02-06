@@ -143,6 +143,10 @@ export const style = {
   postFormFooter: 'flex justify-between mt-5',
   postFormFooterLogoWrapper: 'mr-5 items-center flex',
 
+  postNotFound: 'text-center px-5 py-8',
+  postNotFoundHeadline: 'text-3xl bold mb-3',
+  postNotFoundSubline: '',
+
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',
@@ -164,8 +168,9 @@ export const style = {
   feedItemInteractionBar: 'flex gap-x-3',
   feedItemInteractionIcon: 'cursor-pointer hover:text-highlight-500 text-highlight-40',
   feedItemInteractionIconDark: 'dark:hover:text-highlight-400 dark:text-darkmode-1700',
+  feedItemReset: 'children:children:rounded-none children:rounded-none children:shadow-none children:children:shadow-none',
 
-  feedReplyItemWrapper: 'children:children:rounded-none children:rounded-none empty:hidden feed-reply-item-wrapper pl-7',
+  feedReplyItemWrapper: 'empty:hidden feed-reply-item-wrapper pl-7',
   feedReplyItemBar: 'empty:hidden flex items-center pt-3',
   feedReplyItemButton: 'cursor-pointer text-highlight-500 text-xs',
   feedReplyItemText: 'text-xs cursor-pointer',

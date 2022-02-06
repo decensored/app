@@ -2,18 +2,8 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "OwnershipTransferred",
     "type": "event"
@@ -21,24 +11,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint64",
-        "name": "id",
-        "type": "uint64"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_address",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "username",
-        "type": "string"
-      }
+      { "indexed": true, "internalType": "uint64", "name": "id", "type": "uint64" },
+      { "indexed": true, "internalType": "address", "name": "_address", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "username", "type": "string" }
     ],
     "name": "SignUp",
     "type": "event"
@@ -57,10 +32,15 @@
   },
   {
     "inputs": [],
+    "name": "amount_of_accounts",
+    "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "contracts",
-    "outputs": [
-      { "internalType": "contract Contracts", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Contracts", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -79,14 +59,19 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "contracts_address",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "contracts_address", "type": "address" }],
     "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "from_contract_address", "type": "address" },
+      { "internalType": "uint64", "name": "id_from", "type": "uint64" },
+      { "internalType": "uint64", "name": "id_to", "type": "uint64" }
+    ],
+    "name": "migrate",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -98,26 +83,16 @@
     "stateMutability": "view",
     "type": "function"
   },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "string", "name": "profile_picture", "type": "string" }
-    ],
+    "inputs": [{ "internalType": "string", "name": "profile_picture", "type": "string" }],
     "name": "set_profile_picture",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "string", "name": "public_key", "type": "string" }
-    ],
+    "inputs": [{ "internalType": "string", "name": "public_key", "type": "string" }],
     "name": "set_public_key",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -134,9 +109,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "newOwner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",

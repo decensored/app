@@ -43,12 +43,13 @@ export const runPoller = (func: (state: any) => Promise<void>, interval: number)
       return
     }
 
-    // if (typeof state.userId === 'string') {
-    //   // console.log('convert userId to number')
-    //   state.setUserId(parseInt(state.userId, 10))
-    //   setTimeout(poll, 100) // quick retry
-    //   return
-    // }
+    // console.log('userId', typeof state.userId, state.userId)
+    if (typeof state.userId === 'string') {
+      // console.log('convert userId to number')
+      state.setUserId(parseInt(state.userId, 10))
+      setTimeout(runPollerInner, 100) // quick retry
+      return
+    }
 
     // console.log('runPollerInner', func.name)
     await func(state)

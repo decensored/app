@@ -2,18 +2,8 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "OwnershipTransferred",
     "type": "event"
@@ -21,19 +11,11 @@
   {
     "inputs": [],
     "name": "accounts",
-    "outputs": [
-      { "internalType": "contract Accounts", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Accounts", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
-  {
-    "inputs": [],
-    "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
+  { "inputs": [], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [],
     "name": "owner",
@@ -44,77 +26,56 @@
   {
     "inputs": [],
     "name": "posts",
-    "outputs": [
-      { "internalType": "contract Posts", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Posts", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "rate_control",
-    "outputs": [
-      { "internalType": "contract RateControl", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract RateControl", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "address_accounts",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "address_accounts", "type": "address" }],
     "name": "set_accounts",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "address_posts", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "address_posts", "type": "address" }],
     "name": "set_posts",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "address_rate_control",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "address_rate_control", "type": "address" }],
     "name": "set_rate_control",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "address_spaces", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "address_spaces", "type": "address" }],
     "name": "set_spaces",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "address_tokens", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "address_tokens", "type": "address" }],
     "name": "set_tokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "address_upvotes", "type": "address" }],
+    "name": "set_upvotes",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -122,28 +83,29 @@
   {
     "inputs": [],
     "name": "spaces",
-    "outputs": [
-      { "internalType": "contract Spaces", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Spaces", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "tokens",
-    "outputs": [
-      { "internalType": "contract Tokens", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Tokens", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "newOwner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "upvotes",
+    "outputs": [{ "internalType": "contract Upvotes", "name": "", "type": "address" }],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

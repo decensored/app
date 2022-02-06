@@ -83,6 +83,17 @@
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "address", "name": "from_contract_address", "type": "address" },
+      { "internalType": "uint64", "name": "id_from", "type": "uint64" },
+      { "internalType": "uint64", "name": "id_to", "type": "uint64" }
+    ],
+    "name": "migrate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "owner",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],

@@ -46,7 +46,7 @@ export const getSpaceByName = async (contract: any, name: string) => {
 export const getLatestSpaceIndex = async (contract: any) => {
   log('getLatestSpaceIndex (deprecated)')
 
-  const index = await contract.spaces.methods.get_latest_space_index().call().then(parseInt)
+  const index = await contract.spaces.methods.get_amount_of_spaces().call().then(parseInt)
   return index
 }
 

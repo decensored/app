@@ -1,22 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 
 const SpacesHeader: FunctionComponent = () => {
-  const [latestSpaceIndexFetched, latestPostIndexFetched, posts] = useStore((state) => [
+  const [latestSpaceIndexFetched, latestPostIndexFetched, latestAccountIndexFetched] = useStore((state) => [
     state.latestSpaceIndexFetched,
     state.latestPostIndexFetched,
-    state.posts, // this should later use state.latestAccountIndexFetched once we start polling accounts
+    state.latestAccountIndexFetched,
   ])
-
-  const [uniqueUsers, setUniqueUsers] = useState([])
-
-  useEffect(() => {
-    // note: this seems to work but feels a bit overcomplicated
-    setUniqueUsers([
-      ...new Map(posts.map((post) => [post.username, { userId: post.author, username: post.username }])).values(),
-    ] as [])
-  }, [posts])
 
   return (
     <div className={`${style.spaceHeaderWrapper} header-image variant-spaces`}>
@@ -36,8 +27,8 @@ const SpacesHeader: FunctionComponent = () => {
               <span className={style.spaceHeaderDataText}>Posts</span>
             </div>
             <div className={style.spaceHeaderDataCol}>
-              <span className={style.spaceHeaderDataTitle}>{uniqueUsers.length}</span>
-              <span className={style.spaceHeaderDataText}>User</span>
+              <span className={style.spaceHeaderDataTitle}>{latestAccountIndexFetched}</span>
+              <span className={style.spaceHeaderDataText}>Users</span>
             </div>
           </div>
         </div>

@@ -39,7 +39,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
     if (result.success) {
       setIsSignedUp(true)
       setUserName(result.username)
-      setUserId(result.userId)
+      setUserId(parseInt(result.userId, 10))
       setIsLoading(false)
       onClose()
     } else {
