@@ -2,12 +2,10 @@ import create, { GetState, SetState } from 'zustand'
 import { persist, StoreApiWithPersist } from 'zustand/middleware'
 import type { LoadingProgressType, NodeInfoType, PostType, SpaceType } from 'lib/types'
 
-export const STORE_VERSION = 11
+export const STORE_VERSION = 13
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
-
-export const DEFAULT_CONTRACTSADDRESS = '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
-// main:  0x3421b655B1Be5Cd7F2466c4A9139a416b2148fe0
+export const DEFAULT_CONTRACTSADDRESS = '0xEC157C2eDea881192931E28fd4E7384496bf3eB7'
 
 export type StateType = {
   storeVersion: number
