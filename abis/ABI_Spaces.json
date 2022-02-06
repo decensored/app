@@ -10,16 +10,6 @@
   },
   {
     "inputs": [
-      { "internalType": "uint64", "name": "a", "type": "uint64" },
-      { "internalType": "uint64", "name": "b", "type": "uint64" }
-    ],
-    "name": "_encode_two_uint64_as_uint128",
-    "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [
       { "internalType": "uint64", "name": "space", "type": "uint64" },
       { "internalType": "uint64", "name": "account", "type": "uint64" }
     ],
@@ -47,7 +37,7 @@
   },
   {
     "inputs": [],
-    "name": "get_latest_space_index",
+    "name": "get_amount_of_spaces",
     "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
     "stateMutability": "view",
     "type": "function"
@@ -74,6 +64,17 @@
     "name": "is_blacklisted",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "from_contract_address", "type": "address" },
+      { "internalType": "uint64", "name": "id_from", "type": "uint64" },
+      { "internalType": "uint64", "name": "id_to", "type": "uint64" }
+    ],
+    "name": "migrate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
