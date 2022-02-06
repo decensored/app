@@ -43,6 +43,7 @@ export const runPoller = (func: (state: any) => Promise<void>, interval: number)
       return
     }
 
+    console.log('userId', typeof state.userId, state.userId)
     // if (typeof state.userId === 'string') {
     //   // console.log('convert userId to number')
     //   state.setUserId(parseInt(state.userId, 10))

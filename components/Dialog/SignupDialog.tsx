@@ -48,7 +48,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
     if (result.success === true) {
       setIsSignedUp(true)
       setUserName(data.username)
-      setUserId(result.userId)
+      setUserId(parseInt(result.userId, 10))
       setIsLoading(false)
       setSignUpDone(true)
       /*     onClose() */
