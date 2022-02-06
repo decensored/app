@@ -13,9 +13,10 @@ interface FormProps {
   motherPost?: number
   isTransparent?: boolean
   onSpread?: () => void
+  autoFocus?: boolean
 }
 
-const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost, isTransparent = false, onSpread }) => {
+const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost, isTransparent = false, onSpread, autoFocus }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const { userName, contract } = useStore((state) => ({
     userName: state.userName,
@@ -57,7 +58,7 @@ const Form: FunctionComponent<FormProps> = ({ spaceId, motherPost, isTransparent
       <form id={`postForm-${motherPost}`} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
-            autoFocus
+            autoFocus={autoFocus}
             minRows={2}
             maxLength={280}
             placeholder={`${userName}, spread your opinion!`}

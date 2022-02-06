@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  faArrowLeft,
   faBookmark,
   faCheck,
   faCircle,
@@ -15,8 +16,10 @@ import {
   faMoon,
   faPlus,
   faRedoAlt,
+  faRocket,
   faSatellite,
   faSatelliteDish,
+  faSearch,
   faShare,
   faShieldAlt,
   faSignOutAlt,
@@ -38,6 +41,7 @@ interface SVGIconProps {
 }
 
 const iconLookup: { [unit: string]: IconProp } = {
+  faArrowLeft: faArrowLeft,
   faBookmark: faBookmark,
   faCheck: faCheck,
   faCircle: faCircle,
@@ -52,8 +56,10 @@ const iconLookup: { [unit: string]: IconProp } = {
   faMoon: faMoon,
   faPlus: faPlus,
   faRedoAlt: faRedoAlt,
+  faRocket: faRocket,
   faSatellite: faSatellite,
   faSatelliteDish: faSatelliteDish,
+  faSearch: faSearch,
   faShare: faShare,
   faShieldAlt: faShieldAlt,
   faSignOutAlt: faSignOutAlt,

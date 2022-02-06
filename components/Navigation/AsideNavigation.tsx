@@ -8,32 +8,37 @@ import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import SocialIcons from 'components/Navigation/SocialIcons'
-// import PostDialog from 'components/Dialog/PostDialog' // Hidden Post Buttton
+import { getTrendingHashtags } from 'lib/storeUtils'
+import Tag from 'components/Tags/Tag'
+import AsideButtonCreatePost from './AsideButtonCreatePost'
 
 const AsideNavigation: FunctionComponent = () => {
-  // const [openPostDialog, setOpenPostDialog] = useState(false) // Hidden Post Buttton
+  const [isSignedUp, userName, posts] = useStore((state) => [state.isSignedUp, state.userName, state.posts])
+  const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
+
   const router = useRouter()
   const { pathname } = router
 
-  let tabIndex = -1
-  if (pathname === '/') tabIndex = 0
-  else if (pathname.startsWith('/spaces')) tabIndex = 1
-  else if (pathname.startsWith('/space/')) tabIndex = 2
-  else if (pathname.startsWith('/bookmarks/')) tabIndex = 3
-  else if (pathname.startsWith('/likes/')) tabIndex = 4
-  else if (pathname.startsWith('/user/')) tabIndex = 5
+  const isRoot = pathname === '/'
+  const isSpaces = pathname.startsWith('/spaces')
+  const isBookmarks = pathname.startsWith('/bookmarks/')
+  const isLikes = pathname.startsWith('/likes/')
+  const isUser = pathname.startsWith('/user/')
 
-  const [isSignedUp, userName] = useStore((state) => [state.isSignedUp, state.userName])
+  const toggleDarkMode = (): void => setIsDarkmode(!isDarkmode)
 
-  const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
+  // Get trending hashtags
+  const hashtags = getTrendingHashtags(posts, 12, 1)
 
-  const toggleDarkMode = (): void => {
-    if (isDarkmode) {
-      setIsDarkmode(false)
-    } else {
-      setIsDarkmode(true)
-    }
-  }
+  const trendingTags = hashtags.map((tag: any) => (
+    <Link href={`/tag/${tag.tag}`} passHref>
+      <a href='passed'>
+        <Tag clickable>
+          {tag.tag} [{tag.count}]
+        </Tag>
+      </a>
+    </Link>
+  ))
 
   return (
     <div className={style.navigationAsideWrapper}>
@@ -42,59 +47,38 @@ const AsideNavigation: FunctionComponent = () => {
           <div className={style.navigationAsideButtonContainer}>
             <Link href='/' passHref>
               <span>
-                <AsideNavigationItem isActive={tabIndex === 0} icon='faSatelliteDish' name='Feed' />
+                <AsideNavigationItem isActive={isRoot} icon='faSatelliteDish' name='Feed' />
               </span>
             </Link>
             <Link href='/spaces' passHref>
               <span>
-                <AsideNavigationItem isActive={tabIndex === 1} icon='faSatellite' name='Spaces' />
+                <AsideNavigationItem isActive={isSpaces} icon='faSatellite' name='Spaces' />
               </span>
             </Link>
             {isSignedUp && (
               <>
                 <Link href={`/user/${userName}`} passHref>
                   <span>
-                    <AsideNavigationItem isActive={tabIndex === 5} icon='faUserAstronaut' name='My Posts' />
+                    <AsideNavigationItem isActive={isUser} icon='faUserAstronaut' name='My Posts' />
                   </span>
                 </Link>
-
                 <Tooltip classNames='disabled-link' text='Good things take time'>
                   <Link href='/' passHref>
                     <span>
-                      <AsideNavigationItem isActive={tabIndex === 3} icon='faBookmark' name='Bookmarks' />
+                      <AsideNavigationItem isActive={isBookmarks} icon='faBookmark' name='Bookmarks' />
                     </span>
                   </Link>
                 </Tooltip>
-
                 <Tooltip classNames='disabled-link' text='Good things take time'>
                   <Link href='/' passHref>
                     <span>
-                      <AsideNavigationItem isActive={tabIndex === 4} icon='faHeart' name='Likes' />
+                      <AsideNavigationItem isActive={isLikes} icon='faHeart' name='Likes' />
                     </span>
                   </Link>
                 </Tooltip>
-
-                {/* Hidden Post Buttton */}
-                {/* <div className={style.navigationAsideButtonSpacer} />
-                <button
-                  type='submit'
-                  className={`
-                   ${style.button}
-                   ${style.buttonDecensored}
-                   ${style.buttonNoXsPadding}
-                  `}
-                  onClick={() => setOpenPostDialog(true)}
-                >
-                  <SVGIcon icon='faPlus' isFixed/>
-                  <span className='whitespace-nowrap hidden sm:inline sm:pl-1'>
-                    New Post
-                  </span>
-                </button>
-
-                <PostDialog
-                  showDialog={openPostDialog}
-                  onClose={() => setOpenPostDialog(false)}
-                /> */}
+                <span className='pt-5'>Trending</span>
+                {trendingTags}
+                <AsideButtonCreatePost />
               </>
             )}
           </div>

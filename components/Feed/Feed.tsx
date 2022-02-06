@@ -6,8 +6,9 @@ import { style } from 'styles/style'
 import {
   arePostsOrSpacesLoading,
   dequeuePostsAndSpaces,
-  getPostsWithoutMother,
+  getNumberOfRepliesForPostRecursive,
   getRepliesForPost,
+  getRootLevelPosts,
 } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
 
@@ -19,8 +20,8 @@ const Feed: FunctionComponent = () => {
     spacesLoaded: state.spacesLoaded,
   }))
 
-  const [postsWithoutMother, setPostsWithoutMother] = useState([] as PostType[])
-  useEffect(() => setPostsWithoutMother(getPostsWithoutMother(posts)), [posts])
+  const [rootLevelPosts, setRootLevelPosts] = useState([] as PostType[])
+  useEffect(() => setRootLevelPosts(getRootLevelPosts(posts)), [posts])
 
   const virtuoso = useRef<VirtuosoHandle>(null)
 
@@ -46,8 +47,8 @@ const Feed: FunctionComponent = () => {
 
       <div id='posts' className={`${style.postsWrapper} ${style.postsWrapperDark}`}>
         <Virtuoso
-          data={postsWithoutMother}
-          totalCount={postsWithoutMother.length}
+          data={rootLevelPosts}
+          totalCount={rootLevelPosts.length}
           ref={virtuoso}
           className={`
               ${style.virtuosoWrapper}
@@ -59,9 +60,10 @@ const Feed: FunctionComponent = () => {
                 key={`post-${post.id}`}
                 moderator={false}
                 replies={getRepliesForPost(posts, post.id)}
+                nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
                 type='feed'
                 parent
-                {...post}
+                post={post}
               />
             </div>
           )}

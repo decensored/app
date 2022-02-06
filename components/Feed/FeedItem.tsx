@@ -1,55 +1,81 @@
 import React, { FunctionComponent } from 'react'
 import shallow from 'zustand/shallow'
 import Link from 'next/link'
+import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
-import TimeAgo from 'react-timeago'
+import { isBrowser } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
+import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
-import { getRepliesForPost } from 'lib/storeUtils'
+import { getNumberOfRepliesForPostRecursive, getRepliesForPost } from 'lib/storeUtils'
+import Tag from 'components/Tags/Tag'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+import ReactTimeAgo from 'react-time-ago'
+import { Linkify, LinkifyCore } from 'react-easy-linkify'
+
+LinkifyCore.PluginManager.enableHashtag()
+LinkifyCore.PluginManager.enableMention()
+
+TimeAgo.addDefaultLocale(en)
 
 interface FeedItemProps {
-  id: number
-  author: number
-  username: string
-  message: string
-  timestamp: number
-  space: number
-  spaceName: string
+  post: PostType
   moderator?: boolean
   blacklist?: any
   authorIsBlacklisted?: boolean
-  replies?: any
+  replies?: any // or PostType[]
+  nRepliesRecursive?: { total: number; read: number }
   type: string
   parent?: boolean
   depth?: number
 }
 
 const FeedItem: FunctionComponent<FeedItemProps> = ({
-  id,
-  author,
-  username,
-  message,
-  timestamp,
-  space,
-  spaceName,
+  post,
   moderator,
   blacklist,
   authorIsBlacklisted,
   replies,
+  nRepliesRecursive,
   type,
   parent,
   depth = 0,
 }) => {
+  const {
+    id,
+    author,
+    username,
+    message,
+    timestamp,
+    space,
+    spaceName,
+    // mother_post,
+    deleted,
+    read,
+  } = post
+
   const [renderDialog, setRenderDialog] = React.useState(false)
   const [openReplyDialog, setOpenReplyDialog] = React.useState(false)
   const [openReplies, setOpenReplies] = React.useState(depth <= 0)
   const [isLoading, setIsLoading] = React.useState(false)
-  const [contract, userId, posts] = useStore((state) => [state.contract, state.userId, state.posts], shallow)
+  const [contract, userId, posts, setPosts] = useStore(
+    (state) => [state.contract, state.userId, state.posts, state.setPosts],
+    shallow
+  )
   const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
 
+  if (!read && posts.length && type !== 'replyToPost') {
+    /* eslint no-param-reassign: "off" */
+    post.read = true
+    setPosts(posts)
+    // console.log(`post ${id} by ${username} (${message}) is now read`)
+  }
+
+  // Blacklist
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
     const result = await addUserToBlacklist(contract, space, author)
@@ -72,37 +98,38 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     }
   }
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
+  const isAuthor = author === userId
+  const replyCount = nRepliesRecursive?.total || replies?.length
+  const replyCountRead = nRepliesRecursive?.read || 0
+  const unReadReplies = replyCount - replyCountRead
 
   // Create list of Replies and check for blocked users
   let replyItems = []
   if (replies) {
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
-      .map((post: any) => {
-        // Get Replies for Post
-        const repliesForPost = getRepliesForPost(posts, post.id)
-
-        // check again if author of this post is blacklisted
-        let replyAuthorIsBlacklisted = false
+      .map((reply: any) => {
+        let replyAuthorIsBlacklisted = false // check again if author of this reply is blacklisted
         if (blacklist) {
-          replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === post.author).length > 0
+          replyAuthorIsBlacklisted = blacklist.filter((user: any) => user.userId === reply.author).length > 0
         }
         return (
           <FeedItem
-            key={`post-${post.id}`}
+            key={`reply-${reply.id}`}
             type='reply'
-            replies={repliesForPost}
+            replies={getRepliesForPost(posts, reply.id)}
+            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, reply.id)}
             moderator={false}
             parent={false}
             depth={depth + 1}
             authorIsBlacklisted={replyAuthorIsBlacklisted}
-            {...post}
+            post={reply}
           />
         )
       })
   }
-  const repliesExist = replyItems.length > 0
 
+  // or can we now simply use 'post'
   const thisPost = {
     id,
     author,
@@ -111,43 +138,99 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     timestamp,
     space,
     spaceName,
+    deleted,
   }
+
+  // Post Deletion
+  const deletePost = async (): Promise<void> => {
+    const result = await deletePostOfUser(contract, id)
+    if (result.success) {
+      const updatedPosts = posts.map((deletedPost) =>
+        deletedPost.id === id ? { ...deletedPost, message: '', deleted: true } : deletedPost
+      )
+      setPosts(updatedPosts)
+      toast.success(`Your post has been deleted!`, {
+        autoClose: 3000,
+      })
+    } else {
+      toast.error(`${result.error}`, {
+        autoClose: 3000,
+      })
+    }
+  }
+  const checkedMessage = /* deleted */ !message ? 'The user has removed this post!' : message
 
   return (
     <div
       className={`
         ${style.feedItemWrapper}
         ${style.feedItemWrapperDark}
-        ${parent && style.feedItemParent}
-        ${!parent && style.feedItemChild}
+        ${parent ? `${style.feedItemParent}` : `${style.feedItemChild}`}
       `}
     >
-      <div className={`${style.feedItemInnerTop} ${type === 'replyToPost' && 'pr-0'}`}>
+      <div
+        className={`
+        ${style.feedItemInnerTop}
+        ${type === 'replyToPost' ? 'pr-0' : ''}
+      `}
+      >
         <div className={style.feedItemMetaWrapper}>
-          {type === 'replyToPost' && (
-            <div>
-              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>{username}</span>
-              <span className='mx-2'>in</span>
-              <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>
-                {thisPost.spaceName}
-              </span>
+          <div className={style.feedItemMetaCol1}>
+            <Link href={`/user/${username}`} passHref>
+              <a href='passed' className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+                {username}
+              </a>
+            </Link>
+            {parent && type === 'feed' && (
+              <>
+                <span>in</span>
+                <Link href={`/space/${thisPost.spaceName}`} passHref>
+                  <a href='passed'>
+                    <Tag clickable>{thisPost.spaceName}</Tag>
+                  </a>
+                </Link>
+              </>
+            )}
+            {authorIsBlacklisted && <span className='text-xs uppercase text-red-500'>blocked</span>}
+          </div>
+
+          <div className={style.feedItemMetaCol2}>
+            <div className={style.feedItemMetaTimestamp}>
+              <ReactTimeAgo
+                date={new Date(timestamp * 1000 - 60000)}
+                locale='en-US'
+                isBrowser
+                timeStyle={isBrowser ? 'round' : 'twitter'}
+              />
             </div>
-          )}
-          {type !== 'replyToPost' && (
-            <div className='flex'>
-              <Link href={`/user/${username}`} passHref>
-                <a href='dummy-href' className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
-                  {username}
-                </a>
-              </Link>
-              {authorIsBlacklisted && <span className='pl-2 pt-1 text-xs text-red-500'>BLOCKED</span>}
-            </div>
-          )}
-          <div className={style.feedItemMetaTimestamp}>
-            <TimeAgo date={new Date(timestamp * 1000)} />
           </div>
         </div>
-        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{message}</div>
+
+        <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>
+          <Linkify
+            options={{
+              formatHref: {
+                hashtag: (href) => `/tag/${href.substring(1)}`,
+                mention: (href) => `/user/${href.substring(1)}`,
+              },
+              linkWrapper: {
+                hashtag: (props) => (
+                  <span className={`${style.Linkify} ${style.LinkifyHashtag} ${style.LinkifyHashtagDark}`}>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
+                mention: (props) => (
+                  <span className={`${style.Linkify} ${style.LinkifyMention} ${style.LinkifyMentionDark}`}>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
+              },
+            }}
+          >
+            {checkedMessage}
+          </Linkify>
+        </div>
+
         <div className={style.feedReplyItemBar}>
           {type !== 'replyToPost' && isSignedUp && (
             <>
@@ -166,8 +249,10 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               )}
             </>
           )}
-          {repliesExist && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
-          {repliesExist && (
+
+          {replyCount > 0 && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
+
+          {replyCount > 0 && (
             <>
               {!openReplies && (
                 <button
@@ -177,9 +262,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1 ? `Show Reply` : `Show ${replies.length} Replies`}
+                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}{' '}
+                  {unReadReplies > 0 && `(${unReadReplies} new)`}
                 </button>
               )}
+
               {openReplies && (
                 <button
                   type='button'
@@ -188,11 +275,28 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   }}
                   className={style.feedReplyItemText}
                 >
-                  {replies.length === 1 ? `Hide Reply` : `Hide Replies`}
+                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}{' '}
+                  {unReadReplies > 0 && `(${unReadReplies} new)`}
                 </button>
               )}
             </>
           )}
+
+          {isAuthor && !deleted && (
+            <>
+              <span className={style.feedReplyItemSpacer}>|</span>
+              <button
+                type='button'
+                onClick={() => {
+                  deletePost()
+                }}
+                className={style.feedReplyItemText}
+              >
+                Delete Post
+              </button>
+            </>
+          )}
+
           {moderator && (
             <div className='group ml-3 flex'>
               {showBlackListLabel && (
@@ -221,20 +325,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
         </div>
       </div>
-      {openReplies && <div className={style.feedReplyItemOffset}>{replyItems}</div>}
-      {parent && (
-        <div className={style.feedItemInnerBottom}>
-          <div className={style.feedItemInnerBottomCol}>
-            {type === 'feed' && (
-              <Link href={`/space/${spaceName}`} passHref>
-                <a href='dummy-href' className={`${style.tag} ${style.tagClickable} ${style.tagClickableDark}`}>
-                  #{spaceName}
-                </a>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+      {openReplies && <div className={`${style.feedReplyItemWrapper} ${style.feedItemReset}`}>{replyItems}</div>}
     </div>
   )
 }

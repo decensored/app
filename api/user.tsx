@@ -22,6 +22,11 @@ export const executeContractFunction = async (web3: any, function_call: any) => 
   return web3.eth.sendSignedTransaction(signed.rawTransaction)
 }
 
+export const getLatestAccountIndex = async (contract: any): Promise<number> => {
+  const index = await contract.accounts.methods.amount_of_accounts().call().then(parseInt)
+  return index
+}
+
 export const signUpUser = async (contract: any, username: string, token: string) => {
   log(`signUpUser ${username} with token ${token}`)
 

@@ -13,11 +13,13 @@ interface SettingsDialogProps {
 }
 
 const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, onClose }) => {
-  const { contract, nodeInfo, setNodeInfo, cacheFlush } = useStore((state) => ({
+  const { contract, nodeInfo, defaultNodeInfo, setNodeInfo, cacheFlush, setDefaultNodeInfo } = useStore((state) => ({
     contract: state.contract,
     nodeInfo: state.nodeInfo,
+    defaultNodeInfo: state.defaultNodeInfo,
     setNodeInfo: state.setNodeInfo,
     cacheFlush: state.cacheFlush,
+    setDefaultNodeInfo: state.setDefaultNodeInfo,
   }))
 
   // HANDLE FORM SUBMIT
@@ -48,24 +50,38 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
       header='Node Settings'
       body={
         <form id='settingsForm' onSubmit={handleSubmit(onSubmit)}>
-          <div className='grid grid-cols-3 gap-x-4 gap-y-8'>
-            <div className='col-span-3'>
-              <span
-                className={`
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                `}
-              >
-                EVM-Node
+          <div className={`${style.alert} ${style.alertDark} mb-5`}>
+            {defaultNodeInfo && (
+              <span>Decensored runs on an IOTA node. If you want to use your own node, that&apos;s no problem. </span>
+            )}
+            <button
+              onClick={() => setDefaultNodeInfo(!defaultNodeInfo)}
+              type='button'
+              className={style.buttonInlineLink}
+            >
+              <span className={style.link}>
+                {defaultNodeInfo ? 'Logout and activate custom node settings' : 'Logout and switch to default node'}.
               </span>
+            </button>
+          </div>
+          <div className={`${defaultNodeInfo ? 'pointer-events-none opacity-20' : ''}`}>
+            <div>
               <div className={style.inputWrapper}>
+                <span
+                  className={`
+                    ${style.inputLabel}
+                    ${style.inputLabelDark}
+                  `}
+                >
+                  EVM-Node
+                </span>
                 <input
                   className={`
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDark}
-                    ${style.inputFocus}
-                  `}
+                ${style.input}
+                ${style.inputDefault}
+                ${style.inputDefaultDark}
+                ${style.inputFocus}
+              `}
                   type='text'
                   defaultValue={nodeInfo.evmNode}
                   {...register('evmNode', { required: true })}
@@ -77,6 +93,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
                     </span>
                   </div>
                 )}
+
                 {!nodeIsUpAndRunning(contract) && (
                   <div className={`${style.formValidation} ${style.formValidationError}`}>
                     <SVGIcon
@@ -89,28 +106,27 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
                   </div>
                 )}
               </div>
-            </div>
-            <div className='col-span-3'>
-              <span
-                className={`
-                  ${style.inputLabel}
-                  ${style.inputLabelDark}
-                `}
-              >
-                Contract Address
-              </span>
+
               <div className={style.inputWrapper}>
+                <span
+                  className={`
+                ${style.inputLabel}
+                ${style.inputLabelDark}
+              `}
+                >
+                  Contract Address
+                </span>
                 <TextareaAutosize
                   minRows={2}
                   className={`
-                    ${style.form}
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDark}
-                    ${style.inputFocus}
-                    ${style.inputPlaceholder}
-                    ${style.inputPlaceholderDark}
-                  `}
+                ${style.form}
+                ${style.input}
+                ${style.inputDefault}
+                ${style.inputDefaultDark}
+                ${style.inputFocus}
+                ${style.inputPlaceholder}
+                ${style.inputPlaceholderDark}
+              `}
                   {...register('contractAddress', { required: true })}
                 >
                   {nodeInfo.contractsAddress}
@@ -135,13 +151,22 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
             ${style.button}
             ${style.buttonTransparent}
             ${style.buttonTransparentDark}
-            basis-full
+            ${style.buttonFull}
           `}
             onClick={() => onClose()}
           >
             Cancel
           </button>
-          <button type='submit' form='settingsForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
+
+          <button
+            type='submit'
+            form='settingsForm'
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
+          >
             Confirm
           </button>
         </>

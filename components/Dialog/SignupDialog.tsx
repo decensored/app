@@ -48,12 +48,12 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
     if (result.success === true) {
       setIsSignedUp(true)
       setUserName(data.username)
-      setUserId(result.userId)
+      setUserId(parseInt(result.userId, 10))
       setIsLoading(false)
       setSignUpDone(true)
       /*     onClose() */
     } else {
-      setError('username', { type: 'manual', message: `${result.error}` }, { shouldFocus: true })
+      setError('token', { type: 'manual', message: `Seems like this token is invalid!` }, { shouldFocus: true })
       setIsLoading(false)
       //  throw new Error(JSON.stringify(result))
     }
@@ -70,15 +70,10 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
             <form id='registerForm' onSubmit={handleSubmit(onSubmit)}>
               <div className={style.inputWrapper}>
                 <div className={`${style.alert} ${style.alertDark} mb-5`}>
-                  <b className='font-bold'>No invite token?</b> Reach out to us on{' '}
-                  <a
-                    className='underline decoration-2 underline-offset-2	'
-                    href='https://t.co/pxUEdb5sHp'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
+                  <b className='font-bold'>No invite token?</b> Reach out to us on
+                  <a className={`${style.link} mx-1`} href='https://t.co/pxUEdb5sHp' rel='noreferrer' target='_blank'>
                     Discord
-                  </a>{' '}
+                  </a>
                   to get one!
                 </div>
                 <span
@@ -101,16 +96,18 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                   defaultValue={userName}
                   {...register('username', {
                     required: true,
-                    pattern: /^[a-z1-9]+$/i,
-                    min: 4,
-                    max: 16,
+                    pattern: /^[a-zA-Z0-9]+$/i,
+                    minLength: 4,
+                    maxLength: 15,
                   })}
                 />
                 {errors.username && (
-                  <div className={`${style.formValidation} ${style.formValidationError}`}>
+                  <div className={`${style.formValidation} ${style.formValidationError} mb-10`}>
                     <span className={`${style.formValidationText} ${style.formValidationTextError}`}>
                       {errors.username?.type === 'required' && 'Choose your username!'}
-                      {errors.username.message}
+                      {errors.username?.type === 'pattern' && 'Use only alphabetic chars and numbers!'}
+                      {(errors.username?.type === 'minLength' || errors.username?.type === 'maxLength') &&
+                        'Username must be between 4-15 chars!'}
                     </span>
                   </div>
                 )}
@@ -118,7 +115,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                   className={`
                     ${style.inputLabel}
                     ${style.inputLabelDark}
-                    mt-5
+                    ${errors.username ? `${style.inputLabelErrorMarginTop}` : `${style.inputLabelMarginTop}`}
                   `}
                 >
                   Invite Token
@@ -194,7 +191,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
             onClick={() => onClose()}
           >
@@ -205,7 +202,11 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
             <button
               type='submit'
               form='registerForm'
-              className={`${style.button} ${style.buttonDecensored} basis-full`}
+              className={`
+                ${style.button}
+                ${style.buttonDecensored}
+                ${style.buttonFull}
+              `}
             >
               <span className='whitespace-nowrap'>
                 Sign-up {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}

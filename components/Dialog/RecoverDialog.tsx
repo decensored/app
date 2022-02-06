@@ -39,7 +39,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
     if (result.success) {
       setIsSignedUp(true)
       setUserName(result.username)
-      setUserId(result.userId)
+      setUserId(parseInt(result.userId, 10))
       setIsLoading(false)
       onClose()
     } else {
@@ -64,7 +64,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
                 ${style.inputFocus}
               `}
               type='text'
-              placeholder='Enter your key'
+              placeholder='Paste in your key'
               {...register('privateKey', {
                 required: true,
                 minLength: 66,
@@ -91,13 +91,21 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
                 ${style.button}
                 ${style.buttonTransparent}
                 ${style.buttonTransparentDark}
-                basis-full
+                ${style.buttonFull}
               `}
             onClick={() => onClose()}
           >
             Cancel
           </button>
-          <button type='submit' form='RecoverForm' className={`${style.button} ${style.buttonDecensored} basis-full`}>
+          <button
+            type='submit'
+            form='RecoverForm'
+            className={`
+              ${style.button}
+              ${style.buttonDecensored}
+              ${style.buttonFull}
+            `}
+          >
             <span className='whitespace-nowrap'>
               Recover {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>

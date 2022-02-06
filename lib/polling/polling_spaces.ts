@@ -1,34 +1,16 @@
-import { inBrowser } from 'lib/where'
-import useStore from 'lib/store'
-import { dequeuePostsAndSpaces, nodeIsUpAndRunning } from 'lib/storeUtils'
+import { dequeuePostsAndSpaces } from 'lib/storeUtils'
 import type { LoadingProgressType, SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
-import { limitArray } from './pollingUtils'
+import { limitArray, runPoller } from './pollingUtils'
 
 const INTERVAL = 5003 // (first prime over 5000) // 10 * 1000
 
-const poll = async (): Promise<void> => {
-  const state = useStore.getState()
-
-  const contract: any = state?.contract
-  if (!nodeIsUpAndRunning(contract)) {
-    // console.log('polling_spaces: waiting for node to be up and running')
-    setTimeout(poll, 100) // quick retry until contract is available
-    return
-  }
-
+const pollSpaces = async (state: any): Promise<void> => {
   limitArray(state.spaces, state.setSpaces, 'spaces')
   limitArray(state.spacesQueued, state.setSpacesQueued, 'spacesQueued')
 
-  // console.log('polling_spaces: check latest index')
-
-  const latestSpaceIndex = parseInt(await contract.spaces.methods.get_latest_space_index().call(), 10)
-  // console.log(
-  //   'no. spaces',
-  //   state.latestSpaceIndexFetched,
-  //   '->',
-  //   latestSpaceIndex
-  // )
+  const contract: any = state?.contract
+  const latestSpaceIndex = parseInt(await contract.spaces.methods.get_amount_of_spaces().call(), 10)
 
   if (latestSpaceIndex < state.latestSpaceIndexFetched) {
     // console.log('reset spaces')
@@ -77,8 +59,6 @@ const poll = async (): Promise<void> => {
       state.setSpaces(allSpaces)
     }
   }
+} // end of pollSpaces
 
-  setTimeout(poll, INTERVAL)
-} // end of poll()
-
-if (inBrowser) poll() // start your engines
+runPoller(pollSpaces, INTERVAL)

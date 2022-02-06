@@ -37,21 +37,23 @@ const Space: NextPage = () => {
   const showFeedItems = userPosts.map((post) => {
     if (post.mother_post !== 0) return null // early exit
 
-    return <FeedItem key={`post-${post.id}`} type='feed' parent replies={getRepliesForPost(posts, post.id)} {...post} />
+    return (
+      <FeedItem key={`post-${post.id}`} type='feed' parent replies={getRepliesForPost(posts, post.id)} post={post} />
+    )
   })
 
   return (
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
+        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
           <div className={style.feedWrapper}>
             <div className={style.userHeaderWrapper}>
               <div className={style.userHeaderInner}>
-                <div className={style.userHeaderTitle}>{username ? `#${username}` : '#undefined'}</div>
+                <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
               </div>
             </div>
             {showFeedItems}

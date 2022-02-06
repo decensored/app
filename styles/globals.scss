@@ -50,6 +50,10 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 
 // mobile and desktop show/hide helper classes
 .hide-on-mobile {
+  @apply hidden sm:block;
+}
+
+.hide-on-handheld {
   @apply hidden md:block;
 }
 
@@ -64,6 +68,19 @@ div[data-test-id*='virtuoso-item-list'] > div {
   }
   &:last-child {
     @apply mb-20 md:mb-10;
+  }
+}
+
+// input-icon-addon
+.input-icon-addon + input {
+  @apply pl-10;
+}
+
+// custom feed css
+.feed-wrapper,
+.virtuoso-feed-item-wrapper {
+  > .feed-item-wrapper > .feed-reply-item-wrapper {
+    @apply pb-5;
   }
 }
 
@@ -85,20 +102,23 @@ div[data-test-id*='virtuoso-item-list'] > div {
   z-index: 1000;
 }
 
-// show undefined tailwind classes on element
-[class*='undefined'] {
+.header-image {
   position: relative;
+  background-size: cover;
+  background-position-x: right;
+  background-position-y: top;
 
-  &:before {
-    background: rgba(161, 56, 56, 0.726);
-    border-radius: 2px;
-    color: red;
-    content: 'undefined tw class';
-    font-size: 10px;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
+  &.variant-spaces {
+    background-image: url('/header/spaces.svg');
+  }
+  @media (max-width: 640px) {
+    > div {
+      @apply relative z-10;
+    }
+
+    &:before {
+      @apply absolute inset-0 z-0 bg-black opacity-20 empty;
+    }
   }
 }
 
@@ -134,4 +154,29 @@ $headerHeight: 60px;
 .max-h-dialog {
   max-height: calc(100vh - 80px); // --vh fallback
   max-height: calc(var(--vh, 1vh) * 100 - 80px);
+}
+
+// show classNames errors
+[class*='undefined'],
+[class*='false'] {
+  position: relative;
+
+  &:before {
+    background: rgba(161, 56, 56, 0.726);
+    border-radius: 2px;
+    color: red;
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+[class*='undefined']:before {
+  content: 'undefined';
+}
+
+[class*='false']:before {
+  content: 'false';
 }

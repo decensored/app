@@ -2,10 +2,10 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { LoadingProgressType, NodeInfoType, PostType, SpaceType } from 'lib/types'
 
-export const STORE_VERSION = 8
+export const STORE_VERSION = 13
 
 export const DEFAULT_EVMNODE = 'https://hh.addiota.com'
-export const DEFAULT_CONTRACTSADDRESS = '0x3eb8De6C1D7d920fc72f0745475Ecf37a0cF3BF3'
+export const DEFAULT_CONTRACTSADDRESS = '0xEC157C2eDea881192931E28fd4E7384496bf3eB7'
 
 const useStore = create(
   persist(
@@ -16,7 +16,7 @@ const useStore = create(
       isSignedUp: false,
       setIsSignedUp: (isSignedUp: boolean) => set({ isSignedUp }),
 
-      isPolledDataQueued: true,
+      isPolledDataQueued: true, // note: looks like this setting is no longer changing
       setIsPolledDataQueued: (isPolledDataQueued: boolean) => set({ isPolledDataQueued }),
 
       // smart contracts
@@ -29,7 +29,11 @@ const useStore = create(
       spacesLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
       setSpacesLoaded: (spacesLoaded: LoadingProgressType) => set({ spacesLoaded }),
 
-      //
+      // ACCOUNTS
+      latestAccountIndexFetched: 0,
+      setLatestAccountIndexFetched: (latestAccountIndexFetched: number) => set({ latestAccountIndexFetched }),
+
+      // SPACES
       spaces: [] as SpaceType[],
       setSpaces: (spaces: SpaceType[]) => set({ spaces }),
 
@@ -39,7 +43,9 @@ const useStore = create(
       latestSpaceIndexFetched: 0,
       setLatestSpaceIndexFetched: (latestSpaceIndexFetched: number) => set({ latestSpaceIndexFetched }),
 
-      //
+      spacesSortType: 'numberOfPostsInSpace|desc',
+      setSpacesSortType: (spacesSortType: string) => set({ spacesSortType }),
+      // POSTS
       posts: [] as PostType[],
       setPosts: (posts: PostType[]) => set({ posts }),
 
@@ -49,7 +55,7 @@ const useStore = create(
       latestPostIndexFetched: 0,
       setLatestPostIndexFeched: (latestPostIndexFetched: number) => set({ latestPostIndexFetched }),
 
-      //
+      // VARIOUS
       isDarkmode: false,
       setIsDarkmode: (isDarkmode: boolean) => set({ isDarkmode }),
 
@@ -82,6 +88,7 @@ const useStore = create(
           spacesQueued: [],
           latestPostIndexFetched: 0,
           latestSpaceIndexFetched: 0,
+          latestAccountIndexFetched: 0,
         })
       },
     }),
@@ -91,12 +98,18 @@ const useStore = create(
       partialize: (state) => ({
         storeVersion: state.storeVersion,
         isDarkmode: state.isDarkmode,
+
         posts: state.posts,
         postsQueued: state.postsQueued,
         latestPostIndexFetched: state.latestPostIndexFetched,
+
         spaces: state.spaces,
         spacesQueued: state.spacesQueued,
         latestSpaceIndexFetched: state.latestSpaceIndexFetched,
+        spacesSortType: state.spacesSortType,
+
+        latestAccountIndexFetched: state.latestAccountIndexFetched,
+
         userName: state.userName,
         userId: state.userId,
         privateKey: state.privateKey,
