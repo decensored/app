@@ -5,6 +5,7 @@ import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
+import { isBrowser } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
 import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
@@ -195,7 +196,12 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
           <div className={style.feedItemMetaCol2}>
             <div className={style.feedItemMetaTimestamp}>
-              <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' timeStyle='twitter' />
+              <ReactTimeAgo
+                date={new Date(timestamp * 1000 - 60000)}
+                locale='en-US'
+                isBrowser
+                timeStyle={isBrowser ? 'round' : 'twitter'}
+              />
             </div>
           </div>
         </div>
