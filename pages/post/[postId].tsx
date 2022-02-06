@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
 import {
@@ -13,7 +14,6 @@ import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
 import Link from 'next/link'
 import Tag from 'components/Tags/Tag'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
 import Header from '../../components/Header/Header'
 import BottomNavigation from '../../components/Navigation/BottomNavigation'
 
@@ -66,14 +66,12 @@ const PostPage: NextPage = () => {
                 parent
                 post={post}
               />
-              <HelmetProvider>
-                <Helmet>
-                  <title>
-                    Post by {post.username} in {post.spaceName}
-                  </title>
-                  <meta name='description' content={post.message} />
-                </Helmet>
-              </HelmetProvider>
+              <Helmet>
+                <title>
+                  Post by {post.username} in {post.spaceName}
+                </title>
+                <meta name='description' content={post.message} />
+              </Helmet>
             </div>
           ) : (
             <div className={style.feedWrapper}>
