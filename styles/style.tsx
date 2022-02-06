@@ -143,6 +143,10 @@ export const style = {
   postFormFooter: 'flex justify-between mt-5',
   postFormFooterLogoWrapper: 'mr-5 items-center flex',
 
+  postNotFound: 'text-center px-5 py-8',
+  postNotFoundHeadline: 'text-3xl bold mb-3',
+  postNotFoundSubline: '',
+
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
   feedItemParent: 'rounded border-none',
   feedItemChild: 'border-gray-300 border-l',

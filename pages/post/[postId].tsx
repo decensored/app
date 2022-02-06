@@ -44,7 +44,20 @@ const PostPage: NextPage = () => {
               />
             </div>
           ) : (
-            `Post ${postId} not found`
+            <div className={style.feedWrapper}>
+              <div
+                className={`
+              ${style.postNotFound}
+              ${style.feedItemWrapper}
+              ${style.feedItemInner}
+            `}
+              >
+                <div className={style.postNotFoundHeadline}>You found a black hole!</div>
+                <div className={style.postNotFoundSubline}>
+                  The post you want to open doesn&apos;t exist anymore, or maybe it doesn&apos;t exist yet? 🤔
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </div>
