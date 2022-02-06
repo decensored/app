@@ -13,6 +13,7 @@ import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
 import Link from 'next/link'
 import Tag from 'components/Tags/Tag'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import Header from '../../components/Header/Header'
 import BottomNavigation from '../../components/Navigation/BottomNavigation'
 
@@ -33,12 +34,10 @@ const PostPage: NextPage = () => {
   return (
     <>
       <Header />
-
       <div className={style.bodyContainer}>
         <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
           <AsideNavigation />
         </div>
-
         <div className={style.bodyContainerCol2}>
           {post?.id ? (
             <div className={style.feedWrapper}>
@@ -67,6 +66,14 @@ const PostPage: NextPage = () => {
                 parent
                 post={post}
               />
+              <HelmetProvider>
+                <Helmet>
+                  <title>
+                    Post by {post.username} in {post.spaceName}
+                  </title>
+                  <meta name='description' content={post.message} />
+                </Helmet>
+              </HelmetProvider>
             </div>
           ) : (
             <div className={style.feedWrapper}>
@@ -74,6 +81,7 @@ const PostPage: NextPage = () => {
                 className={`
               ${style.postNotFound}
               ${style.feedItemWrapper}
+              ${style.feedItemWrapperDark}
               ${style.feedItemInner}
             `}
               >
@@ -86,7 +94,6 @@ const PostPage: NextPage = () => {
           )}
         </div>
       </div>
-
       <div className='hide-on-desktop'>
         <BottomNavigation />
       </div>

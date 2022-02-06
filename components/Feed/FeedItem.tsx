@@ -5,7 +5,6 @@ import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
-import { BrowserView, MobileView } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
 import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
@@ -196,12 +195,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
 
           <div className={style.feedItemMetaCol2}>
             <div className={style.feedItemMetaTimestamp}>
-              <BrowserView>
-                <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' />
-              </BrowserView>
-              <MobileView>
-                <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' timeStyle='twitter' />
-              </MobileView>
+              <ReactTimeAgo date={new Date(timestamp * 1000 - 60000)} locale='en-US' timeStyle='twitter' />
             </div>
           </div>
         </div>
