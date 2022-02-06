@@ -19,9 +19,9 @@ const ReplyDialog: FunctionComponent<ReplyDialogProbs> = ({ showDialog, onClose,
         body={
           <div>
             <div className='mb-6'>
-              <FeedItem type='replyToPost' parent={false} {...post} />
+              <FeedItem type='replyToPost' parent={false} post={post} />
             </div>
-            <PostForm spaceId={post.space} motherPost={post.id} onSpread={onClose} />
+            <PostForm spaceId={post.space} motherPost={post.id} onSpread={onClose} autoFocus />
           </div>
         }
         width='2xl'

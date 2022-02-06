@@ -2,31 +2,11 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "OwnershipTransferred",
     "type": "event"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint64", "name": "a", "type": "uint64" },
-      { "internalType": "uint64", "name": "b", "type": "uint64" }
-    ],
-    "name": "_encode_two_uint64_as_uint128",
-    "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }],
-    "stateMutability": "pure",
-    "type": "function"
   },
   {
     "inputs": [
@@ -41,14 +21,15 @@
   {
     "inputs": [],
     "name": "contracts",
-    "outputs": [
-      { "internalType": "contract Contracts", "name": "", "type": "address" }
-    ],
+    "outputs": [{ "internalType": "contract Contracts", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "string", "name": "name", "type": "string" }],
+    "inputs": [
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "string", "name": "description", "type": "string" }
+    ],
     "name": "create",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -56,7 +37,7 @@
   },
   {
     "inputs": [],
-    "name": "get_latest_space_index",
+    "name": "get_amount_of_spaces",
     "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
     "stateMutability": "view",
     "type": "function"
@@ -69,13 +50,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "contracts_address",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "contracts_address", "type": "address" }],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -89,6 +64,17 @@
     "name": "is_blacklisted",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "from_contract_address", "type": "address" },
+      { "internalType": "uint64", "name": "id_from", "type": "uint64" },
+      { "internalType": "uint64", "name": "id_to", "type": "uint64" }
+    ],
+    "name": "migrate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -108,13 +94,7 @@
     "stateMutability": "nonpayable",
     "type": "function"
   },
-  {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [
       { "internalType": "uint64", "name": "space_id", "type": "uint64" },
@@ -138,9 +118,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "newOwner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",

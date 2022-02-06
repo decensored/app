@@ -57,7 +57,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
             form='registerForm'
             className={`
             ${style.button}
-            ${style.buttonDecensoredHeader}
+            ${style.buttonDecensored}
           `}
           >
             Sign-up

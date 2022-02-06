@@ -12,6 +12,8 @@ export type PostType = {
   space: number
   spaceName: string
   mother_post: number
+  deleted: boolean
+  read: boolean // used internally, not stored in the smartcontract
 }
 
 export type SpaceType = {

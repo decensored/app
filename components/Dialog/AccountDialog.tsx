@@ -28,8 +28,8 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
       onClose={onClose}
       header='Account'
       body={
-        <div className='grid gap-y-8'>
-          <div>
+        <>
+          <div className={style.inputWrapper}>
             <span
               className={`
                   ${style.inputLabel}
@@ -38,39 +38,37 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
             >
               Your secret account key
             </span>
-            <div className={style.inputWrapper}>
-              <div className={style.inputGroup}>
-                <input
+            <div className={style.inputGroup}>
+              <input
+                className={`
+                  ${style.input}
+                  ${style.inputDefault}
+                  ${style.inputDefaultDark}
+                  ${style.inputFocus}
+                  rounded-r-none
+                `}
+                type='text'
+                id='private-key'
+                defaultValue={getAccountPrivateKey()}
+                readOnly
+              />
+              <CopyToClipboard text={getAccountPrivateKey()} onCopy={() => toast(`Key copied to clipboard`)}>
+                <button
+                  type='button'
                   className={`
-                    ${style.input}
-                    ${style.inputDefault}
-                    ${style.inputDefaultDark}
-                    ${style.inputFocus}
-                    rounded-r-none
+                    ${style.button}
+                    ${style.buttonDecensored}
+                    rounded-l-none
                   `}
-                  type='text'
-                  id='private-key'
-                  defaultValue={getAccountPrivateKey()}
-                  readOnly
-                />
-                <CopyToClipboard text={getAccountPrivateKey()} onCopy={() => toast(`Key copied to clipboard`)}>
-                  <button
-                    type='button'
-                    className={`
-                      ${style.button}
-                      ${style.buttonDecensored}
-                      rounded-l-none
-                    `}
-                  >
-                    <SVGIcon icon='faClipboard' isFixed />
-                  </button>
-                </CopyToClipboard>
-              </div>
+                >
+                  <SVGIcon icon='faClipboard' isFixed />
+                </button>
+              </CopyToClipboard>
             </div>
           </div>
           <BrowserView>
-            <div>
-              <div className='mb-3 flex justify-center'>
+            <>
+              <div className='flex justify-center py-3'>
                 {/* fgColor='#2d3294' */}
                 <QRCode className='rounded' value={qrcode} />
               </div>
@@ -83,9 +81,9 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
               >
                 Scan on mobile
               </span>
-            </div>
+            </>
           </BrowserView>
-        </div>
+        </>
       }
       footer={
         <button
@@ -94,7 +92,7 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
               ${style.button}
               ${style.buttonTransparent}
               ${style.buttonTransparentDark}
-              basis-full
+              ${style.buttonFull}
             `}
           onClick={() => onClose()}
         >

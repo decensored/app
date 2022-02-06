@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Header from 'components/Header/Header'
@@ -10,10 +10,8 @@ import { getPostsInSpace, getRepliesForPost, getSpaceById, getSpaceIdByName, nod
 import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
 import PostForm from 'components/Post/PostForm'
-import SVGIcon from 'components/Icon/SVGIcon'
 import { userBlackListedForSpace } from 'api/spaces'
-import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
-import UserDialog from 'components/Dialog/UserDialog'
+import SpaceHeader from 'components/Spaces/SpaceHeader'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -28,8 +26,6 @@ const Space: NextPage = () => {
     contract: state.contract,
   }))
 
-  const [openSpaceSettingsDialog, setOpenSpaceSettingsDialog] = useState(false)
-  const [openUserDialog, setOpenUserDialog] = useState(false)
   const [spaceOwner, setSpaceOwner] = React.useState(false)
   const [space, setSpace] = React.useState<SpaceType>()
   const [spacePosts, setSpacePosts] = React.useState<PostType[]>([])
@@ -100,7 +96,7 @@ const Space: NextPage = () => {
         blacklist={blackListArray}
         authorIsBlacklisted={authorIsBlacklisted}
         replies={repliesForPost}
-        {...post}
+        post={post}
         type='space'
         parent
       />
@@ -111,63 +107,22 @@ const Space: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-mobile`}>
+        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
           {space && (
             <div className={style.feedWrapper}>
-              <div className={style.spaceHeaderWrapper}>
-                {spaceOwner && (
-                  <>
-                    <SVGIcon
-                      icon='faCog'
-                      className='fixed top-0 right-0 cursor-pointer text-white'
-                      onClick={() => setOpenSpaceSettingsDialog(true)}
-                    />
-                    <SpaceSettingsDialog
-                      space={space.id}
-                      name={space.name}
-                      blacklistedUsers={blackListArray}
-                      setBlacklist={setBlackListArray}
-                      showDialog={openSpaceSettingsDialog}
-                      onClose={() => setOpenSpaceSettingsDialog(false)}
-                    />
-                  </>
-                )}
-                <div className={style.spaceHeaderInner}>
-                  <div className={style.spaceHeaderInnerCol1}>
-                    <div className={style.spaceHeaderTitle}>#{name}</div>
-                    <div className={style.spaceHeaderDescription}>{space.description}</div>
-                  </div>
-                  <div className={style.spaceHeaderInnerCol2}>
-                    {' '}
-                    <div className={style.spaceHeaderDataWrapper}>
-                      <div className={style.spaceHeaderDataCol}>
-                        <span className={style.spaceHeaderDataTitle}>{nrOfPosts}</span>
-                        <span className={style.spaceHeaderDataText}>Posts</span>
-                      </div>
-                      <div className={style.spaceHeaderDataCol}>
-                        <button
-                          type='button'
-                          onClick={() => {
-                            setOpenUserDialog(true)
-                          }}
-                          className={style.spaceHeaderDataTitle}
-                        >
-                          {nrOfUSers}
-                        </button>
-                        <span className={style.spaceHeaderDataText}>Followers</span>
-                        <UserDialog
-                          users={userArray}
-                          showDialog={openUserDialog}
-                          onClose={() => setOpenUserDialog(false)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SpaceHeader
+                space={space}
+                spaceOwner={spaceOwner}
+                name={name}
+                nrOfPosts={nrOfPosts}
+                nrOfUSers={nrOfUSers}
+                userArray={userArray}
+                blackListArray={blackListArray}
+                setBlackListArray={setBlackListArray}
+              />
               {isSignedUp && !currentUserBlacklisted && (
                 <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
                   <div className={style.feedItemInner}>

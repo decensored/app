@@ -74,14 +74,17 @@ const UserPopover: FunctionComponent = () => {
               )}
 
               {isSignedUp && (
-                <span className='hide-on-desktop'>
+                <div className='hide-on-desktop'>
                   <Link href={`/user/${userName}`} passHref>
-                    <button type='button' className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}>
+                    <button
+                      type='button'
+                      className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark} ${style.buttonFull}`}
+                    >
                       <SVGIcon icon='faUserAstronaut' isFixed />
                       <span>My Posts</span>
                     </button>
                   </Link>
-                </span>
+                </div>
               )}
 
               {!isSignedUp && nodeIsUpAndRunning(contract) && (

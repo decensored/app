@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { style } from 'styles/style'
 import useStore from 'lib/store'
+import Tag from 'components/Tags/Tag'
 
 interface SpaceItemProps {
   name: string
@@ -14,36 +16,30 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
   const [userId] = useStore((state) => [state.userId])
   return (
     <Link href={`/space/${name}`} passHref>
-      <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}>
+      <motion.div
+        layoutId={`spaceitem-${name}`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}
+      >
         <div className={style.feedItemInnerTop}>
           <div className={style.feedItemMetaWrapper}>
-            <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
-              <div className='flex items-center gap-x-3'>
-                {name}
-                {owner === userId && (
-                  <span className={`${style.tag} ${style.tagNotClickable} ${style.tagNotClickableDark}`}>Owner</span>
-                )}
-              </div>
-            </span>
-            <div
-              className='members pointer-events-none flex items-center
-         justify-end gap-x-2'
-            >
-              <span
-                className={`
-                  ${style.tag}
-                  ${style.tagNotClickable}
-                  ${style.tagNotClickableDark}
-                `}
-              >
-                {numberOfPostsInSpace}
-                {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
+            <div className={style.feedItemMetaCol1}>
+              <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
+                <span>{name}</span>
               </span>
+              {owner === userId && <Tag>Owner</Tag>}
+            </div>
+            <div className={style.feedItemMetaCol2}>
+              <Tag>
+                <>
+                  {numberOfPostsInSpace}
+                  {numberOfPostsInSpace === 1 ? ' Post' : ' Posts'}
+                </>
+              </Tag>
             </div>
           </div>
           <div className={`${style.feedItemText} ${style.feedItemTextDark}`}>{description}</div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   )
 }
