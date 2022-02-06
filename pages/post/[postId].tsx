@@ -2,24 +2,33 @@ import type { NextPage } from 'next'
 import React from 'react'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
-import { getNumberOfRepliesForPostRecursive, getPostById, getRepliesForPost } from 'lib/storeUtils'
+import {
+  getLevel1PostForReply,
+  getNumberOfRepliesForPostRecursive,
+  getPostById,
+  getRepliesForPost,
+} from 'lib/storeUtils'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
+import Link from 'next/link'
+import Tag from 'components/Tags/Tag'
 import Header from '../../components/Header/Header'
 import BottomNavigation from '../../components/Navigation/BottomNavigation'
 
 const PostPage: NextPage = () => {
   const router = useRouter()
   const posts = useStore((state) => state.posts)
-  // console.log('posts', posts)
 
   if (!router.query.postId) return null
   const postId = parseInt(router.query.postId as string, 10)
-  // console.log('postId', postId)
-
   const post = getPostById(posts, postId)
-  // console.log('post', post)
+
+  let parentPost
+  if (post.id > 0 && post.mother_post !== 0) {
+    parentPost = getLevel1PostForReply(posts, post.mother_post)
+    console.log(parentPost)
+  }
 
   return (
     <>
@@ -33,6 +42,22 @@ const PostPage: NextPage = () => {
         <div className={style.bodyContainerCol2}>
           {post?.id ? (
             <div className={style.feedWrapper}>
+              {parentPost && (
+                <div className='flex'>
+                  <span>Answer to</span>
+                  <Link href={`/post/${parentPost[0].id}`} passHref>
+                    <a href='passed' className='px-2'>
+                      <Tag clickable>Post</Tag>
+                    </a>
+                  </Link>
+                  <span>from</span>
+                  <Link href={`/user/${parentPost[0].username}`} passHref>
+                    <a href='passed' className='pl-2'>
+                      <Tag clickable>{parentPost[0].username}</Tag>
+                    </a>
+                  </Link>
+                </div>
+              )}
               <FeedItem
                 key={`post-${post.id}`}
                 moderator={false}
