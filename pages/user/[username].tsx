@@ -53,7 +53,7 @@ const Space: NextPage = () => {
           <div className={style.feedWrapper}>
             <div className={style.userHeaderWrapper}>
               <div className={style.userHeaderInner}>
-                <div className={style.userHeaderTitle}>{username ? `#${username}` : '#undefined'}</div>
+                <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
               </div>
             </div>
             {showFeedItems}
