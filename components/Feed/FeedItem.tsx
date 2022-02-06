@@ -319,7 +319,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           )}
         </div>
       </div>
-      {openReplies && <div className={style.feedReplyItemWrapper}>{replyItems}</div>}
+      {openReplies && <div className={`${style.feedReplyItemWrapper} ${style.feedItemReset}`}>{replyItems}</div>}
     </div>
   )
 }
