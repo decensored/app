@@ -117,7 +117,7 @@ export const style = {
   navigationAsideSocialButtonDark: 'dark:hover:text-white dark:text-gray-300',
 
   navigationBottomWrapperBorder: 'absolute bg-highlight-900 bottom-0 h-[10px] left-0 right-0',
-  navigationBottomWrapper: 'bg-white bottom-0 fixed flex h-[60px] items-center left-0 right-0 shadow-neg-lg',
+  navigationBottomWrapper: 'bg-white bottom-0 fixed flex h-[60px] items-center left-0 right-0 shadow-neg-lg empty:hidden',
   navigationBottomWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-500',
   navigationBottomInner: 'flex max-w-xl mx-auto px-3 w-full',
   navigationBottomItem: 'cursor-pointer flex flex-col grow items-center justify-center relative text-[15px] z-10',

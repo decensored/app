@@ -9,6 +9,7 @@ import SpaceItem from 'components/Spaces/SpaceItem'
 import SpacesHeader from 'components/Spaces/SpacesHeader'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
 import SVGIcon from 'components/Icon/SVGIcon'
+import { useMediaQuery } from 'react-responsive'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
@@ -21,6 +22,8 @@ const Spaces: NextPage = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [spaceResults, setSpaceResults] = React.useState([] as SpaceType[])
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
+
+  const isLargerThanSM = useMediaQuery({ query: '(min-width: 640px)' })
 
   const handleChange = (event: any) => {
     setSearchTerm(event.target.value)
@@ -55,7 +58,7 @@ const Spaces: NextPage = () => {
                     className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
                   >
                     <SVGIcon icon='faPlus' isFixed />
-                    <span className='hide-on-mobile'>Create</span>
+                    {isLargerThanSM && <span>Create</span>}
                   </button>
                   <CreateSpaceDialog
                     showDialog={openCreateSpaceDialog}

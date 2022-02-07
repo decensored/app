@@ -65,7 +65,9 @@ const AsideNavigation: FunctionComponent = () => {
                     </span>
                   </Link>
                 </Tooltip>
-                <TrendingHashtags posts={posts} classNames={style.tagListCol} />
+                <div className={style.navigationAsideButtonSpacer} />
+                <div className='mb-2 text-sm font-medium'>Currently trending</div>
+                <TrendingHashtags posts={posts} classNames={`${style.tagListCol}`} />
                 <AsideButtonCreatePost />
               </>
             )}

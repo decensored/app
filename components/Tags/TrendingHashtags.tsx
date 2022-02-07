@@ -25,12 +25,7 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts, cla
     </Tooltip>
   ))
 
-  return (
-    <>
-      <div>Trending</div>
-      <div className={classNames}>{trendingTags}</div>
-    </>
-  )
+  return <div className={classNames}>{trendingTags}</div>
 }
 
 export default TrendingHashtags
