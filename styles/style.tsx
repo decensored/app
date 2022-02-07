@@ -4,7 +4,7 @@ export const style = {
   body: 'bg-slate-100 font-sans text-gray-900',
   bodyDark: 'dark:text-gray-400 dark:bg-darkmode-100',
 
-  clickOverlay: 'fixed inset-0 bg-black bg-opacity-30',
+  clickOverlay: 'fixed inset-0 top-[60px] bg-black bg-opacity-30',
 
   bodyContainer: 'container flex max-w-screen-lg md:gap-x-[5%] mx-auto',
   bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px] empty:hidden',
