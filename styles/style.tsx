@@ -160,10 +160,10 @@ export const style = {
   postNotFoundSubline: '',
 
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
-  feedItemParent: 'rounded border-none',
+  feedItemParent: 'rounded border-none shadow-sm',
   feedItemChild: 'border-gray-300 border-l',
 
-  feedItemWrapper: 'feed-item-wrapper bg-white shadow-sm',
+  feedItemWrapper: 'feed-item-wrapper bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:border-darkmode-1900 dark:divide-darkmode-200',
   feedItemInner: 'p-5 rounded',
   feedItemInnerTop: 'p-5 pt-3 rounded-t',
