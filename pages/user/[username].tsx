@@ -6,7 +6,7 @@ import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import { getPostsForUser, getRepliesForPost, nodeIsUpAndRunning } from 'lib/storeUtils'
+import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { style } from 'styles/style'
 
@@ -37,9 +37,7 @@ const Space: NextPage = () => {
   const showFeedItems = userPosts.map((post) => {
     if (post.mother_post !== 0) return null // early exit
 
-    return (
-      <FeedItem key={`post-${post.id}`} type='feed' parent replies={getRepliesForPost(posts, post.id)} post={post} />
-    )
+    return <FeedItem key={`post-${post.id}`} type='feed' parent post={post} />
   })
 
   return (

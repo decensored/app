@@ -29,8 +29,8 @@ interface FeedItemProps {
   moderator?: boolean
   blacklist?: any
   authorIsBlacklisted?: boolean
-  replies?: any // or PostType[]
-  nRepliesRecursive?: { total: number; read: number }
+  // replies?: any // or PostType[]
+  // nRepliesRecursive?: { total: number; read: number }
   type: string
   parent?: boolean
   depth?: number
@@ -41,8 +41,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   moderator,
   blacklist,
   authorIsBlacklisted,
-  replies,
-  nRepliesRecursive,
   type,
   parent,
   depth = 0,
@@ -99,14 +97,18 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       setIsLoading(false)
     }
   }
+
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
   const isAuthor = author === userId
+
+  const replies = getRepliesForPost(posts, post.id) // XXX or in useEffect?
+  const nRepliesRecursive = getNumberOfRepliesForPostRecursive(posts, post.id) // XXX or in useEffect?
   const replyCount = nRepliesRecursive?.total || replies?.length
   const replyCountRead = nRepliesRecursive?.read || 0
   const unReadReplies = replyCount - replyCountRead
 
   // Create list of Replies and check for blocked users
-  let replyItems = []
+  let replyItems = [] as any[]
   if (replies) {
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
@@ -119,8 +121,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <FeedItem
             key={`reply-${reply.id}`}
             type='reply'
-            replies={getRepliesForPost(posts, reply.id)}
-            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, reply.id)}
             moderator={false}
             parent={false}
             depth={depth + 1}
