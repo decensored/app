@@ -67,6 +67,8 @@ export const style = {
   linkifyHashtagDark: 'dark:text-highlight-400 dark:hover:bg-yellow-500 dark:hover:text-darkmode-500',
   linkifyMention: 'rounded text-orange-400 hover:bg-orange-400 hover:text-darkmode-1000',
   linkifyMentionDark: 'dark:hover:text-darkmode-500',
+  linkifySpace: 'rounded text-orange-400 hover:bg-orange-400 hover:text-darkmode-1000',
+  linkifySpaceDark: 'dark:hover:text-darkmode-500',
 
   dialogClickOutsideOverlay: 'inset-0 fixed',
   dialogWrapper: 'w-full top-10 mx-auto justify-center items-center flex fixed',

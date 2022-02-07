@@ -24,7 +24,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
           <div className={style.feedItemMetaWrapper}>
             <div className={style.feedItemMetaCol1}>
               <span className={`${style.feedItemMetaName} ${style.feedItemMetaNameDark}`}>
-                <span>{name}</span>
+                <span>/{name}</span>
               </span>
               {owner === userId && <Tag>Owner</Tag>}
             </div>
