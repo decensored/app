@@ -18,7 +18,7 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts, cla
       <Link href={`/tag/${tag.tag}`} passHref>
         <a href='passed'>
           <Tag clickable ellipsis count={`[${tag.count}]`}>
-            {tag.tag}
+            #{tag.tag}
           </Tag>
         </a>
       </Link>
