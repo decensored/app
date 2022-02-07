@@ -1,6 +1,6 @@
 import create, { GetState, SetState } from 'zustand'
 import { persist, StoreApiWithPersist } from 'zustand/middleware'
-import type { LoadingProgressType, NodeInfoType, PostType, SpaceType } from 'lib/types'
+import type { LoadingProgressType, NodeInfoType, PostType, SpaceType, UserType } from 'lib/types'
 
 export const STORE_VERSION = 13
 
@@ -22,6 +22,8 @@ export type StateType = {
   setSpacesLoaded: (spacesLoaded: LoadingProgressType) => void
   latestAccountIndexFetched: number
   setLatestAccountIndexFetched: (latestAccountIndexFetched: number) => void
+  accounts: UserType[]
+  setAccounts: (accounts: UserType[]) => void
   spaces: SpaceType[]
   setSpaces: (spaces: SpaceType[]) => void
   spacesQueued: SpaceType[]
@@ -77,6 +79,9 @@ const useStore = create(
       latestAccountIndexFetched: 0,
       setLatestAccountIndexFetched: (latestAccountIndexFetched) => set({ latestAccountIndexFetched }),
 
+      accounts: [] as UserType[],
+      setAccounts: (accounts) => set({ accounts }),
+
       // SPACES
       spaces: [] as SpaceType[],
       setSpaces: (spaces) => set({ spaces }),
@@ -129,6 +134,7 @@ const useStore = create(
           postsQueued: [],
           spaces: [],
           spacesQueued: [],
+          accounts: [],
           latestPostIndexFetched: 0,
           latestSpaceIndexFetched: 0,
           latestAccountIndexFetched: 0,
@@ -152,6 +158,7 @@ const useStore = create(
         latestSpaceIndexFetched: state.latestSpaceIndexFetched,
         spacesSortType: state.spacesSortType,
 
+        accounts: state.accounts,
         latestAccountIndexFetched: state.latestAccountIndexFetched,
 
         userName: state.userName,

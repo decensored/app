@@ -34,48 +34,43 @@ const pollPosts = async (state: any): Promise<void> => {
 
   const contract: any = state?.contract
   const latestPostIndex = await getLatestPostIndex(state.contract)
+  if (latestPostIndex <= state.latestPostIndexFetched) return
 
-  if (latestPostIndex < state.latestPostIndexFetched) {
-    // console.log('reset posts')
-    state.setLatestPostIndexFeched(0)
-    state.setPosts([])
-    state.setPostsQueued([])
-  } else if (latestPostIndex > state.latestPostIndexFetched) {
-    state.setLatestPostIndexFeched(latestPostIndex) // Set new index & prepend new posts
+  state.setLatestPostIndexFeched(latestPostIndex) // Set new index & prepend new posts
 
-    console.log(`Loading ${latestPostIndex - state.latestPostIndexFetched} posts`)
+  const nToLoad = Math.min(latestPostIndex - state.latestPostIndexFetched, pollingConfig.lowWater)
+  console.log(`Loading ${nToLoad} posts`)
 
-    const postsLoaded: LoadingProgressType = {
-      nFinished: 0,
-      max: latestPostIndex - state.latestPostIndexFetched,
+  const postsLoaded: LoadingProgressType = {
+    nFinished: 0,
+    max: nToLoad,
+  }
+  state.setPostsLoaded(postsLoaded)
+
+  // console.log(pollingConfig)
+
+  console.time('Loading Posts')
+  let postsPromises: Promise<PostType>[] = []
+  for (let i = latestPostIndex; i > latestPostIndex - nToLoad; i -= 1) {
+    // console.log(`getPostById ${i}`)
+    const p = getPostById(contract, i).then((result) => {
+      postsLoaded.nFinished += 1
+      // console.log(postsLoaded.nFinished, 'posts')
+      state.setPostsLoaded(postsLoaded)
+      return result
+    })
+    postsPromises.push(p)
+
+    if (postsPromises.length % pollingConfig.batchSize === 0 || i === latestPostIndex - nToLoad + 1) {
+      // console.log(`process batch of ${postsPromises.length} at index ${i}`)
+      const newPosts = await Promise.all(postsPromises)
+      updateStateWithNewPosts(newPosts)
+      postsPromises = []
     }
-    state.setPostsLoaded(postsLoaded)
+  }
+  console.timeEnd('Loading Posts')
 
-    // console.log(pollingConfig)
-
-    console.time('Loading Posts')
-    let postsPromises: Promise<PostType>[] = []
-    for (let i = latestPostIndex; i > state.latestPostIndexFetched; i -= 1) {
-      // console.log(`getPostById ${i}`)
-      const p = getPostById(contract, i).then((result) => {
-        postsLoaded.nFinished += 1
-        // console.log(postsLoaded.nFinished, 'posts')
-        state.setPostsLoaded(postsLoaded)
-        return result
-      })
-      postsPromises.push(p)
-
-      if (postsPromises.length % pollingConfig.batchSize === 0 || i === state.latestPostIndexFetched + 1) {
-        // console.log(`process batch of ${postsPromises.length} at index ${i}`)
-        const newPosts = await Promise.all(postsPromises)
-        updateStateWithNewPosts(newPosts)
-        postsPromises = []
-      }
-    }
-    console.timeEnd('Loading Posts')
-
-    state.setPostsLoaded({ nFinished: 0, max: 0 })
-  } // end of latestPostIndex > state.latestPostIndexFetched
+  state.setPostsLoaded({ nFinished: 0, max: 0 })
 } // end of pollPosts
 
 runPoller(pollPosts, INTERVAL)
