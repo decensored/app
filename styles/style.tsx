@@ -215,7 +215,7 @@ export const style = {
   tagListRow: 'flex flex-wrap gap-3',
   tagListCol: 'flex flex-col gap-1',
 
-  tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
+  tooltip: 'bg-highlight-10 font-medium text-[10px] px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase shadow-sm',
   tooltipDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
 
   switch: 'bg-slate-300 flex h-[25px] p-[3px] rounded-full w-[40px]',
