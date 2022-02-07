@@ -4,7 +4,8 @@ import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SVGIcon from 'components/Icon/SVGIcon'
-import UserPopover from 'components/Popover/UserPopover'
+import Sidebar from 'components/Scaffolding/Profile'
+import { Transition } from '@headlessui/react'
 // import QueueControl from 'components/QueueControl/QueueControl'
 import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
@@ -16,7 +17,8 @@ const GRACEPERIOD = 1000 // time until showing an error message
 
 const Header: FunctionComponent = () => {
   const [contract] = useStore((state) => [state.contract], shallow)
-
+  const [isSignedUp] = useStore((state) => [state.isSignedUp], shallow)
+  const [isOpenProfile, setIsOpenProfile] = useState(false)
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
 
   const [gracePeriodDone, setGracePeriodDone] = useState(false)
@@ -24,32 +26,48 @@ const Header: FunctionComponent = () => {
 
   const router = useRouter()
   const { pathname } = router
-  let tabIndex = -1
-  if (pathname === '/') tabIndex = 0
-
-  // const setIsSignedUpWithToast = (): void => {
-  //   setIsSignedUp(false)
-  //   // https://fkhadra.github.io/react-toastify/introduction/
-  //   toast.warning(isSignedUp ? 'Signing out...' : 'Signing in...', {})
-  // }
+  const isRoot = pathname === '/'
 
   return (
     <div className={style.headerWrapper}>
       <div className={style.headerLogo}>
         <div className={style.headerBack}>
-          {tabIndex !== 0 && (
+          {!isRoot && (
             <button type='button' onClick={() => router.back()}>
               <SVGIcon icon='faArrowLeft' />
             </button>
           )}
-          {tabIndex === 0 && <img alt='Decensored Logo' src='/logo/signet.svg' />}
+          {isRoot && <img alt='Decensored Logo' src='/logo/signet.svg' />}
         </div>
         <Link href='/' passHref>
           <img alt='Decensored Logo' src='/logo/logotype_invert.svg' className='h-[20px] cursor-pointer' />
         </Link>
       </div>
       <div id='header_nav_items' className='flex items-center'>
-        {nodeIsUpAndRunning(contract) && <UserPopover />}
+        {nodeIsUpAndRunning(contract) && (
+          <>
+            <button type='button' onClick={() => setIsOpenProfile(() => !isOpenProfile)}>
+              <span className='ml-5 cursor-pointer text-lg text-white'>
+                {isSignedUp && <SVGIcon icon='faUser' />}
+                {!isSignedUp && <SVGIcon icon='faUserPlus' />}
+              </span>
+            </button>
+            <Transition
+              show={isOpenProfile}
+              enter='transition-opacity duration-75'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='transition-opacity duration-150'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
+            >
+              <Sidebar />
+            </Transition>
+            {isOpenProfile && (
+              <div className={style.clickOverlay} onClick={() => setIsOpenProfile(() => !isOpenProfile)} />
+            )}
+          </>
+        )}
 
         {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
           <>

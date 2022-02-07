@@ -9,7 +9,7 @@ import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
 import Link from 'next/link'
 import Tag from 'components/Tags/Tag'
-import Header from '../../components/Header/Header'
+import Header from '../../components/Scaffolding/Header'
 import BottomNavigation from '../../components/Navigation/BottomNavigation'
 
 const PostPage: NextPage = () => {
@@ -30,7 +30,7 @@ const PostPage: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
+        <div className={`${style.bodyContainerCol1}`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
@@ -79,9 +79,7 @@ const PostPage: NextPage = () => {
           )}
         </div>
       </div>
-      <div className='hide-on-desktop'>
-        <BottomNavigation />
-      </div>
+      <BottomNavigation />
     </>
   )
 }

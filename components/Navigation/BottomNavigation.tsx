@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
+import { useMediaQuery } from 'react-responsive'
 import BottomButtonCreatePost from './BottomButtonCreatePost'
 
 const BottomNavigation = () => {
@@ -12,7 +13,9 @@ const BottomNavigation = () => {
   const isRoot = pathname === '/'
   const isSpaces = pathname.startsWith('/spaces')
 
-  return (
+  const isLargerThanMD = useMediaQuery({ query: '(min-width: 768px)' })
+
+  return !isLargerThanMD ? (
     <div
       className={`
         ${style.navigationBottomWrapper}
@@ -68,7 +71,7 @@ const BottomNavigation = () => {
         </Link>
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default BottomNavigation

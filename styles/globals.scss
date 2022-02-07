@@ -49,17 +49,17 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 }
 
 // mobile and desktop show/hide helper classes
-.hide-on-mobile {
-  @apply hidden sm:block;
-}
+// .hide-on-mobile {
+//   @apply hidden sm:block;
+// }
 
-.hide-on-handheld {
-  @apply hidden md:block;
-}
+// .hide-on-handheld {
+//   @apply hidden md:block;
+// }
 
-.hide-on-desktop {
-  @apply md:hidden;
-}
+// .hide-on-desktop {
+//   @apply md:hidden;
+// }
 
 // add custom space to first and last virtuoso wrapper child
 div[data-test-id*='virtuoso-item-list'] > div {
@@ -127,21 +127,21 @@ div[data-test-id*='virtuoso-item-list'] > div {
 
 $headerHeight: 60px;
 
-.h-header {
-  height: $headerHeight;
-}
-
-.h-screen-virtuoso {
-  min-height: calc(100vh - $headerHeight); // --vh fallback
-  min-height: calc(var(--vh, 1vh) * 100 - $headerHeight);
-}
-
-.h-screen-body {
+.h-viewport {
   min-height: 100vh; // --vh fallback
   min-height: calc(var(--vh, 1vh) * 100);
 }
 
-.h-screen-sidebar {
+.h-header {
+  height: $headerHeight;
+}
+
+.h-body {
+  min-height: calc(100vh - $headerHeight); // --vh fallback
+  min-height: calc(var(--vh, 1vh) * 100 - $headerHeight);
+}
+
+.h-aside-navigation {
   min-height: calc(100vh - 100px); // --vh fallback
   min-height: calc(var(--vh, 1vh) * 100 - 100px);
 

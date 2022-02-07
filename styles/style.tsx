@@ -4,8 +4,10 @@ export const style = {
   body: 'bg-slate-100 font-sans text-gray-900',
   bodyDark: 'dark:text-gray-400 dark:bg-darkmode-100',
 
+  clickOverlay: 'fixed inset-0',
+
   bodyContainer: 'container flex max-w-screen-lg md:gap-x-[5%] mx-auto',
-  bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px]',
+  bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px] empty:hidden',
   bodyContainerCol2: 'relative flex-auto max-w-full',
 
   headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-40',
@@ -79,18 +81,25 @@ export const style = {
   dialogBody: 'overflow-y-auto px-4 py-4 shrink sm:px-8 sm:py-8',
   dialogFooter: 'sm:px-8 py-4 px-4 justify-between gap-y-10 flex',
 
-  popoverWrapper: 'bg-white divide-gray-200 divide-solid divide-y rounded shadow-xl w-52',
+  popoverRef: 'h-[30px]',
+  popoverWrapper: 'bg-white rounded shadow-xl w-52 divide-gray-200 divide-solid divide-y',
   popoverWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
-  popoverHeader: 'py-3 px-4',
-  popoverHeaderLabel: 'text-xs',
-  popoverHeaderName: 'dark:text-gray-300 text-lg',
   popoverBody: 'flex flex-col gap-y-1 p-2',
   popoverBodyButton: 'flex gap-x-3 hover:bg-highlight-10 hover:text-highlight-900 items-center p-2 rounded text-gray-900 text-left text-sm',
   popoverBodyButtonDark: 'dark:hover:bg-highlight-900 dark:hover:text-white dark:text-gray-300',
-  popoverSocialButtonWrapper: 'flex gap-x-5 hide-on-desktop justify-center my-3',
+  popoverSocialButtonWrapper: 'flex gap-x-5 justify-center py-3',
+
+  sidebarWrapper: 'fixed flex flex-col h-body top-[60px] bg-white right-0 shadow-xl w-screen divide-gray-200 divide-solid divide-y z-50',
+  sidebarWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
+  sidebarWrapperPseudo: 'after:empty after:top-0 after:bottom-0 after:right-full after:w-screen after:absolute after:bg-black after:bg-opacity-30',
+  sidebarHeader: 'py-3 px-4',
+  sidebarHeaderLabel: 'text-xs',
+  sidebarHeaderName: 'dark:text-gray-300 text-lg',
+  sidebarBody: 'flex flex-col gap-y-1 p-2 grow overflow-y-auto',
+  sidebarFooter: '',
 
   navigationAsideWrapper: 'top-[60px] sticky pt-10 flex',
-  navigationAsideInner: 'max-w-full justify-between h-screen-sidebar grow flex-col flex',
+  navigationAsideInner: 'max-w-full justify-between h-aside-navigation grow flex-col flex',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
   navigationAsideButtonContainer: 'gap-y-1 flex-col flex',

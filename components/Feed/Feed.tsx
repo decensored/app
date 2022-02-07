@@ -46,7 +46,7 @@ const Feed: FunctionComponent = () => {
           ref={virtuoso}
           className={`
               ${style.virtuosoWrapper}
-              h-screen-virtuoso
+              h-body
             `}
           itemContent={(_, post) => (
             <div className={style.virtuosoFeedItemWrapper}>

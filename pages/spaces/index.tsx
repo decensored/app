@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
-import Header from 'components/Header/Header'
+import Header from 'components/Scaffolding/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
@@ -40,7 +40,7 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
+        <div className={`${style.bodyContainerCol1}`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
@@ -111,9 +111,7 @@ const Spaces: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className='hide-on-desktop'>
-        <BottomNavigation />
-      </div>
+      <BottomNavigation />
     </>
   )
 }

@@ -4,13 +4,13 @@ import { getTrendingHashtags } from 'lib/storeUtils'
 import Tag from 'components/Tags/Tag'
 import { PostType } from 'lib/types'
 import Tooltip from 'components/Tooltip/Tooltip'
-import { style } from 'styles/style'
 
 interface TrendingHashtagsProps {
   posts: PostType[]
+  classNames?: string
 }
 
-const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts }) => {
+const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts, classNames }) => {
   const hashtags = getTrendingHashtags(posts, 12, 1)
 
   const trendingTags = hashtags.map((tag: any) => (
@@ -25,7 +25,12 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts }) =
     </Tooltip>
   ))
 
-  return <div className={style.tagListCol}>{trendingTags}</div>
+  return (
+    <>
+      <div>Trending</div>
+      <div className={classNames}>{trendingTags}</div>
+    </>
+  )
 }
 
 export default TrendingHashtags
