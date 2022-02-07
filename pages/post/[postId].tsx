@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
 import { getLevel1PostForReply, getPostById } from 'lib/storeUtils'
@@ -53,12 +53,14 @@ const PostPage: NextPage = () => {
                 </div>
               )}
               <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
-              <Helmet>
-                <title>
-                  Post by {post.username} in {post.spaceName}
-                </title>
-                <meta name='description' content={post.message} />
-              </Helmet>
+              <HelmetProvider>
+                <Helmet prioritizeSeoTags>
+                  <title>
+                    Post by {post.username} in {post.spaceName}
+                  </title>
+                  <meta name='description' content={post.message} />
+                </Helmet>
+              </HelmetProvider>
             </div>
           ) : (
             <div className={style.feedWrapper}>
