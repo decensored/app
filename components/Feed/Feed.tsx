@@ -3,13 +3,7 @@ import { Virtuoso, VirtuosoHandle } from 'react-virtuoso'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
-import {
-  arePostsOrSpacesLoading,
-  dequeuePostsAndSpaces,
-  getNumberOfRepliesForPostRecursive,
-  getRepliesForPost,
-  getRootLevelPosts,
-} from 'lib/storeUtils'
+import { arePostsOrSpacesLoading, dequeuePostsAndSpaces, getRootLevelPosts } from 'lib/storeUtils'
 import FeedItem from './FeedItem'
 
 const Feed: FunctionComponent = () => {
@@ -56,15 +50,7 @@ const Feed: FunctionComponent = () => {
             `}
           itemContent={(_, post) => (
             <div className={style.virtuosoFeedItemWrapper}>
-              <FeedItem
-                key={`post-${post.id}`}
-                moderator={false}
-                replies={getRepliesForPost(posts, post.id)}
-                nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
-                type='feed'
-                parent
-                post={post}
-              />
+              <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
             </div>
           )}
         />

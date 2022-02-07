@@ -6,7 +6,7 @@ import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import { getPostsWithHashtag, getRepliesForPost, nodeIsUpAndRunning } from 'lib/storeUtils'
+import { getPostsWithHashtag, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { style } from 'styles/style'
 
@@ -31,10 +31,9 @@ const Space: NextPage = () => {
     setPostsWithHashtag(filteresPosts)
   }, [contract, hashtag, posts])
 
-  const showFeedItems = postsWithHashtag.map((post) => {
-    const repliesForPost = getRepliesForPost(posts, post.id)
-    return <FeedItem key={`post-${post.id}`} replies={repliesForPost} post={post} type='feed' parent />
-  })
+  const showFeedItems = postsWithHashtag.map((post) => (
+    <FeedItem key={`post-${post.id}`} post={post} type='feed' parent />
+  ))
 
   return (
     <>

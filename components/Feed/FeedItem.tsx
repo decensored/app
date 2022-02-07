@@ -11,12 +11,14 @@ import { deletePostOfUser } from 'api/feed'
 import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
 import { getNumberOfRepliesForPostRecursive, getRepliesForPost } from 'lib/storeUtils'
+import spacePlugin from 'lib/linkify/spacePlugin'
 import Tag from 'components/Tags/Tag'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import ReactTimeAgo from 'react-time-ago'
 import { Linkify, LinkifyCore } from 'react-easy-linkify'
 
+LinkifyCore.PluginManager.addPlugin(spacePlugin)
 LinkifyCore.PluginManager.enableHashtag()
 LinkifyCore.PluginManager.enableMention()
 
@@ -27,8 +29,8 @@ interface FeedItemProps {
   moderator?: boolean
   blacklist?: any
   authorIsBlacklisted?: boolean
-  replies?: any // or PostType[]
-  nRepliesRecursive?: { total: number; read: number }
+  // replies?: any // or PostType[]
+  // nRepliesRecursive?: { total: number; read: number }
   type: string
   parent?: boolean
   depth?: number
@@ -39,8 +41,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   moderator,
   blacklist,
   authorIsBlacklisted,
-  replies,
-  nRepliesRecursive,
   type,
   parent,
   depth = 0,
@@ -97,14 +97,18 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
       setIsLoading(false)
     }
   }
+
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
   const isAuthor = author === userId
+
+  const replies = getRepliesForPost(posts, post.id) // XXX or in useEffect?
+  const nRepliesRecursive = getNumberOfRepliesForPostRecursive(posts, post.id) // XXX or in useEffect?
   const replyCount = nRepliesRecursive?.total || replies?.length
   const replyCountRead = nRepliesRecursive?.read || 0
   const unReadReplies = replyCount - replyCountRead
 
   // Create list of Replies and check for blocked users
-  let replyItems = []
+  let replyItems = [] as any[]
   if (replies) {
     replyItems = replies
       .sort((a: any, b: any) => a.timestamp - b.timestamp)
@@ -117,8 +121,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <FeedItem
             key={`reply-${reply.id}`}
             type='reply'
-            replies={getRepliesForPost(posts, reply.id)}
-            nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, reply.id)}
             moderator={false}
             parent={false}
             depth={depth + 1}
@@ -186,7 +188,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 <span>in</span>
                 <Link href={`/space/${thisPost.spaceName}`} passHref>
                   <a href='passed'>
-                    <Tag clickable>{thisPost.spaceName}</Tag>
+                    <Tag clickable>{`/${thisPost.spaceName}`}</Tag>
                   </a>
                 </Link>
               </>
@@ -209,26 +211,32 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Linkify
             options={{
               formatHref: {
-                hashtag: (href) => `/tag/${href.substring(1)}`,
-                mention: (href) => `/user/${href.substring(1)}`,
-              },
+                hashtag: (href: string) => `/tag/${href.substring(1)}`,
+                mention: (href: string) => `/user/${href.substring(1)}`,
+                space: (href: string) => `/space/${href.substring(1)}`,
+              } as any,
               linkWrapper: {
-                url: (props) => (
+                url: (props: any) => (
                   <span className={`${style.link} ${style.linkDark}`}>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),
-                hashtag: (props) => (
+                hashtag: (props: any) => (
                   <span className={`${style.linkify} ${style.linkifyHashtag} ${style.linkifyHashtagDark}`}>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),
-                mention: (props) => (
+                mention: (props: any) => (
                   <span className={`${style.linkify} ${style.linkifyMention} ${style.linkifyMentionDark}`}>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),
-              },
+                space: (props: any) => (
+                  <span className={`${style.linkify} ${style.linkifySpace} ${style.linkifySpaceDark}`}>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
+              } as any,
             }}
           >
             {checkedMessage}

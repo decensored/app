@@ -51,11 +51,10 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
       )}
       <div className={style.spaceHeaderInner}>
         <div className={style.spaceHeaderInnerCol1}>
-          <div className={style.spaceHeaderTitle}>#{name}</div>
+          <div className={style.spaceHeaderTitle}>/{name}</div>
           <div className={style.spaceHeaderDescription}>{space.description}</div>
         </div>
         <div className={style.spaceHeaderInnerCol2}>
-          {' '}
           <div className={style.spaceHeaderDataWrapper}>
             <div className={style.spaceHeaderDataCol}>
               <span className={style.spaceHeaderDataTitle}>{nrOfPosts}</span>

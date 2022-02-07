@@ -3,12 +3,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
-import {
-  getLevel1PostForReply,
-  getNumberOfRepliesForPostRecursive,
-  getPostById,
-  getRepliesForPost,
-} from 'lib/storeUtils'
+import { getLevel1PostForReply, getPostById } from 'lib/storeUtils'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
@@ -57,15 +52,7 @@ const PostPage: NextPage = () => {
                   </Link>
                 </div>
               )}
-              <FeedItem
-                key={`post-${post.id}`}
-                moderator={false}
-                replies={getRepliesForPost(posts, post.id)}
-                nRepliesRecursive={getNumberOfRepliesForPostRecursive(posts, post.id)}
-                type='feed'
-                parent
-                post={post}
-              />
+              <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
               <Helmet>
                 <title>
                   Post by {post.username} in {post.spaceName}

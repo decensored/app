@@ -6,7 +6,7 @@ import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
-import { getPostsInSpace, getRepliesForPost, getSpaceById, getSpaceIdByName, nodeIsUpAndRunning } from 'lib/storeUtils'
+import { getPostsInSpace, getSpaceById, getSpaceIdByName, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
 import PostForm from 'components/Post/PostForm'
@@ -84,7 +84,7 @@ const Space: NextPage = () => {
     if (post.mother_post !== 0) return null // early exit
 
     // Get Replies for Post
-    const repliesForPost = getRepliesForPost(posts, post.id)
+    // const repliesForPost = getRepliesForPost(posts, post.id)
 
     // Check if the author is blacklisted
     const authorIsBlacklisted = blackListArray.filter((user) => user.userId === post.author).length > 0
@@ -95,7 +95,6 @@ const Space: NextPage = () => {
         moderator={spaceOwner}
         blacklist={blackListArray}
         authorIsBlacklisted={authorIsBlacklisted}
-        replies={repliesForPost}
         post={post}
         type='space'
         parent

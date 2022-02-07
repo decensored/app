@@ -14,7 +14,7 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts }) =
   const hashtags = getTrendingHashtags(posts, 12, 1)
 
   const trendingTags = hashtags.map((tag: any) => (
-    <Tooltip text={`${tag.tag} [${tag.count}]`} delayShow={1000}>
+    <Tooltip key={`trendingtag-${tag.tag}`} text={`${tag.tag} [${tag.count}]`} delayShow={1000}>
       <Link href={`/tag/${tag.tag}`} passHref>
         <a href='passed'>
           <Tag clickable ellipsis count={`[${tag.count}]`}>
