@@ -60,7 +60,7 @@ export const style = {
   buttonTransparent: 'bg-transparent hover:text-purple-900 text-gray-900',
   buttonTransparentDark: 'dark:text-gray-500',
 
-  link: 'underline hover:no-underline text-highlight-900',
+  link: 'underline hover:no-underline text-highlight-900 break-all',
   linkDark: 'dark:text-highlight-400',
   linkify: 'rounded',
   linkifyHashtag: 'hover:bg-yellow-200 text-highlight-900 hover:text-darkmode-100',
