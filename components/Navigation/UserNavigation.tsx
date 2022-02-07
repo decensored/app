@@ -16,7 +16,7 @@ import BasePopover from 'components/Popover/BasePopover'
 import ReactDOM from 'react-dom'
 // import TrendingHashtags from '../Tags/TrendingHashtags'
 
-const Profile: FunctionComponent = () => {
+const UserNavigation: FunctionComponent = () => {
   const [openSignupDialog, setOpenSignupDialog] = useState(false)
   const [openRecoverDialog, setOpenRecoverDialog] = useState(false)
   const [openAccountDialog, setOpenAccountDialog] = useState(false)
@@ -196,4 +196,4 @@ const Profile: FunctionComponent = () => {
   )
 }
 
-export default Profile
+export default UserNavigation
