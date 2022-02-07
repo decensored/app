@@ -209,7 +209,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Linkify
             options={{
               formatHref: {
-                url: (value) => value.substr(0, 20),
                 hashtag: (href) => `/tag/${href.substring(1)}`,
                 mention: (href) => `/user/${href.substring(1)}`,
               },
