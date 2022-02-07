@@ -4,10 +4,12 @@ import { style } from 'styles/style'
 interface TagProps {
   clickable?: boolean
   classNames?: string
+  ellipsis?: boolean
+  count?: string
   children: string | JSX.Element[] | JSX.Element
 }
 
-const Tag: FunctionComponent<TagProps> = ({ children, classNames, clickable }) => (
+const Tag: FunctionComponent<TagProps> = ({ clickable, classNames, ellipsis, count, children }) => (
   <span
     className={`
     ${style.tag}
@@ -16,7 +18,10 @@ const Tag: FunctionComponent<TagProps> = ({ children, classNames, clickable }) =
     ${classNames ? `${classNames}` : ''}
   `}
   >
-    <span>{children}</span>
+    <span className={`${ellipsis ? `${style.tagEllipsis}` : ''}`}>
+      <span className={`${count ? '' : ''}`}>{children}</span>
+      {count && <div className={`${style.tagCount} ${style.tagCountDark}`}>{count}</div>}
+    </span>
   </span>
 )
 
