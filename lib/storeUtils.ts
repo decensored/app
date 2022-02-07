@@ -71,7 +71,7 @@ export const getSpaceById = (spaces: SpaceType[], spaceId: number): SpaceType =>
 export const getSpaceByName = (spaces: SpaceType[], spaceName: string): SpaceType =>
   spaces.find((space) => space.name === spaceName) || ({} as SpaceType)
 
-export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: string): any[] => {
+export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: string, userId: number): any[] => {
   const split = sortType.split('|')
   const key = split[0]
   // const order = split[1] working on passing asc / desc to use for sorting
@@ -80,7 +80,10 @@ export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: str
     numberOfPostsInSpace: getNumberOfPostsInSpace(posts, space),
     latestPostIndexInSpace: getLatestPostIndexInSpace(posts, space),
   }))
-  const sortedSpaces = orderBy(Object.values(preparedSpaces), [key], ['desc'])
+  const sortedSpaces =
+    sortType === 'mySpaces' && userId > 0
+      ? preparedSpaces.filter((space) => space.owner === userId)
+      : orderBy(Object.values(preparedSpaces), [key], ['desc'])
   return sortedSpaces
 }
 

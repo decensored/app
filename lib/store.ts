@@ -87,7 +87,7 @@ const useStore = create(
       latestSpaceIndexFetched: 0,
       setLatestSpaceIndexFetched: (latestSpaceIndexFetched) => set({ latestSpaceIndexFetched }),
 
-      spacesSortType: 'numberOfPostsInSpace|desc',
+      spacesSortType: 'latestPostIndexInSpace|desc',
       setSpacesSortType: (spacesSortType) => set({ spacesSortType }),
       // POSTS
       posts: [] as PostType[],

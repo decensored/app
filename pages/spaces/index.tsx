@@ -15,8 +15,15 @@ import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
 
 const Spaces: NextPage = () => {
-  const [isSignedUp, spaces, spacesSortType, setSpacesSortType, posts] = useStore(
-    (state) => [state.isSignedUp, state.spaces, state.spacesSortType, state.setSpacesSortType, state.posts],
+  const [isSignedUp, spaces, spacesSortType, setSpacesSortType, posts, userId] = useStore(
+    (state) => [
+      state.isSignedUp,
+      state.spaces,
+      state.spacesSortType,
+      state.setSpacesSortType,
+      state.posts,
+      state.userId,
+    ],
     shallow
   )
   const [searchTerm, setSearchTerm] = React.useState('')
@@ -31,11 +38,11 @@ const Spaces: NextPage = () => {
 
   // Search or sort spaces
   React.useEffect(() => {
-    const result = sortSpaces(spaces, posts, spacesSortType).filter((space) =>
+    const result = sortSpaces(spaces, posts, spacesSortType, userId).filter((space) =>
       space.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setSpaceResults(result)
-  }, [searchTerm, spacesSortType, spaces, posts])
+  }, [searchTerm, spacesSortType, spaces, posts, userId])
 
   const createSpaceItems = spaceResults.map((space: any) => <SpaceItem key={`space-${space.id}`} {...space} />)
 
@@ -77,9 +84,10 @@ const Spaces: NextPage = () => {
                   value={spacesSortType}
                   onChange={(e) => setSpacesSortType(e.target.value)}
                 >
-                  <option value='numberOfPostsInSpace|desc'>Most active</option>
                   <option value='latestPostIndexInSpace|desc'>Latest Activity</option>
+                  <option value='numberOfPostsInSpace|desc'>Most Posts</option>
                   <option value='id|desc'>Newest Space</option>
+                  {isSignedUp && <option value='mySpaces'>My Spaces</option>}
                   {/* <option value='name|asc'>Name A-Z</option> */}
                   {/* <option value='name|desc'>Name Z-A</option> */}
                 </select>
