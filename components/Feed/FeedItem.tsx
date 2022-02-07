@@ -199,7 +199,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               <ReactTimeAgo
                 date={new Date(timestamp * 1000 - 60000)}
                 locale='en-US'
-                isBrowser
                 timeStyle={isBrowser ? 'round' : 'twitter'}
               />
             </div>
@@ -214,13 +213,18 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 mention: (href) => `/user/${href.substring(1)}`,
               },
               linkWrapper: {
+                url: (props) => (
+                  <span className={`${style.link} ${style.linkDark}`}>
+                    <a {...props}>{props.children}</a>
+                  </span>
+                ),
                 hashtag: (props) => (
-                  <span className={`${style.Linkify} ${style.LinkifyHashtag} ${style.LinkifyHashtagDark}`}>
+                  <span className={`${style.linkify} ${style.linkifyHashtag} ${style.linkifyHashtagDark}`}>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),
                 mention: (props) => (
-                  <span className={`${style.Linkify} ${style.LinkifyMention} ${style.LinkifyMentionDark}`}>
+                  <span className={`${style.linkify} ${style.linkifyMention} ${style.linkifyMentionDark}`}>
                     <a {...props}>{props.children}</a>
                   </span>
                 ),

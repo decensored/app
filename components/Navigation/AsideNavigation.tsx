@@ -8,8 +8,7 @@ import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import SocialIcons from 'components/Navigation/SocialIcons'
-import { getTrendingHashtags } from 'lib/storeUtils'
-import Tag from 'components/Tags/Tag'
+import TrendingHashtags from '../Tags/TrendingHashtags'
 import AsideButtonCreatePost from './AsideButtonCreatePost'
 
 const AsideNavigation: FunctionComponent = () => {
@@ -26,19 +25,6 @@ const AsideNavigation: FunctionComponent = () => {
   const isUser = pathname.startsWith('/user/')
 
   const toggleDarkMode = (): void => setIsDarkmode(!isDarkmode)
-
-  // Get trending hashtags
-  const hashtags = getTrendingHashtags(posts, 12, 1)
-
-  const trendingTags = hashtags.map((tag: any) => (
-    <Link href={`/tag/${tag.tag}`} passHref>
-      <a href='passed'>
-        <Tag clickable>
-          {tag.tag} [{tag.count}]
-        </Tag>
-      </a>
-    </Link>
-  ))
 
   return (
     <div className={style.navigationAsideWrapper}>
@@ -77,7 +63,7 @@ const AsideNavigation: FunctionComponent = () => {
                   </Link>
                 </Tooltip>
                 <span className='pt-5'>Trending</span>
-                {trendingTags}
+                <TrendingHashtags posts={posts} />
                 <AsideButtonCreatePost />
               </>
             )}
