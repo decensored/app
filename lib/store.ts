@@ -64,7 +64,7 @@ const useStore = create(
       setIsPolledDataQueued: (isPolledDataQueued) => set({ isPolledDataQueued }),
 
       // smart contracts
-      contract: {}, // { accounts, posts, spaces, web3 },
+      contract: {}, // { accounts, posts, spaces, upvotes, web3 },
       setContract: (contract) => set({ contract }),
 
       postsLoaded: { nFinished: 0, max: 0 } as LoadingProgressType,
