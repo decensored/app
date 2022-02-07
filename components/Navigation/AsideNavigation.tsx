@@ -8,7 +8,7 @@ import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import SocialIcons from 'components/Navigation/SocialIcons'
-import { useMediaQuery } from 'react-responsive'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 import TrendingHashtags from '../Tags/TrendingHashtags'
 import AsideButtonCreatePost from './AsideButtonCreatePost'
 
@@ -25,11 +25,9 @@ const AsideNavigation: FunctionComponent = () => {
   const isLikes = pathname.startsWith('/likes/')
   const isUser = pathname.startsWith('/user/')
 
-  const isLargerThanMD = useMediaQuery({ query: '(min-width: 768px)' })
-
   const toggleDarkMode = (): void => setIsDarkmode(!isDarkmode)
 
-  return isLargerThanMD ? (
+  return useScreenSizeQuery('isLargerThanMD') ? (
     <div className={style.navigationAsideWrapper}>
       <div className={style.navigationAsideInner}>
         <div className={style.navigationAsideInnerTop}>

@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useState } from 'react'
+import ReactDOM from 'react-dom'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
 import SVGIcon from 'components/Icon/SVGIcon'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Link from 'next/link'
-import { useMediaQuery } from 'react-responsive'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SocialIcons from 'components/Navigation/SocialIcons'
 import SignupDialog from 'components/Dialog/SignupDialog'
@@ -13,7 +13,7 @@ import AccountDialog from 'components/Dialog/AccountDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import BasePopover from 'components/Popover/BasePopover'
-import ReactDOM from 'react-dom'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 // import TrendingHashtags from '../Tags/TrendingHashtags'
 
 const UserNavigation: FunctionComponent = () => {
@@ -21,9 +21,6 @@ const UserNavigation: FunctionComponent = () => {
   const [openRecoverDialog, setOpenRecoverDialog] = useState(false)
   const [openAccountDialog, setOpenAccountDialog] = useState(false)
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false)
-
-  const isLargerThanXS = useMediaQuery({ query: '(min-width: 400px)' })
-  const isLargerThanMD = useMediaQuery({ query: '(min-width: 768px)' })
 
   const [contract] = useStore((state) => [state.contract], shallow)
 
@@ -162,17 +159,17 @@ const UserNavigation: FunctionComponent = () => {
       {isSignedUp && contentHeader()}
       <div className={`${style.sidebarBody}`}>
         {isSignedUp && contentAccountButton()}
-        {isSignedUp && !isLargerThanMD && contentMyPostsButton()}
+        {isSignedUp && !useScreenSizeQuery('isLargerThanMD') && contentMyPostsButton()}
         {!isSignedUp && nodeIsUpAndRunning(contract) && contentSignupButton}
         {!isSignedUp && nodeIsUpAndRunning(contract) && contentRecoverButton}
         {contentNodeSettingsButton()}
-        {!isLargerThanMD && contentDarkmodeToggleButton()}
+        {!useScreenSizeQuery('isLargerThanMD') && contentDarkmodeToggleButton()}
         {isSignedUp && contentLogoutButton()}
       </div>
       {/* {
         !isLargerThanMD && <TrendingHashtags posts={posts} classNames={`${style.tagListCol} max-w-[200px] pr-5`} />}
       */}
-      {!isLargerThanMD && (
+      {!useScreenSizeQuery('isLargerThanMD') && (
         <div className={`${style.sidebarFooter}`}>
           <SocialIcons classNames={style.popoverSocialButtonWrapper} />
         </div>
@@ -180,7 +177,7 @@ const UserNavigation: FunctionComponent = () => {
     </>
   )
 
-  return isLargerThanXS ? (
+  return useScreenSizeQuery('isLargerThanXS') ? (
     <BasePopover
       open
       popoverButton={<div className={style.popoverRef} />}
