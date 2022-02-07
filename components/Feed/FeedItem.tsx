@@ -199,7 +199,6 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
               <ReactTimeAgo
                 date={new Date(timestamp * 1000 - 60000)}
                 locale='en-US'
-                isBrowser
                 timeStyle={isBrowser ? 'round' : 'twitter'}
               />
             </div>
