@@ -96,7 +96,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             >
               Blacklisted User {usersOnBlacklist.length > 0 && `(${usersOnBlacklist.length})`}
             </span>
-            <div className={style.tagListWrapper}>
+            <div className={style.tagListRow}>
               {usersOnBlacklist.length > 0 && usersOnBlacklist}
               {usersOnBlacklist.length === 0 && <p>No users on the blacklist</p>}
             </div>

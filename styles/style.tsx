@@ -87,7 +87,7 @@ export const style = {
   popoverSocialButtonWrapper: 'flex gap-x-5 hide-on-desktop justify-center my-3',
 
   navigationAsideWrapper: 'top-[60px] sticky pt-10 flex',
-  navigationAsideInner: 'flex flex-col grow h-screen-sidebar justify-between',
+  navigationAsideInner: 'max-w-full justify-between h-screen-sidebar grow flex-col flex',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
   navigationAsideButtonContainer: 'gap-y-1 flex-col flex',
@@ -206,10 +206,14 @@ export const style = {
 
   blackListButton: 'bg-red-400 cursor-pointer group-hover:block hidden ml-2 px-2 rounded-md text-white text-xs',
 
-  tag: 'bg-highlight-10 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
+  tag: 'bg-highlight-10 font-medium inline-flex max-w-full px-2 py-1 relative rounded text-highlight-900 text-xs tracking-wide uppercase',
   tagDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
   tagClickable: 'cursor-pointer dark:hover:bg-highlight-400 dark:hover:text-darkmode-1000 hover:bg-highlight-50',
-  tagListWrapper: 'flex flex-wrap gap-3',
+  tagEllipsis: 'truncate',
+  tagCount: 'absolute -right-1 translate-x-full -translate-y-1/2 top-1/2 !text-highlight-900',
+  tagCountDark: 'dark:!text-highlight-400',
+  tagListRow: 'flex flex-wrap gap-3',
+  tagListCol: 'flex flex-col gap-1',
 
   tooltip: 'bg-highlight-100 font-medium px-2 py-1 rounded text-highlight-900 text-xs tracking-wide uppercase',
   tooltipDark: 'dark:text-highlight-400 dark:bg-darkmode-1000',
