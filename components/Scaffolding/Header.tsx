@@ -4,7 +4,7 @@ import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import SVGIcon from 'components/Icon/SVGIcon'
-import Sidebar from 'components/Scaffolding/Profile'
+import UserNavigation from 'components/Navigation/UserNavigation'
 import { Transition } from '@headlessui/react'
 // import QueueControl from 'components/QueueControl/QueueControl'
 import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
@@ -61,11 +61,11 @@ const Header: FunctionComponent = () => {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              <Sidebar />
+              <UserNavigation />
+              {isOpenProfile && (
+                <div className={style.clickOverlay} onClick={() => setIsOpenProfile(() => !isOpenProfile)} />
+              )}
             </Transition>
-            {isOpenProfile && (
-              <div className={style.clickOverlay} onClick={() => setIsOpenProfile(() => !isOpenProfile)} />
-            )}
           </>
         )}
 
