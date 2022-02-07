@@ -1,4 +1,4 @@
-import type { LoadingProgressType, PostType, SpaceType } from 'lib/types'
+import type { LoadingProgressType, PostType, SpaceType, UserType } from 'lib/types'
 import useStore from 'lib/store'
 import orderBy from 'lodash/orderBy'
 
@@ -7,6 +7,10 @@ export const orderById = <T>(collection: T[]): T[] => orderBy(collection, ['id']
 
 // CONTRACTS
 export const nodeIsUpAndRunning = (contract: Record<string, unknown>): boolean => !!contract?.accounts
+
+// ACCOUNTS
+export const getUserById = (accounts: UserType[], userId: number): UserType =>
+  accounts.find((account) => account.userId === userId) || ({} as UserType)
 
 // POSTS
 export const getPostById = (posts: PostType[], postId: number): PostType =>

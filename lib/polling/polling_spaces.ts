@@ -1,7 +1,7 @@
 import { dequeuePostsAndSpaces } from 'lib/storeUtils'
 import type { LoadingProgressType, SpaceType } from 'lib/types'
 import { getSpaceById } from 'api/spaces'
-import { limitArray, pollingConfig, runPoller } from './pollingUtils'
+import { limitArray, /* pollingConfig, */ runPoller } from './pollingUtils'
 
 const INTERVAL = 5003 // (first prime over 5000) // 10 * 1000
 

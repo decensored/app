@@ -198,7 +198,7 @@ export const style = {
   spaceHeaderInnerCol1: 'sm:w-2/4 w-full text-center sm:text-left',
   spaceHeaderInnerCol2: 'mt-3 sm:mt-0 sm:w-2/4 w-full',
   spaceHeaderTitle: 'font-semibold sm:text-2xl text-xl uppercase',
-  spaceHeaderDescription: 'font-light text-md',
+  spaceHeaderDescription: 'font-light text-md pt-2',
   spaceHeaderButton: 'mt-5 mb-5 sm:mb-0',
   spaceHeaderDataWrapper: 'flex justify-evenly mx-auto text-center text-white w-full',
   spaceHeaderDataCol: 'flex-col flex',
