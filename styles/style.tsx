@@ -179,11 +179,12 @@ export const style = {
   feedItemInteractionIconDark: 'dark:hover:text-highlight-400 dark:text-darkmode-1700',
   feedItemReset: 'children:children:rounded-none children:rounded-none children:shadow-none children:children:shadow-none',
 
-  feedReplyItemWrapper: 'empty:hidden feed-reply-item-wrapper pl-7',
+  feedReplyItemWrapper: 'empty:hidden feed-reply-item-wrapper pl-5',
   feedReplyItemBar: 'empty:hidden flex items-center pt-3',
   feedReplyItemButton: 'cursor-pointer text-highlight-500 text-xs',
   feedReplyItemText: 'text-xs cursor-pointer',
   feedReplyItemSpacer: 'text-[10px] mx-2',
+  feedDeleteItemText: 'text-xs cursor-pointer hover:text-red-500',
 
   startSpaceWrapper: 'flex flex-col items-center justify-center text-center',
   startSpaceTitle: 'mb-1 text-3xl text-gray-900',

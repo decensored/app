@@ -262,7 +262,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             </>
           )}
 
-          {replyCount > 0 && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
+          {replyCount > 0 && isSignedUp && type !== 'replyToPost' && (
+            <span className={style.feedReplyItemSpacer}>|</span>
+          )}
 
           {replyCount > 0 && (
             <>
@@ -302,7 +304,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 onClick={() => {
                   deletePost()
                 }}
-                className={style.feedReplyItemText}
+                className={style.feedDeleteItemText}
               >
                 Delete Post
               </button>

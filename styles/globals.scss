@@ -48,19 +48,6 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
   @apply before:fixed before:inset-0 before:bg-black before:bg-opacity-50 before:empty;
 }
 
-// mobile and desktop show/hide helper classes
-// .hide-on-mobile {
-//   @apply hidden sm:block;
-// }
-
-// .hide-on-handheld {
-//   @apply hidden md:block;
-// }
-
-// .hide-on-desktop {
-//   @apply md:hidden;
-// }
-
 // input-icon-addon
 .input-icon-addon + input {
   @apply pl-10;
