@@ -17,7 +17,7 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ classNames
     <Tooltip key={`trendingtag-${tag.tag}`} text={`${tag.tag} [${tag.count}]`} delayShow={1000}>
       <Link href={`/tag/${tag.tag}`} passHref>
         <a href='passed'>
-          <Tag clickable ellipsis count={`[${tag.count}]`}>
+          <Tag clickable ellipsis>
             #{tag.tag}
           </Tag>
         </a>
