@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'styles/globals.scss'
 import VersionCheck from 'components/BrowserOnly/VersionCheck'
 import Web3Client from 'components/BrowserOnly/Web3Client'
-import DarkmodeToggle from 'components/Darkmode/DarkmodeToggle'
+import useDarkmodeSwitch from 'hooks/useDarkmodeSwitch.js'
 import CalculateViewportHeight from 'components/Viewport/CalculateViewportHeight'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_accounts'
@@ -52,10 +52,11 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
 
     <Component {...pageProps} />
 
-    <DarkmodeToggle />
     <CalculateViewportHeight />
 
     <ToastContainer autoClose={2000} pauseOnHover={false} newestOnTop position={toast.POSITION.TOP_CENTER} />
+
+    {useDarkmodeSwitch()}
 
     {inBrowser && (
       <>
