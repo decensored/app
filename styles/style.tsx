@@ -4,8 +4,10 @@ export const style = {
   body: 'bg-slate-100 font-sans text-gray-900',
   bodyDark: 'dark:text-gray-400 dark:bg-darkmode-100',
 
+  clickOverlay: 'fixed inset-0 top-[60px] bg-black bg-opacity-30',
+
   bodyContainer: 'container flex max-w-screen-lg md:gap-x-[5%] mx-auto',
-  bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px]',
+  bodyContainerCol1: 'flex-none md:w-48 pl-3 w-[34px] empty:hidden',
   bodyContainerCol2: 'relative flex-auto max-w-full',
 
   headerWrapper: 'bg-gradient flex h-header items-center justify-between left-0 px-3 right-0 sticky top-0 w-full z-40',
@@ -79,18 +81,25 @@ export const style = {
   dialogBody: 'overflow-y-auto px-4 py-4 shrink sm:px-8 sm:py-8',
   dialogFooter: 'sm:px-8 py-4 px-4 justify-between gap-y-10 flex',
 
-  popoverWrapper: 'bg-white divide-gray-200 divide-solid divide-y rounded shadow-xl w-52',
+  popoverRef: 'h-[30px]',
+  popoverWrapper: 'bg-white rounded shadow-xl w-52 divide-gray-200 divide-solid divide-y',
   popoverWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
-  popoverHeader: 'py-3 px-4',
-  popoverHeaderLabel: 'text-xs',
-  popoverHeaderName: 'dark:text-gray-300 text-lg',
   popoverBody: 'flex flex-col gap-y-1 p-2',
   popoverBodyButton: 'flex gap-x-3 hover:bg-highlight-10 hover:text-highlight-900 items-center p-2 rounded text-gray-900 text-left text-sm',
   popoverBodyButtonDark: 'dark:hover:bg-highlight-900 dark:hover:text-white dark:text-gray-300',
-  popoverSocialButtonWrapper: 'flex gap-x-5 hide-on-desktop justify-center my-3',
+  popoverSocialButtonWrapper: 'flex gap-x-5 justify-center py-3',
+
+  sidebarWrapper: 'fixed flex flex-col h-body top-[60px] bg-white right-0 shadow-xl w-screen divide-gray-200 divide-solid divide-y z-50',
+  sidebarWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
+  sidebarWrapperPseudo: 'after:empty after:top-0 after:bottom-0 after:right-full after:w-screen after:absolute after:bg-black after:bg-opacity-30',
+  sidebarHeader: 'py-3 px-4',
+  sidebarHeaderLabel: 'text-xs',
+  sidebarHeaderName: 'dark:text-gray-300 text-lg',
+  sidebarBody: 'flex flex-col gap-y-1 p-2 grow overflow-y-auto',
+  sidebarFooter: '',
 
   navigationAsideWrapper: 'top-[60px] sticky pt-10 flex',
-  navigationAsideInner: 'max-w-full justify-between h-screen-sidebar grow flex-col flex',
+  navigationAsideInner: 'max-w-full justify-between h-aside-navigation grow flex-col flex',
   navigationAsideInnerTop: '',
   navigationAsideInnerBottom: 'pb-4',
   navigationAsideButtonContainer: 'gap-y-1 flex-col flex',
@@ -108,7 +117,7 @@ export const style = {
   navigationAsideSocialButtonDark: 'dark:hover:text-white dark:text-gray-300',
 
   navigationBottomWrapperBorder: 'absolute bg-highlight-900 bottom-0 h-[10px] left-0 right-0',
-  navigationBottomWrapper: 'bg-white bottom-0 fixed flex h-[60px] items-center left-0 right-0 shadow-neg-lg',
+  navigationBottomWrapper: 'bg-white bottom-0 fixed flex h-[60px] items-center left-0 right-0 shadow-neg-lg empty:hidden',
   navigationBottomWrapperDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-500',
   navigationBottomInner: 'flex max-w-xl mx-auto px-3 w-full',
   navigationBottomItem: 'cursor-pointer flex flex-col grow items-center justify-center relative text-[15px] z-10',
@@ -133,12 +142,9 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
-  postsWrapper: 'before:-right-[1px] before:absolute before:bg-black before:bg-slate-100 before:bottom-0 before:top-0 before:w-[12px] before:z-10 md:before:empty',
-  postsWrapperDark: 'dark:before:bg-darkmode-100',
-  virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'bg-black h-10',
-  virtuosoFeedItemWrapper: 'virtuoso-feed-item-wrapper mb-5 px-3',
+  virtuosoFeedItemWrapper: 'mb-5',
 
   postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute bg-white bottom-4 empty:hidden font-mono leading-none px-2 py-1 right-4 rounded-full text-gray-400 text-xs',
@@ -151,10 +157,10 @@ export const style = {
   postNotFoundSubline: '',
 
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
-  feedItemParent: 'rounded border-none',
+  feedItemParent: 'rounded border-none shadow-sm',
   feedItemChild: 'border-gray-300 border-l',
 
-  feedItemWrapper: 'feed-item-wrapper bg-white shadow-sm',
+  feedItemWrapper: 'feed-item-wrapper bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:border-darkmode-1900 dark:divide-darkmode-200',
   feedItemInner: 'p-5 rounded',
   feedItemInnerTop: 'p-5 pt-3 rounded-t',
@@ -189,7 +195,7 @@ export const style = {
   spaceHeaderInnerCol1: 'sm:w-2/4 w-full text-center sm:text-left',
   spaceHeaderInnerCol2: 'mt-3 sm:mt-0 sm:w-2/4 w-full',
   spaceHeaderTitle: 'font-semibold sm:text-2xl text-xl uppercase',
-  spaceHeaderDescription: 'font-light text-md',
+  spaceHeaderDescription: 'font-light text-md pt-2',
   spaceHeaderButton: 'mt-5 mb-5 sm:mb-0',
   spaceHeaderDataWrapper: 'flex justify-evenly mx-auto text-center text-white w-full',
   spaceHeaderDataCol: 'flex-col flex',

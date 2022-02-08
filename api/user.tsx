@@ -1,4 +1,5 @@
 import { readableError } from 'lib/helper'
+import { UserType } from 'lib/types'
 
 const log = (msg: string): void => {
   // console.log('api/accounts:', msg) // or outcomment
@@ -120,7 +121,15 @@ export const getAddress = async (contract: any) => {
   return contract.web3.eth.accounts.privateKeyToAccount(private_key).address
 }
 
-export const getUserById = async (contract: any, userId: number) => contract.accounts.methods.accounts(userId).call()
+export const getUserById = async (contract: any, userId: number) => {
+  const user = await contract.accounts.methods.accounts(userId).call()
+
+  const result: UserType = {
+    userId,
+    username: user.username,
+  }
+  return result
+}
 
 export const getIdByUserName = async (contract: any, username: string) => {
   await contract.accounts.methods.id_by_username(username.toLowerCase()).call()

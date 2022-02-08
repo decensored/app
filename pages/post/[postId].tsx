@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
 import { getLevel1PostForReply, getPostById } from 'lib/storeUtils'
@@ -9,7 +9,7 @@ import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
 import Link from 'next/link'
 import Tag from 'components/Tags/Tag'
-import Header from '../../components/Header/Header'
+import Header from '../../components/Scaffolding/Header'
 import BottomNavigation from '../../components/Navigation/BottomNavigation'
 
 const PostPage: NextPage = () => {
@@ -30,7 +30,7 @@ const PostPage: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
+        <div className={`${style.bodyContainerCol1}`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
@@ -53,12 +53,14 @@ const PostPage: NextPage = () => {
                 </div>
               )}
               <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
-              <Helmet>
-                <title>
-                  Post by {post.username} in {post.spaceName}
-                </title>
-                <meta name='description' content={post.message} />
-              </Helmet>
+              <HelmetProvider>
+                <Helmet prioritizeSeoTags>
+                  <title>
+                    Post by {post.username} in {post.spaceName}
+                  </title>
+                  <meta name='description' content={post.message} />
+                </Helmet>
+              </HelmetProvider>
             </div>
           ) : (
             <div className={style.feedWrapper}>
@@ -79,9 +81,7 @@ const PostPage: NextPage = () => {
           )}
         </div>
       </div>
-      <div className='hide-on-desktop'>
-        <BottomNavigation />
-      </div>
+      <BottomNavigation />
     </>
   )
 }

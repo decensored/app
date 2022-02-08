@@ -6,9 +6,10 @@ import { usePopper } from 'react-popper'
 interface PopoverProps {
   popoverButton: JSX.Element
   popoverPanel: JSX.Element
+  open?: boolean
 }
 
-const BasePopover: FunctionComponent<PopoverProps> = ({ popoverButton, popoverPanel }) => {
+const BasePopover: FunctionComponent<PopoverProps> = ({ popoverButton, popoverPanel, open }) => {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -29,7 +30,7 @@ const BasePopover: FunctionComponent<PopoverProps> = ({ popoverButton, popoverPa
       </Popover.Button>
 
       {ReactDOM.createPortal(
-        <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+        <Popover.Panel static={open} ref={setPopperElement} style={styles.popper} {...attributes.popper}>
           {popoverPanel}
         </Popover.Panel>,
         document.body
