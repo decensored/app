@@ -162,8 +162,8 @@ const UserNavigation: FunctionComponent = () => {
       <div className={`${style.sidebarBody}`}>
         {isSignedUp && contentAccountButton()}
         {isSignedUp && !isLargerThanMD && contentMyPostsButton()}
-        {!isSignedUp && nodeIsUpAndRunning(contract) && contentSignupButton}
-        {!isSignedUp && nodeIsUpAndRunning(contract) && contentRecoverButton}
+        {!isSignedUp && nodeIsUpAndRunning(contract) && contentSignupButton()}
+        {!isSignedUp && nodeIsUpAndRunning(contract) && contentRecoverButton()}
         {contentNodeSettingsButton()}
         {!isLargerThanMD && contentDarkmodeToggleButton()}
         {isSignedUp && contentLogoutButton()}
