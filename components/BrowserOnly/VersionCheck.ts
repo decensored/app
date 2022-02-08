@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { inBrowser } from 'lib/where'
 import useStore from 'lib/store'
-import useInteval from 'hooks/useInterval.js'
+import useInterval from 'hooks/useInterval.js'
 import packageJson from 'package.json'
 
 const INTERVAL = 60 * 1000 // between version checks
@@ -14,7 +14,7 @@ const VersionCheck: FunctionComponent = () => {
 
   const [apiVersion, setApiVersion] = useState('')
 
-  useInteval(async () => {
+  useInterval(async () => {
     if (!inBrowser || versionInfoGiven) return
 
     try {
