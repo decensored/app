@@ -57,6 +57,8 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 .feed-wrapper {
   // fix virtuoso wrong 100% width and remove the parents x-padding
   &[data-virtuoso-scroller] {
+    overflow: hidden;
+
     > div {
       max-width: calc(100% - 1.5rem);
     }
@@ -104,6 +106,12 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
     &:before {
       @apply absolute inset-0 z-0 bg-black opacity-20 empty;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-on-desktop {
+    display: none;
   }
 }
 

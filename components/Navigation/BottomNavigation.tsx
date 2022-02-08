@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
-import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
+// import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 import BottomButtonCreatePost from './BottomButtonCreatePost'
 
 const BottomNavigation = () => {
@@ -13,13 +13,14 @@ const BottomNavigation = () => {
   const isRoot = pathname === '/'
   const isSpaces = pathname.startsWith('/spaces')
 
-  const isSmallerThanMD = useScreenSizeQuery('isSmallerThanMD')
+  // const isSmallerThanMD = useScreenSizeQuery('isSmallerThanMD')
 
-  return isSmallerThanMD ? (
+  return (
     <div
       className={`
         ${style.navigationBottomWrapper}
         ${style.navigationBottomWrapperDark}
+        hide-on-desktop
       `}
     >
       <div className={style.navigationBottomWrapperBorder} />
@@ -71,7 +72,7 @@ const BottomNavigation = () => {
         </Link>
       </div>
     </div>
-  ) : null
+  )
 }
 
 export default BottomNavigation
