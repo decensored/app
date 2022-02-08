@@ -43,9 +43,9 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
             onClick={() => setOpenSpaceSettingsDialog(true)}
           />
           <SpaceSettingsDialog
-            space={space.id}
+            spaceId={space.id}
             name={space.name}
-            // description={space.description}
+            description={space.description}
             blacklistedUsers={blackListArray}
             setBlacklist={setBlackListArray}
             showDialog={openSpaceSettingsDialog}
