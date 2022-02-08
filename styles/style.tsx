@@ -142,12 +142,9 @@ export const style = {
   navigationBottomMotionSpanColor: 'bg-white',
   navigationBottomMotionSpanColorDark: 'dark:bg-highlight-100',
 
-  postsWrapper: 'before:-right-[1px] before:absolute before:bg-black before:bg-slate-100 before:bottom-0 before:top-0 before:w-[12px] before:z-10 md:before:empty',
-  postsWrapperDark: 'dark:before:bg-darkmode-100',
-  virtuosoWrapper: '',
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'bg-black h-10',
-  virtuosoFeedItemWrapper: 'virtuoso-feed-item-wrapper mb-5 px-3',
+  virtuosoFeedItemWrapper: 'mb-5',
 
   postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute bg-white bottom-4 empty:hidden font-mono leading-none px-2 py-1 right-4 rounded-full text-gray-400 text-xs',

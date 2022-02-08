@@ -61,26 +61,20 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 //   @apply md:hidden;
 // }
 
-// add custom space to first and last virtuoso wrapper child
-div[data-test-id*='virtuoso-item-list'] > div {
-  &:first-child {
-    @apply mt-3 md:mt-10;
-  }
-  &:last-child {
-    @apply mb-20 md:mb-10;
-  }
-}
-
 // input-icon-addon
 .input-icon-addon + input {
   @apply pl-10;
 }
 
 // custom feed css
-.feed-wrapper,
-.virtuoso-feed-item-wrapper {
+.feed-wrapper {
   > .feed-item-wrapper > .feed-reply-item-wrapper {
     @apply pb-5;
+  }
+
+  // fix virtuoso wrong 100% width and remove the parents x-padding
+  &[data-virtuoso-scroller] > div {
+    max-width: calc(100% - 1.5rem);
   }
 }
 

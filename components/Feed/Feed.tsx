@@ -39,14 +39,14 @@ const Feed: FunctionComponent = () => {
         )}
       </div>
 
-      <div id='posts' className={`${style.postsWrapper} ${style.postsWrapperDark}`}>
+      <div id='posts'>
         <Virtuoso
           useWindowScroll
           data={rootLevelPosts}
           totalCount={rootLevelPosts.length}
           ref={virtuoso}
           className={`
-              ${style.virtuosoWrapper}
+              ${style.feedWrapper}
               h-body
             `}
           itemContent={(_, post) => (
