@@ -21,11 +21,12 @@ const Feed: FunctionComponent = () => {
 
   const handleDequeuePosts = () => {
     dequeuePostsAndSpaces()
-    if (!virtuoso?.current) return
-    virtuoso.current.scrollToIndex({
-      index: 0,
-      behavior: 'smooth',
-    })
+    window.scrollTo(0, 0)
+    // if (!virtuoso?.current) return
+    // virtuoso.current.scrollToIndex({
+    //   index: 0,
+    //   behavior: 'smooth',
+    // })
   }
 
   return (

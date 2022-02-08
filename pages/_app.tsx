@@ -11,6 +11,10 @@ import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_accounts'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
+import Header from 'components/Scaffolding/Header'
+import { style } from 'styles/style'
+import AsideNavigation from 'components/Navigation/AsideNavigation'
+import BottomNavigation from 'components/Navigation/BottomNavigation'
 
 declare module 'react-helmet-async' {
   export interface HelmetProps {
@@ -50,9 +54,16 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       </Helmet>
     </HelmetProvider>
 
-    <Component {...pageProps} />
-
-    <ToastContainer autoClose={2000} pauseOnHover={false} newestOnTop position={toast.POSITION.TOP_CENTER} />
+    <Header />
+    <div className={style.bodyContainer}>
+      <div className={`${style.bodyContainerCol1}`}>
+        <AsideNavigation />
+      </div>
+      <div className={style.bodyContainerCol2}>
+        <Component {...pageProps} />
+      </div>
+    </div>
+    <BottomNavigation />
 
     {useViewportHeightCalculation()}
     {useDarkmodeSwitch()}
@@ -63,6 +74,8 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
         <Web3Client />
       </>
     )}
+
+    <ToastContainer autoClose={2000} pauseOnHover={false} newestOnTop position={toast.POSITION.TOP_CENTER} />
   </>
 )
 

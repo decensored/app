@@ -13,7 +13,9 @@ const BottomNavigation = () => {
   const isRoot = pathname === '/'
   const isSpaces = pathname.startsWith('/spaces')
 
-  return !useScreenSizeQuery('isLargerThanMD') ? (
+  const isSmallerThanMD = useScreenSizeQuery('isSmallerThanMD')
+
+  return isSmallerThanMD ? (
     <div
       className={`
         ${style.navigationBottomWrapper}

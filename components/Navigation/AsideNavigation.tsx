@@ -27,7 +27,9 @@ const AsideNavigation: FunctionComponent = () => {
 
   const toggleDarkMode = (): void => setIsDarkmode(!isDarkmode)
 
-  return useScreenSizeQuery('isLargerThanMD') ? (
+  const isLargerThanMD = useScreenSizeQuery('isLargerThanMD')
+
+  return isLargerThanMD ? (
     <div className={style.navigationAsideWrapper}>
       <div className={style.navigationAsideInner}>
         <div className={style.navigationAsideInnerTop}>

@@ -16,7 +16,7 @@ export const style = {
   loadingIndicator: '-translate-x-2/4 bg-highlight-500 fixed left-1/2 pointer-events-none px-3 py-1 rounded-full shadow-lg text-sm text-white top-[15px]',
   loadingWrapper: 'bg-slate-100 bottom-0 fixed flex flex-col h-screen items-center justify-center left-0 overflow-hidden right-0 top-0 w-full z-50',
 
-  dequeuePostsAndSpacesWrapper: 'absolute empty:-translate-y-full flex justify-center left-3 right-6 top-[6px] transition-transform translate-y-0 z-10',
+  dequeuePostsAndSpacesWrapper: 'fixed -translate-x-1/2 md:translate-x-[34px] flex justify-center left-1/2 top-[65px] transition-transform translate-y-0 z-50',
   dequeuePostsAndSpacesButton: 'bg-highlight-500 cusor-pointer px-3 py-1 rounded-full shadow-lg text-sm text-white',
 
   inputWrapper: 'relative mb-5 last:mb-0',
