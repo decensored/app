@@ -6,7 +6,7 @@ import 'styles/globals.scss'
 import VersionCheck from 'components/BrowserOnly/VersionCheck'
 import Web3Client from 'components/BrowserOnly/Web3Client'
 import useDarkmodeSwitch from 'hooks/useDarkmodeSwitch.js'
-import CalculateViewportHeight from 'components/Viewport/CalculateViewportHeight'
+import useViewportHeightCalculation from 'hooks/useViewportHeightCalculation.js'
 import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_accounts'
 import 'lib/polling/polling_spaces'
@@ -52,10 +52,9 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
 
     <Component {...pageProps} />
 
-    <CalculateViewportHeight />
-
     <ToastContainer autoClose={2000} pauseOnHover={false} newestOnTop position={toast.POSITION.TOP_CENTER} />
 
+    {useViewportHeightCalculation()}
     {useDarkmodeSwitch()}
 
     {inBrowser && (
