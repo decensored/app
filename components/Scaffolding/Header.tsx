@@ -7,7 +7,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import UserNavigation from 'components/Navigation/UserNavigation'
 import { Transition } from '@headlessui/react'
 // import QueueControl from 'components/QueueControl/QueueControl'
-import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
+// import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
 import SettingsDialog from 'components/Dialog/SettingsDialog'
 import { style } from 'styles/style'
 import useTimeout from 'hooks/useTimeout.js'
@@ -78,7 +78,7 @@ const Header: FunctionComponent = () => {
           </>
         )}
       </div>
-      <LoadingIndicator />
+      {/* <LoadingIndicator /> */}
     </div>
   )
 }
