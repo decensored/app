@@ -24,6 +24,8 @@ const UserNavigation: FunctionComponent = () => {
 
   const [contract] = useStore((state) => [state.contract], shallow)
 
+  const isLargerThanMD = useScreenSizeQuery('isLargerThanMD')
+
   const [isSignedUp, setIsSignedUp, userName] = useStore(
     (state) => [state.isSignedUp, state.setIsSignedUp, state.userName, state.posts],
     shallow
@@ -159,17 +161,17 @@ const UserNavigation: FunctionComponent = () => {
       {isSignedUp && contentHeader()}
       <div className={`${style.sidebarBody}`}>
         {isSignedUp && contentAccountButton()}
-        {isSignedUp && !useScreenSizeQuery('isLargerThanMD') && contentMyPostsButton()}
+        {isSignedUp && !isLargerThanMD && contentMyPostsButton()}
         {!isSignedUp && nodeIsUpAndRunning(contract) && contentSignupButton}
         {!isSignedUp && nodeIsUpAndRunning(contract) && contentRecoverButton}
         {contentNodeSettingsButton()}
-        {!useScreenSizeQuery('isLargerThanMD') && contentDarkmodeToggleButton()}
+        {!isLargerThanMD && contentDarkmodeToggleButton()}
         {isSignedUp && contentLogoutButton()}
       </div>
       {/* {
         !isLargerThanMD && <TrendingHashtags classNames={`${style.tagListCol} max-w-[200px] pr-5`} />}
       */}
-      {!useScreenSizeQuery('isLargerThanMD') && (
+      {!isLargerThanMD && (
         <div className={`${style.sidebarFooter}`}>
           <SocialIcons classNames={style.popoverSocialButtonWrapper} />
         </div>

@@ -59,7 +59,7 @@
       { "allowExpressions": true }
     ], */
     "max-len": ["warn", { "code": 120 }],
-    "react-hooks/rules-of-hooks": "off",
+    // "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
