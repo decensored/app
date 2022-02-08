@@ -12,7 +12,7 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
-// import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 
 const Spaces: NextPage = () => {
   const [isSignedUp, spaces, spacesSortType, setSpacesSortType, posts, userId] = useStore(
@@ -29,6 +29,8 @@ const Spaces: NextPage = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [spaceResults, setSpaceResults] = React.useState([] as SpaceType[])
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
+
+  const isLargerThanSM = useScreenSizeQuery('isLargerThanSM')
 
   const handleChange = (event: any) => {
     setSearchTerm(event.target.value)
@@ -63,7 +65,7 @@ const Spaces: NextPage = () => {
                     className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
                   >
                     <SVGIcon icon='faPlus' isFixed />
-                    {/* {useScreenSizeQuery('isLargerThanSM') && <span>Create</span>} */}
+                    {isLargerThanSM && <span>Create</span>}
                   </button>
                   <CreateSpaceDialog
                     showDialog={openCreateSpaceDialog}
