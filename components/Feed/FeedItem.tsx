@@ -211,7 +211,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Linkify
             options={{
               formatHref: {
-                hashtag: (href: string) => `/tag/${href.substring(1)}`,
+                hashtag: (href: string) => `/tag/${href.substring(1).toLowerCase()}`,
                 mention: (href: string) => `/user/${href.substring(1)}`,
                 space: (href: string) => `/space/${href.substring(1)}`,
               } as any,

@@ -93,7 +93,7 @@ export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: str
 
 // HASHTAGS
 export const getPostsWithHashtag = (posts: PostType[], hashtag: string): PostType[] =>
-  posts.filter((post) => post.message.includes(`#${hashtag}`))
+  posts.filter((post) => post.message.toLowerCase().includes(`#${hashtag.toLowerCase()}`))
 
 export const getTrendingHashtags = (posts: PostType[], hours: number, min: number): any => {
   const tags: string[] = []
