@@ -13,7 +13,7 @@ import TrendingHashtags from '../Tags/TrendingHashtags'
 import AsideButtonCreatePost from './AsideButtonCreatePost'
 
 const AsideNavigation: FunctionComponent = () => {
-  const [isSignedUp, userName, posts] = useStore((state) => [state.isSignedUp, state.userName, state.posts])
+  const [isSignedUp, userName] = useStore((state) => [state.isSignedUp, state.userName])
   const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
 
   const router = useRouter()
@@ -64,8 +64,7 @@ const AsideNavigation: FunctionComponent = () => {
                   </Link>
                 </Tooltip>
                 <div className={style.navigationAsideButtonSpacer} />
-                <div className='mb-2 text-sm font-medium'>Currently trending</div>
-                <TrendingHashtags posts={posts} classNames={`${style.tagListCol}`} />
+                <TrendingHashtags classNames={`${style.tagListCol}`} />
                 <AsideButtonCreatePost />
               </>
             )}
@@ -84,15 +83,14 @@ const AsideNavigation: FunctionComponent = () => {
                   ${style.navigationAsideInteractionSwitch}
                 `}
               >
-                {isDarkmode && (
-                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
+                {isDarkmode ? (
+                  <span className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faMoon' isFixed />
-                  </div>
-                )}
-                {!isDarkmode && (
-                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
+                  </span>
+                ) : (
+                  <span className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faSun' isFixed />
-                  </div>
+                  </span>
                 )}
               </button>
             </div>

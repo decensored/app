@@ -167,7 +167,7 @@ const UserNavigation: FunctionComponent = () => {
         {isSignedUp && contentLogoutButton()}
       </div>
       {/* {
-        !isLargerThanMD && <TrendingHashtags posts={posts} classNames={`${style.tagListCol} max-w-[200px] pr-5`} />}
+        !isLargerThanMD && <TrendingHashtags classNames={`${style.tagListCol} max-w-[200px] pr-5`} />}
       */}
       {!useScreenSizeQuery('isLargerThanMD') && (
         <div className={`${style.sidebarFooter}`}>
