@@ -41,6 +41,7 @@ const Feed: FunctionComponent = () => {
 
       <div id='posts' className={`${style.postsWrapper} ${style.postsWrapperDark}`}>
         <Virtuoso
+          useWindowScroll
           data={rootLevelPosts}
           totalCount={rootLevelPosts.length}
           ref={virtuoso}
