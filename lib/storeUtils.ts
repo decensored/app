@@ -97,13 +97,14 @@ export const getPostsWithHashtag = (posts: PostType[], hashtag: string): PostTyp
 
 export const getTrendingHashtags = (posts: PostType[], hours: number, min: number): any => {
   const tags: string[] = []
+  const regex = /[^a-z1-9]/g
   posts
     .filter((post) => post.message.includes(`#`) && post.timestamp * 1000 >= +new Date() - hours * 3600 * 1000)
     .forEach((post) => {
       post.message
         .split(' ')
         .filter((part: string) => part.startsWith('#'))
-        .map((tag) => tags.push(tag.replace('#', '')))
+        .map((tag) => tags.push(tag.toLocaleLowerCase().replace(regex, '')))
     })
 
   const count = {} as any
