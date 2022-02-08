@@ -4,10 +4,13 @@ import UserDialog from 'components/Dialog/UserDialog'
 import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import { SpaceType, UserType } from 'lib/types'
+import Tag from 'components/Tags/Tag'
+import Link from 'next/link'
 
 interface SpaceHeaderProbs {
   space: SpaceType
   spaceOwner: boolean
+  spaceOwnerName: string
   name: string | string[] | undefined
   nrOfPosts: number
   nrOfUSers: number
@@ -19,6 +22,7 @@ interface SpaceHeaderProbs {
 const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
   space,
   spaceOwner,
+  spaceOwnerName,
   name,
   nrOfPosts,
   nrOfUSers,
@@ -53,6 +57,15 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
         <div className={style.spaceHeaderInnerCol1}>
           <div className={style.spaceHeaderTitle}>/{name}</div>
           <div className={style.spaceHeaderDescription}>{space.description}</div>
+          <div className={style.spaceHeaderDescription}>
+            <Link href={`/user/${spaceOwnerName}`} passHref>
+              <a href='passed'>
+                <Tag clickable>
+                  <span>@{spaceOwnerName}</span>
+                </Tag>
+              </a>
+            </Link>
+          </div>
         </div>
         <div className={style.spaceHeaderInnerCol2}>
           <div className={style.spaceHeaderDataWrapper}>

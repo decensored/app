@@ -2,15 +2,15 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { getTrendingHashtags } from 'lib/storeUtils'
 import Tag from 'components/Tags/Tag'
-import { PostType } from 'lib/types'
 import Tooltip from 'components/Tooltip/Tooltip'
-import { style } from 'styles/style'
+import useStore from 'lib/store'
 
 interface TrendingHashtagsProps {
-  posts: PostType[]
+  classNames?: string
 }
 
-const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts }) => {
+const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ classNames }) => {
+  const [posts] = useStore((state) => [state.posts])
   const hashtags = getTrendingHashtags(posts, 12, 1)
 
   const trendingTags = hashtags.map((tag: any) => (
@@ -18,14 +18,19 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ posts }) =
       <Link href={`/tag/${tag.tag}`} passHref>
         <a href='passed'>
           <Tag clickable ellipsis count={`[${tag.count}]`}>
-            {tag.tag}
+            #{tag.tag}
           </Tag>
         </a>
       </Link>
     </Tooltip>
   ))
 
-  return <div className={style.tagListCol}>{trendingTags}</div>
+  return trendingTags ? (
+    <>
+      <div className='mb-2 text-sm font-medium'>Currently trending</div>
+      <div className={classNames}>{trendingTags}</div>
+    </>
+  ) : null
 }
 
 export default TrendingHashtags

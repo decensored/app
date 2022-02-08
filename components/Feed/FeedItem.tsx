@@ -71,7 +71,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   if (!read && posts.length && type !== 'replyToPost') {
     /* eslint no-param-reassign: "off" */
     post.read = true
-    setPosts(posts)
+    setPosts(posts) // XXX hack
     // console.log(`post ${id} by ${username} (${message}) is now read`)
   }
 

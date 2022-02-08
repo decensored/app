@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
-import Header from 'components/Header/Header'
+import Header from 'components/Scaffolding/Header'
 import AsideNavigation from 'components/Navigation/AsideNavigation'
 import BottomNavigation from 'components/Navigation/BottomNavigation'
 import SpaceItem from 'components/Spaces/SpaceItem'
@@ -12,15 +12,25 @@ import SVGIcon from 'components/Icon/SVGIcon'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 
 const Spaces: NextPage = () => {
-  const [isSignedUp, spaces, spacesSortType, setSpacesSortType, posts] = useStore(
-    (state) => [state.isSignedUp, state.spaces, state.spacesSortType, state.setSpacesSortType, state.posts],
+  const [isSignedUp, spaces, spacesSortType, setSpacesSortType, posts, userId] = useStore(
+    (state) => [
+      state.isSignedUp,
+      state.spaces,
+      state.spacesSortType,
+      state.setSpacesSortType,
+      state.posts,
+      state.userId,
+    ],
     shallow
   )
   const [searchTerm, setSearchTerm] = React.useState('')
   const [spaceResults, setSpaceResults] = React.useState([] as SpaceType[])
   const [openCreateSpaceDialog, setOpenCreateSpaceDialog] = useState(false)
+
+  const isLargerThanSM = useScreenSizeQuery('isLargerThanSM')
 
   const handleChange = (event: any) => {
     setSearchTerm(event.target.value)
@@ -28,11 +38,11 @@ const Spaces: NextPage = () => {
 
   // Search or sort spaces
   React.useEffect(() => {
-    const result = sortSpaces(spaces, posts, spacesSortType).filter((space) =>
+    const result = sortSpaces(spaces, posts, spacesSortType, userId).filter((space) =>
       space.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setSpaceResults(result)
-  }, [searchTerm, spacesSortType, spaces, posts])
+  }, [searchTerm, spacesSortType, spaces, posts, userId])
 
   const createSpaceItems = spaceResults.map((space: any) => <SpaceItem key={`space-${space.id}`} {...space} />)
 
@@ -40,7 +50,7 @@ const Spaces: NextPage = () => {
     <>
       <Header />
       <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1} hide-on-handheld`}>
+        <div className={`${style.bodyContainerCol1}`}>
           <AsideNavigation />
         </div>
         <div className={style.bodyContainerCol2}>
@@ -55,7 +65,7 @@ const Spaces: NextPage = () => {
                     className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
                   >
                     <SVGIcon icon='faPlus' isFixed />
-                    <span className='hide-on-mobile'>Create</span>
+                    {isLargerThanSM && <span>Create</span>}
                   </button>
                   <CreateSpaceDialog
                     showDialog={openCreateSpaceDialog}
@@ -74,9 +84,10 @@ const Spaces: NextPage = () => {
                   value={spacesSortType}
                   onChange={(e) => setSpacesSortType(e.target.value)}
                 >
-                  <option value='numberOfPostsInSpace|desc'>Most active</option>
                   <option value='latestPostIndexInSpace|desc'>Latest Activity</option>
+                  <option value='numberOfPostsInSpace|desc'>Most Posts</option>
                   <option value='id|desc'>Newest Space</option>
+                  {isSignedUp && <option value='mySpaces'>My Spaces</option>}
                   {/* <option value='name|asc'>Name A-Z</option> */}
                   {/* <option value='name|desc'>Name Z-A</option> */}
                 </select>
@@ -111,9 +122,7 @@ const Spaces: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className='hide-on-desktop'>
-        <BottomNavigation />
-      </div>
+      <BottomNavigation />
     </>
   )
 }
