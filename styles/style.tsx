@@ -140,6 +140,7 @@ export const style = {
   feedItemChild: 'feedItemChild',
   feedItemWrapper: 'feedItemWrapper',
   feedItemWrapperDark: 'feedItemWrapperDark',
+  feedItemWrapperClickable: 'feedItemWrapperClickable',
   feedItemInner: 'feedItemInner',
   feedItemInnerTop: 'feedItemInnerTop',
   feedItemInnerBottom: 'feedItemInnerBottom',

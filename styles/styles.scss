@@ -1,3 +1,5 @@
+// caution: the correct order is important
+
 @import '../node_modules/react-toastify/dist/ReactToastify';
 @import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
 
@@ -8,3 +10,5 @@
 
 @tailwind components;
 @tailwind utilities;
+
+@import 'development';

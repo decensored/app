@@ -57,7 +57,11 @@
   @apply flex;
 }
 .inputIconAddon {
-  @apply input-icon-addon pointer-events-none absolute left-[10px] top-[7px];
+  @apply pointer-events-none absolute left-[10px] top-[7px];
+
+  + input {
+    @apply pl-10;
+  }
 }
 .input {
   @apply w-full px-3 py-[7.3px] outline-none focus:outline-none;
@@ -128,9 +132,7 @@
 .formValidation {
   @apply absolute left-[3px] right-[3px] flex items-center rounded-b bg-white px-[9px] py-1 before:absolute before:inset-0 before:rounded-b before:bg-opacity-20 before:empty;
 }
-.formValidationBefore {
-  // @apply;
-}
+// .formValidationBefore { @apply }
 .formValidationError {
   @apply before:bg-red-500;
 }
@@ -219,7 +221,7 @@
   @apply fixed top-10 mx-auto flex w-full items-center justify-center;
 }
 .dialogInner {
-  @apply max-h-dialog relative mx-3 mx-auto flex w-full flex-col divide-y divide-solid divide-gray-200 rounded bg-white bg-white shadow-xl;
+  @apply max-h-dialog relative mx-3 flex w-full flex-col divide-y divide-solid divide-gray-200 rounded bg-white shadow-xl;
 }
 .dialogInnerDark {
   @apply dark:divide-darkmode-1000 dark:bg-darkmode-600;
@@ -288,9 +290,7 @@
 .sidebarBody {
   @apply flex grow flex-col gap-y-1 overflow-y-auto p-2;
 }
-.sidebarFooter {
-  // @apply;
-}
+// .sidebarFooter { @apply }
 
 // navigationAside
 
@@ -300,9 +300,7 @@
 .navigationAsideInner {
   @apply h-aside-navigation flex max-w-full grow flex-col justify-between pb-3;
 }
-.navigationAsideInnerTop {
-  // @apply;
-}
+// .navigationAsideInnerTop { @apply }
 .navigationAsideInnerBottom {
   @apply pb-4;
 }
@@ -331,7 +329,7 @@
   @apply h-5;
 }
 .navigationAsideBottomInteractionWrapper {
-  @apply flex flex-col flex-col-reverse items-center gap-3 md:flex-row md:justify-between;
+  @apply flex flex-col items-center gap-3 md:flex-row md:justify-between;
 }
 .navigationAsideInteractionSwitch {
   @apply mt-2 md:mt-0;
@@ -392,9 +390,7 @@
 .navigationBottomPostButtonBefore {
   @apply left-0 -translate-x-full;
 }
-.navigationBottomPostButtonBeforeDark {
-  // @apply;
-}
+// .navigationBottomPostButtonBeforeDark { @apply }
 .navigationBottomPostButtonBeforeInner {
   @apply left-0 rounded-br-xl bg-white;
 }
@@ -404,9 +400,7 @@
 .navigationBottomPostButtonAfter {
   @apply right-0 translate-x-full;
 }
-.navigationBottomPostButtonAfterDark {
-  // @apply;
-}
+// .navigationBottomPostButtonAfterDark { @apply }
 .navigationBottomPostButtonAfterInner {
   @apply rounded-bl-xl bg-white;
 }
@@ -449,9 +443,7 @@
 .postNotFoundHeadline {
   @apply mb-3 text-3xl font-bold;
 }
-.postNotFoundSubline {
-  // @apply;
-}
+// .postNotFoundSubline { @apply }
 
 // virtuoso
 
@@ -482,6 +474,10 @@
 }
 .feedItemWrapper {
   @apply bg-white;
+
+  &.feedItemWrapperClickable {
+    @apply cursor-pointer;
+  }
 }
 .feedItemWrapperDark {
   @apply dark:divide-darkmode-200 dark:border-darkmode-1900 dark:bg-darkmode-600;
@@ -519,9 +515,7 @@
 .feedItemText {
   @apply overflow-hidden break-words font-light;
 }
-.feedItemTextDark {
-  // @apply;
-}
+// .feedItemTextDark { @apply }
 .feedItemInteractionBar {
   @apply flex gap-x-3;
 }
@@ -623,9 +617,7 @@
     }
   }
 }
-.itemListItemDark {
-  // @apply;
-}
+// .itemListItemDark { @apply }
 .itemListItemHoverElement {
   @apply invisible absolute right-3 top-1/2 -translate-y-1/2;
   &.tag {
@@ -701,6 +693,4 @@
 .alertError {
   @apply border-red-400 bg-red-100 text-red-700;
 }
-.alertSuccess {
-  // @apply;
-}
+// .alertSuccess { @apply }
