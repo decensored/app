@@ -1,9 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import Header from 'components/Scaffolding/Header'
-import AsideNavigation from 'components/Navigation/AsideNavigation'
-import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
@@ -41,25 +38,14 @@ const Space: NextPage = () => {
   })
 
   return (
-    <>
-      <Header />
-      <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1}`}>
-          <AsideNavigation />
-        </div>
-        <div className={style.bodyContainerCol2}>
-          <div className={style.feedWrapper}>
-            <div className={style.userHeaderWrapper}>
-              <div className={style.userHeaderInner}>
-                <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
-              </div>
-            </div>
-            {showFeedItems}
-          </div>
+    <div className={style.feedWrapper}>
+      <div className={style.userHeaderWrapper}>
+        <div className={style.userHeaderInner}>
+          <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
         </div>
       </div>
-      <BottomNavigation />
-    </>
+      {showFeedItems}
+    </div>
   )
 }
 

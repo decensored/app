@@ -1,9 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import Header from 'components/Scaffolding/Header'
-import AsideNavigation from 'components/Navigation/AsideNavigation'
-import BottomNavigation from 'components/Navigation/BottomNavigation'
 import FeedItem from 'components/Feed/FeedItem'
 import useStore from 'lib/store'
 import { getPostsInSpace, getSpaceById, getSpaceIdByName, getUserById, nodeIsUpAndRunning } from 'lib/storeUtils'
@@ -108,40 +105,31 @@ const Space: NextPage = () => {
   })
 
   return (
-    <>
-      <Header />
-      <div className={style.bodyContainer}>
-        <div className={`${style.bodyContainerCol1}`}>
-          <AsideNavigation />
-        </div>
-        <div className={style.bodyContainerCol2}>
-          {space && (
-            <div className={style.feedWrapper}>
-              <SpaceHeader
-                space={space}
-                spaceOwner={spaceOwner}
-                spaceOwnerName={spaceOwnerName}
-                name={name}
-                nrOfPosts={nrOfPosts}
-                nrOfUSers={nrOfUSers}
-                userArray={userArray}
-                blackListArray={blackListArray}
-                setBlackListArray={setBlackListArray}
-              />
-              {isSignedUp && !currentUserBlacklisted && (
-                <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
-                  <div className={style.feedItemInner}>
-                    <PostForm spaceId={space.id} isTransparent />
-                  </div>
-                </div>
-              )}
-              {showFeedItems}
+    <div>
+      {space && (
+        <div className={style.feedWrapper}>
+          <SpaceHeader
+            space={space}
+            spaceOwner={spaceOwner}
+            spaceOwnerName={spaceOwnerName}
+            name={name}
+            nrOfPosts={nrOfPosts}
+            nrOfUSers={nrOfUSers}
+            userArray={userArray}
+            blackListArray={blackListArray}
+            setBlackListArray={setBlackListArray}
+          />
+          {isSignedUp && !currentUserBlacklisted && (
+            <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
+              <div className={style.feedItemInner}>
+                <PostForm spaceId={space.id} isTransparent />
+              </div>
             </div>
           )}
+          {showFeedItems}
         </div>
-      </div>
-      <BottomNavigation />
-    </>
+      )}
+    </div>
   )
 }
 

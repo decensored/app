@@ -48,19 +48,6 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
   @apply before:fixed before:inset-0 before:bg-black before:bg-opacity-50 before:empty;
 }
 
-// mobile and desktop show/hide helper classes
-// .hide-on-mobile {
-//   @apply hidden sm:block;
-// }
-
-// .hide-on-handheld {
-//   @apply hidden md:block;
-// }
-
-// .hide-on-desktop {
-//   @apply md:hidden;
-// }
-
 // input-icon-addon
 .input-icon-addon + input {
   @apply pl-10;
@@ -68,13 +55,19 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
 
 // custom feed css
 .feed-wrapper {
-  > .feed-item-wrapper > .feed-reply-item-wrapper {
-    @apply pb-5;
+  // fix virtuoso wrong 100% width and remove the parents x-padding
+  &[data-virtuoso-scroller] {
+    overflow: hidden;
+
+    > div {
+      max-width: calc(100% - 1.5rem);
+    }
   }
 
-  // fix virtuoso wrong 100% width and remove the parents x-padding
-  &[data-virtuoso-scroller] > div {
-    max-width: calc(100% - 1.5rem);
+  // ugly bottom margin because posts and replies are using the same component
+  > .feed-item-wrapper > .feed-reply-item-wrapper,
+  .virtuoso-feed-item-wrapper > .feed-item-wrapper > .feed-reply-item-wrapper {
+    @apply empty:hidden after:block after:h-5 after:w-full after:empty;
   }
 }
 
@@ -113,6 +106,12 @@ div[id*='headlessui-dialog']:not([id*='overlay']) {
     &:before {
       @apply absolute inset-0 z-0 bg-black opacity-20 empty;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-on-desktop {
+    display: none;
   }
 }
 
