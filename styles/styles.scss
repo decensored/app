@@ -1,0 +1,10 @@
+@import '../node_modules/react-toastify/dist/ReactToastify';
+@import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
+
+@tailwind base;
+
+@import 'scaffolding';
+@import 'tailwind';
+
+@tailwind components;
+@tailwind utilities;
