@@ -16,7 +16,7 @@ export const style = {
   loadingIndicator: '-translate-x-2/4 bg-highlight-500 fixed left-1/2 pointer-events-none px-3 py-1 rounded-full shadow-lg text-sm text-white top-[15px]',
   loadingWrapper: 'bg-slate-100 bottom-0 fixed flex flex-col h-screen items-center justify-center left-0 overflow-hidden right-0 top-0 w-full z-50',
 
-  dequeuePostsAndSpacesWrapper: 'absolute empty:-translate-y-full flex justify-center left-3 right-6 top-[6px] transition-transform translate-y-0 z-10',
+  dequeuePostsAndSpacesWrapper: 'fixed -translate-x-1/2 md:translate-x-[34px] flex justify-center left-1/2 top-[65px] transition-transform translate-y-0 z-50',
   dequeuePostsAndSpacesButton: 'bg-highlight-500 cusor-pointer px-3 py-1 rounded-full shadow-lg text-sm text-white',
 
   inputWrapper: 'relative mb-5 last:mb-0',
@@ -144,7 +144,6 @@ export const style = {
 
   virtuosoScroll2IndexWrapper: 'h-10',
   virtuosoScroll2IndexInner: 'bg-black h-10',
-  virtuosoFeedItemWrapper: 'mb-5',
 
   postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute bg-white bottom-4 empty:hidden font-mono leading-none px-2 py-1 right-4 rounded-full text-gray-400 text-xs',
@@ -156,6 +155,7 @@ export const style = {
   postNotFoundHeadline: 'text-3xl bold mb-3',
   postNotFoundSubline: '',
 
+  virtuosoFeedItemWrapper: 'virtuoso-feed-item-wrapper mb-5',
   feedWrapper: 'feed-wrapper flex flex-col gap-y-5 md:mt-10 mt-3 px-3',
   feedItemParent: 'rounded border-none shadow-sm',
   feedItemChild: 'border-gray-300 border-l',
@@ -163,7 +163,7 @@ export const style = {
   feedItemWrapper: 'feed-item-wrapper bg-white',
   feedItemWrapperDark: 'dark:bg-darkmode-600 dark:border-darkmode-1900 dark:divide-darkmode-200',
   feedItemInner: 'p-5 rounded',
-  feedItemInnerTop: 'p-5 pt-3 rounded-t',
+  feedItemInnerTop: 'feed-item-inner-top p-5 pt-3 rounded-t',
   feedItemInnerBottom: 'flex justify-between px-5 py-3 rounded-b',
   feedItemInnerBottomCol: 'items-center gap-x-3 flex',
   feedItemMetaWrapper: 'flex mb-2',
@@ -179,11 +179,12 @@ export const style = {
   feedItemInteractionIconDark: 'dark:hover:text-highlight-400 dark:text-darkmode-1700',
   feedItemReset: 'children:children:rounded-none children:rounded-none children:shadow-none children:children:shadow-none',
 
-  feedReplyItemWrapper: 'empty:hidden feed-reply-item-wrapper pl-7',
+  feedReplyItemWrapper: 'feed-reply-item-wrapper pl-5',
   feedReplyItemBar: 'empty:hidden flex items-center pt-3',
   feedReplyItemButton: 'cursor-pointer text-highlight-500 text-xs',
   feedReplyItemText: 'text-xs cursor-pointer',
   feedReplyItemSpacer: 'text-[10px] mx-2',
+  feedDeleteItemText: 'text-xs cursor-pointer hover:text-red-500',
 
   startSpaceWrapper: 'flex flex-col items-center justify-center text-center',
   startSpaceTitle: 'mb-1 text-3xl text-gray-900',

@@ -211,7 +211,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
           <Linkify
             options={{
               formatHref: {
-                hashtag: (href: string) => `/tag/${href.substring(1)}`,
+                hashtag: (href: string) => `/tag/${href.substring(1).toLowerCase()}`,
                 mention: (href: string) => `/user/${href.substring(1)}`,
                 space: (href: string) => `/space/${href.substring(1)}`,
               } as any,
@@ -262,7 +262,9 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             </>
           )}
 
-          {replyCount > 0 && isSignedUp && <span className={style.feedReplyItemSpacer}>|</span>}
+          {replyCount > 0 && isSignedUp && type !== 'replyToPost' && (
+            <span className={style.feedReplyItemSpacer}>|</span>
+          )}
 
           {replyCount > 0 && (
             <>
@@ -302,7 +304,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 onClick={() => {
                   deletePost()
                 }}
-                className={style.feedReplyItemText}
+                className={style.feedDeleteItemText}
               >
                 Delete Post
               </button>
