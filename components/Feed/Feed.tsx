@@ -21,11 +21,12 @@ const Feed: FunctionComponent = () => {
 
   const handleDequeuePosts = () => {
     dequeuePostsAndSpaces()
-    if (!virtuoso?.current) return
-    virtuoso.current.scrollToIndex({
-      index: 0,
-      behavior: 'smooth',
-    })
+    window.scrollTo(0, 0)
+    // if (!virtuoso?.current) return
+    // virtuoso.current.scrollToIndex({
+    //   index: 0,
+    //   behavior: 'smooth',
+    // })
   }
 
   return (
@@ -39,13 +40,14 @@ const Feed: FunctionComponent = () => {
         )}
       </div>
 
-      <div id='posts' className={`${style.postsWrapper} ${style.postsWrapperDark}`}>
+      <div id='posts'>
         <Virtuoso
+          useWindowScroll
           data={rootLevelPosts}
           totalCount={rootLevelPosts.length}
           ref={virtuoso}
           className={`
-              ${style.virtuosoWrapper}
+              ${style.feedWrapper}
               h-body
             `}
           itemContent={(_, post) => (

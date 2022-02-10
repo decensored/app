@@ -8,12 +8,12 @@ import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
 import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
 import SocialIcons from 'components/Navigation/SocialIcons'
-import { useMediaQuery } from 'react-responsive'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 import TrendingHashtags from '../Tags/TrendingHashtags'
 import AsideButtonCreatePost from './AsideButtonCreatePost'
 
 const AsideNavigation: FunctionComponent = () => {
-  const [isSignedUp, userName, posts] = useStore((state) => [state.isSignedUp, state.userName, state.posts])
+  const [isSignedUp, userName] = useStore((state) => [state.isSignedUp, state.userName])
   const [isDarkmode, setIsDarkmode] = useStore((state) => [state.isDarkmode, state.setIsDarkmode])
 
   const router = useRouter()
@@ -25,9 +25,9 @@ const AsideNavigation: FunctionComponent = () => {
   const isLikes = pathname.startsWith('/likes/')
   const isUser = pathname.startsWith('/user/')
 
-  const isLargerThanMD = useMediaQuery({ query: '(min-width: 768px)' })
-
   const toggleDarkMode = (): void => setIsDarkmode(!isDarkmode)
+
+  const isLargerThanMD = useScreenSizeQuery('isLargerThanMD')
 
   return isLargerThanMD ? (
     <div className={style.navigationAsideWrapper}>
@@ -65,7 +65,8 @@ const AsideNavigation: FunctionComponent = () => {
                     </span>
                   </Link>
                 </Tooltip>
-                <TrendingHashtags posts={posts} classNames={style.tagListCol} />
+                <div className={style.navigationAsideButtonSpacer} />
+                <TrendingHashtags classNames={`${style.tagListCol}`} />
                 <AsideButtonCreatePost />
               </>
             )}
@@ -84,15 +85,14 @@ const AsideNavigation: FunctionComponent = () => {
                   ${style.navigationAsideInteractionSwitch}
                 `}
               >
-                {isDarkmode && (
-                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
+                {isDarkmode ? (
+                  <span className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faMoon' isFixed />
-                  </div>
-                )}
-                {!isDarkmode && (
-                  <div className={`${style.switchInner} ${style.switchInnerDark}`}>
+                  </span>
+                ) : (
+                  <span className={`${style.switchInner} ${style.switchInnerDark}`}>
                     <SVGIcon icon='faSun' isFixed />
-                  </div>
+                  </span>
                 )}
               </button>
             </div>

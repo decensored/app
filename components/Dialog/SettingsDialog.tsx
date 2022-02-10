@@ -59,7 +59,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
               type='button'
               className={style.buttonInlineLink}
             >
-              <span className={style.link}>
+              <span className={`${style.link} ${style.linkDark}`}>
                 {defaultNodeInfo ? 'Logout and activate custom node settings' : 'Logout and switch to default node'}.
               </span>
             </button>

@@ -1,4 +1,4 @@
-import type { LoadingProgressType, PostType, SpaceType } from 'lib/types'
+import type { LoadingProgressType, PostType, SpaceType, UserType } from 'lib/types'
 import useStore from 'lib/store'
 import orderBy from 'lodash/orderBy'
 
@@ -7,6 +7,10 @@ export const orderById = <T>(collection: T[]): T[] => orderBy(collection, ['id']
 
 // CONTRACTS
 export const nodeIsUpAndRunning = (contract: Record<string, unknown>): boolean => !!contract?.accounts
+
+// ACCOUNTS
+export const getUserById = (accounts: UserType[], userId: number): UserType =>
+  accounts.find((account) => account.userId === userId) || ({} as UserType)
 
 // POSTS
 export const getPostById = (posts: PostType[], postId: number): PostType =>
@@ -71,7 +75,7 @@ export const getSpaceById = (spaces: SpaceType[], spaceId: number): SpaceType =>
 export const getSpaceByName = (spaces: SpaceType[], spaceName: string): SpaceType =>
   spaces.find((space) => space.name === spaceName) || ({} as SpaceType)
 
-export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: string): any[] => {
+export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: string, userId: number): any[] => {
   const split = sortType.split('|')
   const key = split[0]
   // const order = split[1] working on passing asc / desc to use for sorting
@@ -80,23 +84,27 @@ export const sortSpaces = (spaces: SpaceType[], posts: PostType[], sortType: str
     numberOfPostsInSpace: getNumberOfPostsInSpace(posts, space),
     latestPostIndexInSpace: getLatestPostIndexInSpace(posts, space),
   }))
-  const sortedSpaces = orderBy(Object.values(preparedSpaces), [key], ['desc'])
+  const sortedSpaces =
+    sortType === 'mySpaces' && userId > 0
+      ? preparedSpaces.filter((space) => space.owner === userId)
+      : orderBy(Object.values(preparedSpaces), [key], ['desc'])
   return sortedSpaces
 }
 
 // HASHTAGS
 export const getPostsWithHashtag = (posts: PostType[], hashtag: string): PostType[] =>
-  posts.filter((post) => post.message.includes(`#${hashtag}`))
+  posts.filter((post) => post.message.toLowerCase().includes(`#${hashtag.toLowerCase()}`))
 
 export const getTrendingHashtags = (posts: PostType[], hours: number, min: number): any => {
   const tags: string[] = []
+  const regex = /[^a-z1-9]/g
   posts
     .filter((post) => post.message.includes(`#`) && post.timestamp * 1000 >= +new Date() - hours * 3600 * 1000)
     .forEach((post) => {
       post.message
         .split(' ')
         .filter((part: string) => part.startsWith('#'))
-        .map((tag) => tags.push(tag.replace('#', '')))
+        .map((tag) => tags.push(tag.toLocaleLowerCase().replace(regex, '')))
     })
 
   const count = {} as any

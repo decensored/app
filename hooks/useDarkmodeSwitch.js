@@ -1,7 +1,7 @@
-import { FunctionComponent, useEffect } from 'react'
+import { useEffect } from 'react'
 import useStore from 'lib/store'
 
-const DarkmodeToggle: FunctionComponent = () => {
+const useDarkmodeSwitch = () => {
   const isDarkmode = useStore((state) => state.isDarkmode)
 
   useEffect(() => {
@@ -11,4 +11,4 @@ const DarkmodeToggle: FunctionComponent = () => {
   return null
 }
 
-export default DarkmodeToggle
+export default useDarkmodeSwitch

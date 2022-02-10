@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { FunctionComponent, useEffect } from 'react'
+import { useEffect } from 'react'
 import throttle from 'lodash/fp/throttle'
 
 // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
@@ -8,7 +7,7 @@ const calcViewportUnits = () => {
   return `--vh: ${vh}px`
 }
 
-const CalculateViewportHeight: FunctionComponent = () => {
+const useViewportHeightCalculation = () => {
   useEffect(() => {
     const html = document.documentElement
     const setViewportUnits = () => {
@@ -24,4 +23,4 @@ const CalculateViewportHeight: FunctionComponent = () => {
   return null
 }
 
-export default CalculateViewportHeight
+export default useViewportHeightCalculation

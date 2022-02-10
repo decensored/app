@@ -5,8 +5,8 @@ import useStore, { STORE_VERSION } from 'lib/store'
 
 export const pollingConfig = {
   batchSize: 25, // load max this many in parallel from the smartcontract
-  highWater: 1250, // when we have at least this...
-  lowWater: 1000, // ..reduce to this amount
+  highWater: 1250, // 250, // 1250, // when we have at least this...
+  lowWater: 1000, // 200, // 1000, // ..reduce to this amount
 }
 
 export const limitArray = (array: PostType[] | SpaceType[], set: (value: any) => void, name = ''): void => {

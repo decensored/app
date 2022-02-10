@@ -1,0 +1,696 @@
+// body
+
+.body {
+  @apply bg-slate-100 font-sans text-gray-900;
+}
+
+.bodyDark {
+  @apply dark:bg-darkmode-100 dark:text-gray-400;
+}
+
+.bodyContainer {
+  @apply container mx-auto flex max-w-screen-lg md:gap-x-[5%];
+}
+.bodyContainerCol1 {
+  @apply w-[34px] flex-none pl-3 empty:hidden md:w-48;
+}
+.bodyContainerCol2 {
+  @apply relative max-w-full flex-auto;
+}
+
+// header
+
+.headerWrapper {
+  @apply bg-gradient h-header sticky left-0 right-0 top-0 z-40 flex w-full items-center justify-between px-3;
+}
+.headerLogo {
+  @apply flex items-center gap-x-2;
+}
+.headerBack {
+  @apply flex h-[30px] w-[30px] items-center justify-center text-white;
+}
+
+// loading
+
+.loadingIndicator {
+  @apply pointer-events-none fixed left-1/2 top-[15px] -translate-x-2/4 rounded-full bg-highlight-500 px-3 py-1 text-sm text-white shadow-lg;
+}
+.loadingWrapper {
+  @apply fixed bottom-0 left-0 right-0 top-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-slate-100;
+}
+
+// dequeue
+
+.dequeuePostsAndSpacesWrapper {
+  @apply fixed left-1/2 top-[65px] z-50 flex -translate-x-1/2 translate-y-0 justify-center transition-transform md:translate-x-[34px];
+}
+.dequeuePostsAndSpacesButton {
+  @apply cursor-pointer rounded-full bg-highlight-500 px-3 py-1 text-sm text-white shadow-lg;
+}
+
+// input
+
+.inputWrapper {
+  @apply relative mb-5 last:mb-0;
+}
+.inputGroup {
+  @apply flex;
+}
+.inputIconAddon {
+  @apply pointer-events-none absolute left-[10px] top-[7px];
+
+  + input {
+    @apply pl-10;
+  }
+}
+.input {
+  @apply w-full px-3 py-[7.3px] outline-none focus:outline-none;
+}
+.inputDefault {
+  @apply rounded border border-gray-300 bg-white text-gray-900;
+}
+.inputDefaultDark {
+  @apply dark:border-hidden dark:bg-darkmode-100 dark:text-white;
+}
+.inputDefaultDarkBordered {
+  @apply dark:border-darkmode-1400 dark:bg-darkmode-100 dark:text-white;
+}
+.inputTransparent {
+  @apply bg-transparent p-0 text-gray-900;
+}
+.inputTransparentDark {
+  @apply dark:text-white;
+}
+.inputPlaceholder {
+  @apply placeholder:italic placeholder:text-gray-400;
+}
+.inputPlaceholderDark {
+  @apply placeholder:dark:text-darkmode-1500;
+}
+.inputFocus {
+  @apply focus:ring-1 focus:ring-purple-700;
+}
+
+// inputLabel
+
+.inputLabel {
+  @apply mb-3 block text-xs font-bold uppercase tracking-wide text-gray-700;
+}
+.inputLabelDark {
+  @apply dark:text-gray-300;
+}
+.inputLabelCenter {
+  @apply text-center;
+}
+.inputLabelMarginTop {
+  @apply mt-5;
+}
+.inputLabelErrorMarginTop {
+  @apply mt-10;
+}
+
+// select
+
+.selectWrapper {
+  @apply relative;
+}
+.selectArrow {
+  @apply pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700;
+}
+.selectArrowDark {
+  @apply dark:text-white;
+}
+.select {
+  @apply block appearance-none rounded pr-8;
+}
+
+// form
+
+.form {
+  @apply min-h-[75px] resize-none;
+}
+.formValidation {
+  @apply absolute left-[3px] right-[3px] flex items-center rounded-b bg-white px-[9px] py-1 before:absolute before:inset-0 before:rounded-b before:bg-opacity-20 before:empty;
+}
+// .formValidationBefore { @apply }
+.formValidationError {
+  @apply before:bg-red-500;
+}
+.formValidationText {
+  @apply text-xs;
+}
+.formValidationTextError {
+  @apply text-red-500;
+}
+
+// button
+
+.button {
+  @apply flex h-[40px] cursor-pointer items-center justify-center gap-x-2 whitespace-nowrap rounded px-4 font-medium focus:outline-none;
+}
+.buttonFull {
+  @apply w-full basis-full;
+}
+.buttonInlineLink {
+  @apply contents;
+}
+.buttonIconOnly {
+  @apply w-[40px];
+}
+.buttonIconOnlyMobile {
+  @apply w-[40px] sm:w-auto;
+}
+.buttonIconOnlyHandheld {
+  @apply w-[40px] md:w-auto;
+}
+.buttonNoXsPadding {
+  @apply px-0 md:px-4;
+}
+.buttonDecensored {
+  @apply bg-highlight-900 text-white hover:bg-purple-800;
+}
+.buttonDecensoredInvert {
+  @apply bg-purple-800 text-white hover:bg-highlight-900;
+}
+.buttonTransparent {
+  @apply bg-transparent text-gray-900 hover:text-purple-900;
+}
+.buttonTransparentDark {
+  @apply dark:text-gray-500;
+}
+
+// link
+
+.link {
+  @apply break-all text-highlight-900 underline hover:no-underline;
+}
+.linkDark {
+  @apply dark:text-highlight-400;
+}
+
+// linkify
+
+.linkify {
+  @apply rounded;
+}
+.linkifyHashtag {
+  @apply text-highlight-900 hover:bg-yellow-200 hover:text-darkmode-100;
+}
+.linkifyHashtagDark {
+  @apply dark:text-highlight-400 dark:hover:bg-yellow-500 dark:hover:text-darkmode-500;
+}
+.linkifyMention {
+  @apply rounded text-orange-400 hover:bg-orange-400 hover:text-darkmode-1000;
+}
+.linkifyMentionDark {
+  @apply dark:hover:text-darkmode-500;
+}
+.linkifySpace {
+  @apply rounded text-orange-400 hover:bg-orange-400 hover:text-darkmode-1000;
+}
+.linkifySpaceDark {
+  @apply dark:hover:text-darkmode-500;
+}
+
+// dialog
+
+.dialogClickOutsideOverlay {
+  @apply fixed inset-0;
+}
+.dialogWrapper {
+  @apply fixed top-10 mx-auto flex w-full items-center justify-center;
+}
+.dialogInner {
+  @apply max-h-dialog relative mx-3 flex w-full flex-col divide-y divide-solid divide-gray-200 rounded bg-white shadow-xl;
+}
+.dialogInnerDark {
+  @apply dark:divide-darkmode-1000 dark:bg-darkmode-600;
+}
+.dialogHeader {
+  @apply p-4 py-4 text-center text-xl font-bold sm:px-8;
+}
+.dialogHeaderDark {
+  @apply dark:text-gray-300;
+}
+.dialogBody {
+  @apply shrink overflow-y-auto px-4 py-4 sm:px-8 sm:py-8;
+}
+.dialogFooter {
+  @apply flex justify-between gap-y-10 py-4 px-4 sm:px-8;
+}
+
+// popover
+
+.clickOverlay {
+  @apply fixed inset-0 top-[60px] bg-black bg-opacity-30;
+}
+
+.popoverRef {
+  @apply h-[30px];
+}
+.popoverWrapper {
+  @apply w-52 divide-y divide-solid divide-gray-200 rounded bg-white shadow-xl;
+}
+.popoverWrapperDark {
+  @apply dark:divide-darkmode-1000 dark:bg-darkmode-600;
+}
+.popoverBody {
+  @apply flex flex-col gap-y-1 p-2;
+}
+.popoverBodyButton {
+  @apply flex items-center gap-x-3 rounded p-2 text-left text-sm text-gray-900 hover:bg-highlight-10 hover:text-highlight-900;
+}
+.popoverBodyButtonDark {
+  @apply dark:text-gray-300 dark:hover:bg-highlight-900 dark:hover:text-white;
+}
+.popoverSocialButtonWrapper {
+  @apply flex justify-center gap-x-5 py-3;
+}
+
+// sidebar
+
+.sidebarWrapper {
+  @apply h-body fixed top-[60px] right-0 z-50 flex w-screen flex-col divide-y divide-solid divide-gray-200 bg-white shadow-xl;
+}
+.sidebarWrapperDark {
+  @apply dark:divide-darkmode-1000 dark:bg-darkmode-600;
+}
+.sidebarWrapperPseudo {
+  @apply after:absolute after:top-0 after:bottom-0 after:right-full after:w-screen after:bg-black after:bg-opacity-30 after:empty;
+}
+.sidebarHeader {
+  @apply py-3 px-4;
+}
+.sidebarHeaderLabel {
+  @apply text-xs;
+}
+.sidebarHeaderName {
+  @apply text-lg dark:text-gray-300;
+}
+.sidebarBody {
+  @apply flex grow flex-col gap-y-1 overflow-y-auto p-2;
+}
+// .sidebarFooter { @apply }
+
+// navigationAside
+
+.navigationAsideWrapper {
+  @apply sticky top-[60px] flex pt-10;
+}
+.navigationAsideInner {
+  @apply h-aside-navigation flex max-w-full grow flex-col justify-between pb-3;
+}
+// .navigationAsideInnerTop { @apply }
+.navigationAsideInnerBottom {
+  @apply pb-4;
+}
+.navigationAsideButtonContainer {
+  @apply flex flex-col gap-y-1;
+}
+.navigationAsideButton {
+  @apply flex cursor-pointer items-center gap-x-3 rounded-full p-2 text-left text-sm text-gray-900 hover:bg-highlight-500 hover:text-white;
+}
+.navigationAsideButtonDark {
+  @apply dark:text-gray-300 dark:hover:bg-highlight-500 dark:hover:text-white;
+}
+.navigationAsideButtonActive {
+  @apply font-bold text-highlight-900 dark:text-highlight-500;
+}
+.navigationAsideButtonText {
+  @apply hidden md:block;
+}
+.navigationAsideButtonIcon {
+  @apply w-[40px] text-lg md:text-sm;
+}
+.navigationAsideButtonIconInvisible {
+  @apply text-lg opacity-0 md:text-sm;
+}
+.navigationAsideButtonSpacer {
+  @apply h-5;
+}
+.navigationAsideBottomInteractionWrapper {
+  @apply flex flex-col items-center gap-3 md:flex-row md:justify-between;
+}
+.navigationAsideInteractionSwitch {
+  @apply mt-2 md:mt-0;
+}
+.navigationAsideSocialButtonWrapper {
+  @apply flex flex-col gap-2 md:flex-row;
+}
+.navigationAsideSocialButton {
+  @apply text-lg text-gray-900 hover:text-highlight-900 md:text-xl;
+}
+.navigationAsideSocialButtonDark {
+  @apply dark:text-gray-300 dark:hover:text-white;
+}
+
+// navigationBottom
+
+.navigationBottomWrapperBorder {
+  @apply absolute bottom-0 left-0 right-0 h-[10px] bg-highlight-900;
+}
+.navigationBottomWrapper {
+  @apply fixed bottom-0 left-0 right-0 flex h-[60px] items-center bg-white shadow-neg-lg empty:hidden;
+}
+.navigationBottomWrapperDark {
+  @apply dark:divide-darkmode-1000 dark:bg-darkmode-500;
+}
+.navigationBottomInner {
+  @apply mx-auto flex w-full max-w-xl px-3;
+}
+.navigationBottomItem {
+  @apply relative z-10 flex grow cursor-pointer flex-col items-center justify-center text-[15px];
+}
+.navigationBottomItemText {
+  @apply pb-[4px] pt-[6px] text-[10px] leading-[10px];
+}
+.navigationBottomItemColor {
+  @apply text-highlight-900 hover:text-purple-800 dark:text-highlight-500 dark:hover:text-highlight-100;
+}
+.navigationBottomItemColorActive {
+  @apply text-purple-800 dark:text-highlight-100;
+}
+.navigationBottomPostButtonWrapper {
+  @apply relative w-[65px];
+  &:hover {
+    .navigationBottomPostButtonPseudo {
+      @apply bg-purple-800;
+    }
+  }
+}
+.navigationBottomPostButton {
+  @apply absolute top-1/2 h-[65px] w-[65px] -translate-y-2/4 rounded-t-full text-2xl;
+}
+.navigationBottomPostButtonPseudo {
+  @apply pointer-events-none absolute -bottom-[15px] top-0 w-[50vw] bg-highlight-900;
+}
+.navigationBottomPostButtonPseudoInner {
+  @apply absolute -top-[12px] h-full w-full;
+}
+.navigationBottomPostButtonBefore {
+  @apply left-0 -translate-x-full;
+}
+// .navigationBottomPostButtonBeforeDark { @apply }
+.navigationBottomPostButtonBeforeInner {
+  @apply left-0 rounded-br-xl bg-white;
+}
+.navigationBottomPostButtonBeforeInnerDark {
+  @apply dark:bg-darkmode-500;
+}
+.navigationBottomPostButtonAfter {
+  @apply right-0 translate-x-full;
+}
+// .navigationBottomPostButtonAfterDark { @apply }
+.navigationBottomPostButtonAfterInner {
+  @apply rounded-bl-xl bg-white;
+}
+.navigationBottomPostButtonAfterInnerDark {
+  @apply dark:bg-darkmode-500;
+}
+.navigationBottomMotionSpan {
+  @apply absolute -bottom-[8px] h-[1px] w-[50px];
+}
+.navigationBottomMotionSpanColor {
+  @apply bg-white;
+}
+.navigationBottomMotionSpanColorDark {
+  @apply dark:bg-highlight-100;
+}
+
+// postForm
+
+.postFormTextareaWrapper {
+  @apply relative;
+}
+.postFormMessageCounter {
+  @apply absolute bottom-4 right-4 rounded-full bg-white px-2 py-1 font-mono text-xs leading-none text-gray-400 empty:hidden;
+}
+.postFormMessageCounterDark {
+  @apply dark:bg-black;
+}
+.postFormFooter {
+  @apply mt-5 flex justify-between;
+}
+.postFormFooterLogoWrapper {
+  @apply mr-5 flex items-center;
+}
+
+// postNotFound
+
+.postNotFound {
+  @apply px-5 py-8 text-center;
+}
+.postNotFoundHeadline {
+  @apply mb-3 text-3xl font-bold;
+}
+// .postNotFoundSubline { @apply }
+
+// virtuoso
+
+.virtuosoScroll2IndexWrapper {
+  @apply h-10;
+}
+.virtuosoScroll2IndexInner {
+  @apply h-10 bg-black;
+}
+
+.virtuosoFeedItemWrapper {
+  @apply mb-5;
+}
+
+// feed
+
+.feedWrapper {
+  @apply mt-3 flex flex-col gap-y-5 px-3 md:mt-10;
+}
+
+// feedItem
+
+.feedItemParent {
+  @apply rounded border-none shadow-sm;
+}
+.feedItemChild {
+  @apply border-l border-gray-300;
+}
+.feedItemWrapper {
+  @apply bg-white;
+
+  &.feedItemWrapperClickable {
+    @apply cursor-pointer;
+  }
+}
+.feedItemWrapperDark {
+  @apply dark:divide-darkmode-200 dark:border-darkmode-1900 dark:bg-darkmode-600;
+}
+.feedItemInner {
+  @apply rounded p-5;
+}
+.feedItemInnerTop {
+  @apply rounded-t p-5 pt-3;
+}
+.feedItemInnerBottom {
+  @apply flex justify-between rounded-b px-5 py-3;
+}
+.feedItemInnerBottomCol {
+  @apply flex items-center gap-x-3;
+}
+.feedItemMetaWrapper {
+  @apply mb-2 flex;
+}
+.feedItemMetaCol1 {
+  @apply flex grow items-baseline gap-x-2 truncate;
+}
+.feedItemMetaCol2 {
+  @apply flex items-baseline;
+}
+.feedItemMetaName {
+  @apply font-bold text-gray-900;
+}
+.feedItemMetaNameDark {
+  @apply dark:text-gray-300;
+}
+.feedItemMetaTimestamp {
+  @apply whitespace-nowrap text-right text-xs text-gray-500;
+}
+.feedItemText {
+  @apply overflow-hidden break-words font-light;
+}
+// .feedItemTextDark { @apply }
+.feedItemInteractionBar {
+  @apply flex gap-x-3;
+}
+.feedItemInteractionIcon {
+  @apply cursor-pointer text-highlight-40 hover:text-highlight-500;
+}
+.feedItemInteractionIconDark {
+  @apply dark:text-darkmode-1700 dark:hover:text-highlight-400;
+}
+.feedItemReset {
+  @apply children:children:rounded-none children:rounded-none children:shadow-none children:children:shadow-none;
+}
+
+// feedReply
+
+.feedReplyItemWrapper {
+  @apply pl-5;
+}
+.feedReplyItemBar {
+  @apply flex items-center pt-3 empty:hidden;
+}
+.feedReplyItemButton {
+  @apply cursor-pointer text-xs text-highlight-500;
+}
+.feedReplyItemText {
+  @apply cursor-pointer text-xs;
+}
+.feedReplyItemSpacer {
+  @apply mx-2 text-[10px];
+}
+.feedDeleteItemText {
+  @apply cursor-pointer text-xs hover:text-red-500;
+}
+
+// spaceHeader
+
+.spaceHeaderWrapper {
+  @apply relative rounded px-5 py-7 text-white shadow-sm text-shadow-sm sm:pl-7;
+}
+.spaceHeaderInner {
+  @apply flex flex-col text-white sm:flex-row sm:items-center;
+}
+.spaceHeaderInnerCol1 {
+  @apply w-full text-center sm:w-2/4 sm:text-left;
+}
+.spaceHeaderInnerCol2 {
+  @apply mt-3 w-full sm:mt-0 sm:w-2/4;
+}
+.spaceHeaderTitle {
+  @apply text-xl font-semibold uppercase sm:text-2xl;
+}
+.spaceHeaderDescription {
+  @apply pt-2 font-light;
+}
+.spaceHeaderButton {
+  @apply mt-5 mb-5 sm:mb-0;
+}
+.spaceHeaderDataWrapper {
+  @apply mx-auto flex w-full justify-evenly text-center text-white;
+}
+.spaceHeaderDataCol {
+  @apply flex flex-col;
+}
+.spaceHeaderDataTitle {
+  @apply text-2xl font-bold sm:text-4xl;
+}
+.spaceHeaderDataText {
+  @apply text-xs font-light sm:mt-2;
+}
+
+// userHeader
+
+.userHeaderWrapper {
+  @apply bg-gradient rounded px-5 py-7 text-white;
+}
+.userHeaderInner {
+  @apply text-center text-white;
+}
+.userHeaderTitle {
+  @apply text-xl font-semibold uppercase sm:text-2xl;
+}
+
+// itemlist
+
+.itemList {
+  @apply divide-y divide-double divide-gray-200;
+}
+.itemListDark {
+  @apply dark:divide-darkmode-1000;
+}
+.itemListBoxed {
+  @apply max-h-56 overflow-y-auto;
+}
+.itemListItem {
+  @apply relative py-3 px-3;
+  &:hover {
+    .itemListItemHoverElement {
+      @apply visible;
+    }
+  }
+}
+// .itemListItemDark { @apply }
+.itemListItemHoverElement {
+  @apply invisible absolute right-3 top-1/2 -translate-y-1/2;
+  &.tag {
+    @apply absolute;
+  }
+}
+
+// blacklisting
+
+.blackListButton {
+  @apply ml-2 hidden cursor-pointer rounded-md bg-red-400 px-2 text-xs text-white group-hover:block;
+}
+
+// tag
+
+.tag {
+  @apply relative inline-flex max-w-full rounded bg-highlight-10 px-2 py-1 text-xs font-medium uppercase tracking-wide text-highlight-900;
+}
+.tagDark {
+  @apply dark:bg-darkmode-1000 dark:text-highlight-400;
+}
+.tagClickable {
+  @apply cursor-pointer hover:bg-highlight-50 dark:hover:bg-highlight-400 dark:hover:text-darkmode-1000;
+}
+.tagEllipsis {
+  @apply truncate;
+}
+.tagCount {
+  @apply absolute -right-1 top-1/2 translate-x-full -translate-y-1/2 text-highlight-900; //!text-highlight-900
+}
+.tagCountDark {
+  @apply dark:text-highlight-400; //dark:!text-highlight-400
+}
+.tagListRow {
+  @apply flex flex-wrap gap-3;
+}
+.tagListCol {
+  @apply flex flex-col gap-1;
+}
+
+// tooltip
+
+.tooltip {
+  @apply rounded bg-highlight-10 px-2 py-1 text-[10px] text-xs font-medium uppercase tracking-wide text-highlight-900 shadow-sm;
+}
+.tooltipDark {
+  @apply dark:bg-darkmode-1000 dark:text-highlight-400;
+}
+
+// switch
+
+.switch {
+  @apply flex h-[25px] w-[40px] rounded-full bg-slate-300 p-[3px];
+}
+.switchDark {
+  @apply rounded-full dark:bg-darkmode-600;
+}
+.switchInner {
+  @apply flex h-[19px] w-[19px] items-center justify-center rounded-full text-gray-900;
+}
+.switchInnerDark {
+  @apply dark:text-white;
+}
+
+// alert
+
+.alert {
+  @apply rounded border border-highlight-900 bg-highlight-100 px-4 py-3 text-highlight-900;
+}
+.alertDark {
+  @apply dark:border-highlight-400 dark:bg-darkmode-1000 dark:text-highlight-400;
+}
+.alertError {
+  @apply border-red-400 bg-red-100 text-red-700;
+}
+// .alertSuccess { @apply }

@@ -1,0 +1,14 @@
+// caution: the correct order is important
+
+@import '../node_modules/react-toastify/dist/ReactToastify';
+@import '../node_modules/@fortawesome/fontawesome-svg-core/styles';
+
+@tailwind base;
+
+@import 'scaffolding';
+@import 'tailwind';
+
+@tailwind components;
+@tailwind utilities;
+
+@import 'development';
