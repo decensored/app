@@ -233,7 +233,10 @@
   @apply dark:text-gray-300;
 }
 .dialogBody {
-  @apply shrink overflow-y-auto px-4 py-4 sm:px-8 sm:py-8;
+  @apply shrink px-4 py-4 sm:px-8 sm:py-8;
+}
+.dialogBodyOverflow {
+  @apply overflow-y-auto;
 }
 .dialogFooter {
   @apply flex justify-between gap-y-10 py-4 px-4 sm:px-8;

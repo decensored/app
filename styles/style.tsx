@@ -68,6 +68,7 @@ export const style = {
   dialogHeader: 'dialogHeader',
   dialogHeaderDark: 'dialogHeaderDark',
   dialogBody: 'dialogBody',
+  dialogBodyOverflow: 'dialogBodyOverflow',
   dialogFooter: 'dialogFooter',
   popoverRef: 'popoverRef',
   popoverWrapper: 'popoverWrapper',
