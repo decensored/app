@@ -16,6 +16,8 @@ const AsideButtonCreatePost = () => {
     return null
   }
 
+  const handleClose = () => setOpenPostDialog(false)
+
   return (
     <>
       <div className={style.navigationAsideButtonSpacer} />
@@ -32,7 +34,7 @@ const AsideButtonCreatePost = () => {
         <span className='hidden whitespace-nowrap sm:inline sm:pl-1'>New Post</span>
       </button>
 
-      <PostDialog showDialog={openPostDialog} onClose={() => setOpenPostDialog(false)} />
+      <PostDialog showDialog={openPostDialog} onClose={handleClose} />
     </>
   )
 }

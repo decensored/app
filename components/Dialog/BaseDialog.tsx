@@ -11,6 +11,7 @@ interface DialogProps {
   onClose: () => void
   clickOutside?: boolean
   showDialog: boolean
+  bodyOverflow?: boolean
 }
 
 const BaseDialog: FunctionComponent<DialogProps> = ({
@@ -22,6 +23,7 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
   onClose,
   clickOutside = false,
   showDialog,
+  bodyOverflow = false,
 }) => {
   const widthLookup: { [unit: string]: string } = {
     sm: 'max-w-sm',
@@ -41,6 +43,8 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
     return getWidth
   }
 
+  const bodyOverflowStyle = bodyOverflow ? style.dialogBodyOverflow : ''
+
   return (
     <Transition show={showDialog} as={Fragment}>
       <Dialog onClose={onClose}>
@@ -57,7 +61,7 @@ const BaseDialog: FunctionComponent<DialogProps> = ({
             {clickOutside && <Dialog.Overlay className={style.dialogClickOutsideOverlay} />}
             <div className={`${style.dialogInner} ${style.dialogInnerDark} ${setWidth()}`}>
               {header && <div className={`${style.dialogHeader} ${style.dialogHeaderDark}`}>{header}</div>}
-              <div className={bodyPadding}>{body}</div>
+              <div className={`${bodyPadding} ${bodyOverflowStyle}`}>{body}</div>
               {footer && <div className={style.dialogFooter}>{footer}</div>}
             </div>
           </div>

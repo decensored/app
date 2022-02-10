@@ -78,7 +78,8 @@ export const style = {
   dialogInnerDark: 'dark:divide-darkmode-1000 dark:bg-darkmode-600',
   dialogHeader: 'text-xl text-center text-bold sm:px-8 py-4 p-4',
   dialogHeaderDark: 'dark:text-gray-300',
-  dialogBody: 'overflow-y-auto px-4 py-4 shrink sm:px-8 sm:py-8',
+  dialogBody: 'px-4 py-4 shrink sm:px-8 sm:py-8',
+  dialogBodyOverflow: 'overflow-y-auto',
   dialogFooter: 'sm:px-8 py-4 px-4 justify-between gap-y-10 flex',
 
   popoverRef: 'h-[30px]',
@@ -152,7 +153,7 @@ export const style = {
   postFormTextareaWrapper: 'relative',
   postFormMessageCounter: 'absolute bg-white bottom-4 empty:hidden font-mono leading-none px-2 py-1 right-4 rounded-full text-gray-400 text-xs',
   postFormMessageCounterDark: 'dark:bg-black',
-  postFormFooter: 'flex justify-between mt-5',
+  postFormFooter: 'flex justify-between items-end mt-5',
   postFormFooterLogoWrapper: 'mr-5 items-center flex',
 
   postNotFound: 'text-center px-5 py-8',

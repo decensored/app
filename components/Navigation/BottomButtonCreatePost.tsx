@@ -16,6 +16,8 @@ const BottomButtonCreatePost = () => {
     return null
   }
 
+  const handleClose = () => setOpenPostDialog(false)
+
   return (
     <>
       <div className={style.navigationBottomPostButtonWrapper}>
@@ -57,7 +59,7 @@ const BottomButtonCreatePost = () => {
           />
         </div>
       </div>
-      <PostDialog showDialog={openPostDialog} onClose={() => setOpenPostDialog(false)} />
+      <PostDialog showDialog={openPostDialog} onClose={handleClose} />
     </>
   )
 }
