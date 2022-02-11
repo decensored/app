@@ -31,7 +31,7 @@ const InputIcon = ({ icon }: IconProps) => {
     return null
   }
   return (
-    <span className='autocompleteIcon'>
+    <span className='autocompleteIcon flex w-[30px] items-center justify-end'>
       <SVGIcon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
     </span>
   )
@@ -63,6 +63,7 @@ const Autocomplete = React.forwardRef<any, AutocompleteProps>(
       <Select
         options={options}
         className={className}
+        classNamePrefix='react-select'
         value={value}
         onChange={handleChange}
         autoFocus={autoFocus}

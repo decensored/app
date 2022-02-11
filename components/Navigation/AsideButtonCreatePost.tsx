@@ -9,10 +9,7 @@ const AsideButtonCreatePost = () => {
 
   const [openPostDialog, setOpenPostDialog] = useState(false)
 
-  // Hidden Post Buttton
-  const postButtonIsHidden = true
-
-  if (!isSignedUp || postButtonIsHidden) {
+  if (!isSignedUp) {
     return null
   }
 

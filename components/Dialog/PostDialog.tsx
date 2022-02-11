@@ -81,7 +81,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
 
   const handleSpreadFinish = () => delay(handleClose, TIMEOUT_CLOSE_ON_SPREAD)
 
-  const labelClasses = 'mb-1 block text-xs font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300'
+  // const labelClasses = 'mb-1 block text-xs font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300'
   const placement = isBrowser ? 'bottom' : 'top'
   const enableBodyOverflow = !isBrowser
 
@@ -94,7 +94,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
       bodyOverflow={enableBodyOverflow}
       body={
         <div>
-          <div className={labelClasses}>Post</div>
+          {/* <div className={labelClasses}>Post</div> */}
           {currentSpace && (
             <PostForm
               spaceId={currentSpace.id}
@@ -102,8 +102,8 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
               isTransparent
               autoFocus
               footerContent={
-                <div className='flex flex-col'>
-                  <div className={labelClasses}>Post In</div>
+                <div className='flex flex-grow flex-col'>
+                  {/* <div className={labelClasses}>Post In</div> */}
                   <Autocomplete
                     options={spacesOptions}
                     icon='faSatellite'

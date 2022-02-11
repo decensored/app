@@ -6,7 +6,6 @@ import useStore from 'lib/store'
 import { getPostsInSpace, getSpaceById, getSpaceIdByName, getUserById, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
-import PostForm from 'components/Post/PostForm'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
 
@@ -119,13 +118,6 @@ const Space: NextPage = () => {
             blackListArray={blackListArray}
             setBlackListArray={setBlackListArray}
           />
-          {isSignedUp && !currentUserBlacklisted && (
-            <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
-              <div className={style.feedItemInner}>
-                <PostForm spaceId={space.id} isTransparent />
-              </div>
-            </div>
-          )}
           {showFeedItems}
         </div>
       )}

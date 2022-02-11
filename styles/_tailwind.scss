@@ -432,7 +432,7 @@
   @apply dark:bg-black;
 }
 .postFormFooter {
-  @apply mt-5 flex justify-between;
+  @apply mt-5 flex justify-between gap-x-5;
 }
 .postFormFooterLogoWrapper {
   @apply mr-5 flex items-center;
