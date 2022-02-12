@@ -67,13 +67,13 @@
   @apply w-full px-3 py-[7.3px] outline-none focus:outline-none;
 }
 .inputDefault {
-  @apply rounded border border-gray-300 bg-white text-gray-900;
+  @apply rounded border border-gray-300 bg-white text-gray-900 hover:border-gray-300;
 }
 .inputDefaultDark {
   @apply dark:border-hidden dark:bg-darkmode-100 dark:text-white;
 }
 .inputDefaultDarkBordered {
-  @apply dark:border-darkmode-1400 dark:bg-darkmode-100 dark:text-white;
+  @apply dark:border-darkmode-1400 dark:bg-darkmode-100 dark:text-white hover:dark:border-darkmode-1400;
 }
 .inputTransparent {
   @apply bg-transparent p-0 text-gray-900;
@@ -436,6 +436,27 @@
 }
 .postFormFooterLogoWrapper {
   @apply mr-5 flex items-center;
+}
+.postFormAutocompleteWrapper {
+  @apply flex flex-grow flex-col;
+}
+.postFormAutocomplete__control {
+  @extend .input;
+  @extend .inputDefault;
+  @extend .inputDefaultDarkBordered;
+  @apply px-0 py-[2px];
+}
+.postFormAutocomplete__input-container {
+  @apply text-gray-900 dark:text-white;
+}
+.postFormAutocomplete__single-value {
+  @apply text-gray-400 dark:text-white;
+}
+.postFormAutocomplete__indicator-separator {
+  @apply bg-gray-300 dark:bg-darkmode-1400;
+}
+.postFormAutocompleteIcon {
+  @apply flex w-[30px] items-center justify-end;
 }
 
 // postNotFound

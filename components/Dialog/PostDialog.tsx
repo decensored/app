@@ -8,6 +8,7 @@ import flow from 'lodash/fp/flow'
 import { isBrowser } from 'react-device-detect'
 import useStore from 'lib/store'
 import type { SpaceType } from 'lib/types'
+import { style } from 'styles/style'
 import PostForm from 'components/Post/PostForm'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import Autocomplete, { Option } from 'components/Autocomplete/Autocomplete'
@@ -109,7 +110,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
               minRows={5}
               onSpread={onSpread}
               footerContent={
-                <div className='flex flex-grow flex-col'>
+                <div className={style.postFormAutocompleteWrapper}>
                   {/* <div className={labelClasses}>Post In</div> */}
                   <Autocomplete
                     options={spacesOptions}
