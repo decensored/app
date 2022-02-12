@@ -73,7 +73,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                   <b className='font-bold'>No invite token?</b> Reach out to us on
                   <a
                     className={`${style.link} mx-1`}
-                    href='https://discord.gg/PbyugWCA'
+                    href='https://discord.gg/xsXxwUPkq6'
                     rel='noreferrer'
                     target='_blank'
                   >
