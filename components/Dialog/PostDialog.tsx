@@ -72,14 +72,19 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
     setCurrentSpace(spaces.find((space: SpaceType) => space.id === newValue?.value))
   }
 
-  const handleClose = () => {
-    if (currentSpace) {
-      router.push(`/space/${currentSpace.name}`)
-    }
+  const handleOnClose = () => {
+    setCurrentSpace(undefined)
     onClose()
   }
 
-  const handleSpreadFinish = () => delay(handleClose, TIMEOUT_CLOSE_ON_SPREAD)
+  const onSpread = () => {
+    if (currentSpace) {
+      router.push(`/space/${currentSpace.name}`)
+    }
+    handleOnClose()
+  }
+
+  const handleSpreadFinish = () => delay(onSpread, TIMEOUT_CLOSE_ON_SPREAD)
 
   // const labelClasses = 'mb-1 block text-xs font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300'
   const placement = isBrowser ? 'bottom' : 'top'
@@ -88,7 +93,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
   return (
     <BaseDialog
       showDialog={showDialog}
-      onClose={handleClose}
+      onClose={handleOnClose}
       clickOutside
       width='2xl'
       bodyOverflow={enableBodyOverflow}
@@ -102,6 +107,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
               isTransparent
               autoFocus
               minRows={5}
+              onSpread={onSpread}
               footerContent={
                 <div className='flex flex-grow flex-col'>
                   {/* <div className={labelClasses}>Post In</div> */}

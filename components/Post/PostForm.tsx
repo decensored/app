@@ -71,7 +71,7 @@ const Form: FunctionComponent<FormProps> = ({
         setTimeout(() => {
           // dequeuePostsAndSpaces() // XXX this will become automatic during polling when a meesage by me arrives
           setIsLoading(false) // XXX we could detect 'loading' as long as an earmarked message exists
-        }, 2 * 1000)
+        }, 2000)
 
         onSpreadFinish()
       })
@@ -81,7 +81,10 @@ const Form: FunctionComponent<FormProps> = ({
       onSpreadFinish()
     }
 
-    onSpread()
+    setTimeout(() => {
+      setIsLoading(false)
+      onSpread()
+    }, 2000)
   }
 
   const formId = `postForm-${getRandomString()}`
