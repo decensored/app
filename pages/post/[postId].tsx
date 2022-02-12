@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { useRouter } from 'next/router'
 import useStore from 'lib/store'
 import { getLevel1PostForReply, getPostById } from 'lib/storeUtils'
@@ -8,6 +7,7 @@ import { style } from 'styles/style'
 import FeedItem from 'components/Feed/FeedItem'
 import Link from 'next/link'
 import Tag from 'components/Tags/Tag'
+import Seo from 'components/Scaffolding/Seo'
 
 const PostPage: NextPage = () => {
   const router = useRouter()
@@ -21,6 +21,11 @@ const PostPage: NextPage = () => {
   if (post.id > 0 && post.mother_post !== 0) {
     parentPost = getLevel1PostForReply(posts, post.mother_post)
     console.log(parentPost)
+  }
+
+  const noPostFound = {
+    title: 'You found a black hole!',
+    description: 'The post you want to open does not exist anymore, or maybe it does not exist yet? 🤔',
   }
 
   return post?.id ? (
@@ -42,31 +47,25 @@ const PostPage: NextPage = () => {
         </div>
       )}
       <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
-      <HelmetProvider>
-        <Helmet prioritizeSeoTags>
-          <title>
-            Post by {post.username} in {post.spaceName}
-          </title>
-          <meta name='description' content={post.message} />
-        </Helmet>
-      </HelmetProvider>
+      <Seo title={`${post.username} in ${post.spaceName}`} description={post.message} />
     </div>
   ) : (
-    <div className={style.feedWrapper}>
-      <div
-        className={`
+    <>
+      <div className={style.feedWrapper}>
+        <div
+          className={`
         ${style.postNotFound}
         ${style.feedItemWrapper}
         ${style.feedItemWrapperDark}
         ${style.feedItemInner}
       `}
-      >
-        <div className={style.postNotFoundHeadline}>You found a black hole!</div>
-        <div className={style.postNotFoundSubline}>
-          The post you want to open doesn&apos;t exist anymore, or maybe it doesn&apos;t exist yet? 🤔
+        >
+          <div className={style.postNotFoundHeadline}>{noPostFound.title}</div>
+          <div className={style.postNotFoundSubline}>{noPostFound.description}</div>
         </div>
       </div>
-    </div>
+      <Seo title={noPostFound.title} description={noPostFound.description} />
+    </>
   )
 }
 
