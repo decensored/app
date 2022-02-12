@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useLayoutEffect, useState } from 'react'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -53,6 +53,9 @@ const Form: FunctionComponent<FormProps> = ({
     contract: state.contract,
   }))
 
+  const [isRerendered, setIsRerendered] = useState(false)
+  useLayoutEffect(() => setIsRerendered(true), [])
+
   const { register, setValue, handleSubmit } = useForm<FormValues>()
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -87,23 +90,25 @@ const Form: FunctionComponent<FormProps> = ({
     <>
       <form id={formId} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.postFormTextareaWrapper}>
-          <TextareaAutosize
-            autoFocus={autoFocus}
-            minRows={minRows}
-            maxLength={280}
-            placeholder={`${userName}, spread your opinion!`}
-            className={`
-              ${style.form}
-              ${style.input}
-              ${style.inputPlaceholder}
-              ${style.inputPlaceholderDark}
-              ${!isTransparent ? style.inputDefault : ''}
-              ${!isTransparent ? style.inputDefaultDark : ''}
-              ${isTransparent ? style.inputTransparent : ''}
-              ${isTransparent ? style.inputTransparentDark : ''}
-            `}
-            {...register('message', { required: true })}
-          />
+          {isRerendered && (
+            <TextareaAutosize
+              autoFocus={autoFocus}
+              minRows={minRows}
+              maxLength={280}
+              placeholder={`${userName}, spread your opinion!`}
+              className={`
+                ${style.form}
+                ${style.input}
+                ${style.inputPlaceholder}
+                ${style.inputPlaceholderDark}
+                ${!isTransparent ? style.inputDefault : ''}
+                ${!isTransparent ? style.inputDefaultDark : ''}
+                ${isTransparent ? style.inputTransparent : ''}
+                ${isTransparent ? style.inputTransparentDark : ''}
+              `}
+              {...register('message', { required: true })}
+            />
+          )}
           <div className={`${style.postFormMessageCounter} ${style.postFormMessageCounterDark}`} />
         </div>
       </form>
