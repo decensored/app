@@ -19,15 +19,17 @@ const Seo: FunctionComponent<SeoProps> = ({
     <meta name='description' content={description} />
     {author && <meta name='author' content={author} />}
 
-    <meta name='title' property='og:title' content={title} />
-    <meta name='description' property='og:description' content={description} />
-    <meta name='image' property='og:image' content={image} />
+    <meta property='og:type' content='website' />
+    <meta property='og:title' content={title} name='title' />
+    <meta property='og:description' content={description} name='description' />
+    <meta property='og:image' content={image} name='image' />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
 
-    <meta name='twitter:card' content='summary' />
-    <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
+    <meta property='twitter:card' content='summary' />
+    <meta property='twitter:title' content={title} />
+    <meta property='twitter:description' content={description} />
+    <meta property='twitter:image' content={image} />
 
     <link rel='icon' href='/favicon/favicon.ico' />
     <link rel='apple-touch-icon' sizes='180x180' href='/favicon/apple-touch-icon.png' />
