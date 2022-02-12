@@ -99,7 +99,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   }
 
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
-  const isAuthor = author === userId
+  const isAuthor = author === userId && isSignedUp
 
   const replies = getRepliesForPost(posts, post.id) // XXX or in useEffect?
   const nRepliesRecursive = getNumberOfRepliesForPostRecursive(posts, post.id) // XXX or in useEffect?
