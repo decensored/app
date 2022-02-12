@@ -47,7 +47,7 @@ const PostPage: NextPage = () => {
         </div>
       )}
       <FeedItem key={`post-${post.id}`} moderator={false} type='feed' parent post={post} />
-      <Seo title={`${post.username} in ${post.spaceName}`} description={post.message} />
+      <Seo title={`${post.username} in ${post.spaceName}`} description={post.message} author={post.username} />
     </div>
   ) : (
     <>

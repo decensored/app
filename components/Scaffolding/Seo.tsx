@@ -4,21 +4,24 @@ import Head from 'next/head'
 interface SeoProps {
   title?: string
   description?: string
+  author?: string
   image?: string
 }
 
 const Seo: FunctionComponent<SeoProps> = ({
   title = 'Decensored',
   description = 'Decentralised Web3 Social Media. Powered by IOTA. Owned by You.',
+  author,
   image = 'https://decensored.app/social/shareimage.webp',
 }) => (
   <Head>
     <title>{title}</title>
     <meta name='description' content={description} />
+    {author && <meta name='author' content={author} />}
 
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={image} />
+    <meta name='title' property='og:title' content={title} />
+    <meta name='description' property='og:description' content={description} />
+    <meta name='image' property='og:image' content={image} />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
 
