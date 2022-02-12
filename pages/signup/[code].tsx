@@ -5,6 +5,7 @@ import Icon from 'components/Icons/Icon'
 import useStore from 'lib/store'
 import { recoverUser } from 'api/user'
 import { style } from 'styles/style'
+import Seo from 'components/Scaffolding/Seo'
 
 const Recover: NextPage = () => {
   const router = useRouter()
@@ -45,13 +46,16 @@ const Recover: NextPage = () => {
   })
 
   return (
-    <div className={style.loadingWrapper}>
-      <img alt='Decensored Logo' src='/logo/logotype.svg' className='fixed top-10 hidden xs:block' width={270} />
-      {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin text-5xl text-highlight-800' />}
-      {!isLoading && <Icon icon='faCheck' className='ml-2 text-5xl text-green-600' />}
-      <h2 className='mt-3 text-center text-2xl font-semibold text-highlight-800'>{currentState}</h2>
-      <p className='w-1/3 pt-2 text-center'>{currentExtra}</p>
-    </div>
+    <>
+      <Seo />
+      <div className={style.loadingWrapper}>
+        <img alt='Decensored Logo' src='/logo/logotype.svg' className='fixed top-10 hidden xs:block' width={270} />
+        {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin text-5xl text-highlight-800' />}
+        {!isLoading && <Icon icon='faCheck' className='ml-2 text-5xl text-green-600' />}
+        <h2 className='mt-3 text-center text-2xl font-semibold text-highlight-800'>{currentState}</h2>
+        <p className='w-1/3 pt-2 text-center'>{currentExtra}</p>
+      </div>
+    </>
   )
 }
 

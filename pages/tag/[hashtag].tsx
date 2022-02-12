@@ -6,6 +6,7 @@ import useStore from 'lib/store'
 import { getPostsWithHashtag, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { style } from 'styles/style'
+import Seo from 'components/Scaffolding/Seo'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -33,7 +34,8 @@ const Space: NextPage = () => {
   ))
 
   return (
-    <div>
+    <>
+      <Seo />
       {hashtag && (
         <div className={style.feedWrapper}>
           <div className={style.userHeaderWrapper}>
@@ -44,7 +46,7 @@ const Space: NextPage = () => {
           {showFeedItems}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

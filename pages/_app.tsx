@@ -11,14 +11,12 @@ import { inBrowser } from 'lib/where'
 import 'lib/polling/polling_accounts'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
-import Seo from 'components/Scaffolding/Seo'
 import Header from 'components/Scaffolding/Header'
 import AsideNavigation from 'components/Scaffolding/AsideNavigation'
 import BottomNavigation from 'components/Scaffolding/BottomNavigation'
 
 const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
-    <Seo />
     <Header />
     <div className={style.bodyContainer}>
       <div className={`${style.bodyContainerCol1}`}>

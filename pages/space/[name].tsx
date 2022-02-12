@@ -8,6 +8,7 @@ import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
+import Seo from 'components/Scaffolding/Seo'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -102,25 +103,26 @@ const Space: NextPage = () => {
     )
   })
 
-  return (
-    <div>
-      {space && (
-        <div className={style.feedWrapper}>
-          <SpaceHeader
-            space={space}
-            spaceOwner={spaceOwner}
-            spaceOwnerName={spaceOwnerName}
-            name={name}
-            nrOfPosts={nrOfPosts}
-            nrOfUSers={nrOfUSers}
-            userArray={userArray}
-            blackListArray={blackListArray}
-            setBlackListArray={setBlackListArray}
-          />
-          {showFeedItems}
-        </div>
-      )}
-    </div>
+  return space ? (
+    <>
+      <Seo title={`${space.name} by ${spaceOwnerName}`} description={space.description} />
+      <div className={style.feedWrapper}>
+        <SpaceHeader
+          space={space}
+          spaceOwner={spaceOwner}
+          spaceOwnerName={spaceOwnerName}
+          name={name}
+          nrOfPosts={nrOfPosts}
+          nrOfUSers={nrOfUSers}
+          userArray={userArray}
+          blackListArray={blackListArray}
+          setBlackListArray={setBlackListArray}
+        />
+        {showFeedItems}
+      </div>
+    </>
+  ) : (
+    <Seo />
   )
 }
 

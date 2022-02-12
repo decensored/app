@@ -6,6 +6,7 @@ import useStore from 'lib/store'
 import { getPostsForUser, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType } from 'lib/types'
 import { style } from 'styles/style'
+import Seo from 'components/Scaffolding/Seo'
 
 const Space: NextPage = () => {
   const router = useRouter()
@@ -38,14 +39,17 @@ const Space: NextPage = () => {
   })
 
   return (
-    <div className={style.feedWrapper}>
-      <div className={style.userHeaderWrapper}>
-        <div className={style.userHeaderInner}>
-          <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
+    <>
+      <Seo />
+      <div className={style.feedWrapper}>
+        <div className={style.userHeaderWrapper}>
+          <div className={style.userHeaderInner}>
+            <div className={style.userHeaderTitle}>{username ? `@${username}` : '#undefined'}</div>
+          </div>
         </div>
+        {showFeedItems}
       </div>
-      {showFeedItems}
-    </div>
+    </>
   )
 }
 
