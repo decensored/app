@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { style } from 'styles/style'
 import SVGIcon from 'components/Icon/SVGIcon'
 import Link from 'next/link'
+import { url } from 'lib/urls'
 
 interface SocialIconsItemProps {
   classNames: string
@@ -9,7 +10,7 @@ interface SocialIconsItemProps {
 
 const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }) => (
   <div className={classNames}>
-    <Link href='https://twitter.com/decensored_app' passHref>
+    <Link href={url.twitter} passHref>
       <a
         href='passed'
         target='_blank'
@@ -23,7 +24,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
         <SVGIcon icon='faTwitter' isFixed />
       </a>
     </Link>
-    <Link href='https://discord.gg/xsXxwUPkq6' passHref>
+    <Link href={url.discord} passHref>
       <a
         href='passed'
         target='_blank'
@@ -37,7 +38,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
         <SVGIcon icon='faDiscord' isFixed />
       </a>
     </Link>
-    <Link href='https://github.com/decensored/app' passHref>
+    <Link href={url.github} passHref>
       <a
         href='passed'
         target='_blank'
