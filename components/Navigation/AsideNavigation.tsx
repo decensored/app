@@ -41,7 +41,7 @@ const AsideNavigation: FunctionComponent = () => {
             </Link>
             <Link href='/spaces' passHref>
               <span>
-                <AsideNavigationItem isActive={isSpaces} icon='faSatellite' name='Spaces' />
+                <AsideNavigationItem isActive={isSpaces} icon='faRocket' name='Spaces' />
               </span>
             </Link>
             {isSignedUp && (

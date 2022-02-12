@@ -107,7 +107,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
                   {/* <div className={labelClasses}>Post In</div> */}
                   <Autocomplete
                     options={spacesOptions}
-                    icon='faSatellite'
+                    icon='faRocket'
                     defaultValue={currentOption ? [currentOption] : undefined}
                     onChange={handleOptionChange}
                     menuPlacement={placement}

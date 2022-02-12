@@ -56,7 +56,7 @@ const BottomNavigation = () => {
               ${isSpaces ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
-            <SVGIcon icon='faSatellite' />
+            <SVGIcon icon='faRocket' />
             <span className={style.navigationBottomItemText}>Spaces</span>
             {isSpaces && (
               <motion.span
