@@ -2,12 +2,12 @@ import React, { FunctionComponent, useState } from 'react'
 import ReactDOM from 'react-dom'
 import shallow from 'zustand/shallow'
 import { toast } from 'react-toastify'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Link from 'next/link'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
-import SocialIcons from 'components/Navigation/SocialIcons'
+import SocialIcons from 'components/Icons/Social'
 import SignupDialog from 'components/Dialog/SignupDialog'
 import AccountDialog from 'components/Dialog/AccountDialog'
 import RecoverDialog from 'components/Dialog/RecoverDialog'
@@ -63,7 +63,7 @@ const UserNavigation: FunctionComponent = () => {
         className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
         onClick={() => setOpenAccountDialog(true)}
       >
-        <SVGIcon icon='faIdCardAlt' isFixed />
+        <Icon icon='faIdCardAlt' isFixed />
         <span>Account</span>
       </button>
       <AccountDialog showDialog={openAccountDialog} onClose={() => setOpenAccountDialog(false)} />
@@ -77,7 +77,7 @@ const UserNavigation: FunctionComponent = () => {
         onClick={() => setOpenSignupDialog(true)}
         className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
       >
-        <SVGIcon icon='faPlus' isFixed />
+        <Icon icon='faPlus' isFixed />
         <span>Sign up</span>
       </button>
       <SignupDialog showDialog={openSignupDialog} onClose={() => setOpenSignupDialog(false)} />
@@ -91,7 +91,7 @@ const UserNavigation: FunctionComponent = () => {
         onClick={() => setOpenRecoverDialog(true)}
         className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
       >
-        <SVGIcon icon='faRedoAlt' isFixed />
+        <Icon icon='faRedoAlt' isFixed />
         <span>Recover account</span>
       </button>
       <RecoverDialog showDialog={openRecoverDialog} onClose={() => setOpenRecoverDialog(false)} />
@@ -105,10 +105,10 @@ const UserNavigation: FunctionComponent = () => {
         onClick={() => setOpenSettingsDialog(true)}
         className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
       >
-        <SVGIcon icon='faCog' isFixed />
+        <Icon icon='faCog' isFixed />
         <span>Node Settings</span>
         {!nodeIsUpAndRunning(contract) && (
-          <SVGIcon icon='faExclamationTriangle' className='fixed right-4 animate-pulse text-red-500' />
+          <Icon icon='faExclamationTriangle' className='fixed right-4 animate-pulse text-red-500' />
         )}
       </button>
       <SettingsDialog showDialog={openSettingsDialog} onClose={() => setOpenSettingsDialog(false)} />
@@ -123,13 +123,13 @@ const UserNavigation: FunctionComponent = () => {
     >
       {isDarkmode && (
         <>
-          <SVGIcon icon='faSun' isFixed />
+          <Icon icon='faSun' isFixed />
           <span>Lightmode</span>
         </>
       )}
       {!isDarkmode && (
         <>
-          <SVGIcon icon='faMoon' isFixed />
+          <Icon icon='faMoon' isFixed />
           <span>Darkmode</span>
         </>
       )}
@@ -139,7 +139,7 @@ const UserNavigation: FunctionComponent = () => {
   const contentMyPostsButton = () => (
     <Link href={`/user/${userName}`} passHref>
       <button type='button' className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark} ${style.buttonFull}`}>
-        <SVGIcon icon='faUserAstronaut' isFixed />
+        <Icon icon='faUserAstronaut' isFixed />
         <span>My Posts</span>
       </button>
     </Link>
@@ -151,7 +151,7 @@ const UserNavigation: FunctionComponent = () => {
       type='button'
       className={`${style.popoverBodyButton} ${style.popoverBodyButtonDark}`}
     >
-      <SVGIcon icon='faSignOutAlt' isFixed />
+      <Icon icon='faSignOutAlt' isFixed />
       Logout
     </button>
   )

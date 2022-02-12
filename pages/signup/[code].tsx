@@ -1,7 +1,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import useStore from 'lib/store'
 import { recoverUser } from 'api/user'
 import { style } from 'styles/style'
@@ -47,8 +47,8 @@ const Recover: NextPage = () => {
   return (
     <div className={style.loadingWrapper}>
       <img alt='Decensored Logo' src='/logo/logotype.svg' className='fixed top-10 hidden xs:block' width={270} />
-      {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin text-5xl text-highlight-800' />}
-      {!isLoading && <SVGIcon icon='faCheck' className='ml-2 text-5xl text-green-600' />}
+      {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin text-5xl text-highlight-800' />}
+      {!isLoading && <Icon icon='faCheck' className='ml-2 text-5xl text-green-600' />}
       <h2 className='mt-3 text-center text-2xl font-semibold text-highlight-800'>{currentState}</h2>
       <p className='w-1/3 pt-2 text-center'>{currentExtra}</p>
     </div>

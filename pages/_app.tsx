@@ -13,8 +13,8 @@ import 'lib/polling/polling_accounts'
 import 'lib/polling/polling_spaces'
 import 'lib/polling/polling_posts'
 import Header from 'components/Scaffolding/Header'
-import AsideNavigation from 'components/Navigation/AsideNavigation'
-import BottomNavigation from 'components/Navigation/BottomNavigation'
+import AsideNavigation from 'components/Scaffolding/AsideNavigation'
+import BottomNavigation from 'components/Scaffolding/BottomNavigation'
 
 declare module 'react-helmet-async' {
   export interface HelmetProps {

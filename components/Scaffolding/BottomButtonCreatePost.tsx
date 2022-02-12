@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { style } from 'styles/style'
 import PostDialog from 'components/Dialog/PostDialog'
 import useStore from 'lib/store'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 
 const BottomButtonCreatePost = () => {
   const [isSignedUp] = useStore((state) => [state.isSignedUp])
@@ -38,7 +38,7 @@ const BottomButtonCreatePost = () => {
           className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
           onClick={() => setOpenPostDialog(true)}
         >
-          <SVGIcon icon='faRocket' />
+          <Icon icon='faRocket' />
         </button>
         <div
           className={`

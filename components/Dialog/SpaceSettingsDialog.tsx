@@ -4,7 +4,7 @@ import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { removeUserFromBlacklist, setSpaceDescription } from 'api/spaces'
 import { toast } from 'react-toastify'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import Tag from 'components/Tags/Tag'
 import TextareaAutosize from 'react-textarea-autosize'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -85,7 +85,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
           setRemoveUserFromBlacklist(user.userId)
         }}
       >
-        <SVGIcon icon='faTimes' className='ml-2 text-red-500' />
+        <Icon icon='faTimes' className='ml-2 text-red-500' />
       </button>
     </Tag>
   ))
@@ -182,7 +182,7 @@ const SpaceSettingsDialog: FunctionComponent<SpaceSettingsDialogProbs> = ({
             `}
           >
             <span className='whitespace-nowrap'>
-              Save {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
+              Save {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </>

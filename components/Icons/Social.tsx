@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { style } from 'styles/style'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import Link from 'next/link'
 import { url } from 'lib/urls'
 
-interface SocialIconsItemProps {
+interface SocialIconProps {
   classNames: string
 }
 
-const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }) => (
+const SocialIcon: FunctionComponent<SocialIconProps> = ({ classNames }) => (
   <div className={classNames}>
     <Link href={url.twitter} passHref>
       <a
@@ -21,7 +21,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
           ${style.navigationAsideSocialButtonDark}
         `}
       >
-        <SVGIcon icon='faTwitter' isFixed />
+        <Icon icon='faTwitter' isFixed />
       </a>
     </Link>
     <Link href={url.discord} passHref>
@@ -35,7 +35,7 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
           ${style.navigationAsideSocialButtonDark}
         `}
       >
-        <SVGIcon icon='faDiscord' isFixed />
+        <Icon icon='faDiscord' isFixed />
       </a>
     </Link>
     <Link href={url.github} passHref>
@@ -49,10 +49,10 @@ const SocialIconsItem: FunctionComponent<SocialIconsItemProps> = ({ classNames }
           ${style.navigationAsideSocialButtonDark}
         `}
       >
-        <SVGIcon icon='faGithub' isFixed />
+        <Icon icon='faGithub' isFixed />
       </a>
     </Link>
   </div>
 )
 
-export default SocialIconsItem
+export default SocialIcon

@@ -14,11 +14,10 @@ const Space: NextPage = () => {
   const { name } = router.query
 
   // State Management
-  const { accounts, spaces, posts, isSignedUp, currentUserId, contract } = useStore((state) => ({
+  const { accounts, spaces, posts, currentUserId, contract } = useStore((state) => ({
     accounts: state.accounts,
     spaces: state.spaces,
     posts: state.posts,
-    isSignedUp: state.isSignedUp,
     currentUserId: state.userId,
     contract: state.contract,
   }))

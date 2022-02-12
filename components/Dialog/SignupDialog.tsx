@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { signUpUser } from 'api/user'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { toast } from 'react-toastify'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { url } from 'lib/urls'
 import BaseDialog from './BaseDialog'
 
@@ -176,7 +176,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
                       rounded-l-none
                     `}
                   >
-                    <SVGIcon icon='faClipboard' isFixed />
+                    <Icon icon='faClipboard' isFixed />
                   </button>
                 </CopyToClipboard>
               </div>
@@ -210,7 +210,7 @@ const SignupDialog: FunctionComponent<SignupDialogProps> = ({ showDialog, onClos
               `}
             >
               <span className='whitespace-nowrap'>
-                Sign-up {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
+                Sign-up {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin' />}
               </span>
             </button>
           )}

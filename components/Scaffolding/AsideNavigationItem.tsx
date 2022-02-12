@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { style } from 'styles/style'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 
 interface AsideNavigationItemProps {
   isActive: boolean
@@ -16,7 +16,7 @@ const AsideNavigationItem: FunctionComponent<AsideNavigationItemProps> = ({ isAc
       ${isActive ? style.navigationAsideButtonActive : ''}
     `}
   >
-    <SVGIcon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
+    <Icon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
     <span className={style.navigationAsideButtonText}>{name}</span>
   </div>
 )

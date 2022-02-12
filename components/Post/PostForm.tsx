@@ -3,7 +3,7 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { createPost, createReply } from 'api/feed'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import TextareaAutosize from 'react-textarea-autosize'
 import noop from 'lodash/noop'
 // import { dequeuePostsAndSpaces } from 'lib/storeUtils'
@@ -117,7 +117,7 @@ const Form: FunctionComponent<FormProps> = ({
         <div>
           <button type='submit' form={formId} className={`${style.button} ${style.buttonDecensored}`}>
             <span className='whitespace-nowrap'>
-              Spread it {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
+              Spread it {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </div>

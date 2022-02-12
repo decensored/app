@@ -33,7 +33,7 @@ import {
 import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-interface SVGIconProps {
+interface IconProps {
   icon: string
   className?: string
   isFixed?: boolean
@@ -74,7 +74,7 @@ const iconLookup: { [unit: string]: IconProp } = {
   faTwitter: faTwitter,
 }
 
-const SVGIcon: FunctionComponent<SVGIconProps> = ({ icon, className, isFixed = false, onClick }) => {
+const Icon: FunctionComponent<IconProps> = ({ icon, className, isFixed = false, onClick }) => {
   const setIcon = (): IconProp => {
     const getIcon = iconLookup[icon]
     if (!getIcon) console.warn(`${icon} undefined`)
@@ -84,4 +84,4 @@ const SVGIcon: FunctionComponent<SVGIconProps> = ({ icon, className, isFixed = f
   return <FontAwesomeIcon fixedWidth={isFixed} icon={setIcon()} className={className} onClick={onClick} />
 }
 
-export default SVGIcon
+export default Icon

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { style } from 'styles/style'
 import PostDialog from 'components/Dialog/PostDialog'
 import useStore from 'lib/store'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 
 const AsideButtonCreatePost = () => {
   const [isSignedUp] = useStore((state) => [state.isSignedUp, state.userName])
@@ -27,7 +27,7 @@ const AsideButtonCreatePost = () => {
         `}
         onClick={() => setOpenPostDialog(true)}
       >
-        <SVGIcon icon='faRocket' isFixed />
+        <Icon icon='faRocket' isFixed />
         <span className='hidden whitespace-nowrap sm:inline sm:pl-1'>New Post</span>
       </button>
 

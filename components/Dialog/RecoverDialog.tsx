@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { recoverUser } from 'api/user'
@@ -107,7 +107,7 @@ const RecoverDialog: FunctionComponent<RecoverDialogProps> = ({ showDialog, onCl
             `}
           >
             <span className='whitespace-nowrap'>
-              Recover {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
+              Recover {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </>

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { style } from 'styles/style'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import QRCode from 'react-qr-code'
 import { toast } from 'react-toastify'
@@ -61,7 +61,7 @@ const AccountDialog: FunctionComponent<AccountDialogProbs> = ({ showDialog, onCl
                     rounded-l-none
                   `}
                 >
-                  <SVGIcon icon='faClipboard' isFixed />
+                  <Icon icon='faClipboard' isFixed />
                 </button>
               </CopyToClipboard>
             </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { style } from 'styles/style'
 // import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 import BottomButtonCreatePost from './BottomButtonCreatePost'
@@ -32,7 +32,7 @@ const BottomNavigation = () => {
               ${isRoot ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
-            <SVGIcon icon='faSatelliteDish' />
+            <Icon icon='faSatelliteDish' />
             <span className={style.navigationBottomItemText}>Feed</span>
             {isRoot && (
               <motion.span
@@ -56,7 +56,7 @@ const BottomNavigation = () => {
               ${isSpaces ? style.navigationBottomItemColorActive : style.navigationBottomItemColor}
             `}
           >
-            <SVGIcon icon='faRocket' />
+            <Icon icon='faRocket' />
             <span className={style.navigationBottomItemText}>Spaces</span>
             {isSpaces && (
               <motion.span

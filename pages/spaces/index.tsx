@@ -5,7 +5,7 @@ import useStore from 'lib/store'
 import SpaceItem from 'components/Spaces/SpaceItem'
 import SpacesHeader from 'components/Spaces/SpacesHeader'
 import CreateSpaceDialog from 'components/Dialog/CreateSpaceDialog'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { style } from 'styles/style'
 import { sortSpaces } from 'lib/storeUtils'
 import { SpaceType } from 'lib/types'
@@ -54,7 +54,7 @@ const Spaces: NextPage = () => {
               onClick={() => setOpenCreateSpaceDialog(true)}
               className={`${style.button} ${style.buttonDecensored} ${style.buttonIconOnlyMobile}`}
             >
-              <SVGIcon icon='faPlus' isFixed />
+              <Icon icon='faPlus' isFixed />
               {isLargerThanSM && <span>Create</span>}
             </button>
             <CreateSpaceDialog showDialog={openCreateSpaceDialog} onClose={() => setOpenCreateSpaceDialog(false)} />
@@ -88,7 +88,7 @@ const Spaces: NextPage = () => {
         <div className='basis-full'>
           <div className={style.inputWrapper}>
             <span className={style.inputIconAddon}>
-              <SVGIcon icon='faSearch' isFixed />
+              <Icon icon='faSearch' isFixed />
             </span>
             <input
               value={searchTerm}

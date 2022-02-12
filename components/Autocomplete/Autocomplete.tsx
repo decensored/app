@@ -1,6 +1,6 @@
 import React from 'react'
 import Select, { components, MultiValue, SingleValue } from 'react-select'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import noop from 'lodash/noop'
 import { style } from 'styles/style'
 
@@ -32,7 +32,7 @@ const InputIcon = ({ icon }: IconProps) => {
   }
   return (
     <span className='autocompleteIcon flex w-[30px] items-center justify-end'>
-      <SVGIcon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
+      <Icon icon={icon} className={style.navigationAsideButtonIcon} isFixed />
     </span>
   )
 }

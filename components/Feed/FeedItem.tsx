@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { style } from 'styles/style'
 import { isBrowser } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
@@ -315,7 +315,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             <div className='group ml-3 flex'>
               {showBlackListLabel && (
                 <>
-                  <SVGIcon
+                  <Icon
                     icon='faShieldAlt'
                     className={`
                         ${style.feedItemInteractionIcon}
