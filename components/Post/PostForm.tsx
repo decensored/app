@@ -22,6 +22,7 @@ interface FormProps {
   onSpread?: () => void
   onSpreadFinish?: () => void
   autoFocus?: boolean
+  minRows?: number
   footerContent?: React.ReactNode
 }
 
@@ -43,6 +44,7 @@ const Form: FunctionComponent<FormProps> = ({
   onSpread = noop,
   onSpreadFinish = noop,
   autoFocus,
+  minRows = 2,
   footerContent,
 }: FormProps) => {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -87,7 +89,7 @@ const Form: FunctionComponent<FormProps> = ({
         <div className={style.postFormTextareaWrapper}>
           <TextareaAutosize
             autoFocus={autoFocus}
-            minRows={2}
+            minRows={minRows}
             maxLength={280}
             placeholder={`${userName}, spread your opinion!`}
             className={`

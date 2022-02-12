@@ -25,7 +25,7 @@ const TrendingHashtags: FunctionComponent<TrendingHashtagsProps> = ({ classNames
     </Tooltip>
   ))
 
-  return trendingTags ? (
+  return trendingTags > 0 ? (
     <>
       <div className='mb-2 text-sm font-medium'>Currently trending</div>
       <div className={classNames}>{trendingTags}</div>

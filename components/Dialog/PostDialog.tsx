@@ -101,6 +101,7 @@ const PostDialog = ({ showDialog, onClose }: PostDialogProps) => {
               onSpreadFinish={handleSpreadFinish}
               isTransparent
               autoFocus
+              minRows={5}
               footerContent={
                 <div className='flex flex-grow flex-col'>
                   {/* <div className={labelClasses}>Post In</div> */}
