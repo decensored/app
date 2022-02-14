@@ -259,7 +259,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                 setRenderDialog(true)
                 setOpenReplyDialog(true)
               }}
-              className={`${!isSignedUp ? 'pointer-events-none' : ''}`}
+              className={`${!isSignedUp ? 'pointer-events-none opacity-30' : ''}`}
             >
               <Tooltip text='Reply'>
                 <Icon
