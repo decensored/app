@@ -165,6 +165,8 @@ export const style = {
   feedReplyItemBar: 'feedReplyItemBar',
   feedReplyItemButton: 'feedReplyItemButton',
   feedReplyItemText: 'feedReplyItemText',
+  feedReplyItemButtonCount: 'feedReplyItemButtonCount',
+  feedReplyItemButtonCountDark: 'feedReplyItemButtonCountDark',
   feedReplyItemSpacer: 'feedReplyItemSpacer',
   feedDeleteItemText: 'feedDeleteItemText',
   // startSpaceWrapper: 'startSpaceWrapper',

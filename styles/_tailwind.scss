@@ -9,7 +9,7 @@
 }
 
 .bodyContainer {
-  @apply container mx-auto flex max-w-screen-lg md:gap-x-[5%];
+  @apply container mx-auto flex max-w-screen-md md:gap-x-[5%];
 }
 .bodyContainerCol1 {
   @apply w-[34px] flex-none pl-3 empty:hidden md:w-48;
@@ -559,13 +559,19 @@
   @apply pl-5;
 }
 .feedReplyItemBar {
-  @apply flex items-center pt-3 empty:hidden;
+  @apply flex items-center justify-between gap-x-3 pt-3 empty:hidden;
 }
 .feedReplyItemButton {
   @apply cursor-pointer text-xs text-highlight-500;
 }
 .feedReplyItemText {
   @apply cursor-pointer text-xs;
+}
+.feedReplyItemButtonCount {
+  @apply pointer-events-none absolute right-0 top-0 flex h-[16px] w-[16px] translate-x-1/2 -translate-y-1/4 items-center justify-center rounded-full bg-highlight-900 text-xs text-white;
+}
+.feedReplyItemButtonCountDark {
+  @apply dark:bg-white dark:text-highlight-500;
 }
 .feedReplyItemSpacer {
   @apply mx-2 text-[10px];

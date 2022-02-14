@@ -53,6 +53,8 @@ const Form: FunctionComponent<FormProps> = ({
     contract: state.contract,
   }))
 
+  // react-textarea-autosize height calculation is done to early
+  // https://github.com/Andarist/react-textarea-autosize/issues/337
   const [isRerendered, setIsRerendered] = useState(false)
   useLayoutEffect(() => setIsRerendered(true), [])
 
