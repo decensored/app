@@ -2,12 +2,12 @@ import React, { FunctionComponent } from 'react'
 // import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import useStore from 'lib/store'
 import { style } from 'styles/style'
 import Tooltip from 'components/Tooltip/Tooltip'
-import AsideNavigationItem from 'components/Navigation/AsideNavigationItem'
-import SocialIcons from 'components/Navigation/SocialIcons'
+import AsideNavigationItem from 'components/Scaffolding/AsideNavigationItem'
+import SocialIcons from 'components/Icons/Social'
 import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 import TrendingHashtags from '../Tags/TrendingHashtags'
 import AsideButtonCreatePost from './AsideButtonCreatePost'
@@ -41,7 +41,7 @@ const AsideNavigation: FunctionComponent = () => {
             </Link>
             <Link href='/spaces' passHref>
               <span>
-                <AsideNavigationItem isActive={isSpaces} icon='faSatellite' name='Spaces' />
+                <AsideNavigationItem isActive={isSpaces} icon='faRocket' name='Spaces' />
               </span>
             </Link>
             {isSignedUp && (
@@ -87,11 +87,11 @@ const AsideNavigation: FunctionComponent = () => {
               >
                 {isDarkmode ? (
                   <span className={`${style.switchInner} ${style.switchInnerDark}`}>
-                    <SVGIcon icon='faMoon' isFixed />
+                    <Icon icon='faMoon' isFixed />
                   </span>
                 ) : (
                   <span className={`${style.switchInner} ${style.switchInnerDark}`}>
-                    <SVGIcon icon='faSun' isFixed />
+                    <Icon icon='faSun' isFixed />
                   </span>
                 )}
               </button>

@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import shallow from 'zustand/shallow'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
-import SVGIcon from 'components/Icon/SVGIcon'
-import UserNavigation from 'components/Navigation/UserNavigation'
+import Icon from 'components/Icons/Icon'
+import UserNavigation from 'components/Scaffolding/UserNavigation'
 import { Transition } from '@headlessui/react'
 // import QueueControl from 'components/QueueControl/QueueControl'
 // import LoadingIndicator from 'components/LoadingIndicator/LoadingIndicator'
@@ -34,7 +34,7 @@ const Header: FunctionComponent = () => {
         <div className={style.headerBack}>
           {!isRoot && (
             <button type='button' onClick={() => router.back()}>
-              <SVGIcon icon='faArrowLeft' />
+              <Icon icon='faArrowLeft' />
             </button>
           )}
           {isRoot && <img alt='Decensored Logo' src='/logo/signet.svg' />}
@@ -48,8 +48,8 @@ const Header: FunctionComponent = () => {
           <>
             <button type='button' onClick={() => setIsOpenProfile(() => !isOpenProfile)}>
               <span className='ml-5 cursor-pointer text-lg text-white'>
-                {isSignedUp && <SVGIcon icon='faUser' />}
-                {!isSignedUp && <SVGIcon icon='faUserPlus' />}
+                {isSignedUp && <Icon icon='faUser' />}
+                {!isSignedUp && <Icon icon='faUserPlus' />}
               </span>
             </button>
             <Transition
@@ -72,7 +72,7 @@ const Header: FunctionComponent = () => {
         {!nodeIsUpAndRunning(contract) && gracePeriodDone && (
           <>
             <button type='button' onClick={() => setOpenSettingsDialog(true)}>
-              <SVGIcon icon='faExclamationTriangle' className='animate-pulse text-red-500' />
+              <Icon icon='faExclamationTriangle' className='animate-pulse text-red-500' />
             </button>
             <SettingsDialog showDialog={openSettingsDialog} onClose={() => setOpenSettingsDialog(false)} />
           </>

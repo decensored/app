@@ -18,7 +18,7 @@ const SpaceItem: FunctionComponent<SpaceItemProps> = ({ name, description, owner
     <Link href={`/space/${name}`} passHref>
       <motion.div
         layoutId={`spaceitem-${name}`}
-        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} cursor-pointer`}
+        className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemWrapperClickable}`}
       >
         <div className={style.feedItemInnerTop}>
           <div className={style.feedItemMetaWrapper}>

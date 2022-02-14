@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow'
 import Link from 'next/link'
 import type { PostType } from 'lib/types'
 import useStore from 'lib/store'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { style } from 'styles/style'
 import { isBrowser } from 'react-device-detect'
 import { addUserToBlacklist } from 'api/spaces'
@@ -12,11 +12,14 @@ import { toast } from 'react-toastify'
 import ReplyDialog from 'components/Dialog/ReplyDialog'
 import { getNumberOfRepliesForPostRecursive, getRepliesForPost } from 'lib/storeUtils'
 import spacePlugin from 'lib/linkify/spacePlugin'
+import Tooltip from 'components/Tooltip/Tooltip'
 import Tag from 'components/Tags/Tag'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import ReactTimeAgo from 'react-time-ago'
 import { Linkify, LinkifyCore } from 'react-easy-linkify'
+import { inBrowser } from 'lib/where'
+import useScreenSizeQuery from 'hooks/useScreenSizeQuery.js'
 
 LinkifyCore.PluginManager.addPlugin(spacePlugin)
 LinkifyCore.PluginManager.enableHashtag()
@@ -75,6 +78,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
     // console.log(`post ${id} by ${username} (${message}) is now read`)
   }
 
+  const isSmallerThanSM = useScreenSizeQuery('isSmallerThanSM')
+
   // Blacklist
   const setAddUserToBlacklist = async (): Promise<void> => {
     setIsLoading(true)
@@ -99,7 +104,7 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
   }
 
   const showBlackListLabel = !authorIsBlacklisted && author !== userId
-  const isAuthor = author === userId
+  const isAuthor = author === userId && isSignedUp
 
   const replies = getRepliesForPost(posts, post.id) // XXX or in useEffect?
   const nRepliesRecursive = getNumberOfRepliesForPostRecursive(posts, post.id) // XXX or in useEffect?
@@ -242,102 +247,152 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             {checkedMessage}
           </Linkify>
         </div>
-
-        <div className={style.feedReplyItemBar}>
-          {type !== 'replyToPost' && isSignedUp && (
-            <>
+        {type !== 'replyToPost' && !authorIsBlacklisted && (
+          <div
+            className={`
+            ${style.feedReplyItemBar}
+          `}
+          >
+            <Tooltip
+              classNames={`${!isSignedUp ? 'disabled-link' : ''}`}
+              text={`${!isSignedUp ? 'You need to register first.' : 'Reply'}`}
+            >
               <button
                 type='button'
                 onClick={() => {
                   setRenderDialog(true)
                   setOpenReplyDialog(true)
                 }}
-                className={style.feedReplyItemButton}
               >
-                Comment
+                <Icon
+                  icon='faComment'
+                  className={`
+                    ${style.feedItemInteractionIcon}
+                    ${style.feedItemInteractionIconDark}
+                  `}
+                />
               </button>
-              {renderDialog && (
-                <ReplyDialog showDialog={openReplyDialog} onClose={() => setOpenReplyDialog(false)} post={thisPost} />
-              )}
-            </>
-          )}
+            </Tooltip>
+            {renderDialog && (
+              <ReplyDialog showDialog={openReplyDialog} onClose={() => setOpenReplyDialog(false)} post={thisPost} />
+            )}
 
-          {replyCount > 0 && isSignedUp && type !== 'replyToPost' && (
-            <span className={style.feedReplyItemSpacer}>|</span>
-          )}
-
-          {replyCount > 0 && (
-            <>
-              {!openReplies && (
+            {!openReplies && (
+              <Tooltip
+                classNames={`${replyCount === 0 ? 'disabled-link' : ''}`}
+                text={`${replyCount === 0 ? 'No Replies' : 'Open Replies'}`}
+              >
                 <button
                   type='button'
                   onClick={() => {
                     setOpenReplies(true)
                   }}
-                  className={style.feedReplyItemText}
+                  className='relative'
                 >
-                  {replyCount === 1 ? `Show Reply` : `Show ${replyCount} Replies`}{' '}
-                  {unReadReplies > 0 && `(${unReadReplies} new)`}
-                </button>
-              )}
+                  {unReadReplies > 0 && (
+                    <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
+                      {unReadReplies}
+                    </span>
+                  )}
 
-              {openReplies && (
+                  <Icon
+                    icon='faEye'
+                    className={`
+                        ${style.feedItemInteractionIcon}
+                        ${style.feedItemInteractionIconDark}
+                      `}
+                  />
+                </button>
+              </Tooltip>
+            )}
+
+            {openReplies && (
+              <Tooltip
+                classNames={`${replyCount === 0 ? 'disabled-link' : ''}`}
+                text={`${replyCount === 0 ? 'No Replies' : 'Hide Replies'}`}
+              >
                 <button
                   type='button'
                   onClick={() => {
                     setOpenReplies(false)
                   }}
-                  className={style.feedReplyItemText}
+                  className={`
+                  ${replyCount === 0 ? 'pointer-events-none opacity-30' : ''}
+                  relative
+                `}
                 >
-                  {replyCount === 1 ? `Hide Reply` : `Hide ${replyCount} Replies`}{' '}
-                  {unReadReplies > 0 && `(${unReadReplies} new)`}
-                </button>
-              )}
-            </>
-          )}
+                  {/* {unReadReplies > 0 && (
+                  <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
+                    {unReadReplies}
+                  </span>
+                )} */}
 
-          {isAuthor && !deleted && (
-            <>
-              <span className={style.feedReplyItemSpacer}>|</span>
+                  <Icon
+                    icon='faEyeSlash'
+                    className={`
+                      ${style.feedItemInteractionIcon}
+                      ${style.feedItemInteractionIconDark}
+                    `}
+                  />
+                </button>
+              </Tooltip>
+            )}
+
+            <Tooltip text='Share Post'>
+              <Link href={`${inBrowser ? window.origin : ''}/post/${thisPost.id}`} passHref>
+                <a href='passed' target='_blank' rel='noreferrer'>
+                  <Icon
+                    icon='faShare'
+                    className={`
+                      ${style.feedItemInteractionIcon}
+                      ${style.feedItemInteractionIconDark}
+                    `}
+                  />
+                </a>
+              </Link>
+            </Tooltip>
+
+            {isAuthor && !deleted && (
               <button
                 type='button'
                 onClick={() => {
                   deletePost()
                 }}
-                className={style.feedDeleteItemText}
               >
-                Delete Post
+                <Tooltip text='Delete'>
+                  <Icon
+                    icon='faTrash'
+                    className={`
+                        ${style.feedItemInteractionIcon}
+                        ${style.feedItemInteractionIconDark}
+                      hover:text-red-400
+                      `}
+                  />
+                </Tooltip>
               </button>
-            </>
-          )}
+            )}
 
-          {moderator && (
-            <div className='group ml-3 flex'>
-              {showBlackListLabel && (
-                <>
-                  <SVGIcon
+            {moderator && showBlackListLabel && (
+              <button
+                type='button'
+                onClick={() => {
+                  setAddUserToBlacklist()
+                }}
+              >
+                <Tooltip text='Blacklist User'>
+                  <Icon
                     icon='faShieldAlt'
                     className={`
                         ${style.feedItemInteractionIcon}
                         ${style.feedItemInteractionIconDark}
-                        cursor-default hover:text-red-400
-                        ${isLoading && ' animate-pulse text-green-600'}
+                      hover:text-red-400
                       `}
                   />
-                  <button
-                    type='button'
-                    onClick={() => {
-                      setAddUserToBlacklist()
-                    }}
-                    className={`${style.blackListButton}`}
-                  >
-                    Blacklist User
-                  </button>
-                </>
-              )}
-            </div>
-          )}
-        </div>
+                </Tooltip>
+              </button>
+            )}
+          </div>
+        )}
       </div>
       {openReplies && <div className={`${style.feedReplyItemWrapper} ${style.feedItemReset}`}>{replyItems}</div>}
     </div>

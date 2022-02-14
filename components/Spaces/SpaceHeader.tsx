@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
 import SpaceSettingsDialog from 'components/Dialog/SpaceSettingsDialog'
 import UserDialog from 'components/Dialog/UserDialog'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import { style } from 'styles/style'
 import { SpaceType, UserType } from 'lib/types'
 import Tag from 'components/Tags/Tag'
@@ -37,7 +37,7 @@ const SpaceHeader: FunctionComponent<SpaceHeaderProbs> = ({
     <div className={`${style.spaceHeaderWrapper} bg-gradient`}>
       {spaceOwner && (
         <>
-          <SVGIcon
+          <Icon
             icon='faCog'
             className='absolute top-3 right-3 cursor-pointer text-white'
             onClick={() => setOpenSpaceSettingsDialog(true)}

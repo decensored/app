@@ -4,7 +4,7 @@ import useStore from 'lib/store'
 import { style } from 'styles/style'
 import BaseDialog from 'components/Dialog/BaseDialog'
 import { createSpace /* , getSpaceByName */ } from 'api/spaces'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import router from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
 
@@ -155,7 +155,7 @@ const CreateSpaceDialog: FunctionComponent<CreateSpaceDialogProps> = ({ showDial
             `}
           >
             <span className='whitespace-nowrap'>
-              Create {isLoading && <SVGIcon icon='faSpinner' className='ml-2 animate-spin' />}
+              Create {isLoading && <Icon icon='faSpinner' className='ml-2 animate-spin' />}
             </span>
           </button>
         </>

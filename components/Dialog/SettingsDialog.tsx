@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 import useStore from 'lib/store'
 import { nodeIsUpAndRunning } from 'lib/storeUtils'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -96,7 +96,7 @@ const SettingsDialog: FunctionComponent<SettingsDialogProps> = ({ showDialog, on
 
                 {!nodeIsUpAndRunning(contract) && (
                   <div className={`${style.formValidation} ${style.formValidationError}`}>
-                    <SVGIcon
+                    <Icon
                       icon='faExclamationTriangle'
                       className={`${style.formValidationText} ${style.formValidationTextError} mr-3`}
                     />

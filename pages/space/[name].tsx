@@ -6,20 +6,19 @@ import useStore from 'lib/store'
 import { getPostsInSpace, getSpaceById, getSpaceIdByName, getUserById, nodeIsUpAndRunning } from 'lib/storeUtils'
 import type { PostType, SpaceType, UserType } from 'lib/types'
 import { style } from 'styles/style'
-import PostForm from 'components/Post/PostForm'
 import { userBlackListedForSpace } from 'api/spaces'
 import SpaceHeader from 'components/Spaces/SpaceHeader'
+import Seo from 'components/Scaffolding/Seo'
 
 const Space: NextPage = () => {
   const router = useRouter()
   const { name } = router.query
 
   // State Management
-  const { accounts, spaces, posts, isSignedUp, currentUserId, contract } = useStore((state) => ({
+  const { accounts, spaces, posts, currentUserId, contract } = useStore((state) => ({
     accounts: state.accounts,
     spaces: state.spaces,
     posts: state.posts,
-    isSignedUp: state.isSignedUp,
     currentUserId: state.userId,
     contract: state.contract,
   }))
@@ -104,32 +103,26 @@ const Space: NextPage = () => {
     )
   })
 
-  return (
-    <div>
-      {space && (
-        <div className={style.feedWrapper}>
-          <SpaceHeader
-            space={space}
-            spaceOwner={spaceOwner}
-            spaceOwnerName={spaceOwnerName}
-            name={name}
-            nrOfPosts={nrOfPosts}
-            nrOfUSers={nrOfUSers}
-            userArray={userArray}
-            blackListArray={blackListArray}
-            setBlackListArray={setBlackListArray}
-          />
-          {isSignedUp && !currentUserBlacklisted && (
-            <div className={`${style.feedItemWrapper} ${style.feedItemWrapperDark} ${style.feedItemParent}`}>
-              <div className={style.feedItemInner}>
-                <PostForm spaceId={space.id} isTransparent />
-              </div>
-            </div>
-          )}
-          {showFeedItems}
-        </div>
-      )}
-    </div>
+  return space ? (
+    <>
+      <Seo title={`${space.name} by ${spaceOwnerName}`} description={space.description} />
+      <div className={style.feedWrapper}>
+        <SpaceHeader
+          space={space}
+          spaceOwner={spaceOwner}
+          spaceOwnerName={spaceOwnerName}
+          name={name}
+          nrOfPosts={nrOfPosts}
+          nrOfUSers={nrOfUSers}
+          userArray={userArray}
+          blackListArray={blackListArray}
+          setBlackListArray={setBlackListArray}
+        />
+        {showFeedItems}
+      </div>
+    </>
+  ) : (
+    <Seo />
   )
 }
 

@@ -8,7 +8,10 @@ import {
   faClipboard,
   faCog,
   faComment,
+  faComments,
   faExclamationTriangle,
+  faEye,
+  faEyeSlash,
   faHeart,
   faIdBadge,
   faIdCardAlt,
@@ -26,6 +29,7 @@ import {
   faSpinner,
   faSun,
   faTimes,
+  faTrash,
   faUser,
   faUserAstronaut,
   faUserPlus,
@@ -33,7 +37,7 @@ import {
 import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-interface SVGIconProps {
+interface IconProps {
   icon: string
   className?: string
   isFixed?: boolean
@@ -48,7 +52,12 @@ const iconLookup: { [unit: string]: IconProp } = {
   faClipboard: faClipboard,
   faCog: faCog,
   faComment: faComment,
+  faComments: faComments,
+  faDiscord: faDiscord,
   faExclamationTriangle: faExclamationTriangle,
+  faEye: faEye,
+  faEyeSlash: faEyeSlash,
+  faGithub: faGithub,
   faHeart: faHeart,
   faIdBadge: faIdBadge,
   faIdCardAlt: faIdCardAlt,
@@ -66,15 +75,14 @@ const iconLookup: { [unit: string]: IconProp } = {
   faSpinner: faSpinner,
   faSun: faSun,
   faTimes: faTimes,
+  faTrash: faTrash,
+  faTwitter: faTwitter,
   faUser: faUser,
   faUserAstronaut: faUserAstronaut,
   faUserPlus: faUserPlus,
-  faDiscord: faDiscord,
-  faGithub: faGithub,
-  faTwitter: faTwitter,
 }
 
-const SVGIcon: FunctionComponent<SVGIconProps> = ({ icon, className, isFixed = false, onClick }) => {
+const Icon: FunctionComponent<IconProps> = ({ icon, className, isFixed = false, onClick }) => {
   const setIcon = (): IconProp => {
     const getIcon = iconLookup[icon]
     if (!getIcon) console.warn(`${icon} undefined`)
@@ -84,4 +92,4 @@ const SVGIcon: FunctionComponent<SVGIconProps> = ({ icon, className, isFixed = f
   return <FontAwesomeIcon fixedWidth={isFixed} icon={setIcon()} className={className} onClick={onClick} />
 }
 
-export default SVGIcon
+export default Icon

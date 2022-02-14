@@ -13,7 +13,7 @@ const SpacesHeader: FunctionComponent = () => {
     <div className={`${style.spaceHeaderWrapper} header-image variant-spaces`}>
       <div className={style.spaceHeaderInner}>
         <div className={style.spaceHeaderInnerCol1}>
-          <div className={style.spaceHeaderTitle}>The Universe is infinite</div>
+          <div className={style.spaceHeaderTitle}>Universe is infinite</div>
           <div className={style.spaceHeaderDescription}>And so are your Possibilities!</div>
         </div>
         <div className={style.spaceHeaderInnerCol2}>

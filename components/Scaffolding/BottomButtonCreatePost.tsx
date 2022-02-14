@@ -2,19 +2,18 @@ import React, { useState } from 'react'
 import { style } from 'styles/style'
 import PostDialog from 'components/Dialog/PostDialog'
 import useStore from 'lib/store'
-import SVGIcon from 'components/Icon/SVGIcon'
+import Icon from 'components/Icons/Icon'
 
 const BottomButtonCreatePost = () => {
   const [isSignedUp] = useStore((state) => [state.isSignedUp])
 
   const [openPostDialog, setOpenPostDialog] = useState(false)
 
-  // Hidden Post Buttton
-  const postButtonIsHidden = true
-
-  if (!isSignedUp || postButtonIsHidden) {
+  if (!isSignedUp) {
     return null
   }
+
+  const handleClose = () => setOpenPostDialog(false)
 
   return (
     <>
@@ -39,7 +38,7 @@ const BottomButtonCreatePost = () => {
           className={`${style.navigationBottomPostButton} ${style.buttonDecensored}`}
           onClick={() => setOpenPostDialog(true)}
         >
-          <SVGIcon icon='faRocket' />
+          <Icon icon='faRocket' />
         </button>
         <div
           className={`
@@ -57,7 +56,7 @@ const BottomButtonCreatePost = () => {
           />
         </div>
       </div>
-      <PostDialog showDialog={openPostDialog} onClose={() => setOpenPostDialog(false)} />
+      <PostDialog showDialog={openPostDialog} onClose={handleClose} />
     </>
   )
 }
