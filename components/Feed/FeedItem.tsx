@@ -315,11 +315,11 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                   relative
                 `}
               >
-                {unReadReplies > 0 && (
+                {/* {unReadReplies > 0 && (
                   <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
                     {unReadReplies}
                   </span>
-                )}
+                )} */}
 
                 <Tooltip text='Hide Replies'>
                   <Icon
