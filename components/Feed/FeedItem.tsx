@@ -253,15 +253,17 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
             ${style.feedReplyItemBar}
           `}
           >
-            <button
-              type='button'
-              onClick={() => {
-                setRenderDialog(true)
-                setOpenReplyDialog(true)
-              }}
-              className={`${!isSignedUp ? 'pointer-events-none opacity-30' : ''}`}
+            <Tooltip
+              classNames={`${!isSignedUp ? 'disabled-link' : ''}`}
+              text={`${!isSignedUp ? 'You need to register first.' : 'Reply'}`}
             >
-              <Tooltip text='Reply'>
+              <button
+                type='button'
+                onClick={() => {
+                  setRenderDialog(true)
+                  setOpenReplyDialog(true)
+                }}
+              >
                 <Icon
                   icon='faComment'
                   className={`
@@ -269,59 +271,62 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                     ${style.feedItemInteractionIconDark}
                   `}
                 />
-              </Tooltip>
-            </button>
+              </button>
+            </Tooltip>
             {renderDialog && (
               <ReplyDialog showDialog={openReplyDialog} onClose={() => setOpenReplyDialog(false)} post={thisPost} />
             )}
 
             {!openReplies && (
-              <button
-                type='button'
-                onClick={() => {
-                  setOpenReplies(true)
-                }}
-                className={`
-                  ${replyCount === 0 ? 'pointer-events-none opacity-30' : ''}
-                  relative
-                `}
+              <Tooltip
+                classNames={`${replyCount === 0 ? 'disabled-link' : ''}`}
+                text={`${replyCount === 0 ? 'No Replies' : 'Open Replies'}`}
               >
-                {unReadReplies > 0 && (
-                  <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
-                    {unReadReplies}
-                  </span>
-                )}
+                <button
+                  type='button'
+                  onClick={() => {
+                    setOpenReplies(true)
+                  }}
+                  className='relative'
+                >
+                  {unReadReplies > 0 && (
+                    <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
+                      {unReadReplies}
+                    </span>
+                  )}
 
-                <Tooltip text='Open Replies'>
                   <Icon
-                    icon='faComments'
+                    icon='faEye'
                     className={`
-                      ${style.feedItemInteractionIcon}
-                      ${style.feedItemInteractionIconDark}
-                    `}
+                        ${style.feedItemInteractionIcon}
+                        ${style.feedItemInteractionIconDark}
+                      `}
                   />
-                </Tooltip>
-              </button>
+                </button>
+              </Tooltip>
             )}
 
             {openReplies && (
-              <button
-                type='button'
-                onClick={() => {
-                  setOpenReplies(false)
-                }}
-                className={`
+              <Tooltip
+                classNames={`${replyCount === 0 ? 'disabled-link' : ''}`}
+                text={`${replyCount === 0 ? 'No Replies' : 'Hide Replies'}`}
+              >
+                <button
+                  type='button'
+                  onClick={() => {
+                    setOpenReplies(false)
+                  }}
+                  className={`
                   ${replyCount === 0 ? 'pointer-events-none opacity-30' : ''}
                   relative
                 `}
-              >
-                {/* {unReadReplies > 0 && (
+                >
+                  {/* {unReadReplies > 0 && (
                   <span className={`${style.feedReplyItemButtonCount} ${style.feedReplyItemButtonCountDark}`}>
                     {unReadReplies}
                   </span>
                 )} */}
 
-                <Tooltip text='Hide Replies'>
                   <Icon
                     icon='faEyeSlash'
                     className={`
@@ -329,8 +334,8 @@ const FeedItem: FunctionComponent<FeedItemProps> = ({
                       ${style.feedItemInteractionIconDark}
                     `}
                   />
-                </Tooltip>
-              </button>
+                </button>
+              </Tooltip>
             )}
 
             <Tooltip text='Share Post'>
