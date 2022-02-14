@@ -595,10 +595,10 @@
   @apply mt-3 w-full sm:mt-0 sm:w-2/4;
 }
 .spaceHeaderTitle {
-  @apply text-xl font-semibold uppercase sm:text-2xl;
+  @apply text-xl font-semibold uppercase sm:text-xl;
 }
 .spaceHeaderDescription {
-  @apply pt-2 font-light;
+  @apply font-light;
 }
 .spaceHeaderButton {
   @apply mt-5 mb-5 sm:mb-0;
@@ -610,7 +610,7 @@
   @apply flex flex-col;
 }
 .spaceHeaderDataTitle {
-  @apply text-2xl font-bold sm:text-4xl;
+  @apply text-2xl font-bold sm:text-2xl;
 }
 .spaceHeaderDataText {
   @apply text-xs font-light sm:mt-2;
